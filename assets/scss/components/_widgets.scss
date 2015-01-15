@@ -1,0 +1,325 @@
+.widget {
+	@extend %beta;
+	@include rhythm(padding-bottom, 5);
+
+	@include query-below($lap) {
+		@include rhythm(padding-bottom, 3);
+	}
+
+	img {
+		max-width: 100%;
+	}
+
+    + .widget {
+        @include rhythm(padding-top, 3);
+        border-top: 1px solid $borders;
+        margin-top: -1px;
+
+	    @include query-below($lap) {
+		    @include rhythm(padding-top, 2);
+	    }
+    }
+
+	a {
+		color: black;
+
+		&:hover {
+			color: $accent;
+		}
+	}
+
+	ul {
+		@extend .list--unstyled;
+        @include fs(16px);
+	}
+
+	li {
+		@include rhythm(margin-bottom, 1);
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+
+	select {
+		max-width: 100%;
+	}
+
+	.post-date {
+		display: block;
+        @include rhythm(margin-top, 1/2);
+		@include fs(13px);
+		font-style: italic;
+		color: $borders;
+	}
+}
+
+.widget .widget-title {
+	@include font-size(24px);
+	@include baseline(24px);
+	@include rhythm(margin-bottom, 2, 24px);
+	margin-top: 0;
+}
+
+
+
+
+
+
+/* Widget - Calendar */
+
+.widget_calendar {
+
+	table {
+		width: 100%;
+		color: $borders;
+		text-align: center;
+	}
+
+	th {
+		text-align: center;
+		@include rhythm(padding-bottom, 1);
+	}
+
+	tr{
+		border: 0;
+	}
+
+    tfoot {
+        @include rhythm(padding, 1);
+	}
+
+	caption {
+		color: $gray;
+        @include rhythm(padding-bottom, 1);
+        @include rhythm(padding-top, 1);
+	}
+
+	a {
+		color: $black;
+
+		&:hover {
+			color: $black;
+			text-decoration: underline;
+		}
+	}
+
+	thead {
+		color: $black;
+	}
+
+	tfoot {
+
+		a {
+			color: $gray;
+		}
+
+		td {
+			border-bottom: 0;
+		}
+	}
+}
+
+
+
+
+/* Widget - Recent Comments */
+
+.recentcomments{
+	color: $borders;
+
+	a {
+		color: $black;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+#recentcomments {
+	@include fs(14px);
+	font-weight: bold;
+
+	a:last-child {
+		font-weight: normal;
+	}
+
+	li {
+		@include rhythm(margin-bottom, 2);
+	}
+}
+
+
+
+
+
+.widget_recent_entries {
+
+	li {
+		@include rhythm(margin-bottom, 2);
+	}
+
+	.post-date {
+		display: block;
+		@include fs(13px, -1/2);
+		font-style: italic;
+	}
+}
+
+
+
+
+
+.widget_recent_entries {
+
+	li {
+		@include rhythm(margin-bottom, 2);
+	}
+
+	.post-date {
+		display: block;
+		@include fs(13px, -1/2);
+		font-style: italic;
+	}
+}
+
+
+/* Widget - RSS */
+
+.widget_rss{
+	li{
+		margin-bottom: $u;
+	}
+
+	cite{
+		display: block;
+		margin-top: $u/4;
+	}
+}
+
+.rsswidget{ //rss entry title
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+.rss-date{
+	&:before{
+		content: '-';
+
+		display: inline-block;
+		margin: 0 3px;
+	}
+}
+
+.widget_rss_links a{
+	display: inline-block;
+	vertical-align: middle;
+}
+
+// @todo revision
+.widget_categories,
+.widget_pages,
+.widget_meta,
+.widget_archive {
+
+    > ul {
+        @extend %grid;
+
+        > li {
+			@extend %grid__item;
+
+            width: 50%;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+
+            a {
+                display: inline;
+            }
+        }
+
+        // hide sub-categories
+        ul {
+            display: none;
+        }
+    }
+}
+
+
+
+/* Widget - Subscription */
+
+.widget_blog_subscription{
+	@include rhythm(padding, 2);
+
+	background-color: $dark;
+	color: white;
+
+	@include fs(14px, 0, 0);
+
+	p:first-of-type{
+		@include rhythm(margin-top, 3);
+		@include rhythm(margin-bottom, 3);
+	}
+
+	.widget-title{
+		color: white;
+	}
+
+	input{ @include fs(16px, 0, 0); transform: none; }
+
+	input[type='text']{
+		@include rhythm(padding, 0.5);
+		width: 100%;
+
+		border: 1px solid $lightest;
+		background: transparent;
+		color: white;
+	}
+
+	input[type='submit']{
+		border: 1px solid $accent;
+		color: $accent;
+
+		padding: $u/4 $u/2;
+	}
+
+	a {
+		color: white;
+
+		&:hover {
+			color: $accent;
+		}
+	}
+}
+
+
+
+/* Widget - Milestone */
+
+.milestone-content {
+	&.milestone-content {
+		max-width: none;
+	}
+
+	.milestone-header,
+	.milestone-countdown,
+	.milestone-message {
+		color: white;
+	}
+
+	.milestone-header,
+	.milestone-countdown {
+		@include rhythm(padding, 2);
+	}
+
+	.event {
+		@include rhythm(margin-bottom, 1);
+	}
+}
