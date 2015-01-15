@@ -144,83 +144,11 @@
 
 // #LAYOUT
 
-/**
- * 6.0 - Basic Structure
- *   6.1 - Page
- */
-@import "layout/page";
-
 
 
 
 
 // #COMPONENTS
-
-/**
- * 7.0 - Header
- */
-@import "components/header";
-
-/**
- * 8.0 - Navigation
- */
-@import "components/navigation";
-
-/**
- * 9.0 - Content
- */
-@import "components/article";
-
-/**
- *   9.1 - Archive
- */
-@import "pages/archive";
-
-/**
- *   9.2 - Pagination
- */
-@import "components/pagination";
-
-/**
- *   9.3 - Singular
- */
-@import "pages/single";
-
-/**
- *   9.4 - Comments
- */
-@import "components/comments";
-
-/**
- *   9.5 - Search Form
- */
-@import "objects/search-form";
-
-/**
- * 10.0 - Sidebar
- */
-@import "layout/sidebar";
-
-/**
- *   10.1 - Widgets
- */
-@import "components/widgets";
-
-/**
- * 11.0 - Footer
- */
-@import "components/footer";
-// @import "components/card";
-
-/**
- * 12.0 - Toolbar
- */
-@import "components/toolbar";
-
-/**
- * 13.0 - Jetpack's plugins styling
- */
-@import "components/jetpack";
 
 
 
