@@ -12,9 +12,9 @@
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'swell' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'swell' ), 'WordPress' ); ?></a>
+			<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'swell_txtd' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'swell_txtd' ), 'WordPress' ); ?></a>
 			<span class="sep"> | </span>
-			<?php printf( __( 'Theme: %1$s by %2$s.', 'swell' ), 'swell', '<a href="http://pixelgrade.com" rel="designer">PixelGrade</a>' ); ?>
+			<?php printf( __( 'Theme: %1$s by %2$s.', 'swell_txtd' ), 'swell_txtd', '<a href="http://pixelgrade.com" rel="designer">PixelGrade</a>' ); ?>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
