@@ -94,7 +94,7 @@ gulp.task('server', ['styles', 'scripts'], function () {
 gulp.task('copy-folder', ['styles-prod', 'scripts'], function () {
 
 	return gulp.src('./')
-		.pipe(exec('rm -Rf ./../build; mkdir -p ./../build/hive; rsync -av --exclude="node_modules" ./* ./../build/hive/', options));
+		.pipe(exec('rm -Rf ./../build; mkdir -p ./../build/swell; rsync -av --exclude="node_modules" ./* ./../build/swell/', options));
 });
 
 /**
@@ -140,7 +140,7 @@ gulp.task('build', ['copy-folder'], function () {
 gulp.task('zip', ['build'], function(){
 
 	return gulp.src('./')
-		.pipe(exec('cd ./../; rm -rf hive.zip; cd ./build/; zip -r -X ./../hive.zip ./hive; cd ./../; rm -rf build'));
+		.pipe(exec('cd ./../; rm -rf swell.zip; cd ./build/; zip -r -X ./../swell.zip ./swell; cd ./../; rm -rf build'));
 
 });
 
