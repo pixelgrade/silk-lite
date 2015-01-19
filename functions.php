@@ -1,8 +1,8 @@
 <?php
 /**
- * sonnet functions and definitions
+ * swell functions and definitions
  *
- * @package sonnet
+ * @package swell
  */
 
 /**
@@ -12,7 +12,7 @@ if ( ! isset( $content_width ) ) {
 	$content_width = 640; /* pixels */
 }
 
-if ( ! function_exists( 'sonnet_setup' ) ) :
+if ( ! function_exists( 'swell_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -20,15 +20,15 @@ if ( ! function_exists( 'sonnet_setup' ) ) :
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-function sonnet_setup() {
+function swell_setup() {
 
 	/*
 	 * Make theme available for translation.
 	 * Translations can be filed in the /languages/ directory.
-	 * If you're building a theme based on sonnet, use a find and replace
-	 * to change 'sonnet' to the name of your theme in all the template files
+	 * If you're building a theme based on swell, use a find and replace
+	 * to change 'swell' to the name of your theme in all the template files
 	 */
-	load_theme_textdomain( 'sonnet', get_template_directory() . '/languages' );
+	load_theme_textdomain( 'swell', get_template_directory() . '/languages' );
 
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
@@ -50,7 +50,7 @@ function sonnet_setup() {
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
-		'primary' => __( 'Primary Menu', 'sonnet' ),
+		'primary' => __( 'Primary Menu', 'swell' ),
 	) );
 
 	/*
@@ -70,22 +70,22 @@ function sonnet_setup() {
 	) );
 
 	// Set up the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( 'sonnet_custom_background_args', array(
+	add_theme_support( 'custom-background', apply_filters( 'swell_custom_background_args', array(
 		'default-color' => 'ffffff',
 		'default-image' => '',
 	) ) );
 }
-endif; // sonnet_setup
-add_action( 'after_setup_theme', 'sonnet_setup' );
+endif; // swell_setup
+add_action( 'after_setup_theme', 'swell_setup' );
 
 /**
  * Register widget area.
  *
  * @link http://codex.wordpress.org/Function_Reference/register_sidebar
  */
-function sonnet_widgets_init() {
+function swell_widgets_init() {
 	register_sidebar( array(
-		'name'          => __( 'Sidebar', 'sonnet' ),
+		'name'          => __( 'Sidebar', 'swell' ),
 		'id'            => 'sidebar-1',
 		'description'   => '',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
@@ -94,19 +94,19 @@ function sonnet_widgets_init() {
 		'after_title'   => '</h1>',
 	) );
 }
-add_action( 'widgets_init', 'sonnet_widgets_init' );
+add_action( 'widgets_init', 'swell_widgets_init' );
 
 /**
  * Enqueue scripts and styles.
  */
-function sonnet_scripts() {
-	wp_enqueue_style( 'sonnet-style', get_stylesheet_uri() );
+function swell_scripts() {
+	wp_enqueue_style( 'swell-style', get_stylesheet_uri() );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'sonnet_scripts' );
+add_action( 'wp_enqueue_scripts', 'swell_scripts' );
 
 /**
  * Implement the Custom Header feature.

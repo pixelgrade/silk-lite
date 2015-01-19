@@ -127,7 +127,7 @@ gulp.task('build', ['copy-folder'], function () {
 	];
 
 	files_to_remove.forEach(function (e, k) {
-		files_to_remove[k] = '../build/hive/' + e;
+		files_to_remove[k] = '../build/swell/' + e;
 	});
 
 	return gulp.src(files_to_remove, {read: false})
@@ -135,7 +135,7 @@ gulp.task('build', ['copy-folder'], function () {
 });
 
 /**
- * Create a zip archive out of the cleaned folder and delete the folder
+ * Create a zip arcswell out of the cleaned folder and delete the folder
  */
 gulp.task('zip', ['build'], function(){
 
@@ -158,7 +158,7 @@ gulp.task('help', function () {
 	var $help = '\nCommands available : \n \n' +
 		'=== General Commands === \n' +
 		'start              (default)Compiles all styles and scripts and makes the theme ready to start \n' +
-		'zip               	Generate the zip archive \n' +
+		'zip               	Generate the zip arcswell \n' +
 		'build				Generate the build directory with the cleaned theme \n' +
 		'help               Print all commands \n' +
 		'=== Style === \n' +
