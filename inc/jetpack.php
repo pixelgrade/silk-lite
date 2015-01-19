@@ -39,4 +39,4 @@ function swell_jetpack_setup() {
 
 }
 
-add_action( 'after_setup_theme', 'swell_jetpack_setup' );
+add_action( 'after_setup_theme', 'swell_jetpack_setup' ); ?>

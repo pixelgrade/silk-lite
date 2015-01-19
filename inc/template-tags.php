@@ -296,4 +296,4 @@ function swell_category_transient_flusher() {
 	delete_transient( 'swell_categories' );
 }
 add_action( 'edit_category', 'swell_category_transient_flusher' );
-add_action( 'save_post',     'swell_category_transient_flusher' );
+add_action( 'save_post',     'swell_category_transient_flusher' ); ?>
