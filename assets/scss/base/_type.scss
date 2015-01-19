@@ -2,7 +2,6 @@ body {
     @extend %beta;
     font-size: $base-font-size;
     line-height: $base-line-height / $base-font-size;
-// line-height: 1.6;
 //	-ms-text-size-adjust: 100%;
 //	-webkit-text-size-adjust: 100%;
 //	-webkit-font-smoothing: antialiased;
@@ -74,15 +73,15 @@ p {
 	@include font-size(16px);
     @include baseline(16px);
 
-    @if $editor-style { @include rhythm(margin-bottom, 3); }
-    	@else { @include rhythm(margin-bottom, 2); }
+    @if $editor-style {
+    	@include rhythm(margin-bottom, 3);
+    } @else {
+    	@include rhythm(margin-bottom, 2);
+    }
 }
 
 /* Links */
-a {
-	text-decoration: none;
-	color: $dark;
-}
+a {}
 
 
 
@@ -100,96 +99,7 @@ acronym {
 
 /* Blockquotes */
 
-blockquote {
-	@extend %alpha;
-	position: relative;
-	text-align: center;
-	@include font-size(28px);
-
-	@include rhythm(margin-top, 6, 28px);
-	@include rhythm(margin-bottom, 5, 28px);
-
-	@include rhythm(padding-top, 4, 28px);
-	@include rhythm(padding-bottom, 4, 28px);
-
-	blockquote {
-		font-size: 1em;
-		margin-bottom: 0;
-		padding-bottom: 0;
-
-		&:after {
-			border-bottom: 0;
-		}
-	}
-
-	@include query-below($lap) {
-		@include font-size(18px);
-		@include rhythm(margin-top, 4, 18px);
-		@include rhythm(margin-bottom, 3, 18px);
-		@include rhythm(padding, 1, 18px);
-		@include rhythm(padding-top, 2, 18px);
-		@include rhythm(padding-bottom, 2, 18px);
-	}
-
-	&:before {
-		content: '\201C';
-
-		position: absolute;
-		top: -0.5em;
-		left: 50%;
-
-		padding: 0 0.857em;
-
-		color: black;
-		background: white;
-
-		transform: translateX(-50%);
-	}
-
-	&:after {
-		content: '';
-
-		display: block;
-		width: 9em;
-		margin-left: -4.5em;
-
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: 50%;
-		z-index: -1;
-
-		border: 1px solid #c3c3c3;
-		border-left: 0;
-		border-right: 0;
-		border-bottom: 0;
-
-		.is--ancient-android & {
-			bottom: calc(100% - 4px);
-			bottom: 99%;
-		}
-	}
-
-	cite {
-		@extend %beta;
-		display: block;
-		@include rhythm(margin-top, 2, 16px);
-		@include font-size(16px, 28px, 24px);
-		font-style: normal;
-	}
-
-	@if $editor-style {
-		p {
-			margin-bottom: 0;
-			margin-top: 0;
-			transform: none;
-		}
-	}
-
-	a:hover{
-		color: $accent;
-	}
-}
+blockquote {}
 
 /* Tables */
 

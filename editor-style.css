@@ -11,9 +11,9 @@ body.wp-editor { max-width: 680px; margin-left: auto; margin-right: auto; font-s
 /** 2.0 - Base Styles 2.1 - Typography ------------------------------------------------- */
 body { font-size: 16px; line-height: 1.5; color: #403b3c; }
 
-h1, h2, h3, blockquote, .dropcap { font-family: "Playfair Display", serif; font-weight: normal; -webkit-font-smoothing: auto; }
+h1, h2, h3, .dropcap { font-family: "Playfair Display", serif; font-weight: normal; -webkit-font-smoothing: auto; }
 
-body, h4, blockquote cite { font-family: "Droid Serif", serif; }
+body, h4 { font-family: "Droid Serif", serif; }
 
 .color-accent, h1, h2, h4 { color: #a33b61; }
 
@@ -32,23 +32,10 @@ h4 { font-size: 0.6875em; line-height: 1.09091; -webkit-transform: translateY(0.
 p { margin-top: 0; font-size: 1em; line-height: 1.5; -webkit-transform: translateY(0.4145em); -ms-transform: translateY(0.4145em); transform: translateY(0.4145em); margin-bottom: 2.25em; }
 
 /* Links */
-a { text-decoration: none; color: #403b3c; }
-
 /* Lists */
 acronym { border-bottom: 1px dotted #b8b6b7; }
 
 /* Blockquotes */
-blockquote { position: relative; text-align: center; font-size: 1.75em; line-height: 1.28571; margin-top: 2.57143em; margin-bottom: 2.14286em; padding-top: 1.71429em; padding-bottom: 1.71429em; }
-blockquote blockquote { font-size: 1em; margin-bottom: 0; padding-bottom: 0; }
-blockquote blockquote:after { border-bottom: 0; }
-@media not screen and (min-width: 899px) { blockquote { font-size: 1.125em; line-height: 1.33333; margin-top: 2.66667em; margin-bottom: 2em; padding: 0.66667em; padding-top: 1.33333em; padding-bottom: 1.33333em; } }
-blockquote:before { content: '\201C'; position: absolute; top: -0.5em; left: 50%; padding: 0 0.857em; color: black; background: white; -webkit-transform: translateX(-50%); -ms-transform: translateX(-50%); transform: translateX(-50%); }
-blockquote:after { content: ''; display: block; width: 9em; margin-left: -4.5em; position: absolute; top: 0; bottom: 0; left: 50%; z-index: -1; border: 1px solid #c3c3c3; border-left: 0; border-right: 0; border-bottom: 0; }
-.is--ancient-android blockquote:after { bottom: calc(100% - 4px); bottom: 99%; }
-blockquote cite { display: block; margin-top: 1.5em; font-size: 0.57143em; line-height: 1.5; font-style: normal; }
-blockquote p { margin-bottom: 0; margin-top: 0; -webkit-transform: none; -ms-transform: none; transform: none; }
-blockquote a:hover { color: #a33b61; }
-
 /* Tables */
 table { position: relative; z-index: 1; margin-bottom: 1.5em; width: 100%; border-top: 0; table-layout: fixed; }
 table th { text-align: left; }
