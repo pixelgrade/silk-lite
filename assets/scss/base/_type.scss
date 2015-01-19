@@ -19,14 +19,6 @@ body {
     font-family: "Droid Serif", serif;
 }
 
-.color-accent {
-	color: $accent;
-}
-
-.italic {
-	font-style: italic;
-}
-
 /* Headings */
 h1 {
     @extend %alpha;

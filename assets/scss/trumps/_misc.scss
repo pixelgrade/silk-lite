@@ -1,13 +1,5 @@
-.pa {
-    position: absolute;
-}
-
-.pr {
-    position: relative;
-}
-
 .stretch {
-    @extend .pa;
+    @extend .absolute;
     top: 0;
     right: 0;
     bottom: 0;
@@ -20,50 +12,25 @@
 }
 
 .cover {
-    @extend .pa;
+    @extend .absolute;
     @extend .fill;
     top: 0;
     left: 0;
 }
 
 .center {
-    @extend .pa;
+    @extend .absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-.center--vertical {
-    transform: translateY(-50%);
-
-}
-
-.center--horizontal {
-    transform: translateX(-50%);
-}
-
-.text--center {
-    text-align: center;
-}
-
-.text--left {
-    text-align: left;
-}
-
-.text--right {
-    text-align: right;
-}
-
-.text--justify {
-    text-align: justify;
-}
-
 .list--unstyled {
-//    margin-left: 0;
+    margin-left: 0;
     list-style: none;
 }
 
-.flexbox{
+.flexbox {
 	display: table;
 	width: 100%;
 

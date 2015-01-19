@@ -4,17 +4,17 @@
 	@return 1em * $px / $base-font-size;
 }
 
-.screen-reader-text {
-	display: none;
+.color-accent {
+	color: $accent;
 }
 
 .content-area {
-	float: left;
+	@extend .left;
 }
 
 .widget-area {
+	@extend .right;
 	width: em(340px);
-	float: right;
 	margin-left: em(60px);
 }
 
