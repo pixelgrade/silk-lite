@@ -1,47 +1,47 @@
 // @todo no more shame
-
-.screen-reader-text {
-    display: none;
+// 
+@function em($px) {
+	@return 1em * $px / $base-font-size;
 }
 
-
-// @todo temp
-// post nav will be moved
-// in the toolbar
-.toolbar .navigation.post-navigation {
-
-    .nav-links {
-
-        span {
-            display: block;
-            white-space: nowrap;
-            position: absolute;
-			left: 0;
-            @include rhythm(top, 14);
-            transform-origin: 1.875em 0 0;
-            transform: rotateZ(90deg) translateZ(0);
-            opacity: 0;
-            transition: opacity .2s ease-in-out;
-
-	        .ie10 &, .ie9 & {
-		        display: none;
-	        }
-        }
-
-        a:hover span {
-            opacity: 1;
-            transition: opacity .2s .2s ease-in-out;
-        }
-
-    }
+.color-accent {
+	color: $accent;
 }
 
-.shadow {
-	box-shadow: rgba(0,0,0,0.19) 0 0 2em, rgba(0,0,0,0.23) 0 0 0.6em;
+.content-area {
+	@extend .left;
 }
 
-#wpstats{
-    position: fixed;
-    left: -9999px;
-    bottom: 0;
+.widget-area {
+	@extend .right;
+	width: em(340px);
+	margin-left: em(60px);
+}
+
+.content {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: em(1290px);
+}
+
+.site-header {
+	@extend .content;
+}
+
+.site-content {
+	@extend .clearfix;
+	@extend .content;
+}
+
+.site-footer {
+	background-color: black;
+	color: white;
+
+	a {
+		color: white;
+	}
+}
+
+.site-info {
+	@extend .content;
 }

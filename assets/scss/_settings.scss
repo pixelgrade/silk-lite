@@ -1,22 +1,16 @@
 // ------ #STYLE GUIDE
 
-$sidebar-width: 			300px;
-$alt-unit: 					60px;
-
 $lap: 						899px;
 $desk: 						1359px;
 
-$lightest:  				#d7d7d7;
-$borders:   				#afafaf;
-$light:     				#8c888c;
-$gray:      				#3d3e40;
-
-$dark:      				#171617;
-$black:     				#000;
-$accent:    				#ffeb00;
-
-$default-font-size: 		16px !default;
-
+// borders
+$light:     				#e6e6e6;
+$gray:		   				#b8b6b7;
+$dark:      				#403b3c;
+$secondary:					#fcc9b0;
+$accent:					#a33b61;
+$black:						#000000;
+$borders:					$light;
 
 
 // ------ #SETTINGS
@@ -24,7 +18,7 @@ $default-font-size: 		16px !default;
 $namespace:                 null;
 
 // High-level base settings.
-$base-font-size:            16px !default;
+$base-font-size:            14px !default;
 $base-line-height:          24px !default;
 
 $base-spacing-unit:         $base-line-height;
@@ -40,10 +34,7 @@ $editor-style:				false;
 
 // ------ #OBJECTS
 
-$btn-background: 			$dark;
-
 $enable-grid: 				true;
-
 $enable-table--fixed: 		true;
 $enable-table--cosy: 		true;
 $enable-table--rows: 		true;

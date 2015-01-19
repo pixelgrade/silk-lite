@@ -115,9 +115,9 @@ body.wp-editor {
 	text-align: left;
 
 	&.alignleft		{ @extend .alignleft; }
-	&.alignright     { @extend .alignright; }
-	&.aligncenter    { @extend .aligncenter; }
-	&.alignnone      { @extend .alignnone; }
+	&.alignright	{ @extend .alignright; }
+	&.aligncenter	{ @extend .aligncenter; }
+	&.alignnone		{ @extend .alignnone; }
 }
 
 #wp-image-toolbar {
@@ -125,7 +125,7 @@ body.wp-editor {
 }
 
 .wp-caption-dd {
-	@extend .wp-caption-text;
+	@extend .wp-caption-text; 
 }
 
 

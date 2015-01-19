@@ -19,9 +19,9 @@ function swell_body_classes( $classes ) {
 	if ( is_multi_author() ) {
 		$classes[] = 'group-blog';
 	}
-
-	if ( ( is_single() || is_page() ) && is_active_sidebar( 'sidebar-1' ) ) {
-		$classes[] = 'has_sidebar';
+	
+	if ( ( is_single() || is_page() || is_home() || is_archive() ) && is_active_sidebar( 'sidebar-1' ) ) {
+		$classes[ ] = 'has_sidebar';
 	}
 
 	return $classes;
