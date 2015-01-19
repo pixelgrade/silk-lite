@@ -180,4 +180,9 @@ require get_template_directory() . '/inc/customizer.php';
 /**
  * Load Jetpack compatibility file.
  */
-require get_template_directory() . '/inc/jetpack.php'; ?>
+require get_template_directory() . '/inc/jetpack.php';
+
+/**
+ * Load custom widgets
+ */
+require get_template_directory() . '/inc/widgets/popular-posts.php'; ?>

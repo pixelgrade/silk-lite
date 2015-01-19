@@ -97,6 +97,30 @@ function swell_posted_on() {
 }
 endif;
 
+if ( ! function_exists( 'swell_get_cats_list' ) ) :
+
+	/**
+	 * Returns HTML with comma separated category links
+	 */
+	function swell_get_cats_list( $post_ID = null) {
+
+		//use the current post ID is none given
+		if ( empty($post_ID) )
+			$post_ID = get_the_ID();
+
+		$cats = '';
+		/* translators: used between list items, there is a space after the comma */
+		$categories_list = get_the_category_list( __( ', ', 'swell_txtd' ), '', $post_ID );
+		if ( $categories_list && swell_categorized_blog() ) {
+			$cats = '<span class="cat-links">' . $categories_list . '</span>';
+		}
+
+		return $cats;
+
+	}
+
+endif;
+
 if ( ! function_exists( 'swell_get_posted_on_and_cats' ) ) :
 	/**
 	 * Returns HTML with meta information for the current post-date/time and author.
@@ -109,12 +133,7 @@ if ( ! function_exists( 'swell_get_posted_on_and_cats' ) ) :
 			esc_html( get_the_date() )
 		);
 
-		$cats = '';
-		/* translators: used between list items, there is a space after the comma */
-		$categories_list = get_the_category_list( __( ', ', 'swell_txtd' ) );
-		if ( $categories_list && swell_categorized_blog() ) {
-			$cats = '<span class="cat-links">' . $categories_list . '</span>';
-		}
+		$cats = swell_get_cats_list();
 
 		return '<span class="posted-on">' . $time_string . '</span>' . $cats;
 
