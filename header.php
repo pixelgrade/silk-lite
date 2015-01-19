@@ -29,7 +29,10 @@
 
 		<nav id="site-navigation" class="main-navigation" role="navigation">
 			<button class="menu-toggle" aria-controls="menu" aria-expanded="false"><?php _e( 'Primary Menu', 'swell_txtd' ); ?></button>
-			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+			<?php wp_nav_menu( array( 'theme_location'  => 'primary',
+			                          'container'       => '',
+			                          'menu_class'      => 'menu nav  nav--main  js-nav--main',
+			                          'walker'          => new Swell_Walker_Primary_Mega_Menu() ) ); ?>
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
 

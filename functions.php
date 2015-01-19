@@ -45,6 +45,8 @@ function swell_setup() {
 		 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 		 */
 	add_theme_support( 'post-thumbnails' );
+	add_image_size( 'swell-tiny-image', 125, 90, true );
+	add_image_size( 'swell-small-image', 300, 9999, false );
 	add_image_size( 'swell-masonry-image', 450, 9999, false );
 	add_image_size( 'swell-single-image', 1024, 9999, false );
 	add_image_size( 'swell-site-logo', 1000, 500, false );

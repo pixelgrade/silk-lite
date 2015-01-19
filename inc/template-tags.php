@@ -97,6 +97,39 @@ function swell_posted_on() {
 }
 endif;
 
+if ( ! function_exists( 'swell_get_posted_on_and_cats' ) ) :
+	/**
+	 * Returns HTML with meta information for the current post-date/time and author.
+	 */
+	function swell_get_posted_on_and_cats() {
+		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
+
+		$time_string = sprintf( $time_string,
+			esc_attr( get_the_date( 'c' ) ),
+			esc_html( get_the_date() )
+		);
+
+		$cats = '';
+		/* translators: used between list items, there is a space after the comma */
+		$categories_list = get_the_category_list( __( ', ', 'swell_txtd' ) );
+		if ( $categories_list && swell_categorized_blog() ) {
+			$cats = '<span class="cat-links">' . $categories_list . '</span>';
+		}
+
+		return '<span class="posted-on">' . $time_string . '</span>' . $cats;
+
+	}
+endif;
+
+if ( ! function_exists( 'swell_posted_on_and_cats' ) ) :
+	/**
+	 * Prints HTML with meta information for the current post-date/time and author.
+	 */
+	function swell_posted_on_and_cats() {
+		echo swell_get_posted_on_and_cats();
+	}
+endif;
+
 if ( ! function_exists( 'swell_entry_footer' ) ) :
 /**
  * Prints HTML with meta information for the categories, tags and comments.
