@@ -2,7 +2,7 @@
 /**
  * The template for displaying all single posts.
  *
- * @package sonnet
+ * @package swell
  */
 
 get_header(); ?>

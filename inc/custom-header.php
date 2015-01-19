@@ -12,37 +12,37 @@
 	<?php endif; // End header image check. ?>
 
  *
- * @package sonnet
+ * @package swell
  */
 
 /**
  * Set up the WordPress core custom header feature.
  *
- * @uses sonnet_header_style()
- * @uses sonnet_admin_header_style()
- * @uses sonnet_admin_header_image()
+ * @uses swell_header_style()
+ * @uses swell_admin_header_style()
+ * @uses swell_admin_header_image()
  */
-function sonnet_custom_header_setup() {
-	add_theme_support( 'custom-header', apply_filters( 'sonnet_custom_header_args', array(
+function swell_custom_header_setup() {
+	add_theme_support( 'custom-header', apply_filters( 'swell_custom_header_args', array(
 		'default-image'          => '',
 		'default-text-color'     => '000000',
 		'width'                  => 1000,
 		'height'                 => 250,
 		'flex-height'            => true,
-		'wp-head-callback'       => 'sonnet_header_style',
-		'admin-head-callback'    => 'sonnet_admin_header_style',
-		'admin-preview-callback' => 'sonnet_admin_header_image',
+		'wp-head-callback'       => 'swell_header_style',
+		'admin-head-callback'    => 'swell_admin_header_style',
+		'admin-preview-callback' => 'swell_admin_header_image',
 	) ) );
 }
-add_action( 'after_setup_theme', 'sonnet_custom_header_setup' );
+add_action( 'after_setup_theme', 'swell_custom_header_setup' );
 
-if ( ! function_exists( 'sonnet_header_style' ) ) :
+if ( ! function_exists( 'swell_header_style' ) ) :
 /**
  * Styles the header image and text displayed on the blog
  *
- * @see sonnet_custom_header_setup().
+ * @see swell_custom_header_setup().
  */
-function sonnet_header_style() {
+function swell_header_style() {
 	$header_text_color = get_header_textcolor();
 
 	// If no custom options for text are set, let's bail
@@ -75,15 +75,15 @@ function sonnet_header_style() {
 	</style>
 	<?php
 }
-endif; // sonnet_header_style
+endif; // swell_header_style
 
-if ( ! function_exists( 'sonnet_admin_header_style' ) ) :
+if ( ! function_exists( 'swell_admin_header_style' ) ) :
 /**
  * Styles the header image displayed on the Appearance > Header admin panel.
  *
- * @see sonnet_custom_header_setup().
+ * @see swell_custom_header_setup().
  */
-function sonnet_admin_header_style() {
+function swell_admin_header_style() {
 ?>
 	<style type="text/css">
 		.appearance_page_custom-header #headimg {
@@ -103,15 +103,15 @@ function sonnet_admin_header_style() {
 	</style>
 <?php
 }
-endif; // sonnet_admin_header_style
+endif; // swell_admin_header_style
 
-if ( ! function_exists( 'sonnet_admin_header_image' ) ) :
+if ( ! function_exists( 'swell_admin_header_image' ) ) :
 /**
  * Custom header image markup displayed on the Appearance > Header admin panel.
  *
- * @see sonnet_custom_header_setup().
+ * @see swell_custom_header_setup().
  */
-function sonnet_admin_header_image() {
+function swell_admin_header_image() {
 	$style = sprintf( ' style="color:#%s;"', get_header_textcolor() );
 ?>
 	<div id="headimg">
@@ -123,4 +123,4 @@ function sonnet_admin_header_image() {
 	</div>
 <?php
 }
-endif; // sonnet_admin_header_image
+endif; // swell_admin_header_image

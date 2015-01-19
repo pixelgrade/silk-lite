@@ -94,7 +94,7 @@ gulp.task('server', ['styles', 'scripts'], function () {
 gulp.task('copy-folder', ['styles-prod', 'scripts'], function () {
 
 	return gulp.src('./')
-		.pipe(exec('rm -Rf ./../build; mkdir -p ./../build/hive; rsync -av --exclude="node_modules" ./* ./../build/hive/', options));
+		.pipe(exec('rm -Rf ./../build; mkdir -p ./../build/swell; rsync -av --exclude="node_modules" ./* ./../build/swell/', options));
 });
 
 /**
@@ -127,7 +127,7 @@ gulp.task('build', ['copy-folder'], function () {
 	];
 
 	files_to_remove.forEach(function (e, k) {
-		files_to_remove[k] = '../build/hive/' + e;
+		files_to_remove[k] = '../build/swell/' + e;
 	});
 
 	return gulp.src(files_to_remove, {read: false})
@@ -135,12 +135,12 @@ gulp.task('build', ['copy-folder'], function () {
 });
 
 /**
- * Create a zip archive out of the cleaned folder and delete the folder
+ * Create a zip arcswell out of the cleaned folder and delete the folder
  */
 gulp.task('zip', ['build'], function(){
 
 	return gulp.src('./')
-		.pipe(exec('cd ./../; rm -rf hive.zip; cd ./build/; zip -r -X ./../hive.zip ./hive; cd ./../; rm -rf build'));
+		.pipe(exec('cd ./../; rm -rf swell.zip; cd ./build/; zip -r -X ./../swell.zip ./swell; cd ./../; rm -rf build'));
 
 });
 
@@ -158,7 +158,7 @@ gulp.task('help', function () {
 	var $help = '\nCommands available : \n \n' +
 		'=== General Commands === \n' +
 		'start              (default)Compiles all styles and scripts and makes the theme ready to start \n' +
-		'zip               	Generate the zip archive \n' +
+		'zip               	Generate the zip arcswell \n' +
 		'build				Generate the build directory with the cleaned theme \n' +
 		'help               Print all commands \n' +
 		'=== Style === \n' +
