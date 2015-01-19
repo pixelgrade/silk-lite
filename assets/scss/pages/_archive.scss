@@ -4,17 +4,6 @@
 	text-align: center;
 }
 
-.page-title--search {
-	color: $gray;
-	font-weight: normal;
-
-	span {
-		display: block;
-		color: $black;
-		font-weight: bold;
-	}
-}
-
 .archive__grid {
 
 	.post {
@@ -22,9 +11,10 @@
 		transform: translateZ(0);
 		@include rhythm(margin-bottom, 3);
 
-		> * {
-			opacity: 0;
-		}
+// @todo transitions?
+//		> * {
+//			opacity: 0;
+//		}
 
 		figure {
 			max-width: 100%;
@@ -400,6 +390,7 @@
 	    @include query-above(768px) {
 		    width: 50%;
 	    }
+
 	    @include query-above($desk) {
 		    width: 33.3333%
 	    }
