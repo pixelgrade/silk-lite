@@ -1,8 +1,8 @@
 <?php
 /**
- * swell functions and definitions
+ * Swell functions and definitions
  *
- * @package swell
+ * @package Swell
  */
 
 /**
@@ -28,7 +28,7 @@ function swell_setup() {
 	 * If you're building a theme based on swell, use a find and replace
 	 * to change 'swell' to the name of your theme in all the template files
 	 */
-	load_theme_textdomain( 'swell', get_template_directory() . '/languages' );
+	load_theme_textdomain( 'swell_txtd', get_template_directory() . '/languages' );
 
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
@@ -42,15 +42,21 @@ function swell_setup() {
 	add_theme_support( 'title-tag' );
 
 	/*
-	 * Enable support for Post Thumbnails on posts and pages.
-	 *
-	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
-	 */
-	//add_theme_support( 'post-thumbnails' );
+		 * Enable support for Post Thumbnails on posts and pages.
+		 *
+		 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
+		 */
+	add_theme_support( 'post-thumbnails' );
+	add_image_size( 'swell-masonry-image', 450, 9999, false );
+	add_image_size( 'swell-single-image', 1024, 9999, false );
+	add_image_size( 'swell-site-logo', 1000, 500, false );
 
-	// This theme uses wp_nav_menu() in one location.
+	// This theme uses wp_nav_menu() in three locations.
 	register_nav_menus( array(
-		'primary' => __( 'Primary Menu', 'swell' ),
+		'primary'   => __( 'Primary Menu', 'swell_txtd' ),
+		'social'    => __( 'Social Menu', 'swell_txtd' ),
+		'top_header' => __( 'Top Header Menu', 'swell_txtd' ),
+		'footer'    => __( 'Footer Menu', 'swell_txtd' ),
 	) );
 
 	/*
@@ -69,6 +75,12 @@ function swell_setup() {
 		'aside', 'image', 'video', 'quote', 'link',
 	) );
 
+	/*
+	 * Add editor custom style to make it look more like the frontend
+	 * Also enqueue the custom Google Fonts also
+	 */
+	add_editor_style( array( 'editor-style.css', swell_fonts_url() ) );
+
 	// Set up the WordPress core custom background feature.
 	add_theme_support( 'custom-background', apply_filters( 'swell_custom_background_args', array(
 		'default-color' => 'ffffff',
@@ -85,8 +97,18 @@ add_action( 'after_setup_theme', 'swell_setup' );
  */
 function swell_widgets_init() {
 	register_sidebar( array(
-		'name'          => __( 'Sidebar', 'swell' ),
+		'name'          => __( 'Sidebar', 'swell_txtd' ),
 		'id'            => 'sidebar-1',
+		'description'   => '',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h1 class="widget-title">',
+		'after_title'   => '</h1>',
+	) );
+
+	register_sidebar( array(
+		'name'          => __( 'Footer', 'swell_txtd' ),
+		'id'            => 'footer-1',
 		'description'   => '',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
@@ -99,14 +121,41 @@ add_action( 'widgets_init', 'swell_widgets_init' );
 /**
  * Enqueue scripts and styles.
  */
-function swell_scripts() {
-	wp_enqueue_style( 'swell-style', get_stylesheet_uri() );
+function swell_scripts_styles() {
 
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+	//FontAwesome Stylesheet
+	wp_enqueue_style( 'swell-font-awesome-style', get_stylesheet_directory_uri() . '/assets/css/font-awesome.css', array(), '4.2.0' );
+
+	//Main Stylesheet
+	wp_enqueue_style( 'hive-style', get_stylesheet_uri(), array('swell-font-awesome-style') );
+
+	//Default Fonts
+	wp_enqueue_style( 'swell-fonts', swell_fonts_url(), array(), null );
+
+	//Enqueue jQuery
+	wp_enqueue_script( 'jquery' );
+
+	//Enqueue Masonry
+	wp_enqueue_script( 'masonry' );
+
+	//Enqueue ImagesLoaded plugin
+	wp_enqueue_script( 'swell-imagesloaded', get_stylesheet_directory_uri() . '/assets/js/imagesloaded.js', array(), '3.1.8', true );
+
+	//Enqueue HoverIntent plugin
+	wp_enqueue_script( 'swell-hoverintent', get_stylesheet_directory_uri() . '/assets/js/jquery.hoverIntent.js', array( 'jquery' ), '1.8.0', true );
+
+	//Enqueue Velocity.js plugin
+	wp_enqueue_script( 'swell-velocity', get_stylesheet_directory_uri() . '/assets/js/velocity.js', array(), '1.1.0', true );
+
+	//Enqueue Hive Custom Scripts
+	wp_enqueue_script( 'swell-scripts', get_stylesheet_directory_uri() . '/assets/js/main.js', array( 'jquery', 'masonry', 'swell-imagesloaded', 'swell-hoverintent', 'swell-velocity' ), '1.0.0', true );
+
+	if( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'swell_scripts' );
+
+add_action( 'wp_enqueue_scripts', 'swell_scripts_styles' );
 
 /**
  * Implement the Custom Header feature.
