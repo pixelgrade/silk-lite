@@ -1,6 +1,8 @@
 body {
     @extend %beta;
-	line-height: 1.6;
+    font-size: $base-font-size;
+    line-height: $base-line-height / $base-font-size;
+// line-height: 1.6;
 //	-ms-text-size-adjust: 100%;
 //	-webkit-text-size-adjust: 100%;
 //	-webkit-font-smoothing: antialiased;
@@ -12,57 +14,57 @@ body {
     font-family: "Playfair Display", serif;
     font-weight: normal;
     -webkit-font-smoothing: auto;
-    color: $dark;
 }
 
 %beta {
     font-family: "Droid Serif", serif;
 }
 
+.color-accent {
+	color: $accent;
+}
+
+.italic {
+	font-style: italic;
+}
+
 /* Headings */
 h1 {
     @extend %alpha;
-    @include font-size(54px);
-    @include baseline(54px);
-    @include rhythm(margin-top, 4, 54px);
-    @include rhythm(margin-bottom, 2, 54px);
+    @extend .color-accent;
+    @extend .italic;
+    @include font-size(45px);
+    @include baseline(45px);
+    @include rhythm(margin-top, 4, 45px);
+    @include rhythm(margin-bottom, 2, 45px);
 }
 
 h2 {
     @extend %alpha;
-    @include font-size(36px);
-    @include baseline(36px);
-    @include rhythm(margin-top, 4, 36px);
-    @include rhythm(margin-bottom, 2, 36px);
+    @extend .color-accent;
+    @extend .italic;
+    @include font-size(30px);
+    @include baseline(30px);
+    @include rhythm(margin-top, 4, 30px);
+    @include rhythm(margin-bottom, 2, 30px);
 }
 
 h3 {
     @extend %alpha;
-    @include font-size(24px);
-    @include baseline(24px);
-    @include rhythm(margin-top, 4, 24px);
-    @include rhythm(margin-bottom, 2, 24px);
+    @include font-size(20px);
+    @include baseline(20px);
+    @include rhythm(margin-top, 4, 20px);
+    @include rhythm(margin-bottom, 2, 20px);
 }
 
-@include query-below($lap) {
-
-	h1 {
-		@include font-size(30px);
-		@include baseline(30px);
-	}
-
-	h2 {
-		@include font-size(24px);
-		@include baseline(24px);
-	}
-
-	h3 {
-		@include font-size(21px);
-		@include baseline(21px);
-	}
+h4 {
+    @extend %beta;
+    @extend .color-accent;
+    @include font-size(11px);
+    @include baseline(11px);
+    @include rhythm(margin-top, 4, 11px);
+    @include rhythm(margin-bottom, 2, 11px);
 }
-
-
 
 
 
