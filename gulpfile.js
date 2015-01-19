@@ -10,7 +10,7 @@ var gulp 		= require('gulp'),
 	notify 		= require('gulp-notify'),
 	beautify 	= require('gulp-beautify'),
 	csscomb 	= require('gulp-csscomb'),
-	cmq 		= require('gulp-combine-media-queries' ),
+	cmq 		= require('gulp-combine-media-queries'),
 	chmod 		= require('gulp-chmod');
 
 jsFiles = [
@@ -32,10 +32,10 @@ var options = {
 // styles related
 gulp.task('styles-dev', function () {
 	return gulp.src('assets/scss/**/*.scss')
-		.pipe(sass({sourcemap: true, style: 'compact'}))
-			.on('error', function (e) {
-				console.log(e.message);
-			})
+		.pipe(sass({sourcemap: false, style: 'compact'}))
+		.on('error', function (e) {
+			console.log(e.message);
+		})
 		.pipe(prefix("last 1 version", "> 1%", "ie 8", "ie 7"))
 		.pipe(chmod(644))
 		.pipe(gulp.dest('./'))
@@ -45,9 +45,6 @@ gulp.task('styles-dev', function () {
 gulp.task('styles', function () {
 	return gulp.src('assets/scss/**/*.scss')
 		.pipe(sass({sourcemap: false, style: 'expanded'}))
-			.on('error', function (e) {
-				console.log(e.message);
-			})
 		.pipe(prefix("last 1 version", "> 1%", "ie 8", "ie 7"))
 		.pipe(cmq())
 		.pipe(csscomb())

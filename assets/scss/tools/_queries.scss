@@ -3,7 +3,7 @@ $enable-em-queries: true !default;
 @mixin query($direction, $value, $use-ems: $enable-em-queries) {
 
     @if ($use-ems == true) {
-        $value: 1em * $value / $default-font-size;
+        $value: 1em * $value / $base-font-size;
     }
 
     @if ($direction == 'above') {
@@ -21,7 +21,7 @@ $enable-em-queries: true !default;
 // shortcuts
 @mixin query-below($value) {
 
-    @include query('below', $value, $default-font-size) {
+    @include query('below', $value, $base-font-size) {
         @content;
     }
 
@@ -29,8 +29,8 @@ $enable-em-queries: true !default;
 
 @mixin query-above($value) {
 
-    @include query('above', $value, $default-font-size) {
-        @content;
+    @include query('above', $value, $base-font-size) {
+        @content; 
     }
 
 }
