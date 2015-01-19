@@ -17,7 +17,7 @@ get_header(); ?>
 		<main id="main" class="site-main" role="main">
 
 		<?php if ( have_posts() ) : ?>
-
+			<div id="posts" class="archive__grid  grid  masonry">
 			<?php /* Start the Loop */ ?>
 			<?php while ( have_posts() ) : the_post(); ?>
 
@@ -31,6 +31,7 @@ get_header(); ?>
 
 			<?php endwhile; ?>
 
+			</div><!-- .archive__grid -->
 			<?php the_posts_navigation(); ?>
 
 		<?php else : ?>
