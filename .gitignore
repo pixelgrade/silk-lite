@@ -12,7 +12,6 @@ nbproject
 codekit-config.json
 
 node_modules
-npm-debug.log
 build
 *-ck.js
 *.css.map

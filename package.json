@@ -1,5 +1,5 @@
 {
-    "name": "sonnet",
+    "name": "swell",
     "devDependencies": {
         "gulp": "*",
         "gulp-sass": "*",

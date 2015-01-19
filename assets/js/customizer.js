@@ -1,5 +1,5 @@
 /**
- * Hive Customizer JavaScript - keeps things nicer for all
+ * Swell Customizer JavaScript - keeps things nicer for all
  * v 1.0.0
  */
 
@@ -23,7 +23,7 @@
 	} );
 
 	// Update the site title size class
-	wp.customize( 'hive_title_size', function( value ) {
+	wp.customize( 'swell_title_size', function( value ) {
 		value.bind( function( sizeClass ) {
 			//remove the previous size class
 			$( '.site-title' ).removeClass( function (index, css) {
