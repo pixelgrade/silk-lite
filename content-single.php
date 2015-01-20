@@ -6,11 +6,18 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-
 		<div class="entry-meta">
-			<?php swell_posted_on(); ?>
+			<?php swell_posted_on();
+
+			$categories_list = get_the_category_list( __( ', ', 'swell_txtd' ) );
+			if ( $categories_list && swell_categorized_blog() ) {
+				printf( '<span class="cat-links">' . __( '%1$s', 'swell_txtd' ) . '</span>', $categories_list );
+			}
+
+			?>
 		</div><!-- .entry-meta -->
+
+		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">

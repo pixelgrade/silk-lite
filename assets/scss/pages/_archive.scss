@@ -368,7 +368,10 @@
     .cat-links {
 
         &:before {
-            content: "/";
+			content: "-";
+			display: inline-block;
+			// @todo rem/em
+			margin: 0 5px;
         }
     }
 }

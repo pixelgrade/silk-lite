@@ -1,10 +1,9 @@
-@charset "UTF-8";
 /*
 Theme Name: Swell
 Theme URI: http://pixelgrade.com/demos/swell/
 Author: PixelGrade
 Author URI: http://pixelgrade.com
-Description: An effortless tool for publishers of all kind, cherished for its clean masonry-style layout, modern typography and flexibility. Whether you’re looking to share your own thoughts, write about your latest findings or just have a scrapbook of photos, videos, quotes or other stuff, HIVE is designed to fulfill these and a lot more.
+Description: More to come...
 Version: 1.0-wpcom
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -119,7 +118,7 @@ ins { border-bottom: 1px solid; }
 /** 3.0 - Base Styles 3.1 - Typography */
 body { font-size: 16px; line-height: 1.5; color: #403b3c; }
 
-h1, h2, h3, .dropcap { font-family: "Playfair Display", serif; font-weight: normal; -webkit-font-smoothing: auto; }
+h1, h2, h3, .dropcap, .single .entry-content:before, .page .entry-content:before { font-family: "Playfair Display", serif; font-weight: normal; -webkit-font-smoothing: auto; }
 
 body, h4 { font-family: "Droid Serif", serif; }
 
@@ -220,7 +219,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder { font-style: normal
 
 /** 4.0 - Helpers */
 /* Clearfix */
-.clearfix:after, .site-content:after, .grid:after, .nav:after, .media:after, .has_sidebar .site-content .container:after { content: ""; display: table; clear: both; }
+.clearfix:after, .site-content:after, .grid:after, .nav:after, .media:after, .has_sidebar .site-content .container:after, .single .entry-content:after, .page .entry-content:after { content: ""; display: table; clear: both; }
 
 .hide, .hidden, .assistive-text, .screen-reader-text, [hidden] { display: none; }
 
@@ -254,7 +253,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder { font-style: normal
 
 .relative, .archive__grid .entry-footer, .entry-meta { position: relative; }
 
-.absolute, .stretch, .cover, .center, .archive__grid .entry-footer:before { position: absolute; }
+.absolute, .stretch, .cover, .quote-wrapper, .center, .archive__grid .entry-footer:before { position: absolute; }
 
 .fixed { position: fixed; }
 
@@ -290,9 +289,9 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder { font-style: normal
 
 .stretch { top: 0; right: 0; bottom: 0; left: 0; }
 
-.fill, .cover { width: 100%; height: 100%; }
+.fill, .cover, .quote-wrapper { width: 100%; height: 100%; }
 
-.cover { top: 0; left: 0; }
+.cover, .quote-wrapper { top: 0; left: 0; }
 
 .center { top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); }
 
@@ -469,7 +468,7 @@ html { height: 100%; background: white; }
 
 .entry-meta { display: inline-block; background: white; padding-right: .75em; }
 .fs-14px, .entry-meta { font-size: 0.875em; line-height: 1.71429; }
-.entry-meta .cat-links:before { content: "/"; }
+.entry-meta .cat-links:before { content: "-"; display: inline-block; margin: 0 5px; }
 
 .entry-format:before { content: "/"; }
 
@@ -512,6 +511,70 @@ body { word-wrap: break-word; text-overflow: ellipsis; }
 
 .format-quote .edit-link { bottom: 0.75em; right: 0.75em; }
 .format-quote .edit-link a:hover { color: #a33b61; }
+
+.single .post, .page .post { margin-bottom: 2.25em; }
+@media not screen and (min-width: 899px) { .single .entry-header, .page .entry-header { margin-top: 1.5em; } }
+.single .entry-featured, .page .entry-featured { margin-top: 2.625em; margin-bottom: 1.5em; }
+@media not screen and (min-width: 899px) { .single .entry-featured, .page .entry-featured { margin-left: -1.125em; margin-right: -1.125em; margin-top: 1.5em; } }
+@media only screen and (min-width: 1359px) { .single .entry-featured, .page .entry-featured { margin-bottom: 3.75em; margin-left: -3.75em; margin-right: -3.75em; } }
+.single .entry-featured img, .page .entry-featured img { width: 100%; height: auto; }
+.single .entry-featured .slideshow-slide img, .page .entry-featured .slideshow-slide img { width: auto; }
+.single .entry-title, .page .entry-title { margin-top: 0; margin-bottom: 0.88889em; }
+@media not screen and (min-width: 899px) { .single .entry-title, .page .entry-title { margin-bottom: 0.8em; } }
+.single .entry-meta, .page .entry-meta { font-size: 0.875em; line-height: 1.71429; -webkit-transform: translateY(0.52164em); -ms-transform: translateY(0.52164em); transform: translateY(0.52164em); }
+@media only screen and (min-width: 1359px) { .single .featured-portrait .entry-header, .page .featured-portrait .entry-header { float: left; max-width: 90%; margin-right: -100%; margin-top: 1.5em; margin-bottom: 1.5em; margin-left: -7.5em; }
+  .single .featured-portrait .entry-title, .page .featured-portrait .entry-title { position: relative; background: white; padding-right: 0.44444em; padding-top: 0.22222em; padding-bottom: 0.22222em; }
+  .single .featured-portrait .entry-featured, .page .featured-portrait .entry-featured { float: right; max-width: 60%; margin-top: 0; margin-left: 1.5em; margin-bottom: 0.75em; }
+  .single .featured-portrait .entry-content, .page .featured-portrait .entry-content { clear: left; } }
+.single .entry-content, .page .entry-content { position: relative; }
+@media only screen and (min-width: 899px) { .single .entry-content, .page .entry-content { font-size: 1.125em; line-height: 1.33333; }
+  .single .entry-content p, .page .entry-content p { margin-bottom: 2.25em; } }
+.single .entry-content > :last-child, .page .entry-content > :last-child { margin-bottom: 0; }
+@media only screen and (min-width: 1359px) { .single .entry-content:before, .page .entry-content:before { font-weight: bold; content: attr(data-first_letter); position: absolute; top: -0.21818em; left: -0.45818em; display: block; font-size: 15.27778em; line-height: 1; color: #403b3c; opacity: .1; } }
+.single .entry-content blockquote p, .page .entry-content blockquote p { margin-bottom: 0; -webkit-transform: none; -ms-transform: none; transform: none; }
+.single .entry-footer, .page .entry-footer { margin-top: 4.5em; }
+.single .entry-footer a, .page .entry-footer a { color: #e6e6e6; }
+.single .comments-area, .page .comments-area { margin-top: 2.25em; padding-bottom: 2.25em; }
+
+.entry-content dt, .comment dt { font-weight: bold; }
+.entry-content dd, .comment dd { padding-left: 3em; }
+.entry-content dd + dt, .comment dd + dt { margin-top: 1.5em; }
+.entry-content li:not([class]) > ul:not([class]) > ol:not([class]), .comment li:not([class]) > ul:not([class]) > ol:not([class]) { padding-left: 3em; }
+.entry-content ul, .entry-content ol, .comment ul, .comment ol { margin-left: 1.5em; }
+.entry-content ul li, .entry-content ol li, .comment ul li, .comment ol li { margin-bottom: 0.75em; }
+
+@media only screen and (min-width: 1359px) { .has_sidebar .entry-featured { margin-left: -7.5em; } }
+.posted-on a, .entry-title a { color: #403b3c; }
+
+.single .post-edit-link { margin: 0 12px; text-decoration: underline; }
+
+.post-password-form input { margin-bottom: 1.5em; }
+
+/**
+* 10.4 POST FORMATS
+*/
+.format-quote .entry-featured { margin-top: 0; margin-bottom: 0; -webkit-filter: grayscale(100%); -moz-filter: grayscale(100%); filter: grayscale(100%); overflow: hidden; }
+.format-quote .entry-content { position: relative; }
+.single .format-quote .sharedaddy { margin-bottom: 3em; }
+.single .format-quote .sharedaddy .sd-title { color: white; }
+
+.content-quote { background: rgba(0, 0, 0, 0.7); }
+
+.quote-wrapper { width: auto; right: 0; bottom: 0; z-index: 1; background-repeat: no-repeat; background-position: center center; background-size: cover; }
+
+.content-quote { position: relative; z-index: 2; padding-left: 7.5em; padding-right: 7.5em; }
+@media only screen and (min-width: 1359px) { .single .content-quote { margin-left: -7.5em; margin-right: -3.75em; } }
+.content-quote .flexbox { height: 100%; }
+.content-quote blockquote { margin: 0; color: white; padding-bottom: 0; padding-top: 2.25em; margin-top: 3em; margin-bottom: 3em; font-size: 28px; text-align: center; }
+.content-quote blockquote:before { top: -22px; font-size: 54px; color: #a33b61; background: transparent; }
+.content-quote blockquote:after { height: 1px; background: #a33b61; box-shadow: #a33b61 5.5em 0 0; width: 3em; margin-left: -2.75em; -webkit-transform: translateX(-50%); -ms-transform: translateX(-50%); transform: translateX(-50%); border: 0; }
+.is--ancient-android .content-quote blockquote:after { width: 9em; margin-left: -4.5em; -webkit-transform: none; -ms-transform: none; transform: none; height: auto; background: none; box-shadow: none; border: 1px solid transparent; border-left: 0; border-right: 0; -webkit-border-image: -webkit-linear-gradient(left, #a33b61 0%, #a33b61 40%, transparent 40.1%, transparent 50%, transparent 59.9%, #a33b61 60%, #a33b61 100%) 20%; -o-border-image: linear-gradient(to right, #a33b61 0%, #a33b61 40%, transparent 40.1%, transparent 50%, transparent 59.9%, #a33b61 60%, #a33b61 100%) 20%; border-image: linear-gradient(to right, #a33b61 0%, #a33b61 40%, transparent 40.1%, transparent 50%, transparent 59.9%, #a33b61 60%, #a33b61 100%) 20%; border-bottom: 0; }
+.content-quote p { -webkit-transform: none; -ms-transform: none; transform: none; }
+.content-quote cite { display: block; margin-top: 3em; font-size: 16px; font-weight: bold; font-style: normal; -webkit-transform: none; -ms-transform: none; transform: none; }
+
+.error404 .page-content, .search-no-results .page-content { text-align: center; }
+.error404 .site-content, .search-no-results .site-content { margin-bottom: 4.5em; }
+@media only screen and (min-width: 1000px) { .error404 .site-footer, .search-no-results .site-footer { position: fixed; bottom: 0; left: 0; right: 0; } }
 
 /** 14.0 - Overwrites */
 .color-accent, h1, h2, h4 { color: #a33b61; }
