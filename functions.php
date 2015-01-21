@@ -185,4 +185,5 @@ require get_template_directory() . '/inc/jetpack.php';
 /**
  * Load custom widgets
  */
-require get_template_directory() . '/inc/widgets/popular-posts.php'; ?>
+require get_template_directory() . '/inc/widgets/popular-posts.php';
+require get_template_directory() . '/inc/widgets/about-me.php';?>
