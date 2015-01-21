@@ -32,3 +32,11 @@
 @function quadruple($number) {
     @return round($number * 4);
 }
+
+@function em($px) {
+	@return 1em * $px / $base-font-size;
+}
+
+@function rem($px) {
+	@return 1rem * $px / $base-font-size;
+}
