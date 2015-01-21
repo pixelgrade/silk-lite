@@ -3,7 +3,7 @@
 $lap: 						899px;
 $desk: 						1359px;
 
-// borders
+// ------ #COLORS
 $light:     				#e6e6e6;
 $gray:		   				#b8b6b7;
 $dark:      				#403b3c;
@@ -11,6 +11,9 @@ $secondary:					#fcc9b0;
 $accent:					#a33b61;
 $black:						#000000;
 $borders:					$light;
+
+// ------ #COLOR HELPERS
+.color-accent { color: $accent; }
 
 
 // ------ #SETTINGS

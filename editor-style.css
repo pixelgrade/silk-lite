@@ -1,11 +1,11 @@
 /*
-Sass::SyntaxError: "h1" failed to @extend ".color-accent".
-The selector ".color-accent" was not found.
-Use "@extend .color-accent !optional" if the extend should be able to fail.
+Sass::SyntaxError: "h1" failed to @extend ".italic".
+The selector ".italic" was not found.
+Use "@extend .italic !optional" if the extend should be able to fail.
 
 
 Backtrace:
-/var/folders/6g/3lp90gvx6jz0m913bvzlbdqh0000gn/T/gulp-ruby-sass/base/_type.scss:25
+/var/folders/6g/3lp90gvx6jz0m913bvzlbdqh0000gn/T/gulp-ruby-sass/base/_type.scss:26
 /Users/razvan/.rvm/gems/ruby-2.0.0-p451@global/gems/sass-3.3.7/lib/sass/tree/visitors/extend.rb:61:in `block in check_extends_fired!'
 /Users/razvan/.rvm/gems/ruby-2.0.0-p451@global/gems/sass-3.3.7/lib/sass/util/subset_map.rb:106:in `block in each_value'
 /Users/razvan/.rvm/gems/ruby-2.0.0-p451@global/gems/sass-3.3.7/lib/sass/util/subset_map.rb:106:in `each'
@@ -33,4 +33,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Sass::SyntaxError: \"h1\" failed to @extend \".color-accent\".\A The selector \".color-accent\" was not found.\A Use \"@extend .color-accent !optional\" if the extend should be able to fail.\A "; }
+  content: "Sass::SyntaxError: \"h1\" failed to @extend \".italic\".\A The selector \".italic\" was not found.\A Use \"@extend .italic !optional\" if the extend should be able to fail.\A "; }
