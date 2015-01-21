@@ -1,21 +1,8 @@
 // @todo no more shame
 // 
-@function em($px) {
-	@return 1em * $px / $base-font-size;
-}
 
 .color-accent {
 	color: $accent;
-}
-
-.content-area {
-	@extend .left;
-}
-
-.widget-area {
-	@extend .right;
-	width: em(340px);
-	margin-left: em(60px);
 }
 
 .content {
