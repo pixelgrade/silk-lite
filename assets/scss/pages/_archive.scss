@@ -6,8 +6,8 @@
  	margin-top: em(60px);
  }
 
- .archive__grid {
- 	margin-left: em(-55px);
+.archive__grid {
+	margin-left: em(-55px);
 
 	> .grid__item {
 		width: 50%;
@@ -58,4 +58,17 @@
 		@extend .h2;
 		margin-top: 0;
 	}
- }
+}
+
+.widget {
+	border: 1px solid $borders;
+	padding: rhythm(1);
+	margin-bottom: rhythm(1/2);
+}
+
+
+.widget-title {
+	@extend .h4;
+	margin-top: 0;
+	text-align: center;
+}

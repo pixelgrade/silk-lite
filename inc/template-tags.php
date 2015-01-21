@@ -124,8 +124,8 @@ if ( ! function_exists( 'swell_get_posted_on_and_cats' ) ) :
 		$time_string = sprintf( $time_string,
 			esc_attr( get_the_date( 'c' ) ),
 			esc_html( get_the_date( 'F j') ),
-			esc_html( get_the_date( 'S') ),
-			esc_html( get_the_date( 'Y') )
+			esc_html( get_the_date( 'S' ) ),
+			esc_html( get_the_date( 'Y' ) )
 		);
 
 		$cats = swell_get_cats_list();

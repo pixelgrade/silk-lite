@@ -125,11 +125,11 @@ function swell_fonts_url() {
 		$font_families = array();
 
 		if ( 'off' !== $libre ) {
-			$font_families[] = 'Libre+Baskerville:400,700,400italic';
+			$font_families[] = 'Libre Baskerville:400,700,400italic';
 		}
 
 		if ( 'off' !== $playfair_display ) {
-			$font_families[] = 'Playfair+Display:400,700,900,400italic,700italic,900italic';
+			$font_families[] = 'Playfair Display:400,700,900,400italic,700italic,900italic';
 		}
 
 		$query_args = array(

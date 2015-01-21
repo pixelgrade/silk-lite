@@ -55,7 +55,7 @@ body.wp-editor { max-width: 680px; margin-left: auto; margin-right: auto; font-s
 
 .italic, h1, .h1, h2, .h2 { font-style: italic; }
 
-.caps { text-transform: uppercase; }
+.caps, h4, .h4 { text-transform: uppercase; }
 
 .align-left { text-align: left; }
 
@@ -90,7 +90,7 @@ h2, .h2 { font-size: 2.14286em; line-height: 1.2; -webkit-transform: translateY(
 
 h3, .h3 { font-size: 1.42857em; line-height: 1.2; -webkit-transform: translateY(0.2645em); -ms-transform: translateY(0.2645em); transform: translateY(0.2645em); margin-top: 2.4em; margin-bottom: 1.2em; }
 
-h4, .h4 { font-size: 0.78571em; line-height: 1.09091; -webkit-transform: translateY(0.20995em); -ms-transform: translateY(0.20995em); transform: translateY(0.20995em); margin-top: 4.36364em; margin-bottom: 2.18182em; }
+h4, .h4 { font-style: normal; font-size: 0.78571em; line-height: 1.09091; -webkit-transform: translateY(0.20995em); -ms-transform: translateY(0.20995em); transform: translateY(0.20995em); margin-top: 4.36364em; margin-bottom: 2.18182em; }
 
 /* Paragraphs */
 p { margin-top: 0; font-size: 1.14286em; line-height: 1.5; -webkit-transform: translateY(0.4145em); -ms-transform: translateY(0.4145em); transform: translateY(0.4145em); margin-bottom: 2.57143em; }

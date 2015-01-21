@@ -56,7 +56,9 @@ h3, .h3 {
 
 h4, .h4 {
     @extend %beta;
-	@extend .color-accent;
+    @extend .color-accent;
+    @extend .caps;
+    font-style: normal;
     @include font-size(11px);
     @include baseline(11px);
     @include rhythm(margin-top, 4, 11px);
