@@ -27,7 +27,7 @@ body {
 
 
 /* Headings */
-h1, .h1 {
+h1, .h1 { 
     @extend %alpha;
     @extend .color-accent;
     @extend .italic;

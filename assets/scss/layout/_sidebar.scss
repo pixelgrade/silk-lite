@@ -1,0 +1,20 @@
+.has_sidebar {
+
+	@include query-above($lap) {
+
+		.content-area {
+			width: 100%;
+			float: left;
+			margin-right: em(-340px);
+		}
+
+		.site-main {
+			padding-right: em(400px);
+		}
+
+		.sidebar {
+			float: right;
+			width: em(340px);
+		}
+ 	}
+}
