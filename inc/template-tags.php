@@ -72,14 +72,12 @@ if ( ! function_exists( 'swell_posted_on' ) ) :
 function swell_posted_on() {
 	$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
-		$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
+		$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time>';
 	}
 
 	$time_string = sprintf( $time_string,
 		esc_attr( get_the_date( 'c' ) ),
-		esc_html( get_the_date() ),
-		esc_attr( get_the_modified_date( 'c' ) ),
-		esc_html( get_the_modified_date() )
+		esc_html( get_the_date() )
 	);
 
 	$posted_on = sprintf(
@@ -160,8 +158,10 @@ function swell_entry_footer() {
 		/* translators: used between list items, there is a space after the comma */
 		$tags_list = get_the_tag_list( '', __( ', ', 'swell_txtd' ) );
 		if ( $tags_list ) {
-			printf( '<span class="tags-links">' . __( 'Tagged %1$s', 'swell_txtd' ) . '</span>', $tags_list );
+			printf( '<span class="tags-links">' . __( ' and tagged with %1$s', 'swell_txtd' ) . '</span>', $tags_list );
 		}
+
+		printf('.');
 	}
 
 	if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
@@ -170,7 +170,7 @@ function swell_entry_footer() {
 		echo '</span>';
 	}
 
-	edit_post_link( __( 'Edit', 'swell_txtd' ), '<span class="edit-link">', '</span>' );
+	edit_post_link( __( 'Edit post', 'swell_txtd' ), '<span class="edit-link">', '</span>' );
 }
 endif;
 

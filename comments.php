@@ -23,12 +23,15 @@ if ( post_password_required() ) {
 	<?php // You can start editing here -- including this comment! ?>
 
 	<?php if ( have_comments() ) : ?>
-		<h2 class="comments-title">
-			<?php
-				printf( _nx( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', 'swell_txtd' ),
-					number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>' );
-			?>
-		</h2>
+		<div class="comments-area-title">
+			<h2 class="comments-title"><?php
+				if ( have_comments() ) {
+					echo number_format_i18n( get_comments_number() ) . _n( 'Comment', 'Comments', get_comments_number(), 'swell_txtd' );
+				} else {
+					echo __( 'There are no comments', 'swell_txtd' );
+				} ?></h2>
+			<?php echo '<a class="comments_add-comment" href="#reply-title">' . __( 'Add yours', 'swell_txtd' ) . '</a>'; ?>
+		</div>
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
 		<nav id="comment-nav-above" class="comment-navigation" role="navigation">
@@ -38,13 +41,13 @@ if ( post_password_required() ) {
 		</nav><!-- #comment-nav-above -->
 		<?php endif; // check for comment navigation ?>
 
-		<ol class="comment-list">
+		<ol class="commentlist">
 			<?php
-				wp_list_comments( array(
-					'style'      => 'ol',
-					'short_ping' => true,
-				) );
-			?>
+			/* Loop through and list the comments. Tell wp_list_comments()
+			 * to use hive_comment() to format the comments.
+			 * See hive_comment() in inc/extras.php for more.
+			 */
+			wp_list_comments( array( 'callback' => 'swell_comment', 'short_ping' => true ) ); ?>
 		</ol><!-- .comment-list -->
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>

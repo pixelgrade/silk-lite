@@ -10,29 +10,35 @@
 		}
 	}
 
+	.entry-meta {
+		@include font-size(12px);
+		@include baseline(12px);
+
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: $gray;
+
+		a{
+			color: $gray;
+			text-decoration: none;
+		}
+	}
+
 	.entry-featured {
 		@include rhythm(margin-top, 3.5);
 		@include rhythm(margin-bottom, 2);
 
 		@include query-below($lap) {
-			@include rhythm(margin-left, -1.5);
-			@include rhythm(margin-right, -1.5);
 			@include rhythm(margin-top, 2);
 		}
 
 		@include query-above($desk) {
 			@include rhythm(margin-bottom, 5);
-			@include rhythm(margin-left, -5);
-			@include rhythm(margin-right, -5);
 		}
 
 		img {
 			width: 100%;
 			height: auto;
-		}
-
-		.slideshow-slide img{
-			width: auto;
 		}
 	}
 
@@ -40,53 +46,12 @@
         margin-top: 0;
         @include rhythm(margin-bottom, 4, 54px);
 
+		@include fs(60px);
+
 	    @include query-below($lap) {
 		    @include rhythm(margin-bottom, 2, 30px);
 	    }
     }
-
-
-    .entry-meta {
-        @include font-size(14px);
-        @include baseline(14px);
-    }
-
-
-	// featured portrait layout
-	@include query-above($desk) {
-
-		.featured-portrait {
-
-			.entry-header {
-				float: left;
-				max-width: 90%;
-				margin-right: -100%;
-				@include rhythm(margin-top, 2);
-				@include rhythm(margin-bottom, 2);
-				@include rhythm(margin-left, -10);
-			}
-
-			.entry-title {
-				position: relative;
-				background: white;
-				@include rhythm(padding-right, 2, 54px);
-				@include rhythm(padding-top, 1, 54px);
-				@include rhythm(padding-bottom, 1, 54px);
-			}
-
-			.entry-featured {
-				float: right;
-				max-width: 60%;
-				margin-top: 0;
-				@include rhythm(margin-left, 2);
-				@include rhythm(margin-bottom, 1);
-			}
-
-			.entry-content {
-				clear: left;
-			}
-		}
-	}
 
     .entry-content {
 		@extend %clearfix;
@@ -94,37 +59,19 @@
 		position: relative;
 
 	    @include query-above($lap) {
-		    @include font-size(18px);
+		    @include font-size(14px);
 
 		    p {
 			    @include rhythm(margin-bottom, 3);
 		    }
 	    }
 
-		> :last-child {
-			margin-bottom: 0;
+		p:first-of-type {
+			@include fs(20px);
 		}
 
-
-
-	    &:before {
-		    @extend %alpha;
-
-		    @include query-above($desk) {
-				font-weight: bold;
-				content: attr(data-first_letter);
-
-				position: absolute;
-				@include rhythm(top, -5, 275px);
-				@include rhythm(left, -10.5, 275px);
-
-				display: block;
-				font-size: (275/18) + em;
-				line-height: 1;
-
-				color: $dark;
-				opacity: .1;
-			}
+		> :last-child {
+			margin-bottom: 0;
 		}
 
 		blockquote p {
@@ -134,10 +81,15 @@
     }
 
     .entry-footer{
-		@include rhythm(margin-top, 6);
+		@extend %alpha;
+		@include fs(14px);
+		text-align: center;
 
 		a{
-			color: $light;
+			color: $dark;
+			text-decoration: none;
+
+			border-bottom: 1px solid $dark;
 		}
     }
 
@@ -178,20 +130,11 @@
 	}
 }
 
-@include query-above($desk){
-	.has_sidebar .entry-featured{
-		@include rhythm(margin-left, -10);
-	}
-}
-
-.posted-on, .entry-title{
+.entry-title{
 	a{
 		color: $dark;
 	}
 }
-
-
-
 
 .single .post-edit-link{
 	margin: 0 $u/2;
@@ -200,151 +143,6 @@
 
 .post-password-form input{
 	@include rhythm(margin-bottom, 2);
-}
-
-
-
-
-
-/**
-* 10.4 POST FORMATS
-*/
-
-.format-quote{
-
-	.entry-featured{
-		margin-top: 0;
-		margin-bottom: 0;
-
-		-webkit-filter: grayscale(100%);
-		-moz-filter: grayscale(100%);
-		filter: grayscale(100%);
-
-		overflow: hidden;
-	}
-
-	.entry-content{
-		position: relative;
-	}
-
-	.single & .sharedaddy{
-		@include rhythm(margin-bottom, 4);
-
-		.sd-title{ color: white; }
-	}
-}
-
-.content-quote{
-	background: rgba(0, 0, 0, 0.7);
-}
-
-.quote-wrapper {
-	@extend .cover;
-	width: auto;
-	right: 0;
-	bottom: 0;
-
-	z-index: 1;
-
-	background-repeat: no-repeat;
-	background-position: center center;
-	background-size: cover;
-}
-
-.content-quote {
-	position: relative;
-	z-index: 2;
-
-	@include rhythm(padding-left, 10);
-	@include rhythm(padding-right, 10);
-
-	@include query-above($desk){
-		.single &{
-			@include rhythm(margin-left, -10);
-			@include rhythm(margin-right, -5);
-		}
-	}
-
-	.flexbox {
-		height: 100%;
-	}
-
-	blockquote {
-		margin: 0;
-		color: white;
-
-		padding-bottom: 0;
-
-		@include rhythm(padding-top, 3);
-		@include rhythm(margin-top, 4);
-		@include rhythm(margin-bottom, 4);
-
-		font-size: 28px;
-		text-align: center;
-
-
-		&:before {
-			top: -22px;
-
-			font-size: 54px;
-			color: $accent;
-			background: transparent;
-		}
-
-		&:after {
-			height: 1px;
-
-			background: $accent;
-			box-shadow: $accent 5.5em 0 0;
-			width: 3em;
-			margin-left: -2.75em;
-			transform: translateX(-50%);
-
-			border: 0;
-
-			.is--ancient-android & {
-				width: 9em;
-				margin-left: -4.5em;
-				transform: none;
-
-				height: auto;
-
-				background: none;
-				box-shadow: none;
-
-				border: 1px solid transparent;
-
-				border-left: 0;
-				border-right: 0;
-
-				border-image: linear-gradient(to right,
-						$accent 0%,
-						$accent 40%,
-						transparent 40.1%,
-						transparent 50%,
-						transparent 59.9%,
-						$accent 60%,
-						$accent 100%) 20%;
-
-				border-bottom: 0;
-			}
-		}
-	}
-
-	p {
-		transform: none;
-	}
-
-	cite {
-		display: block;
-		@include rhythm(margin-top, 4);
-
-		font-size: 16px;
-		font-weight: bold;
-
-		font-style: normal;
-		transform: none;
-	}
 }
 
 .error404, .search-no-results {

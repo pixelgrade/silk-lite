@@ -16,14 +16,16 @@ body {
 }
 
 %beta {
-    font-family: "Droid Serif", serif;
+    font-family: "Merriweather", serif;
+	font-weight: 200;
 }
+
 
 /* Headings */
 h1, .h1 {
     @extend %alpha;
-    @extend .color-accent !optional;
-    @extend .italic !optional;
+    @extend .color-accent;
+    @extend .italic;
     @include font-size(45px);
     @include baseline(45px);
     @include rhythm(margin-top, 4, 45px);
@@ -32,8 +34,8 @@ h1, .h1 {
 
 h2, .h2 {
     @extend %alpha;
-	@extend .color-accent !optional;
-	@extend .italic !optional;
+	@extend .color-accent;
+	@extend .italic;
     @include font-size(30px);
     @include baseline(30px);
     @include rhythm(margin-top, 4, 30px);
@@ -50,7 +52,7 @@ h3, .h3 {
 
 h4, .h4 {
     @extend %beta;
-	@extend .color-accent !optional;
+	@extend .color-accent;
     @include font-size(11px);
     @include baseline(11px);
     @include rhythm(margin-top, 4, 11px);

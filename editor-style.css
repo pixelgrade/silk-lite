@@ -11,11 +11,77 @@ html { padding: 24px 36px; }
 body.wp-editor { max-width: 680px; margin-left: auto; margin-right: auto; font-size: 18px; }
 
 /** 2.0 - Base Styles 2.1 - Typography ------------------------------------------------- */
+.hide, .hidden, .assistive-text, .screen-reader-text, [hidden] { display: none; }
+
+.inline { display: inline; }
+
+.block { display: block; }
+
+.inline-block { display: inline-block; }
+
+.table { display: table; }
+
+.table-cell { display: table-cell; }
+
+.table-row { display: table-row; }
+
+.table-row-group { display: table-row-group; }
+
+.table-column { display: table-column; }
+
+.table-column-group { display: table-column-group; }
+
+.overflow-hidden { overflow: hidden; }
+
+.overflow-scroll { overflow: scroll; }
+
+.left { float: left; }
+
+.right { float: right; }
+
+.fit { max-width: 100%; }
+
+.relative { position: relative; }
+
+.absolute { position: absolute; }
+
+.fixed { position: fixed; }
+
+.static { position: static; }
+
+.bold { font-weight: bold; }
+
+.regular { font-weight: normal; }
+
+.italic, h1, .h1, h2, .h2 { font-style: italic; }
+
+.caps { text-transform: uppercase; }
+
+.align-left { text-align: left; }
+
+.align-center { text-align: center; }
+
+.align-right { text-align: right; }
+
+.align-justify { text-align: justify; }
+
+.align-top { vertical-align: top; }
+
+.align-middle { vertical-align: middle; }
+
+.align-bottom { vertical-align: bottom; }
+
+.nowrap { white-space: nowrap; }
+
+.pointer-auto { pointer-events: auto; }
+
+.pointer-none { pointer-events: none; }
+
 body { font-size: 14px; line-height: 1.71429; color: #403b3c; }
 
 h1, .h1, h2, .h2, h3, .h3, .dropcap { font-family: "Playfair Display", serif; font-weight: normal; -webkit-font-smoothing: auto; }
 
-body, h4, .h4 { font-family: "Droid Serif", serif; }
+body, h4, .h4 { font-family: "Merriweather", serif; font-weight: 200; }
 
 /* Headings */
 h1, .h1 { font-size: 3.21429em; line-height: 1.06667; -webkit-transform: translateY(0.19783em); -ms-transform: translateY(0.19783em); transform: translateY(0.19783em); margin-top: 1.06667em; margin-bottom: 0.53333em; }
@@ -49,15 +115,13 @@ pre { position: relative; padding-left: 2.57143em; padding-right: 2.57143em; pad
 img { max-width: 100%; height: auto; }
 
 /* Figures and Captions */
-.wp-caption { width: auto; }
+.wp-caption { width: auto; margin-left: 0; margin-right: 0; }
 .wp-caption img { display: block; }
 
-.wp-caption-text, .wp-caption-dd { font-size: 0.72222em; margin-top: 0.92308em; color: #e6e6e6; }
+.wp-caption-text, .wp-caption-dd { padding: 16px 0; border-bottom: 2px solid #e6e6e6; }
+.fs-13px, .wp-caption-text, .wp-caption-dd { font-size: 0.92857em; line-height: 1.84615; }
 
 /* Galleries */
-.gallery { margin-left: -0.85714em; }
-@media only screen and (min-width: 1359px) { .gallery { margin-left: -5.14286em; margin-right: -4.28571em; }
-  .entry-featured .gallery { margin-left: -0.85714em; margin-right: 0; } }
 .gallery .gallery-item { margin: 0; display: inline-block; vertical-align: top; text-align: center; border: 0 solid transparent; border-top-width: 0.85714em; border-left-width: 0.85714em; }
 
 /** 3.0 - Helpers 3.1 - Theme specific classes -------------------------------------------------
@@ -94,12 +158,6 @@ img { max-width: 100%; height: auto; }
 
 @media not screen and (min-width: 899px) { figure.aligncenter, figure.wp-caption.aligncenter, figure.alignnone, figure.wp-caption.alignnone { margin-left: 0; margin-right: 0; } }
 .aligncenter, .wp-caption.aligncenter { text-align: center; }
-
-@media only screen and (min-width: 1359px) { .alignnone, .wp-caption.alignnone, .aligncenter, .wp-caption.aligncenter { margin-left: -4.28571em; margin-right: -4.28571em; }
-  .alignleft, .wp-caption.alignleft { margin-left: -4.28571em; }
-  .alignright, .wp-caption.alignright { margin-right: -4.28571em; } }
-.widget .aligncenter, .widget .alignleft, .widget .alignright, .widget .alignnone { margin: 0; }
-.blog .aligncenter, .archive .aligncenter, .blog .alignleft, .archive .alignleft, .blog .alignright, .archive .alignright, .blog .alignnone, .archive .alignnone { margin: 0; }
 
 .wp-caption { text-align: left; }
 

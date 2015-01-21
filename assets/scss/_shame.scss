@@ -27,3 +27,11 @@
 .site-info {
 	@extend .content;
 }
+
+#site-navigation {
+	display: none;
+}
+
+hr{
+	margin: $base-spacing-unit 0;
+}
