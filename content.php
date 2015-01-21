@@ -8,7 +8,7 @@
 	<header class="entry-header">
 		<?php if ( 'post' == get_post_type() ) : ?>
 		<div class="entry-meta">
-			<?php swell_posted_on(); ?>
+			<?php swell_posted_on_and_cats(); ?>
 		</div><!-- .entry-meta -->
 		<?php endif; ?>
 

@@ -1,82 +1,75 @@
+/**
+ * Fluid images for responsive purposes.
+ * Offset `alt` text from surrounding copy.
+ */
+img {
+    max-width: 100%;
+    height: auto;
+    font-style: italic;
+}
+
+/* Google Maps breaks if `max-width: 100%` acts upon it; use their selector */
+.gm-style img {
+    max-width: none;
+}
+
+.aligncenter,
+.alignnone,
+.alignleft,
+.alignright {
+    display: block;
+    transform: translateY(0.821rem);
+    width: auto !important;
+    margin: 0;
+    margin-bottom: rhythm(1);
+
+    p & {
+        transform: translateY(0.4105rem); 
+    }
+}
+
+.aligncenter {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
 .alignleft, .alignright {
-    position: relative;
-    z-index: 1;
-    
-    @include rhythm(margin-top, 1.5);
-    @include rhythm(margin-bottom, 1.5);
+    margin-top: rhythm(1);
     max-width: 50%;
 
-    @include query-below(640px) {
-        max-width: 100%;
-        display: block;
+    p + & {
+        margin-top: 0;
+    }
+
+    p > &:first-child,
+    p > :first-child > &:first-child {
+        margin-top: 0; 
     }
 }
 
 .alignleft {
     float: left;
-    @include rhythm(margin-right, 2);
-
-    @include query-above($lap) {
-        @include rhythm(margin-right, 4);
-    }
-
-    @include query-below($lap) {
-        &.wp-caption{
-            margin-left: 0;
-        }
-    }
+    margin-right: rhythm(2);
 }
 
 .alignright {
     float: right;
-    @include rhythm(margin-left, 2);
-
-    @include query-above($lap){
-        @include rhythm(margin-left, 4);
-    }
-
-    @include query-below($lap) {
-        &.wp-caption{
-            margin-right: 0;
-        }
-    }
+    margin-left: rhythm(2);
 }
 
-.aligncenter, .alignnone {
-    @include rhythm(margin-top, 2);
-    @include rhythm(margin-bottom, 1.5);
-
-    @include query-above($lap){
-        @include rhythm(margin-top, 4);
-        @include rhythm(margin-bottom, 3);
-    }
-
-    display: block;
-    width: auto !important;
+figure {
+    max-width: 100%;
 
     img {
-        max-width: 100%;
-        height: auto;
+        display: block;
     }
 }
 
-.aligncenter, .alignnone{
-    img{
-        margin: 0 auto;
-    }
+figcaption {
+    font-style: italic;
 }
 
-.alignnone .wp-caption-text{
-    text-align: center;
-}
-
-@include query-below($lap) {
-    figure.aligncenter, figure.alignnone {
-        margin-left: 0;
-        margin-right: 0;
-    }
-}
-
-.aligncenter {
-    text-align: center;
+.wp-caption {
+    // @extend %default-baseline-font;
 }

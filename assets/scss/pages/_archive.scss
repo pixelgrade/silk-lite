@@ -30,6 +30,30 @@
 		text-align: center;
 	}
 
+	.entry-meta {
+		text-transform: uppercase;
+		font-size: rem(10px);
+
+		a {
+			color: currentColor;
+		}
+
+		sup {
+			top: -0.285em;
+		}
+
+		.cat-links {
+
+			&:before {
+				content: "\2013";
+				margin-left: 0.5em;
+				margin-right: 0.5em;
+				position: relative;
+				top: -0.1em;
+			}
+		}
+	}
+
 	.entry-title {
 		@extend .h2;
 		margin-top: 0;
