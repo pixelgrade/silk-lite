@@ -24,13 +24,14 @@ if ( post_password_required() ) {
 
 	<?php if ( have_comments() ) : ?>
 		<div class="comments-area-title">
-			<h2 class="comments-title"><?php
+			<h3 class="comments-title"><?php
 				if ( have_comments() ) {
-					echo number_format_i18n( get_comments_number() ) . _n( 'Comment', 'Comments', get_comments_number(), 'swell_txtd' );
+					echo number_format_i18n( get_comments_number() ) . ' ' . _n( 'Comment', 'Comments', get_comments_number(), 'swell_txtd' );
 				} else {
 					echo __( 'There are no comments', 'swell_txtd' );
-				} ?></h2>
-			<?php echo '<a class="comments_add-comment" href="#reply-title">' . __( 'Add yours', 'swell_txtd' ) . '</a>'; ?>
+				} ?>
+			</h3>
+			<?php echo '<a class="comments_add-comment" href="#reply-title">' . __( 'Add Yours', 'swell_txtd' ) . '</a>'; ?>
 		</div>
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
