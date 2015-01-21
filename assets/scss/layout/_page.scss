@@ -45,8 +45,7 @@ html {
 
 .container {
 	// max-width: 85em;
-	// @todo convert to em
-	max-width: 1250px;
+	max-width: em(1250px);
 	margin-left: auto;
 	margin-right: auto;
 }

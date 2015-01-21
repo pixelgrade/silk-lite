@@ -118,7 +118,7 @@ img { max-width: 100%; height: auto; }
 .wp-caption { width: auto; margin-left: 0; margin-right: 0; }
 .wp-caption img { display: block; }
 
-.wp-caption-text, .wp-caption-dd { padding: 16px 0; border-bottom: 2px solid #e6e6e6; }
+.wp-caption-text, .wp-caption-dd { padding: 1.14286em 0; border-bottom: 2px solid #e6e6e6; }
 .fs-13px, .wp-caption-text, .wp-caption-dd { font-size: 0.92857em; line-height: 1.84615; }
 
 /* Galleries */

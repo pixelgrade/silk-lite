@@ -8,7 +8,6 @@ img{
 }
 
 /* Figures and Captions */
-// @todo figure and figcaption
 .wp-caption {
 	width: auto;
 	margin-left: 0;
@@ -21,8 +20,7 @@ img{
 
 .wp-caption-text {
 	@include fs(13px);
-	// @todo em/rem
-	padding: 16px 0;
+	padding: em(16px) 0;
 
 	border-bottom: 2px solid $borders;
 }

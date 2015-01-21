@@ -1,14 +1,30 @@
 .comments-area {
-	@include rhythm(margin-top, 2);
-	@include rhythm(padding-top, 4);
-	border-top: 1px solid $borders;
+	padding-top: em(40px);
+
+	&:before{
+		content: "";
+
+		position: relative;
+		top: em(-40px);
+
+		display: block;
+		width: 50%;
+		margin: 0 auto;
+
+		border-top: 2px solid $borders;
+	}
 }
 
-.comment-number, %comment-number {
+.comment-number {
+	@extend %alpha;
+	@include fs(16px);
+
 	width: 25px;
 	height: 25px;
 
-	line-height: 25px;
+	&.comment-number {
+		line-height: 22px;
+	}
 
 	border-radius: 50%;
 	text-align: center;
@@ -16,11 +32,6 @@
 	color: white;
 	background: $accent;
 
-}
-
-.comment-number.no-comments{
-	position: relative;
-	z-index: 1;
 }
 
 .comments-area-title, .comment-reply-title {
@@ -82,9 +93,6 @@
 		bottom: 0;
 		width: 1px;
 		background: linear-gradient(to bottom, $secondary 99%, rgba(0,0,0,0) 100%);
-//		border-left-width: 1px;
-//		border-left-style: solid;
-//
 	}
 }
 
@@ -92,9 +100,7 @@ li.comment, li.pingback, li.trackback {
 	position: relative;
 
 	display: block;
-	margin-bottom: 0;
-	@include rhythm(margin-top, 4);
-	@include rhythm(margin-bottom, 4);
+	margin: em(40px) 0;
 
 	.comment-number {
 		position: absolute;
@@ -103,6 +109,7 @@ li.comment, li.pingback, li.trackback {
 		z-index: 1;
 
 		@include query-below($lap) {
+			// @todo revisit
 			@include rhythm(left, -4);
 		}
 	}
@@ -132,6 +139,10 @@ li.comment, li.pingback, li.trackback {
 				}
 			}
 		}
+	}
+
+	p:last-child {
+		margin-bottom: 0;
 	}
 }
 
@@ -406,82 +417,6 @@ p.comment-form-email{
 		@include font-size(20px);
 		font-weight: bold;
 	}
-}
-
-
-
-
-/* Comments Navigation */
-
-.comment-navigation {
-	@extend %clearfix;
-
-	position: relative;
-
-	@include rhythm(padding-left, 5);
-	@include rhythm(margin-top, 4);
-	@include rhythm(margin-bottom, 4);
-
-	.comment-number{
-		position: absolute;
-		left: 0;
-		top: 0;
-
-		line-height: 30px;
-	}
-
-	.assistive-text {
-		margin-top: 0;
-		margin-left: 8px;
-		font-size: 28px;
-		transform: none;
-	}
-
-	.nav-previous, .nav-next{
-		a{
-			font-size: 18px;
-		}
-	}
-
-	.nav-previous{
-		float: left;
-
-		a:before {
-			content: "\2190 ";
-		}
-
-		a:after {
-			content: "";
-		}
-	}
-
-	.nav-next{
-		float: right;
-
-		a:before {
-			content: "";
-		}
-
-		a:after {
-			content: " \2192";
-		}
-	}
-}
-
-.nocomments{
-	transform: none;
-
-	span{
-		display: inline-block;
-		vertical-align: middle;
-		@include font-size(28px);
-		line-height: 48px;
-	}
-}
-
-.no-comments-box{
-	position: relative;
-	z-index: 1;
 }
 
 div#respond{

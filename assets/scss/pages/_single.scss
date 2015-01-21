@@ -4,15 +4,9 @@
 		@include rhythm(margin-bottom, 3);
 	}
 
-	.entry-header {
-		@include query-below($lap) {
-			@include rhythm(margin-top, 2);
-		}
-	}
-
 	.entry-meta {
 		@include font-size(12px);
-		@include baseline(12px);
+		margin-bottom: em(10px);
 
 		text-transform: uppercase;
 		letter-spacing: 0.1em;
@@ -21,6 +15,14 @@
 		a{
 			color: $gray;
 			text-decoration: none;
+		}
+	}
+
+	.intro-paragraph {
+		@include fs(20px);
+
+		&.intro-paragraph {
+			line-height: em(22px);
 		}
 	}
 
@@ -37,6 +39,7 @@
 		}
 
 		img {
+			display: block;
 			width: 100%;
 			height: auto;
 		}
@@ -44,7 +47,8 @@
 
     .entry-title {
         margin-top: 0;
-        @include rhythm(margin-bottom, 4, 54px);
+
+		transform: none;
 
 		@include fs(60px);
 
@@ -65,10 +69,6 @@
 			    @include rhythm(margin-bottom, 3);
 		    }
 	    }
-
-		p:first-of-type {
-			@include fs(20px);
-		}
 
 		> :last-child {
 			margin-bottom: 0;
@@ -141,26 +141,10 @@
 	text-decoration: underline;
 }
 
-.post-password-form input{
-	@include rhythm(margin-bottom, 2);
+.post-password-form {
+//@todo to be continued
 }
 
 .error404, .search-no-results {
-
-	.page-content{
-		text-align: center;
-	}
-
-	.site-content {
-		@include rhythm(margin-bottom, 6);
-	}
-
-	@include query-above(1000px){
-		.site-footer {
-			position: fixed;
-			bottom: 0;
-			left: 0;
-			right: 0;
-		}
-	}
+//@todo to be continued
 }

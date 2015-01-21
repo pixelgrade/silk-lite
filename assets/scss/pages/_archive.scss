@@ -369,8 +369,7 @@
 			content: "\2014";
 
 			display: inline-block;
-			// @todo rem/em
-			margin: 0 5px;
+			margin: 0 em(5px);
 
 			color: $gray;
         }
