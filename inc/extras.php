@@ -251,31 +251,33 @@ if ( ! class_exists( "Swell_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker
 	 */
 	class Swell_Walker_Primary_Mega_Menu extends Walker_Nav_Menu {
 
-		function start_lvl( &$output, $depth = 0, $args = array() ) {
+		public function start_lvl( &$output, $depth = 0, $args = array() ) {
 			$output .= "<ul class=\"sub-menu\">";
 		}
 
-		function end_lvl( &$output, $depth = 0, $args = array() ) {
+		public function end_lvl( &$output, $depth = 0, $args = array() ) {
 			$output .= "</ul>";
 		}
 
-		function display_element( $element, &$children_elements, $max_depth, $depth = 0, $args, &$output ) {
+		public function display_element( $element, &$children_elements, $max_depth, $depth = 0, $args, &$output ) {
 			$id_field = $this->db_fields['id'];
 
 			// check whether there are children for the given ID
 			$element->hasChildren = isset( $children_elements[ $element->$id_field ] ) && ! empty( $children_elements[ $element->$id_field ] );
 
+			$temp_classes = $element->classes;
 			if ( ! empty( $children_elements[ $element->$id_field ] ) ) {
-				$element->classes[] = 'menu-item--parent';
+				$temp_classes[] = 'menu-item--parent';
 			} else {
-				$element->classes[] = 'menu-item--no-children';
+				$temp_classes[] = 'menu-item--no-children';
 			}
+			$element->classes = $temp_classes;
 
 			Walker_Nav_Menu::display_element( $element, $children_elements, $max_depth, $depth, $args, $output );
 		}
 
 		// add main/sub classes to li's and links
-		function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+		public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
 			global $wp_query;
 
 			if ( ! is_array( $args ) ) {
@@ -321,7 +323,7 @@ if ( ! class_exists( "Swell_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker
 			$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 		}
 
-		function end_el( &$output, $item, $depth = 0, $args = array() ) {
+		public function end_el( &$output, $item, $depth = 0, $args = array() ) {
 
 			$item_output = '';
 
