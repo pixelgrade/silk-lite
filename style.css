@@ -124,6 +124,8 @@ h1, .h1, h2, .h2, h3, .h3, .dropcap, .comment-number, .single .entry-footer, .pa
 
 body, h4, .h4, .comments-title, .comment-reply-title { font-family: "Merriweather", serif; font-weight: 200; }
 
+.sharedaddy .sd-sharing-enabled .sd-title { font-family: "Open Sans", sans-serif; font-weight: 300; }
+
 /* Headings */
 h1, .h1 { font-size: 3.21429em; line-height: 1.06667; -webkit-transform: translateY(0.19783em); -ms-transform: translateY(0.19783em); transform: translateY(0.19783em); margin-top: 1.06667em; margin-bottom: 0.53333em; }
 
@@ -221,7 +223,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder { font-style: normal
 
 /** 4.0 - Helpers */
 /* Clearfix */
-.clearfix:after, .site-content:after, .grid:after, .comment-form:after, .nav:after, .media:after, .has_sidebar .site-content .container:after, .single .entry-content:after, .page .entry-content:after { content: ""; display: table; clear: both; }
+.clearfix:after, .site-content:after, .grid:after, .comment-form:after, .nav:after, .sharedaddy .sd-sharing-enabled .sd-content ul:after, .media:after, .single .entry-content:after, .page .entry-content:after { content: ""; display: table; clear: both; }
 
 .hide, .hidden, .assistive-text, .screen-reader-text, [hidden] { display: none; }
 
@@ -348,8 +350,11 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder { font-style: normal
 
 .grid--rev > li, .grid--rev > .grid__item, .rtl .grid > li, .rtl .grid > .grid__item { direction: rtl; float: right; }
 
-.nav { list-style: none; margin-left: 0; }
-.nav > li, .nav > li > a { display: inline-block; *display: inline; zoom: 1; }
+.nav, .sharedaddy .sd-sharing-enabled .sd-content ul { list-style: none; margin-left: 0; }
+.nav > li, .sharedaddy .sd-sharing-enabled .sd-content ul > li, .nav > li > a, .sharedaddy .sd-sharing-enabled .sd-content ul > li > a { display: inline-block; *display: inline; zoom: 1; }
+
+.nav--stacked > li, .sharedaddy .sd-sharing-enabled .sd-content ul > li { display: list-item; }
+.nav--stacked > li > a, .sharedaddy .sd-sharing-enabled .sd-content ul > li > a { display: block; }
 
 .media { display: block; }
 
@@ -382,22 +387,6 @@ html { height: 100%; background: white; }
 
 @media only screen and (min-width: 1000px) { #page { padding-right: 3.42857em; } }
 
-.has_sidebar .site-content .container { position: relative; }
-.single-post .has_sidebar .site-main, .page .has_sidebar .site-main { max-width: none; }
-.has_sidebar .content-area { width: 100%; }
-.has_sidebar .sidebar { position: relative; padding-top: 1.71429em; }
-@media not screen and (min-width: 899px) { .has_sidebar .sidebar { border-top: 1px solid #b8b6b7; padding-top: 3.42857em; } }
-@media only screen and (min-width: 899px) { .has_sidebar .sidebar { padding-bottom: 3.42857em; } }
-@media only screen and (min-width: 899px) { .has_sidebar .content-area { float: left; margin-right: -30%; }
-  .has_sidebar .site-main { margin-right: 30%; padding-right: 2.14286em; }
-  .has_sidebar .site-main:before { content: ""; position: absolute; top: 0; bottom: 0; right: 30%; border-right: 1px solid #e6e6e6; }
-  .has_sidebar .sidebar { z-index: 5; float: right; width: 30%; padding-left: 2.14286em; } }
-@media only screen and (min-width: 1359px) { .has_sidebar .content-area { margin-right: -25.71429em; }
-  .has_sidebar .site-main { margin-right: 25.71429em; padding-right: 4.28571em; }
-  .has_sidebar .site-main:before { right: 25.71429em; }
-  .has_sidebar .sidebar { width: 25.71429em; padding-left: 4.28571em; } }
-
-@media only screen and (min-width: 1359px) { .single .site-main, .page .site-main { padding-right: 8.57143em; padding-left: 8.57143em; } }
 .comments-area { padding-top: 2.85714em; }
 .comments-area:before { content: ""; position: relative; top: -2.85714em; display: block; width: 50%; margin: 0 auto; border-top: 2px solid #e6e6e6; }
 
@@ -412,7 +401,7 @@ html { height: 100%; background: white; }
 .comments-title { margin: 0; margin-right: 0.57143em; -webkit-transform: none; -ms-transform: none; transform: none; }
 
 .comments_add-comment { color: #403b3c; border-bottom: 1px solid #403b3c; }
-.fs-12px, .comments_add-comment { font-size: 0.85714em; line-height: 2; }
+.fs-12px, .comments_add-comment, .sharedaddy .sd-sharing-enabled .sd-title { font-size: 0.85714em; line-height: 2; }
 .comments_add-comment.comments_add-comment { line-height: 12px; }
 
 .commentlist > .comment, .commentlist > .pingback, .commentlist > .trackback { padding-left: 1.78571em; }
@@ -635,7 +624,7 @@ body { word-wrap: break-word; text-overflow: ellipsis; }
 .single .entry-title, .page .entry-title { margin-top: 0; -webkit-transform: none; -ms-transform: none; transform: none; }
 .fs-60px, .single .entry-title, .page .entry-title { font-size: 4.28571em; line-height: 1.2; }
 @media not screen and (min-width: 899px) { .single .entry-title, .page .entry-title { margin-bottom: 0.8em; } }
-.single .entry-content, .page .entry-content { position: relative; }
+.single .entry-content, .page .entry-content { position: relative; padding-left: 16.42857em; }
 @media only screen and (min-width: 899px) { .single .entry-content, .page .entry-content { font-size: 1em; line-height: 1.71429; }
   .single .entry-content p, .page .entry-content p { margin-bottom: 2.57143em; } }
 .single .entry-content > :last-child, .page .entry-content > :last-child { margin-bottom: 0; }
@@ -650,6 +639,12 @@ body { word-wrap: break-word; text-overflow: ellipsis; }
 .entry-content li:not([class]) > ul:not([class]) > ol:not([class]), .comment li:not([class]) > ul:not([class]) > ol:not([class]) { padding-left: 3em; }
 .entry-content ul, .entry-content ol, .comment ul, .comment ol { margin-left: 1.5em; }
 .entry-content ul li, .entry-content ol li, .comment ul li, .comment ol li { margin-bottom: 0.75em; }
+
+#jp-post-flair { position: absolute; top: 0; left: 0; width: 13.57143em; }
+
+.sharedaddy .sd-sharing-enabled { padding: 1.42857em; border: 1px solid #e6e6e6; }
+.sharedaddy .sd-sharing-enabled .sd-title { margin: 0; padding-bottom: 1em; font-weight: bold; text-transform: uppercase; -webkit-transform: none; -ms-transform: none; transform: none; border-bottom: 1px solid #b8b6b7; }
+.sharedaddy .sd-sharing-enabled li { padding: 1em 0; margin: 0; border-bottom: 1px solid #e6e6e6; }
 
 .entry-title a { color: #403b3c; }
 

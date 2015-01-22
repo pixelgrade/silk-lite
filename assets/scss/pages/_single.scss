@@ -59,8 +59,9 @@
 
     .entry-content {
 		@extend %clearfix;
-
 		position: relative;
+
+		padding-left: em(230px);
 
 	    @include query-above($lap) {
 		    @include font-size(14px);
@@ -130,11 +131,61 @@
 	}
 }
 
+
+
+// Sharedaddy sidebar
+
+#jp-post-flair {
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	width: em(190px);
+}
+
+.sharedaddy .sd-sharing-enabled {
+	padding: em(20px);
+	border: 1px solid $borders;
+
+	.sd-title {
+		@extend %gamma;
+
+		margin: 0;
+		padding-bottom: em(14px);
+
+		@include fs(12px);
+		font-weight: bold;
+		text-transform: uppercase;
+
+		transform: none;
+		border-bottom: 1px solid $gray;
+	}
+
+	.sd-content ul {
+		@extend .nav;
+		@extend .nav--stacked;
+	}
+
+	li {
+		padding: em(14px) 0;
+		margin: 0;
+		border-bottom: 1px solid $borders;
+	}
+}
+
+
+
+
+
+
+
 .entry-title{
 	a{
 		color: $dark;
 	}
 }
+
+
 
 .single .post-edit-link{
 	margin: 0 $u/2;
