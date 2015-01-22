@@ -60,6 +60,26 @@
 	}
 }
 
+.page-title {
+	margin-top: rhythm(-1/2);
+	margin-bottom: rhythm(2);
+}
+
+.search,
+.archive,
+.blog {
+
+	.page-title {
+		text-align: center;
+
+		span {
+			display: block;
+			color: $dark;
+			font-size: 0.75em;
+		}
+	}
+}
+
 .widget {
 	border: 1px solid $borders;
 	padding: rhythm(1);
@@ -71,4 +91,28 @@
 	@extend .h4;
 	margin-top: 0;
 	text-align: center;
+}
+
+// #JETPACK
+.infinite-scroll {
+	
+	.posts-navigation {
+		display: none;
+	}
+
+	.archive__grid {
+		margin-bottom: 3em;
+	}
+}
+
+#infinite-handle {
+	width: 100%;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	text-align: center;
+
+	span {
+		display: inline-block;
+	}
 }

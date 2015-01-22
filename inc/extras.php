@@ -20,7 +20,7 @@ function swell_body_classes( $classes ) {
 		$classes[] = 'group-blog';
 	}
 
-	if ( ( is_single() || is_page() || is_home() || is_archive() ) && is_active_sidebar( 'sidebar-1' ) ) {
+	if ( ( is_single() || is_page() || is_home() || is_archive() || is_search() ) && is_active_sidebar( 'sidebar-1' ) ) {
 		$classes[ ] = 'has_sidebar';
 	}
 

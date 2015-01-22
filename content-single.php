@@ -17,7 +17,7 @@
 			?>
 		</div><!-- .entry-meta -->
 
-		<?php the_title( '<h1 class="entry-title">', '</h1>' );
+		<?php the_title( '<h1 class="entry-title  page-title">', '</h1>' );
 
 		//@todo a backend dev should review this function
 		echo get_first_paragraph();
