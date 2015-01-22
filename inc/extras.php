@@ -120,8 +120,14 @@ function swell_fonts_url() {
 	*/
 	$playfair_display = _x( 'on', 'Playfair Display font: on or off', 'swell_txtd' );
 
+	/* Translators: If there are characters in your language that are not
+	* supported by Merriweather, translate this to 'off'. Do not translate
+	* into your own language.
+	*/
+	$merryweather = _x( 'on', 'Merryweather font: on or off', 'swell_txtd' );
 
-	if ( 'off' !== $libre || 'off' !== $playfair_display ) {
+
+	if ( 'off' !== $libre || 'off' !== $playfair_display || 'off' !== $merryweather ) {
 		$font_families = array();
 
 		if ( 'off' !== $libre ) {
@@ -130,6 +136,10 @@ function swell_fonts_url() {
 
 		if ( 'off' !== $playfair_display ) {
 			$font_families[] = 'Playfair Display:400,700,900,400italic,700italic,900italic';
+		}
+
+		if ( 'off' !== $merryweather ) {
+			$font_families[] = 'Merryweather:400italic,400,300,700';
 		}
 
 		$query_args = array(
