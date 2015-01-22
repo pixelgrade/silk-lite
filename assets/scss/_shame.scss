@@ -31,3 +31,12 @@
 hr{
 	margin: $base-spacing-unit 0;
 }
+
+.main-navigation {
+	margin: 100px 0;
+}
+
+.nav--main {
+	@extend .nav;
+	@extend .nav--block;
+}
