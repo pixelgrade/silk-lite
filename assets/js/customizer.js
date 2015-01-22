@@ -22,17 +22,4 @@
 		} );
 	} );
 
-	// Update the site title size class
-	wp.customize( 'swell_title_size', function( value ) {
-		value.bind( function( sizeClass ) {
-			//remove the previous size class
-			$( '.site-title' ).removeClass( function (index, css) {
-				return (css.match (/(^|\s)site-title--\S+/g) || []).join(' ');
-			});
-
-			//add the new class
-			$( '.site-title' ).addClass( sizeClass );
-
-		} );
-	} );
 })( jQuery );
