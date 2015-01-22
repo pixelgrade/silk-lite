@@ -47,7 +47,7 @@
 
 		transform: none;
 
-		@include fs(60px);
+		font-size: em(60px);
 
 	    @include query-below($lap) {
 		    @include rhythm(margin-bottom, 2, 30px);
