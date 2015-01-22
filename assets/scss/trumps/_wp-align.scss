@@ -28,10 +28,14 @@ img {
     }
 }
 
-.aligncenter {
+.aligncenter, .alignnone {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+
+    img {
+        margin: 0 auto;
+    }
 }
 
 .alignleft, .alignright {

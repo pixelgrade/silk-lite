@@ -6,7 +6,7 @@
 
 	.entry-meta {
 		@include font-size(12px);
-		margin-bottom: em(10px);
+		@include rhythm(margin-bottom, 1, 12px);
 
 		text-transform: uppercase;
 		letter-spacing: 0.1em;
@@ -18,8 +18,13 @@
 		}
 	}
 
+	.entry-header{
+		@include rhythm(margin-bottom, 5);
+	}
+
 	.intro-paragraph {
-		@include fs(20px);
+		@include fs(18px);
+		margin-bottom: 0;
 
 		&.intro-paragraph {
 			line-height: em(22px);
@@ -27,16 +32,7 @@
 	}
 
 	.entry-featured {
-		@include rhythm(margin-top, 3.5);
 		@include rhythm(margin-bottom, 2);
-
-		@include query-below($lap) {
-			@include rhythm(margin-top, 2);
-		}
-
-		@include query-above($desk) {
-			@include rhythm(margin-bottom, 5);
-		}
 
 		img {
 			display: block;
@@ -47,6 +43,7 @@
 
     .entry-title {
         margin-top: 0;
+		@include rhythm(margin-bottom, 2, 60px);
 
 		transform: none;
 
@@ -63,13 +60,13 @@
 
 		padding-left: em(230px);
 
-	    @include query-above($lap) {
-		    @include font-size(14px);
+		p {
+			@include fs(14px);
 
-		    p {
-			    @include rhythm(margin-bottom, 3);
-		    }
-	    }
+			@include query-above($lap) {
+				@include rhythm(margin-bottom, 3);
+			}
+		}
 
 		> :last-child {
 			margin-bottom: 0;
@@ -131,9 +128,21 @@
 	}
 }
 
+.single .post-edit-link {
+	margin: 0 $u/2;
+	text-decoration: underline;
+}
+
+.post-password-form {
+	// @todo to be continued
+}
+
+.error404, .search-no-results {
+	// @todo to be continued
+}
 
 
-// Sharedaddy sidebar
+// Sharedaddy - in left sidebar
 
 #jp-post-flair {
 	position: absolute;
@@ -147,15 +156,20 @@
 	padding: em(20px);
 	border: 1px solid $borders;
 
+	text-transform: uppercase;
+
+	*{
+		letter-spacing: 0.1em;
+	}
+
 	.sd-title {
 		@extend %delta;
 
 		margin: 0;
-		padding-bottom: em(14px);
+		padding-bottom: em(12px);
 
 		@include fs(12px);
 		font-weight: bold;
-		text-transform: uppercase;
 
 		transform: none;
 		border-bottom: 1px solid $gray;
@@ -164,24 +178,72 @@
 	.sd-content ul {
 		@extend .nav;
 		@extend .nav--stacked;
+
+		@extend %delta;
+		@include fs(12px);
+
+	}
+
+	a {
+		color: $dark;
 	}
 
 	li {
 		padding: em(14px) 0;
 		margin: 0;
 		border-bottom: 1px solid $borders;
+
+		&:last-child {
+			padding-bottom: 0;
+			border-bottom: 0;
+		}
+		
+		&.share-end:empty{
+			display: none;
+		}
 	}
 }
 
-.single .post-edit-link {
-	margin: 0 $u/2;
-	text-decoration: underline;
+// Jetpack related posts - in left sidebar
+.jp-relatedposts-post {
+	@include rhythm(margin-bottom, 3);
 }
 
-.post-password-form {
-	// @todo to be continued
+.jp-relatedposts-post-excerpt, .jp-relatedposts-post-context {
+	//@todo temp - because design
+	display: none;
 }
 
-.error404, .search-no-results {
-	// @todo to be continued
+.jp-relatedposts-headline {
+	@extend %delta;
+	@include fs(12px);
+	text-transform: uppercase;
+	text-align: center;
+	font-weight: bold;
+	letter-spacing: 0.1em;
+
+	&, * {
+		font-style: normal;
+	}
+}
+
+.jp-relatedposts-post-a, .jp-relatedposts-post-img {
+	display: block;
+}
+
+.jp-relatedposts-post-a {
+	@include rhythm(margin-bottom, 0.5);
+}
+
+.jp-relatedposts-post-title {
+	@extend %beta;
+	@include fs(12px);
+	text-transform: none;
+
+	margin: 0;
+
+	a{
+		color: $dark;
+		font-weight: 500;
+	}
 }
