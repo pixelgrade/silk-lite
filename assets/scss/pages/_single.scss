@@ -1,4 +1,4 @@
-.single, .page {
+.site-main--single {
 
 	.post {
 		@include rhythm(margin-bottom, 3);
@@ -101,7 +101,7 @@
 
 } // .single, .page
 
-.entry-content, .comment{
+.entry-content, .comment {
 
 	dt {
 		font-weight: bold;
@@ -173,29 +173,15 @@
 	}
 }
 
-
-
-
-
-
-
-.entry-title{
-	a{
-		color: $dark;
-	}
-}
-
-
-
-.single .post-edit-link{
+.single .post-edit-link {
 	margin: 0 $u/2;
 	text-decoration: underline;
 }
 
 .post-password-form {
-//@todo to be continued
+	// @todo to be continued
 }
 
 .error404, .search-no-results {
-//@todo to be continued
+	// @todo to be continued
 }
