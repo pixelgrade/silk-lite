@@ -1,6 +1,13 @@
 .comments-area {
 	padding-top: em(40px);
 
+	// making room for the left sidebar (jetpack)
+	@include query-above($lap) {
+		.single-post &{
+			margin-left: em(230px);
+		}
+	}
+
 	&:before{
 		content: "";
 

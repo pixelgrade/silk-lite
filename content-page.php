@@ -22,6 +22,10 @@
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
+		<?php if ( current_user_can('edit_post', get_the_ID() ) ) { ?>
+		<hr/>
 		<?php edit_post_link( __( 'Edit', 'swell_txtd' ), '<span class="edit-link">', '</span>' ); ?>
+		<hr/>
+		<?php } ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

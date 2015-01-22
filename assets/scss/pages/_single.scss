@@ -58,7 +58,12 @@
 		@extend %clearfix;
 		position: relative;
 
-		padding-left: em(230px);
+		// making room for the left sidebar (jetpack)
+		@include query-above($lap) {
+			.single-post &{
+				padding-left: em(230px);
+			}
+		}
 
 		p {
 			@include fs(14px);
@@ -83,6 +88,13 @@
 		@include fs(14px);
 		text-align: center;
 
+		// making room for the left sidebar (jetpack)
+		@include query-above($lap) {
+			.single-post &{
+				margin-left: em(230px);
+			}
+		}
+
 		a{
 			color: $dark;
 			text-decoration: none;
@@ -96,7 +108,7 @@
 		@include rhythm(padding-bottom, 3);
     }
 
-} // .single, .page
+} // .site-main--single
 
 .entry-content, .comment {
 

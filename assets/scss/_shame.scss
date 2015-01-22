@@ -13,6 +13,8 @@
 .site-content {
 	@extend .clearfix;
 	@extend .content;
+
+	@include rhythm(margin-bottom, 10);
 }
 
 .site-footer {
