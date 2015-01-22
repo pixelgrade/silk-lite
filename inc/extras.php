@@ -21,7 +21,7 @@ function swell_body_classes( $classes ) {
 	}
 
 	if ( ( is_single() || is_page() || is_home() || is_archive() || is_search() ) && is_active_sidebar( 'sidebar-1' ) ) {
-		$classes[ ] = 'has_sidebar';
+		$classes[] = 'has_sidebar';
 	}
 
 	return $classes;
@@ -100,58 +100,65 @@ if ( version_compare( $GLOBALS['wp_version'], '4.1', '<' ) ) :
 	add_action( 'wp_head', 'swell_render_title' );
 endif;
 
-/**
- * Generate the Google Fonts URL
- *
- * Based on this article http://themeshaper.com/2014/08/13/how-to-add-google-fonts-to-wordpress-themes/
- */
-function swell_fonts_url() {
-	$fonts_url = '';
+if ( ! function_exists( 'swell_fonts_url' ) ) :
+	/**
+	 * Register Google fonts for Swell.
+	 * @since Swell 1.0
+	 *
+	 * @return string Google fonts URL for the theme.
+	 */
+	function swell_fonts_url() {
+		$fonts_url = '';
+		$fonts     = array();
+		$subsets   = 'latin,latin-ext';
 
-	/* Translators: If there are characters in your language that are not
-	* supported by Droid Serif, translate this to 'off'. Do not translate
-	* into your own language.
-	*/
-	$libre = _x( 'on', 'Libre Baskerville font: on or off', 'swell_txtd' );
-
-	/* Translators: If there are characters in your language that are not
-	* supported by Playfair Display, translate this to 'off'. Do not translate
-	* into your own language.
-	*/
-	$playfair_display = _x( 'on', 'Playfair Display font: on or off', 'swell_txtd' );
-
-	/* Translators: If there are characters in your language that are not
-	* supported by Merriweather, translate this to 'off'. Do not translate
-	* into your own language.
-	*/
-	$merryweather = _x( 'on', 'Merryweather font: on or off', 'swell_txtd' );
-
-
-	if ( 'off' !== $libre || 'off' !== $playfair_display || 'off' !== $merryweather ) {
-		$font_families = array();
-
-		if ( 'off' !== $libre ) {
-			$font_families[] = 'Libre Baskerville:400,700,400italic';
+		/* Translators: If there are characters in your language that are not
+		* supported by Libre Baskerville, translate this to 'off'. Do not translate
+		* into your own language.
+		*/
+		if ( 'off' !== _x( 'on', 'Libre Baskerville font: on or off', 'swell_txtd' ) ) {
+			$fonts[] = 'Libre Baskerville:400,700,400italic';
 		}
 
-		if ( 'off' !== $playfair_display ) {
-			$font_families[] = 'Playfair Display:400,700,900,400italic,700italic,900italic';
+		/* Translators: If there are characters in your language that are not
+		* supported by Playfair Display, translate this to 'off'. Do not translate
+		* into your own language.
+		*/
+		if ( 'off' !== _x( 'on', 'Playfair Display font: on or off', 'swell_txtd' ) ) {
+			$fonts[] = 'Playfair Display:400,700,900,400italic,700italic,900italic';
 		}
 
-		if ( 'off' !== $merryweather ) {
-			$font_families[] = 'Merryweather:400italic,400,300,700';
+		/* Translators: If there are characters in your language that are not
+		* supported by Merryweather, translate this to 'off'. Do not translate
+		* into your own language.
+		*/
+		if ( 'off' !== _x( 'on', 'Merryweather font: on or off', 'swell_txtd' ) ) {
+			$fonts[] = 'Merryweather:400italic,400,300,700';
 		}
 
-		$query_args = array(
-			'family' => urlencode( implode( '|', $font_families ) ),
-			'subset' => urlencode( 'latin,latin-ext' ),
-		);
+		/* translators: To add an additional character subset specific to your language, translate this to 'greek', 'cyrillic', 'devanagari' or 'vietnamese'. Do not translate into your own language. */
+		$subset = _x( 'no-subset', 'Add new subset (greek, cyrillic, devanagari, vietnamese)', 'swell_txtd' );
 
-		$fonts_url = add_query_arg( $query_args, '//fonts.googleapis.com/css' );
+		if ( 'cyrillic' == $subset ) {
+			$subsets .= ',cyrillic,cyrillic-ext';
+		} elseif ( 'greek' == $subset ) {
+			$subsets .= ',greek,greek-ext';
+		} elseif ( 'devanagari' == $subset ) {
+			$subsets .= ',devanagari';
+		} elseif ( 'vietnamese' == $subset ) {
+			$subsets .= ',vietnamese';
+		}
+
+		if ( $fonts ) {
+			$fonts_url = add_query_arg( array(
+				'family' => urlencode( implode( '|', $fonts ) ),
+				'subset' => urlencode( $subsets ),
+			), '//fonts.googleapis.com/css' );
+		}
+
+		return $fonts_url;
 	}
-
-	return $fonts_url;
-}
+endif;
 
 /**
  * Sets the authordata global when viewing an author archive.
@@ -226,23 +233,6 @@ function swell_comment( $comment, $args, $depth ) {
 	<!-- </li> is added by WordPress automatically -->
 <?php
 } // don't remove this bracket!
-
-
-//@todo a backend dev should review this
-/**
- * Get first paragraph from a WordPress post. Use inside the Loop.
- *
- * @return string
- */
-function get_first_paragraph(){
-	global $post;
-
-	$str = wpautop( get_the_content() );
-	$str = substr( $str, 0, strpos( $str, '</p>' ) + 4 );
-	$str = strip_tags($str, '<a><strong><em>');
-
-	return '<p class="intro-paragraph">' . $str . '</p>';
-}
 
 /**
  * Filter wp_link_pages to wrap current page in span.

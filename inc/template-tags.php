@@ -158,6 +158,23 @@ if ( ! function_exists( 'swell_posted_on_and_cats' ) ) :
 	}
 endif;
 
+if ( ! function_exists( 'swell_the_first_paragraph' ) ) :
+	/**
+	 * Returns HTML with the first paragraph from a WordPress post. Use inside the Loop.
+	 *
+	 */
+	function swell_the_first_paragraph() {
+		//get the filtered/processed content
+		$str = apply_filters( 'the_content', get_the_content() );
+		//search for the first occurrence of </p>
+		$str = substr( $str, 0, strpos( $str, '</p>' ) + 4 );
+		//remove all tags except <a><strong><em>
+		$str = strip_tags( $str, '<a><strong><em>' );
+
+		echo '<p class="intro-paragraph">' . $str . '</p>';
+	}
+endif;
+
 if ( ! function_exists( 'swell_entry_footer' ) ) :
 /**
  * Prints HTML with meta information for the categories, tags and comments.
