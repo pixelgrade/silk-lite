@@ -3,7 +3,7 @@
  * Jetpack Compatibility File
  * See: http://jetpack.me/
  *
- * @package swell
+ * @package Swell
  */
 
 function swell_jetpack_setup() {

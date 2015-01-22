@@ -1,6 +1,8 @@
 <?php
 /**
- * @package swell
+ * The template used for displaying post content on home and archive pages
+ *
+ * @package Swell
  */
 ?>
 

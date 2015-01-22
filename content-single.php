@@ -1,6 +1,10 @@
 <?php
 /**
- * @package swell
+ * The template part for displaying the content in single.php.
+ *
+ * Learn more: http://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package Swell
  */
 ?>
 

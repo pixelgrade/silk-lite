@@ -4,13 +4,16 @@
  *
  * Contains the closing of the #content div and all content after
  *
- * @package swell
+ * @package Swell
  */
 ?>
 
 	</div><!-- #content -->
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
+
+		<?php get_sidebar('footer'); ?>
+
 		<div class="footer-navigation">
 			<?php
 			wp_nav_menu(

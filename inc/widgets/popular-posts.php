@@ -3,7 +3,7 @@
  * Popular Posts widget based on the Jetpack Stats
  * See: http://jetpack.me/
  *
- * @package swell
+ * @package Swell
  */
 
 /*

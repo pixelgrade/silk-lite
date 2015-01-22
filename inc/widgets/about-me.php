@@ -2,7 +2,7 @@
 /**
  * Swell About Me widget
  *
- * @package swell
+ * @package Swell
  */
 
 if ( ! function_exists( 'swell_about_me_widget_init' ) ) :

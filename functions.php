@@ -40,10 +40,10 @@ if ( ! function_exists( 'swell_setup' ) ) :
 		add_theme_support( 'title-tag' );
 
 		/*
-			 * Enable support for Post Thumbnails on posts and pages.
-			 *
-			 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
-			 */
+		 * Enable support for Post Thumbnails on posts and pages.
+		 *
+		 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
+		 */
 		add_theme_support( 'post-thumbnails' );
 		add_image_size( 'swell-tiny-image', 125, 90, true );
 		add_image_size( 'swell-small-image', 300, 9999, false );

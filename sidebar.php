@@ -2,7 +2,7 @@
 /**
  * The sidebar containing the main widget area.
  *
- * @package swell
+ * @package Swell
  */
 
 if ( ! is_active_sidebar( 'sidebar-1' ) ) {
