@@ -58,6 +58,5 @@ Culpa airport first-class sed handsome, ex joy occaecat flat white. Shinkansen b
 	<footer class="entry-footer">
 		<hr />
 		<?php swell_entry_footer(); ?>
-		<hr />
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->
