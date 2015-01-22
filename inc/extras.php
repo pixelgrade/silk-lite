@@ -217,6 +217,23 @@ function swell_comment( $comment, $args, $depth ) {
 <?php
 } // don't remove this bracket!
 
+
+//@todo a backend dev should review this
+/**
+ * Get first paragraph from a WordPress post. Use inside the Loop.
+ *
+ * @return string
+ */
+function get_first_paragraph(){
+	global $post;
+
+	$str = wpautop( get_the_content() );
+	$str = substr( $str, 0, strpos( $str, '</p>' ) + 4 );
+	$str = strip_tags($str, '<a><strong><em>');
+
+	return '<p class="intro-paragraph">' . $str . '</p>';
+}
+
 /**
  * Filter wp_link_pages to wrap current page in span.
  *

@@ -27,3 +27,7 @@
 .site-info {
 	@extend .content;
 }
+
+hr{
+	margin: $base-spacing-unit 0;
+}

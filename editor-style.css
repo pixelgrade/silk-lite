@@ -1,36 +1,166 @@
 /*
-Sass::SyntaxError: "h1" failed to @extend ".italic".
-The selector ".italic" was not found.
-Use "@extend .italic !optional" if the extend should be able to fail.
-
-
-Backtrace:
-/var/folders/6g/3lp90gvx6jz0m913bvzlbdqh0000gn/T/gulp-ruby-sass/base/_type.scss:26
-/Users/razvan/.rvm/gems/ruby-2.0.0-p451@global/gems/sass-3.3.7/lib/sass/tree/visitors/extend.rb:61:in `block in check_extends_fired!'
-/Users/razvan/.rvm/gems/ruby-2.0.0-p451@global/gems/sass-3.3.7/lib/sass/util/subset_map.rb:106:in `block in each_value'
-/Users/razvan/.rvm/gems/ruby-2.0.0-p451@global/gems/sass-3.3.7/lib/sass/util/subset_map.rb:106:in `each'
-/Users/razvan/.rvm/gems/ruby-2.0.0-p451@global/gems/sass-3.3.7/lib/sass/util/subset_map.rb:106:in `each_value'
-/Users/razvan/.rvm/gems/ruby-2.0.0-p451@global/gems/sass-3.3.7/lib/sass/tree/visitors/extend.rb:50:in `check_extends_fired!'
-/Users/razvan/.rvm/gems/ruby-2.0.0-p451@global/gems/sass-3.3.7/lib/sass/tree/visitors/extend.rb:16:in `visit'
-/Users/razvan/.rvm/gems/ruby-2.0.0-p451@global/gems/sass-3.3.7/lib/sass/tree/root_node.rb:39:in `css_tree'
-/Users/razvan/.rvm/gems/ruby-2.0.0-p451@global/gems/sass-3.3.7/lib/sass/tree/root_node.rb:20:in `render'
-/Users/razvan/.rvm/gems/ruby-2.0.0-p451@global/gems/sass-3.3.7/lib/sass/engine.rb:274:in `render'
-/Users/razvan/.rvm/gems/ruby-2.0.0-p451@global/gems/sass-3.3.7/lib/sass/plugin/compiler.rb:414:in `update_stylesheet'
-/Users/razvan/.rvm/gems/ruby-2.0.0-p451@global/gems/sass-3.3.7/lib/sass/plugin/compiler.rb:189:in `block in update_stylesheets'
-/Users/razvan/.rvm/gems/ruby-2.0.0-p451@global/gems/sass-3.3.7/lib/sass/plugin/compiler.rb:186:in `each'
-/Users/razvan/.rvm/gems/ruby-2.0.0-p451@global/gems/sass-3.3.7/lib/sass/plugin/compiler.rb:186:in `update_stylesheets'
-/Users/razvan/.rvm/gems/ruby-2.0.0-p451@global/gems/sass-3.3.7/lib/sass/plugin.rb:82:in `update_stylesheets'
-/Users/razvan/.rvm/gems/ruby-2.0.0-p451@global/gems/sass-3.3.7/lib/sass/exec.rb:489:in `watch_or_update'
-/Users/razvan/.rvm/gems/ruby-2.0.0-p451@global/gems/sass-3.3.7/lib/sass/exec.rb:346:in `process_result'
-/Users/razvan/.rvm/gems/ruby-2.0.0-p451@global/gems/sass-3.3.7/lib/sass/exec.rb:43:in `parse'
-/Users/razvan/.rvm/gems/ruby-2.0.0-p451@global/gems/sass-3.3.7/lib/sass/exec.rb:22:in `parse!'
-/Users/razvan/.rvm/gems/ruby-2.0.0-p451@global/gems/sass-3.3.7/bin/sass:13:in `<top (required)>'
-/Users/razvan/.rvm/rubies/ruby-2.0.0-p451/bin/sass:23:in `load'
-/Users/razvan/.rvm/rubies/ruby-2.0.0-p451/bin/sass:23:in `<main>'
-/Users/razvan/.rvm/gems/ruby-2.0.0-p451/bin/ruby_executable_hooks:15:in `eval'
-/Users/razvan/.rvm/gems/ruby-2.0.0-p451/bin/ruby_executable_hooks:15:in `<main>'
+Theme Name: Swell
+Description: Used to style the TinyMCE editor.
 */
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Sass::SyntaxError: \"h1\" failed to @extend \".italic\".\A The selector \".italic\" was not found.\A Use \"@extend .italic !optional\" if the extend should be able to fail.\A "; }
+/**  Table of Contents -------------------------------------------------- 1.0 - Body 2.0 - Base Styles 2.1 - Typography 2.2 - Images 3.0 - Helpers 3.1 - Theme specific classes 3.2 - Alignments 4.0 - Media queries */
+.color-accent, h1, .h1, h2, .h2, h4, .h4, a { color: #a33b61; }
+
+/** 1.0 - Body -------------------------------------------------- */
+html { padding: 24px 36px; }
+
+body.wp-editor { max-width: 680px; margin-left: auto; margin-right: auto; font-size: 18px; }
+
+/** 2.0 - Base Styles 2.1 - Typography ------------------------------------------------- */
+.hide, .hidden, .assistive-text, .screen-reader-text, [hidden] { display: none; }
+
+.inline { display: inline; }
+
+.block { display: block; }
+
+.inline-block { display: inline-block; }
+
+.table { display: table; }
+
+.table-cell { display: table-cell; }
+
+.table-row { display: table-row; }
+
+.table-row-group { display: table-row-group; }
+
+.table-column { display: table-column; }
+
+.table-column-group { display: table-column-group; }
+
+.overflow-hidden { overflow: hidden; }
+
+.overflow-scroll { overflow: scroll; }
+
+.left { float: left; }
+
+.right { float: right; }
+
+.fit { max-width: 100%; }
+
+.relative { position: relative; }
+
+.absolute { position: absolute; }
+
+.fixed { position: fixed; }
+
+.static { position: static; }
+
+.bold { font-weight: bold; }
+
+.regular { font-weight: normal; }
+
+.italic, h1, .h1, h2, .h2 { font-style: italic; }
+
+.caps { text-transform: uppercase; }
+
+.align-left { text-align: left; }
+
+.align-center { text-align: center; }
+
+.align-right { text-align: right; }
+
+.align-justify { text-align: justify; }
+
+.align-top { vertical-align: top; }
+
+.align-middle { vertical-align: middle; }
+
+.align-bottom { vertical-align: bottom; }
+
+.nowrap { white-space: nowrap; }
+
+.pointer-auto { pointer-events: auto; }
+
+.pointer-none { pointer-events: none; }
+
+body { font-size: 14px; line-height: 1.71429; color: #403b3c; }
+
+h1, .h1, h2, .h2, h3, .h3, .dropcap { font-family: "Playfair Display", serif; font-weight: normal; -webkit-font-smoothing: auto; }
+
+body, h4, .h4 { font-family: "Merriweather", serif; font-weight: 200; }
+
+/* Headings */
+h1, .h1 { font-size: 3.21429em; line-height: 1.06667; -webkit-transform: translateY(0.19783em); -ms-transform: translateY(0.19783em); transform: translateY(0.19783em); margin-top: 1.06667em; margin-bottom: 0.53333em; }
+
+h2, .h2 { font-size: 2.14286em; line-height: 1.2; -webkit-transform: translateY(0.2645em); -ms-transform: translateY(0.2645em); transform: translateY(0.2645em); margin-top: 1.6em; margin-bottom: 0.8em; }
+
+h3, .h3 { font-size: 1.42857em; line-height: 1.2; -webkit-transform: translateY(0.2645em); -ms-transform: translateY(0.2645em); transform: translateY(0.2645em); margin-top: 2.4em; margin-bottom: 1.2em; }
+
+h4, .h4 { font-size: 0.78571em; line-height: 1.09091; -webkit-transform: translateY(0.20995em); -ms-transform: translateY(0.20995em); transform: translateY(0.20995em); margin-top: 4.36364em; margin-bottom: 2.18182em; }
+
+/* Paragraphs */
+p { margin-top: 0; font-size: 1.14286em; line-height: 1.5; -webkit-transform: translateY(0.4145em); -ms-transform: translateY(0.4145em); transform: translateY(0.4145em); margin-bottom: 2.57143em; }
+
+/* Links */
+a { text-decoration: none; }
+
+/* Lists */
+acronym { border-bottom: 1px dotted #b8b6b7; }
+
+/* Blockquotes */
+/* Tables */
+table { position: relative; z-index: 1; margin-bottom: 1.71429em; width: 100%; border-top: 0; table-layout: fixed; }
+table th { text-align: left; }
+table tr { border-bottom: 1px solid #e6e6e6; }
+table th, table td { padding: 12px; vertical-align: middle; font-family: inherit; font-size: inherit; }
+
+/* Code */
+pre { position: relative; padding-left: 2.57143em; padding-right: 2.57143em; padding-top: 1.71429em; padding-bottom: 1.71429em; margin-bottom: 1.71429em; border: 1px solid #e6e6e6; font-size: inherit; line-height: inherit; }
+
+/** 2.2 - Images ------------------------------------------------- */
+img { max-width: 100%; height: auto; }
+
+/* Figures and Captions */
+.wp-caption { width: auto; margin-left: 0; margin-right: 0; }
+.wp-caption img { display: block; }
+
+.wp-caption-text, .wp-caption-dd { padding: 1.14286em 0; border-bottom: 2px solid #e6e6e6; }
+.fs-13px, .wp-caption-text, .wp-caption-dd { font-size: 0.92857em; line-height: 1.84615; }
+
+/* Galleries */
+.gallery .gallery-item { margin: 0; display: inline-block; vertical-align: top; text-align: center; border: 0 solid transparent; border-top-width: 0.85714em; border-left-width: 0.85714em; }
+
+/** 3.0 - Helpers 3.1 - Theme specific classes -------------------------------------------------
+*/
+.intro { margin-bottom: 2.25em; font-size: 1.27778em; -webkit-font-smoothing: auto; }
+@media not screen and (min-width: 899px) { .intro { font-size: 1em; color: #000000; } }
+
+@media only screen and (min-width: 1000px) { .twocolumn { -webkit-column-count: 2; -moz-column-count: 2; column-count: 2; -webkit-column-gap: 50px; -moz-column-gap: 50px; column-gap: 50px; } }
+.dropcap { float: left; font-size: 5.85714em; line-height: 1.02439; line-height: 1; margin-top: -.1em; margin-bottom: -0.14634em; margin-right: 0.14634em; }
+
+.highlight { position: relative; padding: 0 8px; margin: 0 4px; }
+.highlight:before { content: ""; position: absolute; z-index: -1; top: -4px; left: 0; bottom: -4px; right: 0; background: #a33b61; }
+
+/** 3.2 - Alignments -------------------------------------------------
+*/
+.alignleft, .wp-caption.alignleft, .alignright, .wp-caption.alignright { position: relative; z-index: 1; margin-top: 1.28571em; margin-bottom: 1.28571em; max-width: 50%; }
+@media not screen and (min-width: 640px) { .alignleft, .wp-caption.alignleft, .alignright, .wp-caption.alignright { max-width: 100%; display: block; } }
+
+.alignleft, .wp-caption.alignleft { float: left; margin-right: 1.71429em; }
+@media only screen and (min-width: 899px) { .alignleft, .wp-caption.alignleft { margin-right: 3.42857em; } }
+@media not screen and (min-width: 899px) { .wp-caption.alignleft { margin-left: 0; } }
+
+.alignright, .wp-caption.alignright { float: right; margin-left: 1.71429em; }
+@media only screen and (min-width: 899px) { .alignright, .wp-caption.alignright { margin-left: 3.42857em; } }
+@media not screen and (min-width: 899px) { .wp-caption.alignright { margin-right: 0; } }
+
+.aligncenter, .wp-caption.aligncenter, .alignnone, .wp-caption.alignnone { margin-top: 1.71429em; margin-bottom: 1.28571em; display: block; width: auto !important; }
+@media only screen and (min-width: 899px) { .aligncenter, .wp-caption.aligncenter, .alignnone, .wp-caption.alignnone { margin-top: 3.42857em; margin-bottom: 2.57143em; } }
+.aligncenter img, .wp-caption.aligncenter img, .alignnone img, .wp-caption.alignnone img { max-width: 100%; height: auto; }
+
+.aligncenter img, .wp-caption.aligncenter img, .alignnone img, .wp-caption.alignnone img { margin: 0 auto; }
+
+.alignnone .wp-caption-text, .alignnone .wp-caption-dd { text-align: center; }
+
+@media not screen and (min-width: 899px) { figure.aligncenter, figure.wp-caption.aligncenter, figure.alignnone, figure.wp-caption.alignnone { margin-left: 0; margin-right: 0; } }
+.aligncenter, .wp-caption.aligncenter { text-align: center; }
+
+.wp-caption { text-align: left; }
+
+#wp-image-toolbar { z-index: 2; }
+
+/** 4.0 - Media queries -------------------------------------------------- */
