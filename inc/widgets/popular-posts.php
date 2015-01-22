@@ -13,23 +13,25 @@
  * Instead, we don't register the widget if the Stats Module isn't active.
  */
 
-/**
- * Register our Popular Posts widget for use in Appearance -> Widgets
- */
-add_action( 'widgets_init', 'swell_popular_posts_widget_init' );
+if ( ! function_exists('swell_popular_posts_widget_init') ) :
+	/**
+	 * Register our Popular Posts widget for use in Appearance -> Widgets
+	 */
+	add_action( 'widgets_init', 'swell_popular_posts_widget_init' );
 
-function swell_popular_posts_widget_init() {
-	// Currently, this widget depends on the Stats Module
-	if (
-		( !defined( 'IS_WPCOM' ) || !IS_WPCOM )
-		&&
-		!function_exists( 'stats_get_csv' )
-	) {
-		return;
+	function swell_popular_posts_widget_init() {
+		// Currently, this widget depends on the Stats Module
+		if (
+			( !defined( 'IS_WPCOM' ) || !IS_WPCOM )
+			&&
+			!function_exists( 'stats_get_csv' )
+		) {
+			return;
+		}
+
+		register_widget( 'Swell_Popular_Posts_Widget' );
 	}
-
-	register_widget( 'Swell_Popular_Posts_Widget' );
-}
+endif;
 
 if ( ! class_exists('Swell_Popular_Posts_Widget') ) :
 
@@ -273,5 +275,6 @@ if ( ! class_exists('Swell_Popular_Posts_Widget') ) :
 			return apply_filters( 'swell_widget_get_popular_posts', $posts, $post_ids, $count );
 		}
 
-	}
+	} //Class Swell Popular Posts Widget
+
 endif; ?>

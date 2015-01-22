@@ -1,0 +1,22 @@
+.widget .widget-inside .swell-about-me-widget-form .swell-about-me-widget-image-control.is-hidden {
+	display: none;
+}
+
+.widget .widget-inside .swell-about-me-widget-form .swell-about-me-widget-image-control {
+	border: 1px dashed #aaa;
+	padding: 20px 0;
+	text-align: center;
+}
+
+.widget .widget-inside .swell-about-me-widget-form .swell-about-me-widget-image-control.has-image {
+	border: 1px dashed #aaa;
+	padding: 10px;
+	text-align: left;
+}
+
+.widget .widget-inside .swell-about-me-widget-form .swell-about-me-widget-image-control img {
+	display: block;
+	height: auto;
+	margin-bottom: 10px;
+	max-width: 100%;
+}
