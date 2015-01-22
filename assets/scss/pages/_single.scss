@@ -154,6 +154,103 @@
 }
 
 
+// Next / Previous links
+@include query-above($lap) {
+	.article-navigation{
+		.navigation-item{
+			position: fixed;
+			top: 50%;
+
+			.navigation-item__content {
+				position:relative;
+				width:0;
+				height:0;
+				overflow:hidden;
+			}
+
+			.navigation-item__wrapper {
+				background: white;
+
+				transition: all 0.3s linear;
+				opacity:0;
+				left:-20px;
+
+				position:relative;
+			}
+
+			.arrow {
+				// background:lawngreen;
+				height: $base-spacing-unit+8;
+				width: $base-spacing-unit+8;;
+				&:before, &:after{
+					height: $base-spacing-unit;
+					width: $base-spacing-unit;
+					display: block;
+					position: absolute;
+					top: $base-spacing-unit/2;
+				}
+			}
+
+			a:hover {
+				.navigation-item__content {
+					width:auto;
+					height:auto;
+				}
+
+				.navigation-item__wrapper {
+					transition: all 0.3s linear;
+					opacity: 1;
+					left: 0px;
+				}
+			}
+		}
+
+		.navigation-item--previous {
+			left: 0;
+
+			.arrow {
+				float:left;
+				&:before {
+					content: "";
+					transform: rotate(45deg);
+					left: 14px;
+
+					border-left: 2px solid $dark;
+					border-bottom: 2px solid $dark;
+				}
+			}
+		}
+
+		.navigation-item--next {
+			right: 0;
+
+			.navigation-item__wrapper {
+				right:-20px;
+				left:auto;
+			}
+			a:hover {
+				.navigation-item__wrapper {
+					right:0px;
+					left:auto;
+				}
+			}
+
+			.arrow {
+				float:right;
+				&:after {
+					content: "";
+					transform: rotate(-45deg);
+					right: 14px;
+
+					border-right: 2px solid $dark;
+					border-bottom: 2px solid $dark;
+				}
+			}
+		}
+	}
+}
+
+
 // Sharedaddy - in left sidebar
 
 #jp-post-flair {
