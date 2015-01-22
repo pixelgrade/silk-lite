@@ -16,12 +16,16 @@ body {
 }
 
 %beta {
-    font-family: 'Libre Baskerville', serif;
+    font-family: 'Merriweather', serif;
 }
 
 %gamma {
-	font-family: "Merriweather", serif;
+	font-family: "Libre Baskerville", serif;
 	font-weight: 300;
+}
+
+%delta {
+	font-family: "Open Sans", sans-serif;
 }
 
 
@@ -55,7 +59,7 @@ h3, .h3 {
 }
 
 h4, .h4 {
-    @extend %beta;
+    @extend %gamma;
     @extend .color-accent;
     @extend .caps;
     font-style: normal;

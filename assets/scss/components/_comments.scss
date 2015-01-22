@@ -46,7 +46,7 @@
 }
 
 .comments-title {
-	@extend %gamma;
+	@extend %beta;
 
 	margin: 0;
 	margin-right: em(8px);
@@ -249,7 +249,7 @@ li.depth-2:before {
 }
 
 .comment-reply-title {
-	@extend %gamma;
+	@extend %beta;
 	@include fs(18px);
 
 	margin-top: 0;

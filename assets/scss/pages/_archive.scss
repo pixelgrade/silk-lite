@@ -50,6 +50,12 @@
 		@extend .h2;
 		margin-top: 0;
 	}
+
+	.entry-content {
+		@extend %gamma;
+		@include fs(12px);
+		@include baseline(12px);
+	}
 }
 
 .page-title {
