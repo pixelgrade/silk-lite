@@ -16,18 +16,21 @@ body {
 }
 
 %beta {
-    font-family: "Merriweather", serif;
-	font-weight: 200;
+    font-family: 'Merriweather', serif;
 }
 
 %gamma {
-	font-family: "Open Sans", sans-serif;
+	font-family: "Libre Baskerville", serif;
 	font-weight: 300;
+}
+
+%delta {
+	font-family: "Open Sans", sans-serif;
 }
 
 
 /* Headings */
-h1, .h1 {
+h1, .h1 { 
     @extend %alpha;
     @extend .color-accent;
     @extend .italic;
@@ -56,8 +59,10 @@ h3, .h3 {
 }
 
 h4, .h4 {
-    @extend %beta;
-	@extend .color-accent;
+    @extend %gamma;
+    @extend .color-accent;
+    @extend .caps;
+    font-style: normal;
     @include font-size(11px);
     @include baseline(11px);
     @include rhythm(margin-top, 4, 11px);

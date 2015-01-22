@@ -20,7 +20,7 @@ function swell_body_classes( $classes ) {
 		$classes[] = 'group-blog';
 	}
 
-	if ( ( is_single() || is_page() || is_home() || is_archive() ) && is_active_sidebar( 'sidebar-1' ) ) {
+	if ( ( is_single() || is_page() || is_home() || is_archive() || is_search() ) && is_active_sidebar( 'sidebar-1' ) ) {
 		$classes[ ] = 'has_sidebar';
 	}
 
@@ -112,7 +112,7 @@ function swell_fonts_url() {
 	* supported by Droid Serif, translate this to 'off'. Do not translate
 	* into your own language.
 	*/
-	$droid_serif = _x( 'on', 'Droid Serif font: on or off', 'swell_txtd' );
+	$libre = _x( 'on', 'Libre Baskerville font: on or off', 'swell_txtd' );
 
 	/* Translators: If there are characters in your language that are not
 	* supported by Playfair Display, translate this to 'off'. Do not translate
@@ -120,16 +120,26 @@ function swell_fonts_url() {
 	*/
 	$playfair_display = _x( 'on', 'Playfair Display font: on or off', 'swell_txtd' );
 
+	/* Translators: If there are characters in your language that are not
+	* supported by Merriweather, translate this to 'off'. Do not translate
+	* into your own language.
+	*/
+	$merryweather = _x( 'on', 'Merryweather font: on or off', 'swell_txtd' );
 
-	if ( 'off' !== $droid_serif || 'off' !== $playfair_display ) {
+
+	if ( 'off' !== $libre || 'off' !== $playfair_display || 'off' !== $merryweather ) {
 		$font_families = array();
 
-		if ( 'off' !== $droid_serif ) {
-			$font_families[] = 'Droid Serif:400,700,400italic';
+		if ( 'off' !== $libre ) {
+			$font_families[] = 'Libre Baskerville:400,700,400italic';
 		}
 
 		if ( 'off' !== $playfair_display ) {
 			$font_families[] = 'Playfair Display:400,700,900,400italic,700italic,900italic';
+		}
+
+		if ( 'off' !== $merryweather ) {
+			$font_families[] = 'Merryweather:400italic,400,300,700';
 		}
 
 		$query_args = array(

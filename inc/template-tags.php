@@ -119,11 +119,13 @@ if ( ! function_exists( 'swell_get_posted_on_and_cats' ) ) :
 	 * Returns HTML with meta information for the current post-date/time and author.
 	 */
 	function swell_get_posted_on_and_cats() {
-		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
+		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s<sup>%3$s</sup> %4$s</time>';
 
 		$time_string = sprintf( $time_string,
 			esc_attr( get_the_date( 'c' ) ),
-			esc_html( get_the_date() )
+			esc_html( get_the_date( 'F j') ),
+			esc_html( get_the_date( 'S' ) ),
+			esc_html( get_the_date( 'Y' ) )
 		);
 
 		$cats = swell_get_cats_list();
