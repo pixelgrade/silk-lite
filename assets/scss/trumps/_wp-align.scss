@@ -80,32 +80,3 @@
 .aligncenter {
     text-align: center;
 }
-
-@include query-above($desk) {
-
-    .alignnone, .aligncenter {
-        @include rhythm(margin-left, -5);
-        @include rhythm(margin-right, -5);
-    }
-
-    .alignleft {
-        @include rhythm(margin-left, -5);
-    }
-
-    .alignright {
-        @include rhythm(margin-right, -5);
-    }
-}
-
-.aligncenter, .alignleft, .alignright, .alignnone{
-
-    // Remove nevative margins on images in widgets
-    .widget &{
-        margin: 0;
-    }
-
-    // Remove negative margins on images on archive
-    .blog &, .archive &{
-        margin: 0;
-    }
-}

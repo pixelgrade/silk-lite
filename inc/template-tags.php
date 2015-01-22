@@ -72,27 +72,20 @@ if ( ! function_exists( 'swell_posted_on' ) ) :
 function swell_posted_on() {
 	$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
-		$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
+		$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time>';
 	}
 
 	$time_string = sprintf( $time_string,
 		esc_attr( get_the_date( 'c' ) ),
-		esc_html( get_the_date() ),
-		esc_attr( get_the_modified_date( 'c' ) ),
-		esc_html( get_the_modified_date() )
+		esc_html( get_the_date() )
 	);
 
 	$posted_on = sprintf(
-		_x( 'Posted on %s', 'post date', 'swell_txtd' ),
+		_x( '%s', 'post date', 'swell_txtd' ),
 		'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
 	);
 
-	$byline = sprintf(
-		_x( 'by %s', 'post author', 'swell_txtd' ),
-		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
-	);
-
-	echo '<span class="posted-on">' . $posted_on . '</span><span class="byline"> ' . $byline . '</span>';
+	echo '<span class="posted-on">' . $posted_on . '</span>';
 
 }
 endif;
@@ -165,8 +158,10 @@ function swell_entry_footer() {
 		/* translators: used between list items, there is a space after the comma */
 		$tags_list = get_the_tag_list( '', __( ', ', 'swell_txtd' ) );
 		if ( $tags_list ) {
-			printf( '<span class="tags-links">' . __( 'Tagged %1$s', 'swell_txtd' ) . '</span>', $tags_list );
+			printf( '<span class="tags-links">' . __( ' and tagged with %1$s', 'swell_txtd' ) . '</span>', $tags_list );
 		}
+
+		printf('.');
 	}
 
 	if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
@@ -175,7 +170,7 @@ function swell_entry_footer() {
 		echo '</span>';
 	}
 
-	edit_post_link( __( 'Edit', 'swell_txtd' ), '<span class="edit-link">', '</span>' );
+	edit_post_link( __( 'Edit post', 'swell_txtd' ), '<span class="edit-link">', '</span>' );
 }
 endif;
 

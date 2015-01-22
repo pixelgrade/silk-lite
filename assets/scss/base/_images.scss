@@ -8,9 +8,10 @@ img{
 }
 
 /* Figures and Captions */
-// @todo figure and figcaption
 .wp-caption {
 	width: auto;
+	margin-left: 0;
+	margin-right: 0;
 
 	img {
 		display: block;
@@ -18,25 +19,14 @@ img{
 }
 
 .wp-caption-text {
-	font-size: 0.72222em;
-	@include rhythm(margin-top, 1, 13px);
-	color: $light;
+	@include fs(13px);
+	padding: em(16px) 0;
+
+	border-bottom: 2px solid $borders;
 }
 
 /* Galleries */
 .gallery {
-	@include rhythm(margin-left, -1);
-
-	@include query-above($desk) {
-		@include rhythm(margin-left, -6);
-		@include rhythm(margin-right, -5);
-
-		.entry-featured &{
-			@include rhythm(margin-left, -1);
-			margin-right: 0;
-		}
-	}
-
 	.gallery-item {
 		margin: 0;
 		display: inline-block;

@@ -363,12 +363,15 @@
     @include fs(14px);
     display: inline-block;
     background: white;
-    padding-right: .75em;
 
-    .cat-links {
-
+	.cat-links {
         &:before {
-            content: "/";
+			content: "\2014";
+
+			display: inline-block;
+			margin: 0 em(5px);
+
+			color: $gray;
         }
     }
 }
