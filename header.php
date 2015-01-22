@@ -22,7 +22,11 @@
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'swell_txtd' ); ?></a>
 
 	<header id="masthead" class="site-header" role="banner">
+
+		<?php get_template_part('templates/top-header-bar'); ?>
+
 		<div class="site-branding">
+			<?php if ( function_exists( 'jetpack_the_site_logo' ) ) jetpack_the_site_logo(); ?>
 			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 			<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
 		</div><!-- .site-branding -->
