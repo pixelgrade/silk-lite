@@ -331,9 +331,9 @@ if ( ! class_exists( "Amelie_Walker_Primary_Mega_Menu" ) && class_exists( 'Walke
 				$args['after']
 			);
 
-			if ( $depth == 0 && $item->object == 'category' ) {
+			if ( $depth == 0 ) {
 				//the mega menu wrapper
-				$item_output .= '<div class="sub-menu--mega-wrapper">';
+				$item_output .= '<div class="sub-menu-wrapper">';
 			}
 
 			// build html
@@ -413,7 +413,7 @@ if ( ! class_exists( "Amelie_Walker_Primary_Mega_Menu" ) && class_exists( 'Walke
 
 				}
 
-				$item_output .= '</div>'; //close the .sub-menu--mega-wrapper
+				$item_output .= '</div>'; //close the .sub-menu-wrapper
 
 			}
 
