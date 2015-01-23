@@ -37,13 +37,13 @@ function the_posts_navigation() {
 }
 endif;
 
-if ( ! function_exists( 'the_post_navigation' ) ) :
+if ( ! function_exists( 'amelie_the_post_navigation' ) ) :
 /**
  * Display navigation to next/previous post when applicable.
  *
  * @todo Remove this function when WordPress 4.3 is released.
  */
-function the_post_navigation() {
+function amelie_the_post_navigation() {
 	// Don't print empty markup if there's nowhere to navigate.
 	$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
 	$next     = get_adjacent_post( false, '', false );
