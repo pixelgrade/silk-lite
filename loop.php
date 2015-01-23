@@ -1,4 +1,17 @@
-<div id="posts" class="archive__grid  grid  masonry">
+<?php
+/**
+ * The template for displaying the archives loop content.
+ *
+ * @package Amelie
+ */
+
+$classes = 'archive__grid  grid';
+
+if ( ! get_theme_mod( 'amelie_single_column_archives', false ) ) {
+	$classes .= '  masonry';
+}
+?>
+<div id="posts" class="<?php echo $classes; ?>">
 <?php /* Start the Loop */ ?>
 <?php while ( have_posts() ) : the_post(); ?>
 

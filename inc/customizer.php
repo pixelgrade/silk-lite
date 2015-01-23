@@ -1,7 +1,7 @@
 <?php
 /**
- * Swell Theme Customizer
- * @package Swell
+ * Amelie Theme Customizer
+ * @package Amelie
  */
 
 
@@ -10,7 +10,7 @@
  *
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  */
-function swell_customize_register ( $wp_customize ) {
+function amelie_customize_register ( $wp_customize ) {
 
 	/*
 	 * Change defaults
@@ -21,29 +21,40 @@ function swell_customize_register ( $wp_customize ) {
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 
 	// Rename the label to "Display Site Title & Tagline" in order to make this option clearer.
-	$wp_customize->get_control( 'display_header_text' )->label = __( 'Display Site Title &amp; Tagline', 'swell_txtd' );
+	$wp_customize->get_control( 'display_header_text' )->label = __( 'Display Site Title &amp; Tagline', 'amelie_txtd' );
 
 	/*
 	 * Add custom settings
 	 */
 
-	$wp_customize->add_section( 'swell_theme_options', array(
-		'title'             => __( 'Theme', 'swell_txtd' ),
+	$wp_customize->add_section( 'amelie_theme_options', array(
+		'title'             => __( 'Theme', 'amelie_txtd' ),
 		'priority'          => 30,
 	) );
 
-	$wp_customize->add_setting( 'swell_disable_search_in_toolbar', array(
+	$wp_customize->add_setting( 'amelie_single_column_archives', array(
 		'default'           => '',
-		'sanitize_callback' => 'swell_sanitize_checkbox',
+		'sanitize_callback' => 'amelie_sanitize_checkbox',
 	) );
 
-	$wp_customize->add_control( 'swell_disable_search_in_toolbar', array(
-		'label'             => __( 'Hide search button in toolbar', 'swell_txtd' ),
-		'section'           => 'swell_theme_options',
+	$wp_customize->add_control( 'amelie_single_column_archives', array(
+		'label'             => __( 'Display single column posts on front page and archives.', 'amelie_txtd' ),
+		'section'           => 'amelie_theme_options',
+		'type'              => 'checkbox',
+	) );
+
+	$wp_customize->add_setting( 'amelie_disable_search_in_toolbar', array(
+		'default'           => '',
+		'sanitize_callback' => 'amelie_sanitize_checkbox',
+	) );
+
+	$wp_customize->add_control( 'amelie_disable_search_in_toolbar', array(
+		'label'             => __( 'Hide search button in toolbar', 'amelie_txtd' ),
+		'section'           => 'amelie_theme_options',
 		'type'              => 'checkbox',
 	) );
 }
-add_action( 'customize_register', 'swell_customize_register' );
+add_action( 'customize_register', 'amelie_customize_register' );
 
 /**
  * Sanitize the checkbox.
@@ -51,7 +62,7 @@ add_action( 'customize_register', 'swell_customize_register' );
  * @param boolean $input.
  * @return boolean true if is 1 or '1', false if anything else
  */
-function swell_sanitize_checkbox( $input ) {
+function amelie_sanitize_checkbox( $input ) {
 	if ( 1 == $input ) {
 		return true;
 	} else {
@@ -62,7 +73,7 @@ function swell_sanitize_checkbox( $input ) {
 /**
  * JavaScript that handles the Customizer AJAX logic
  */
-function swell_customizer_js() {
-	wp_enqueue_script( 'swell_customizer', get_stylesheet_directory_uri() . '/assets/js/customizer.js', array( 'customize-preview' ), '1.0.0', true );
+function amelie_customizer_js() {
+	wp_enqueue_script( 'amelie_customizer', get_stylesheet_directory_uri() . '/assets/js/customizer.js', array( 'customize-preview' ), '1.0.0', true );
 }
-add_action( 'customize_preview_init', 'swell_customizer_js' ); ?>
+add_action( 'customize_preview_init', 'amelie_customizer_js' ); ?>

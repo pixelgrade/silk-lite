@@ -1,27 +1,24 @@
 <?php
 /**
- * @package swell
+ * The template part for displaying the content in single.php.
+ *
+ * Learn more: http://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package Amelie
  */
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
 		<div class="entry-meta">
-			<?php swell_posted_on();
+			<?php amelie_posted_on(); ?>
 
-			$categories_list = get_the_category_list( __( ', ', 'swell_txtd' ) );
-			if ( $categories_list && swell_categorized_blog() ) {
-				printf( '<span class="cat-links">' . __( '%1$s', 'swell_txtd' ) . '</span>', $categories_list );
-			}
-
-			?>
+			<?php amelie_cats_list(); ?>
 		</div><!-- .entry-meta -->
 
-		<?php the_title( '<h1 class="entry-title  page-title">', '</h1>' );
+		<?php the_title( '<h1 class="entry-title  page-title">', '</h1>' ); ?>
 
-		//@todo a backend dev should review this function
-		echo get_first_paragraph();
-		?>
+		<?php amelie_the_first_paragraph(); ?>
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
@@ -33,7 +30,7 @@
 		the_content(); ?>
 		<?php
 			wp_link_pages( array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'swell_txtd' ),
+				'before' => '<div class="page-links">' . __( 'Pages:', 'amelie_txtd' ),
 				'after'  => '</div>',
 			) );
 		?>
@@ -57,6 +54,6 @@ Culpa airport first-class sed handsome, ex joy occaecat flat white. Shinkansen b
 
 	<footer class="entry-footer">
 		<hr />
-		<?php swell_entry_footer(); ?>
+		<?php amelie_entry_footer(); ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

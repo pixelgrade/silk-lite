@@ -1,5 +1,5 @@
 /**
- * Swell Customizer JavaScript - keeps things nicer for all
+ * Amelie Customizer JavaScript - keeps things nicer for all
  * v 1.0.0
  */
 

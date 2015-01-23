@@ -3,10 +3,10 @@
  * Jetpack Compatibility File
  * See: http://jetpack.me/
  *
- * @package swell
+ * @package Amelie
  */
 
-function swell_jetpack_setup() {
+function amelie_jetpack_setup() {
 	/**
 	 * Add theme support for Infinite Scroll
 	 * See: http://jetpack.me/support/infinite-scroll/
@@ -25,7 +25,7 @@ function swell_jetpack_setup() {
 	 * Second, the 2 classes we want to use for the "Display Header Text" Customizer logic
 	 */
 	add_theme_support( 'site-logo', array(
-		'size'        => 'swell-site-logo',
+		'size'        => 'amelie-site-logo',
 		'header-text' => array(
 			'site-title',
 			'site-description-text',
@@ -39,4 +39,4 @@ function swell_jetpack_setup() {
 
 }
 
-add_action( 'after_setup_theme', 'swell_jetpack_setup' ); ?>
+add_action( 'after_setup_theme', 'amelie_jetpack_setup' ); ?>

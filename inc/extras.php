@@ -4,7 +4,7 @@
  *
  * Eventually, some of the functionality here could be replaced by core features
  *
- * @package swell
+ * @package Amelie
  */
 
 /**
@@ -14,31 +14,31 @@
  *
  * @return array
  */
-function swell_body_classes( $classes ) {
+function amelie_body_classes( $classes ) {
 	// Adds a class of group-blog to blogs with more than 1 published author.
 	if ( is_multi_author() ) {
 		$classes[] = 'group-blog';
 	}
 
 	if ( ( is_single() || is_page() || is_home() || is_archive() || is_search() ) && is_active_sidebar( 'sidebar-1' ) ) {
-		$classes[ ] = 'has_sidebar';
+		$classes[] = 'has_sidebar';
 	}
 
 	return $classes;
 }
 
-add_filter( 'body_class', 'swell_body_classes' );
+add_filter( 'body_class', 'amelie_body_classes' );
 
 /**
  * Extend the default WordPress post classes.
  *
- * @since Swell 1.0
+ * @since Amelie 1.0
  *
  * @param array $classes A list of existing post class values.
  *
  * @return array The filtered post class list.
  */
-function swell_post_classes( $classes ) {
+function amelie_post_classes( $classes ) {
 	$post_format = get_post_format();
 
 	if ( is_archive() || is_home() || is_search() ) {
@@ -48,7 +48,7 @@ function swell_post_classes( $classes ) {
 	return $classes;
 }
 
-add_filter( 'post_class', 'swell_post_classes' );
+add_filter( 'post_class', 'amelie_post_classes' );
 
 if ( version_compare( $GLOBALS['wp_version'], '4.1', '<' ) ) :
 	/**
@@ -59,7 +59,7 @@ if ( version_compare( $GLOBALS['wp_version'], '4.1', '<' ) ) :
 	 *
 	 * @return string The filtered title.
 	 */
-	function swell_wp_title( $title, $sep ) {
+	function amelie_wp_title( $title, $sep ) {
 		if ( is_feed() ) {
 			return $title;
 		}
@@ -77,13 +77,13 @@ if ( version_compare( $GLOBALS['wp_version'], '4.1', '<' ) ) :
 
 		// Add a page number if necessary:
 		if ( ( $paged >= 2 || $page >= 2 ) && ! is_404() ) {
-			$title .= " $sep " . sprintf( __( 'Page %s', 'swell_txtd' ), max( $paged, $page ) );
+			$title .= " $sep " . sprintf( __( 'Page %s', 'amelie_txtd' ), max( $paged, $page ) );
 		}
 
 		return $title;
 	}
 
-	add_filter( 'wp_title', 'swell_wp_title', 10, 2 );
+	add_filter( 'wp_title', 'amelie_wp_title', 10, 2 );
 
 	/**
 	 * Title shim for sites older than WordPress 4.1.
@@ -91,67 +91,74 @@ if ( version_compare( $GLOBALS['wp_version'], '4.1', '<' ) ) :
 	 * @link https://make.wordpress.org/core/2014/10/29/title-tags-in-4-1/
 	 * @todo Remove this function when WordPress 4.3 is released.
 	 */
-	function swell_render_title() {
+	function amelie_render_title() {
 		?>
 		<title><?php wp_title( '|', true, 'right' ); ?></title>
 	<?php
 	}
 
-	add_action( 'wp_head', 'swell_render_title' );
+	add_action( 'wp_head', 'amelie_render_title' );
 endif;
 
-/**
- * Generate the Google Fonts URL
- *
- * Based on this article http://themeshaper.com/2014/08/13/how-to-add-google-fonts-to-wordpress-themes/
- */
-function swell_fonts_url() {
-	$fonts_url = '';
+if ( ! function_exists( 'amelie_fonts_url' ) ) :
+	/**
+	 * Register Google fonts for Amelie.
+	 * @since Amelie 1.0
+	 *
+	 * @return string Google fonts URL for the theme.
+	 */
+	function amelie_fonts_url() {
+		$fonts_url = '';
+		$fonts     = array();
+		$subsets   = 'latin,latin-ext';
 
-	/* Translators: If there are characters in your language that are not
-	* supported by Droid Serif, translate this to 'off'. Do not translate
-	* into your own language.
-	*/
-	$libre = _x( 'on', 'Libre Baskerville font: on or off', 'swell_txtd' );
-
-	/* Translators: If there are characters in your language that are not
-	* supported by Playfair Display, translate this to 'off'. Do not translate
-	* into your own language.
-	*/
-	$playfair_display = _x( 'on', 'Playfair Display font: on or off', 'swell_txtd' );
-
-	/* Translators: If there are characters in your language that are not
-	* supported by Merriweather, translate this to 'off'. Do not translate
-	* into your own language.
-	*/
-	$merryweather = _x( 'on', 'Merryweather font: on or off', 'swell_txtd' );
-
-
-	if ( 'off' !== $libre || 'off' !== $playfair_display || 'off' !== $merryweather ) {
-		$font_families = array();
-
-		if ( 'off' !== $libre ) {
-			$font_families[] = 'Libre Baskerville:400,700,400italic';
+		/* Translators: If there are characters in your language that are not
+		* supported by Libre Baskerville, translate this to 'off'. Do not translate
+		* into your own language.
+		*/
+		if ( 'off' !== _x( 'on', 'Libre Baskerville font: on or off', 'amelie_txtd' ) ) {
+			$fonts[] = 'Libre Baskerville:400,700,400italic';
 		}
 
-		if ( 'off' !== $playfair_display ) {
-			$font_families[] = 'Playfair Display:400,700,900,400italic,700italic,900italic';
+		/* Translators: If there are characters in your language that are not
+		* supported by Playfair Display, translate this to 'off'. Do not translate
+		* into your own language.
+		*/
+		if ( 'off' !== _x( 'on', 'Playfair Display font: on or off', 'amelie_txtd' ) ) {
+			$fonts[] = 'Playfair Display:400,700,900,400italic,700italic,900italic';
 		}
 
-		if ( 'off' !== $merryweather ) {
-			$font_families[] = 'Merryweather:400italic,400,300,700';
+		/* Translators: If there are characters in your language that are not
+		* supported by Merryweather, translate this to 'off'. Do not translate
+		* into your own language.
+		*/
+		if ( 'off' !== _x( 'on', 'Merryweather font: on or off', 'amelie_txtd' ) ) {
+			$fonts[] = 'Merryweather:400italic,400,300,700';
 		}
 
-		$query_args = array(
-			'family' => urlencode( implode( '|', $font_families ) ),
-			'subset' => urlencode( 'latin,latin-ext' ),
-		);
+		/* translators: To add an additional character subset specific to your language, translate this to 'greek', 'cyrillic', 'devanagari' or 'vietnamese'. Do not translate into your own language. */
+		$subset = _x( 'no-subset', 'Add new subset (greek, cyrillic, devanagari, vietnamese)', 'amelie_txtd' );
 
-		$fonts_url = add_query_arg( $query_args, '//fonts.googleapis.com/css' );
+		if ( 'cyrillic' == $subset ) {
+			$subsets .= ',cyrillic,cyrillic-ext';
+		} elseif ( 'greek' == $subset ) {
+			$subsets .= ',greek,greek-ext';
+		} elseif ( 'devanagari' == $subset ) {
+			$subsets .= ',devanagari';
+		} elseif ( 'vietnamese' == $subset ) {
+			$subsets .= ',vietnamese';
+		}
+
+		if ( $fonts ) {
+			$fonts_url = add_query_arg( array(
+				'family' => urlencode( implode( '|', $fonts ) ),
+				'subset' => urlencode( $subsets ),
+			), '//fonts.googleapis.com/css' );
+		}
+
+		return $fonts_url;
 	}
-
-	return $fonts_url;
-}
+endif;
 
 /**
  * Sets the authordata global when viewing an author archive.
@@ -162,7 +169,7 @@ function swell_fonts_url() {
  * @global WP_Query $wp_query WordPress Query object.
  * @return void
  */
-function swell_setup_author() {
+function amelie_setup_author() {
 	global $wp_query;
 
 	if ( $wp_query->is_author() && isset( $wp_query->post ) ) {
@@ -170,12 +177,12 @@ function swell_setup_author() {
 	}
 }
 
-add_action( 'wp', 'swell_setup_author' );
+add_action( 'wp', 'amelie_setup_author' );
 
 /*
  * Individual comment layout
  */
-function swell_comment( $comment, $args, $depth ) {
+function amelie_comment( $comment, $args, $depth ) {
 	static $comment_number;
 
 	if ( ! isset( $comment_number ) ) {
@@ -198,12 +205,12 @@ function swell_comment( $comment, $args, $depth ) {
 			<header class="comment__meta comment-author">
 				<?php printf( '<span class="comment__author-name">%s</span>', get_comment_author_link() ) ?>
 				<time class="comment__time" datetime="<?php comment_time( 'c' ); ?>">
-					<a href="<?php echo esc_url( get_comment_link( get_comment_ID() ) ) ?>" class="comment__timestamp"><?php printf( __( 'on %s at %s', 'swell_txtd' ), get_comment_date(), get_comment_time() ); ?> </a>
+					<a href="<?php echo esc_url( get_comment_link( get_comment_ID() ) ) ?>" class="comment__timestamp"><?php printf( __( 'on %s at %s', 'amelie_txtd' ), get_comment_date(), get_comment_time() ); ?> </a>
 				</time>
 				<div class="comment__links">
 					<?php
 					//we need some space before Edit
-					edit_comment_link( __( 'Edit', 'swell_txtd' ), '  ' );
+					edit_comment_link( __( 'Edit', 'amelie_txtd' ), '  ' );
 
 					comment_reply_link( array_merge( $args, array(
 						'depth'     => $depth,
@@ -215,7 +222,7 @@ function swell_comment( $comment, $args, $depth ) {
 			<!-- .comment-meta -->
 			<?php if ( $comment->comment_approved == '0' ) : ?>
 				<div class="alert info">
-					<p><?php _e( 'Your comment is awaiting moderation.', 'swell_txtd' ) ?></p>
+					<p><?php _e( 'Your comment is awaiting moderation.', 'amelie_txtd' ) ?></p>
 				</div>
 			<?php endif; ?>
 			<section class="comment__content comment">
@@ -227,23 +234,6 @@ function swell_comment( $comment, $args, $depth ) {
 <?php
 } // don't remove this bracket!
 
-
-//@todo a backend dev should review this
-/**
- * Get first paragraph from a WordPress post. Use inside the Loop.
- *
- * @return string
- */
-function get_first_paragraph(){
-	global $post;
-
-	$str = wpautop( get_the_content() );
-	$str = substr( $str, 0, strpos( $str, '</p>' ) + 4 );
-	$str = strip_tags($str, '<a><strong><em>');
-
-	return '<p class="intro-paragraph">' . $str . '</p>';
-}
-
 /**
  * Filter wp_link_pages to wrap current page in span.
  *
@@ -251,7 +241,7 @@ function get_first_paragraph(){
  *
  * @return string
  */
-function swell_link_pages( $link ) {
+function amelie_link_pages( $link ) {
 	if ( is_numeric( $link ) ) {
 		return '<span class="current">' . $link . '</span>';
 	}
@@ -259,24 +249,24 @@ function swell_link_pages( $link ) {
 	return $link;
 }
 
-add_filter( 'wp_link_pages_link', 'swell_link_pages' );
+add_filter( 'wp_link_pages_link', 'amelie_link_pages' );
 
 /**
  * Wrap more link
  */
-function swell_read_more_link( $link ) {
+function amelie_read_more_link( $link ) {
 	return '<div class="more-link-wrapper">' . $link . '</div>';
 }
 
-add_filter( 'the_content_more_link', 'swell_read_more_link' );
+add_filter( 'the_content_more_link', 'amelie_read_more_link' );
 
 
-if ( ! class_exists( "Swell_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_Nav_Menu' ) ):
+if ( ! class_exists( "Amelie_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_Nav_Menu' ) ):
 
 	/**
 	 * Special menu walker to generate the mega menu system of the primary menu location
 	 */
-	class Swell_Walker_Primary_Mega_Menu extends Walker_Nav_Menu {
+	class Amelie_Walker_Primary_Mega_Menu extends Walker_Nav_Menu {
 
 		public function start_lvl( &$output, $depth = 0, $args = array() ) {
 			$output .= "<ul class=\"sub-menu\">";
@@ -341,9 +331,9 @@ if ( ! class_exists( "Swell_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker
 				$args['after']
 			);
 
-			if ( $depth == 0 && $item->object == 'category' ) {
+			if ( $depth == 0 ) {
 				//the mega menu wrapper
-				$item_output .= '<div class="sub-menu--mega-wrapper">';
+				$item_output .= '<div class="sub-menu-wrapper">';
 			}
 
 			// build html
@@ -354,76 +344,79 @@ if ( ! class_exists( "Swell_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker
 
 			$item_output = '';
 
-			if ( $depth == 0 && $item->object == 'category' ) {
+			if ( $depth == 0 ) {
 
-				$numberposts = 4; //we start of with 4 posts and decrease from here
+				if ( $item->object == 'category' ) {
 
-				$post_args = array(
-					'posts_per_page' => $numberposts,
-					'offset'         => 0,
-					'post_type'      => 'post',
-					'post_status'    => 'publish',
-					'cat'            => $item->object_id,
-				);
+					$numberposts = 4; //we start of with 4 posts and decrease from here
 
-				$menuposts = new WP_Query( $post_args );
+					$post_args = array(
+						'posts_per_page' => $numberposts,
+						'offset'         => 0,
+						'post_type'      => 'post',
+						'post_status'    => 'publish',
+						'cat'            => $item->object_id,
+					);
 
-				if ( $menuposts->have_posts() ) {
-					//the first post is a big one
-					$menuposts->the_post();
+					$menuposts = new WP_Query( $post_args );
 
-					if ( has_post_thumbnail() ) {
-						$menu_post_image = '<div class="article__thumb" >' . get_the_post_thumbnail( get_the_ID(), 'swell-small-image' ) . '</div>';
-					} else {
-						$menu_post_image = '';
-					}
-
-					$item_output .=
-						'<div class="submenu__article--large">' .
-						'<article class="article">' .
-						'<a href="' . get_permalink() . '">' . $menu_post_image . '</a>' .
-						'<div class="article__content">' .
-						swell_get_posted_on_and_cats() .
-						'<a href="' . get_permalink() . '"><h2 class="article__title"><span class="hN">' . get_the_title() . '</span></h2>
-										<span class="read-more">' . __( 'More', 'swell_txtd' ) . '</span></a>
-									</div>' .
-						'</article>' .
-						'</div>';
-
-					//if we still have posts - it's time for the little ones
 					if ( $menuposts->have_posts() ) {
+						//the first post is a big one
+						$menuposts->the_post();
 
-						$item_output .= '<ul class="submenu__small-articles">';
+						if ( has_post_thumbnail() ) {
+							$menu_post_image = '<div class="article__thumb" >' . get_the_post_thumbnail( get_the_ID(), 'amelie-small-image' ) . '</div>';
+						} else {
+							$menu_post_image = '';
+						}
 
-						while ( $menuposts->have_posts() )  : $menuposts->the_post();
+						$item_output .=
+							'<div class="submenu__article--large">' .
+							'<article class="article">' .
+							'<a href="' . get_permalink() . '">' . $menu_post_image . '</a>' .
+							'<div class="article__content">' .
+							amelie_get_posted_on_and_cats() .
+							'<a href="' . get_permalink() . '"><h2 class="article__title"><span class="hN">' . get_the_title() . '</span></h2>
+										<span class="read-more">' . __( 'More', 'amelie_txtd' ) . '</span></a>
+									</div>' .
+							'</article>' .
+							'</div>';
 
-							if ( has_post_thumbnail() ) {
-								$menu_post_image = '<div class="article__thumb" >' . get_the_post_thumbnail( get_the_ID(), 'swell-small-image' ) . '</div>';
-							} else {
-								$menu_post_image = '';
-							}
+						//if we still have posts - it's time for the little ones
+						if ( $menuposts->have_posts() ) {
 
-							$item_output .=
-								'<li>' .
-								'<article class="article">' .
-								'<a href="' . get_permalink() . '">' . $menu_post_image . '</a>' .
-								'<div class="article__content">' .
-								swell_get_posted_on_and_cats() .
-								'<a href="' . get_permalink() . '"><h3 class="article__title"><span class="hN">' . get_the_title() . '</span></h3></a>
+							$item_output .= '<ul class="submenu__small-articles">';
+
+							while ( $menuposts->have_posts() )  : $menuposts->the_post();
+
+								if ( has_post_thumbnail() ) {
+									$menu_post_image = '<div class="article__thumb" >' . get_the_post_thumbnail( get_the_ID(), 'amelie-small-image' ) . '</div>';
+								} else {
+									$menu_post_image = '';
+								}
+
+								$item_output .=
+									'<li>' .
+									'<article class="article">' .
+									'<a href="' . get_permalink() . '">' . $menu_post_image . '</a>' .
+									'<div class="article__content">' .
+									amelie_get_posted_on_and_cats() .
+									'<a href="' . get_permalink() . '"><h3 class="article__title"><span class="hN">' . get_the_title() . '</span></h3></a>
 											</div>' .
-								'</article>' .
-								'</li>';
+									'</article>' .
+									'</li>';
 
-						endwhile;
+							endwhile;
 
-						$item_output .= '</ul>';
+							$item_output .= '</ul>';
+						}
+
+						wp_reset_postdata();
+
 					}
-
-					wp_reset_postdata();
-
 				}
 
-				$item_output .= '</div>'; //close the .sub-menu--mega-wrapper
+				$item_output .= '</div>'; //close the .sub-menu-wrapper
 
 			}
 

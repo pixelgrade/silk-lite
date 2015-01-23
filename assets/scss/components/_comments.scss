@@ -235,19 +235,18 @@ li.depth-2:before {
 }
 
 .comment-edit-link, .comment-reply-link {
-	color: $gray;
-	opacity: 0;
 	@include rhythm(margin-right, 1, 14px);
+
+	@include fs(12px);
+	color: $dark;
+	opacity: 0;
+
 	transition: opacity .15s ease-in-out;
 	transform: translateZ(0);
 
 	@include query-below($lap) {
 		opacity: 1;
 	}
-}
-
-.comment-reply-link {
-	color: $light;
 }
 
 .comment-form p.logged-in-as {
@@ -265,8 +264,9 @@ li.depth-2:before {
 	text-align: center;
 	transform: none;
 
-	a {
-		margin-top: -7px;
+	.comment & {
+		@include rhythm(margin-top, 2);
+		text-align: left;
 	}
 }
 
