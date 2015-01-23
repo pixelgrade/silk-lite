@@ -32,6 +32,17 @@ function swell_customize_register ( $wp_customize ) {
 		'priority'          => 30,
 	) );
 
+	$wp_customize->add_setting( 'swell_single_column_archives', array(
+		'default'           => '',
+		'sanitize_callback' => 'swell_sanitize_checkbox',
+	) );
+
+	$wp_customize->add_control( 'swell_single_column_archives', array(
+		'label'             => __( 'Display single column posts on front page and archives.', 'swell_txtd' ),
+		'section'           => 'swell_theme_options',
+		'type'              => 'checkbox',
+	) );
+
 	$wp_customize->add_setting( 'swell_disable_search_in_toolbar', array(
 		'default'           => '',
 		'sanitize_callback' => 'swell_sanitize_checkbox',

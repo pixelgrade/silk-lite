@@ -1,6 +1,6 @@
 <?php
 /**
- * Custom template tags for this theme.
+ * Custom template tags for Swell.
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *

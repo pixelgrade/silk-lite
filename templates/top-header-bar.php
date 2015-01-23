@@ -1,6 +1,7 @@
 <?php
 /**
  * The template for the top header bar.
+ *
  * @package Swell
  */ ?>
 	<div class="top-header-bar">
