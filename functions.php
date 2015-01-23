@@ -147,6 +147,13 @@ function amelie_scripts_styles() {
 	//Enqueue Masonry
 	wp_enqueue_script( 'masonry' );
 
+	//only include the slider script if we have at least 2 featured posts
+	if ( amelie_has_featured_posts( 2 ) ) {
+		//Enqueue FlexSlider plugin
+		wp_enqueue_script( 'amelie-flexslider', get_stylesheet_directory_uri() . '/assets/js/jquery.flexslider.js', array('jquery'), '2.2.2', true );
+
+	}
+
 	//Enqueue ImagesLoaded plugin
 	wp_enqueue_script( 'amelie-imagesloaded', get_stylesheet_directory_uri() . '/assets/js/imagesloaded.js', array(), '3.1.8', true );
 
@@ -156,7 +163,7 @@ function amelie_scripts_styles() {
 	//Enqueue Velocity.js plugin
 	wp_enqueue_script( 'amelie-velocity', get_stylesheet_directory_uri() . '/assets/js/velocity.js', array(), '1.1.0', true );
 
-	//Enqueue Hive Custom Scripts
+	//Enqueue Amelie Custom Scripts
 	wp_enqueue_script( 'amelie-scripts', get_stylesheet_directory_uri() . '/assets/js/main.js', array(
 		'jquery',
 		'masonry',
