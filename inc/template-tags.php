@@ -128,6 +128,19 @@ if ( ! function_exists( 'swell_get_cats_list' ) ) :
 
 endif;
 
+if ( ! function_exists( 'swell_cats_list' ) ) :
+
+	/**
+	 * Prints HTML with comma separated category links
+	 */
+	function swell_cats_list( $post_ID = null) {
+
+		echo swell_get_cats_list($post_ID);
+
+	}
+
+endif;
+
 if ( ! function_exists( 'swell_get_posted_on_and_cats' ) ) :
 	/**
 	 * Returns HTML with meta information for the current post-date/time and author.
@@ -160,7 +173,7 @@ endif;
 
 if ( ! function_exists( 'swell_the_first_paragraph' ) ) :
 	/**
-	 * Returns HTML with the first paragraph from a WordPress post. Use inside the Loop.
+	 * Prints HTML with the first paragraph from a WordPress post. Use inside the Loop.
 	 *
 	 */
 	function swell_the_first_paragraph() {
