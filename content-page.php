@@ -2,7 +2,7 @@
 /**
  * The template used for displaying page content in page.php
  *
- * @package Swell
+ * @package Amelie
  */
 ?>
 
@@ -15,7 +15,7 @@
 		<?php the_content(); ?>
 		<?php
 			wp_link_pages( array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'swell_txtd' ),
+				'before' => '<div class="page-links">' . __( 'Pages:', 'amelie_txtd' ),
 				'after'  => '</div>',
 			) );
 		?>
@@ -24,7 +24,7 @@
 	<footer class="entry-footer">
 		<?php if ( current_user_can('edit_post', get_the_ID() ) ) { ?>
 		<hr/>
-		<?php edit_post_link( __( 'Edit', 'swell_txtd' ), '<span class="edit-link">', '</span>' ); ?>
+		<?php edit_post_link( __( 'Edit', 'amelie_txtd' ), '<span class="edit-link">', '</span>' ); ?>
 		<?php } ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

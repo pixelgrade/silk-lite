@@ -1,15 +1,15 @@
-/*global SwellAboutMeWidget, wp */
+/*global AmelieAboutMeWidget, wp */
 
 (function($){
 	'use strict';
 
-	var SwellAboutMeWidget = typeof window.SwellAboutMeWidget === 'undefined' ? {} : window.SwellAboutMeWidget,
+	var AmelieAboutMeWidget = typeof window.AmelieAboutMeWidget === 'undefined' ? {} : window.AmelieAboutMeWidget,
 		Attachment = wp.media.model.Attachment,
 		frames = [],
 		imageControl, l10n;
 
 	// Link any localized strings.
-	l10n = SwellAboutMeWidget.l10n = typeof SwellAboutMeWidget.l10n === 'undefined' ? {} : SwellAboutMeWidget.l10n;
+	l10n = AmelieAboutMeWidget.l10n = typeof AmelieAboutMeWidget.l10n === 'undefined' ? {} : AmelieAboutMeWidget.l10n;
 
 	/**
 	 * imageControl module object.
@@ -20,11 +20,11 @@
 		this.$el = $( el );
 
 		// Search within the context of the control.
-		this.$target = this.$el.find( '.swell-about-me-image-id' );
+		this.$target = this.$el.find( '.amelie-about-me-image-id' );
 
 		defaults = {
 			frame: {
-				id: 'swell-about-me-widget',
+				id: 'amelie-about-me-widget',
 				title: l10n.frameTitle,
 				updateText: l10n.frameUpdateText,
 				multiple: false
@@ -85,7 +85,7 @@
 			frame.state( 'library' ).on( 'select', function() {
 				var selection = this.get( 'selection' );
 				frame.control.setAttachments( selection );
-				frame.control.$el.trigger( 'selectionChange.swellaboutmewidget', [ selection ] );
+				frame.control.$el.trigger( 'selectionChange.amelieaboutmewidget', [ selection ] );
 			});
 
 			return frame;
@@ -104,7 +104,7 @@
 		};
 	};
 
-	_.extend( SwellAboutMeWidget, {
+	_.extend( AmelieAboutMeWidget, {
 		/**
 		 * Retrieve a media selection control object.
 		 *
@@ -115,7 +115,7 @@
 		getControl: function( el ) {
 			var control, $control;
 
-			$control = $( el ).closest( '.swell-about-me-widget-image-control' );
+			$control = $( el ).closest( '.amelie-about-me-widget-image-control' );
 			control = $control.data( 'media-control' );
 
 			if ( ! control ) {
@@ -131,13 +131,13 @@
 		var $body = $( 'body' );
 		
 		// Open the media library frame when the button or image are clicked.
-		$body.on( 'click', '.swell-about-me-widget-image-control__choose, .swell-about-me-widget-form img', function( e ) {
+		$body.on( 'click', '.amelie-about-me-widget-image-control__choose, .amelie-about-me-widget-form img', function( e ) {
 			e.preventDefault();
-			SwellAboutMeWidget.getControl( this ).frame().open();
+			AmelieAboutMeWidget.getControl( this ).frame().open();
 		});
 
 		// Update the image preview in the widget when an image is selected.
-		$body.on( 'selectionChange.swellaboutmewidget', function( e, selection ) {
+		$body.on( 'selectionChange.amelieaboutmewidget', function( e, selection ) {
 			var $control = $( e.target ),
 				model = selection.first(),
 				sizes = model.get( 'sizes' ),

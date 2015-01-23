@@ -2,12 +2,12 @@
 /**
  * The template for displaying the archives loop content.
  *
- * @package Swell
+ * @package Amelie
  */
 
 $classes = 'archive__grid  grid';
 
-if ( ! get_theme_mod( 'swell_single_column_archives', false ) ) {
+if ( ! get_theme_mod( 'amelie_single_column_archives', false ) ) {
 	$classes .= '  masonry';
 }
 ?>

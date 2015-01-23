@@ -5,7 +5,7 @@
  * The area of the page that contains both current comments
  * and the comment form.
  *
- * @package Swell
+ * @package Amelie
  */
 
 /*
@@ -26,19 +26,19 @@ if ( post_password_required() ) {
 		<div class="comments-area-title">
 			<h3 class="comments-title"><?php
 				if ( have_comments() ) {
-					echo number_format_i18n( get_comments_number() ) . ' ' . _n( 'Comment', 'Comments', get_comments_number(), 'swell_txtd' );
+					echo number_format_i18n( get_comments_number() ) . ' ' . _n( 'Comment', 'Comments', get_comments_number(), 'amelie_txtd' );
 				} else {
-					echo __( 'There are no comments', 'swell_txtd' );
+					echo __( 'There are no comments', 'amelie_txtd' );
 				} ?>
 			</h3>
-			<?php echo '<a class="comments_add-comment" href="#reply-title">' . __( 'Add Yours', 'swell_txtd' ) . '</a>'; ?>
+			<?php echo '<a class="comments_add-comment" href="#reply-title">' . __( 'Add Yours', 'amelie_txtd' ) . '</a>'; ?>
 		</div>
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
 		<nav id="comment-nav-above" class="comment-navigation" role="navigation">
-			<h1 class="screen-reader-text"><?php _e( 'Comment navigation', 'swell_txtd' ); ?></h1>
-			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'swell_txtd' ) ); ?></div>
-			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'swell_txtd' ) ); ?></div>
+			<h1 class="screen-reader-text"><?php _e( 'Comment navigation', 'amelie_txtd' ); ?></h1>
+			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'amelie_txtd' ) ); ?></div>
+			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'amelie_txtd' ) ); ?></div>
 		</nav><!-- #comment-nav-above -->
 		<?php endif; // check for comment navigation ?>
 
@@ -48,14 +48,14 @@ if ( post_password_required() ) {
 			 * to use hive_comment() to format the comments.
 			 * See hive_comment() in inc/extras.php for more.
 			 */
-			wp_list_comments( array( 'callback' => 'swell_comment', 'short_ping' => true ) ); ?>
+			wp_list_comments( array( 'callback' => 'amelie_comment', 'short_ping' => true ) ); ?>
 		</ol><!-- .comment-list -->
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
 		<nav id="comment-nav-below" class="comment-navigation" role="navigation">
-			<h1 class="screen-reader-text"><?php _e( 'Comment navigation', 'swell_txtd' ); ?></h1>
-			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'swell_txtd' ) ); ?></div>
-			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'swell_txtd' ) ); ?></div>
+			<h1 class="screen-reader-text"><?php _e( 'Comment navigation', 'amelie_txtd' ); ?></h1>
+			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'amelie_txtd' ) ); ?></div>
+			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'amelie_txtd' ) ); ?></div>
 		</nav><!-- #comment-nav-below -->
 		<?php endif; // check for comment navigation ?>
 
@@ -65,7 +65,7 @@ if ( post_password_required() ) {
 		// If comments are closed and there are comments, let's leave a little note, shall we?
 		if ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) :
 	?>
-		<p class="no-comments"><?php _e( 'Comments are closed.', 'swell_txtd' ); ?></p>
+		<p class="no-comments"><?php _e( 'Comments are closed.', 'amelie_txtd' ); ?></p>
 	<?php endif; ?>
 
 	<?php comment_form(); ?>

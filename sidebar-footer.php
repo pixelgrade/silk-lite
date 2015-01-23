@@ -2,7 +2,7 @@
 /**
  * The sidebar containing the footer widget area.
  *
- * @package Swell
+ * @package Amelie
  */
 
 if ( ! is_active_sidebar( 'footer-1' ) ) {

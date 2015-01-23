@@ -2,7 +2,7 @@
 /**
  * The template used for displaying post content on home and archive pages
  *
- * @package Swell
+ * @package Amelie
  */
 ?>
 
@@ -11,7 +11,7 @@
 	<header class="entry-header">
 		<?php if ( 'post' == get_post_type() ) : ?>
 		<div class="entry-meta">
-			<?php swell_posted_on_and_cats(); ?>
+			<?php amelie_posted_on_and_cats(); ?>
 		</div><!-- .entry-meta -->
 		<?php endif; ?>
 
@@ -23,7 +23,7 @@
 
 		<?php
 			wp_link_pages( array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'swell_txtd' ),
+				'before' => '<div class="page-links">' . __( 'Pages:', 'amelie_txtd' ),
 				'after'  => '</div>',
 			) );
 		?>

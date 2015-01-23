@@ -2,7 +2,7 @@
 /**
  * The template for displaying all single posts.
  *
- * @package Swell
+ * @package Amelie
  */
 
 get_header(); ?>
