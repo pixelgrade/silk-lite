@@ -24,17 +24,18 @@
 			display: block;
 			padding: rhythm(4/9) 0;
 			border-bottom: 1px solid $secondary;
-
-			&:hover {
-				color: $secondary;
-			}
-
 		}
 
 		> .menu-item-has-children > a:after {
-			border-top-color: transparent;
+			border-top-color: transparent; 
 			border-left-color: currentColor;
-			// border-width: rem(3px) rem(4px);
+			border-width: rem(3px) rem(4px);
+			right: 0;
+			top: rem(18px);
+		}
+
+		.menu-item:hover {
+			color: $secondary;
 		}
 
 		li:last-child > a {
@@ -45,22 +46,19 @@
 	.menu-item {
 		@extend %delta;
 		text-transform: uppercase;
-
-		> .sub-menu {
-			display: none;
-			position: absolute;
-		}
+		position: relative;
 
 		&:hover {
 			color: $accent;
+			z-index: 10;
 		}
 
-		&.hover > .sub-menu {
-			display: block;
+		&.menu-item--mega {
+			position: static;
 		}
 	}
 
-	> .menu-item-has-children > a {
+	.menu-item-has-children > a {
 		position: relative;
 
 		&:after {
@@ -79,5 +77,64 @@
 		color: currentColor;
 		letter-spacing: 0.1em;
 		padding: rhythm(1) rhythm(1.5);
+	}
+}
+
+%sub-menu-transition-out {
+	opacity: 0;
+	transition: opacity .2s ease-out, visibility 0s .3s linear, left 0s .3s linear;
+	left: 9999em;
+	left: 100vw;
+}
+
+%sub-menu-transition-in {
+	opacity: 1;
+	transition: opacity .2s ease-in;
+	left: 100%;
+}
+
+.sub-menu-wrapper {
+	@extend %sub-menu-transition-out;
+	position: absolute;
+	top: 100%;
+	padding: rhythm(1);
+	transform: translate(-50%, 0);
+	transform: translate3d(-50%, 0, 0);
+	border: 1px solid $borders;
+	background: white;
+
+	.hover & {
+		@extend %sub-menu-transition-in;
+		left: 50%;
+		visibility: visible;
+	}
+
+	&:empty {
+		display: none !important;
+	}
+
+	.menu-item-has-children {
+		position: relative;
+	}
+
+	.sub-menu {
+		position: absolute;
+		top: 0;
+		margin-top: rhythm(-2/3);
+	}
+
+	.sub-menu {
+		@extend %sub-menu-transition-out;
+	}
+
+	> .sub-menu {
+		display: inline-block;
+		position: static;
+		margin-top: 0;
+	}
+
+	> .sub-menu,
+	> .sub-menu .hover > .sub-menu {
+		@extend %sub-menu-transition-in;
 	}
 }
