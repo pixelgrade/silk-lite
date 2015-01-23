@@ -14,16 +14,15 @@
 	.sub-menu {
 		@extend .nav;
 		@extend .nav--stacked;
-		background-color: $accent;
-		color: white;
 		text-align: left;
-		padding: rhythm(2/3) rhythm(1);
 		min-width: rem(240px);
+		text-align: center;
+		@include fs(12px);
 
 		a {
 			display: block;
 			padding: rhythm(4/9) 0;
-			border-bottom: 1px solid $secondary;
+			border-bottom: 1px solid $borders;
 		}
 
 		> .menu-item-has-children > a:after {
@@ -32,10 +31,6 @@
 			border-width: rem(3px) rem(4px);
 			right: 0;
 			top: rem(18px);
-		}
-
-		.menu-item:hover {
-			color: $secondary;
 		}
 
 		li:last-child > a {
@@ -49,12 +44,7 @@
 		position: relative;
 
 		&:hover {
-			color: $accent;
 			z-index: 10;
-		}
-
-		&.menu-item--mega {
-			position: static;
 		}
 	}
 
@@ -84,7 +74,6 @@
 	opacity: 0;
 	transition: opacity .2s ease-out, visibility 0s .3s linear, left 0s .3s linear;
 	left: 9999em;
-	left: 100vw;
 }
 
 %sub-menu-transition-in {
@@ -94,14 +83,31 @@
 }
 
 .sub-menu-wrapper {
+	@extend .clearfix;
 	@extend %sub-menu-transition-out;
 	position: absolute;
 	top: 100%;
-	padding: rhythm(1);
 	transform: translate(-50%, 0);
 	transform: translate3d(-50%, 0, 0);
-	border: 1px solid $borders;
 	background: white;
+
+
+	white-space: nowrap;
+
+	> * {
+		white-space: normal;
+		vertical-align: top;
+	}
+
+	.menu-item--mega & {
+		border: 1px solid $borders;
+		padding: rhythm(1);
+
+		> .sub-menu {
+			text-align: left;
+			font-size: inherit;
+		}
+	}
 
 	.hover & {
 		@extend %sub-menu-transition-in;
@@ -118,9 +124,12 @@
 	}
 
 	.sub-menu {
+		border: 1px solid $borders;
+		padding: rhythm(1/2) rhythm(1);
+		background: white;
 		position: absolute;
-		top: 0;
-		margin-top: rhythm(-2/3);
+		top: -1px;
+		margin-top: rhythm(-1/2);
 	}
 
 	.sub-menu {
@@ -128,8 +137,8 @@
 	}
 
 	> .sub-menu {
-		display: inline-block;
 		position: static;
+		display: inline-block;
 		margin-top: 0;
 	}
 
@@ -137,4 +146,31 @@
 	> .sub-menu .hover > .sub-menu {
 		@extend %sub-menu-transition-in;
 	}
+}
+
+.nav--main .menu-item--mega {
+	position: static;
+	
+	.sub-menu {
+		background-color: $accent;
+		color: white;
+	}
+
+	a {
+		border-bottom-color: $secondary;
+	}
+
+	&.hover {
+		color: $accent;
+	}
+
+	.menu-item:hover {
+		color: $secondary;
+	}
+}
+
+.submenu__article--large,
+.submenu__small-articles {
+	display: inline-block;
+	width: 500px;
 }

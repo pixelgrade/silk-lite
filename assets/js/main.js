@@ -707,24 +707,28 @@
 
   $window.load(function () {
 
-    var $nav = $('.nav--main').addClass('hover-intent');
+    var $nav        = $('.nav--main').addClass('hover-intent'),
+        $navItems   = $nav.find('li');
 
-    $('.nav--main li').hoverIntent({
+    
+    $navItems.each(function (i, item) {
+      var $navItem = $(item);
+      
+      // test if it's a sub-menu or a mega menu
+      if ($navItem.children().children().length > 1) {
+        $navItem.addClass('menu-item--mega');
+      }
+
+    });
+
+    $navItems.hoverIntent({
       over: showSubMenu,
       out: hideSubMenu,
       timeout: 300
     });
 
     function showSubMenu() {
-
-      var $this = $(this);
-      
-      $this.addClass('hover');
-
-      // test if it's a sub-menu or a mega menu
-      if ($this.children().children().length > 1) {
-        $this.addClass('menu-item--mega');
-      }
+      $(this).addClass('hover');
     }
 
     function hideSubMenu() {
@@ -732,7 +736,6 @@
     }
 
     $('.nav--main li').on('mouseleave', function(event) {
-      console.log(this);
       hideSubMenu(this);
     });
 
