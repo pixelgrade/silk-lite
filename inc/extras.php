@@ -331,9 +331,9 @@ if ( ! class_exists( "Amelie_Walker_Primary_Mega_Menu" ) && class_exists( 'Walke
 				$args['after']
 			);
 
-			if ( $depth == 0 && $item->object == 'category' ) {
+			if ( $depth == 0 ) {
 				//the mega menu wrapper
-				$item_output .= '<div class="sub-menu--mega-wrapper">';
+				$item_output .= '<div class="sub-menu-wrapper">';
 			}
 
 			// build html
@@ -344,76 +344,79 @@ if ( ! class_exists( "Amelie_Walker_Primary_Mega_Menu" ) && class_exists( 'Walke
 
 			$item_output = '';
 
-			if ( $depth == 0 && $item->object == 'category' ) {
+			if ( $depth == 0 ) {
 
-				$numberposts = 4; //we start of with 4 posts and decrease from here
+				if ( $item->object == 'category' ) {
 
-				$post_args = array(
-					'posts_per_page' => $numberposts,
-					'offset'         => 0,
-					'post_type'      => 'post',
-					'post_status'    => 'publish',
-					'cat'            => $item->object_id,
-				);
+					$numberposts = 4; //we start of with 4 posts and decrease from here
 
-				$menuposts = new WP_Query( $post_args );
+					$post_args = array(
+						'posts_per_page' => $numberposts,
+						'offset'         => 0,
+						'post_type'      => 'post',
+						'post_status'    => 'publish',
+						'cat'            => $item->object_id,
+					);
 
-				if ( $menuposts->have_posts() ) {
-					//the first post is a big one
-					$menuposts->the_post();
+					$menuposts = new WP_Query( $post_args );
 
-					if ( has_post_thumbnail() ) {
-						$menu_post_image = '<div class="article__thumb" >' . get_the_post_thumbnail( get_the_ID(), 'amelie-small-image' ) . '</div>';
-					} else {
-						$menu_post_image = '';
-					}
+					if ( $menuposts->have_posts() ) {
+						//the first post is a big one
+						$menuposts->the_post();
 
-					$item_output .=
-						'<div class="submenu__article--large">' .
-						'<article class="article">' .
-						'<a href="' . get_permalink() . '">' . $menu_post_image . '</a>' .
-						'<div class="article__content">' .
-						amelie_get_posted_on_and_cats() .
-						'<a href="' . get_permalink() . '"><h2 class="article__title"><span class="hN">' . get_the_title() . '</span></h2>
+						if ( has_post_thumbnail() ) {
+							$menu_post_image = '<div class="article__thumb" >' . get_the_post_thumbnail( get_the_ID(), 'amelie-small-image' ) . '</div>';
+						} else {
+							$menu_post_image = '';
+						}
+
+						$item_output .=
+							'<div class="submenu__article--large">' .
+							'<article class="article">' .
+							'<a href="' . get_permalink() . '">' . $menu_post_image . '</a>' .
+							'<div class="article__content">' .
+							amelie_get_posted_on_and_cats() .
+							'<a href="' . get_permalink() . '"><h2 class="article__title"><span class="hN">' . get_the_title() . '</span></h2>
 										<span class="read-more">' . __( 'More', 'amelie_txtd' ) . '</span></a>
 									</div>' .
-						'</article>' .
-						'</div>';
+							'</article>' .
+							'</div>';
 
-					//if we still have posts - it's time for the little ones
-					if ( $menuposts->have_posts() ) {
+						//if we still have posts - it's time for the little ones
+						if ( $menuposts->have_posts() ) {
 
-						$item_output .= '<ul class="submenu__small-articles">';
+							$item_output .= '<ul class="submenu__small-articles">';
 
-						while ( $menuposts->have_posts() )  : $menuposts->the_post();
+							while ( $menuposts->have_posts() )  : $menuposts->the_post();
 
-							if ( has_post_thumbnail() ) {
-								$menu_post_image = '<div class="article__thumb" >' . get_the_post_thumbnail( get_the_ID(), 'amelie-small-image' ) . '</div>';
-							} else {
-								$menu_post_image = '';
-							}
+								if ( has_post_thumbnail() ) {
+									$menu_post_image = '<div class="article__thumb" >' . get_the_post_thumbnail( get_the_ID(), 'amelie-small-image' ) . '</div>';
+								} else {
+									$menu_post_image = '';
+								}
 
-							$item_output .=
-								'<li>' .
-								'<article class="article">' .
-								'<a href="' . get_permalink() . '">' . $menu_post_image . '</a>' .
-								'<div class="article__content">' .
-								amelie_get_posted_on_and_cats() .
-								'<a href="' . get_permalink() . '"><h3 class="article__title"><span class="hN">' . get_the_title() . '</span></h3></a>
+								$item_output .=
+									'<li>' .
+									'<article class="article">' .
+									'<a href="' . get_permalink() . '">' . $menu_post_image . '</a>' .
+									'<div class="article__content">' .
+									amelie_get_posted_on_and_cats() .
+									'<a href="' . get_permalink() . '"><h3 class="article__title"><span class="hN">' . get_the_title() . '</span></h3></a>
 											</div>' .
-								'</article>' .
-								'</li>';
+									'</article>' .
+									'</li>';
 
-						endwhile;
+							endwhile;
 
-						$item_output .= '</ul>';
+							$item_output .= '</ul>';
+						}
+
+						wp_reset_postdata();
+
 					}
-
-					wp_reset_postdata();
-
 				}
 
-				$item_output .= '</div>'; //close the .sub-menu--mega-wrapper
+				$item_output .= '</div>'; //close the .sub-menu-wrapper
 
 			}
 
