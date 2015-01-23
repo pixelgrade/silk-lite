@@ -1,0 +1,83 @@
+.main-navigation {
+	margin: 100px 0;
+}
+
+.nav--main {
+	@extend .nav;
+	text-align: center;
+	color: $dark;
+	border-top: rem(3px) solid $light;
+	position: relative;
+	z-index: 100;
+	background: white;
+
+	.sub-menu {
+		@extend .nav;
+		@extend .nav--stacked;
+		background-color: $accent;
+		color: white;
+		text-align: left;
+		padding: rhythm(2/3) rhythm(1);
+		min-width: rem(240px);
+
+		a {
+			display: block;
+			padding: rhythm(4/9) 0;
+			border-bottom: 1px solid $secondary;
+
+			&:hover {
+				color: $secondary;
+			}
+
+		}
+
+		> .menu-item-has-children > a:after {
+			border-top-color: transparent;
+			border-left-color: currentColor;
+			// border-width: rem(3px) rem(4px);
+		}
+
+		li:last-child > a {
+			border-bottom: 0;
+		}
+	}
+
+	.menu-item {
+		@extend %delta;
+		text-transform: uppercase;
+
+		> .sub-menu {
+			display: none;
+			position: absolute;
+		}
+
+		&:hover {
+			color: $accent;
+		}
+
+		&.hover > .sub-menu {
+			display: block;
+		}
+	}
+
+	> .menu-item-has-children > a {
+		position: relative;
+
+		&:after {
+			content: "";
+			position: absolute;
+			top: rem(32px);
+			right: rem(22px);
+			border: 0 solid transparent;
+			border-width: rem(4px) rem(3px);
+			border-top-color: currentColor;
+		}
+	}
+
+	a {
+		display: inline-block;
+		color: currentColor;
+		letter-spacing: 0.1em;
+		padding: rhythm(1) rhythm(1.5);
+	}
+}
