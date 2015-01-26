@@ -21,9 +21,9 @@
 <div id="page" class="hfeed site">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'amelie_txtd' ); ?></a>
 
+	<?php get_template_part('templates/top-header-bar'); ?>
+	
 	<header id="masthead" class="site-header" role="banner">
-
-		<?php get_template_part('templates/top-header-bar'); ?>
 
 		<div class="site-branding">
 			<?php if ( function_exists( 'jetpack_the_site_logo' ) ) jetpack_the_site_logo(); ?>

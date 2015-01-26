@@ -63,7 +63,7 @@ $cap-height: 		0.671;
 
     // METHOD 3
     /////////////////
-    transform: translateY($offset-top / $font-size + em);
+    // transform: translateY($offset-top / $font-size + em);
 }
 
 @mixin rhythm($property, $units, $convert-to-ems: $base-font-size, $base-line-height: $base-line-height) {

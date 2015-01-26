@@ -1,0 +1,319 @@
+
+// ---------- #MAIN MENU
+
+.main-navigation {
+	margin: 100px 0;
+}
+
+.nav--main {
+	@extend .nav;
+	text-align: center;
+	color: $dark;
+	border-top: rem(3px) solid $light;
+	position: relative;
+	z-index: 100;
+	background: white;
+
+	.sub-menu {
+		@extend .nav;
+		@extend .nav--stacked;
+		text-align: left;
+		min-width: rem(240px);
+		text-align: center;
+		font-size: rem(12px);
+
+		a {
+			display: block;
+			padding: rhythm(4/9) rhythm(2/3);
+			border-bottom: 1px solid $borders;
+		}
+
+		> .menu-item-has-children > a:after {
+			border-top-color: transparent; 
+			border-left-color: currentColor;
+			border-width: rem(3px) rem(4px);
+			right: 0;
+			top: 50%;
+			margin-top: rem(-4px);
+		}
+
+		li:last-child > a {
+			border-bottom: 0;
+		}
+	}
+
+	.menu-item {
+		position: relative;
+
+		&:hover {
+			z-index: 10;
+		}
+	}
+
+	> .menu-item:hover > a {
+		color: $accent;
+	}
+
+	.menu-item-has-children > a {
+		position: relative;
+
+		&:after {
+			content: "";
+			position: absolute;
+			top: rem(32px);
+			right: rem(22px);
+			border: 0 solid transparent;
+			border-width: rem(4px) rem(3px);
+			border-top-color: currentColor;
+		}
+	}
+
+	> .menu-item-has-children.hover > a,
+	> .menu-item--mega.hover > a {
+		position: relative;
+
+		&:before {
+			content: "";
+			position: absolute;
+			z-index: 9999;
+			top: 100%;
+			left: 50%;
+			width: rem(10px);
+			height: rem(10px);
+			margin-top: rem(-5px);
+			transform: rotate(45deg);
+			background: white;
+			border-left: 1px solid $borders;
+			border-top: 1px solid $borders;
+		}
+	}
+
+	.menu-link {
+		@extend %delta;
+		color: currentColor;
+		display: inline-block;
+		padding: rhythm(1) rhythm(1.5);
+	}
+}
+
+%sub-menu-transition-out {
+	opacity: 0;
+	transition: opacity .2s ease-out, visibility 0s .3s linear, left 0s .3s linear;
+	left: 9999em;
+}
+
+%sub-menu-transition-in {
+	opacity: 1;
+	transition: opacity .2s ease-in;
+	left: 100%;
+}
+
+.sub-menu-wrapper {
+	@extend .clearfix;
+	@extend %sub-menu-transition-out;
+	position: absolute;
+	top: 100%;
+	transform: translate(-50%, 0);
+	transform: translate3d(-50%, 0, 0);
+	background: white;
+
+
+	white-space: nowrap;
+
+	> * {
+		white-space: normal;
+		vertical-align: top;
+	}
+
+	.menu-item--mega & {
+		border: 1px solid $borders;
+		padding: rem(40px);
+
+		> .sub-menu {
+			text-align: left;
+			font-size: inherit;
+		}
+	}
+
+	.hover & {
+		@extend %sub-menu-transition-in;
+		left: 50%;
+		visibility: visible;
+	}
+
+	&:empty {
+		display: none !important;
+	}
+
+	.menu-item-has-children {
+		position: relative;
+	}
+
+	.sub-menu {
+		@extend %sub-menu-transition-out;
+		border: 1px solid $borders;
+		padding: rhythm(1/2) rhythm(1);
+		background: white;
+		position: absolute;
+		top: -1px;
+		margin-top: rhythm(-1/2);
+	}
+
+	> .sub-menu {
+		position: static;
+		display: inline-block;
+		margin-top: 0;
+	}
+
+	> .sub-menu,
+	> .sub-menu .hover > .sub-menu {
+		@extend %sub-menu-transition-in;
+	}
+}
+
+.menu-item--mega {
+	position: static !important;
+
+	.sub-menu-wrapper .sub-menu {
+		> .menu-item > a {
+			color: $dark;
+			border-bottom-color: $borders;
+		}
+	}
+	
+	.sub-menu-wrapper > .sub-menu {
+		background-color: $accent;
+		color: white;
+		border: 0;
+
+		> .menu-item > a {
+			color: white;
+			border-bottom-color: $secondary;
+		}
+
+		> .menu-item:hover > a {
+			color: $secondary;
+		}
+	}
+}
+
+.submenu__article--large,
+.submenu__small-articles {
+	display: inline-block;
+}
+
+.submenu__article--large {
+	width: rem(340px);
+
+	.sub-menu + & {
+		margin-left: rem(55px);
+	}
+}
+
+
+.submenu__small-articles {
+	width: rem(380px);
+	list-style: none;
+	margin: 0;
+
+	.submenu__article--large + & {
+		padding-left: rem(40px);
+		border-left: 1px solid $borders;
+		margin-left: rem(40px);
+	}
+}
+
+
+
+
+// ---------- #TOP MENUS
+
+.top-header-bar {
+	@extend .clearfix;
+	background: black;
+
+	a {
+		color: $gray;
+	}
+}
+
+.nav--toolbar {
+	@extend %delta;
+	display: inline-block;
+	font-size: rem(11px);
+	margin-left: rem(-15px);
+	margin-right: rem(-15px);
+
+	& + & {
+		margin-left: rem(15px);
+	}
+
+	li {
+		display: inline-block;
+	}
+
+	a {
+		padding: rem(15px);
+
+		&:hover {
+			color: white;
+		}
+
+		&:before {
+			display: inline-block;
+			font-size: rem(13px);
+			padding-right: 0.75em;
+
+			font-family: FontAwesome;
+			-webkit-font-smoothing: antialiased;
+			text-align: center;
+			pointer-events: auto;
+		}
+
+		// default share icon used as a fallback
+		// now for the social services that are in FA
+		// we will match the href to them - left them looser so we don't have complaints
+		&[href*="mailto:"]:before,
+		&[href*="mail"]:before          {content: $fa-var-envelope;}
+		&[href*="feed"]:before,
+		&[href*="rss"]:before  			{content: $fa-var-rss;}
+		&[href*="behance"]:before       {content: $fa-var-behance;}
+		&[href*="delicious"]:before     {content: $fa-var-delicious;}
+		&[href*="deviantart"]:before    {content: $fa-var-deviantart;}
+		&[href*="digg"]:before          {content: $fa-var-digg;}
+		&[href*="dribbble"]:before      {content: $fa-var-dribbble;}
+		&[href*="facebook"]:before      {content: $fa-var-facebook;}
+		&[href*="flickr"]:before        {content: $fa-var-flickr;}
+		&[href*="foursquare"]:before    {content: $fa-var-foursquare;}
+		&[href*="github"]:before        {content: $fa-var-github;}
+		&[href*="plus.google"]:before   {content: $fa-var-google-plus;}
+		&[href*="instagram"]:before     {content: $fa-var-instagram;}
+		&[href*="linkedin"]:before      {content: $fa-var-linkedin;}
+		&[href*="pinterest"]:before     {content: $fa-var-pinterest;}
+		&[href*="reddit"]:before        {content: $fa-var-reddit;}
+		&[href*="skype"]:before         {content: $fa-var-skype;}
+		&[href*="soundcloud"]:before    {content: $fa-var-soundcloud;}
+		&[href*="spotify"]:before       {content: $fa-var-spotify;}
+		&[href*="stumbleupon"]:before   {content: $fa-var-stumbleupon;}
+		&[href*="tumblr"]:before        {content: $fa-var-tumblr;}
+		&[href*="twitter"]:before       {content: $fa-var-twitter;}
+		&[href*="vimeo"]:before         {content: $fa-var-vimeo-square;}
+		&[href*="vine"]:before          {content: $fa-var-vine;}
+		&[href*="vk.com"]:before        {content: $fa-var-vk;}
+		&[href*="weibo"]:before         {content: $fa-var-weibo;}
+		&[href*="xing"]:before          {content: $fa-var-xing;}
+		&[href*="yahoo"]:before         {content: $fa-var-yahoo;}
+		&[href*="youtube"]:before       {content: $fa-var-youtube;}
+		&[href*="angel.co"]:before       {content: $fa-var-angellist;}
+		&[href*="yelp"]:before       {content: $fa-var-yelp;}
+		&[href*="last.fm"]:before       {content: $fa-var-lastfm;}
+		&[href*="slideshare"]:before       {content: $fa-var-slideshare;}
+		&[href*="twitch.tv"]:before       {content: $fa-var-twitch;}
+	}
+}
+
+.nav__item--search {
+	> a:before {
+		content: $fa-var-search;
+	}
+}
