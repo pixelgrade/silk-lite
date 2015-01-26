@@ -27,6 +27,9 @@ img{
 
 /* Galleries */
 .gallery {
+	@include rhythm(margin-left, -1);
+	@include rhythm(margin-top, -1);
+
 	.gallery-item {
 		margin: 0;
 		display: inline-block;
@@ -37,6 +40,14 @@ img{
 		@include rhythm(border-top-width, 1);
 		@include rhythm(border-left-width, 1);
 	}
+
+	.wp-caption-text {
+		border: 0;
+	}
+}
+
+.gallery-item img {
+	margin: 0 auto;
 }
 
 // Generate gallery columns only in frontend

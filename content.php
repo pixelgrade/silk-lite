@@ -15,11 +15,16 @@
 		</div><!-- .entry-meta -->
 		<?php endif; ?>
 
-		<?php the_title( sprintf( '<h1 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h1>' ); ?>
+		<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
-		<?php the_content(); ?>
+		<?php
+		/* translators: %s: Name of current post */
+		the_content( sprintf(
+			__( 'Continue reading %s', 'amelie_txtd' ),
+			the_title( '<span class="screen-reader-text">', '</span>', false )
+		) ); ?>
 
 		<?php
 			wp_link_pages( array(

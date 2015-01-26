@@ -19,6 +19,16 @@ function amelie_jetpack_setup() {
 	) );
 
 	/**
+	 * Add theme support for Featured Content
+	 * See: http://jetpack.me/support/featured-content/
+	 */
+	add_theme_support( 'featured-content', array(
+		'filter'     => 'amelie_get_featured_posts',
+		'max_posts'  => 10,
+		'post_types' => array( 'post' ),
+	) );
+
+	/**
 	 * Add theme support for site logo
 	 *
 	 * First, it's the image size we want to use for the logo thumbnails
@@ -39,4 +49,24 @@ function amelie_jetpack_setup() {
 
 }
 
-add_action( 'after_setup_theme', 'amelie_jetpack_setup' ); ?>
+add_action( 'after_setup_theme', 'amelie_jetpack_setup' );
+
+function amelie_get_featured_posts() {
+	return apply_filters( 'amelie_get_featured_posts', array() );
+}
+
+function amelie_has_featured_posts( $minimum = 1 ) {
+	if ( is_paged() )
+		return false;
+
+	$minimum = absint( $minimum );
+	$featured_posts = apply_filters( 'amelie_get_featured_posts', array() );
+
+	if ( ! is_array( $featured_posts ) )
+		return false;
+
+	if ( $minimum > count( $featured_posts ) )
+		return false;
+
+	return true;
+} ?>
