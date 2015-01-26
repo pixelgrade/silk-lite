@@ -55,25 +55,59 @@ function amelie_the_post_navigation() {
 	<nav class="navigation post-navigation" role="navigation">
 		<h2 class="screen-reader-text"><?php _e( 'Post navigation', 'amelie_txtd' ); ?></h2>
 		<div class="article-navigation">
-			<?php previous_post_link('<div class="navigation-item  navigation-item--previous">%link</div>',
-				sprintf('<span class="arrow"></span>
-                        <div class="navigation-item__content">
-                            <div class="navigation-item__wrapper">
-                                <span class="button-title">%s</span>
-                                <h3 class="post-title">%%title</h3>
-                            </div>
-                        </div>',
-					__('Previous Article', 'amelie_txtd' )) ); ?>
+			<?php
+			$prev_post = get_previous_post();
 
-			<?php next_post_link('<div class="navigation-item  navigation-item--next">%link</div>',
-				sprintf('<span class="arrow"></span>
+			if($prev_post) {
+				$prev_thumbnail = get_the_post_thumbnail($prev_post->ID, array(150,150) );
+
+				$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
+				if ( get_the_time( 'U', $prev_post->ID ) !== get_the_modified_time( 'U', $prev_post->ID ) ) {
+					$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time>';
+				}
+
+				$time_string = sprintf( $time_string,
+					esc_attr( get_the_date( 'c', $prev_post->ID ) ),
+					esc_html( get_the_date( '', $prev_post->ID ) )
+				);
+
+				previous_post_link('<div class="navigation-item  navigation-item--previous">%link</div>',
+					sprintf('<span class="arrow"></span>
                         <div class="navigation-item__content">
                             <div class="navigation-item__wrapper">
-                                <span class="button-title">%s</span>
+                            	<div class="post-thumb">%s</div>
+                            	%s
                                 <h3 class="post-title">%%title</h3>
                             </div>
-                        </div>',
-					__('Next Article', 'amelie_txtd' )) ); ?>
+                        </div>', $prev_thumbnail, $time_string  ) );
+			}
+
+			$next_post = get_next_post();
+
+			if($next_post) {
+				$next_thumbnail = get_the_post_thumbnail($next_post->ID, array(150,150) );
+
+				$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
+				if ( get_the_time( 'U', $next_post->ID ) !== get_the_modified_time( 'U', $next_post->ID ) ) {
+					$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time>';
+				}
+
+				$time_string = sprintf( $time_string,
+					esc_attr( get_the_date( 'c', $next_post->ID ) ),
+					esc_html( get_the_date( '', $next_post->ID ) )
+				);
+
+				next_post_link('<div class="navigation-item  navigation-item--next">%link</div>',
+					sprintf('<span class="arrow"></span>
+                        <div class="navigation-item__content">
+                            <div class="navigation-item__wrapper">
+                            	<div class="post-thumb">%s</div>
+                            	%s
+                                <h3 class="post-title">%%title</h3>
+                            </div>
+                        </div>', $next_thumbnail, $time_string ) );
+			}
+			?>
 	</nav><!-- .navigation -->
 	<?php
 }
@@ -99,7 +133,7 @@ function amelie_posted_on() {
 		'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
 	);
 
-	echo '<span class="posted-on">' . $posted_on . '</span>';
+	return '<span class="posted-on">' . $posted_on . '</span>';
 
 }
 endif;

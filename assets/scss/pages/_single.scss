@@ -169,17 +169,25 @@
 			}
 
 			.navigation-item__wrapper {
-				background: white;
-
-				transition: all 0.3s linear;
-				opacity:0;
+				position:relative;
 				left:-20px;
 
-				position:relative;
+				padding: em(12px);
+
+				background: #191415;
+				transition: all 0.3s linear;
+				opacity:0;
+
+
+				* {
+					color: white;
+				}
 			}
 
 			.arrow {
-				// background:lawngreen;
+				position: absolute;
+				top: 0;
+
 				height: $base-spacing-unit+8;
 				width: $base-spacing-unit+8;;
 				&:before, &:after{
@@ -191,7 +199,12 @@
 				}
 			}
 
-			a:hover {
+			.post-title {
+				transform: none;
+				margin: 0;
+			}
+
+			a:hover, a:focus {
 				.navigation-item__content {
 					width:auto;
 					height:auto;
@@ -209,7 +222,8 @@
 			left: 0;
 
 			.arrow {
-				float:left;
+				left: 0;
+
 				&:before {
 					content: "";
 					transform: rotate(45deg);
@@ -236,7 +250,8 @@
 			}
 
 			.arrow {
-				float:right;
+				right: 0;
+
 				&:after {
 					content: "";
 					transform: rotate(-45deg);
