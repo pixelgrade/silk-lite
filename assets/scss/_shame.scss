@@ -1,9 +1,13 @@
 // @todo no more shame
-// 
+
+#page {
+	overflow: hidden;
+}
+
 .content {
 	margin-left: auto;
 	margin-right: auto;
-	max-width: em(1290px);
+	max-width: em(1240px);
 }
 
 .site-header {
@@ -36,19 +40,9 @@
 	@extend .content;
 }
 
-hr{
-	margin: $base-spacing-unit 0;
+hr {
+	margin: $base-spacing-unit 0; 
 }
-
-.main-navigation {
-	margin: 100px 0;
-}
-
-.nav--main {
-	@extend .nav;
-	@extend .nav--block;
-}
-
 //@todo to be moved in footer.scss or something
 
 .footer-navigation{

@@ -1,3 +1,81 @@
+.entry-header--card {
+	text-align: center;
+}
+
+.entry-title--card {
+	@extend .h2;
+	margin-top: 0;
+}
+
+.entry-title--thumb {
+	color: $dark;
+	margin-top: 0;
+	@include fs(16px);
+}
+
+.entry-meta--card {
+	color: $gray;
+	text-transform: uppercase;
+	font-size: rem(10px);
+
+	a {
+		color: currentColor;
+	}
+
+	sup {
+		top: -0.285em;
+	}
+
+	.cat-links {
+
+		&:before {
+			content: "\2013";
+			margin-left: 0.5em;
+			margin-right: 0.5em;
+			position: relative;
+			top: -0.1em;
+		}
+	}
+}
+
+.entry-image--card {
+	img {
+		width: 100%;
+	}
+}
+
+.entry-image--thumb {
+	width: 40%;
+}
+
+.separator {
+	position: relative;
+	color: $secondary;
+	display: block;
+
+	&:after {
+		content: "";
+		border-bottom: 1px solid currentColor;
+		width: 100%;
+		position: absolute;
+		top: 50%;
+		left: 0;
+	}
+
+	span {
+		@extend %delta;
+		font-size: rem(11px);
+		color: currentColor;
+		display: inline-block;
+		background: white;
+		border: 1px solid currentColor;
+		text-transform: uppercase;
+		padding: 0.25em 1em;
+		position: relative;
+		z-index: 2;
+	}
+}
+
 .archive__grid {
 	margin-left: em(-55px);
 
@@ -10,46 +88,13 @@
 		&:after {
 			@extend .absolute;
 			content: "";
-			width: em(195px);
-			bottom: 0;
-			left: 50%;
-			margin-left: em(-65px);
 			border-bottom: 1px solid $secondary;
+			width: em(195px);
+			left: 50%;
+			bottom: 0;
+			content: "";
+			margin-left: em(-65px);
 		}
-	}
-
-	.entry-header {
-		text-align: center;
-	}
-
-	.entry-meta {
-		color: $gray;
-		text-transform: uppercase;
-		font-size: rem(10px);
-
-		a {
-			color: currentColor;
-		}
-
-		sup {
-			top: -0.285em;
-		}
-
-		.cat-links {
-
-			&:before {
-				content: "\2013";
-				margin-left: 0.5em;
-				margin-right: 0.5em;
-				position: relative;
-				top: -0.1em;
-			}
-		}
-	}
-
-	.entry-title {
-		@extend .h2;
-		margin-top: 0;
 	}
 
 	.entry-content {
