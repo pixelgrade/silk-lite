@@ -10,11 +10,11 @@
 
 	</div><!-- #content -->
 
-	<footer id="colophon" class="site-footer" role="contentinfo">
+	<footer id="colophon" class="site-footer">
 
 		<?php get_sidebar('footer'); ?>
 
-		<div class="footer-navigation">
+		<div class="footer-navigation" role="navigation">
 			<?php
 			wp_nav_menu(
 				array(
@@ -26,7 +26,7 @@
 				)
 			); ?>
 		</div>
-		<div class="site-info">
+		<div class="site-info" role="contentinfo">
 			<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'amelie_txtd' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'amelie_txtd' ), 'WordPress' ); ?></a>
 			<span class="sep"> | </span>
 			<?php printf( __( 'Theme: %1$s by %2$s.', 'amelie_txtd' ), 'Amelie', '<a href="http://pixelgrade.com" rel="designer">PixelGrade</a>' ); ?>
