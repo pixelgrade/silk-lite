@@ -1,0 +1,59 @@
+// About me widget
+.widget_amelie_about_me {
+	position: relative;
+	overflow: hidden;
+
+	.attachment-amelie-masonry-image {
+		position: absolute;
+		top: 0;
+		left: 50%;
+		z-index: 1;
+
+		height: 100%;
+		width: auto;
+		max-width: none;
+
+		transform: translateX(-50%);
+	}
+
+	.amelie-about-me-widget__container {
+		position: relative;
+		z-index: 5;
+
+		text-align: center;
+		color: white;
+
+		transform: translateY(50%);
+		transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1);
+	}
+
+		&:hover .amelie-about-me-widget__container {
+			transform: none;
+		}
+
+	.widget-title {
+		color: white;
+	}
+
+	.amelie-about-me-widget__name {
+		@extend %alpha;
+		@include fs(30px);
+		font-style: italic;
+
+		text-shadow: 1px 1px 1px rgba(150, 150, 150, 1);
+	}
+
+	.amelie-about-me__text {
+		background: -webkit-linear-gradient(white 0%, transparent 50%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+
+		transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1);
+	}
+
+		&:hover .amelie-about-me__text{
+			background: none;
+			-webkit-background-clip: initial;
+			-webkit-text-fill-color: initial;
+		}
+}

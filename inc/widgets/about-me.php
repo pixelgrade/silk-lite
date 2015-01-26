@@ -56,10 +56,11 @@ if ( ! class_exists( 'Amelie_About_Me_Widget' ) ) :
 
 			echo $args['before_widget'] . PHP_EOL;
 
-			echo '<div class="amelie-about-me-widget__container">' . PHP_EOL;
-
 			// The Background Image - empty string in case of error
 			echo wp_get_attachment_image( $instance['image_id'], 'amelie-masonry-image' ) . PHP_EOL;
+
+			echo '<div class="amelie-about-me-widget__container">' . PHP_EOL;
+
 
 			// The widget title
 			$title = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
@@ -71,6 +72,8 @@ if ( ! class_exists( 'Amelie_About_Me_Widget' ) ) :
 			if ( ! empty( $instance['name'] ) ) {
 				echo '<div class="amelie-about-me-widget__name">' . $instance['name'] . '</div>' . PHP_EOL;
 			}
+
+			echo '<hr/>' . PHP_EOL;
 
 			// About the author
 			if ( ! empty( $instance['filter'] ) ) {
