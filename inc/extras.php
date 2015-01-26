@@ -365,22 +365,22 @@ if ( ! class_exists( "Amelie_Walker_Primary_Mega_Menu" ) && class_exists( 'Walke
 						$menuposts->the_post();
 
 						if ( has_post_thumbnail() ) {
-							$menu_post_image = '<div class="article__thumb" >' . get_the_post_thumbnail( get_the_ID(), 'amelie-small-image' ) . '</div>';
+							$menu_post_image = '<div class="entry-image  entry-image--card" >' . get_the_post_thumbnail( get_the_ID(), 'amelie-small-image' ) . '</div>';
 						} else {
 							$menu_post_image = '';
 						}
 
 						$item_output .=
-							'<div class="submenu__article--large">' .
-							'<article class="article">' .
+						'<article class="article  submenu__article--large">' .
 							'<a href="' . get_permalink() . '">' . $menu_post_image . '</a>' .
-							'<div class="article__content">' .
-							amelie_get_posted_on_and_cats() .
-							'<a href="' . get_permalink() . '"><h2 class="article__title"><span class="hN">' . get_the_title() . '</span></h2>
-										<span class="read-more">' . __( 'More', 'amelie_txtd' ) . '</span></a>
-									</div>' .
-							'</article>' .
-							'</div>';
+							'<header class="entry-header  entry-header--card">' .
+								'<div class="entry-meta  entry-meta--card">' .
+									amelie_get_posted_on_and_cats() .
+								'</div><!-- .entry-meta -->' .
+								'<a href="' . get_permalink() . '"><h1 class="entry-title  entry-title--card">' . get_the_title() . '</h1></a>' .
+							'</header><!-- .entry-header -->' .
+							'<a class="separator" href="' . get_permalink() . '"><span>' . _( 'More', 'amelie_txtd' ) . '</span></a>' .
+						'</article>';
 
 						//if we still have posts - it's time for the little ones
 						if ( $menuposts->have_posts() ) {
@@ -390,20 +390,22 @@ if ( ! class_exists( "Amelie_Walker_Primary_Mega_Menu" ) && class_exists( 'Walke
 							while ( $menuposts->have_posts() )  : $menuposts->the_post();
 
 								if ( has_post_thumbnail() ) {
-									$menu_post_image = '<div class="article__thumb" >' . get_the_post_thumbnail( get_the_ID(), 'amelie-small-image' ) . '</div>';
+									$menu_post_image = get_the_post_thumbnail( get_the_ID(), 'amelie-small-image' );
 								} else {
 									$menu_post_image = '';
 								}
 
 								$item_output .=
 									'<li>' .
-									'<article class="article">' .
-									'<a href="' . get_permalink() . '">' . $menu_post_image . '</a>' .
-									'<div class="article__content">' .
-									amelie_get_posted_on_and_cats() .
-									'<a href="' . get_permalink() . '"><h3 class="article__title"><span class="hN">' . get_the_title() . '</span></h3></a>
-											</div>' .
-									'</article>' .
+										'<article class="article  flag">' .
+											'<div class="flag__img  entry-image  entry-image--thumb">' .
+												'<a href="' . get_permalink() . '">' . $menu_post_image . '</a>' .
+											'</div>' .
+											'<div class="flag__body  article__content">' .
+												'<div class="entry-meta--card  align-left">' . amelie_get_posted_on_and_cats() . '</div>' .
+												'<a href="' . get_permalink() . '"><h3 class="entry-title  entry-title--thumb  align-left">' . get_the_title() . '</h3></a>' .
+											'</div>' .
+										'</article>' .
 									'</li>';
 
 							endwhile;

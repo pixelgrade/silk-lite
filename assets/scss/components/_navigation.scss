@@ -17,11 +17,11 @@
 		text-align: left;
 		min-width: rem(240px);
 		text-align: center;
-		@include fs(12px);
+		font-size: rem(12px);
 
 		a {
 			display: block;
-			padding: rhythm(4/9) 0;
+			padding: rhythm(4/9) rhythm(2/3);
 			border-bottom: 1px solid $borders;
 		}
 
@@ -30,7 +30,8 @@
 			border-left-color: currentColor;
 			border-width: rem(3px) rem(4px);
 			right: 0;
-			top: rem(18px);
+			top: 50%;
+			margin-top: rem(-4px);
 		}
 
 		li:last-child > a {
@@ -39,13 +40,15 @@
 	}
 
 	.menu-item {
-		@extend %delta;
-		text-transform: uppercase;
 		position: relative;
 
 		&:hover {
 			z-index: 10;
 		}
+	}
+
+	> .menu-item:hover > a {
+		color: $accent;
 	}
 
 	.menu-item-has-children > a {
@@ -62,11 +65,33 @@
 		}
 	}
 
-	a {
-		display: inline-block;
+	> .menu-item-has-children.hover > a,
+	> .menu-item--mega.hover > a {
+		position: relative;
+
+		&:before {
+			content: "";
+			position: absolute;
+			z-index: 9999;
+			top: 100%;
+			left: 50%;
+			width: rem(10px);
+			height: rem(10px);
+			margin-top: rem(-5px);
+			transform: rotate(45deg);
+			background: white;
+			border-left: 1px solid $borders;
+			border-top: 1px solid $borders;
+		}
+	}
+
+	.menu-link {
+		@extend %delta;
 		color: currentColor;
+		display: inline-block;
 		letter-spacing: 0.1em;
 		padding: rhythm(1) rhythm(1.5);
+		text-transform: uppercase;
 	}
 }
 
@@ -101,7 +126,7 @@
 
 	.menu-item--mega & {
 		border: 1px solid $borders;
-		padding: rhythm(1);
+		padding: rem(40px);
 
 		> .sub-menu {
 			text-align: left;
@@ -124,16 +149,13 @@
 	}
 
 	.sub-menu {
+		@extend %sub-menu-transition-out;
 		border: 1px solid $borders;
 		padding: rhythm(1/2) rhythm(1);
 		background: white;
 		position: absolute;
 		top: -1px;
 		margin-top: rhythm(-1/2);
-	}
-
-	.sub-menu {
-		@extend %sub-menu-transition-out;
 	}
 
 	> .sub-menu {
@@ -148,29 +170,53 @@
 	}
 }
 
-.nav--main .menu-item--mega {
-	position: static;
+.menu-item--mega {
+	position: static !important;
+
+	.sub-menu-wrapper .sub-menu {
+		> .menu-item > a {
+			color: $dark;
+			border-bottom-color: $borders;
+		}
+	}
 	
-	.sub-menu {
+	.sub-menu-wrapper > .sub-menu {
 		background-color: $accent;
 		color: white;
-	}
 
-	a {
-		border-bottom-color: $secondary;
-	}
+		> .menu-item > a {
+			color: white;
+			border-bottom-color: $secondary;
+		}
 
-	&.hover {
-		color: $accent;
-	}
-
-	.menu-item:hover {
-		color: $secondary;
+		> .menu-item:hover > a {
+			color: $secondary;
+		}
 	}
 }
 
 .submenu__article--large,
 .submenu__small-articles {
 	display: inline-block;
-	width: 500px;
+}
+
+.submenu__article--large {
+	width: rem(340px);
+
+	.sub-menu + & {
+		margin-left: rem(55px);
+	}
+}
+
+
+.submenu__small-articles {
+	width: rem(380px);
+	list-style: none;
+	margin: 0;
+
+	.submenu__article--large + & {
+		padding-left: rem(40px);
+		border-left: 1px solid $borders;
+		margin-left: rem(40px);
+	}
 }
