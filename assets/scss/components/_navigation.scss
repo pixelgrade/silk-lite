@@ -1,3 +1,6 @@
+
+// ---------- #MAIN MENU
+
 .main-navigation {
 	margin: 100px 0;
 }
@@ -89,9 +92,7 @@
 		@extend %delta;
 		color: currentColor;
 		display: inline-block;
-		letter-spacing: 0.1em;
 		padding: rhythm(1) rhythm(1.5);
-		text-transform: uppercase;
 	}
 }
 
@@ -218,5 +219,43 @@
 		padding-left: rem(40px);
 		border-left: 1px solid $borders;
 		margin-left: rem(40px);
+	}
+}
+
+
+
+
+// ---------- #TOP MENUS
+
+.top-header-bar {
+	@extend .clearfix;
+	background: black;
+
+	a {
+		color: $gray;
+	}
+}
+
+.nav--toolbar {
+	@extend %delta;
+	display: inline-block;
+	font-size: rem(11px);
+	margin-left: rem(-15px);
+	margin-right: rem(-15px);
+
+	& + & {
+		margin-left: rem(15px);
+	}
+
+	li {
+		display: inline-block;
+	}
+
+	a {
+		padding: rem(15px);
+
+		&:hover {
+			color: white;
+		}
 	}
 }
