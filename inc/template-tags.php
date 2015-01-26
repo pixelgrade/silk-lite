@@ -61,6 +61,10 @@ function amelie_the_post_navigation() {
 			if($prev_post) {
 				$prev_thumbnail = get_the_post_thumbnail($prev_post->ID, array(150,150) );
 
+				$post_cat = wp_get_post_categories($prev_post->ID);
+				$post_cat = $post_cat[0];
+				$post_category = get_category($post_cat);
+
 				$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 				if ( get_the_time( 'U', $prev_post->ID ) !== get_the_modified_time( 'U', $prev_post->ID ) ) {
 					$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time>';
@@ -71,20 +75,31 @@ function amelie_the_post_navigation() {
 					esc_html( get_the_date( '', $prev_post->ID ) )
 				);
 
-				previous_post_link('<div class="navigation-item  navigation-item--previous">%link</div>',
+				previous_post_link('<span class="navigation-item  navigation-item--previous">%link</span>',
 					sprintf('<span class="arrow"></span>
-                        <div class="navigation-item__content">
-                            <div class="navigation-item__wrapper">
-                            	<div class="post-thumb">%s</div>
-                            	%s
-                                <h3 class="post-title">%%title</h3>
-                            </div>
-                        </div>', $prev_thumbnail, $time_string  ) );
+                        <span class="navigation-item__content">
+                            <span class="navigation-item__wrapper  flexbox">
+                            	<span class="flexbox__item">
+                            		<span class="post-thumb">%s</span>
+                            	</span>
+                            	<span class="flexbox__item">
+	                                <span class="post-meta">
+	                                %s
+	                                <span class="post-category">%s</span>
+	                                </span>
+	                                <h3 class="post-title">%%title</h3>
+                            	</span>
+                            </span>
+                        </span>', $prev_thumbnail, $time_string, $post_category->name  ) );
 			}
 
 			$next_post = get_next_post();
 
 			if($next_post) {
+				$post_cat = wp_get_post_categories($next_post->ID);
+				$post_cat = $post_cat[0];
+				$post_category = get_category($post_cat);
+
 				$next_thumbnail = get_the_post_thumbnail($next_post->ID, array(150,150) );
 
 				$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
@@ -97,15 +112,22 @@ function amelie_the_post_navigation() {
 					esc_html( get_the_date( '', $next_post->ID ) )
 				);
 
-				next_post_link('<div class="navigation-item  navigation-item--next">%link</div>',
+				next_post_link('<span class="navigation-item  navigation-item--next">%link</span>',
 					sprintf('<span class="arrow"></span>
-                        <div class="navigation-item__content">
-                            <div class="navigation-item__wrapper">
-                            	<div class="post-thumb">%s</div>
-                            	%s
-                                <h3 class="post-title">%%title</h3>
-                            </div>
-                        </div>', $next_thumbnail, $time_string ) );
+                         <span class="navigation-item__content">
+                            <span class="navigation-item__wrapper  flexbox">
+                            	<span class="flexbox__item">
+                            		<span class="post-thumb">%s</span>
+                            	</span>
+                            	<span class="flexbox__item">
+	                                <span class="post-meta">
+	                                %s
+	                                <span class="post-category">%s</span>
+	                                </span>
+	                                <h3 class="post-title">%%title</h3>
+                            	</span>
+                            </span>
+                        </span>', $next_thumbnail, $time_string, $post_category->name ) );
 			}
 			?>
 	</nav><!-- .navigation -->
