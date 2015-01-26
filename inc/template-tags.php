@@ -240,7 +240,9 @@ if ( ! function_exists( 'amelie_the_first_paragraph' ) ) :
 		//remove all tags except <a><strong><em>
 		$str = strip_tags( $str, '<a><strong><em>' );
 
-		echo '<p class="intro-paragraph">' . $str . '</p>';
+		//we will hide this paragraph because it is a duplicate of the first paragraph
+		//and it makes no sense for someone with accesibility issues to read it twice
+		echo '<p class="intro-paragraph" aria-hidden="true">' . $str . '</p>';
 	}
 endif;
 
