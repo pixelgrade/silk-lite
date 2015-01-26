@@ -145,14 +145,32 @@
 	text-decoration: underline;
 }
 
-.post-password-form {
-	// @todo to be continued
+.post-password-form, .search-form {
+	label, input {
+		display: inline-block;
+	}
 }
 
 .error404, .search-no-results {
 	// @todo to be continued
 }
 
+.page-links {
+	margin: em(40px) 0;
+
+	span, a {
+		padding: em(12px) em(6px);
+		text-decoration: underline;
+	}
+
+	span.current {
+		text-decoration: none;
+	}
+}
+span.pagination-title {
+	font-weight: bold;
+	text-decoration: none;
+}
 
 // Next / Previous links
 
@@ -388,6 +406,7 @@
 		}
 	}
 }
+
 
 // Jetpack related posts - in left sidebar
 .jp-relatedposts-post {

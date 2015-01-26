@@ -15,7 +15,7 @@
 		<?php the_content(); ?>
 		<?php
 			wp_link_pages( array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'amelie_txtd' ),
+				'before' => '<div class="page-links">' . __( '<span class="pagination-title">Pages:</span>', 'amelie_txtd' ),
 				'after'  => '</div>',
 			) );
 		?>
