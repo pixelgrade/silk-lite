@@ -21,6 +21,7 @@
 					'theme_location' => 'footer',
 					'container'      => '',
 					'menu_class'     => 'nav  nav--footer',
+					'depth'          => - 1, //flatten if there is any hierarchy
 					'items_wrap'         => '<nav><h5 class="screen-reader-text">'.__( 'Footer navigation', 'amelie_txtd' ).'</h5><ul id="%1$s" class="%2$s">%3$s</ul></nav>',
 				)
 			); ?>
