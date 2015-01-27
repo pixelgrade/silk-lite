@@ -53,6 +53,8 @@
 	color: $secondary;
 	display: block;
 
+	text-align: center;
+
 	&:after {
 		content: "";
 		border-bottom: 1px solid currentColor;

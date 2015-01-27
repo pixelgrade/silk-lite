@@ -109,7 +109,7 @@ function amelie_widgets_init() {
 		'id'            => 'sidebar-1',
 		'description'   => __( 'Add widgets here to appear in your main sidebar.', 'amelie_txtd' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
+		'after_widget'  => '<span class="separator" role="presentation" href="#"><span>' . _( 'More', 'amelie_txtd' ) . '</span></span></aside>',
 		'before_title'  => '<h3 class="widget-title">',
 		'after_title'   => '</h3>',
 	) );
