@@ -49,6 +49,7 @@
 				'theme_location' => 'primary',
 				'container'      => '',
 				'menu_class'     => 'menu nav  nav--main  js-nav--main',
+				'items_wrap' => '<ul id="%1$s" class="%2$s" role="menubar" aria-hidden="false">%3$s</ul>',
 				'walker'         => new Amelie_Walker_Primary_Mega_Menu()
 			) ); ?>
 		</nav><!-- #site-navigation -->

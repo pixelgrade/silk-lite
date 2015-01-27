@@ -269,7 +269,7 @@ if ( ! class_exists( "Amelie_Walker_Primary_Mega_Menu" ) && class_exists( 'Walke
 	class Amelie_Walker_Primary_Mega_Menu extends Walker_Nav_Menu {
 
 		public function start_lvl( &$output, $depth = 0, $args = array() ) {
-			$output .= "<ul class=\"sub-menu\">" . PHP_EOL;
+			$output .= '<ul class="sub-menu" aria-hidden="true" role="menu">' . PHP_EOL;
 		}
 
 		public function end_lvl( &$output, $depth = 0, $args = array() ) {
@@ -309,9 +309,15 @@ if ( ! class_exists( "Amelie_Walker_Primary_Mega_Menu" ) && class_exists( 'Walke
 			// passed classes
 			$classes     = empty( $item->classes ) ? array() : (array) $item->classes;
 			$class_names = esc_attr( implode( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) ) );
+			$aria = 'role="menuitem"';
+			if ( $this->main_has_subnav( $item, $depth ) ) {
+				$aria .= ' aria-haspopup="true"';
+			} else {
+				$aria .= ' tabindex="-1"';
+			}
 
 			// build html
-			$output .= '<li id="nav--top__item-' . $item->ID . '" class="nav__item ' . $depth_class_names . ' ' . $class_names . '">' . PHP_EOL;
+			$output .= '<li id="nav--top__item-' . $item->ID . '" class="nav__item ' . $depth_class_names . ' ' . $class_names . '" ' . $aria .'>' . PHP_EOL;
 
 			// link attributes
 			$attributes = ! empty( $item->attr_title ) ? ' title="' . esc_attr( $item->attr_title ) . '"' : '';
@@ -331,7 +337,7 @@ if ( ! class_exists( "Amelie_Walker_Primary_Mega_Menu" ) && class_exists( 'Walke
 				$args['after']
 			) . PHP_EOL;
 
-			if ( $depth == 0 ) {
+			if ( $depth === 0 && $this->main_has_subnav( $item, $depth ) ) {
 				//the mega menu wrapper
 				$item_output .= '<div class="sub-menu-wrapper">' . PHP_EOL;
 			}
@@ -418,13 +424,41 @@ if ( ! class_exists( "Amelie_Walker_Primary_Mega_Menu" ) && class_exists( 'Walke
 					}
 				}
 
-				$item_output .= '</div>' . PHP_EOL; //close the .sub-menu-wrapper
+				if ( $this->main_has_subnav( $item, $depth ) ) {
+					$item_output .= '</div>' . PHP_EOL; //close the .sub-menu-wrapper
+				}
 
 			}
 
 
 			$output .= $item_output;
 			$output .= "</li>" . PHP_EOL;
+		}
+
+		private function main_has_subnav( $item, $depth ) {
+
+			if ( true === $this->has_children ) {
+				return true;
+			}
+
+			if ( 0 === $depth && $item->object == 'category' ) {
+
+				$post_args = array(
+					'posts_per_page' => 1,
+					'offset'         => 0,
+					'post_type'      => 'post',
+					'post_status'    => 'publish',
+					'cat'            => $item->object_id,
+				);
+
+				$menuposts = new WP_Query( $post_args );
+
+				if ( $menuposts->have_posts() ) {
+					return true;
+				}
+			}
+
+			return false;
 		}
 
 	} # class
