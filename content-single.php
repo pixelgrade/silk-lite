@@ -18,9 +18,11 @@
 
 		<?php the_title( '<h1 class="entry-title  page-title">', '</h1>' ); ?>
 
-		<?php if ( has_excerpt() ) {
-			the_excerpt();
-		} ?>
+		<?php if ( has_excerpt() ) : ?>
+			<p class="intro-paragraph">
+			<?php the_excerpt(); ?>
+			</p>
+		<?php endif; ?>
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
