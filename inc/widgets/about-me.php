@@ -73,7 +73,7 @@ if ( ! class_exists( 'Amelie_About_Me_Widget' ) ) :
 				echo '<div class="amelie-about-me-widget__name">' . $instance['name'] . '</div>' . PHP_EOL;
 			}
 
-			echo '<hr/>' . PHP_EOL;
+			echo '<hr class="separator--line"/>' . PHP_EOL;
 
 			// About the author
 			if ( ! empty( $instance['filter'] ) ) {

@@ -126,19 +126,6 @@
 	}
 }
 
-.widget {
-	border: 1px solid $borders;
-	padding: rhythm(1);
-	margin-bottom: rhythm(1/2);
-}
-
-
-.widget-title {
-	@extend .h4;
-	margin-top: 0;
-	text-align: center;
-}
-
 // #JETPACK
 .infinite-scroll {
 	

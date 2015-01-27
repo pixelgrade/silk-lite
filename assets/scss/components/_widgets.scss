@@ -19,6 +19,16 @@
 .widget {
 	ul {
 		@extend .nav;
+		@extend .nav--stacked;
+	}
+
+	a{
+		@extend %alpha;
+
+		padding: rem(6px) 0;
+
+		color: $dark;
+		@include fs(17px);
 	}
 
 	.separator {
@@ -36,6 +46,20 @@
 	}
 
 }
+
+.widget {
+	border: 1px solid $borders;
+	padding: rhythm(1);
+	margin-bottom: rhythm(1/2);
+}
+
+
+.widget-title {
+	@extend .h4;
+	margin-top: 0;
+	text-align: center;
+}
+
 
 .widget_amelie_about_me {
 	position: relative;
@@ -129,17 +153,20 @@
 	.separator {
 		display: initial;
 	}
+}
 
-	li {
+.widget_categories, .widget_archive {
+	ul li {
+		display: inline-block;
 		width: 49%;
 	}
+}
+
+//.widget_recent_comments
+.recentcomments{
+	padding: rem(6px) 0;
 
 	a{
-		@extend %alpha;
-
-		padding: rem(6px) 0;
-
-		color: $dark;
-		@include fs(17px);
+		text-decoration: underline;
 	}
 }
