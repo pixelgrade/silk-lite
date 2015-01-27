@@ -227,25 +227,6 @@ if ( ! function_exists( 'amelie_posted_on_and_cats' ) ) :
 	}
 endif;
 
-if ( ! function_exists( 'amelie_the_first_paragraph' ) ) :
-	/**
-	 * Prints HTML with the first paragraph from a WordPress post. Use inside the Loop.
-	 *
-	 */
-	function amelie_the_first_paragraph() {
-		//get the filtered/processed content
-		$str = apply_filters( 'the_content', get_the_content() );
-		//search for the first occurrence of </p>
-		$str = substr( $str, 0, strpos( $str, '</p>' ) + 4 );
-		//remove all tags except <a><strong><em>
-		$str = strip_tags( $str, '<a><strong><em>' );
-
-		//we will hide this paragraph because it is a duplicate of the first paragraph
-		//and it makes no sense for someone with accesibility issues to read it twice
-		echo '<p class="intro-paragraph" aria-hidden="true">' . $str . '</p>';
-	}
-endif;
-
 if ( ! function_exists( 'amelie_entry_footer' ) ) :
 /**
  * Prints HTML with meta information for the categories, tags and comments.

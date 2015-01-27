@@ -18,7 +18,11 @@
 
 		<?php the_title( '<h1 class="entry-title  page-title">', '</h1>' ); ?>
 
-		<?php amelie_the_first_paragraph(); ?>
+		<?php if ( has_excerpt() ) : ?>
+			<p class="intro-paragraph">
+			<?php the_excerpt(); ?>
+			</p>
+		<?php endif; ?>
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
@@ -30,8 +34,8 @@
 		the_content(); ?>
 		<?php
 			wp_link_pages( array(
-				'before' => '<div class="page-links">' . __( '<span class="pagination-title">Pages:</span>', 'amelie_txtd' ),
-				'after'  => '</div>',
+				'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'amelie_txtd' ),
+				'after'  => '</span></div>',
 			) );
 		?>
 
