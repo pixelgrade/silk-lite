@@ -38,13 +38,15 @@
 
 			$description = get_bloginfo( 'description', 'display' );
 			if ( $description || is_customize_preview() ) : ?>
-				<p class="site-description"><?php echo $description; ?></p>
+				<p class="site-description">
+					<span class="site-description-text"><?php bloginfo( 'description' ); ?></span>
+				</p>
 			<?php endif;
 			?>
 		</div><!-- .site-branding -->
 
 		<nav id="site-navigation" class="main-navigation" role="navigation">
-			<button class="menu-toggle" aria-controls="menu-primary-menu" aria-expanded="false"><?php _e( 'Primary Menu', 'amelie_txtd' ); ?></button>
+			<button class="menu-toggle  assistive-text" aria-controls="menu-primary-menu" aria-expanded="false"><?php _e( 'Primary Menu', 'amelie_txtd' ); ?></button>
 			<?php wp_nav_menu( array(
 				'theme_location' => 'primary',
 				'container'      => '',
