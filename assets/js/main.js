@@ -710,17 +710,6 @@
     var $nav        = $('.nav--main').addClass('hover-intent'),
         $navItems   = $nav.find('li');
 
-    
-    $navItems.each(function (i, item) {
-      var $navItem = $(item);
-      
-      // test if it's a sub-menu or a mega menu
-      if ($navItem.children().children('.submenu__article--large').length) {
-        $navItem.addClass('menu-item--mega');
-      }
-
-    });
-
     $navItems.hoverIntent({
       over: showSubMenu,
       out: hideSubMenu,
