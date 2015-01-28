@@ -31,6 +31,10 @@
 		@include fs(17px);
 	}
 
+	&.widget a {
+		display: inline-block;
+	}
+
 	.separator {
 		position: absolute;
 		bottom: rem(35px);
@@ -61,6 +65,11 @@
 }
 
 
+
+
+
+/* Widget - About me */
+
 .widget_amelie_about_me {
 	position: relative;
 	overflow: hidden;
@@ -83,12 +92,10 @@
 		left: 50%;
 		z-index: 1;
 
+		width: auto;
 		min-height: 100%;
 		min-width: 100%;
-		width: auto;
 		max-width: none;
-
-		object-fit: cover;
 
 		transform: translateX(-50%) translateY(-50%);
 	}
@@ -124,6 +131,12 @@
 
 	}
 }
+
+
+
+
+
+/* Widget - archive */
 
 .widget_archive {
 	max-height: 220px;
@@ -162,11 +175,62 @@
 	}
 }
 
-//.widget_recent_comments
+
+.widget_categories li {
+	vertical-align: top;
+
+	.children {
+		padding-left: rem(10px);
+	}
+}
+
+
+/* Widget - recent comments */
+
 .recentcomments{
 	padding: rem(6px) 0;
 
 	a{
 		text-decoration: underline;
 	}
+}
+
+
+
+
+
+/* Widget - RSS */
+
+.widget_rss{
+	li{
+		margin-bottom: $u;
+	}
+
+	cite{
+		display: block;
+		margin-top: $u/4;
+	}
+
+	&.widget_rss a {
+			display: inline;
+	}
+}
+
+.rsswidget{ //rss entry title
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+.rss-date{
+	&:before{
+		content: '-';
+
+		display: inline-block;
+		margin: 0 3px;
+	}
+}
+
+.widget_rss_links a{
+	display: inline-block;
+	vertical-align: middle;
 }
