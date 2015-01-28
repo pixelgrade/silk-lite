@@ -130,7 +130,10 @@
 @import "objects/tables";
 @import "objects/flag";
 @import "objects/media";
-@import "objects/buttons";
+//@import "objects/buttons";
+@import "objects/button";
+@import "objects/search-form";
+@import "objects/separators";
 
 
 
@@ -154,6 +157,7 @@
 
 // #COMPONENTS
 @import "components/header";
+@import "components/footer";
 @import "components/navigation";
 @import "components/overlay-search";
 @import "components/widgets";

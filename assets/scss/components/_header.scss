@@ -19,13 +19,25 @@
     text-transform: uppercase;
     line-height: 0.7;
     letter-spacing: 0.03em;
-    margin-bottom: rem(10px);
 
     .site-logo-link + & {
         margin-top: rhythm(1);
     }
+
+    .site-logo-link + & > a:empty {
+        display: block;
+        margin-top: rhythm(-1);
+    }
 }
 
+.site-header .site-logo,
+.site-title {
+    margin-bottom: rem(10px);
+}
+
+.site-header .site-logo-link[style*="display: none"] + .site-title {
+    margin-top: 0;
+}
 
 .site-description {
     @extend %gamma;
@@ -61,7 +73,7 @@
     padding-right: 1.47em;
     background: white;
 
-    &:empty{
+    &:empty {
         display: none;
     }
 }
