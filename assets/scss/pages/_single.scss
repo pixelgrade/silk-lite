@@ -66,8 +66,6 @@
 		}
 
 		p {
-			@include fs(14px);
-
 			@include query-above($lap) {
 				@include rhythm(margin-bottom, 3);
 			}
