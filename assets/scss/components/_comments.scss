@@ -409,12 +409,15 @@ p.comment-form-email{
 	@include query-above($lap){
 		&.form-submit{
 			float: right;
-			width: 30%;
 		}
 	}
 
 	#submit {
+		@extend %btn;
 		border: 0;
+
+		padding-left: rem(28px);
+		padding-right: rem(28px);
 
 		@include query-below($lap){
 			width: 100%;

@@ -53,6 +53,8 @@
 	color: $secondary;
 	display: block;
 
+	text-align: center;
+
 	&:after {
 		content: "";
 		border-bottom: 1px solid currentColor;
@@ -122,19 +124,6 @@
 			font-size: 0.75em;
 		}
 	}
-}
-
-.widget {
-	border: 1px solid $borders;
-	padding: rhythm(1);
-	margin-bottom: rhythm(1/2);
-}
-
-
-.widget-title {
-	@extend .h4;
-	margin-top: 0;
-	text-align: center;
 }
 
 // #JETPACK
