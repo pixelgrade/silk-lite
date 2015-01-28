@@ -308,16 +308,14 @@ if ( ! class_exists( "Amelie_Walker_Primary_Mega_Menu" ) && class_exists( 'Walke
 
 			// passed classes
 			$classes     = empty( $item->classes ) ? array() : (array) $item->classes;
-			$class_names = esc_attr( implode( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) ) );
-			$aria = 'role="menuitem"';
-			if ( $this->main_has_subnav( $item, $depth ) ) {
-				$aria .= ' aria-haspopup="true"';
-			} else {
-				$aria .= ' tabindex="-1"';
+			$has_subnav = $this->main_has_subnav( $item, $depth );
+			if ( true === $has_subnav ) {
+				$classes[] = 'menu-item--mega';
 			}
+			$class_names = esc_attr( implode( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) ) );
 
 			// build html
-			$output .= '<li id="nav--top__item-' . $item->ID . '" class="nav__item ' . $depth_class_names . ' ' . $class_names . '" ' . $aria .'>' . PHP_EOL;
+			$output .= '<li id="nav--top__item-' . $item->ID . '" class="nav__item ' . $depth_class_names . ' ' . $class_names . '">' . PHP_EOL;
 
 			// link attributes
 			$attributes = ! empty( $item->attr_title ) ? ' title="' . esc_attr( $item->attr_title ) . '"' : '';

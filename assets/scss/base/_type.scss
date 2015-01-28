@@ -79,8 +79,8 @@ h4, .h4 {
 /* Paragraphs */
 p {
 	margin-top: 0;
-	@include font-size(16px);
-    @include baseline(16px);
+	@include font-size(14px);
+    @include baseline(14px);
 
     @if $editor-style {
     	@include rhythm(margin-bottom, 3);
@@ -111,7 +111,80 @@ acronym {
 
 /* Blockquotes */
 
-blockquote {}
+blockquote {
+	@extend %alpha;
+
+	position: relative;
+
+	margin: rem(60px) 0;
+	padding: rem(40px) rem(70px);
+
+	@include fs(20px);
+	font-style: italic;
+	text-align: center;
+
+	cite {
+		@extend %beta;
+
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		z-index: 1;
+
+		width: 100%;
+
+		font-size: rem(12px);
+		font-style: normal;
+		font-weight: 200;
+
+		background-color: white;
+
+		a{
+			color: $dark;
+			border-bottom: 1px solid $dark;
+		}
+	}
+
+	&:before {
+		content: '';
+		color: white;
+
+		position: absolute;
+		left: 50%;
+		top: 0;
+
+		width: 200px;
+		max-width: 200px;
+		height: 12px;
+		display: block;
+
+		background-image: url('assets/img/separator-simple-inversed.svg');
+		background-color: $secondary;
+
+		transform: translateX(-50%);
+	}
+
+	&:after {
+		content: "";
+
+		position: absolute;
+		left: 50%;
+		bottom: 0;
+
+		width: 200px;
+		max-width: 200px;
+		height: 2px;
+		display: block;
+
+		background-color: $borders;
+
+		transform: translateX(-50%);
+	}
+}
+
+
+
+
 
 /* Tables */
 

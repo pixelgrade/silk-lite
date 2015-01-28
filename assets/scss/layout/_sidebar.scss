@@ -12,9 +12,14 @@
 			padding-right: em(400px);
 		}
 
-		.sidebar {
+		.sidebar--main {
 			float: right;
 			width: em(340px);
 		}
  	}
+}
+
+.sidebar--footer {
+	max-width: rem(340px);
+	margin: 0 auto;
 }

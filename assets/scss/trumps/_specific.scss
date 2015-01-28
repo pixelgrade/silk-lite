@@ -1,10 +1,10 @@
 .intro {
     margin-bottom: 2.25em;
-    font-size: (23/18) + em;
+    font-size: (23/16) + em;
     -webkit-font-smoothing: auto;
 
     @include query-below($lap) {
-        font-size: 1em;
+        font-size: 1.2em;
         color: #000000;
     }
 }
@@ -20,11 +20,13 @@
     @extend %alpha;
 
     float: left;
-    @include font-size(82px);
+    @include font-size(76px);
     line-height: 1;
-    margin-top: -.1em;
-    @include rhythm(margin-bottom, -1, 82px);
-    @include rhythm(margin-right, 1, 82px);
+    margin-top: -0.1em;
+    @include rhythm(margin-bottom, -1, 76px);
+    @include rhythm(margin-right, 1, 76px);
+
+    text-shadow: 2px 2px 0px white, 4px 4px 0px $secondary;
 }
 
 // span.dropcap{ font-weight: bold; }
@@ -43,6 +45,6 @@
         top: -4px; left: 0;
         bottom: -4px; right: 0;
 
-        background: $accent;
+        background: rgba($secondary, 0.4);
     }
 }

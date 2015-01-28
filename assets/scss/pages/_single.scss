@@ -52,8 +52,6 @@
 		}
 
 		p {
-			@include fs(14px);
-
 			@include query-above($lap) {
 				@include rhythm(margin-bottom, 3);
 			}
@@ -137,8 +135,8 @@
 	}
 }
 
-.error404, .search-no-results {
-	// @todo to be continued
+.error404 {
+	text-align: center;
 }
 
 .page-links {
