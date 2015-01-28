@@ -124,16 +124,21 @@
 }
 
 .page-title {
-	margin-top: rhythm(-1/2);
-	margin-bottom: rhythm(2);
+	margin-bottom: 0;
 }
 
 .search,
 .archive,
 .blog {
 
-	.page-title {
+	.page-header {
 		text-align: center;
+		margin-top: rhythm(-1/2);
+		margin-bottom: rhythm(2);
+	}
+
+	.page-title {
+		margin: 0;
 
 		span {
 			display: block;
@@ -141,6 +146,11 @@
 			font-size: 0.75em;
 		}
 	}
+}
+
+.taxonomy-description {
+	margin-top: rhythm(0.5);
+	color: $gray;
 }
 
 // #JETPACK

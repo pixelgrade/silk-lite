@@ -711,7 +711,15 @@
         $navItems   = $nav.find('li');
 
     $('.flexslider').flexslider({
-      controlNav: false
+      controlNav: false,
+      prevText: "<span>Previous</span>",
+      nextText: "<span>Next</span>",
+      start: function () {
+        var $arrow = $('.svg-templates .slider-arrow');
+
+        $arrow.clone().appendTo('.flex-direction-nav .flex-prev');
+        $arrow.clone().appendTo('.flex-direction-nav .flex-next');
+      }
     });
     
     $navItems.each(function (i, item) {
