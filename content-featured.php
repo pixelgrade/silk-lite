@@ -12,32 +12,34 @@ if ( empty( $featured ) )
 ?>
 
 <div id="featured-content" class="flexslider">
-	<div class="flex-viewport-wrapper">
-		<ul class="featured-posts slides" id="featured-slides">
-		<?php
-			foreach ( $featured as $post ) :
-				setup_postdata( $post ); ?>
+	<ul class="featured-posts slides" id="featured-slides">
+	<?php
+		foreach ( $featured as $post ) :
+			setup_postdata( $post ); ?>
 
-			<li id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-				<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-					<span class="entry-thumbnail">
-						<?php if ( has_post_thumbnail() ) : ?>
-							<?php the_post_thumbnail( 'amelie-single-image' ); ?>
-						<?php endif; ?>
-					</span>
-				</a>
-				<header class="entry-header">
-					<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
+		<li id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-					<div class="entry-meta">
-						<?php amelie_posted_on(); ?>
-						<?php edit_post_link( __( 'Edit', 'amelie_txtd' ), '<span class="sep"> | </span><span class="edit-link">', '</span>' ); ?>
-					</div><!-- .entry-meta -->
-				</header><!-- .entry-header -->
-			</li><!-- #post-## -->
-		<?php
-			endforeach;
-			wp_reset_postdata(); ?>
-		</ul>
-	</div>
+			<div class="flag">
+
+				<div class="flag__img  one-half">
+					<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+						<span class="entry-thumbnail">
+							<?php if ( has_post_thumbnail() ) : ?>
+								<?php the_post_thumbnail( 'amelie-single-image' ); ?>
+							<?php endif; ?>
+						</span>
+					</a>
+				</div>
+
+				<div class="flag__body  one-half">
+					<?php get_template_part("content"); ?>
+				</div>
+
+			</div>
+
+		</li><!-- #post-## -->
+	<?php
+		endforeach;
+		wp_reset_postdata(); ?>
+	</ul>
 </div>

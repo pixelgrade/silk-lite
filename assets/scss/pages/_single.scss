@@ -4,20 +4,6 @@
 		@include rhythm(margin-bottom, 3);
 	}
 
-	.entry-meta {
-		@include font-size(12px);
-		@include rhythm(margin-bottom, 1, 12px);
-
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		color: $gray;
-
-		a{
-			color: $gray;
-			text-decoration: none;
-		}
-	}
-
 	.entry-header{
 		@include rhythm(margin-bottom, 5);
 	}

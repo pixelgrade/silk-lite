@@ -33,7 +33,9 @@
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
-
+<div class="svg-templates  hidden">
+	<?php get_template_part("assets/svg/slider-arrow-svg") ?>
+</div>
 <?php wp_footer(); ?>
 
 </body>

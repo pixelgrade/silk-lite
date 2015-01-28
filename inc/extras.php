@@ -369,19 +369,19 @@ if ( ! class_exists( "Amelie_Walker_Primary_Mega_Menu" ) && class_exists( 'Walke
 						$menuposts->the_post();
 
 						if ( has_post_thumbnail() ) {
-							$menu_post_image = '<a href="' . get_permalink() . '"><div class="entry-image  entry-image--card" >' . get_the_post_thumbnail( get_the_ID(), 'amelie-small-image' ) . '</div></a>' . PHP_EOL;
+							$menu_post_image = '<a href="' . get_permalink() . '"><div class="entry-image">' . get_the_post_thumbnail( get_the_ID(), 'amelie-small-image' ) . '</div></a>' . PHP_EOL;
 						} else {
 							$menu_post_image = '';
 						}
 
 						$item_output .=
-						'<article class="article  submenu__article--large">' . PHP_EOL .
+						'<article class="submenu__card  card">' . PHP_EOL .
 							$menu_post_image .
-							'<header class="entry-header  entry-header--card">' . PHP_EOL .
-								'<div class="entry-meta  entry-meta--card">' . PHP_EOL .
+							'<header class="entry-header">' . PHP_EOL .
+								'<div class="entry-meta">' . PHP_EOL .
 									amelie_get_posted_on_and_cats() . PHP_EOL .
 								'</div><!-- .entry-meta -->' . PHP_EOL .
-								'<a href="' . get_permalink() . '"><h1 class="entry-title  entry-title--card">' . get_the_title() . '</h1></a>' . PHP_EOL .
+								'<a href="' . get_permalink() . '"><h1 class="entry-title">' . get_the_title() . '</h1></a>' . PHP_EOL .
 							'</header><!-- .entry-header -->' . PHP_EOL .
 							'<a class="separator" role="presentation" href="' . get_permalink() . '"><span>' . _( 'More', 'amelie_txtd' ) . '</span></a>' . PHP_EOL .
 						'</article>' . PHP_EOL;
@@ -389,7 +389,7 @@ if ( ! class_exists( "Amelie_Walker_Primary_Mega_Menu" ) && class_exists( 'Walke
 						//if we still have posts - it's time for the little ones
 						if ( $menuposts->have_posts() ) {
 
-							$item_output .= '<ul class="submenu__small-articles">' . PHP_EOL;
+							$item_output .= '<ul class="submenu__thumbs">' . PHP_EOL;
 
 							while ( $menuposts->have_posts() )  : $menuposts->the_post();
 
@@ -401,13 +401,13 @@ if ( ! class_exists( "Amelie_Walker_Primary_Mega_Menu" ) && class_exists( 'Walke
 
 								$item_output .=
 									'<li>' . PHP_EOL .
-										'<article class="article  flag">' . PHP_EOL .
-											'<div class="flag__img  entry-image  entry-image--thumb">' . PHP_EOL .
+										'<article class="thumb  flag">' . PHP_EOL .
+											'<div class="flag__img">' . PHP_EOL .
 												$menu_post_image .
 											'</div>' . PHP_EOL .
-											'<div class="flag__body  article__content">' . PHP_EOL .
-												'<div class="entry-meta--card  align-left">' . amelie_get_posted_on_and_cats() . '</div>' . PHP_EOL .
-												'<a href="' . get_permalink() . '"><h3 class="entry-title  entry-title--thumb  align-left">' . get_the_title() . '</h3></a>' . PHP_EOL .
+											'<div class="flag__body">' . PHP_EOL .
+												'<div class="entry-meta  entry-meta--card  align-left">' . amelie_get_posted_on_and_cats() . '</div>' . PHP_EOL .
+												'<a href="' . get_permalink() . '"><h3 class="entry-title  align-left">' . get_the_title() . '</h3></a>' . PHP_EOL .
 											'</div>' . PHP_EOL .
 										'</article>' . PHP_EOL .
 									'</li>' . PHP_EOL;

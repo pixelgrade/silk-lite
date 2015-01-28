@@ -710,6 +710,28 @@
     var $nav        = $('.nav--main').addClass('hover-intent'),
         $navItems   = $nav.find('li');
 
+    $('.flexslider').flexslider({
+      controlNav: false,
+      prevText: "<span>Previous</span>",
+      nextText: "<span>Next</span>",
+      start: function () {
+        var $arrow = $('.svg-templates .slider-arrow');
+
+        $arrow.clone().appendTo('.flex-direction-nav .flex-prev');
+        $arrow.clone().appendTo('.flex-direction-nav .flex-next');
+      }
+    });
+    
+    $navItems.each(function (i, item) {
+      var $navItem = $(item);
+      
+      // test if it's a sub-menu or a mega menu
+      if ($navItem.children().children('.card').length) {
+        $navItem.addClass('menu-item--mega');
+      }
+
+    });
+
     $navItems.hoverIntent({
       over: showSubMenu,
       out: hideSubMenu,

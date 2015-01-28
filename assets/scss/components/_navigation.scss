@@ -22,10 +22,13 @@
 		text-align: center;
 		font-size: rem(12px);
 
+		.menu-item {
+			border-bottom: 1px solid $borders;
+		}
+
 		a {
 			display: block;
 			padding: rhythm(4/9) rhythm(2/3); 
-			border-bottom: 1px solid $borders;
 		}
 
 		> .menu-item-has-children > a:after {
@@ -37,7 +40,7 @@
 			margin-top: rem(-4px);
 		}
 
-		li:last-child > a {
+		li:last-child {
 			border-bottom: 0;
 		}
 	}
@@ -113,8 +116,6 @@
 	@extend %sub-menu-transition-out;
 	position: absolute;
 	top: 100%;
-	transform: translate(-50%, 0);
-	transform: translate3d(-50%, 0, 0);
 	background: white;
 
 
@@ -128,16 +129,28 @@
 	.menu-item--mega & {
 		border: 1px solid $borders;
 		padding: rem(40px);
+		display: flex;
 
 		> .sub-menu {
+			// align-self: flex-start;
+			// flex-grow: 0;
 			text-align: left;
 			font-size: inherit;
+			display: flex;
+			flex-direction: column;
+
+			> li {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				flex-grow: 1;
+			}
 		}
 	}
 
 	.hover & {
 		@extend %sub-menu-transition-in;
-		left: 50%;
+		left: 0;
 		visibility: visible;
 	}
 
@@ -171,13 +184,20 @@
 	}
 }
 
+.menu-item--mega .sub-menu-wrapper > .sub-menu > .menu-item > .sub-menu {
+	top: 50%;
+	margin-top: rhythm(-3/2);
+}
+
 .menu-item--mega {
 	position: static !important;
 
 	.sub-menu-wrapper .sub-menu {
-		> .menu-item > a {
-			color: $dark;
+		> .menu-item {
 			border-bottom-color: $borders;
+			> a {
+				color: $dark;
+			}
 		}
 	}
 	
@@ -186,9 +206,11 @@
 		color: white;
 		border: 0;
 
-		> .menu-item > a {
-			color: white;
+		> .menu-item {
 			border-bottom-color: $secondary;
+			> a {
+				color: white;
+			}
 		}
 
 		> .menu-item:hover > a {
@@ -197,12 +219,12 @@
 	}
 }
 
-.submenu__article--large,
-.submenu__small-articles {
+.submenu__card,
+.submenu__thumbs {
 	display: inline-block;
 }
 
-.submenu__article--large {
+.submenu__card {
 	width: rem(340px);
 
 	.sub-menu + & {
@@ -211,15 +233,24 @@
 }
 
 
-.submenu__small-articles {
+.submenu__thumbs {
 	width: rem(380px);
 	list-style: none;
 	margin: 0;
 
-	.submenu__article--large + & {
+	// this should never happen
+	// .submenu__card + & {
 		padding-left: rem(40px);
 		border-left: 1px solid $borders;
 		margin-left: rem(40px);
+	// }
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+
+	> li {
+		// flex: 0 1 auto;
 	}
 }
 
