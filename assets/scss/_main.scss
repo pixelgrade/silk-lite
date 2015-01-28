@@ -107,6 +107,7 @@
 @import "trumps/clearfix";
 @import "trumps/bass";
 @import "trumps/misc";
+@import "trumps/widths";
 /**
  *   4.1 - Theme specific classes
 */
@@ -142,6 +143,7 @@
 // #VENDOR
 // this is higher than normal because components/toolbar depends on it - desperately
 @import "vendor/font-awesome/variables";
+@import "vendor/flexslider/flexslider";
 
 
 

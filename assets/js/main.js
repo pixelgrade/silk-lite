@@ -710,12 +710,15 @@
     var $nav        = $('.nav--main').addClass('hover-intent'),
         $navItems   = $nav.find('li');
 
+    $('.flexslider').flexslider({
+      controlNav: false
+    });
     
     $navItems.each(function (i, item) {
       var $navItem = $(item);
       
       // test if it's a sub-menu or a mega menu
-      if ($navItem.children().children('.submenu__article--large').length) {
+      if ($navItem.children().children('.card').length) {
         $navItem.addClass('menu-item--mega');
       }
 

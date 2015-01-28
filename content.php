@@ -6,7 +6,7 @@
  */
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class("card"); ?>>
 
 	<header class="entry-header  entry-header--card">
 		<?php if ( 'post' == get_post_type() ) : ?>

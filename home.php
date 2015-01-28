@@ -9,14 +9,19 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+	<?php if ( amelie_has_featured_posts( ) ) : ?>
 
-		<?php if ( amelie_has_featured_posts( ) ) : ?>
-			<div class="featured-content">
-				<?php get_template_part( 'content-featured' ); ?>
-			</div>
-		<?php endif; ?>
+		<div class="featured-content">
+		
+			<?php get_template_part( 'content-featured' ); ?>
+			
+		</div>
+
+	<?php endif; ?>
+
+	<div id="primary" class="content-area">
+
+		<main id="main" class="site-main" role="main">
 
 		<?php if ( have_posts() ) : ?>
 

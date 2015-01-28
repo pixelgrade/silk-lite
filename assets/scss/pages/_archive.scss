@@ -1,30 +1,68 @@
-.entry-header--card {
-	text-align: center;
+.card {
+
+	.entry-meta {
+		@extend .entry-meta--card;
+	}
+
+	.entry-header {
+		@extend .align-center;
+	}
+
+	.entry-image img {
+		width: 100%;
+	}
+
+	.entry-title {
+		@extend .h2;
+		margin-top: 0;
+	}
+
 }
 
-.entry-title--card {
-	@extend .h2;
-	margin-top: 0;
+.flexslider {
+
+	.card {
+		padding: 0 rhythm(3);
+	}
+	
+	.entry-content {
+		@extend .align-center;
+	}
+
 }
 
-.entry-title--thumb {
-	color: $dark;
-	margin-top: 0;
-	@include fs(16px);
+
+.thumb {
+
+	.flag__img {
+		width: 40%;
+	}
+
+	.entry-title {
+		color: $dark;
+		margin-top: 0;
+		@include fs(16px);
+	}
 }
 
-.entry-meta--card {
-	color: $gray;
+.entry-meta {
+	@include font-size(12px);
 	text-transform: uppercase;
-	font-size: rem(10px);
+	letter-spacing: 0.1em;
+	color: $gray;
+
 
 	a {
 		color: currentColor;
 	}
 
 	sup {
-		top: -0.285em;
+		top: -0.15em;
 	}
+}
+
+.entry-meta--card {
+	font-size: rem(10px);
 
 	.cat-links {
 
@@ -36,16 +74,6 @@
 			top: -0.1em;
 		}
 	}
-}
-
-.entry-image--card {
-	img {
-		width: 100%;
-	}
-}
-
-.entry-image--thumb {
-	width: 40%;
 }
 
 .separator {
@@ -86,17 +114,6 @@
 		padding-left: em(55px);
 		padding-bottom: em(30px);
 		margin-bottom: em(55px);
-
-		&:after {
-			@extend .absolute;
-			content: "";
-			border-bottom: 1px solid $secondary;
-			width: em(195px);
-			left: 50%;
-			bottom: 0;
-			content: "";
-			margin-left: em(-65px);
-		}
 	}
 
 	.entry-content {
@@ -148,4 +165,8 @@
 	span {
 		display: inline-block;
 	}
+}
+
+.featured-posts {
+	margin-bottom: rem(80px);
 }
