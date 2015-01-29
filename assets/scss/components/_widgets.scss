@@ -235,7 +235,68 @@
 	vertical-align: middle;
 }
 
+.jetpack_subscription_widget {
+	padding: rem(45px);
 
+	color: white;
+	background: $accent;
+	text-align: center;
+
+	.widget-title {
+		@extend %alpha;
+
+		margin: 0;
+
+		@include fs(30px);
+		text-transform: none;
+
+		color: white;
+
+		&:after {
+			content: '';
+			color: white;
+
+			width: 196px;
+			max-width: 196px;
+			height: 9px;
+			display: block;
+			margin: rem(22px) auto;
+
+			background-image: url('assets/svg/separator-simple.svg');
+		}
+	}
+
+	input[type="email"] {
+		color: black;
+
+		max-height: 0;
+		padding: 0;
+		border: 0;
+
+		transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1);
+		transition-delay: .3s;
+	}
+
+	&:hover input[type="email"] {
+		border: 1px solid $borders;
+		padding: rem(12px);
+		max-height: rem(46px);
+	}
+
+	p {
+		margin-bottom: 0;
+	}
+
+	input[type="submit"] {
+		padding: rem(6px) rem(30px);
+
+		background-color: white;
+		color: $accent;
+
+		@include fs(14px);
+		letter-spacing: 0.35em;
+	}
+}
 
 
 /* Footer sidebar widgets */
