@@ -277,12 +277,6 @@
 		transition-delay: .3s;
 	}
 
-	&:hover input[type="email"] {
-		border: 1px solid $borders;
-		padding: rem(12px);
-		max-height: rem(46px);
-	}
-
 	p {
 		margin-bottom: 0;
 	}
