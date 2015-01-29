@@ -6,7 +6,7 @@
  */ ?>
 
 <div class="top-bar  one-whole  fixed">
-	<div class="content  flag">
+	<div class="content  flag  flag--flush">
 
 		<div class="flag__img">
 			<div class="nav-trigger  relative">
@@ -26,7 +26,7 @@
 			</div>
 			<span class="inline-block  h3"><?php bloginfo( 'name' ); ?></span>
 		</div>
-		<div class="flag__body  align-right">
+		<div class="flag__img  align-right">
 			<h5 class="screen-reader-text"><?php _e( 'Secondary navigation', 'amelie_txtd' ); ?></h5>
 			<?php
 			if ( ! get_theme_mod( 'amelie_disable_search_in_toolbar', false ) ) { ?>
