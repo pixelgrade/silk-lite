@@ -279,6 +279,13 @@
     }
   });
 
+  function styleArchiveWidget() {
+    var archiveWidget = $('.sidebar--main .widget_archive ul').parent();
+    archiveWidget.addClass('shrink');
+    var separatorMarkup = '<span class="separator  separator--text" role="presentation"><span>More</span></a>';
+    archiveWidget.append(separatorMarkup);
+  }
+
   /**
    * cardHover jQuery plugin
    *
