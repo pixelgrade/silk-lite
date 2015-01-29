@@ -195,25 +195,41 @@
   })();
 
   // /* ====== Navigation Logic ====== */
-  var $nav = $('.nav--main'),
-      $navTrigger = $('.navigation__trigger'),
-      $navContainer = $('.main-navigation'),
-      navTop = (typeof $navContainer.offset() !== 'undefined') ? $navContainer.offset().top : 0,
-      navLeft = (typeof $navContainer.offset() !== 'undefined') ? $navContainer.offset().left : 0,
-      navWidth = $nav.outerWidth(),
-      containerWidth = $navContainer.outerWidth(),
-      navHeight = $navContainer.outerHeight(),
-      $toolbar = $('.toolbar'),
-      isOpen = false,
-      pageTop = $('#page').offset().top,
-      sticked = false;
+  var $nav            = $('.nav--main'),
+      $navTrigger     = $('.navigation__trigger'),
+      $navContainer   = $('.main-navigation'),
+      navTop          = ( typeof $navContainer.offset() !== 'undefined' ) ? $navContainer.offset().top : 0,
+      navBottom       = navTop + $nav.outerHeight(),
+      navWidth        = $nav.outerWidth(),
+      navLeft         = ( typeof $navContainer.offset() !== 'undefined' ) ? $navContainer.offset().left : 0,
+      containerWidth  = $navContainer.outerWidth(),
+      navHeight       = $navContainer.outerHeight(),
+      $toolbar        = $('.toolbar'),
+      isOpen          = false,
+      pageTop         = $('#page').offset().top,
+      sticked         = false;
+
+    function toggleTopBar() {
+
+      console.log(navBottom, latestKnownScrollY);
+
+      if ( navBottom < latestKnownScrollY ) {
+        $('.top-bar.fixed').addClass('visible');
+      } else {
+        $('.top-bar.fixed').removeClass('visible');
+      }
+    }
 
   /**
    * bind toggling the navigation drawer to click and touchstart
    *in order to get rid of the 300ms delay on touch devices we use the touchstart event
    */
   var triggerEvents = 'click touchstart';
-  if (is_android) triggerEvents = 'click';
+  
+  if (is_android) {
+    triggerEvents = 'click';
+  }
+
   $navTrigger.on(triggerEvents, function (e) {
     // but we still have to prevent the default behavior of the touchstart event
     // because this way we're making sure the click event won't fire anymore
@@ -262,81 +278,6 @@
       $nav.toggleClass('shadow', isOpen);
     }
   });
-
-  /**
-   * function used to make the navigation bar on big screens
-   * sticky or static depending on the scroll position
-   */
-
-  function updateStickyMenu() {
-
-    // pin
-    if (latestKnownScrollY + pageTop > navTop && !sticked) {
-      $nav.css({
-        position: 'fixed',
-        top: pageTop,
-        left: navLeft,
-        width: navWidth
-      });
-
-      $('.main-navigation').css('height', navHeight);
-      sticked = true;
-      return;
-    }
-
-    // unpin
-    if (latestKnownScrollY + pageTop <= navTop && sticked) {
-
-      $nav.css({
-        position: '',
-        left: '',
-        top: '',
-        width: ''
-      });
-
-      $('.main-navigation').css('height', '');
-      sticked = false;
-    }
-
-  }
-
-  /**
-   * because we hard-code properties on the navigation bar when we stick it at the top of the window
-   * we need to update some properties on window resize
-   */
-
-  function refreshNavigation() {
-    navTop = (typeof $navContainer.offset() !== 'undefined') ? $navContainer.offset().top : 0;
-    navLeft = (typeof $navContainer.offset() !== 'undefined') ? $navContainer.offset().left : 0;
-    containerWidth = $navContainer.outerWidth();
-    navWidth = $nav.outerWidth();
-    navHeight = $nav.outerHeight();
-    pageTop = $('#page').offset().top;
-
-    if (sticked) {
-      $navContainer.height(navHeight);
-
-      $nav.velocity({
-        width: containerWidth
-      }, {
-        easing: "easeOutCubic",
-        duration: 200
-      });
-    }
-
-    if (isOpen) {
-      $([$nav, $navTrigger]).each(function (i, obj) {
-        $(obj).velocity({
-          translateX: navWidth
-        }, {
-          easing: "easeOutQuint",
-          duration: 200
-        });
-      });
-    }
-
-    navWidth = containerWidth;
-  }
 
   /**
    * cardHover jQuery plugin
@@ -484,7 +425,6 @@
     /**
      * dismiss overlay
      */
-
     function closeOverlay() {
 
       if (!isOpen) {
@@ -653,6 +593,7 @@
     };
 
   })(jQuery, 'smartresize');
+
   var latestKnownScrollY = window.scrollY,
       ticking = false;
 
@@ -667,12 +608,8 @@
 
   function update() {
     "use strict";
-
+    toggleTopBar();
     ticking = false;
-
-    if(!is_android) {
-      updateStickyMenu();
-    }
   }
 
   /* ====== INTERNAL FUNCTIONS END ====== */
@@ -682,13 +619,13 @@
 
   function init() {
 
-    // /* GLOBAL VARS */
+    /* GLOBAL VARS */
     touch = false;
 
-    //  GET BROWSER DIMENSIONS
+    /* GET BROWSER DIMENSIONS */
     browserSize();
 
-    // /* DETECT PLATFORM */
+    /* DETECT PLATFORM */
     platformDetect();
   }
 
@@ -709,9 +646,10 @@
 
     var $nav        = $('.nav--main').addClass('hover-intent'),
         $navItems   = $nav.find('li' ),
-        $sliders = $('.flexslider');
+        $sliders    = $('.flexslider');
 
-    if ( typeof flexslider !== 'undefined' && $sliders.length ) {
+    /* initialize flexslider */
+    if ( typeof $.flexslider !== 'undefined' && $sliders.length ) {
       $sliders.flexslider( {
         controlNav: false,
         prevText: "<span>Previous</span>",
@@ -724,17 +662,8 @@
         }
       } );
     }
-    
-    $navItems.each(function (i, item) {
-      var $navItem = $(item);
-      
-      // test if it's a sub-menu or a mega menu
-      if ($navItem.children().children('.card').length) {
-        $navItem.addClass('menu-item--mega');
-      }
 
-    });
-
+    /* add hover intent to main navigation links */
     $navItems.hoverIntent({
       over: showSubMenu,
       out: hideSubMenu,
@@ -758,21 +687,17 @@
   /* ====== ON RESIZE ====== */
 
   $(window).smartresize(function () {
-    if(!is_android) {
-      refreshNavigation();
-    }
-    windowWidth = $(window).outerWidth();
-    windowHeight = $(window).outerHeight();
+    browserSize();
   });
 
   /* ====== ON SCROLL ====== */
 
   $window.on('scroll', function (e) {
     "use strict";
-
     latestKnownScrollY = window.scrollY;
     requestTick();
   });
+
   // /* ====== HELPER FUNCTIONS ====== */
   /**
    * function similar to PHP's empty function
