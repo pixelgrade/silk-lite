@@ -3,7 +3,7 @@
     "devDependencies": {
         "gulp": "*",
         "gulp-sass": "*",
-        "gulp-ruby-sass": "*",
+        "gulp-ruby-sass": "~0.7.1",
         "gulp-autoprefixer": "*",
         "gulp-minify-css": "*",
         "gulp-ignore": "*",
