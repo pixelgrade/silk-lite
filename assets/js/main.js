@@ -711,7 +711,7 @@
         $navItems   = $nav.find('li' ),
         $sliders = $('.flexslider');
 
-    if ( typeof flexslider !== 'undefined' && $sliders.length ) {
+    if ( typeof $.flexslider !== 'undefined' && $sliders.length ) {
       $sliders.flexslider( {
         controlNav: false,
         prevText: "<span>Previous</span>",
