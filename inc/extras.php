@@ -383,7 +383,7 @@ if ( ! class_exists( "Amelie_Walker_Primary_Mega_Menu" ) && class_exists( 'Walke
 								'</div><!-- .entry-meta -->' . PHP_EOL .
 								'<a href="' . get_permalink() . '"><h1 class="entry-title">' . get_the_title() . '</h1></a>' . PHP_EOL .
 							'</header><!-- .entry-header -->' . PHP_EOL .
-							'<a class="separator" role="presentation" href="' . get_permalink() . '"><span>' . _( 'More', 'amelie_txtd' ) . '</span></a>' . PHP_EOL .
+							'<a class="separator  separator--text" role="presentation" href="' . get_permalink() . '"><span>' . _( 'More', 'amelie_txtd' ) . '</span></a>' . PHP_EOL .
 						'</article>' . PHP_EOL;
 
 						//if we still have posts - it's time for the little ones
