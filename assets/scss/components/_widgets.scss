@@ -266,12 +266,10 @@
 		}
 	}
 
-	input[type="email"] {
-		color: black;
-	}
-
-	p {
-		margin-bottom: 0;
+	input#subscribe-field {
+		color: #000000;
+		padding: 12px;
+		width: 100%;
 	}
 
 	input[type="submit"] {
