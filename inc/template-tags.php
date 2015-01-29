@@ -155,7 +155,7 @@ function amelie_posted_on() {
 		'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
 	);
 
-	return '<span class="posted-on">' . $posted_on . '</span>';
+	echo '<span class="posted-on">' . $posted_on . '</span>';
 
 }
 endif;
