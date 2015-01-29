@@ -4,6 +4,12 @@
  *
  * @package Amelie
  */
+
+$thumbnail_size = "amelie-single-image";
+
+if ( ! get_theme_mod( 'amelie_single_column_archives', false ) ) {
+	$thumbnail_size = '  amelie-masonry-image';
+}
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class("card"); ?>>
@@ -19,7 +25,12 @@
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
-		<?php
+		<?php if ( has_post_thumbnail() ) { ?>
+			<div class="entry-featured  entry-thumbnail">
+				<?php the_post_thumbnail( $thumbnail_size ); ?>
+			</div>
+		<?php }
+
 		/* translators: %s: Name of current post */
 		the_content( sprintf(
 			__( 'Continue reading %s', 'amelie_txtd' ),

@@ -708,19 +708,22 @@
   $window.load(function () {
 
     var $nav        = $('.nav--main').addClass('hover-intent'),
-        $navItems   = $nav.find('li');
+        $navItems   = $nav.find('li' ),
+        $sliders = $('.flexslider');
 
-    $('.flexslider').flexslider({
-      controlNav: false,
-      prevText: "<span>Previous</span>",
-      nextText: "<span>Next</span>",
-      start: function () {
-        var $arrow = $('.svg-templates .slider-arrow');
+    if ( typeof flexslider !== 'undefined' && $sliders.length ) {
+      $sliders.flexslider( {
+        controlNav: false,
+        prevText: "<span>Previous</span>",
+        nextText: "<span>Next</span>",
+        start: function() {
+          var $arrow = $( '.svg-templates .slider-arrow' );
 
-        $arrow.clone().appendTo('.flex-direction-nav .flex-prev');
-        $arrow.clone().appendTo('.flex-direction-nav .flex-next');
-      }
-    });
+          $arrow.clone().appendTo( '.flex-direction-nav .flex-prev' );
+          $arrow.clone().appendTo( '.flex-direction-nav .flex-next' );
+        }
+      } );
+    }
     
     $navItems.each(function (i, item) {
       var $navItem = $(item);
