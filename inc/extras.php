@@ -463,10 +463,17 @@ if ( ! class_exists( "Amelie_Walker_Primary_Mega_Menu" ) && class_exists( 'Walke
 
 endif;
 
-
-add_filter('widget_archives_args', 'amelie_add_separator_to_archive_widget');
+/**
+ * Filter regular archives widget (no dropdown) arguments to add a separator.
+ *
+ * @param array $args
+ *
+ * @return array
+ */
 function amelie_add_separator_to_archive_widget($args) {
 	$args['after'] = '<span class="separator" role="presentation"><span>' . _( 'More', 'amelie_txtd' ) . '</span></span>';
 
 	return $args;
-} ?>
+}
+
+add_filter('widget_archives_args', 'amelie_add_separator_to_archive_widget'); ?>
