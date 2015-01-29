@@ -14,10 +14,11 @@
 }
 
 .site-title {
-    font-size: rem(100px);
+    font-size: rem(107px);
+    font-style: normal;
     margin: 0;
     text-transform: uppercase;
-    line-height: 0.7;
+    line-height: 0.85;
     letter-spacing: 0.03em;
 
     .site-logo-link + & {
