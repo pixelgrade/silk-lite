@@ -1,3 +1,33 @@
+.separator--text {
+	position: relative;
+	color: $secondary;
+	display: block;
+
+	text-align: center;
+
+	&:after {
+		content: "";
+		border-bottom: 1px solid currentColor;
+		width: 100%;
+		position: absolute;
+		top: 50%;
+		left: 0;
+	}
+
+	span {
+		@extend %delta;
+		font-size: rem(11px);
+		color: currentColor;
+		display: inline-block;
+		background: white;
+		border: 1px solid currentColor;
+		text-transform: uppercase;
+		padding: 0.25em 1em;
+		position: relative;
+		z-index: 2;
+	}
+}
+
 .separator--line {
 	position: relative;
 	height: 2px;
@@ -25,7 +55,9 @@
 	}
 }
 
-
+// this is used in the About me widget.
+// it contains SVG code, SVG that gets its
+// color with currentColor
 .separator-wrapper {
 	margin: rem(20px) 0;
 	display: block;

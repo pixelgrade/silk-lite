@@ -471,7 +471,7 @@ endif;
  * @return array
  */
 function amelie_add_separator_to_archive_widget($args) {
-	$args['after'] = '<span class="separator" role="presentation"><span>' . _( 'More', 'amelie_txtd' ) . '</span></span>';
+	$args['after'] = '<span class="separator--text" role="presentation"><span>' . _( 'More', 'amelie_txtd' ) . '</span></span>';
 
 	return $args;
 }
