@@ -300,6 +300,14 @@
 
   }
 
+  function styleArchiveWidget() {
+    var archiveWidget = $('.sidebar--main .widget_archive ul').parent();
+
+    archiveWidget.addClass('shrink');
+    var separatorMarkup = '<span class="separator  separator--text" role="presentation"><span>More</span></a>';
+    archiveWidget.append(separatorMarkup);
+  }
+
   /**
    * because we hard-code properties on the navigation bar when we stick it at the top of the window
    * we need to update some properties on window resize
@@ -752,6 +760,8 @@
     $('.nav--main li').on('mouseleave', function(event) {
       hideSubMenu(this);
     });
+
+    styleArchiveWidget();
 
   });
 
