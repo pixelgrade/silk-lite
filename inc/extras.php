@@ -260,6 +260,15 @@ function amelie_read_more_link( $link ) {
 
 add_filter( 'the_content_more_link', 'amelie_read_more_link' );
 
+/**
+ * Constrain the excerpt length
+ */
+function amelie_excerpt_length( $length ) {
+	return 18;
+}
+
+add_filter( 'excerpt_length', 'amelie_excerpt_length', 999 );
+
 
 if ( ! class_exists( "Amelie_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_Nav_Menu' ) ):
 
@@ -267,6 +276,7 @@ if ( ! class_exists( "Amelie_Walker_Primary_Mega_Menu" ) && class_exists( 'Walke
 	 * Special menu walker to generate the mega menu system of the primary menu location
 	 */
 	class Amelie_Walker_Primary_Mega_Menu extends Walker_Nav_Menu {
+		protected $has_megamenu;
 
 		public function start_lvl( &$output, $depth = 0, $args = array() ) {
 			$output .= '<ul class="sub-menu" aria-hidden="true" role="menu">' . PHP_EOL;
@@ -297,6 +307,8 @@ if ( ! class_exists( "Amelie_Walker_Primary_Mega_Menu" ) && class_exists( 'Walke
 		public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
 			global $wp_query;
 
+			$this->has_megamenu = $this->main_has_megamenu( $item, $depth );
+
 			if ( ! is_array( $args ) ) {
 				$args = (array) $args;
 			}
@@ -308,8 +320,8 @@ if ( ! class_exists( "Amelie_Walker_Primary_Mega_Menu" ) && class_exists( 'Walke
 
 			// passed classes
 			$classes     = empty( $item->classes ) ? array() : (array) $item->classes;
-			$has_subnav = $this->main_has_subnav( $item, $depth );
-			if ( true === $has_subnav ) {
+
+			if ( true === $this->has_megamenu ) {
 				$classes[] = 'menu-item--mega';
 			}
 			$class_names = esc_attr( implode( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) ) );
@@ -335,7 +347,7 @@ if ( ! class_exists( "Amelie_Walker_Primary_Mega_Menu" ) && class_exists( 'Walke
 				$args['after']
 			) . PHP_EOL;
 
-			if ( $depth === 0 && $this->main_has_subnav( $item, $depth ) ) {
+			if ( $depth === 0 && ( $this->has_children || $this->has_megamenu ) ) {
 				//the mega menu wrapper
 				$item_output .= '<div class="sub-menu-wrapper">' . PHP_EOL;
 			}
@@ -422,7 +434,7 @@ if ( ! class_exists( "Amelie_Walker_Primary_Mega_Menu" ) && class_exists( 'Walke
 					}
 				}
 
-				if ( $this->main_has_subnav( $item, $depth ) ) {
+				if ( $this->has_children || $this->has_megamenu ) {
 					$item_output .= '</div>' . PHP_EOL; //close the .sub-menu-wrapper
 				}
 
@@ -433,11 +445,7 @@ if ( ! class_exists( "Amelie_Walker_Primary_Mega_Menu" ) && class_exists( 'Walke
 			$output .= "</li>" . PHP_EOL;
 		}
 
-		private function main_has_subnav( $item, $depth ) {
-
-			if ( true === $this->has_children ) {
-				return true;
-			}
+		private function main_has_megamenu( $item, $depth ) {
 
 			if ( 0 === $depth && $item->object == 'category' ) {
 
@@ -460,5 +468,5 @@ if ( ! class_exists( "Amelie_Walker_Primary_Mega_Menu" ) && class_exists( 'Walke
 		}
 
 	} # class
-	
+
 endif; ?>

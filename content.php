@@ -31,11 +31,19 @@ if ( ! get_theme_mod( 'amelie_single_column_archives', false ) ) {
 			</div>
 		<?php }
 
-		/* translators: %s: Name of current post */
-		the_content( sprintf(
-			__( 'Continue reading %s', 'amelie_txtd' ),
-			the_title( '<span class="screen-reader-text">', '</span>', false )
-		) ); ?>
+		global $post;
+		// Check the content for the more text
+		$has_more = strpos( $post->post_content, '<!--more' );
+
+		if ( $has_more ) {
+			/* translators: %s: Name of current post */
+			the_content( sprintf(
+				__( 'Continue reading %s', 'amelie_txtd' ),
+				the_title( '<span class="screen-reader-text">', '</span>', false )
+			) );
+		} else {
+			the_excerpt();
+		} ?>
 
 		<?php
 			wp_link_pages( array(
