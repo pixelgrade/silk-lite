@@ -23,7 +23,9 @@
 
 	<footer class="entry-footer">
 		<?php if ( current_user_can('edit_post', get_the_ID() ) ) { ?>
-		<hr/>
+		<span class="separator-wrapper--accent">
+			<?php get_template_part("assets/svg/separator-simple"); ?>
+		</span>
 		<?php edit_post_link( __( 'Edit', 'amelie_txtd' ), '<span class="edit-link">', '</span>' ); ?>
 		<?php } ?>
 	</footer><!-- .entry-footer -->

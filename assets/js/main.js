@@ -682,6 +682,8 @@
       hideSubMenu(this);
     });
 
+    styleArchiveWidget();
+
   });
 
   /* ====== ON RESIZE ====== */

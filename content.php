@@ -51,6 +51,8 @@ if ( ! get_theme_mod( 'amelie_single_column_archives', false ) ) {
 				'after'  => '</div>',
 			) );
 		?>
+		<span class="separator-wrapper--accent">
+			<?php get_template_part("assets/svg/separator-simple"); ?>
+		</span>
 	</div><!-- .entry-content -->
-
 </article><!-- #post-## -->

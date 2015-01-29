@@ -32,7 +32,7 @@ if ( empty( $featured ) )
 				</div>
 
 				<div class="flag__body  one-half">
-					<?php get_template_part("content"); ?>
+					<?php get_template_part("content-slide"); ?>
 				</div>
 
 			</div>

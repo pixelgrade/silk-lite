@@ -56,11 +56,12 @@ function amelie_get_featured_posts() {
 }
 
 function amelie_has_featured_posts( $minimum = 1 ) {
-	if ( is_paged() )
+	if ( is_paged() ) {
 		return false;
+	}
 
 	$minimum = absint( $minimum );
-	$featured_posts = apply_filters( 'amelie_get_featured_posts', array() );
+	$featured_posts = amelie_get_featured_posts();
 
 	if ( ! is_array( $featured_posts ) )
 		return false;
