@@ -12,6 +12,7 @@
 
 	opacity: 1;
 	transition: opacity .3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition-delay: .3s;
 
 	pointer-events: none;
 }
@@ -109,6 +110,7 @@
 
 		transform: translateY(50%);
 		transition: transform .3s cubic-bezier(0.645, 0.045, 0.355, 1);
+		transition-delay: .3s;
 	}
 
 		&:hover .amelie-about-me-widget__container {
@@ -146,6 +148,7 @@
 		position: relative;
 
 		transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1);
+		transition-delay: .3s;
 
 		&:hover, &:focus {
 			max-height: 2000px;

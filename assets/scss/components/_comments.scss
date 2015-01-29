@@ -15,7 +15,7 @@
 		top: em(-40px);
 
 		display: block;
-		width: 50%;
+		width: rem(196px);
 		margin: 0 auto;
 
 		border-top: 2px solid $borders;
@@ -37,8 +37,7 @@
 	text-align: center;
 
 	color: white;
-	background: $accent;
-
+	background: $secondary;
 }
 
 .comments-area-title, .comment-reply-title {

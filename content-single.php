@@ -42,7 +42,9 @@
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
-		<hr />
+		<span class="separator-wrapper--accent">
+			<?php get_template_part("assets/svg/separator-simple"); ?>
+		</span>
 		<?php amelie_entry_footer(); ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->
