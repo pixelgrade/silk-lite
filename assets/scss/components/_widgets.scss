@@ -283,6 +283,93 @@
 	}
 }
 
+.widget_amelie-popular-posts {
+	padding: rem(30px);
+
+	ol {
+		list-style: none;
+		counter-reset: my-counter;
+	}
+
+	.popular-posts_item {
+		&:before {
+			content: counter(my-counter) '.';
+			counter-increment: my-counter;
+		}
+
+		.bump-view{
+			@include fs(12px);
+			@extend %beta;
+		}
+
+		&.large-thumbnail {
+			position: relative;
+
+			&:before {
+				@extend .comment-number;
+
+				content: counter(my-counter);
+
+				position: absolute;
+				left: 50%;
+				top: 88px;
+
+				display: block;
+				background: $accent !important;
+
+				transform: translateX(-50%);
+			}
+
+			.bump-view {
+				display: block;
+				color: $accent;
+				text-align: center;
+
+				@include fs(20px);
+			}
+
+			.categories-list {
+				margin-top: rem(12px);
+				display: block;
+				text-align: center;
+			}
+
+			&:after {
+				content: '';
+				color: white;
+
+				width: 128px;
+				max-width: 200px;
+				height: 12px;
+				display: block;
+				margin: rem(22px) auto;
+
+				background: url('assets/svg/separator-simple-inversed.svg') $secondary center center;
+			}
+		}
+
+		&:nth-child(2), &:nth-child(3) {
+			.bump-view{
+				@include fs(16px);
+				@extend %alpha;
+			}
+		}
+	}
+
+	.categories-list {
+		display: inline-block;
+
+		a {
+			@extend %beta;
+			@include fs(10px);
+			color: $gray;
+			text-transform: uppercase;
+		}
+	}
+
+
+
+}
 
 /* Footer sidebar widgets */
 
