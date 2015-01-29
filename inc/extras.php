@@ -461,4 +461,12 @@ if ( ! class_exists( "Amelie_Walker_Primary_Mega_Menu" ) && class_exists( 'Walke
 
 	} # class
 
-endif; ?>
+endif;
+
+
+add_filter('widget_archives_args', 'amelie_add_separator_to_archive_widget');
+function amelie_add_separator_to_archive_widget($args) {
+	$args['after'] = '<span class="separator" role="presentation"><span>' . _( 'More', 'amelie_txtd' ) . '</span></span>';
+
+	return $args;
+} ?>
