@@ -1,107 +1,83 @@
-(function ($, window, undefined) {
+(function($, window, undefined) {
 
   // /* ====== SHARED VARS  - jQuery ====== */
   // These depend on jQuery
-  var $window = $(window),
-      windowHeight = $window.height(),
-      windowWidth = $window.width();
-
+  
   /**
    * Detect browser size and remember it in global variables
    */
 
   function browserSize() {
-    wh = $window.height();
-    ww = $window.width();
-    dh = $(document).height();
-    ar = ww / wh;
+      windowHeight    = $window.height();
+      windowWidth     = $window.width();
+      documentHeight  = $(document).height();
   }
 
 
   /**
    * Detect what platform are we on (browser, mobile, etc)
    */
+  
+  var ua              = navigator.userAgent.toLowerCase(),
+      platform        = navigator.platform.toLowerCase(),
+      $window         = $(window),
+      $document       = $(document),
+      $html           = $('html'),
+      $body           = $('body'),
+      
+      iphone          = platform.indexOf("iphone"),
+      ipod            = platform.indexOf("ipod"),
+      android         = platform.indexOf("android"),
+      android_ancient = (ua.indexOf('mozilla/5.0') !== -1 && ua.indexOf('android') !== -1 && ua.indexOf('applewebKit') !== -1) && ua.indexOf('chrome') === -1,
+      apple           = ua.match(/(iPad|iPhone|iPod|Macintosh)/i),
+      windows_phone   = ua.indexOf('windows phone') != -1,
+      webkit          = ua.indexOf('webkit') != -1,
+
+      firefox         = ua.indexOf('gecko') != -1,
+      firefox_3x      = firefox && ua.match(/rv:1.9/i),
+      ie              = ua.indexOf('msie' != -1),
+      ie_newer        = ua.match(/msie (9|([1-9][0-9]))/i),
+      ie_older        = ie && !ie_newer,
+      ie_ancient      = ua.indexOf('msie 6') != -1,
+      safari          = ua.indexOf('safari') != -1 && ua.indexOf('chrome') == -1,
+
+      windowHeight    = $window.height(),
+      windowWidth     = $window.width(),
+      documentHeight  = $(document).height();
+
+  function getSupportedTransform() {
+    var prefixes = ['transform', 'WebkitTransform', 'MozTransform', 'OTransform', 'msTransform'];
+    for(var i = 0; i < prefixes.length; i++) {
+        if(document.createElement('div').style[prefixes[i]] !== undefined) {
+            return prefixes[i];
+        }
+    }
+    return false;
+  }
 
   function platformDetect() {
-    $.support.touch = 'ontouchend' in document;
-    var navUA = navigator.userAgent.toLowerCase(),
-        navPlat = navigator.platform.toLowerCase();
+    $.support.touch     = 'ontouchend' in document;
+    $.support.svg       = (document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1")) ? true : false;
+    $.support.transform = getSupportedTransform();
 
-    var isiPhone = navPlat.indexOf("iphone"),
-        isiPod = navPlat.indexOf("ipod"),
-        isAndroidPhone = navPlat.indexOf("android"),
-        safari = (navUA.indexOf('safari') != -1 && navUA.indexOf('chrome') == -1) ? true : false,
-        svgSupport = (window.SVGAngle) ? true : false,
-        svgSupportAlt = (document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1")) ? true : false,
-        ff3x = (/gecko/i.test(navUA) && /rv:1.9/i.test(navUA)) ? true : false;
-
-    ieMobile = navigator.userAgent.match(/Windows Phone/i) ? true : false;
-    phone = (isiPhone > -1 || isiPod > -1 || isAndroidPhone > -1) ? true : false;
-    touch = $.support.touch ? true : false;
-
-    var $bod = $('body');
-
-
-    if (touch) $('html').addClass('touch');
-
-    if (ieMobile) $('html').addClass('is--winmob');
-    if (is_android) $('html').addClass('is--ancient-android');
-
-    if (safari) $bod.addClass('safari');
-    if (phone) $bod.addClass('phone');
+    $html
+      .toggleClass('touch', $.support.touch)
+      .toggleClass('svg', $.support.svg)
+      .toggleClass('transform', !!$.support.transform);
   }
 
-  // /* ====== SHARED VARS ====== */
-  // These do not depend on jQuery
-  var phone, touch, wh, ww, dh, ar, fonts;
-
-  var ua = navigator.userAgent;
-  var winLoc = window.location.toString();
-
-  var is_webkit = ua.match(/webkit/i);
-  var is_firefox = ua.match(/gecko/i);
-  var is_newer_ie = ua.match(/msie (9|([1-9][0-9]))/i);
-  var is_older_ie = ua.match(/msie/i) && !is_newer_ie;
-  var is_ancient_ie = ua.match(/msie 6/i);
-  var is_mobile = ua.match(/mobile/i);
-  var is_OSX = (ua.match(/(iPad|iPhone|iPod|Macintosh)/g) ? true : false);
-
-  var nua = navigator.userAgent;
-  var is_android = ((nua.indexOf('Mozilla/5.0') !== -1 && nua.indexOf('Android ') !== -1 && nua.indexOf('AppleWebKit') !== -1) && nua.indexOf('Chrome') === -1);
-
-  var useTransform = true;
-  var use2DTransform = (ua.match(/msie 9/i) || winLoc.match(/transform\=2d/i));
-  var transform;
-
-  // setting up transform prefixes
-  var prefixes = {
-    webkit: 'webkitTransform',
-    firefox: 'MozTransform',
-    ie: 'msTransform',
-    w3c: 'transform'
-  };
-
-  if (useTransform) {
-    if (is_webkit) {
-      transform = prefixes.webkit;
-    } else if (is_firefox) {
-      transform = prefixes.firefox;
-    } else if (is_newer_ie) {
-      transform = prefixes.ie;
-    }
-  }
   // /* ====== Masonry Logic ====== */
-  (function () {
+  function masonryInit() {
 
-    var $container = $('.archive__grid'),
-        $blocks = $container.children().addClass('post--animated  post--loaded'),
-        slices = $blocks.first().children().length;
+    var $container  = $('.archive__grid'),
+        $blocks     = $container.children().addClass('post--animated  post--loaded'),
+        slices      = $blocks.first().children().length;
 
     // initialize masonry after the images have loaded
-    $container.imagesLoaded(function () {
+    $container.imagesLoaded(function() {
 
       // prepare hover animations
-      if(!$('html').hasClass('touch'))
+      if (!$html.hasClass('touch'))
         $blocks.addHoverAnimation();
 
       // initialize masonry
@@ -116,75 +92,24 @@
       /**
        * function used to display cards with a simple fade in transition
        */
-
-      function showBlocks($blocks) {
-
-        // use different delays for each card to stagger them
-        $blocks.each(function (i, obj) {
-
-          var $block = $(obj),
-              duration = 200 + slices * 0.1;
-
-          $block.velocity({
-            translateY: 40
-          }, {
-            duration: 0
-          });
-          setTimeout(function () {
-            $block.velocity({
-              translateY: 0
-            }, {
-              easing: "easeOutQuad",
-              duration: 100
-            });
-
-            $block.children().each(function (j, child) {
-              var $child = $(child),
-                  timeout = (j + 1) * 100;
-
-              $child.velocity({
-                opacity: 0,
-                translateY: 40
-              }, {
-                duration: 0
-              });
-
-              $child.velocity({
-                opacity: 1,
-                translateY: 0
-              }, {
-                duration: 300,
-                delay: timeout
-              });
-            });
-
-            setTimeout(function () {
-              $block.toggleClass('sticky--bg', $block.hasClass('sticky'));
-              $block.addClass('post--visible');
-            }, 300);
-
-          }, i * 200);
-        });
-      }
+      function showBlocks($blocks) { }
 
       // animate cards in
       showBlocks($blocks);
 
       // update the masonry layout on window.resize
-      $(window).smartresize(function () {
-        $container.masonry('layout');
-      });
+      $window.smartresize(function() { $container.masonry('layout'); });
 
       // handle behavior for infinite scroll
-      $(document.body).on('post-load', function () {
+      $(document.body).on('post-load', function() {
 
         // figure out which are the new loaded posts
         var $newBlocks = $('.archive__grid').children().not('.post--loaded').addClass('post--loaded');
 
         // when images have loaded take care of the layout, prepare hover animations, and animate cards in
-        $newBlocks.imagesLoaded(function () {
+        $newBlocks.imagesLoaded(function() {
           $container.masonry('appended', $newBlocks, true).masonry('layout');
-          if(!$('html').hasClass('touch'))
+          if (!$html.hasClass('touch'))
             $newBlocks.addHoverAnimation();
           showBlocks($newBlocks);
         });
@@ -192,67 +117,57 @@
 
     });
 
-  })();
+  }
 
   // /* ====== Navigation Logic ====== */
-  var $nav            = $('.nav--main'),
-      $navTrigger     = $('.navigation__trigger'),
-      $navContainer   = $('.main-navigation'),
-      navTop          = ( typeof $navContainer.offset() !== 'undefined' ) ? $navContainer.offset().top : 0,
-      navBottom       = navTop + $nav.outerHeight(),
-      navWidth        = $nav.outerWidth(),
-      navLeft         = ( typeof $navContainer.offset() !== 'undefined' ) ? $navContainer.offset().left : 0,
-      containerWidth  = $navContainer.outerWidth(),
-      navHeight       = $navContainer.outerHeight(),
-      $toolbar        = $('.toolbar'),
-      isOpen          = false,
-      pageTop         = $('#page').offset().top,
-      sticked         = false;
+  var $nav      = $('.nav--main'),
+      navOffset = $nav.offset(),
+      navTop    = navOffset.top,
+      $navTrigger = $('.nav__trigger'),
+      navBottom = navTop + $nav.outerHeight();
 
-    function toggleTopBar() {
+  function toggleTopBar() {
 
-      console.log(navBottom, latestKnownScrollY);
-
-      if ( navBottom < latestKnownScrollY ) {
-        $('.top-bar.fixed').addClass('visible');
-      } else {
-        $('.top-bar.fixed').removeClass('visible');
-      }
+    if (navBottom < latestKnownScrollY) {
+      $('.top-bar.fixed').addClass('visible');
+    } else {
+      $('.top-bar.fixed').removeClass('visible');
     }
+  }
 
   /**
    * bind toggling the navigation drawer to click and touchstart
    *in order to get rid of the 300ms delay on touch devices we use the touchstart event
    */
   var triggerEvents = 'click touchstart';
-  
-  if (is_android) {
+
+  if (android_ancient) {
     triggerEvents = 'click';
   }
 
-  $navTrigger.on(triggerEvents, function (e) {
+  $navTrigger.on(triggerEvents, function(e) {
     // but we still have to prevent the default behavior of the touchstart event
     // because this way we're making sure the click event won't fire anymore
     e.preventDefault();
     e.stopPropagation();
 
     isOpen = !isOpen;
-    $('body').toggleClass('nav--is-open');
+    $body.toggleClass('nav--is-open');
 
     var offset;
 
     navWidth = $nav.outerWidth();
 
-    if ($('body').hasClass('rtl')) {
+    if ($body.hasClass('rtl')) {
       offset = -1 * navWidth;
     } else {
       offset = navWidth;
     }
 
-    if(!is_android) {
+    if (!is_android) {
       if (!isOpen) {
-  
-        $([$nav, $navTrigger]).each(function (i, obj) {
+
+        $([$nav, $navTrigger]).each(function(i, obj) {
           $(obj).velocity({
             translateX: 0,
             translateZ: 0.01
@@ -261,10 +176,10 @@
             easing: "easeInQuart"
           });
         });
-  
+
       } else {
-  
-        $([$nav, $navTrigger]).each(function (i, obj) {
+
+        $([$nav, $navTrigger]).each(function(i, obj) {
           $(obj).velocity({
             translateX: offset,
             translateZ: 0.01
@@ -273,7 +188,7 @@
             duration: 300
           });
         });
-  
+
       }
       $nav.toggleClass('shadow', isOpen);
     }
@@ -292,131 +207,50 @@
    * we need to create a jQuery plugin so we can easily create the hover animations on the archive
    * both an window.load and on jetpack's infinite scroll 'post-load'
    */
-  $.fn.addHoverAnimation = function () {
+  $.fn.addHoverAnimation = function() {
 
-    return this.each(function (i, obj) {
+    return this.each(function(i, obj) {
 
-			var $obj = $( obj ),
-				$handler = $obj.find( '.hover__handler' ),
-				$hover = $obj.find( '.hover' );
+      var $obj      = $(obj),
+          $handler  = $obj.find('.hover__handler'),
+          $hover    = $obj.find('.hover');
 
-			// if we don't have have elements that need to be animated return
-			if ( ! $hover.length ) {
-				return;
-			}
+      // if we don't have have elements that need to be animated return
+      if (!$hover.length) {
+        return;
+      }
 
-			var $letter = $hover.find( '.hover__letter' ),
-				letterWidth = $letter.outerWidth,
-				letterHeight = $letter.outerHeight;
+      // bind the tweens we created above to mouse events accordingly, through hoverIntent to avoid flickering
+      if ($handler.length) {
+        $handler.hoverIntent({
+          over: animateHoverIn,
+          out: animateHoverOut,
+          timeout: 100,
+          interval: 50
+        });
+      }
 
-			$hover.find( '.hover__bg' ).velocity( {
-				opacity: 0
-			}, {
-				duration: 0
-			} );
-			$hover.find( '.hover__line' ).velocity( {
-				height: 0
-			}, {
-				duration: 0
-			} );
-			$hover.find( '.hover__more' ).velocity( {
-				opacity: 0
-			}, {
-				duration: 0
-			} );
-			$hover.find( '.hover__letter' ).velocity( {
-				opacity: 0,
-				translateX: '-50%',
-				translateY: '-50%',
-				scaleX: 1.25,
-				scaleY: 1.25
-			}, {
-				duration: 0
-			} );
+      function animateHoverIn() {
 
-			// bind the tweens we created above to mouse events accordingly, through hoverIntent to avoid flickering
-			if ( $handler.length ) {
-				$handler.hoverIntent( {
-					over: animateHoverIn,
-					out: animateHoverOut,
-					timeout: 100,
-					interval: 50
-				} );
-			}
+      }
 
-			function animateHoverIn() {
+      function animateHoverOut() {
 
-				$hover.find( '.hover__bg' ).velocity( "reverse", {
-					easing: "easeOutQuart",
-					duration: 500
-				} );
-				$hover.find( '.hover__line' ).velocity( "reverse", {
-					easing: "easeOutQuart",
-					duration: 350,
-					delay: 150
-				} );
-				$hover.find( '.hover__more' ).velocity( "reverse", {
-					easing: "easeOutQuart",
-					duration: 350,
-					delay: 150
-				} );
-				$hover.find( '.hover__letter' ).velocity( {
-					scaleX: 1,
-					scaleY: 1,
-					opacity: 0.2,
-					translateX: '-50%',
-					translateY: '-50%'
-				}, {
-					easing: "easeOutQuart",
-					duration: 350,
-					delay: 150
-				} );
+      }
 
-			}
-
-			function animateHoverOut() {
-
-				var letterHeight = $hover.find( '.hover__letter-mask' ).outerHeight();
-
-				$hover.find( '.hover__letter' ).velocity( {
-					opacity: 0,
-					translateX: '-50%',
-					translateY: '-50%',
-					scaleX: 1.25,
-					scaleY: 1.25
-				}, {
-					easing: "easeOutQuart",
-					duration: 350,
-					delay: 0
-				} );
-				$hover.find( '.hover__more' ).velocity( "reverse", {
-					duration: 350,
-					delay: 0
-				} );
-				$hover.find( '.hover__line' ).velocity( "reverse", {
-					duration: 350,
-					delay: 0
-				} );
-				$hover.find( '.hover__bg' ).velocity( "reverse", {
-					duration: 350,
-					delay: 0
-				} );
-
-			}
-
-		});
+    });
   };
 
   // /* ====== Search Overlay Logic ====== */
-  (function () {
+  (function() {
 
     var isOpen = false,
-        $overlay = $('.overlay--search');
+      $overlay = $('.overlay--search');
 
     // update overlay position (if it's open) on window.resize
-    $(window).on('smartresize', function () {
+    $window.on('smartresize', function() {
 
-      windowWidth = $(window).outerWidth();
+      windowWidth = $window.outerWidth();
 
       if (isOpen) {
         $overlay.velocity({
@@ -440,7 +274,7 @@
 
       var offset;
 
-      if ($('body').hasClass('rtl')) {
+      if ($body.hasClass('rtl')) {
         offset = windowWidth
       } else {
         offset = -1 * windowWidth
@@ -472,7 +306,7 @@
     }
 
     // create animation and run it on
-    $('.nav__item--search').on('click touchstart', function (e) {
+    $('.nav__item--search').on('click touchstart', function(e) {
       // prevent default behavior and stop propagation
       e.preventDefault();
       e.stopPropagation();
@@ -484,7 +318,7 @@
 
       var offset;
 
-      if ($('body').hasClass('rtl')) {
+      if ($body.hasClass('rtl')) {
         offset = windowWidth
       } else {
         offset = -1 * windowWidth
@@ -554,7 +388,7 @@
     });
 
     // create function to hide the search overlay and bind it to the click event
-    $('.overlay__close').on('click touchstart', function (e) {
+    $('.overlay__close').on('click touchstart', function(e) {
 
       e.preventDefault();
       e.stopPropagation();
@@ -570,39 +404,39 @@
 
   // /* ====== Smart Resize Logic ====== */
   // It's best to debounce the resize event to a void performance hiccups
-  (function ($, sr) {
+  (function($, sr) {
 
     /**
      * debouncing function from John Hann
      * http://unscriptable.com/index.php/2009/03/20/debouncing-javascript-methods/
      */
-    var debounce = function (func, threshold, execAsap) {
-      var timeout;
+    var debounce = function(func, threshold, execAsap) {
+        var timeout;
 
-      return function debounced() {
-        var obj = this,
+        return function debounced() {
+          var obj = this,
             args = arguments;
 
-        function delayed() {
-          if (!execAsap) func.apply(obj, args);
-          timeout = null;
-        }
+          function delayed() {
+            if (!execAsap) func.apply(obj, args);
+            timeout = null;
+          }
 
-        if (timeout) clearTimeout(timeout);
-        else if (execAsap) func.apply(obj, args);
+          if (timeout) clearTimeout(timeout);
+          else if (execAsap) func.apply(obj, args);
 
-        timeout = setTimeout(delayed, threshold || 200);
-      };
-    }
-    // smartresize
-    jQuery.fn[sr] = function (fn) {
+          timeout = setTimeout(delayed, threshold || 200);
+        };
+      }
+      // smartresize
+    jQuery.fn[sr] = function(fn) {
       return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr);
     };
 
   })(jQuery, 'smartresize');
 
   var latestKnownScrollY = window.scrollY,
-      ticking = false;
+    ticking = false;
 
   function requestTick() {
     "use strict";
@@ -642,32 +476,33 @@
 
   /* ====== ON DOCUMENT READY ====== */
 
-  $(document).ready(function () {
+  $(document).ready(function() {
     init();
   });
 
 
   /* ====== ON WINDOW LOAD ====== */
 
-  $window.load(function () {
+  $window.load(function() {
 
-    var $nav        = $('.nav--main').addClass('hover-intent'),
-        $navItems   = $nav.find('li' ),
-        $sliders    = $('.flexslider');
+    var $nav      = $('.nav--main').addClass('hover-intent'),
+        $navItems = $nav.find('li'),
+        navWidth  = $nav.outerWidth(),
+        $sliders  = $('.flexslider');
 
     /* initialize flexslider */
-    if ( typeof $.flexslider !== 'undefined' && $sliders.length ) {
-      $sliders.flexslider( {
+    if (typeof $.flexslider !== 'undefined' && $sliders.length) {
+      $sliders.flexslider({
         controlNav: false,
         prevText: "<span>Previous</span>",
         nextText: "<span>Next</span>",
         start: function() {
-          var $arrow = $( '.svg-templates .slider-arrow' );
+          var $arrow = $('.svg-templates .slider-arrow');
 
-          $arrow.clone().appendTo( '.flex-direction-nav .flex-prev' );
-          $arrow.clone().appendTo( '.flex-direction-nav .flex-next' );
+          $arrow.clone().appendTo('.flex-direction-nav .flex-prev');
+          $arrow.clone().appendTo('.flex-direction-nav .flex-next');
         }
-      } );
+      });
     }
 
     /* add hover intent to main navigation links */
@@ -678,6 +513,28 @@
     });
 
     function showSubMenu() {
+
+      var $item     = $(this);
+
+      if ( $item.hasClass('menu-item--mega') ) {
+
+        var $subMenu = $item.children('.sub-menu-wrapper'),
+            offset,
+            subMenuWidth;
+
+        if ($subMenu.length) {
+          subMenuWidth = $subMenu.outerWidth();
+          
+          // calculations for positioning the submenu
+          a = $item.index(),
+          b = $nav.children().length,
+          c = navWidth - subMenuWidth,
+          x = (a - b/2 + 1/2) * c/b + c/2;
+
+          $subMenu.css('left', x);
+        }
+      }
+
       $(this).addClass('hover');
     }
 
@@ -695,13 +552,13 @@
 
   /* ====== ON RESIZE ====== */
 
-  $(window).smartresize(function () {
+  $window.smartresize(function() {
     browserSize();
   });
 
   /* ====== ON SCROLL ====== */
 
-  $window.on('scroll', function (e) {
+  $window.on('scroll', function(e) {
     "use strict";
     latestKnownScrollY = window.scrollY;
     requestTick();
@@ -746,8 +603,7 @@
     separator = uri.indexOf('?') !== -1 ? "&" : "?";
     if (uri.match(re)) {
       return uri.replace(re, '$1' + key + "=" + value + '$2');
-    }
-    else {
+    } else {
       return uri + separator + key + "=" + value;
     }
   }
@@ -760,7 +616,9 @@
    */
 
   if (!Date.now)
-    Date.now = function() { return new Date().getTime(); };
+    Date.now = function() {
+      return new Date().getTime();
+    };
 
   (function() {
     'use strict';
@@ -768,18 +626,19 @@
     var vendors = ['webkit', 'moz'];
     for (var i = 0; i < vendors.length && !window.requestAnimationFrame; ++i) {
       var vp = vendors[i];
-      window.requestAnimationFrame = window[vp+'RequestAnimationFrame'];
-      window.cancelAnimationFrame = (window[vp+'CancelAnimationFrame']
-      || window[vp+'CancelRequestAnimationFrame']);
+      window.requestAnimationFrame = window[vp + 'RequestAnimationFrame'];
+      window.cancelAnimationFrame = (window[vp + 'CancelAnimationFrame'] || window[vp + 'CancelRequestAnimationFrame']);
     }
     if (/iP(ad|hone|od).*OS 6/.test(window.navigator.userAgent) // iOS6 is buggy
-        || !window.requestAnimationFrame || !window.cancelAnimationFrame) {
+      || !window.requestAnimationFrame || !window.cancelAnimationFrame) {
       var lastTime = 0;
       window.requestAnimationFrame = function(callback) {
         var now = Date.now();
         var nextTime = Math.max(lastTime + 16, now);
-        return setTimeout(function() { callback(lastTime = nextTime); },
-            nextTime - now);
+        return setTimeout(function() {
+            callback(lastTime = nextTime);
+          },
+          nextTime - now);
       };
       window.cancelAnimationFrame = clearTimeout;
     }
