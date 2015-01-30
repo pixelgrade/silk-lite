@@ -1,5 +1,53 @@
 
 // ---------- #MAIN MENU
+// 
+
+%dropdown-arrow {
+	position: relative;
+	
+
+	&:after {
+		content: "";
+		position: absolute;
+		top: rem(32px);
+		right: rem(22px);
+		border: 0 solid transparent;
+		border-width: rem(4px) rem(3px);
+		border-top-color: currentColor;
+	}
+}
+
+
+%menu-item {
+	position: relative;
+	text-align: left;
+
+	&:hover > ul {
+		display: block;
+	}
+}
+
+%sub-menu {
+	@extend .nav;
+	@extend .nav--stacked;
+	min-width: rem(240px);
+	text-align: left;
+	display: none;
+
+	position: absolute;
+	top: 100%;
+	left: 0;
+
+	& & {
+		top: 0;
+		left: 100%;
+	}
+
+	a {
+		display: block;
+		padding: rhythm(4/9) rhythm(2/3); 
+	}
+}
 
 .main-navigation {
 	margin-bottom: rhythm(2);
@@ -15,20 +63,13 @@
 	background: white;
 
 	.sub-menu {
-		@extend .nav;
-		@extend .nav--stacked;
-		text-align: left;
-		min-width: rem(240px);
+		@extend %sub-menu;
+		display: block; 
 		text-align: center;
 		font-size: rem(12px);
 
 		.menu-item {
 			border-bottom: 1px solid $borders;
-		}
-
-		a {
-			display: block;
-			padding: rhythm(4/9) rhythm(2/3); 
 		}
 
 		> .menu-item-has-children > a:after {
@@ -59,17 +100,7 @@
 
 	.menu-item-has-children > a,
 	.menu-item--mega > a {
-		position: relative;
-
-		&:after {
-			content: "";
-			position: absolute;
-			top: rem(32px);
-			right: rem(22px);
-			border: 0 solid transparent;
-			border-width: rem(4px) rem(3px);
-			border-top-color: currentColor;
-		}
+		@extend %dropdown-arrow;
 	}
 
 	> .menu-item-has-children.hover > a,
@@ -256,16 +287,19 @@
 }
 
 
-
-
 // ---------- #TOP MENUS
 
 .top-bar {
 	@extend .clearfix;
 	background: black;
+	color: $gray;
 
 	a {
 		color: $gray;
+	}
+
+	li:hover > a {
+		color: white;
 	}
 
 	&.fixed {
@@ -292,24 +326,39 @@
 			transform: none;
 			transition: transform .3s ease-out;
 		}
+
+		.nav-trigger {
+			margin-right: rhythm(2/3);
+			cursor: pointer;
+
+			&:hover {
+				color: white;
+			}
+		}
+
+		svg {
+			margin-top: 0.55em;
+		}
+
+		path {
+			fill: currentColor;
+		}
 	}
 }
 
-.nav--toolbar.nav--dropdown {
-	@extend .nav--stacked;
-	@extend .absolute;
-	background: black;
-	top: 100%;
-	left: 0;
-	display: none;
+.nav-trigger {
+	@extend %menu-item;
+}
 
-	.nav-trigger:hover & {
-		display: block;
-	}
+.nav--toolbar.nav--dropdown {
+	@extend %sub-menu;
+	background: black;
+	margin-left: rhythm(-4/9);
 }
 
 .nav--toolbar {
 	@extend %delta;
+	@extend %nav--social;
 	display: inline-block;
 	font-size: rem(11px);
 	margin-left: rem(-15px);
@@ -329,57 +378,25 @@
 		&:hover {
 			color: white;
 		}
+	}
 
-		&:before {
-			display: inline-block;
-			font-size: rem(13px);
-			padding-right: 0.75em;
+	li {
+		@extend %menu-item;
 
-			font-family: FontAwesome;
-			-webkit-font-smoothing: antialiased;
-			text-align: center;
-			pointer-events: auto;
+		&.menu-item-has-children {
+			@extend %dropdown-arrow;
+			border-top-color: $gray;
+
+			&:after {
+				top: rem(21px);
+				right: rem(24px);
+			}
 		}
+	}
 
-		// default share icon used as a fallback
-		// now for the social services that are in FA
-		// we will match the href to them - left them looser so we don't have complaints
-		&[href*="mailto:"]:before,
-		&[href*="mail"]:before          {content: $fa-var-envelope;}
-		&[href*="feed"]:before,
-		&[href*="rss"]:before  			{content: $fa-var-rss;}
-		&[href*="behance"]:before       {content: $fa-var-behance;}
-		&[href*="delicious"]:before     {content: $fa-var-delicious;}
-		&[href*="deviantart"]:before    {content: $fa-var-deviantart;}
-		&[href*="digg"]:before          {content: $fa-var-digg;}
-		&[href*="dribbble"]:before      {content: $fa-var-dribbble;}
-		&[href*="facebook"]:before      {content: $fa-var-facebook;}
-		&[href*="flickr"]:before        {content: $fa-var-flickr;}
-		&[href*="foursquare"]:before    {content: $fa-var-foursquare;}
-		&[href*="github"]:before        {content: $fa-var-github;}
-		&[href*="plus.google"]:before   {content: $fa-var-google-plus;}
-		&[href*="instagram"]:before     {content: $fa-var-instagram;}
-		&[href*="linkedin"]:before      {content: $fa-var-linkedin;}
-		&[href*="pinterest"]:before     {content: $fa-var-pinterest;}
-		&[href*="reddit"]:before        {content: $fa-var-reddit;}
-		&[href*="skype"]:before         {content: $fa-var-skype;}
-		&[href*="soundcloud"]:before    {content: $fa-var-soundcloud;}
-		&[href*="spotify"]:before       {content: $fa-var-spotify;}
-		&[href*="stumbleupon"]:before   {content: $fa-var-stumbleupon;}
-		&[href*="tumblr"]:before        {content: $fa-var-tumblr;}
-		&[href*="twitter"]:before       {content: $fa-var-twitter;}
-		&[href*="vimeo"]:before         {content: $fa-var-vimeo-square;}
-		&[href*="vine"]:before          {content: $fa-var-vine;}
-		&[href*="vk.com"]:before        {content: $fa-var-vk;}
-		&[href*="weibo"]:before         {content: $fa-var-weibo;}
-		&[href*="xing"]:before          {content: $fa-var-xing;}
-		&[href*="yahoo"]:before         {content: $fa-var-yahoo;}
-		&[href*="youtube"]:before       {content: $fa-var-youtube;}
-		&[href*="angel.co"]:before       {content: $fa-var-angellist;}
-		&[href*="yelp"]:before       {content: $fa-var-yelp;}
-		&[href*="last.fm"]:before       {content: $fa-var-lastfm;}
-		&[href*="slideshare"]:before       {content: $fa-var-slideshare;}
-		&[href*="twitch.tv"]:before       {content: $fa-var-twitch;}
+	ul {
+		@extend %sub-menu;
+		background: black;
 	}
 }
 
@@ -390,4 +407,138 @@
 }
 
 
+%nav--social a {
+	&:before {
+		display: inline-block;
+		font-size: rem(13px);
+		padding-right: 0.75em;
 
+		font-family: FontAwesome;
+		-webkit-font-smoothing: antialiased;
+		text-align: center;
+		pointer-events: auto;
+	}
+
+	// default share icon used as a fallback
+	// now for the social services that are in FA
+	// we will match the href to them - left them looser so we don't have complaints
+	&[href*="mailto:"]:before,
+	&[href*="mail"]:before          {content: $fa-var-envelope;}
+	&[href*="feed"]:before,
+	&[href*="rss"]:before  			{content: $fa-var-rss;}
+	&[href*="behance"]:before       {content: $fa-var-behance;}
+	&[href*="delicious"]:before     {content: $fa-var-delicious;}
+	&[href*="deviantart"]:before    {content: $fa-var-deviantart;}
+	&[href*="digg"]:before          {content: $fa-var-digg;}
+	&[href*="dribbble"]:before      {content: $fa-var-dribbble;}
+	&[href*="facebook"]:before      {content: $fa-var-facebook;}
+	&[href*="flickr"]:before        {content: $fa-var-flickr;}
+	&[href*="foursquare"]:before    {content: $fa-var-foursquare;}
+	&[href*="github"]:before        {content: $fa-var-github;}
+	&[href*="plus.google"]:before   {content: $fa-var-google-plus;}
+	&[href*="instagram"]:before     {content: $fa-var-instagram;}
+	&[href*="linkedin"]:before      {content: $fa-var-linkedin;}
+	&[href*="pinterest"]:before     {content: $fa-var-pinterest;}
+	&[href*="reddit"]:before        {content: $fa-var-reddit;}
+	&[href*="skype"]:before         {content: $fa-var-skype;}
+	&[href*="soundcloud"]:before    {content: $fa-var-soundcloud;}
+	&[href*="spotify"]:before       {content: $fa-var-spotify;}
+	&[href*="stumbleupon"]:before   {content: $fa-var-stumbleupon;}
+	&[href*="tumblr"]:before        {content: $fa-var-tumblr;}
+	&[href*="twitter"]:before       {content: $fa-var-twitter;}
+	&[href*="vimeo"]:before         {content: $fa-var-vimeo-square;}
+	&[href*="vine"]:before          {content: $fa-var-vine;}
+	&[href*="vk.com"]:before        {content: $fa-var-vk;}
+	&[href*="weibo"]:before         {content: $fa-var-weibo;}
+	&[href*="xing"]:before          {content: $fa-var-xing;}
+	&[href*="yahoo"]:before         {content: $fa-var-yahoo;}
+	&[href*="youtube"]:before       {content: $fa-var-youtube;}
+	&[href*="angel.co"]:before      {content: $fa-var-angellist;}
+	&[href*="yelp"]:before       	{content: $fa-var-yelp;}
+	&[href*="last.fm"]:before       {content: $fa-var-lastfm;}
+	&[href*="slideshare"]:before    {content: $fa-var-slideshare;}
+	&[href*="twitch.tv"]:before     {content: $fa-var-twitch;}
+}
+
+.nav--floating {
+	@extend %nav--social;
+	position: fixed;
+	top: 50%;
+	background: white;
+	border: 1px solid transparent;
+	z-index: 10;
+	padding: rhythm(4/9);
+
+	li {
+		position: relative;
+		width: rhythm(1);
+		&:before { content: " "; }
+		overflow: hidden;
+		padding-left: 0.25em;
+		opacity: 0;
+		transition: all .3s ease-out;
+	}
+
+	a {
+		white-space: nowrap;
+		visibility: hidden;
+		color: $dark;
+	}
+
+	a:before {
+		content: $fa-var-share-alt;
+		font-size: rem(19px);
+		visibility: visible;
+	}
+
+	@for $i from 1 through 10 {
+		li:nth-child( #{$i} ) {
+			transition-delay: $i * 20ms;
+		}
+	}
+}
+
+.nav--floating--left {
+	border-left: 0;
+	left: 0;
+
+	li {
+		transform: translate(-200%, 0);
+	}
+
+	a {
+		right: 100%;
+	}
+
+	a:before {
+		right: rhythm(-1);
+	}
+}
+
+.nav--floating--right {
+	border-right: 0;
+	right: 0;
+
+	li {
+		transform: translate(200%, 0);
+	}
+
+	a {
+		left: 100%;
+	}
+
+	a:before {
+		left: rhythm(-1);
+	}
+}
+
+.nav--floating--is-visible {
+	transition: border-color .3s ease-in-out;
+	border-color: $borders;
+
+	li {
+		transition: all .3s ease-in;
+		opacity: 1;
+		transform: none;
+	}
+}
