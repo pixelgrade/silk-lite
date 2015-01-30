@@ -137,6 +137,81 @@
     }
   }
 
+    var $smallSidebar       = $('.single-sidebar'),
+        smallSidebarPinned  = false,
+        smallSidebarPadding = 100,
+        smallSidebarOffset;
+
+    if ( $smallSidebar.length ) {        
+      smallSidebarOffset = $smallSidebar.offset();
+    }
+
+    function pinSmallSidebar() {
+
+      if ( ! $sidebar.length ) {
+        return;
+      }   
+
+     if ( smallSidebarOffset.top - smallSidebarPadding < latestKnownScrollY && ! smallSidebarPinned ) {
+        $smallSidebar.css({  
+          position: 'fixed',
+          top: smallSidebarPadding,
+          left: smallSidebarOffset.left
+        });
+        smallSidebarPinned = true;
+      }   
+
+     if ( smallSidebarOffset.top - smallSidebarPadding >= latestKnownScrollY && smallSidebarPinned ) {
+        $smallSidebar.css({
+          position: '',
+          top: '',
+          left: ''
+        });
+        smallSidebarPinned = false;
+      }
+    }
+
+    var $sidebar        = $('.sidebar--main'),
+        $main           = $('.site-main'),
+        mainHeight      = $main.outerHeight(),
+        sidebarPinned   = false,
+        sidebarPadding  = 60,
+        sidebarBottom,
+        sidebarOffset,
+        sidebarHeight;
+
+    if ( $sidebar.length ) {        
+      sidebarOffset = $sidebar.offset();
+      sidebarHeight = $sidebar.outerHeight();
+    }
+
+    function pinSidebar() {
+      if ( latestKnownScrollY + wh - sidebarPadding > sidebarOffset.top + sidebarHeight && ! sidebarPinned) {
+        $sidebar.css({  
+          position: 'fixed',
+          top: wh - sidebarHeight - sidebarPadding,
+          left: sidebarOffset.left
+        });
+        sidebarPinned = true;
+      }
+
+      if ( latestKnownScrollY + wh > mainHeight + sidebarOffset.top && latestKnownScrollY + wh < dh ) {
+        $sidebar.css({
+          top: wh - sidebarHeight - sidebarPadding - ( latestKnownScrollY + windowHeight - mainHeight - sidebarOffset.top )
+        });
+      }
+
+      if ( latestKnownScrollY + wh - sidebarPadding <= sidebarOffset.top + sidebarHeight && sidebarPinned) {
+        $sidebar.css({
+          position: '',
+          top: '',
+          left: ''
+        });
+        sidebarPinned = false;
+      }
+    }
+
+
   /**
    * bind toggling the navigation drawer to click and touchstart
    *in order to get rid of the 300ms delay on touch devices we use the touchstart event
@@ -205,6 +280,7 @@
     archiveWidget.addClass('shrink');
     var separatorMarkup = '<span class="separator  separator--text" role="presentation"><span>More</span></a>';
     archiveWidget.append(separatorMarkup);
+    sidebarHeight = $('.sidebar--main').outerHeight();
   }
 
   /**
@@ -487,7 +563,11 @@
 
   function update() {
     "use strict";
+
     toggleTopBar();
+    pinSidebar();
+    pinSmallSidebar();
+
     ticking = false;
   }
 
