@@ -102,23 +102,23 @@
 
 		width: 1px;
 		background: $secondary;
-		background: linear-gradient(to bottom, $secondary 99%, rgba(0,0,0,0) 100%);
+//		background: linear-gradient(to bottom, $secondary 99%, rgba(0,0,0,0) 100%);
 	}
 
-//	> li:last-child {
-//		&:before {
-//			content: "";
-//
-//			position: absolute;
-//			left: 12px;
-//			top: 0;
-//			bottom: 0;
-//			z-index: 5;
-//
-//			width: 1px;
-//			background: white;
-//		}
-//	}
+	> li:last-child:not(.parent) {
+		&:before {
+			content: "";
+
+			position: absolute;
+			left: 12px;
+			top: 0;
+			bottom: 0;
+			z-index: 5;
+
+			width: 1px;
+			background: white;
+		}
+	}
 }
 
 li.comment, li.pingback, li.trackback {
@@ -144,8 +144,6 @@ li.comment, li.pingback, li.trackback {
 	}
 
 	.children {
-		position: relative;
-
 		margin-top: $u;
 
 		@include query-below($lap){

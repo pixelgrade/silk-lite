@@ -192,7 +192,7 @@ function amelie_comment( $comment, $args, $depth ) {
 	}
 
 	$GLOBALS['comment'] = $comment; ?>
-<li <?php comment_class(); ?>>
+<li <?php comment_class(empty( $args['has_children'] ) ? '' : 'parent'); ?>>
 	<article id="comment-<?php comment_ID() ?>" class="comment-article  media">
 		<span class="comment-number"><?php echo $comment_number ?></span>
 		<?php
