@@ -57,7 +57,8 @@
 		color: $accent;
 	}
 
-	.menu-item-has-children > a {
+	.menu-item-has-children > a,
+	.menu-item--mega > a {
 		position: relative;
 
 		&:after {
