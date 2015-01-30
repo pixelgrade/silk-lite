@@ -25,61 +25,6 @@ body {
 	@include rhythm(margin-bottom, 10);
 }
 
-.site-footer {
-	font-family: "Open Sans", sans-serif;
-
-	background-color: black;
-	color: white;
-
-	padding: em(60px);
-
-	& , a {
-		color: white;
-	}
-
-
-}
-
-.site-info {
-	@extend .content;
-}
-
 hr {
-	margin: $base-spacing-unit 0; 
-}
-//@todo to be moved in footer.scss or something
-
-.footer-navigation{
-	ul {
-		@extend .nav;
-
-		margin: em(30px) 0;
-
-		@include fs(11px);
-		text-transform: uppercase;
-		text-align: center;
-
-		li {
-			a{
-				padding: em(10px);
-			}
-
-			&:after {
-				content: '/';
-			}
-
-			&:last-child:after {
-				content: none;
-			}
-		}
-	}
-
-	.children {
-		display: none;
-	}
-}
-
-.site-info {
-	@include fs(13px);
-	text-align: center;
+	margin: $base-spacing-unit 0;
 }
