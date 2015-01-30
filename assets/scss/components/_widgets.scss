@@ -313,24 +313,45 @@
 		.bump-view{
 			@include fs(12px);
 			@extend %beta;
+
+			padding: 0;
 		}
 
 		&.large-thumbnail {
 			position: relative;
 
 			&:before {
-				@extend .comment-number;
-
-				content: counter(my-counter);
-
+				visibility: hidden;
 				position: absolute;
-				left: 50%;
-				top: 166px;
+				pointer-events: none;
+			}
 
-				display: block;
-				background: $accent !important;
+			.bump-view:first-child{
+				position: relative;
 
-				transform: translateX(-50%);
+				margin-bottom: rem(20px);
+
+				img {
+					display: block;
+					margin: 0 auto;
+				}
+
+				&:after {
+					@extend .comment-number;
+
+					content: counter(my-counter);
+
+					position: absolute;
+					left: 50%;
+					bottom: -12px;
+
+					display: block;
+					background: $accent !important;
+
+					font-size: 16px !important;
+
+					transform: translateX(-50%);
+				}
 			}
 
 			.bump-view {
@@ -355,7 +376,7 @@
 				max-width: 200px;
 				height: 12px;
 				display: block;
-				margin: rem(22px) auto;
+				margin: rem(16px) auto;
 
 				background: url('assets/svg/separator-simple-inversed.svg') $secondary center center;
 			}
@@ -406,7 +427,7 @@
 
 // WP.com instagram widget css - added here
 // just for development - to be overwritten
-// class: widget_wpcom_instagram_widget
+// class: .widget_wpcom_instagram_widget
 // @todo to be removed when in production
 
 .wpcom-instagram-images {
