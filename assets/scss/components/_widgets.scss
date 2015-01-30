@@ -389,6 +389,9 @@
 .site-footer{
 
 	.widget {
+		max-width: rem(340px);
+		margin-left: auto;
+		margin-right: auto;
 		border: 0;
 		padding-left: 0;
 		padding-right: 0;
@@ -399,4 +402,65 @@
 		}
 	}
 
+}
+
+// WP.com instagram widget css - added here
+// just for development - to be overwritten
+// class: widget_wpcom_instagram_widget
+// @todo to be removed when in production
+
+.wpcom-instagram-images {
+	overflow: hidden;
+}
+
+.wpcom-instagram-images img {
+	display: block;
+	float: left;
+	height: auto;
+}
+
+.wpcom-instagram-columns-1 img {
+	margin: 0 1% 5px;
+	max-width: 97%;
+}
+
+.wpcom-instagram-columns-2 img {
+	margin: 0 1% 2%;
+	max-width: 47%;
+}
+
+.wpcom-instagram-columns-3 img {
+	margin: 0 1% 2%;
+	max-width: 30%;
+}
+
+// Amelie's custom Instagram widget styling
+
+.site-footer {
+	aside.widget_wpcom_instagram_widget:first-child {
+		@extend .clearfix;
+
+		position: relative;
+		top: em(-60px);
+
+		max-width: none;
+		padding: 0;
+
+		.widget-title {
+			@extend .screen-reader-text;
+		}
+
+		a {
+			float: left;
+			padding: 0;
+			width: 12.5%;
+		}
+
+		img {
+			margin: 0;
+			width: 100%;
+			max-width: none;
+			height: auto;
+		}
+	}
 }
