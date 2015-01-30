@@ -30,6 +30,10 @@
 
 		color: $dark;
 		@include fs(17px);
+
+		.site-footer & {
+			color: white;
+		}
 	}
 
 	&.widget a {
