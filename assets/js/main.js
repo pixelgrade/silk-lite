@@ -10,7 +10,7 @@
   function browserSize() {
       windowHeight    = $window.height();
       windowWidth     = $window.width();
-      documentHeight  = $(document).height();
+      documentHeight  = $document.height();
   }
 
 
@@ -130,8 +130,10 @@
 
     if (navBottom < latestKnownScrollY) {
       $('.top-bar.fixed').addClass('visible');
+      $('.nav--floating').addClass('nav--floating--is-visible');
     } else {
       $('.top-bar.fixed').removeClass('visible');
+      $('.nav--floating').removeClass('nav--floating--is-visible');
     }
   }
 
@@ -514,7 +516,7 @@
 
     function showSubMenu() {
 
-      var $item     = $(this);
+      var $item = $(this);
 
       if ( $item.hasClass('menu-item--mega') ) {
 
@@ -524,7 +526,6 @@
 
         if ($subMenu.length) {
           subMenuWidth = $subMenu.outerWidth();
-          
           // calculations for positioning the submenu
           a = $item.index(),
           b = $nav.children().length,
@@ -539,7 +540,14 @@
     }
 
     function hideSubMenu() {
-      $(this).removeClass('hover');
+
+      var $item = $(this);
+
+      if ( $item.hasClass('menu-item--mega') ) {
+        $item.children('.sub-menu-wrapper').css('left', '');
+      }
+
+      $item.removeClass('hover');
     }
 
     $('.nav--main li').on('mouseleave', function(event) {

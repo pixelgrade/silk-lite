@@ -10,23 +10,28 @@
 
 		<div class="flag__img">
 			<div class="nav-trigger  relative">
-				<i class="fa fa-reorder"></i>
 				<?php
+
+				get_template_part('assets/svg/menu-icon-svg');
+
 				wp_nav_menu(
 					array(
 						'theme_location' => 'top_header_left',
 						'container'      => '',
 						'menu_class'     => 'nav  nav--toolbar  nav--dropdown',
-						'depth'          => - 1, //flatten if there is any hierarchy
 						'fallback_cb'    => false,
 					)
 				);
 
 				?>
 			</div>
-			<span class="inline-block  h3"><?php bloginfo( 'name' ); ?></span>
 		</div>
-		<div class="flag__img  align-right">
+
+		<div class="flag__img">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="inline-block  h3"><?php bloginfo( 'name' ); ?></a>
+		</div>
+		<div class="flag__body  align-right">
+			<h5 class="screen-reader-text"><?php _e( 'Secondary navigation', 'amelie_txtd' ); ?></h5>
 			<?php
 			if ( ! get_theme_mod( 'amelie_disable_search_in_toolbar', false ) ) { ?>
 				<ul class="nav  nav--toolbar">
@@ -39,7 +44,6 @@
 					'theme_location' => 'top_header_right',
 					'container'      => '',
 					'menu_class'     => 'nav  nav--toolbar',
-					'depth'          => - 1, //flatten if there is any hierarchy
 					'fallback_cb'    => false,
 				)
 			);
@@ -47,3 +51,25 @@
 		</div>
 	</div>
 </div>
+
+<?php 
+wp_nav_menu(
+	array(
+		'theme_location' => 'top_header_left',
+		'container'      => '',
+		'menu_class'     => 'nav  nav--stacked  nav--floating  nav--floating--left',
+		'fallback_cb'    => false,
+		'depth' 		 => -1
+	)
+);
+
+wp_nav_menu(
+	array(
+		'theme_location' => 'top_header_right',
+		'container'      => '',
+		'menu_class'     => 'nav  nav--stacked  nav--floating  nav--floating--right',
+		'fallback_cb'    => false,
+		'depth' 		 => -1
+	)
+);
+?>

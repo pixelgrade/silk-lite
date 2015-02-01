@@ -129,11 +129,11 @@ if ( ! function_exists( 'amelie_fonts_url' ) ) :
 		}
 
 		/* Translators: If there are characters in your language that are not
-		* supported by Merryweather, translate this to 'off'. Do not translate
+		* supported by Merriweather, translate this to 'off'. Do not translate
 		* into your own language.
 		*/
-		if ( 'off' !== _x( 'on', 'Merryweather font: on or off', 'amelie_txtd' ) ) {
-			$fonts[] = 'Merryweather:400italic,400,300,700';
+		if ( 'off' !== _x( 'on', 'Merriweather font: on or off', 'amelie_txtd' ) ) {
+			$fonts[] = 'Merriweather:400italic,400,300,700';
 		}
 
 		/* translators: To add an additional character subset specific to your language, translate this to 'greek', 'cyrillic', 'devanagari' or 'vietnamese'. Do not translate into your own language. */
@@ -192,7 +192,7 @@ function amelie_comment( $comment, $args, $depth ) {
 	}
 
 	$GLOBALS['comment'] = $comment; ?>
-<li <?php comment_class(); ?>>
+<li <?php comment_class(empty( $args['has_children'] ) ? '' : 'parent'); ?>>
 	<article id="comment-<?php comment_ID() ?>" class="comment-article  media">
 		<span class="comment-number"><?php echo $comment_number ?></span>
 		<?php
