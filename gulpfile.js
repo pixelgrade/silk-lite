@@ -32,12 +32,12 @@ var options = {
 // styles related
 gulp.task('styles-dev', function () {
 	return gulp.src('assets/scss/**/*.scss')
-		.pipe(sass({sourcemap: false, style: 'compact'}))
-		.on('error', function (e) {
-			console.log(e.message);
-		})
-		.pipe(prefix("last 1 version", "> 1%", "ie 8", "ie 7"))
-		.pipe(chmod(644))
+		.pipe(sass({sourcemap: true, style: 'compact'}))
+			.on('error', function (e) {
+				console.log(e.message);
+			})
+		// .pipe(prefix("last 1 version", "> 1%", "ie 8", "ie 7"))
+		// .pipe(chmod(644))
 		.pipe(gulp.dest('./'))
 		.pipe(livereload());
 });

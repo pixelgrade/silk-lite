@@ -1,0 +1,118 @@
+// ---------- #TOP MENUS
+
+.top-bar {
+	@extend .clearfix;
+	background: black;
+	color: $gray;
+
+	a {
+		color: $gray;
+	}
+
+	li:hover > a {
+		color: white;
+	}
+
+	&.fixed {
+		top: 0;
+		left: 0;
+		z-index: 1000;
+		color: $gray; 
+
+		transform: translate(0, -100%);
+		transition: transform .3s ease-in;
+
+		.h3 {
+			margin: 0;
+			font-size: rem(33px);
+			text-transform: uppercase;
+			white-space: nowrap;
+
+			i {
+				margin-right: rhythm(1);
+			}
+		}
+
+		&.visible {
+			transform: none;
+			transition: transform .3s ease-out;
+		}
+
+		.nav-trigger {
+			margin-right: rhythm(2/3);
+			cursor: pointer;
+
+			&:hover {
+				color: white;
+			}
+		}
+
+		svg {
+			margin-top: 0.55em;
+		}
+
+		path {
+			fill: currentColor;
+		}
+	}
+}
+
+.nav-trigger {
+	@extend %menu-item;
+}
+
+.nav__item--search {
+	> a:before {
+		content: $fa-var-search;
+	}
+}
+
+.nav--toolbar {
+	@extend %delta;
+	@extend %nav--social;
+	display: inline-block;
+	font-size: rem(11px);
+	margin-left: rem(-15px); 
+	margin-right: rem(-15px);
+
+	& + & {
+		margin-left: rem(15px);
+	}
+
+	li {
+		display: inline-block;
+	}
+
+	a {
+		padding: rem(15px);
+
+		&:hover {
+			color: white;
+		}
+	}
+
+	li {
+		@extend %menu-item;
+
+		&.menu-item-has-children {
+			@extend %dropdown-arrow;
+			border-top-color: $gray;
+
+			&:after {
+				top: rem(21px);
+				right: rem(24px);
+			}
+		}
+	}
+
+	ul {
+		@extend %sub-menu;
+		background: black;
+	}
+
+	&.nav--dropdown {
+		@extend %sub-menu;
+		background: black;
+		margin-left: rhythm(-4/9);
+	}
+}

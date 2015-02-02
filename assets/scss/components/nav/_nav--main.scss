@@ -1,0 +1,77 @@
+.nav--main {
+	@extend .nav;
+	text-align: center;
+	color: $dark;
+	border-top: rem(3px) solid $light;
+	position: relative;
+	z-index: 100;
+	background: white;
+
+	.sub-menu {
+		@extend %sub-menu;
+		display: block; 
+		text-align: center;
+		font-size: rem(12px);
+
+		.menu-item {
+			border-bottom: 1px solid $borders;
+		}
+
+		> .menu-item-has-children > a:after {
+			border-top-color: transparent; 
+			border-left-color: currentColor;
+			border-width: rem(3px) rem(4px);
+			right: 0;
+			top: 50%;
+			margin-top: rem(-4px);
+		}
+
+		li:last-child {
+			border-bottom: 0;
+		}
+	}
+
+	.menu-item {
+		position: relative;
+
+		&:hover {
+			z-index: 10;
+		}
+	}
+
+	> .menu-item:hover > a {
+		color: $accent;
+	}
+
+	.menu-item-has-children > a,
+	.menu-item--mega > a {
+		@extend %dropdown-arrow;
+	}
+
+	> .menu-item-has-children.hover > a,
+	> .menu-item--mega.hover > a {
+		position: relative;
+
+		&:before {
+			content: "";
+			position: absolute;
+			z-index: 9999;
+			top: 100%;
+			left: 50%;
+			width: rem(10px);
+			height: rem(10px);
+			margin-top: rem(-5px);
+			transform: rotate(45deg);
+			background: white;
+			border-left: 1px solid $borders;
+			border-top: 1px solid $borders;
+		}
+	}
+
+	.menu-link {
+		@extend %delta;
+		color: currentColor;
+		display: inline-block;
+		padding: rhythm(1) rhythm(1.5);
+	}
+}
