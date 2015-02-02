@@ -442,7 +442,9 @@ div.sd-social-icon-text .sd-content ul li a.sd-button {
 	&:before {
 		position: absolute;
 		left: 0;
-		top: rem(19px);
+		top: rem(17px);
+
+
 	}
 	
 	.share-count {
@@ -453,6 +455,17 @@ div.sd-social-icon-text .sd-content ul li a.sd-button {
 		float: right;
 
 	}
+}
+
+a.sd-button:before {
+	.share-facebook & { color: #36629f !important; }
+	.share-twitter & { color: #32abdf !important; }
+	.share-pinterest & { color: #cb242d !important; }
+	.share-tumblr & { color: #3f5a6f !important; }
+
+	.share-linkedin & { color: #1278b3 !important; }
+	.share-stumbleupon & { color: #e94b2f !important; }
+	.share-reddit & { color: #000000 !important; }
 }
 
 .sharedaddy.sd-like {
@@ -498,7 +511,7 @@ div#jp-relatedposts div.jp-relatedposts-items-visual div.jp-relatedposts-post {
 div#jp-relatedposts#jp-relatedposts h3.jp-relatedposts-headline {
 	@extend %jp-sidebar-title;
 
-	display: block;
+	width: 100%;
 	text-align: center;
 }
 
