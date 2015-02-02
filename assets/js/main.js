@@ -225,10 +225,17 @@
         $jpSharing.appendTo($jpWrapper);
       }
 
-      var $jpRelatedPosts = $('#jp-related-posts');
+      var $jpLikes = $('.sharedaddy.sd-like');
+      if( $jpLikes.length ) {
+        $jpLikes.appendTo($jpWrapper);
+      }
+
+      var $jpRelatedPosts = $('#jp-relatedposts');
       if( $jpRelatedPosts.length ) {
         $jpRelatedPosts.appendTo($jpWrapper);
       }
+
+
     }
   }
 
