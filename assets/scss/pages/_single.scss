@@ -458,6 +458,10 @@ div.sd-social-icon-text .sd-content ul li a.sd-button {
 .sharedaddy.sd-like{
 	@extend %jp-box;
 	padding-bottom: rem(20px);
+
+	.sd-title {
+		margin-bottom: rem(20px);
+	}
 }
 
 div.jetpack-likes-widget-wrapper.sd-like {
@@ -493,6 +497,8 @@ div#jp-relatedposts div.jp-relatedposts-items-visual div.jp-relatedposts-post {
 
 div#jp-relatedposts#jp-relatedposts h3.jp-relatedposts-headline {
 	@extend %jp-sidebar-title;
+
+	display: block;
 	text-align: center;
 }
 
