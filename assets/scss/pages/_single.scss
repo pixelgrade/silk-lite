@@ -455,13 +455,13 @@ div.sd-social-icon-text .sd-content ul li a.sd-button {
 	}
 }
 
-.sharedaddy.sd-like{
+.sharedaddy.sd-like {
 	@extend %jp-box;
 	padding-bottom: rem(20px);
+}
 
-	.sd-title {
-		margin-bottom: rem(20px);
-	}
+div.sharedaddy.sharedaddy.sd-like h3.sd-title {
+	margin-bottom: rem(20px);
 }
 
 div.jetpack-likes-widget-wrapper.sd-like {
