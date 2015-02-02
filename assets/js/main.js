@@ -470,6 +470,8 @@
 
     /* DETECT PLATFORM */
     platformDetect();
+
+    masonryInit();
   }
 
 

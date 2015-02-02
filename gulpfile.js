@@ -53,6 +53,7 @@ gulp.task('styles', function () {
 });
 
 gulp.task('styles-watch', function () {
+	livereload.listen();
 	return gulp.watch('assets/scss/**/*.scss', ['styles']);
 });
 
@@ -67,6 +68,7 @@ gulp.task('scripts', function () {
 });
 
 gulp.task('scripts-watch', function () {
+	livereload.listen();
 	return gulp.watch('assets/js/**/*.js', ['scripts']);
 });
 

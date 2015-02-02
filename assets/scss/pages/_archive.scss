@@ -134,6 +134,7 @@
 	}
 
 	.archive__grid {
+		position: relative;
 		margin-bottom: 3em;
 	}
 }
@@ -146,7 +147,13 @@
 	text-align: center;
 
 	span {
+		@extend %delta;
+		letter-spacing: 0.2em;
+		font-size: 1rem;
 		display: inline-block;
+		background: none;
+		color: $accent;
+		text-transform: uppercase;
 	}
 }
 
