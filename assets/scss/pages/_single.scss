@@ -331,13 +331,8 @@ span.pagination-title {
 
 
 
-#jp-post-flair {
-	position: absolute;
-	top: 0;
-	left: 0;
 
-	width: em(190px);
-}
+// Jetpack stuff
 
 %jp-sidebar-title {
 	@extend %delta;
@@ -360,12 +355,27 @@ span.pagination-title {
 	}
 }
 
+%jp-box {
+	padding: em(20px);
+	padding-bottom: 0;
+	margin-bottom: rem(45px);
+
+	border: 1px solid $borders;
+}
+
+
+#jp-post-flair {
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	width: em(190px);
+}
+
 // Sharedaddy - in left sidebar
 
 .sharedaddy.sd-sharing-enabled {
-	padding: em(20px);
-	padding-bottom: 0;
-	border: 1px solid $borders;
+	@extend %jp-box;
 
 	text-transform: uppercase;
 
@@ -415,6 +425,8 @@ div.sd-social-icon-text .sd-content ul li a.sd-button {
 	border: 0;
 	border-radius: 0;
 
+	@include fs(12px);
+	color: $dark !important;
 	background: transparent;
 	box-shadow: none;
 
@@ -432,17 +444,20 @@ div.sd-social-icon-text .sd-content ul li a.sd-button {
 		left: 0;
 		top: rem(19px);
 	}
+	
+	.share-count {
+		@include fs(13px);
+
+		background: transparent;
+		color: $dark;
+		float: right;
+
+	}
 }
 
 .sharedaddy.sd-like{
-	margin-top: rem(45px);
+	@extend %jp-box;
 }
-
-div.sharedaddy.sd-like h3.sd-title{
-	border-bottom: 0;
-}
-
-
 
 
 
