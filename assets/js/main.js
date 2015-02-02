@@ -218,6 +218,8 @@
     if( $('body').hasClass('single-post') && $('#jp-post-flair').length == 0 ) {
       var $jpWrapper = $('<div/>', { id: 'jp-post-flair' });
 
+      $jpWrapper.appendTo($('.entry-content'));
+
       var $jpSharing = $('.sharedaddy.sd-sharing-enabled');
       if( $jpSharing.length ) {
         $jpSharing.appendTo($jpWrapper);
