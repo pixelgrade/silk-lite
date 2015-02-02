@@ -356,7 +356,7 @@ span.pagination-title {
 }
 
 %jp-box {
-	padding: em(20px);
+	padding: rem(20px);
 	padding-bottom: 0;
 	margin-bottom: rem(45px);
 
@@ -457,6 +457,7 @@ div.sd-social-icon-text .sd-content ul li a.sd-button {
 
 .sharedaddy.sd-like{
 	@extend %jp-box;
+	padding-bottom: rem(20px);
 }
 
 
