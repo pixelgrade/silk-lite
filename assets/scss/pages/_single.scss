@@ -364,6 +364,7 @@ span.pagination-title {
 
 .sharedaddy.sd-sharing-enabled {
 	padding: em(20px);
+	padding-bottom: 0;
 	border: 1px solid $borders;
 
 	text-transform: uppercase;
@@ -371,31 +372,36 @@ span.pagination-title {
 	*{
 		letter-spacing: 0.1em;
 	}
-
-	.sd-content ul {
-		@extend %delta;
-		@include fs(12px);
-	}
-
-	a {
-		color: $dark;
-	}
-
-	li {
-
-		&:last-child {
-			padding-bottom: 0;
-			border-bottom: 0;
-		}
-		
-		&.share-end:empty{
-			display: none;
-		}
-	}
 }
 
-div.sd-content ul li {
+div.sharedaddy.sharedaddy h3.sd-title {
+	@extend %jp-sidebar-title;
+
 	display: block;
+	margin-bottom: 0;
+	padding-bottom: rem(12px);
+
+	transform: none;
+	border-bottom: 1px solid $gray;
+}
+
+div.sd-content ul{
+
+	margin-bottom: 0 !important;
+
+	li {
+		display: block;
+
+		border-top: 1px solid $borders;
+
+		&:first-child {
+			border-top: 1px;
+		}
+
+		&:last-child {
+			border: 0;
+		}
+	}
 }
 
 div.sd-social-icon-text .sd-content ul li a.sd-button {
@@ -408,7 +414,6 @@ div.sd-social-icon-text .sd-content ul li a.sd-button {
 
 	border: 0;
 	border-radius: 0;
-	border-bottom: 1px solid $borders;
 
 	background: transparent;
 	box-shadow: none;
@@ -425,17 +430,28 @@ div.sd-social-icon-text .sd-content ul li a.sd-button {
 	&:before {
 		position: absolute;
 		left: 0;
-		top: rem(16px);
+		top: rem(19px);
 	}
 }
 
-div.sharedaddy.sharedaddy h3.sd-title {
-	@extend %jp-sidebar-title;
-
-	transform: none;
+.sharedaddy.sd-like{
+	margin-top: rem(45px);
 }
 
+div.sharedaddy.sd-like h3.sd-title{
+	border-bottom: 0;
+}
+
+
+
+
+
 // Jetpack related posts - in left sidebar
+div#jp-relatedposts.jp-relatedposts {
+	padding: 0;
+	margin-top: rem(45px);
+}
+
 div#jp-relatedposts div.jp-relatedposts-items.jp-relatedposts-items-visual {
 	margin: 0;
 	clear: none;
@@ -452,8 +468,7 @@ div#jp-relatedposts div.jp-relatedposts-items-visual div.jp-relatedposts-post {
 }
 
 .jp-relatedposts-post-excerpt, .jp-relatedposts-post-context {
-	//@todo temp - because design
-	display: none;
+	@extend .screen-reader-text;
 }
 
 div#jp-relatedposts#jp-relatedposts h3.jp-relatedposts-headline {
