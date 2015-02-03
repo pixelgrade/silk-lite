@@ -4,7 +4,9 @@
 	background-color: black;
 	color: white;
 
-	padding: em(60px) 0;
+	@include query-above($lap) {
+		padding: em(60px) 0;
+	}
 
 	& , a {
 		color: white;
