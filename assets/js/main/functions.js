@@ -38,13 +38,51 @@ function getSupportedTransform() {
 }
 
 
-
+/**
+ * Adding a class and some mark-up to the
+ * archive widget to make it look splendid
+ */
 function styleArchiveWidget() {
   var archiveWidget = $('.sidebar--main .widget_archive ul').parent();
   archiveWidget.addClass('shrink');
   var separatorMarkup = '<span class="separator  separator--text" role="presentation"><span>More</span></a>';
   archiveWidget.append(separatorMarkup);
   fixedSidebars.refresh();
+}
+
+/**
+ * Wrap Jetpack's related posts and
+ * Sharedaddy sharing into one div
+ * to make a left sidebar on single posts
+ */
+function wrapJetpackAfterContent() {
+  // check if we are on single post and the wrap has not been done already by Jetpack
+  // (it happens when the theme is activated on a wordpress.com installation)
+  if( $('body').hasClass('single-post') && $('#jp-post-flair').length == 0 ) {
+
+    var $jpSharing = $('.sharedaddy.sd-sharing-enabled');
+    var $jpLikes = $('.sharedaddy.sd-like');
+    var $jpRelatedPosts = $('#jp-relatedposts');
+
+    if ( $jpSharing.length || $jpLikes.length || $jpRelatedPosts.length ) {
+      $('body').addClass('has--jetpack-sidebar');
+
+      var $jpWrapper = $('<div/>', { id: 'jp-post-flair' });
+      $jpWrapper.appendTo($('.entry-content'));
+
+      if( $jpSharing.length ) {
+        $jpSharing.appendTo($jpWrapper);
+      }
+
+      if( $jpLikes.length ) {
+        $jpLikes.appendTo($jpWrapper);
+      }
+
+      if( $jpRelatedPosts.length ) {
+        $jpRelatedPosts.appendTo($jpWrapper);
+      }
+    }
+  }
 }
 
 

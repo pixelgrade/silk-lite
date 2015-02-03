@@ -3,7 +3,7 @@
 
 	// making room for the left sidebar (jetpack)
 	@include query-above($lap) {
-		.single-post &{
+		.single-post.has--jetpack-sidebar &{
 			margin-left: em(230px);
 		}
 	}

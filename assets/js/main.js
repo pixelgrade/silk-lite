@@ -1,79 +1,3 @@
-/*
- * debouncedresize: special jQuery event that happens once after a window resize
- *
- * latest version and complete README available on Github:
- * https://github.com/louisremi/jquery-smartresize
- *
- * Copyright 2012 @louis_remi
- * Licensed under the MIT license.
- *
- * This saved you an hour of work? 
- * Send me music http://www.amazon.co.uk/wishlist/HNTU0468LQON
- */
-(function ($) {
-
-  var $event = $.event,
-      $special, resizeTimeout;
-
-  $special = $event.special.debouncedresize = {
-    setup: function () {
-      $(this).on("resize", $special.handler);
-    },
-    teardown: function () {
-      $(this).off("resize", $special.handler);
-    },
-    handler: function (event, execAsap) {
-      // Save the context
-      var context = this,
-          args = arguments,
-          dispatch = function () {
-          // set correct event type
-          event.type = "debouncedresize";
-          $event.dispatch.apply(context, args);
-          };
-
-      if (resizeTimeout) {
-        clearTimeout(resizeTimeout);
-      }
-
-      execAsap ? dispatch() : resizeTimeout = setTimeout(dispatch, $special.threshold);
-    },
-    threshold: 150
-  };
-
-})(jQuery);
-/**
- * requestAnimationFrame polyfill by Erik Möller.
- * Fixes from Paul Irish, Tino Zijdel, Andrew Mao, Klemen Slavič, Darius Bacon
- *
- * MIT license
- */
-if (!Date.now) Date.now = function () {
-  return new Date().getTime();
-};
-
-(function () {
-  'use strict';
-
-  var vendors = ['webkit', 'moz'];
-  for (var i = 0; i < vendors.length && !window.requestAnimationFrame; ++i) {
-    var vp = vendors[i];
-    window.requestAnimationFrame = window[vp + 'RequestAnimationFrame'];
-    window.cancelAnimationFrame = (window[vp + 'CancelAnimationFrame'] || window[vp + 'CancelRequestAnimationFrame']);
-  }
-  if (/iP(ad|hone|od).*OS 6/.test(window.navigator.userAgent) // iOS6 is buggy
-  || !window.requestAnimationFrame || !window.cancelAnimationFrame) {
-    var lastTime = 0;
-    window.requestAnimationFrame = function (callback) {
-      var now = Date.now();
-      var nextTime = Math.max(lastTime + 16, now);
-      return setTimeout(function () {
-        callback(lastTime = nextTime);
-      }, nextTime - now);
-    };
-    window.cancelAnimationFrame = clearTimeout;
-  }
-}());
 (function ($, undefined) {
   /**
    * Shared variables
@@ -617,6 +541,7 @@ if (!Date.now) Date.now = function () {
     masonry.init();
     navigation.init();
     styleArchiveWidget();
+    wrapJetpackAfterContent();
   }
 
   /* ====== ON WINDOW LOAD ====== */
@@ -652,7 +577,83 @@ if (!Date.now) Date.now = function () {
     fixedSidebars.update();
     navigation.toggleTopBar();
     ticking = false;
-  } /* ====== HELPER FUNCTIONS ====== */
+  }
+/*
+ * debouncedresize: special jQuery event that happens once after a window resize
+ *
+ * latest version and complete README available on Github:
+ * https://github.com/louisremi/jquery-smartresize
+ *
+ * Copyright 2012 @louis_remi
+ * Licensed under the MIT license.
+ *
+ * This saved you an hour of work? 
+ * Send me music http://www.amazon.co.uk/wishlist/HNTU0468LQON
+ */
+  (function ($) {
+
+    var $event = $.event,
+        $special, resizeTimeout;
+
+    $special = $event.special.debouncedresize = {
+      setup: function () {
+        $(this).on("resize", $special.handler);
+      },
+      teardown: function () {
+        $(this).off("resize", $special.handler);
+      },
+      handler: function (event, execAsap) {
+        // Save the context
+        var context = this,
+            args = arguments,
+            dispatch = function () {
+            // set correct event type
+            event.type = "debouncedresize";
+            $event.dispatch.apply(context, args);
+            };
+
+        if (resizeTimeout) {
+          clearTimeout(resizeTimeout);
+        }
+
+        execAsap ? dispatch() : resizeTimeout = setTimeout(dispatch, $special.threshold);
+      },
+      threshold: 150
+    };
+
+  })(jQuery);
+  /**
+   * requestAnimationFrame polyfill by Erik Möller.
+   * Fixes from Paul Irish, Tino Zijdel, Andrew Mao, Klemen Slavič, Darius Bacon
+   *
+   * MIT license
+   */
+  if (!Date.now) Date.now = function () {
+    return new Date().getTime();
+  };
+
+  (function () {
+    'use strict';
+
+    var vendors = ['webkit', 'moz'];
+    for (var i = 0; i < vendors.length && !window.requestAnimationFrame; ++i) {
+      var vp = vendors[i];
+      window.requestAnimationFrame = window[vp + 'RequestAnimationFrame'];
+      window.cancelAnimationFrame = (window[vp + 'CancelAnimationFrame'] || window[vp + 'CancelRequestAnimationFrame']);
+    }
+    if (/iP(ad|hone|od).*OS 6/.test(window.navigator.userAgent) // iOS6 is buggy
+    || !window.requestAnimationFrame || !window.cancelAnimationFrame) {
+      var lastTime = 0;
+      window.requestAnimationFrame = function (callback) {
+        var now = Date.now();
+        var nextTime = Math.max(lastTime + 16, now);
+        return setTimeout(function () {
+          callback(lastTime = nextTime);
+        }, nextTime - now);
+      };
+      window.cancelAnimationFrame = clearTimeout;
+    }
+  }()); /* ====== HELPER FUNCTIONS ====== */
 
 
 
@@ -689,6 +690,10 @@ if (!Date.now) Date.now = function () {
   }
 
 
+  /**
+   * Adding a class and some mark-up to the
+   * archive widget to make it look splendid
+   */
 
   function styleArchiveWidget() {
     var archiveWidget = $('.sidebar--main .widget_archive ul').parent();
@@ -696,6 +701,44 @@ if (!Date.now) Date.now = function () {
     var separatorMarkup = '<span class="separator  separator--text" role="presentation"><span>More</span></a>';
     archiveWidget.append(separatorMarkup);
     fixedSidebars.refresh();
+  }
+
+  /**
+   * Wrap Jetpack's related posts and
+   * Sharedaddy sharing into one div
+   * to make a left sidebar on single posts
+   */
+
+  function wrapJetpackAfterContent() {
+    // check if we are on single post and the wrap has not been done already by Jetpack
+    // (it happens when the theme is activated on a wordpress.com installation)
+    if ($('body').hasClass('single-post') && $('#jp-post-flair').length == 0) {
+
+      var $jpSharing = $('.sharedaddy.sd-sharing-enabled');
+      var $jpLikes = $('.sharedaddy.sd-like');
+      var $jpRelatedPosts = $('#jp-relatedposts');
+
+      if ($jpSharing.length || $jpLikes.length || $jpRelatedPosts.length) {
+        $('body').addClass('has--jetpack-sidebar');
+
+        var $jpWrapper = $('<div/>', {
+          id: 'jp-post-flair'
+        });
+        $jpWrapper.appendTo($('.entry-content'));
+
+        if ($jpSharing.length) {
+          $jpSharing.appendTo($jpWrapper);
+        }
+
+        if ($jpLikes.length) {
+          $jpLikes.appendTo($jpWrapper);
+        }
+
+        if ($jpRelatedPosts.length) {
+          $jpRelatedPosts.appendTo($jpWrapper);
+        }
+      }
+    }
   }
 
 
