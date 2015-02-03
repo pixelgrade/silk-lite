@@ -71,9 +71,10 @@
 }
 
 
-
-.commentlist > .comment, .commentlist > .pingback, .commentlist > .trackback {
-	padding-left: em(25px);
+@include query-above($lap) {
+	.commentlist > .comment, .commentlist > .pingback, .commentlist > .trackback {
+		padding-left: em(25px);
+	}
 }
 
 @include query-below($lap) {
@@ -91,18 +92,20 @@
 
 	list-style: none;
 
-	&:before {
-		content: "";
+	@include query-above($lap) {
+		&:before {
+			content: "";
 
-		position: absolute;
-		left: 12px;
-		top: 0;
-		bottom: 0;
-		z-index: 1;
+			position: absolute;
+			left: 12px;
+			top: 0;
+			bottom: 0;
+			z-index: 1;
 
-		width: 1px;
-		background: $secondary;
-//		background: linear-gradient(to bottom, $secondary 99%, rgba(0,0,0,0) 100%);
+			width: 1px;
+			background: $secondary;
+			//background: linear-gradient(to bottom, $secondary 99%, rgba(0,0,0,0) 100%);
+		}
 	}
 
 	> li:last-child:not(.parent) {
@@ -135,7 +138,7 @@ li.comment, li.pingback, li.trackback {
 
 		@include query-below($lap) {
 			// @todo revisit
-			@include rhythm(left, -4);
+			display: none;
 		}
 	}
 
@@ -169,22 +172,25 @@ li.comment, li.pingback, li.trackback {
 	}
 }
 
-$helper-one: 33px;
-$helper-two: 46px;
-
-li.depth-2:before {
-	left: -$helper-one;
-	width: $helper-one;
-}
-
 @include query-above($lap) {
-	@for $i from 3 through 10 {
-		li.depth-#{$i}:before {
-			left: - ( $helper-one + ($i - 2) * $helper-two );
-			width: $helper-one + ($i - 2) * $helper-two;
+	$helper-one: 33px;
+	$helper-two: 46px;
+
+	li.depth-2:before {
+		left: -$helper-one;
+		width: $helper-one;
+	}
+
+	@include query-above($lap) {
+		@for $i from 3 through 10 {
+			li.depth-#{$i}:before {
+				left: - ( $helper-one + ($i - 2) * $helper-two );
+				width: $helper-one + ($i - 2) * $helper-two;
+			}
 		}
 	}
 }
+
 
 .comment__author-name {
 	@include fs(14px);
@@ -201,7 +207,10 @@ li.depth-2:before {
 
 .comment-article {
 	margin-bottom: 0;
-	margin-left: em(20px);
+
+	@include query-above($lap) {
+		margin-left: em(20px);
+	}
 
 	&:hover {
 		.comment-edit-link, .comment-reply-link {

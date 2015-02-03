@@ -116,8 +116,13 @@ blockquote {
 
 	position: relative;
 
-	margin: rem(60px) 0;
-	padding: rem(40px) rem(70px);
+	margin: rem(30px) 0;
+	padding: rem(40px) rem(35px);
+
+	@include query-above($lap) {
+		margin: rem(60px) 0;
+		padding: rem(40px) rem(70px);
+	}
 
 	@include fs(20px);
 	font-style: italic;

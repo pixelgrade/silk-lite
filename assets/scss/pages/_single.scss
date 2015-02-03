@@ -329,7 +329,40 @@ span.pagination-title {
 }
 
 
-// Sharedaddy - in left sidebar
+
+
+
+// Jetpack stuff
+
+%jp-sidebar-title {
+	@extend %delta;
+	@include fs(12px);
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 0.1em;
+
+	&, * {
+		font-style: normal;
+	}
+
+	em:before {
+		content: none;
+	}
+
+	&:before {
+		display: none;
+		border-top: 0;
+	}
+}
+
+%jp-box {
+	padding: rem(20px);
+	padding-bottom: 0;
+	margin-bottom: rem(45px);
+
+	border: 1px solid $borders;
+}
+
 
 #jp-post-flair {
 	position: absolute;
@@ -339,80 +372,147 @@ span.pagination-title {
 	width: em(190px);
 }
 
-.sharedaddy .sd-sharing-enabled {
-	padding: em(20px);
-	border: 1px solid $borders;
+// Sharedaddy - in left sidebar
+
+.sharedaddy.sd-sharing-enabled {
+	@extend %jp-box;
 
 	text-transform: uppercase;
 
 	*{
 		letter-spacing: 0.1em;
 	}
+}
 
-	.sd-title {
-		@extend %delta;
+div.sharedaddy.sharedaddy h3.sd-title {
+	@extend %jp-sidebar-title;
 
-		margin: 0;
-		padding-bottom: em(12px);
+	display: block;
+	margin-bottom: 0;
+	padding-bottom: rem(12px);
 
-		@include fs(12px);
-		font-weight: bold;
+	transform: none;
+	border-bottom: 1px solid $gray;
+}
 
-		transform: none;
-		border-bottom: 1px solid $gray;
-	}
+div.sd-content ul{
 
-	.sd-content ul {
-		@extend .nav;
-		@extend .nav--stacked;
-
-		@extend %delta;
-		@include fs(12px);
-
-	}
-
-	a {
-		color: $dark;
-	}
+	margin-bottom: 0 !important;
 
 	li {
-		padding: em(14px) 0;
-		margin: 0;
-		border-bottom: 1px solid $borders;
+		display: block;
+
+		border-top: 1px solid $borders;
+
+		&:first-child {
+			border-top: 1px;
+		}
 
 		&:last-child {
-			padding-bottom: 0;
-			border-bottom: 0;
-		}
-		
-		&.share-end:empty{
-			display: none;
+			border: 0;
 		}
 	}
 }
+
+div.sd-social-icon-text .sd-content ul li a.sd-button {
+	position: relative;
+
+	width: 100%;
+	padding: rem(14px) 0;
+	padding-left: rem(30px);
+	margin: 0;
+
+	border: 0;
+	border-radius: 0;
+
+	@include fs(12px);
+	color: $dark !important;
+	background: transparent;
+	box-shadow: none;
+
+	span {
+		margin-left: 0;
+	}
+
+	&:hover {
+		background: transparent;
+		border: 0;
+	}
+
+	&:before {
+		position: absolute;
+		left: 0;
+		top: rem(17px);
+
+
+	}
+	
+	.share-count {
+		@include fs(13px);
+
+		background: transparent;
+		color: $dark;
+		float: right;
+
+	}
+}
+
+a.sd-button:before {
+	.share-facebook & { color: #36629f !important; }
+	.share-twitter & { color: #32abdf !important; }
+	.share-pinterest & { color: #cb242d !important; }
+	.share-tumblr & { color: #3f5a6f !important; }
+
+	.share-linkedin & { color: #1278b3 !important; }
+	.share-stumbleupon & { color: #e94b2f !important; }
+	.share-reddit & { color: #000000 !important; }
+}
+
+.sharedaddy.sd-like {
+	@extend %jp-box;
+	padding-bottom: rem(20px);
+}
+
+div.sharedaddy.sharedaddy.sd-like h3.sd-title {
+	margin-bottom: rem(20px);
+}
+
+div.jetpack-likes-widget-wrapper.sd-like {
+	min-height: rem(90px);
+}
+
 
 
 // Jetpack related posts - in left sidebar
-.jp-relatedposts-post {
-	@include rhythm(margin-bottom, 3);
+div#jp-relatedposts.jp-relatedposts {
+	padding: 0;
+	margin-top: rem(45px);
+}
+
+div#jp-relatedposts div.jp-relatedposts-items.jp-relatedposts-items-visual {
+	margin: 0;
+	clear: none;
+}
+
+div#jp-relatedposts div.jp-relatedposts-items-visual div.jp-relatedposts-post {
+	padding-right: 0;
+	margin: 0;
+	@include rhythm(margin-bottom, 2);
+	width: auto;
+	float: none;
+
+	opacity: 1;
 }
 
 .jp-relatedposts-post-excerpt, .jp-relatedposts-post-context {
-	//@todo temp - because design
-	display: none;
+	@extend .screen-reader-text;
 }
 
-.jp-relatedposts-headline {
-	@extend %delta;
-	@include fs(12px);
-	text-transform: uppercase;
-	text-align: center;
-	font-weight: bold;
-	letter-spacing: 0.1em;
+div#jp-relatedposts#jp-relatedposts h3.jp-relatedposts-headline {
+	@extend %jp-sidebar-title;
 
-	&, * {
-		font-style: normal;
-	}
+	width: 100%;
+	text-align: center;
 }
 
 .jp-relatedposts-post-a, .jp-relatedposts-post-img {
@@ -423,7 +523,8 @@ span.pagination-title {
 	@include rhythm(margin-bottom, 0.5);
 }
 
-.jp-relatedposts-post-title {
+div#jp-relatedposts#jp-relatedposts div.jp-relatedposts-items p,
+div#jp-relatedposts#jp-relatedposts div.jp-relatedposts-items-visual h4.jp-relatedposts-post-title {
 	@extend %beta;
 	@include fs(12px);
 	text-transform: none;
