@@ -31,12 +31,12 @@
 			<?php the_post_thumbnail(); ?>
 		</div>
 		<?php }
-		the_content(); ?>
-		<?php
-			wp_link_pages( array(
-				'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'amelie_txtd' ),
-				'after'  => '</span></div>',
-			) );
+		the_content();
+
+		wp_link_pages( array(
+			'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'amelie_txtd' ),
+			'after'  => '</span></div>',
+		) );
 		?>
 
 		<div class="single-sidebar"></div>

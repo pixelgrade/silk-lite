@@ -46,7 +46,7 @@
 
 		// making room for the left sidebar (jetpack)
 		@include query-above($lap) {
-			.single-post &{
+			.single-post.has--jetpack-sidebar &{
 				padding-left: em(230px);
 			}
 		}
@@ -74,7 +74,7 @@
 
 		// making room for the left sidebar (jetpack)
 		@include query-above($lap) {
-			.single-post &{
+			.single-post.has--jetpack-sidebar &{
 				margin-left: em(230px);
 			}
 		}
@@ -197,12 +197,14 @@ span.pagination-title {
 		@extend .clearfix;
 	}
 
-	.navigation-item {
-		display: block;
-		@include rhythm(margin-bottom, 2);
-		padding: rem(12px);
+	@include query-below($lap) {
+		.navigation-item {
+			display: block;
+			@include rhythm(margin-bottom, 2);
+			padding: rem(12px);
 
-		border: 1px solid $borders;
+			border: 1px solid $borders;
+		}
 	}
 
 	.navigation-item__name {
