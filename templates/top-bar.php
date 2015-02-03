@@ -41,7 +41,7 @@
 			
 			wp_nav_menu(
 				array(
-					'theme_location' => 'top_header_right',
+					'theme_location' => 'primary',
 					'container'      => '',
 					'menu_class'     => 'nav  nav--toolbar',
 					'fallback_cb'    => false,

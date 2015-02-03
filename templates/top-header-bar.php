@@ -20,7 +20,7 @@
 					'theme_location' => 'top_header_left',
 					'container'      => '',
 					'menu_class'     => 'nav  nav--toolbar',
-					'depth'          => - 1, //flatten if there is any hierarchy
+					'depth'          => -1, //flatten if there is any hierarchy
 					'fallback_cb'    => false,
 				)
 			);
@@ -34,7 +34,7 @@
 					'theme_location' => 'top_header_right',
 					'container'      => '',
 					'menu_class'     => 'nav  nav--toolbar  right',
-					'depth'          => - 1, //flatten if there is any hierarchy
+					'depth'          => -1, //flatten if there is any hierarchy
 					'fallback_cb'    => false,
 				)
 			);
