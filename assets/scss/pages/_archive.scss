@@ -81,6 +81,7 @@
 
 .archive__grid {
 	margin-left: em(-55px);
+	// transition: height .3s ease-in-out;
 
 	> .grid__item {
 		width: 50%;
