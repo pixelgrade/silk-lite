@@ -83,6 +83,7 @@ function amelie_the_post_navigation() {
                             		<span class="post-thumb">%s</span>
                             	</span>
                             	<span class="flexbox__item">
+                                    <span class="navigation-item__name">%s</span>
 	                                <span class="post-meta">
 	                                %s
 	                                <span class="post-category">%s</span>
@@ -90,7 +91,7 @@ function amelie_the_post_navigation() {
 	                                <h3 class="post-title">%%title</h3>
                             	</span>
                             </span>
-                        </span>', $prev_thumbnail, $time_string, $post_category->name  ) );
+                        </span>', $prev_thumbnail, __( 'Previous post', 'amelie_txtd' ), $time_string, $post_category->name  ) );
 			}
 
 			$next_post = get_next_post();
@@ -120,6 +121,7 @@ function amelie_the_post_navigation() {
                             		<span class="post-thumb">%s</span>
                             	</span>
                             	<span class="flexbox__item">
+                            		<span class="navigation-item__name">%s</span>
 	                                <span class="post-meta">
 	                                %s
 	                                <span class="post-category">%s</span>
@@ -127,7 +129,7 @@ function amelie_the_post_navigation() {
 	                                <h3 class="post-title">%%title</h3>
                             	</span>
                             </span>
-                        </span>', $next_thumbnail, $time_string, $post_category->name ) );
+                        </span>', $next_thumbnail, __( 'Next post', 'amelie_txtd' ), $time_string, $post_category->name ) );
 			}
 			?>
 	</nav><!-- .navigation -->
