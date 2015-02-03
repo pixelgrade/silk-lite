@@ -81,6 +81,7 @@
 
 .archive__grid {
 	margin-left: em(-55px);
+	// transition: height .3s ease-in-out;
 
 	> .grid__item {
 		width: 50%;
@@ -134,6 +135,7 @@
 	}
 
 	.archive__grid {
+		position: relative;
 		margin-bottom: 3em;
 	}
 }
@@ -146,7 +148,13 @@
 	text-align: center;
 
 	span {
+		@extend %delta;
+		letter-spacing: 0.2em;
+		font-size: 1rem;
 		display: inline-block;
+		background: none;
+		color: $accent;
+		text-transform: uppercase;
 	}
 }
 
