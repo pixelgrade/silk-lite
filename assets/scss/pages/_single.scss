@@ -503,15 +503,16 @@ div.jetpack-likes-widget-wrapper.sd-like {
 // Jetpack related posts - in left sidebar
 div#jp-relatedposts.jp-relatedposts {
 	padding: 0;
-	margin-top: rem(45px);
 }
 
-div#jp-relatedposts div.jp-relatedposts-items.jp-relatedposts-items-visual {
+div#jp-relatedposts div.jp-relatedposts-items.jp-relatedposts-items-visual,
+div#jp-relatedposts div.jp-relatedposts-items.jp-relatedposts-items-minimal {
 	margin: 0;
 	clear: none;
 }
 
-div#jp-relatedposts div.jp-relatedposts-items-visual div.jp-relatedposts-post {
+div#jp-relatedposts div.jp-relatedposts-items-visual div.jp-relatedposts-post,
+div#jp-relatedposts div.jp-relatedposts-items-minimal div.jp-relatedposts-post {
 	padding-right: 0;
 	margin: 0;
 	@include rhythm(margin-bottom, 2);
@@ -541,14 +542,15 @@ div#jp-relatedposts#jp-relatedposts h3.jp-relatedposts-headline {
 }
 
 div#jp-relatedposts#jp-relatedposts div.jp-relatedposts-items p,
-div#jp-relatedposts#jp-relatedposts div.jp-relatedposts-items-visual h4.jp-relatedposts-post-title {
+div#jp-relatedposts#jp-relatedposts div.jp-relatedposts-items-visual h4.jp-relatedposts-post-title,
+div#jp-relatedposts#jp-relatedposts div.jp-relatedposts-items-minimal h4.jp-relatedposts-post-title {
 	@extend %beta;
 	@include fs(12px);
 	text-transform: none;
 
 	margin: 0;
 
-	a{
+	a {
 		color: $dark;
 		font-weight: 500;
 	}
