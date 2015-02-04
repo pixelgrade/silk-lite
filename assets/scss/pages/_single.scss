@@ -505,14 +505,12 @@ div#jp-relatedposts.jp-relatedposts {
 	padding: 0;
 }
 
-div#jp-relatedposts div.jp-relatedposts-items.jp-relatedposts-items-visual,
-div#jp-relatedposts div.jp-relatedposts-items.jp-relatedposts-items-minimal {
+div#jp-relatedposts div.jp-relatedposts-items.jp-relatedposts-items {
 	margin: 0;
 	clear: none;
 }
 
-div#jp-relatedposts div.jp-relatedposts-items-visual div.jp-relatedposts-post,
-div#jp-relatedposts div.jp-relatedposts-items-minimal div.jp-relatedposts-post {
+div#jp-relatedposts div.jp-relatedposts-items .jp-relatedposts-post.jp-relatedposts-post {
 	padding-right: 0;
 	margin: 0;
 	@include rhythm(margin-bottom, 2);
@@ -520,6 +518,10 @@ div#jp-relatedposts div.jp-relatedposts-items-minimal div.jp-relatedposts-post {
 	float: none;
 
 	opacity: 1;
+}
+
+div#jp-relatedposts div.jp-relatedposts-items p.jp-relatedposts-post span {
+	overflow: initial;
 }
 
 .jp-relatedposts-post-excerpt, .jp-relatedposts-post-context {
@@ -542,8 +544,7 @@ div#jp-relatedposts#jp-relatedposts h3.jp-relatedposts-headline {
 }
 
 div#jp-relatedposts#jp-relatedposts div.jp-relatedposts-items p,
-div#jp-relatedposts#jp-relatedposts div.jp-relatedposts-items-visual h4.jp-relatedposts-post-title,
-div#jp-relatedposts#jp-relatedposts div.jp-relatedposts-items-minimal h4.jp-relatedposts-post-title {
+div#jp-relatedposts#jp-relatedposts div.jp-relatedposts-items.jp-relatedposts-items h4.jp-relatedposts-post-title {
 	@extend %beta;
 	@include fs(12px);
 	text-transform: none;
@@ -554,4 +555,8 @@ div#jp-relatedposts#jp-relatedposts div.jp-relatedposts-items-minimal h4.jp-rela
 		color: $dark;
 		font-weight: 500;
 	}
+}
+
+div#jp-relatedposts#jp-relatedposts div.jp-relatedposts-items.jp-relatedposts-items-minimal p {
+	@include rhythm(margin-bottom, 2);
 }
