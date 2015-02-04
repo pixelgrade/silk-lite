@@ -389,6 +389,10 @@ span.pagination-title {
 	width: em(190px);
 }
 
+
+
+
+
 // Sharedaddy - in left sidebar
 
 .sharedaddy.sd-sharing-enabled {
@@ -412,7 +416,7 @@ div.sharedaddy.sharedaddy h3.sd-title {
 	border-bottom: 1px solid $gray;
 }
 
-div.sd-content ul{
+.sd-social-icon-text div.sd-content ul{
 
 	margin-bottom: 0 !important;
 
@@ -474,7 +478,7 @@ div.sd-social-icon-text .sd-content ul li a.sd-button {
 	}
 }
 
-a.sd-button:before {
+.sd-social-icon-text a.sd-button:before {
 	.share-facebook & { color: #36629f !important; }
 	.share-twitter & { color: #32abdf !important; }
 	.share-pinterest & { color: #cb242d !important; }
@@ -497,6 +501,8 @@ div.sharedaddy.sharedaddy.sd-like h3.sd-title {
 div.jetpack-likes-widget-wrapper.sd-like {
 	min-height: rem(90px);
 }
+
+
 
 
 
