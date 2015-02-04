@@ -430,21 +430,23 @@ div.sd-social-icon .sd-content ul li a.sd-button.share-more {
 	margin-top: 8px;
 }
 
-.sd-social-icon-text div.sd-content ul{
+.sd-social-icon-text, .sd-social-text {
+	div.sd-content ul {
 
-	margin-bottom: 0 !important;
+		margin-bottom: 0 !important;
 
-	li {
-		display: block;
+		li {
+			display: block;
 
-		border-top: 1px solid $borders;
+			border-top: 1px solid $borders;
 
-		&:first-child {
-			border-top: 1px;
-		}
+			&:first-child {
+				border-top: 1px;
+			}
 
-		&:last-child {
-			border: 0;
+			&:last-child {
+				border: 0;
+			}
 		}
 	}
 }
