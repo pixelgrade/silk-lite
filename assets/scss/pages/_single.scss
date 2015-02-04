@@ -417,7 +417,11 @@ div.sharedaddy.sharedaddy h3.sd-title {
 }
 
 div.sharedaddy.sharedaddy .sd-social-icon h3.sd-title {
-	margin-bottom: rem(12px);
+	margin-bottom: rem(16px);
+}
+
+div.sd-social-icon .sd-content ul li a.sd-button.share-more {
+	margin-left: 0;
 }
 
 .sd-social-icon-text div.sd-content ul{
