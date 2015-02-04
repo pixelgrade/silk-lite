@@ -457,7 +457,6 @@ div.sd-social-icon-text, div.sd-social-text {
 
 		width: 100%;
 		padding: rem(14px) 0;
-		padding-left: rem(30px);
 		margin: 0;
 
 		border: 0;
@@ -489,6 +488,8 @@ div.sd-social-icon-text, div.sd-social-text {
 }
 
 div.sd-social-icon-text .sd-content ul li a.sd-button {
+	padding-left: rem(30px);
+
 	&:before {
 		position: absolute;
 		left: 0;
