@@ -18,7 +18,7 @@ function init() {
 $window.load(function() {
   browserSize();
   slider.init();
-  fixedSidebars.refresh();
+  fixedSidebars.init();
 });
 
 /* ====== ON RESIZE ====== */

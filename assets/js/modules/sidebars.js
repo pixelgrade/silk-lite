@@ -14,7 +14,7 @@ var fixedSidebars = (function() {
 		sidebarPadding  = 60,
 		sidebarBottom,
 		mainOffset,
-		sidebarOffset,
+		sidebarOffset, 
 		sidebarHeight,
 
 		previousTop = 0,
@@ -110,31 +110,39 @@ var fixedSidebars = (function() {
 			mainOffset = $main.offset();
 		}
 
-		if (!$sidebar.length) return;
+		if ($sidebar.length) {
 
-		var positionValue 	= $sidebar.css('position'),
-			topValue 		= $sidebar.css('top'),
-			leftValue 		= $sidebar.css('left'),
-			pinnedValue		= sidebarPinned;
+			var positionValue 	= $sidebar.css('position'),
+				topValue 		= $sidebar.css('top'),
+				leftValue 		= $sidebar.css('left'),
+				pinnedValue		= sidebarPinned;
 
-		$sidebar.css({
-			position: '',
-			top: '',
-			left: ''
-		});
+			$sidebar.css({
+				position: '',
+				top: '',
+				left: ''
+			});
 
-		sidebarPinned = false;
-		sidebarOffset = $sidebar.offset();
-		sidebarHeight = $sidebar.outerHeight();
-		mainHeight    = $main.outerHeight();
+			sidebarPinned = false;
+			sidebarOffset = $sidebar.offset();
+			sidebarHeight = $sidebar.outerHeight();
+			mainHeight    = $main.outerHeight();
 
-		$sidebar.css({
-			position: positionValue,
-			top: topValue,
-			left: leftValue
-		});
+			$sidebar.css({
+				position: positionValue,
+				top: topValue,
+				left: leftValue
+			});
 
-		sidebarPinned = pinnedValue;
+			sidebarPinned = pinnedValue;
+		}
+
+		if ($smallSidebar.length) {
+			smallSidebarPinned = false;
+			smallSidebarOffset = $smallSidebar.offset();
+			smallSidebarHeight = $smallSidebar.outerHeight();
+		}
+
 
 	};
 
