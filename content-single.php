@@ -31,8 +31,9 @@
 			<?php the_post_thumbnail(); ?>
 		</div>
 		<?php }
-		the_content();
+		the_content(); ?>
 
+		<?php
 		wp_link_pages( array(
 			'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'amelie_txtd' ),
 			'after'  => '</span></div>',

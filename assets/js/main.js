@@ -632,7 +632,7 @@ if (!Date.now) Date.now = function () {
     masonry.init();
     navigation.init();
     styleArchiveWidget();
-    wrapJetpackAfterContent();
+    //wrapJetpackAfterContent();
   }
 
   /* ====== ON WINDOW LOAD ====== */

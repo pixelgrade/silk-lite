@@ -462,7 +462,7 @@
 // Amelie's custom Instagram widget styling
 
 .site-footer {
-	aside.widget_wpcom_instagram_widget:first-child {
+	aside.widget_wpcom_instagram_widget {
 		@extend .clearfix;
 
 		position: relative;

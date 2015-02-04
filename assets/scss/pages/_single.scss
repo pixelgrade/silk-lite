@@ -389,6 +389,10 @@ span.pagination-title {
 	width: em(190px);
 }
 
+
+
+
+
 // Sharedaddy - in left sidebar
 
 .sharedaddy.sd-sharing-enabled {
@@ -412,77 +416,99 @@ div.sharedaddy.sharedaddy h3.sd-title {
 	border-bottom: 1px solid $gray;
 }
 
-div.sd-content ul{
+div.sharedaddy.sharedaddy .sd-social-icon,
+div.sharedaddy.sharedaddy .sd-social-official {
+	h3.sd-title {
+		margin-bottom: rem(16px);
+	}
+}
 
-	margin-bottom: 0 !important;
+div.sd-social-icon .sd-content ul li[class*=share-] a.sd-button {
+	margin-top: 10px;
+	margin-right: 10px;
+}
 
-	li {
-		display: block;
+div.sd-social-icon .sd-content ul li a.sd-button.share-more {
+	margin-left: 0;
+	margin-top: 8px;
+}
 
-		border-top: 1px solid $borders;
+.sd-social-icon-text, .sd-social-text {
+	div.sd-content ul {
 
-		&:first-child {
-			border-top: 1px;
+		margin-bottom: 0 !important;
+
+		li {
+			display: block;
+
+			border-top: 1px solid $borders;
+
+			&:first-child {
+				border-top: 1px;
+			}
+
+			&:last-child {
+				border: 0;
+			}
+		}
+	}
+}
+
+div.sd-social-icon-text, div.sd-social-text {
+	.sd-content ul li a.sd-button {
+		position: relative;
+
+		width: 100%;
+		padding: rem(14px) 0;
+		margin: 0;
+
+		border: 0;
+		border-radius: 0;
+
+		@include fs(12px);
+		color: $dark !important;
+		background: transparent;
+		box-shadow: none;
+
+		span {
+			margin-left: 0;
 		}
 
-		&:last-child {
+		&:hover {
+			background: transparent;
 			border: 0;
+		}
+
+		.share-count {
+			@include fs(13px);
+
+			background: transparent;
+			color: $dark;
+			float: right;
+
 		}
 	}
 }
 
 div.sd-social-icon-text .sd-content ul li a.sd-button {
-	position: relative;
-
-	width: 100%;
-	padding: rem(14px) 0;
 	padding-left: rem(30px);
-	margin: 0;
-
-	border: 0;
-	border-radius: 0;
-
-	@include fs(12px);
-	color: $dark !important;
-	background: transparent;
-	box-shadow: none;
-
-	span {
-		margin-left: 0;
-	}
-
-	&:hover {
-		background: transparent;
-		border: 0;
-	}
 
 	&:before {
 		position: absolute;
 		left: 0;
 		top: rem(17px);
-
-
-	}
-	
-	.share-count {
-		@include fs(13px);
-
-		background: transparent;
-		color: $dark;
-		float: right;
-
 	}
 }
 
 a.sd-button:before {
-	.share-facebook & { color: #36629f !important; }
-	.share-twitter & { color: #32abdf !important; }
-	.share-pinterest & { color: #cb242d !important; }
-	.share-tumblr & { color: #3f5a6f !important; }
+	.sd-social-icon-text .share-facebook & { color: #36629f !important; }
+	.sd-social-icon-text .share-twitter & { color: #32abdf !important; }
+	.sd-social-icon-text .share-pinterest & { color: #cb242d !important; }
+	.sd-social-icon-text .share-tumblr & { color: #3f5a6f !important; }
 
-	.share-linkedin & { color: #1278b3 !important; }
-	.share-stumbleupon & { color: #e94b2f !important; }
-	.share-reddit & { color: #000000 !important; }
+	.sd-social-icon-text .share-linkedin & { color: #1278b3 !important; }
+	.sd-social-icon-text .share-stumbleupon & { color: #e94b2f !important; }
+	.sd-social-icon-text .share-reddit & { color: #000000 !important; }
 }
 
 .sharedaddy.sd-like {
@@ -500,19 +526,19 @@ div.jetpack-likes-widget-wrapper.sd-like {
 
 
 
+
+
 // Jetpack related posts - in left sidebar
 div#jp-relatedposts.jp-relatedposts {
 	padding: 0;
 }
 
-div#jp-relatedposts div.jp-relatedposts-items.jp-relatedposts-items-visual,
-div#jp-relatedposts div.jp-relatedposts-items.jp-relatedposts-items-minimal {
+div#jp-relatedposts div.jp-relatedposts-items.jp-relatedposts-items {
 	margin: 0;
 	clear: none;
 }
 
-div#jp-relatedposts div.jp-relatedposts-items-visual div.jp-relatedposts-post,
-div#jp-relatedposts div.jp-relatedposts-items-minimal div.jp-relatedposts-post {
+div#jp-relatedposts div.jp-relatedposts-items .jp-relatedposts-post.jp-relatedposts-post {
 	padding-right: 0;
 	margin: 0;
 	@include rhythm(margin-bottom, 2);
@@ -520,6 +546,10 @@ div#jp-relatedposts div.jp-relatedposts-items-minimal div.jp-relatedposts-post {
 	float: none;
 
 	opacity: 1;
+}
+
+div#jp-relatedposts div.jp-relatedposts-items p.jp-relatedposts-post span {
+	overflow: initial;
 }
 
 .jp-relatedposts-post-excerpt, .jp-relatedposts-post-context {
@@ -542,8 +572,7 @@ div#jp-relatedposts#jp-relatedposts h3.jp-relatedposts-headline {
 }
 
 div#jp-relatedposts#jp-relatedposts div.jp-relatedposts-items p,
-div#jp-relatedposts#jp-relatedposts div.jp-relatedposts-items-visual h4.jp-relatedposts-post-title,
-div#jp-relatedposts#jp-relatedposts div.jp-relatedposts-items-minimal h4.jp-relatedposts-post-title {
+div#jp-relatedposts#jp-relatedposts div.jp-relatedposts-items.jp-relatedposts-items h4.jp-relatedposts-post-title {
 	@extend %beta;
 	@include fs(12px);
 	text-transform: none;
@@ -554,4 +583,8 @@ div#jp-relatedposts#jp-relatedposts div.jp-relatedposts-items-minimal h4.jp-rela
 		color: $dark;
 		font-weight: 500;
 	}
+}
+
+div#jp-relatedposts#jp-relatedposts div.jp-relatedposts-items.jp-relatedposts-items-minimal p {
+	@include rhythm(margin-bottom, 2);
 }
