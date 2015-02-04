@@ -1,15 +1,9 @@
 
 // ---------- #MAIN MENU
 
-@import "nav/nav--floating";
-@import "nav/nav--main";
-@import "nav/nav--social";
-@import "nav/nav--toolbar";
-
 %dropdown-arrow {
 	position: relative;  
 	
-
 	&:after {
 		content: "";
 		position: absolute;
@@ -208,3 +202,8 @@
 		// flex: 0 1 auto;
 	}
 }
+
+@import "nav/nav--floating";
+@import "nav/nav--main";
+@import "nav/nav--social";
+@import "nav/nav--toolbar";
