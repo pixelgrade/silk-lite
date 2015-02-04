@@ -451,46 +451,48 @@ div.sd-social-icon .sd-content ul li a.sd-button.share-more {
 	}
 }
 
-div.sd-social-icon-text .sd-content ul li a.sd-button {
-	position: relative;
+div.sd-social-icon-text, div.sd-social-text {
+	.sd-content ul li a.sd-button {
+		position: relative;
 
-	width: 100%;
-	padding: rem(14px) 0;
-	padding-left: rem(30px);
-	margin: 0;
+		width: 100%;
+		padding: rem(14px) 0;
+		padding-left: rem(30px);
+		margin: 0;
 
-	border: 0;
-	border-radius: 0;
-
-	@include fs(12px);
-	color: $dark !important;
-	background: transparent;
-	box-shadow: none;
-
-	span {
-		margin-left: 0;
-	}
-
-	&:hover {
-		background: transparent;
 		border: 0;
-	}
+		border-radius: 0;
 
+		@include fs(12px);
+		color: $dark !important;
+		background: transparent;
+		box-shadow: none;
+
+		span {
+			margin-left: 0;
+		}
+
+		&:hover {
+			background: transparent;
+			border: 0;
+		}
+
+		.share-count {
+			@include fs(13px);
+
+			background: transparent;
+			color: $dark;
+			float: right;
+
+		}
+	}
+}
+
+div.sd-social-icon-text .sd-content ul li a.sd-button {
 	&:before {
 		position: absolute;
 		left: 0;
 		top: rem(17px);
-
-
-	}
-
-	.share-count {
-		@include fs(13px);
-
-		background: transparent;
-		color: $dark;
-		float: right;
-
 	}
 }
 
