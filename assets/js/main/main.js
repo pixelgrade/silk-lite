@@ -10,7 +10,7 @@ function init() {
   masonry.init();
   navigation.init();
   styleArchiveWidget();
-  //wrapJetpackAfterContent();
+  wrapJetpackAfterContent();
 }
 
 /* ====== ON WINDOW LOAD ====== */

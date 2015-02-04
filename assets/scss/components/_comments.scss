@@ -352,11 +352,6 @@ li.comment, li.pingback, li.trackback {
 		@extend %grid__item;
 	}
 
-	// for jetpack comments
-	iframe{
-		padding-left: 1.5*$u;
-	}
-
 	@include query-above($lap){
 		& > .comment-subscription-form{
 			width: 70%;
