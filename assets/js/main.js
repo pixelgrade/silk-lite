@@ -1,3 +1,79 @@
+/*
+ * debouncedresize: special jQuery event that happens once after a window resize
+ *
+ * latest version and complete README available on Github:
+ * https://github.com/louisremi/jquery-smartresize
+ *
+ * Copyright 2012 @louis_remi
+ * Licensed under the MIT license.
+ *
+ * This saved you an hour of work? 
+ * Send me music http://www.amazon.co.uk/wishlist/HNTU0468LQON
+ */
+(function ($) {
+
+  var $event = $.event,
+      $special, resizeTimeout;
+
+  $special = $event.special.debouncedresize = {
+    setup: function () {
+      $(this).on("resize", $special.handler);
+    },
+    teardown: function () {
+      $(this).off("resize", $special.handler);
+    },
+    handler: function (event, execAsap) {
+      // Save the context
+      var context = this,
+          args = arguments,
+          dispatch = function () {
+          // set correct event type
+          event.type = "debouncedresize";
+          $event.dispatch.apply(context, args);
+          };
+
+      if (resizeTimeout) {
+        clearTimeout(resizeTimeout);
+      }
+
+      execAsap ? dispatch() : resizeTimeout = setTimeout(dispatch, $special.threshold);
+    },
+    threshold: 150
+  };
+
+})(jQuery);
+/**
+ * requestAnimationFrame polyfill by Erik Möller.
+ * Fixes from Paul Irish, Tino Zijdel, Andrew Mao, Klemen Slavič, Darius Bacon
+ *
+ * MIT license
+ */
+if (!Date.now) Date.now = function () {
+  return new Date().getTime();
+};
+
+(function () {
+  'use strict';
+
+  var vendors = ['webkit', 'moz'];
+  for (var i = 0; i < vendors.length && !window.requestAnimationFrame; ++i) {
+    var vp = vendors[i];
+    window.requestAnimationFrame = window[vp + 'RequestAnimationFrame'];
+    window.cancelAnimationFrame = (window[vp + 'CancelAnimationFrame'] || window[vp + 'CancelRequestAnimationFrame']);
+  }
+  if (/iP(ad|hone|od).*OS 6/.test(window.navigator.userAgent) // iOS6 is buggy
+  || !window.requestAnimationFrame || !window.cancelAnimationFrame) {
+    var lastTime = 0;
+    window.requestAnimationFrame = function (callback) {
+      var now = Date.now();
+      var nextTime = Math.max(lastTime + 16, now);
+      return setTimeout(function () {
+        callback(lastTime = nextTime);
+      }, nextTime - now);
+    };
+    window.cancelAnimationFrame = clearTimeout;
+  }
+}());
 (function ($, undefined) {
   /**
    * Shared variables
@@ -380,7 +456,11 @@
         mainHeight = $main.outerHeight(),
         sidebarPinned = false,
         sidebarPadding = 60,
-        sidebarBottom, sidebarOffset, sidebarHeight,
+        sidebarBottom, mainOffset, sidebarOffset, sidebarHeight,
+        
+        previousTop = 0,
+        animating = false,
+        
         
         
         /**
@@ -388,6 +468,7 @@
          */
         
         init = function () {
+        refresh();
         update();
         },
         
@@ -399,14 +480,19 @@
         
         update = function () {
 
+        var windowBottom = latestKnownScrollY + windowHeight,
+            sidebarBottom = sidebarHeight + sidebarOffset.top + sidebarPadding,
+            mainBottom = mainHeight + sidebarOffset.top + sidebarPadding,
+            newTop;
+
+        if (mainOffset.top != sidebarOffset.top || animating) {
+          return;
+        }
+
         /* adjust right sidebar positioning if needed */
         if (sidebarHeight < mainHeight) {
 
-          var windowBottom = latestKnownScrollY + windowHeight,
-              sidebarBottom = sidebarHeight + sidebarOffset.top + sidebarPadding,
-              mainBottom = mainHeight + sidebarOffset.top + sidebarPadding;
-
-
+          // pin sidebar
           if (windowBottom > sidebarBottom && !sidebarPinned) {
             $sidebar.css({
               position: 'fixed',
@@ -416,6 +502,7 @@
             sidebarPinned = true;
           }
 
+          // unpin sidebar
           if (windowBottom <= sidebarBottom && sidebarPinned) {
             $sidebar.css({
               position: '',
@@ -427,7 +514,6 @@
 
           if (windowBottom <= mainBottom) {
             $sidebar.css('top', windowHeight - sidebarHeight - sidebarPadding);
-            return;
           }
 
           if (windowBottom > mainBottom && windowBottom < documentHeight) {
@@ -467,6 +553,11 @@
         
         
         refresh = function () {
+
+        if ($main.length) {
+          mainOffset = $main.offset();
+        }
+
         if (!$sidebar.length) return;
 
         var positionValue = $sidebar.css('position'),
@@ -578,82 +669,10 @@
     navigation.toggleTopBar();
     ticking = false;
   }
-/*
- * debouncedresize: special jQuery event that happens once after a window resize
- *
- * latest version and complete README available on Github:
- * https://github.com/louisremi/jquery-smartresize
- *
- * Copyright 2012 @louis_remi
- * Licensed under the MIT license.
- *
- * This saved you an hour of work? 
- * Send me music http://www.amazon.co.uk/wishlist/HNTU0468LQON
- */
-  (function ($) {
 
-    var $event = $.event,
-        $special, resizeTimeout;
-
-    $special = $event.special.debouncedresize = {
-      setup: function () {
-        $(this).on("resize", $special.handler);
-      },
-      teardown: function () {
-        $(this).off("resize", $special.handler);
-      },
-      handler: function (event, execAsap) {
-        // Save the context
-        var context = this,
-            args = arguments,
-            dispatch = function () {
-            // set correct event type
-            event.type = "debouncedresize";
-            $event.dispatch.apply(context, args);
-            };
-
-        if (resizeTimeout) {
-          clearTimeout(resizeTimeout);
-        }
-
-        execAsap ? dispatch() : resizeTimeout = setTimeout(dispatch, $special.threshold);
-      },
-      threshold: 150
-    };
-
-  })(jQuery);
-  /**
-   * requestAnimationFrame polyfill by Erik Möller.
-   * Fixes from Paul Irish, Tino Zijdel, Andrew Mao, Klemen Slavič, Darius Bacon
-   *
-   * MIT license
-   */
-  if (!Date.now) Date.now = function () {
-    return new Date().getTime();
-  };
-
-  (function () {
-    'use strict';
-
-    var vendors = ['webkit', 'moz'];
-    for (var i = 0; i < vendors.length && !window.requestAnimationFrame; ++i) {
-      var vp = vendors[i];
-      window.requestAnimationFrame = window[vp + 'RequestAnimationFrame'];
-      window.cancelAnimationFrame = (window[vp + 'CancelAnimationFrame'] || window[vp + 'CancelRequestAnimationFrame']);
-    }
-    if (/iP(ad|hone|od).*OS 6/.test(window.navigator.userAgent) // iOS6 is buggy
-    || !window.requestAnimationFrame || !window.cancelAnimationFrame) {
-      var lastTime = 0;
-      window.requestAnimationFrame = function (callback) {
-        var now = Date.now();
-        var nextTime = Math.max(lastTime + 16, now);
-        return setTimeout(function () {
-          callback(lastTime = nextTime);
-        }, nextTime - now);
-      };
-      window.cancelAnimationFrame = clearTimeout;
-    }
-  }()); /* ====== HELPER FUNCTIONS ====== */
+  function is_touch() {
+    return $.support.touch;
+  } /* ====== HELPER FUNCTIONS ====== */
 
 
 
@@ -696,9 +715,15 @@
    */
 
   function styleArchiveWidget() {
-    var archiveWidget = $('.sidebar--main .widget_archive ul').parent();
+
+    if ($.support.touch) {
+      return;
+    }
+
+    var archiveWidget = $('.sidebar--main .widget_archive ul').parent(),
+        separatorMarkup = '<span class="separator  separator--text" role="presentation"><span>More</span></a>';
+
     archiveWidget.addClass('shrink');
-    var separatorMarkup = '<span class="separator  separator--text" role="presentation"><span>More</span></a>';
     archiveWidget.append(separatorMarkup);
     fixedSidebars.refresh();
   }

@@ -13,13 +13,18 @@ var fixedSidebars = (function() {
 		sidebarPinned   = false,
 		sidebarPadding  = 60,
 		sidebarBottom,
+		mainOffset,
 		sidebarOffset,
 		sidebarHeight,
+
+		previousTop = 0,
+		animating = false,
 
 	/**
 	 * initialize sidebar positioning
 	 */
 	init = function() {
+		refresh();
 		update();
 	},
 
@@ -28,14 +33,19 @@ var fixedSidebars = (function() {
 	 */
 	update = function() {
 
+		var windowBottom  = latestKnownScrollY + windowHeight,
+			sidebarBottom = sidebarHeight + sidebarOffset.top + sidebarPadding,
+			mainBottom    = mainHeight + sidebarOffset.top + sidebarPadding,
+			newTop;
+
+		if (mainOffset.top != sidebarOffset.top || animating) {
+			return;
+		}
+
 		/* adjust right sidebar positioning if needed */
 		if ( sidebarHeight < mainHeight ) {
 
-			var windowBottom  = latestKnownScrollY + windowHeight,
-				sidebarBottom = sidebarHeight + sidebarOffset.top + sidebarPadding,
-				mainBottom    = mainHeight + sidebarOffset.top + sidebarPadding;
-
-
+			// pin sidebar
 			if ( windowBottom > sidebarBottom && !sidebarPinned ) {
 				$sidebar.css({  
 					position: 'fixed',
@@ -45,6 +55,7 @@ var fixedSidebars = (function() {
 				sidebarPinned = true;
 			}
 
+			// unpin sidebar
 			if ( windowBottom <= sidebarBottom && sidebarPinned ) {
 				$sidebar.css({
 					position: '',
@@ -56,7 +67,6 @@ var fixedSidebars = (function() {
 
 			if ( windowBottom <= mainBottom ) {
 				$sidebar.css('top', windowHeight - sidebarHeight - sidebarPadding);
-				return;
 			}
 
 			if ( windowBottom > mainBottom && windowBottom < documentHeight ) {
@@ -95,7 +105,12 @@ var fixedSidebars = (function() {
 	},
 
 	refresh = function() {
-		if ( !$sidebar.length ) return;
+
+		if ($main.length) {
+			mainOffset = $main.offset();
+		}
+
+		if (!$sidebar.length) return;
 
 		var positionValue 	= $sidebar.css('position'),
 			topValue 		= $sidebar.css('top'),

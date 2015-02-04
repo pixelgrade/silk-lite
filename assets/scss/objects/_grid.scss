@@ -1,22 +1,27 @@
-%grid{
+%grid {
 	@extend %clearfix;
 	list-style: none;
-	@include rhythm(margin-left, -3);
 }
 
-%grid__item{
+%grid__item {
 	float: left;
     width: 100%;
-	@include rhythm(padding-left, 3);
 }
 
 
-.grid{
+.grid {
 	@extend %grid;
+    margin-left: rem(-1 * $gutter-small);
+    @include query-above($small)    { margin-left: rem(-1 * $gutter); }
+    @include query-above($lap)      { margin-left: rem(-1 * $gutter-lap); }
+    @include query-above($desk)     { margin-left: rem(-1 * $gutter-desk); }
 
     > li,
     > .grid__item {
-        @include rhythm(padding-left, 3);
+        padding-left: rem($gutter-small);
+        @include query-above($small)    { padding-left: rem($gutter); }
+        @include query-above($lap)      { padding-left: rem($gutter-lap); }
+        @include query-above($desk)     { padding-left: rem($gutter-desk); }
     }
 }
 

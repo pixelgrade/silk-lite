@@ -1,0 +1,12 @@
+.thumb {
+
+	.flag__img {
+		width: 40%;
+	}
+
+	.entry-title {
+		color: $dark;
+		margin-top: 0;
+		@include fs(16px);
+	}
+}

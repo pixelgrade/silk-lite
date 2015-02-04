@@ -1,0 +1,51 @@
+.card {
+
+	.entry-header,
+	.entry-content {
+		max-width: rem(420px);
+		margin: 0 auto;
+	}
+
+	.entry-meta {
+		@extend .entry-meta--card;
+	}
+
+	.entry-header {
+		@extend .align-center;
+	}
+
+	.entry-image img {
+		width: 100%;
+	}
+
+	.entry-title {
+		@extend .h2;
+		margin-top: 0;
+	}
+
+	.entry-featured {
+		text-align: center;
+		margin-bottom: rhythm(1);
+
+		img {
+			display: inline-block;
+		}
+	}
+}
+
+
+.entry-meta--card {
+	
+	font-size: rem(10px);
+
+	.cat-links {
+
+		&:before {
+			content: "\2013";
+			margin-left: 0.5em;
+			margin-right: 0.5em;
+			position: relative;
+			top: -0.1em;
+		}
+	}
+}

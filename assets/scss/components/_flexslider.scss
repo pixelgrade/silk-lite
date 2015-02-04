@@ -1,0 +1,31 @@
+.flexslider {
+
+	.slides > li:first-child:last-child {
+		display: block;
+	}
+	
+	.entry-content {
+		@extend .align-center;
+	}
+
+	@include query-below($small) {
+		.flag,
+		.flag__img,
+		.flag__body {
+			display: block;
+			width: auto;
+			padding: 0;
+		}
+	}
+
+	.flag__img {
+		img {
+			display: inline-block;
+		}
+	}
+
+	.flag__body {
+		
+	}
+
+}

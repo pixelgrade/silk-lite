@@ -47,3 +47,7 @@ function update() {
   navigation.toggleTopBar();
   ticking = false;
 }
+
+function is_touch() {
+  return $.support.touch;
+}

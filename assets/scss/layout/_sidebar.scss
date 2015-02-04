@@ -5,6 +5,22 @@
 		.content-area {
 			width: 100%;
 			float: left;
+			margin-right: em(-300px);
+		}
+
+		.site-main {
+			padding-right: em(330px);
+		}
+
+		.sidebar--main {
+			float: right;
+			width: em(300px);
+		}
+ 	}
+
+	@include query-above($desk) {
+
+		.content-area {
 			margin-right: em(-340px);
 		}
 
@@ -13,7 +29,6 @@
 		}
 
 		.sidebar--main {
-			float: right;
 			width: em(340px);
 		}
  	}

@@ -1,7 +1,8 @@
 // ------ #STYLE GUIDE
 
-$lap: 						899px;
-$desk: 						1359px;
+$small:						740px;
+$lap: 						900px;
+$desk: 						1360px;
 
 // ------ #COLORS
 $light:     				#e6e6e6;
@@ -21,12 +22,17 @@ $borders:					$light;
 $namespace:                 null;
 
 // High-level base settings.
-$base-font-size:            14px !default;
-$base-line-height:          24px !default;
+$base-font-size:            14px;
+$base-line-height:          24px;
+
+$gutter-small:				10px;
+$gutter: 					24px;
+$gutter-lap:				36px;
+$gutter-desk:				54px;
 
 $base-spacing-unit:         $base-line-height;
-$base-spacing-unit--small:  round($base-line-height / 2);
-$base-spacing-unit--large:  round($base-line-height * 2);
+$base-spacing-unit--small:  $gutter-small;
+$base-spacing-unit--large:  $gutter-lap;
 
 $gallery-columns: 			true;
 $editor-style:				false;
