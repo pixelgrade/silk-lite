@@ -420,8 +420,14 @@ div.sharedaddy.sharedaddy .sd-social-icon h3.sd-title {
 	margin-bottom: rem(16px);
 }
 
-div.sd-social-icon .sd-content ul li a.sd-button.share-more {
-	margin-left: 0;
+div.sd-social-icon .sd-content ul li a.sd-button {
+	margin-top: 10px;
+	margin-right: 10px;
+
+	.share-more {
+		margin-left: 0;
+		margin-top: 8px;
+	}
 }
 
 .sd-social-icon-text div.sd-content ul{
@@ -475,7 +481,7 @@ div.sd-social-icon-text .sd-content ul li a.sd-button {
 
 
 	}
-	
+
 	.share-count {
 		@include fs(13px);
 
