@@ -2,19 +2,25 @@
 
 	@include query-above($lap) {
 
-		.content-area {
-			width: 100%;
-			float: left;
-			margin-right: em(-300px);
+		.site-content {
+			text-align: center;
 		}
 
-		.site-main {
-			padding-right: em(330px);
+		.content-area,
+		.sidebar--main,
+		.featured-content {
+			display: inline-block;
+			text-align: left;
+		}
+
+		.content-area {
+			width: rem(420px);
+			margin-right: rem($gutter-lap);
 		}
 
 		.sidebar--main {
-			float: right;
-			width: em(300px);
+			width: rem(300px);
+			vertical-align: top;
 		}
  	}
 
