@@ -142,7 +142,7 @@
 }
 
 .menu-item--mega {
-	position: static !important;
+	position: static;
 
 	.sub-menu-wrapper .sub-menu {
 		> .menu-item {
@@ -200,6 +200,17 @@
 
 	> li {
 		// flex: 0 1 auto;
+	}
+}
+
+@include query-below($desk) {
+	.menu-item--mega {
+		position: relative;
+	}
+
+	.submenu__card,
+	.submenu__thumbs {
+		display: none;
 	}
 }
 

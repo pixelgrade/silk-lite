@@ -2,7 +2,7 @@
 
 var navigation = (function() {
 
-	var $nav = $('.nav--main');
+	var $nav = $('.nav--main'),
 
 	init = function() {
 		// initialize the logic behind the main navigation
