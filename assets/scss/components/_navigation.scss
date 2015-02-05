@@ -119,6 +119,10 @@
 
 .menu-item--mega {
 
+	> a {
+		z-index: 20;
+	}
+
 	.sub-menu-wrapper .sub-menu {
 		> .menu-item {
 			border-bottom-color: $borders;
