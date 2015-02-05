@@ -60,8 +60,10 @@
       105: "9"
     },
         $nav = $(this),
+        $allLinks = $nav.find('li.nav__item > a'),
         $topLevelLinks = $nav.find('> li > a'),
-        navWidth = $nav.outerWidth();
+        subLevelLinks = $topLevelLinks.parent('li').find('ul').find('a');
+    navWidth = $nav.outerWidth();
 
     //default settings
     settings = jQuery.extend({
@@ -77,15 +79,30 @@
     // Add ARIA role to menubar and menu items
     $nav.attr('role', 'menubar').find('li').attr('role', 'menuitem');
 
-    // Set tabIndex to -1 so that $topLevelLinks can't receive focus until menu is open
-    $topLevelLinks.next('ul').attr('data-test', 'true').attr({
-      'aria-hidden': 'true',
-      'role': 'menu'
-    }).find('a').attr('tabIndex', -1);
-
-    // Add aria-haspopup for appropriate items
     $topLevelLinks.each(function () {
-      if ($(this).next('ul').length > 0) $(this).parent('li').attr('aria-haspopup', 'true');
+      //for regular sub-menus
+      // Set tabIndex to -1 so that links can't receive focus until menu is open
+      $(this).next('ul').attr({
+        'aria-hidden': 'true',
+        'role': 'menu'
+      }).find('a').attr('tabIndex', -1);
+
+      // Add aria-haspopup for appropriate items
+      if ($(this).next('ul').length > 0) {
+        $(this).parent('li').attr('aria-haspopup', 'true');
+      }
+
+      //for mega menus
+      // Set tabIndex to -1 so that links can't receive focus until menu is open
+      $(this).next('.sub-menu-wrapper').children('ul').attr({
+        'aria-hidden': 'true',
+        'role': 'menu'
+      }).find('a').attr('tabIndex', -1);
+
+      $(this).next('.sub-menu-wrapper').find('a').attr('tabIndex', -1);
+
+      // Add aria-haspopup for appropriate items
+      if ($(this).next('.sub-menu-wrapper').length > 0) $(this).parent('li').attr('aria-haspopup', 'true');
     });
 
 
@@ -95,7 +112,7 @@
 
     // First, bind to the hover event
     // use hoverIntent to make sure we avoid flicker
-    $topLevelLinks.closest('li').hoverIntent({
+    $allLinks.closest('li').hoverIntent({
       over: function () {
         //clean up first
         $(this).closest('ul').find('ul.' + settings.menuHoverClass).attr('aria-hidden', 'true').removeClass(settings.menuHoverClass).find('a').attr('tabIndex', -1);
@@ -113,7 +130,7 @@
     });
 
     // Secondly, bind to the focus event - very important for WAI-ARIA purposes
-    $topLevelLinks.focus(function () {
+    $allLinks.focus(function () {
       //clean up first
       $(this).closest('ul').find('ul.' + settings.menuHoverClass).attr('aria-hidden', 'true').removeClass(settings.menuHoverClass).find('a').attr('tabIndex', -1);
 
@@ -145,6 +162,7 @@
         }
       } else if (e.keyCode == 39) { //right arrow
         e.preventDefault();
+
         // This is the last item
         if ($item.parent('li').next('li').length == 0) {
           $item.parents('ul').find('> li').first().find('a').first().focus();
@@ -156,7 +174,7 @@
         if ($item.parent('li').find('ul').length > 0) {
           $item.parent('li').find('ul').attr('aria-hidden', 'false').addClass(settings.menuHoverClass).find('a').attr('tabIndex', 0).first().focus();
         }
-      } else if (e.keyCode == 13 || e.keyCode == 32) { //enter or space keys
+      } else if (e.keyCode == 32) { //space key
         // If submenu is hidden, open it
         e.preventDefault();
         $item.parent('li').find('ul[aria-hidden=true]').attr('aria-hidden', 'false').addClass(settings.menuHoverClass).find('a').attr('tabIndex', 0).first().focus();
@@ -164,9 +182,9 @@
         e.preventDefault();
         $('.' + settings.menuHoverClass).attr('aria-hidden', 'true').removeClass(settings.menuHoverClass).find('a').attr('tabIndex', -1);
       } else { //cycle through the child submenu items based on the first letter
-        $item.parent('li').find('ul[aria-hidden=false] a').each(function () {
-          if ($item.text().substring(0, 1).toLowerCase() == keyCodeMap[e.keyCode]) {
-            $item.focus();
+        $item.parent('li').find('ul[aria-hidden=false] > li > a').each(function () {
+          if ($(this).text().substring(0, 1).toLowerCase() == keyCodeMap[e.keyCode]) {
+            $(this).focus();
             return false;
           }
         });
@@ -174,8 +192,7 @@
     });
 
     // Now do the keys bind for the submenus links
-    var links = $topLevelLinks.parent('li').find('ul').find('a');
-    $(links).keydown(function (e) {
+    $(subLevelLinks).keydown(function (e) {
       var $item = $(this);
 
       if (e.keyCode == 38) { //up arrow
@@ -186,18 +203,35 @@
         } else {
           $item.parent('li').prev('li').find('a').first().focus();
         }
+      } else if (e.keyCode == 39) { //right arrow
+        e.preventDefault();
+
+        //if it has sub-menus we should go into them
+        if ($item.parent('li').hasClass('menu-item-has-children')) {
+          $item.next('ul').find('> li').first().find('a').first().focus();
+        } else {
+          // This is the last item
+          if ($item.parent('li').next('li').length == 0) {
+            $item.closest('ul').closest('li').children('a').first().focus();
+          } else {
+            $item.parent('li').next('li').find('a').first().focus();
+          }
+        }
       } else if (e.keyCode == 40) { //down arrow
         e.preventDefault();
+
+        // This is the last item
         if ($item.parent('li').next('li').length == 0) {
-          $item.parents('ul').parents('li').find('a').first().focus();
+          $item.closest('ul').closest('li').children('a').first().focus();
         } else {
           $item.parent('li').next('li').find('a').first().focus();
         }
       } else if (e.keyCode == 27 || e.keyCode == 37) { //escape key or left arrow => jump to the upper level links
         e.preventDefault();
-        $item.parents('ul').first().parent('.sub-menu-wrapper').prev('a').focus().parents('ul').first().find('.' + settings.menuHoverClass).attr('aria-hidden', 'true').removeClass(settings.menuHoverClass).find('a').attr('tabIndex', -1);
 
-        $item.parents('ul').first().closest('li').removeClass(settings.topMenuHoverClass);
+        //focus on the upper level link
+        $item.closest('ul').closest('li').children('a').first().focus();
+
       } else if (e.keyCode == 32) { //space key
         e.preventDefault();
         window.location = $item.attr('href');
@@ -206,8 +240,8 @@
         //cycle through the menu items based on the first letter
         var found = false;
         $item.parent('li').nextAll('li').find('a').each(function () {
-          if ($item.text().substring(0, 1).toLowerCase() == keyCodeMap[e.keyCode]) {
-            $item.focus();
+          if ($(this).text().substring(0, 1).toLowerCase() == keyCodeMap[e.keyCode]) {
+            $(this).focus();
             found = true;
             return false;
           }
@@ -215,8 +249,8 @@
 
         if (!found) {
           $item.parent('li').prevAll('li').find('a').each(function () {
-            if ($item.text().substring(0, 1).toLowerCase() == keyCodeMap[e.keyCode]) {
-              $item.focus();
+            if ($(this).text().substring(0, 1).toLowerCase() == keyCodeMap[e.keyCode]) {
+              $(this).focus();
               return false;
             }
           });
@@ -260,7 +294,7 @@
 
           subMenuWidth = $subMenu.outerWidth();
 
-          // calculations for positioning the submenu
+          // calculations for positioning the sub-menu
           var a = $item.index(),
               b = $nav.children().length,
               c = navWidth - subMenuWidth,
@@ -268,12 +302,16 @@
 
           $subMenu.css('left', x);
         }
+
+
       }
 
       $item.addClass(settings.topMenuHoverClass);
 
-      $item.children('.sub-menu-wrapper').first().find('ul').first() //affect only the first ul found - the one with the submenus, ignore the mega menu items
-      .attr('aria-hidden', 'false').addClass(settings.menuHoverClass).find('a').attr('tabIndex', 0); //set the tabIndex to 0 so we let the browser figure out the tab order
+      $item.find('.sub-menu').first() //affect only the first ul found - the one with the submenus, ignore the mega menu items
+      .attr('aria-hidden', 'false').addClass(settings.menuHoverClass);
+
+      $item.find('a').attr('tabIndex', 0); //set the tabIndex to 0 so we let the browser figure out the tab order
     }
 
     function hideSubMenu($item) {
@@ -282,7 +320,10 @@
         $item.children('.sub-menu-wrapper').css('left', '');
       }
 
-      $item.children('a').first().attr('aria-hidden', 'true').removeClass(settings.menuHoverClass).find('a').attr('tabIndex', -1);
+      $item.children('a').first().next('ul').attr('aria-hidden', 'true').removeClass(settings.menuHoverClass).find('a').attr('tabIndex', -1);
+
+      //when dealing with first level submenus - they are wrapped
+      $item.children('a').first().next('.sub-menu-wrapper').children('ul').attr('aria-hidden', 'true').removeClass(settings.menuHoverClass).find('a').attr('tabIndex', -1);
 
       $item.removeClass(settings.topMenuHoverClass);
     }
