@@ -2,7 +2,7 @@
 
 var masonry = (function() {
 
-	var $container 		= $('.site-main'),
+	var $container 		= $('.archive__grid'),
 		$sidebar		= $('.sidebar--main'),
 		$blocks			= $container.children().addClass('post--animated  post--loaded'),
 		initialized		= false,
@@ -27,21 +27,22 @@ var masonry = (function() {
 					opacity: 0
 				}
 			});
+
+			if (sidebarMasonry()) {
+				$sidebar.masonry({
+					isAnimated: false,
+					itemSelector: '.grid__item',
+					hiddenStyle: {
+						opacity: 0
+					}
+				});
+			}
+
 			bindEvents();
 			showBlocks($blocks);
+			initialized = true;
+			refresh();
 		});
-
-		if (sidebarMasonry()) {
-			$sidebar.masonry({
-				isAnimated: false,
-				itemSelector: '.grid__item',
-				hiddenStyle: {
-					opacity: 0
-				}
-			});
-		}
-
-		initialized = true;
 	},
 
 	sidebarMasonry = function() {
@@ -56,7 +57,7 @@ var masonry = (function() {
 	refresh = function() {
 
 		if (!initialized) {
-			init();
+			return;
 		}
 		
 		$container.masonry('layout');
