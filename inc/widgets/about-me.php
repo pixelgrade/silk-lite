@@ -194,7 +194,7 @@ if ( ! class_exists( 'Amelie_About_Me_Widget' ) ) :
 					'AmelieAboutMeWidget',
 					array(
 						'l10n' => array(
-							'frameTitle'      => __( 'Choose an Background Image', 'amelie_txtd' ),
+							'frameTitle'      => __( 'Choose a Background Image', 'amelie_txtd' ),
 							'frameUpdateText' => __( 'Update Background Image', 'amelie_txtd' ),
 						),
 					)

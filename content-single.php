@@ -20,7 +20,7 @@
 
 		<?php if ( has_excerpt() ) : ?>
 			<p class="intro  intro--paragraph">
-			<?php the_excerpt(); ?>
+			<?php echo get_the_excerpt(); ?>
 			</p>
 		<?php endif; ?>
 	</header><!-- .entry-header -->
