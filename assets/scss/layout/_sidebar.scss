@@ -68,10 +68,12 @@
 		.sidebar--main {
 			float: right;
 			width: em(340px);
+			margin-left: 0;
 
 			> .grid__item {
 				float: none;
 				width: 100%;
+				padding-left: 0;
 			}
 		}
  	}
