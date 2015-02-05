@@ -67,6 +67,8 @@ function styleArchiveWidget() {
  * to make a left sidebar on single posts
  */
 function wrapJetpackAfterContent() {
+  console.log('Wrap jetpack after content');
+
   // check if we are on single post and the wrap has not been done already by Jetpack
   // (it happens when the theme is activated on a wordpress.com installation)
   if( $('body').hasClass('single-post') && $('#jp-post-flair').length == 0 ) {
