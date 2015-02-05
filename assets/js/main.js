@@ -734,6 +734,10 @@ if (!Date.now) Date.now = function () {
     archiveWidget.addClass('shrink');
     archiveWidget.append(separatorMarkup);
     fixedSidebars.refresh();
+
+    archiveWidget.find('a').focus(function () {
+      archiveWidget.removeClass('shrink');
+    });
   }
 
   /**

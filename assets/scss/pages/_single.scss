@@ -218,8 +218,12 @@ span.pagination-title {
 	.article-navigation{
 		.navigation-item{
 			position: fixed;
-			top: 50%;
+			top: 85%;
 			z-index: 100;
+
+			a{
+				display: block;
+			}
 
 			.navigation-item__content {
 				position:relative;
