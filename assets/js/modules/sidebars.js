@@ -20,18 +20,24 @@ var fixedSidebars = (function() {
 		previousTop = 0,
 		animating = false,
 
+		initialized = false,
+
 	/**
 	 * initialize sidebar positioning
 	 */
 	init = function() {
 		refresh();
-		update();
+		initialized = true;
 	},
 
 	/**
 	 * update position of the two sidebars depending on scroll position
 	 */
 	update = function() {
+
+		if ( !initialized ) {
+			init();
+		}
 
 		var windowBottom  = latestKnownScrollY + windowHeight,
 			sidebarBottom = sidebarHeight + sidebarOffset.top + sidebarPadding,

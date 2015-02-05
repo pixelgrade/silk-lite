@@ -115,7 +115,11 @@ if (!Date.now) Date.now = function () {
   var masonry = (function () {
 
     var $container = $('.archive__grid'),
-        $blocks = $container.children().addClass('post--animated  post--loaded'),
+        $sidebar = $('.sidebar--main'),
+        containerTop = $container.offset().top,
+        sidebarTop = $sidebar.offset().top,
+        $blocks = $container.children().addClass('post--animated  post--loaded')
+         initialized = false,
         
         
         init = function () {
@@ -130,6 +134,23 @@ if (!Date.now) Date.now = function () {
           bindEvents();
           showBlocks($blocks);
         });
+
+        if (sidebarMasonry()) {
+          $sidebar.masonry({
+            isAnimated: false,
+            itemSelector: '.grid__item',
+            hiddenStyle: {
+              opacity: 0
+            }
+          });
+        }
+
+        initialized = true;
+        },
+        
+        
+        sidebarMasonry = function () {
+        return $sidebar.length && sidebarTop > containerTop;
         },
         
         
@@ -140,7 +161,15 @@ if (!Date.now) Date.now = function () {
         
         
         refresh = function () {
+
+        if (!initialized) {
+          init();
+        }
+
         $container.masonry('layout');
+        if (sidebarMasonry()) {
+          $sidebar.masonry('layout');
+        }
         },
         
         
@@ -462,6 +491,9 @@ if (!Date.now) Date.now = function () {
         animating = false,
         
         
+        initialized = false,
+        
+        
         
         /**
          * initialize sidebar positioning
@@ -469,7 +501,7 @@ if (!Date.now) Date.now = function () {
         
         init = function () {
         refresh();
-        update();
+        initialized = true;
         },
         
         
@@ -479,6 +511,10 @@ if (!Date.now) Date.now = function () {
          */
         
         update = function () {
+
+        if (!initialized) {
+          init();
+        }
 
         var windowBottom = latestKnownScrollY + windowHeight,
             sidebarBottom = sidebarHeight + sidebarOffset.top + sidebarPadding,
@@ -734,6 +770,7 @@ if (!Date.now) Date.now = function () {
     archiveWidget.addClass('shrink');
     archiveWidget.append(separatorMarkup);
     fixedSidebars.refresh();
+    masonry.refresh();
   }
 
   /**

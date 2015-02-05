@@ -54,6 +54,7 @@ function styleArchiveWidget() {
   archiveWidget.addClass('shrink');
   archiveWidget.append(separatorMarkup);
   fixedSidebars.refresh();
+  masonry.refresh();
 }
 
 /**
