@@ -219,6 +219,7 @@ span.pagination-title {
 		.navigation-item{
 			position: fixed;
 			top: 50%;
+			z-index: 100;
 
 			.navigation-item__content {
 				position:relative;
@@ -253,6 +254,7 @@ span.pagination-title {
 				width: 50px;
 
 				border: 1px solid $borders;
+				background-color: white;
 
 				&:before, &:after{
 					position: absolute;
