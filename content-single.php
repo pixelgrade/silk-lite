@@ -19,7 +19,7 @@
 		<?php the_title( '<h1 class="entry-title  page-title">', '</h1>' ); ?>
 
 		<?php if ( has_excerpt() ) : ?>
-			<p class="intro-paragraph">
+			<p class="intro  intro--paragraph">
 			<?php the_excerpt(); ?>
 			</p>
 		<?php endif; ?>
