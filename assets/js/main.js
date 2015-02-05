@@ -560,9 +560,11 @@ if (!Date.now) Date.now = function () {
         if (navBottom < latestKnownScrollY) {
           $('.top-bar.fixed').addClass('visible');
           $('.nav--floating').addClass('nav--floating--is-visible');
+          $('.article-navigation .navigation-item').addClass('hover-state');
         } else {
           $('.top-bar.fixed').removeClass('visible');
           $('.nav--floating').removeClass('nav--floating--is-visible');
+          $('.article-navigation .navigation-item').removeClass('hover-state');
         }
 
         };
