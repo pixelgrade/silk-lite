@@ -2,7 +2,7 @@
 
 var fixedSidebars = (function() {
 
-	var $smallSidebar       = $('.single-sidebar'),
+	var $smallSidebar       = $('#jp-post-flair'),
 		smallSidebarPinned  = false,
 		smallSidebarPadding = 100,
 		smallSidebarOffset;
