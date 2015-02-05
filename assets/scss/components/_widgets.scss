@@ -75,8 +75,10 @@
 		background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.7) 100%);
 	}
 
-	&:hover:after {
-		opacity: 0;
+	&:hover, &:focus {
+		&:after {
+			opacity: 0;
+		}
 	}
 
 	.attachment-amelie-masonry-image {
@@ -105,8 +107,10 @@
 		transition-delay: .3s;
 	}
 
-		&:hover .amelie-about-me-widget__container {
-			transform: none;
+		&:hover, &:focus {
+			.amelie-about-me-widget__container {
+				transform: none;
+			}
 		}
 
 	.widget-title {
@@ -252,6 +256,8 @@
 }
 
 .jetpack_subscription_widget {
+	position: relative;
+
 	padding: rem(45px);
 
 	color: white;
@@ -296,6 +302,19 @@
 
 		@include fs(14px);
 		letter-spacing: 0.35em;
+	}
+
+	&:before {
+		content: "";
+
+		position: absolute;
+		top: 10px;
+		left: 10px;
+		bottom: 10px;
+		right: 10px;
+
+		border: 1px solid $secondary;
+		display: block;
 	}
 }
 

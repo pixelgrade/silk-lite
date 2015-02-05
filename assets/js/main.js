@@ -412,15 +412,22 @@ if (!Date.now) Date.now = function () {
 
   var masonry = (function () {
 
-    var $container = $('.archive__grid'),
+    var $container = $('.site-main'),
         $sidebar = $('.sidebar--main'),
-        containerTop = $container.offset().top,
-        sidebarTop = $sidebar.offset().top,
-        $blocks = $container.children().addClass('post--animated  post--loaded')
-         initialized = false,
-        
+        $blocks = $container.children().addClass('post--animated  post--loaded'),
+        initialized = false,
+        containerTop, sidebarTop,
         
         init = function () {
+
+        if ($container.length) {
+          containerTop = $container.offset().top;
+        }
+
+        if ($sidebar.length) {
+          sidebarTop = $sidebar.offset().top;
+        }
+
         $container.imagesLoaded(function () {
           $container.masonry({
             isAnimated: false,
@@ -1024,6 +1031,10 @@ if (!Date.now) Date.now = function () {
     archiveWidget.append(separatorMarkup);
     fixedSidebars.refresh();
     masonry.refresh();
+
+    archiveWidget.find('a').focus(function () {
+      archiveWidget.removeClass('shrink');
+    });
   }
 
   /**

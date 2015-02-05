@@ -26,6 +26,7 @@
     @include rhythm(margin-bottom, -1, 76px);
     @include rhythm(margin-right, 1, 76px);
 
+    color: $accent;
     text-shadow: 2px 2px 0px white, 4px 4px 0px $secondary;
 }
 

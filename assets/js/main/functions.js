@@ -55,6 +55,10 @@ function styleArchiveWidget() {
   archiveWidget.append(separatorMarkup);
   fixedSidebars.refresh();
   masonry.refresh();
+  
+  archiveWidget.find('a').focus(function () {
+    archiveWidget.removeClass('shrink');
+  });
 }
 
 /**
