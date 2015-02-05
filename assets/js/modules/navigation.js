@@ -2,63 +2,18 @@
 
 var navigation = (function() {
 
-	var $nav      = $('.nav--main').addClass('hover-intent'),
-		$navItems = $nav.find('li'),
-		navWidth  = $nav.outerWidth(),
-	    navOffset = $nav.offset(),
-	    navTop    = navOffset.top,
-	    navBottom = navTop + $nav.outerHeight(),
+	var $nav = $('.nav--main');
 
 	init = function() {
-		/* add hover intent to main navigation links */
-		$navItems.hoverIntent({
-			over: showSubMenu,
-			out: hideSubMenu,
-			timeout: 300
-		});
+		// initialize the logic behind the main navigation
+		$nav.ariaNavigation();
 
-		$navItems.on('mouseleave', function() {
-			hideSubMenu(this);
-		});
-	},
-
-	showSubMenu = function() {
-
-		var $item = $(this).addClass('hover');
-
-		if ($item.hasClass('menu-item--mega')) {
-
-			var $subMenu = $item.children('.sub-menu-wrapper'),
-				offset,
-				subMenuWidth;
-
-			if ($subMenu.length) {
-
-				subMenuWidth = $subMenu.outerWidth();
-
-				// calculations for positioning the submenu
-				var a = $item.index(),
-					b = $nav.children().length,
-					c = navWidth - subMenuWidth,
-					x = (a - b/2 + 1/2) * c/b + c/2;
-
-				$subMenu.css('left', x);
-			}
-		}
-	},
-
-	hideSubMenu = function() {
-
-		var $item = $(this);
-
-		if ($item.hasClass('menu-item--mega')) {
-			$item.children('.sub-menu-wrapper').css('left', '');
-		}
-
-		$item.removeClass('hover');
+		//make sure that the links in the floating-nav, that shows on scroll, are ignored by TAB
+		$('.floating-nav' ).find('a' ).attr( 'tabIndex', -1 );
 	},
 
 	toggleTopBar = function() {
+		var navBottom = $nav.offset().top + $nav.outerHeight();
 
 		if (navBottom < latestKnownScrollY) {
 			$('.top-bar.fixed').addClass('visible');
