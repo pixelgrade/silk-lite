@@ -414,8 +414,8 @@ if (!Date.now) Date.now = function () {
 
     var $container = $('.site-main'),
         $sidebar = $('.sidebar--main'),
-        $blocks = $container.children().addClass('post--animated  post--loaded')
-         initialized = false,
+        $blocks = $container.children().addClass('post--animated  post--loaded'),
+        initialized = false,
         containerTop, sidebarTop,
         
         init = function () {
