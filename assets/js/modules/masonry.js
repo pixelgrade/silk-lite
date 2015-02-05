@@ -4,7 +4,7 @@ var masonry = (function() {
 
 	var $container 		= $('.site-main'),
 		$sidebar		= $('.sidebar--main'),
-		$blocks			= $container.children().addClass('post--animated  post--loaded')
+		$blocks			= $container.children().addClass('post--animated  post--loaded'),
 		initialized		= false,
 		containerTop,
 		sidebarTop,
