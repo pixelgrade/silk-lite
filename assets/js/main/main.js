@@ -1,6 +1,6 @@
 /* ====== ON DOCUMENT READY ====== */
 
-$document.ready(function() {
+$(document).ready(function() {
   init();
 });
 
@@ -10,8 +10,6 @@ function init() {
   masonry.init();
   navigation.init();
   styleArchiveWidget();
-
-  console.log('init');
   wrapJetpackAfterContent();
 }
 

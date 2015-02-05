@@ -927,7 +927,7 @@ if (!Date.now) Date.now = function () {
 
   })(); /* ====== ON DOCUMENT READY ====== */
 
-  $document.ready(function () {
+  $(document).ready(function () {
     init();
   });
 
@@ -937,8 +937,6 @@ if (!Date.now) Date.now = function () {
     masonry.init();
     navigation.init();
     styleArchiveWidget();
-
-    console.log('init');
     wrapJetpackAfterContent();
   }
 
