@@ -71,11 +71,15 @@ function wrapJetpackAfterContent() {
   // (it happens when the theme is activated on a wordpress.com installation)
   if( $('body').hasClass('single-post') && $('#jp-post-flair').length == 0 ) {
 
+    console.log('is single post or no jp-post-flair');
+
     var $jpSharing = $('.sharedaddy.sd-sharing-enabled');
     var $jpLikes = $('.sharedaddy.sd-like');
     var $jpRelatedPosts = $('#jp-relatedposts');
 
     if ( $jpSharing.length || $jpLikes.length || $jpRelatedPosts.length ) {
+      console.log('we have some jetpack stuff enabled.');
+
       $('body').addClass('has--jetpack-sidebar');
 
       var $jpWrapper = $('<div/>', { id: 'jp-post-flair' });
@@ -83,14 +87,20 @@ function wrapJetpackAfterContent() {
 
       if( $jpSharing.length ) {
         $jpSharing.appendTo($jpWrapper);
+
+        console.log('appending sharing');
       }
 
       if( $jpLikes.length ) {
         $jpLikes.appendTo($jpWrapper);
+
+        console.log('appending likes');
       }
 
       if( $jpRelatedPosts.length ) {
         $jpRelatedPosts.appendTo($jpWrapper);
+
+        console.log('appending related posts');
       }
     }
   }
