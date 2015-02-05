@@ -937,6 +937,8 @@ if (!Date.now) Date.now = function () {
     masonry.init();
     navigation.init();
     styleArchiveWidget();
+
+    console.log('init');
     wrapJetpackAfterContent();
   }
 

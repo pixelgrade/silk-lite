@@ -10,6 +10,8 @@ function init() {
   masonry.init();
   navigation.init();
   styleArchiveWidget();
+
+  console.log('init');
   wrapJetpackAfterContent();
 }
 
