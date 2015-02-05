@@ -1,5 +1,6 @@
 /**
  * jQuery plugin to make the main navigation WAI-ARIA compatible
+ * Inspired by http://simplyaccessible.com/examples/css-menu/option-6/
  *
  * It needs jquery.hoverIntent
  */
