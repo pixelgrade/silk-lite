@@ -1,28 +1,28 @@
 .has_sidebar {
 
-	@include query-above($lap) {
-
-		.site-content {
-			text-align: center;
-		}
-
-		.content-area,
-		.sidebar--main,
-		.featured-content {
-			display: inline-block;
-			text-align: left;
-		}
-
-		.content-area {
-			width: rem(420px);
-			margin-right: rem($gutter-lap);
-		}
-
-		.sidebar--main {
-			width: rem(300px);
-			vertical-align: top;
-		}
- 	}
+//	@include query-above($lap) {
+//
+//		.site-content {
+//			text-align: center;
+//		}
+//
+//		.content-area,
+//		.sidebar--main,
+//		.featured-content {
+//			display: inline-block;
+//			text-align: left;
+//		}
+//
+//		.content-area {
+//			width: rem(420px);
+//			margin-right: rem($gutter-lap);
+//		}
+//
+//		.sidebar--main {
+//			width: rem(300px);
+//			vertical-align: top;
+//		}
+// 	}
 
 	@include query-above($desk) {
 
