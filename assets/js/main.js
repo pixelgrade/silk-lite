@@ -413,7 +413,7 @@ if (!Date.now) Date.now = function () {
 
   var masonry = (function () {
 
-    var $container = $('.site-main'),
+    var $container = $('.archive__grid'),
         $sidebar = $('.sidebar--main'),
         $blocks = $container.children().addClass('post--animated  post--loaded'),
         initialized = false,
@@ -437,21 +437,22 @@ if (!Date.now) Date.now = function () {
               opacity: 0
             }
           });
+
+          if (sidebarMasonry()) {
+            $sidebar.masonry({
+              isAnimated: false,
+              itemSelector: '.grid__item',
+              hiddenStyle: {
+                opacity: 0
+              }
+            });
+          }
+
           bindEvents();
           showBlocks($blocks);
+          initialized = true;
+          refresh();
         });
-
-        if (sidebarMasonry()) {
-          $sidebar.masonry({
-            isAnimated: false,
-            itemSelector: '.grid__item',
-            hiddenStyle: {
-              opacity: 0
-            }
-          });
-        }
-
-        initialized = true;
         },
         
         
@@ -469,7 +470,7 @@ if (!Date.now) Date.now = function () {
         refresh = function () {
 
         if (!initialized) {
-          init();
+          return;
         }
 
         $container.masonry('layout');
