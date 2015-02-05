@@ -40,15 +40,5 @@
 			);
 			?>
 		</nav><!-- #top-header-right-navigation -->
-	</div>
-</div>
-<?php
-if ( ! get_theme_mod( 'amelie_disable_search_in_toolbar', false ) ) { ?>
-<div class="overlay--search">
-	<div class="overlay__wrapper">
-		<?php get_search_form(); ?>
-		<p><?php _e( 'Begin typing your search above and press return to search. Press Esc to cancel.', 'amelie_txtd' ); ?></p>
-	</div>
-	<b class="overlay__close"></b>
-</div>
-<?php } ?>
+	</div><!-- .content -->
+</div><!-- .top-bar -->

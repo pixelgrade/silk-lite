@@ -23,8 +23,6 @@
 
 	<?php get_template_part( 'templates/top-header-bar' ); ?>
 
-	<?php get_template_part( 'templates/top-bar' ); ?>
-
 	<header id="masthead" class="site-header" role="banner">
 
 		<div class="site-branding">

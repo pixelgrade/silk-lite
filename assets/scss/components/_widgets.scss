@@ -18,6 +18,10 @@
 }
 
 .widget {
+	border: 1px solid $borders;
+	padding: rhythm(1);
+	margin-bottom: rhythm(1/2);
+
 	ul {
 		@extend .nav;
 		@extend .nav--stacked;
@@ -41,13 +45,6 @@
 	}
 }
 
-.widget {
-	border: 1px solid $borders;
-	padding: rhythm(1);
-	margin-bottom: rhythm(1/2);
-}
-
-
 .widget-title {
 	@extend .h4;
 	margin-top: 0;
@@ -62,6 +59,8 @@
 
 .widget_amelie_about_me {
 	position: relative;
+	background: $accent;
+	border: 0;
 	overflow: hidden;
 
 	min-height: rem(340px);

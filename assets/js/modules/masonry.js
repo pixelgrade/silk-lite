@@ -2,10 +2,23 @@
 
 var masonry = (function() {
 
-	var $container 	= $('.archive__grid'),
-		$blocks		= $container.children().addClass('post--animated  post--loaded'),
+	var $container 		= $('.site-main'),
+		$sidebar		= $('.sidebar--main'),
+		$blocks			= $container.children().addClass('post--animated  post--loaded')
+		initialized		= false,
+		containerTop,
+		sidebarTop,
 
 	init = function() {
+
+		if ($container.length) {
+			containerTop = $container.offset().top;
+		}
+
+		if ($sidebar.length) {
+			sidebarTop = $sidebar.offset().top;
+		}
+
 		$container.imagesLoaded(function() {
 			$container.masonry({
 				isAnimated: false,
@@ -17,6 +30,22 @@ var masonry = (function() {
 			bindEvents();
 			showBlocks($blocks);
 		});
+
+		if (sidebarMasonry()) {
+			$sidebar.masonry({
+				isAnimated: false,
+				itemSelector: '.grid__item',
+				hiddenStyle: {
+					opacity: 0
+				}
+			});
+		}
+
+		initialized = true;
+	},
+
+	sidebarMasonry = function() {
+		return $sidebar.length && sidebarTop > containerTop;
 	},
 
 	bindEvents = function() {
@@ -25,7 +54,15 @@ var masonry = (function() {
 	},
 
 	refresh = function() {
+
+		if (!initialized) {
+			init();
+		}
+		
 		$container.masonry('layout');
+		if (sidebarMasonry()) {
+			$sidebar.masonry('layout');
+		}
 	},
 
 	showBlocks = function($blocks) {

@@ -19,17 +19,13 @@
 	> .grid__item {
 		width: 100%;
 		padding-bottom: em(30px);
-		margin-bottom: em(55px);
+
+	    margin-bottom: rem($gutter-small);
+	    @include query-above($small)    { margin-bottom: rem($gutter); }
+	    @include query-above($lap)      { margin-bottom: rem($gutter-lap); }
+	    @include query-above($desk)     { margin-bottom: rem($gutter-desk); }
 
 		@include query-above($small) {
-			width: 50%;
-		}
-
-		@include query-above($lap) {
-			width: 100%;
-		}
-
-		@include query-above($desk) {
 			width: 50%;
 		}
 	}
