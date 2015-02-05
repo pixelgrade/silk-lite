@@ -469,4 +469,31 @@ if ( ! class_exists( "Amelie_Walker_Primary_Mega_Menu" ) && class_exists( 'Walke
 
 	} # class
 
-endif; ?>
+endif;
+
+/**
+ * Add "Styles" drop-down
+ */
+add_filter( 'mce_buttons_2', 'amelie_mce_editor_buttons' );
+function amelie_mce_editor_buttons( $buttons ) {
+	array_unshift($buttons, 'styleselect' );
+	return $buttons;
+}
+
+/**
+ * Add styles/classes to the "Styles" drop-down
+ */
+add_filter( 'tiny_mce_before_init', 'amelie_mce_before_init' );
+function amelie_mce_before_init( $settings ) {
+
+	$style_formats =array(
+		array( 'title' => __( 'Intro Text', 'amelie_txtd' ), 'selector' => 'p', 'classes' => 'intro'),
+		array( 'title' => __( 'Dropcap', 'amelie_txtd' ), 'inline' => 'span', 'classes' => 'dropcap'),
+		array( 'title' => __( 'Highlight', 'amelie_txtd' ), 'inline' => 'span', 'classes' => 'highlight' ),
+		array( 'title' => __( 'Two Columns', 'amelie_txtd' ), 'selector' => 'p', 'classes' => 'twocolumn', 'wrapper' => true )
+	);
+
+	$settings['style_formats'] = json_encode( $style_formats );
+
+	return $settings;
+} ?>

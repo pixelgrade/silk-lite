@@ -119,6 +119,10 @@
 
 .menu-item--mega {
 
+	> a {
+		z-index: 20;
+	}
+
 	.sub-menu-wrapper .sub-menu {
 		> .menu-item {
 			border-bottom-color: $borders;
@@ -133,6 +137,7 @@
 
 		.sub-menu-wrapper {
 			border: 1px solid $borders;
+			box-shadow: rgba(255,255,255,0.5) 0 0 0 rem(110px);
 			padding: rem(40px);
 			display: flex;
 

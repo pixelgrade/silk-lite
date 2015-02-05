@@ -601,9 +601,11 @@ if (!Date.now) Date.now = function () {
         if (navBottom < latestKnownScrollY) {
           $('.top-bar.fixed').addClass('visible');
           $('.nav--floating').addClass('nav--floating--is-visible');
+          $('.article-navigation .navigation-item').addClass('hover-state');
         } else {
           $('.top-bar.fixed').removeClass('visible');
           $('.nav--floating').removeClass('nav--floating--is-visible');
+          $('.article-navigation .navigation-item').removeClass('hover-state');
         }
 
         };
@@ -778,7 +780,7 @@ if (!Date.now) Date.now = function () {
 
   var fixedSidebars = (function () {
 
-    var $smallSidebar = $('.single-sidebar'),
+    var $smallSidebar = $('#jp-post-flair'),
         smallSidebarPinned = false,
         smallSidebarPadding = 100,
         smallSidebarOffset;
@@ -1069,17 +1071,21 @@ if (!Date.now) Date.now = function () {
       return;
     }
 
-    var archiveWidget = $('.sidebar--main .widget_archive ul').parent(),
-        separatorMarkup = '<span class="separator  separator--text" role="presentation"><span>More</span></a>';
+    var $archiveWidget = $('.sidebar--main .widget_archive ul').parent();
 
-    archiveWidget.addClass('shrink');
-    archiveWidget.append(separatorMarkup);
-    fixedSidebars.refresh();
-    masonry.refresh();
+    if ($archiveWidget.height() > $archiveWidget.width()) {
+      var separatorMarkup = '<span class="separator  separator--text" role="presentation"><span>More</span></a>';
 
-    archiveWidget.find('a').focus(function () {
-      archiveWidget.removeClass('shrink');
-    });
+      $archiveWidget.addClass('shrink');
+      $archiveWidget.append(separatorMarkup);
+      fixedSidebars.refresh();
+      masonry.refresh();
+
+      $archiveWidget.find('a').focus(function () {
+        $archiveWidget.removeClass('shrink');
+      });
+    }
+
   }
 
   /**
