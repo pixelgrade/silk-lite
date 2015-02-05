@@ -48,17 +48,21 @@ function styleArchiveWidget() {
     return;
   }
 
-  var archiveWidget   = $('.sidebar--main .widget_archive ul').parent(),
-      separatorMarkup = '<span class="separator  separator--text" role="presentation"><span>More</span></a>';
+  var $archiveWidget   = $('.sidebar--main .widget_archive ul').parent();
 
-  archiveWidget.addClass('shrink');
-  archiveWidget.append(separatorMarkup);
-  fixedSidebars.refresh();
-  masonry.refresh();
-  
-  archiveWidget.find('a').focus(function () {
-    archiveWidget.removeClass('shrink');
-  });
+  if( $archiveWidget.height() > $archiveWidget.width() ) {
+    var separatorMarkup = '<span class="separator  separator--text" role="presentation"><span>More</span></a>';
+
+    $archiveWidget.addClass('shrink');
+    $archiveWidget.append(separatorMarkup);
+    fixedSidebars.refresh();
+    masonry.refresh();
+
+    $archiveWidget.find('a').focus(function () {
+      $archiveWidget.removeClass('shrink');
+    });
+  }
+
 }
 
 /**
