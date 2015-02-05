@@ -69,35 +69,11 @@
 	position: absolute;
 	top: 100%;
 	background: white;
-
-
 	white-space: nowrap;
 
 	> * {
 		white-space: normal;
 		vertical-align: top;
-	}
-
-	.menu-item--mega & {
-		border: 1px solid $borders;
-		padding: rem(40px);
-		display: flex;
-
-		> .sub-menu {
-			// align-self: flex-start;
-			// flex-grow: 0;
-			text-align: left;
-			font-size: inherit;
-			display: flex;
-			flex-direction: column;
-
-			> li {
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				flex-grow: 1;
-			}
-		}
 	}
 
 	.hover & {
@@ -142,7 +118,6 @@
 }
 
 .menu-item--mega {
-	position: static;
 
 	.sub-menu-wrapper .sub-menu {
 		> .menu-item {
@@ -152,21 +127,52 @@
 			}
 		}
 	}
-	
-	.sub-menu-wrapper > .sub-menu {
-		background-color: $accent;
-		color: white;
-		border: 0;
 
-		> .menu-item {
-			border-bottom-color: $secondary;
-			> a {
-				color: white;
+	@include query-above($desk) {	
+		position: static !important;
+
+		.sub-menu-wrapper {
+			border: 1px solid $borders;
+			padding: rem(40px);
+			display: flex;
+
+			> .sub-menu {
+				// align-self: flex-start;
+				// align-items: flex-start;
+				padding: rhythm(1/2) rhythm(1.5);
+				flex-grow: 1;
+				text-align: left;
+				font-size: inherit;
+				display: flex;
+				flex-direction: column;
+
+				> li {
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					// flex-grow: 1;
+				}
 			}
 		}
 
-		> .menu-item:hover > a {
-			color: $secondary;
+		.sub-menu-wrapper > .sub-menu {
+			background-color: $accent;
+			color: white;
+			border: 0;
+
+			> .menu-item {
+				border-bottom-color: white;
+				border-bottom-color: rgba(255,255,255,0.5);
+
+				> a {
+					color: white;
+					padding: rhythm(2/3) 0;
+				}
+			}
+
+			> .menu-item:hover > a {
+				color: $secondary;
+			}
 		}
 	}
 }
@@ -206,6 +212,10 @@
 @include query-below($desk) {
 	.menu-item--mega {
 		position: relative;
+
+		> .sub-menu-wrapper {
+			left: 0 !important;
+		}
 	}
 
 	.submenu__card,

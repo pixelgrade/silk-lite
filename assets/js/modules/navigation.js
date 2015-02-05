@@ -9,7 +9,7 @@ var navigation = (function() {
 		$nav.ariaNavigation();
 
 		//make sure that the links in the floating-nav, that shows on scroll, are ignored by TAB
-		$('.floating-nav' ).find('a' ).attr( 'tabIndex', -1 );
+		$('.floating-nav').find('a' ).attr( 'tabIndex', -1 );
 	},
 
 	toggleTopBar = function() {
