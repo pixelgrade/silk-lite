@@ -22,6 +22,16 @@
 		transform: translate(0, -100%);
 		transition: transform .3s ease-in;
 
+		.admin-bar & {
+			top: 32px;
+		}
+
+		@media screen and (max-width: 782px) {
+			.admin-bar & {
+				top: 46px;
+			}
+		}
+
 		.h3 {
 			margin: 0;
 			font-size: rem(33px);
