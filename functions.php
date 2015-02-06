@@ -152,6 +152,11 @@ function silk_scripts_styles() {
 		//Enqueue FlexSlider plugin
 		wp_enqueue_script( 'silk-flexslider', get_stylesheet_directory_uri() . '/assets/js/jquery.flexslider.js', array('jquery'), '2.2.2', true );
 
+		wp_localize_script( 'silk-flexslider', 'silkFeaturedSlider', array(
+			'prevText' => __( 'Previous', 'silk_txtd' ),
+			'nextText' => __( 'Next', 'silk_txtd' ),
+		) );
+
 	}
 
 	//Enqueue ImagesLoaded plugin

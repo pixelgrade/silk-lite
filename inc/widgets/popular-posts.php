@@ -101,7 +101,7 @@ if ( ! class_exists('Silk_Popular_Posts_Widget') ) :
 				$title = $this->default_title;
 			$title = apply_filters( 'widget_title', $title );
 
-			$count = isset( $instance['count'] ) ? (int) $instance['count'] : false;
+			$count = isset( $instance['count'] ) ? (int) $instance['count'] : 5;
 			if ( $count < 1 || 10 < $count ) {
 				$count = 10;
 			}
@@ -269,7 +269,7 @@ if ( ! class_exists('Silk_Popular_Posts_Widget') ) :
 				$counter++;
 
 				if ( $counter == $count )
-					break; // only need to load and show x number of likes
+					break; // only need to load and show x number of posts
 			}
 
 			return apply_filters( 'silk_widget_get_popular_posts', $posts, $post_ids, $count );
