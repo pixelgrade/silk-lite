@@ -20,7 +20,7 @@
 
 		<?php if ( has_excerpt() ) : ?>
 			<p class="intro  intro--paragraph">
-			<?php echo get_the_excerpt(); ?>
+			<?php echo get_the_excerpt(); //we need to this since Jetpack filters the_excerpt - we don't want this ?>
 			</p>
 		<?php endif; ?>
 	</header><!-- .entry-header -->
