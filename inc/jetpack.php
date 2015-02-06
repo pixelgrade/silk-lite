@@ -70,4 +70,11 @@ function silk_has_featured_posts( $minimum = 1 ) {
 		return false;
 
 	return true;
-} ?>
+}
+
+function silk_filter_jetpack_infinite_scroll_js_settings( $settings ) {
+	$settings['text'] = __( 'View More Articles', 'silk_txtd' );
+
+	return $settings;
+}
+add_filter( 'infinite_scroll_js_settings', 'silk_filter_jetpack_infinite_scroll_js_settings' ); ?>
