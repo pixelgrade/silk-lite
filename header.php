@@ -40,7 +40,7 @@
 			if ( $description || is_customize_preview() ) : ?>
 				<p class="site-description">
 					<span class="site-description-text"><?php bloginfo( 'description' ); ?></span>
-					<span class="site-description-after"></span>
+					<span class="site-description-after" role="presentation"></span>
 				</p>
 			<?php endif;
 			?>
