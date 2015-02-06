@@ -35,6 +35,38 @@
 		@include fs(12px);
 		@include baseline(12px);
 	}
+
+	.sticky {
+		position: relative;
+
+		&, .entry-title a, .entry-meta {
+			color: white;
+		}
+
+		&:after {
+			content: "";
+
+			position: absolute;
+
+			top: rem(-5px);
+			@include query-above($small)    { top: rem(-12px); }
+
+			bottom: rem(42px);
+
+			right: rem(-5px);
+			@include query-above($small)    { right: rem(-12px); }
+
+			left: rem(5px);
+			@include query-above($small)    { left: rem(12px); }
+			@include query-above($lap)      { left: rem(24px); }
+			@include query-above($desk)     { left: rem(42px); }
+
+			pointer-events: none;
+			background-color: $accent;
+
+			z-index: -1;
+		}
+	}
 }
 
 .page-title {
