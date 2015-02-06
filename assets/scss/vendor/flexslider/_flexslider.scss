@@ -226,7 +226,7 @@ html[xmlns] .slides {
 	margin-left: rhythm(2);
 }
 
-.flex-next, .flex-prev {
+.flex-next:focus, .flex-prev:focus {
 	outline: auto;
 }
 
