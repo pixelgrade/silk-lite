@@ -246,8 +246,8 @@ if ( ! class_exists('Silk_Popular_Posts_Widget') ) :
 				if ( !$post )
 					continue;
 
-				// Only posts and pages, no attachments
-				if ( 'attachment' == $post->post_type )
+				// Only posts, no attachments or pages
+				if ( 'attachment' == $post->post_type || 'page' == $post->post_type )
 					continue;
 
 				// hide private and password protected posts
