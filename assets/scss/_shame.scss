@@ -65,11 +65,6 @@ hr {
 	transform: translateZ(0);
 }
 
-.separator-wrapper--accent {
-	display: block;
-	opacity: 0;
-}
-
 .flexslider .entry-thumbnail {
 	display: block;
 	position: relative;
@@ -101,4 +96,13 @@ hr {
 
 .nav--main {
 	border-top-color: transparent;
+}
+
+.flexslider .divider {
+	opacity: 0;
+	text-align: center;
+
+	svg {
+		display: inline-block;
+	}
 }

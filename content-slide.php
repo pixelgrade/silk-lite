@@ -22,8 +22,13 @@
 		<?php the_excerpt(); ?>
 	</div><!-- .entry-content -->
 
-	<span class="separator-wrapper--accent">
-		<?php get_template_part("assets/svg/separator-simple"); ?>
-	</span>
+	<div class="color-secondary">
+		<div class="divider  wide">
+			<?php get_template_part("assets/svg/separator-not-simple-svg"); ?>
+		</div>
+		<div class="divider  narrow">
+			<?php get_template_part("assets/svg/separator-simple"); ?>
+		</div>
+	</div>
 	
 </article><!-- #post-## -->

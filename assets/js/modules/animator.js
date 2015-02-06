@@ -111,7 +111,8 @@ var animator = (function() {
 			$meta 		= $container.find('.entry-meta'),
 			$title		= $container.find('.entry-title'),
 			$content	= $container.find('.entry-content'),
-			$divider 	= $container.find('.separator-wrapper--accent');
+			$divider 	= $container.find('.divider.narrow'),
+			$dividerBig = $container.find('.divider.wide');
 
 		$thumbnail.add($meta).velocity({
 			opacity: 1
@@ -136,12 +137,109 @@ var animator = (function() {
 			easing: 'easeOutCubic'
 		});
 
-		$content.add($divider).velocity({
+		$content.velocity({
 			opacity: 1
 		}, {
 			duration: 400,
 			delay: 200,
 			easing: 'easeOutCubic'
+		});
+
+		setTimeout(function() {
+			animateLargeDivider($dividerBig);
+		}, 300);
+
+		setTimeout(function() {
+			animateSmallDivider($divider);
+		}, 600);
+	},
+
+	animateSmallDivider = function($divider) {
+
+		var $squareLeft 	= $divider.find('.square-left'),
+			$squareMiddle 	= $divider.find('.square-middle'),
+			$squareRight 	= $divider.find('.square-right'),
+			$lineLeft		= $divider.find('.line-left'),
+			$lineRight		= $divider.find('.line-right');
+
+		$lineLeft.velocity({
+			'transform-origin': '0 50%',
+			scaleX: 0
+		}, {
+			duration: 0
+		});
+
+		$lineRight.velocity({
+			'transform-origin': '100% 50%',
+			scaleX: 0
+		}, {
+			duration: 0
+		});
+
+		$squareLeft.add($squareMiddle).add($squareRight).velocity({
+			scale: 0,
+			'transform-origin': '50% 50%'
+		}, {
+			duration: 0
+		})
+
+		$divider.css({ opacity: 1 });
+
+		$lineLeft.add($lineRight).velocity({
+			scaleX: 1
+		}, {
+			duration: 300,
+			easing: 'easeOutCubic'
+		});
+
+		$squareLeft.add($squareRight).velocity({
+			scale: 1
+		}, {
+			duration: 300,
+			delay: 240,
+			easing: 'easeOutCubic'
+		});
+
+		$squareMiddle.velocity({
+			scale: 1
+		}, {
+			duration: 300,
+			delay: 340,
+			easing: 'easeOutCubic'
+		});
+	},
+
+	animateLargeDivider = function($divider) {
+		var $square 		= $divider.find('.square'),
+			$line 			= $divider.find('.line');
+
+		$square.velocity({
+			'transform-origin': '50% 50%',
+			scale: 0
+		}, {
+			duration: 0
+		});
+
+		$line.velocity({
+			'transform-origin': '50% 50%',
+			scaleX: 0
+		}, {
+			duration: 0
+		});
+
+		$divider.css('opacity', 1);
+
+		$line.velocity({
+			scaleX: 1
+		}, {
+			duration: 200
+		});
+
+		$square.velocity({
+			scale: 1
+		}, {
+			duration: 300,
+			delay: 100
 		});
 	},
 
