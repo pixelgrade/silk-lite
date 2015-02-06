@@ -3,6 +3,10 @@
  * Copyright 2012 WooThemes
  * Contributing Author: Tyler Smith
  */
+
+/**
+ * FlexSlider is no longer licensed under the MIT license. FlexSlider now shares the common licensed used for all WooThemes themes, GPLv2.
+ */
 ;
 (function ($) {
 
