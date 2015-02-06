@@ -60,7 +60,7 @@ if ( ! class_exists( 'Silk_About_Me_Widget' ) ) :
 			// The Background Image - empty string in case of error
 			$thumb = wp_get_attachment_image_src( $instance['image_id'], 'silk-masonry-image' );
 			if ( false !== $thumb ) {
-				$thumb = $thumb['url'];
+				$thumb = $thumb[0];
 			} else {
 				$thumb = '';
 			}
