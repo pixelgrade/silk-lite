@@ -27,7 +27,7 @@
 		}
 
 		@media screen and (max-width: 782px) {
-			.admin-bar & {
+			.admin-bar &:not(.visible) {
 				top: 46px;
 			}
 		}
