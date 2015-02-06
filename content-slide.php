@@ -20,9 +20,10 @@
 
 	<div class="entry-content">
 		<?php the_excerpt(); ?>
-
-		<span class="separator-wrapper--accent">
-			<?php get_template_part("assets/svg/separator-simple"); ?>
-		</span>
 	</div><!-- .entry-content -->
+
+	<span class="separator-wrapper--accent">
+		<?php get_template_part("assets/svg/separator-simple"); ?>
+	</span>
+	
 </article><!-- #post-## -->
