@@ -9,6 +9,7 @@ var slider = (function () {
         if ($.flexslider !== undefined && $sliders.length) {
 
             $sliders.flexslider({
+                animation: "slide",
                 slideshow: false, //no autostart slideshow for accessibility purposes
                 controlNav: false,
                 prevText: "<span>Previous</span>",
