@@ -1083,7 +1083,7 @@ if (!Date.now) Date.now = function () {
       masonry.refresh();
 
       $archiveWidget.find('a').focus(function () {
-        $archiveWidget.removeClass('shrink');
+        $archiveWidget.removeClass('shrink').addClass('focused');
       });
     }
 
