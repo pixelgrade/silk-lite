@@ -537,10 +537,9 @@ if (!Date.now) Date.now = function () {
     animateSlider = function () {
 
       var $slider = $('.flexslider'),
-          $firstSlide = $slider.find('li').first(),
-          $container = $firstSlide.find('.flag__body'),
-          $thumbnail = $firstSlide.find('.flag__img img'),
-          $border = $firstSlide.find('.entry-thumbnail-border'),
+          $container = $slider.find('.flag__body'),
+          $thumbnail = $slider.find('.flag__img img'),
+          $border = $slider.find('.entry-thumbnail-border'),
           $meta = $container.find('.entry-meta'),
           $title = $container.find('.entry-title'),
           $content = $container.find('.entry-content'),
