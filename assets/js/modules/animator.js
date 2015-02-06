@@ -5,12 +5,33 @@ var animator = (function() {
 	},
 
 	animate = function() {
+
+		var isSingle 	= $('.site-main--single').length,
+			hasSlider 	= $('.flexslider').length,
+			hasSidebar	= $('.sidebar--main').length,
+			delay;
+
 		animateTopBar();
 		setTimeout(animateLogo, 100);
-		setTimeout(animateMenu, 200); 
-		setTimeout(animateSlider, 300);
-		setTimeout(animatePosts, 600);
-		setTimeout(animateSidebar, 800);
+		setTimeout(animateMenu, 200);
+
+		if (hasSlider) {
+			setTimeout(animateSlider, 300);
+			setTimeout(animateMain, 600);
+			delay = 600;
+		} else {
+			setTimeout(animateMain, 300);
+			delay = 600;
+		}
+
+		if (hasSidebar) {
+			setTimeout(animateSidebar, delay + 200);
+			setTimeout(animateFooter, delay + 400);
+			delay = delay + 400;
+		} else {
+			setTimeout(animateFooter, delay + 200);
+			delay = delay + 200;
+		}
 	},
 
 	animateTopBar = function() {
@@ -124,15 +145,62 @@ var animator = (function() {
 		});
 	},
 
-	animatePosts = function() {
+	animateMain = function() {
 
 		var $posts = $('.archive__grid').children();
 
-		$posts.each(function(i, obj) {
-			var $post = $(obj),
-				delay = i * 100;
+		if ($posts.length) {
 
-			animatePost($post, delay);
+			$posts.each(function(i, obj) {
+				var $post = $(obj),
+					delay = i * 100;
+
+				animatePost($post, delay);
+			});
+
+		} else {
+			animateMainSingle();
+		}
+	},
+
+	animateMainSingle = function() {
+
+		var $main 		= $('.site-main'),
+			$header 	= $main.find('.entry-header');
+			$meta 		= $header.find('.entry-meta'),
+			$title 		= $header.find('.entry-title')
+			$excerpt	= $title.next('.intro'),
+			$content	= $main.find('.entry-content, .entry-footer, .post-navigation, .comments-area');
+
+		$meta.velocity({
+			opacity: 1
+		}, {
+			duration: 300,
+			easing: 'easeOutCubic'
+		});
+
+		$title.velocity({
+			opacity: 1
+		}, {
+			duration: 300,
+			delay: 100,
+			easing: 'easeOutCubic'
+		});
+
+		$excerpt.velocity({
+			opacity: 1
+		}, {
+			duration: 300,
+			delay: 200,
+			easing: 'easeOutCubic'
+		});
+
+		$content.velocity({
+			opacity: 1
+		}, {
+			duration: 300,
+			delay: 300,
+			easing: 'easeOutCubic'
 		});
 	},
 
@@ -148,6 +216,15 @@ var animator = (function() {
 
 	animateSidebar = function() {
 		$('.sidebar--main').velocity({
+			opacity: 1
+		}, {
+			duration: 300,
+			easing: 'easeOutCubic'
+		});
+	},
+
+	animateFooter = function() {
+		$('.site-footer').velocity({
 			opacity: 1
 		}, {
 			duration: 300,

@@ -49,7 +49,19 @@ hr {
 .flexslider .entry-content,
 .flexslider .entry-title,
 .archive__grid > .grid__item,
-.sidebar--main {
+.sidebar--main,
+.site-main--single .entry-meta,
+.site-main--single .intro--paragraph,
+.site-main--single .entry-title,
+.site-main--single .entry-content,
+.site-main--single .entry-footer,
+.comments-area,
+.site-footer {
+	opacity: 0;
+	transform: translateZ(0);
+}
+
+.post-navigation {
 	opacity: 0;
 }
 
