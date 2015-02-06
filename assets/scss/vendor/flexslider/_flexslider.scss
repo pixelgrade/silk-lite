@@ -12,12 +12,12 @@
 
 /* Browser Resets
 *********************************/
-.flex-container a:active,
-.flexslider a:active,
-.flex-container a:focus,
-.flexslider a:focus {
-	outline: none;
-}
+//.flex-container a:active,
+//.flexslider a:active,
+//.flex-container a:focus,
+//.flexslider a:focus {
+//	outline: none;
+//}
 
 .slides,
 .flex-control-nav,
@@ -224,10 +224,6 @@ html[xmlns] .slides {
 .flex-next {
 	left: 100%;
 	margin-left: rhythm(2);
-}
-
-.flex-next:focus, .flex-prev:focus {
-	outline: auto;
 }
 
 
