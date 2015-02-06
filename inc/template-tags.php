@@ -39,9 +39,8 @@ endif;
 
 if ( ! function_exists( 'silk_the_post_navigation' ) ) :
 /**
- * Display navigation to next/previous post when applicable.
+ * Display navigation to next/previous post when applicable, with thumbnail images
  *
- * @todo Remove this function when WordPress 4.3 is released.
  */
 function silk_the_post_navigation() {
 	// Don't print empty markup if there's nowhere to navigate.
@@ -53,13 +52,13 @@ function silk_the_post_navigation() {
 	}
 	?>
 	<nav class="navigation post-navigation" role="navigation">
-		<h2 class="screen-reader-text"><?php _e( 'Post navigation', 'silk_txtd' ); ?></h2>
+		<h5 class="screen-reader-text"><?php _e( 'Post navigation', 'silk_txtd' ); ?></h5>
 		<div class="article-navigation">
 			<?php
 			$prev_post = get_previous_post();
 
 			if($prev_post) {
-				$prev_thumbnail = get_the_post_thumbnail($prev_post->ID, array(150,150) );
+				$prev_thumbnail = get_the_post_thumbnail($prev_post->ID, 'silk-tiny-image' );
 
 				$post_cat = wp_get_post_categories($prev_post->ID);
 				$post_cat = $post_cat[0];
@@ -101,7 +100,7 @@ function silk_the_post_navigation() {
 				$post_cat = $post_cat[0];
 				$post_category = get_category($post_cat);
 
-				$next_thumbnail = get_the_post_thumbnail($next_post->ID, array(150,150) );
+				$next_thumbnail = get_the_post_thumbnail($next_post->ID, 'silk-tiny-image');
 
 				$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 				if ( get_the_time( 'U', $next_post->ID ) !== get_the_modified_time( 'U', $next_post->ID ) ) {

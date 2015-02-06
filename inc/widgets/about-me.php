@@ -58,7 +58,7 @@ if ( ! class_exists( 'Silk_About_Me_Widget' ) ) :
 			echo $args['before_widget'] . PHP_EOL;
 
 			// The Background Image - empty string in case of error
-			echo '<div class="silk-about-me-widget__image" style="background-image: url('. wp_get_attachment_url( $instance['image_id'] ) .');"></div>' . PHP_EOL;
+			echo '<div class="silk-about-me-widget__image" style="background-image: url('. wp_get_attachment_image_src( $instance['image_id'], 'silk-masonry-image' ) .');"></div>' . PHP_EOL;
 
 			echo '<div class="silk-about-me-widget__container">' . PHP_EOL;
 

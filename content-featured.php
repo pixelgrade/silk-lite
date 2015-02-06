@@ -25,7 +25,7 @@ if ( empty( $featured ) )
 					<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
 						<span class="entry-thumbnail">
 							<?php if ( has_post_thumbnail() ) : ?>
-								<?php the_post_thumbnail( 'silk-single-image' ); ?>
+								<?php the_post_thumbnail( 'silk-slider-image' ); ?>
 								<span class="entry-thumbnail-border"></span>
 							<?php endif; ?>
 						</span>
