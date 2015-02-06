@@ -19,6 +19,7 @@ $window.load(function() {
   browserSize();
   slider.init();
   fixedSidebars.init();
+  animator.animate();
 });
 
 /* ====== ON RESIZE ====== */

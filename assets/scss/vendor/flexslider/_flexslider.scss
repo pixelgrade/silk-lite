@@ -226,6 +226,10 @@ html[xmlns] .slides {
 	margin-left: rhythm(2);
 }
 
+.flex-next, .flex-prev {
+	outline: auto;
+}
+
 
 /* Pause/Play */
 .flex-pauseplay a {

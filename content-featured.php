@@ -26,6 +26,7 @@ if ( empty( $featured ) )
 						<span class="entry-thumbnail">
 							<?php if ( has_post_thumbnail() ) : ?>
 								<?php the_post_thumbnail( 'silk-single-image' ); ?>
+								<span class="entry-thumbnail-border"></span>
 							<?php endif; ?>
 						</span>
 					</a>
