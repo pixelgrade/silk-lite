@@ -18,14 +18,9 @@ img {
 .alignleft,
 .alignright {
     display: block;
-    transform: translateY(0.821rem);
     width: auto !important;
     margin: 0;
     margin-bottom: rhythm(1);
-
-    p & {
-        transform: translateY(0.4105rem); 
-    }
 }
 
 .aligncenter, .alignnone {

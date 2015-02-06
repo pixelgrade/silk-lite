@@ -1116,6 +1116,7 @@ if (!Date.now) Date.now = function () {
         if ($.flexslider !== undefined && $sliders.length) {
 
           $sliders.flexslider({
+            animation: "slide",
             slideshow: false,
             //no autostart slideshow for accessibility purposes
             controlNav: false,
@@ -1246,7 +1247,7 @@ if (!Date.now) Date.now = function () {
       masonry.refresh();
 
       $archiveWidget.find('a').focus(function () {
-        $archiveWidget.removeClass('shrink');
+        $archiveWidget.removeClass('shrink').addClass('focused');
       });
     }
 

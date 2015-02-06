@@ -363,6 +363,9 @@ if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_
 			if ( $depth == 0 ) {
 
 				if ( $item->object == 'category' ) {
+					/**
+					 * This is a mega menu so we need to output some posts with featured images
+					 */
 
 					$numberposts = 4; //we start of with 4 posts and decrease from here
 
@@ -377,11 +380,12 @@ if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_
 					$menuposts = new WP_Query( $post_args );
 
 					if ( $menuposts->have_posts() ) {
+
 						//the first post is a big one
 						$menuposts->the_post();
 
 						if ( has_post_thumbnail() ) {
-							$menu_post_image = '<a href="' . get_permalink() . '"><div class="entry-image">' . get_the_post_thumbnail( get_the_ID(), 'silk-small-image' ) . '</div></a>' . PHP_EOL;
+							$menu_post_image = '<a href="' . get_permalink() . '" title="' . the_title_attribute( array( 'echo' => false ) ) .'"><div class="entry-image">' . get_the_post_thumbnail( get_the_ID(), 'silk-small-image' ) . '</div></a>' . PHP_EOL;
 						} else {
 							$menu_post_image = '';
 						}
@@ -406,7 +410,7 @@ if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_
 							while ( $menuposts->have_posts() )  : $menuposts->the_post();
 
 								if ( has_post_thumbnail() ) {
-									$menu_post_image = '<a href="' . get_permalink() . '">' .get_the_post_thumbnail( get_the_ID(), 'silk-small-image' ) . '</a>' . PHP_EOL;
+									$menu_post_image = '<a href="' . get_permalink() . '" title="' . the_title_attribute( array( 'echo' => false ) ) .'">' .get_the_post_thumbnail( get_the_ID(), 'silk-small-image' ) . '</a>' . PHP_EOL;
 								} else {
 									$menu_post_image = '';
 								}
