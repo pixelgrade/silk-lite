@@ -59,7 +59,7 @@ function styleArchiveWidget() {
     masonry.refresh();
 
     $archiveWidget.find('a').focus(function () {
-      $archiveWidget.removeClass('shrink');
+      $archiveWidget.removeClass('shrink').addClass('focused');
     });
   }
 

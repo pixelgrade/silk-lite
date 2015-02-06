@@ -188,6 +188,12 @@
 	}
 }
 
+.widget_archive.focused {
+	.separator {
+		display: none;
+	}
+}
+
 .widget_categories, .widget_archive {
 	ul li {
 		display: inline-block;
