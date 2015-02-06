@@ -54,6 +54,7 @@ if ( ! class_exists( 'Silk_About_Me_Widget' ) ) :
 				'text'    => '',
 			) );
 
+			$args['before_widget'] = substr($args['before_widget'], 0, -1) . ' tabindex="0">';
 			echo $args['before_widget'] . PHP_EOL;
 
 			// The Background Image - empty string in case of error
