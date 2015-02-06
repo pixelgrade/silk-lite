@@ -1,15 +1,15 @@
-/*global AmelieAboutMeWidget, wp */
+/*global SilkAboutMeWidget, wp */
 
 (function($){
 	'use strict';
 
-	var AmelieAboutMeWidget = typeof window.AmelieAboutMeWidget === 'undefined' ? {} : window.AmelieAboutMeWidget,
+	var SilkAboutMeWidget = typeof window.SilkAboutMeWidget === 'undefined' ? {} : window.SilkAboutMeWidget,
 		Attachment = wp.media.model.Attachment,
 		frames = [],
 		imageControl, l10n;
 
 	// Link any localized strings.
-	l10n = AmelieAboutMeWidget.l10n = typeof AmelieAboutMeWidget.l10n === 'undefined' ? {} : AmelieAboutMeWidget.l10n;
+	l10n = SilkAboutMeWidget.l10n = typeof SilkAboutMeWidget.l10n === 'undefined' ? {} : SilkAboutMeWidget.l10n;
 
 	/**
 	 * imageControl module object.
@@ -20,11 +20,11 @@
 		this.$el = $( el );
 
 		// Search within the context of the control.
-		this.$target = this.$el.find( '.amelie-about-me-image-id' );
+		this.$target = this.$el.find( '.silk-about-me-image-id' );
 
 		defaults = {
 			frame: {
-				id: 'amelie-about-me-widget',
+				id: 'silk-about-me-widget',
 				title: l10n.frameTitle,
 				updateText: l10n.frameUpdateText,
 				multiple: false
@@ -85,7 +85,7 @@
 			frame.state( 'library' ).on( 'select', function() {
 				var selection = this.get( 'selection' );
 				frame.control.setAttachments( selection );
-				frame.control.$el.trigger( 'selectionChange.amelieaboutmewidget', [ selection ] );
+				frame.control.$el.trigger( 'selectionChange.silkaboutmewidget', [ selection ] );
 			});
 
 			return frame;
@@ -104,7 +104,7 @@
 		};
 	};
 
-	_.extend( AmelieAboutMeWidget, {
+	_.extend( SilkAboutMeWidget, {
 		/**
 		 * Retrieve a media selection control object.
 		 *
@@ -115,7 +115,7 @@
 		getControl: function( el ) {
 			var control, $control;
 
-			$control = $( el ).closest( '.amelie-about-me-widget-image-control' );
+			$control = $( el ).closest( '.silk-about-me-widget-image-control' );
 			control = $control.data( 'media-control' );
 
 			if ( ! control ) {
@@ -131,13 +131,13 @@
 		var $body = $( 'body' );
 		
 		// Open the media library frame when the button or image are clicked.
-		$body.on( 'click', '.amelie-about-me-widget-image-control__choose, .amelie-about-me-widget-form img', function( e ) {
+		$body.on( 'click', '.silk-about-me-widget-image-control__choose, .silk-about-me-widget-form img', function( e ) {
 			e.preventDefault();
-			AmelieAboutMeWidget.getControl( this ).frame().open();
+			SilkAboutMeWidget.getControl( this ).frame().open();
 		});
 
 		// Update the image preview in the widget when an image is selected.
-		$body.on( 'selectionChange.amelieaboutmewidget', function( e, selection ) {
+		$body.on( 'selectionChange.silkaboutmewidget', function( e, selection ) {
 			var $control = $( e.target ),
 				model = selection.first(),
 				sizes = model.get( 'sizes' ),

@@ -93,7 +93,7 @@ gulp.task('server', ['styles', 'scripts'], function () {
 gulp.task('copy-folder', ['styles-prod', 'scripts'], function () {
 
 	return gulp.src('./')
-		.pipe(exec('rm -Rf ./../build; mkdir -p ./../build/amelie; rsync -av --exclude="node_modules" ./* ./../build/amelie/', options));
+		.pipe(exec('rm -Rf ./../build; mkdir -p ./../build/silk; rsync -av --exclude="node_modules" ./* ./../build/silk/', options));
 });
 
 /**
@@ -126,7 +126,7 @@ gulp.task('build', ['copy-folder'], function () {
 	];
 
 	files_to_remove.forEach(function (e, k) {
-		files_to_remove[k] = '../build/amelie/' + e;
+		files_to_remove[k] = '../build/silk/' + e;
 	});
 
 	return gulp.src(files_to_remove, {read: false})
@@ -134,12 +134,12 @@ gulp.task('build', ['copy-folder'], function () {
 });
 
 /**
- * Create a zip arcamelie out of the cleaned folder and delete the folder
+ * Create a zip arcsilk out of the cleaned folder and delete the folder
  */
 gulp.task('zip', ['build'], function(){
 
 	return gulp.src('./')
-		.pipe(exec('cd ./../; rm -rf amelie.zip; cd ./build/; zip -r -X ./../amelie.zip ./amelie; cd ./../; rm -rf build'));
+		.pipe(exec('cd ./../; rm -rf silk.zip; cd ./build/; zip -r -X ./../silk.zip ./silk; cd ./../; rm -rf build'));
 
 });
 
@@ -157,7 +157,7 @@ gulp.task('help', function () {
 	var $help = '\nCommands available : \n \n' +
 		'=== General Commands === \n' +
 		'start              (default)Compiles all styles and scripts and makes the theme ready to start \n' +
-		'zip               	Generate the zip arcamelie \n' +
+		'zip               	Generate the zip arcsilk \n' +
 		'build				Generate the build directory with the cleaned theme \n' +
 		'help               Print all commands \n' +
 		'=== Style === \n' +

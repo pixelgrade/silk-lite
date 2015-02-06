@@ -4,7 +4,7 @@
  *
  * Displays all of the <head> section and everything up till <div id="content">
  *
- * @package Amelie
+ * @package Silk
  */
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -19,7 +19,7 @@
 
 <body <?php body_class(); ?>>
 <div id="page" class="hfeed site">
-	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'amelie_txtd' ); ?></a>
+	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'silk_txtd' ); ?></a>
 
 	<?php get_template_part( 'templates/top-header-bar' ); ?>
 
@@ -46,13 +46,13 @@
 		</div><!-- .site-branding -->
 
 		<nav id="site-navigation" class="main-navigation" role="navigation">
-			<button class="menu-toggle  assistive-text" aria-controls="menu-primary-menu" aria-expanded="false"><?php _e( 'Primary Menu', 'amelie_txtd' ); ?></button>
+			<button class="menu-toggle  assistive-text" aria-controls="menu-primary-menu" aria-expanded="false"><?php _e( 'Primary Menu', 'silk_txtd' ); ?></button>
 			<?php wp_nav_menu( array(
 				'theme_location' => 'primary',
 				'container'      => '',
 				'menu_class'     => 'menu nav  nav--main  js-nav--main',
 				'items_wrap' => '<ul id="%1$s" class="%2$s" role="menubar" aria-hidden="false">%3$s</ul>',
-				'walker'         => new Amelie_Walker_Primary_Mega_Menu()
+				'walker'         => new Silk_Walker_Primary_Mega_Menu()
 			) ); ?>
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->

@@ -1,23 +1,23 @@
 <?php
 /**
- * Amelie About Me widget
+ * Silk About Me widget
  *
- * @package Amelie
+ * @package Silk
  */
 
-if ( ! function_exists( 'amelie_about_me_widget_init' ) ) :
+if ( ! function_exists( 'silk_about_me_widget_init' ) ) :
 	/**
 	 * Register the widget for use in Appearance -> Widgets
 	 */
-	add_action( 'widgets_init', 'amelie_about_me_widget_init' );
-	function amelie_about_me_widget_init() {
-		register_widget( 'Amelie_About_Me_Widget' );
+	add_action( 'widgets_init', 'silk_about_me_widget_init' );
+	function silk_about_me_widget_init() {
+		register_widget( 'Silk_About_Me_Widget' );
 	}
 endif;
 
-if ( ! class_exists( 'Amelie_About_Me_Widget' ) ) :
+if ( ! class_exists( 'Silk_About_Me_Widget' ) ) :
 
-	class Amelie_About_Me_Widget extends WP_Widget {
+	class Silk_About_Me_Widget extends WP_Widget {
 		var $default_title = '';
 
 		/**
@@ -25,15 +25,15 @@ if ( ! class_exists( 'Amelie_About_Me_Widget' ) ) :
 		 */
 		public function __construct() {
 			parent::__construct(
-				'amelie-about-me',
-				apply_filters( 'amelie_widget_name', esc_html__( 'Amelie About Me', 'amelie_txtd' ) ),
+				'silk-about-me',
+				apply_filters( 'silk_widget_name', esc_html__( 'Silk About Me', 'silk_txtd' ) ),
 				array(
-					'classname'   => 'widget_amelie_about_me',
-					'description' => __( 'Display some info about you with an image background.', 'amelie_txtd' )
+					'classname'   => 'widget_silk_about_me',
+					'description' => __( 'Display some info about you with an image background.', 'silk_txtd' )
 				)
 			);
 
-			$this->default_title = __( 'About Me', 'amelie_txtd' );
+			$this->default_title = __( 'About Me', 'silk_txtd' );
 
 			add_action( 'admin_init', array( $this, 'admin_init' ) );
 		}
@@ -57,9 +57,9 @@ if ( ! class_exists( 'Amelie_About_Me_Widget' ) ) :
 			echo $args['before_widget'] . PHP_EOL;
 
 			// The Background Image - empty string in case of error
-			echo wp_get_attachment_image( $instance['image_id'], 'amelie-masonry-image' ) . PHP_EOL;
+			echo wp_get_attachment_image( $instance['image_id'], 'silk-masonry-image' ) . PHP_EOL;
 
-			echo '<div class="amelie-about-me-widget__container">' . PHP_EOL;
+			echo '<div class="silk-about-me-widget__container">' . PHP_EOL;
 
 
 			// The widget title
@@ -70,7 +70,7 @@ if ( ! class_exists( 'Amelie_About_Me_Widget' ) ) :
 
 			// The author's name
 			if ( ! empty( $instance['name'] ) ) {
-				echo '<div class="amelie-about-me-widget__name">' . $instance['name'] . '</div>' . PHP_EOL;
+				echo '<div class="silk-about-me-widget__name">' . $instance['name'] . '</div>' . PHP_EOL;
 			}
 
 			echo '<span class="separator-wrapper--white">';
@@ -83,9 +83,9 @@ if ( ! class_exists( 'Amelie_About_Me_Widget' ) ) :
 			} else {
 				$text = $instance['text'];
 			}
-			echo '<div class="amelie-about-me__text">' . $text . '</div>' . PHP_EOL;
+			echo '<div class="silk-about-me__text">' . $text . '</div>' . PHP_EOL;
 
-			echo '</div><!-- .amelie-about-me-widget-container -->' . PHP_EOL;
+			echo '</div><!-- .silk-about-me-widget-container -->' . PHP_EOL;
 
 			echo $args['after_widget'] . PHP_EOL;
 		}
@@ -142,36 +142,36 @@ if ( ! class_exists( 'Amelie_About_Me_Widget' ) ) :
 			$text = $instance['text'];
 			?>
 
-			<div class="amelie-about-me-widget-form">
+			<div class="silk-about-me-widget-form">
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Title:', 'amelie_txtd' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Title:', 'silk_txtd' ); ?></label>
 					<input class="widefat" type="text" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" value="<?php echo esc_attr( $title ); ?>">
 				</p>
 
-				<p class="amelie-about-me-widget-image-control<?php echo ( $image_id ) ? ' has-image' : ''; ?>"
-				   data-title="<?php esc_attr_e( 'Choose an Background Image', 'amelie_txtd' ); ?>"
-				   data-update-text="<?php esc_attr_e( 'Update Image', 'amelie_txtd' ); ?>">
+				<p class="silk-about-me-widget-image-control<?php echo ( $image_id ) ? ' has-image' : ''; ?>"
+				   data-title="<?php esc_attr_e( 'Choose an Background Image', 'silk_txtd' ); ?>"
+				   data-update-text="<?php esc_attr_e( 'Update Image', 'silk_txtd' ); ?>">
 					<?php
 					if ( ! empty( $image_id ) ) {
 						echo wp_get_attachment_image( $image_id, 'medium', false );
 					}
 					?>
-					<input class="amelie-about-me-image-id" type="hidden" name="<?php echo esc_attr( $this->get_field_name( 'image_id' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'image_id' ) ); ?>" value="<?php echo esc_attr( $image_id ); ?>">
-					<a class="button amelie-about-me-widget-image-control__choose" href="#"><?php _e( 'Choose an Background Image', 'amelie_txtd' ); ?></a>
+					<input class="silk-about-me-image-id" type="hidden" name="<?php echo esc_attr( $this->get_field_name( 'image_id' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'image_id' ) ); ?>" value="<?php echo esc_attr( $image_id ); ?>">
+					<a class="button silk-about-me-widget-image-control__choose" href="#"><?php _e( 'Choose an Background Image', 'silk_txtd' ); ?></a>
 				</p>
 
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'name' ) ); ?>"><?php _e( 'Your Name:', 'amelie_txtd' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'name' ) ); ?>"><?php _e( 'Your Name:', 'silk_txtd' ); ?></label>
 					<input class="widefat" type="text" name="<?php echo esc_attr( $this->get_field_name( 'name' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'name' ) ); ?>" value="<?php echo esc_attr( $name ); ?>">
 				</p>
 
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>"><?php _e( 'About You:', 'amelie_txtd' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>"><?php _e( 'About You:', 'silk_txtd' ); ?></label>
 					<textarea class="widefat" name="<?php echo esc_attr( $this->get_field_name( 'text' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>" rows="4"><?php echo esc_textarea( $text ); ?></textarea>
 				</p>
 
 				<p>
-					<input id="<?php echo $this->get_field_id( 'filter' ); ?>" name="<?php echo $this->get_field_name( 'filter' ); ?>" type="checkbox" <?php checked( isset( $instance['filter'] ) ? $instance['filter'] : 0 ); ?> />&nbsp;<label for="<?php echo $this->get_field_id( 'filter' ); ?>"><?php _e( 'Automatically add paragraphs', 'amelie_txtd' ); ?></label>
+					<input id="<?php echo $this->get_field_id( 'filter' ); ?>" name="<?php echo $this->get_field_name( 'filter' ); ?>" type="checkbox" <?php checked( isset( $instance['filter'] ) ? $instance['filter'] : 0 ); ?> />&nbsp;<label for="<?php echo $this->get_field_id( 'filter' ); ?>"><?php _e( 'Automatically add paragraphs', 'silk_txtd' ); ?></label>
 				</p>
 
 			</div>
@@ -184,29 +184,29 @@ if ( ! class_exists( 'Amelie_About_Me_Widget' ) ) :
 			if ( 'widgets.php' == $pagenow ) {
 				wp_enqueue_media();
 
-				wp_enqueue_script( 'amelie-about-me-widget-admin', get_template_directory_uri() . '/inc/widgets/assets/js/about-me.js', array(
+				wp_enqueue_script( 'silk-about-me-widget-admin', get_template_directory_uri() . '/inc/widgets/assets/js/about-me.js', array(
 					'media-upload',
 					'media-views'
 				) );
 
 				wp_localize_script(
-					'amelie-about-me-widget-admin',
-					'AmelieAboutMeWidget',
+					'silk-about-me-widget-admin',
+					'SilkAboutMeWidget',
 					array(
 						'l10n' => array(
-							'frameTitle'      => __( 'Choose a Background Image', 'amelie_txtd' ),
-							'frameUpdateText' => __( 'Update Background Image', 'amelie_txtd' ),
+							'frameTitle'      => __( 'Choose a Background Image', 'silk_txtd' ),
+							'frameUpdateText' => __( 'Update Background Image', 'silk_txtd' ),
 						),
 					)
 				);
 
 				if ( is_rtl() ) {
-					wp_enqueue_style( 'amelie-about-me-widget-admin', get_template_directory_uri() . '/inc/widgets/assets/css/about-me-rtl.css' );
+					wp_enqueue_style( 'silk-about-me-widget-admin', get_template_directory_uri() . '/inc/widgets/assets/css/about-me-rtl.css' );
 				} else {
-					wp_enqueue_style( 'amelie-about-me-widget-admin', get_template_directory_uri() . '/inc/widgets/assets/css/about-me.css' );
+					wp_enqueue_style( 'silk-about-me-widget-admin', get_template_directory_uri() . '/inc/widgets/assets/css/about-me.css' );
 				}
 			}
 		}
-	} // Class Amelie About Me Widget
+	} // Class Silk About Me Widget
 
 endif; ?>

@@ -1,5 +1,5 @@
 /**
- * Amelie Customizer JavaScript - keeps things nicer for all
+ * Silk Customizer JavaScript - keeps things nicer for all
  * v 1.0.0
  */
 

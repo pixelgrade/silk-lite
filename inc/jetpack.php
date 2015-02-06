@@ -3,10 +3,10 @@
  * Jetpack Compatibility File
  * See: http://jetpack.me/
  *
- * @package Amelie
+ * @package Silk
  */
 
-function amelie_jetpack_setup() {
+function silk_jetpack_setup() {
 	/**
 	 * Add theme support for Infinite Scroll
 	 * See: http://jetpack.me/support/infinite-scroll/
@@ -23,7 +23,7 @@ function amelie_jetpack_setup() {
 	 * See: http://jetpack.me/support/featured-content/
 	 */
 	add_theme_support( 'featured-content', array(
-		'filter'     => 'amelie_get_featured_posts',
+		'filter'     => 'silk_get_featured_posts',
 		'max_posts'  => 10,
 		'post_types' => array( 'post' ),
 	) );
@@ -35,7 +35,7 @@ function amelie_jetpack_setup() {
 	 * Second, the 2 classes we want to use for the "Display Header Text" Customizer logic
 	 */
 	add_theme_support( 'site-logo', array(
-		'size'        => 'amelie-site-logo',
+		'size'        => 'silk-site-logo',
 		'header-text' => array(
 			'site-title',
 			'site-description-text',
@@ -49,19 +49,19 @@ function amelie_jetpack_setup() {
 
 }
 
-add_action( 'after_setup_theme', 'amelie_jetpack_setup' );
+add_action( 'after_setup_theme', 'silk_jetpack_setup' );
 
-function amelie_get_featured_posts() {
-	return apply_filters( 'amelie_get_featured_posts', array() );
+function silk_get_featured_posts() {
+	return apply_filters( 'silk_get_featured_posts', array() );
 }
 
-function amelie_has_featured_posts( $minimum = 1 ) {
+function silk_has_featured_posts( $minimum = 1 ) {
 	if ( is_paged() ) {
 		return false;
 	}
 
 	$minimum = absint( $minimum );
-	$featured_posts = amelie_get_featured_posts();
+	$featured_posts = silk_get_featured_posts();
 
 	if ( ! is_array( $featured_posts ) )
 		return false;

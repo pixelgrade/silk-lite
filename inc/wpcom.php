@@ -2,8 +2,8 @@
 /**
  * WordPress.com-specific functions and definitions.
  *
- * @package Amelie
- * @since   Amelie 1.0
+ * @package Silk
+ * @since   Silk 1.0
  */
 
 /**
@@ -11,7 +11,7 @@
  *
  * @global array $themecolors
  */
-function amelie_wpcom_setup() {
+function silk_wpcom_setup() {
 	global $themecolors;
 
 	// Set theme colors for third party services.
@@ -26,13 +26,13 @@ function amelie_wpcom_setup() {
 		);
 	}
 }
-add_action( 'after_setup_theme', 'amelie_wpcom_setup' );
+add_action( 'after_setup_theme', 'silk_wpcom_setup' );
 
 /**
  * Remove sharing from blog home
  *
  */
-function amelie_remove_share() {
+function silk_remove_share() {
 	if ( ! is_home() ) {
 		return;
 	}
@@ -43,4 +43,4 @@ function amelie_remove_share() {
 		remove_filter( 'post_flair', array( Jetpack_Likes::init(), 'post_likes' ), 30, 1 );
 	}
 }
-add_action( 'loop_start', 'amelie_remove_share' );
+add_action( 'loop_start', 'silk_remove_share' );

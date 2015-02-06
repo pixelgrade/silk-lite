@@ -1,8 +1,8 @@
 <?php
 /**
- * Amelie functions and definitions
+ * Silk functions and definitions
  *
- * @package Amelie
+ * @package Silk
  */
 
 /**
@@ -12,7 +12,7 @@ if ( ! isset( $content_width ) ) {
 	$content_width = 660; /* pixels */
 }
 
-if ( ! function_exists( 'amelie_setup' ) ) :
+if ( ! function_exists( 'silk_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -20,13 +20,13 @@ if ( ! function_exists( 'amelie_setup' ) ) :
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	function amelie_setup() {
+	function silk_setup() {
 
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
 		 */
-		load_theme_textdomain( 'amelie_txtd', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'silk_txtd', get_template_directory() . '/languages' );
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
@@ -45,18 +45,18 @@ if ( ! function_exists( 'amelie_setup' ) ) :
 		 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 		 */
 		add_theme_support( 'post-thumbnails' );
-		add_image_size( 'amelie-tiny-image', 125, 90, true );
-		add_image_size( 'amelie-small-image', 300, 9999, false );
-		add_image_size( 'amelie-masonry-image', 450, 9999, false );
-		add_image_size( 'amelie-single-image', 1024, 9999, false );
-		add_image_size( 'amelie-site-logo', 1000, 500, false );
+		add_image_size( 'silk-tiny-image', 125, 90, true );
+		add_image_size( 'silk-small-image', 300, 9999, false );
+		add_image_size( 'silk-masonry-image', 450, 9999, false );
+		add_image_size( 'silk-single-image', 1024, 9999, false );
+		add_image_size( 'silk-site-logo', 1000, 500, false );
 
 		// This theme uses wp_nav_menu() in three locations.
 		register_nav_menus( array(
-			'primary'          => __( 'Primary Menu', 'amelie_txtd' ),
-			'top_header_left'  => __( 'Top Header Left Menu', 'amelie_txtd' ),
-			'top_header_right' => __( 'Top Header Right Menu', 'amelie_txtd' ),
-			'footer'           => __( 'Footer Menu', 'amelie_txtd' ),
+			'primary'          => __( 'Primary Menu', 'silk_txtd' ),
+			'top_header_left'  => __( 'Top Header Left Menu', 'silk_txtd' ),
+			'top_header_right' => __( 'Top Header Right Menu', 'silk_txtd' ),
+			'footer'           => __( 'Footer Menu', 'silk_txtd' ),
 		) );
 
 		/*
@@ -87,27 +87,27 @@ if ( ! function_exists( 'amelie_setup' ) ) :
 		 * Add editor custom style to make it look more like the frontend
 		 * Also enqueue the custom Google Fonts also
 		 */
-		add_editor_style( array( 'editor-style.css', amelie_fonts_url() ) );
+		add_editor_style( array( 'editor-style.css', silk_fonts_url() ) );
 
 		// Set up the WordPress core custom background feature.
-		add_theme_support( 'custom-background', apply_filters( 'amelie_custom_background_args', array(
+		add_theme_support( 'custom-background', apply_filters( 'silk_custom_background_args', array(
 			'default-color' => 'ffffff',
 			'default-image' => '',
 		) ) );
 	}
-endif; // amelie_setup
-add_action( 'after_setup_theme', 'amelie_setup' );
+endif; // silk_setup
+add_action( 'after_setup_theme', 'silk_setup' );
 
 /**
  * Register widget area.
  *
  * @link http://codex.wordpress.org/Function_Reference/register_sidebar
  */
-function amelie_widgets_init() {
+function silk_widgets_init() {
 	register_sidebar( array(
-		'name'          => __( 'Sidebar', 'amelie_txtd' ),
+		'name'          => __( 'Sidebar', 'silk_txtd' ),
 		'id'            => 'sidebar-1',
-		'description'   => __( 'Add widgets here to appear in your main sidebar.', 'amelie_txtd' ),
+		'description'   => __( 'Add widgets here to appear in your main sidebar.', 'silk_txtd' ),
 		'before_widget' => '<div class="grid__item"><aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside></div>',
 		'before_title'  => '<h3 class="widget-title">',
@@ -115,9 +115,9 @@ function amelie_widgets_init() {
 	) );
 
 	register_sidebar( array(
-		'name'          => __( 'Footer', 'amelie_txtd' ),
+		'name'          => __( 'Footer', 'silk_txtd' ),
 		'id'            => 'footer-1',
-		'description'   => __( 'Add widgets here to appear in your footer sidebar.', 'amelie_txtd' ),
+		'description'   => __( 'Add widgets here to appear in your footer sidebar.', 'silk_txtd' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h3 class="widget-title">',
@@ -125,21 +125,21 @@ function amelie_widgets_init() {
 	) );
 }
 
-add_action( 'widgets_init', 'amelie_widgets_init' );
+add_action( 'widgets_init', 'silk_widgets_init' );
 
 /**
  * Enqueue scripts and styles.
  */
-function amelie_scripts_styles() {
+function silk_scripts_styles() {
 
 	//FontAwesome Stylesheet
-	wp_enqueue_style( 'amelie-font-awesome-style', get_stylesheet_directory_uri() . '/assets/css/font-awesome.css', array(), '4.2.0' );
+	wp_enqueue_style( 'silk-font-awesome-style', get_stylesheet_directory_uri() . '/assets/css/font-awesome.css', array(), '4.2.0' );
 
 	//Main Stylesheet
-	wp_enqueue_style( 'hive-style', get_stylesheet_uri(), array( 'amelie-font-awesome-style' ) );
+	wp_enqueue_style( 'hive-style', get_stylesheet_uri(), array( 'silk-font-awesome-style' ) );
 
 	//Default Fonts
-	wp_enqueue_style( 'amelie-fonts', amelie_fonts_url(), array(), null );
+	wp_enqueue_style( 'silk-fonts', silk_fonts_url(), array(), null );
 
 	//Enqueue jQuery
 	wp_enqueue_script( 'jquery' );
@@ -148,28 +148,28 @@ function amelie_scripts_styles() {
 	wp_enqueue_script( 'masonry' );
 
 	//only include the slider script if we have at least 2 featured posts
-	if ( amelie_has_featured_posts( 2 ) ) {
+	if ( silk_has_featured_posts( 2 ) ) {
 		//Enqueue FlexSlider plugin
-		wp_enqueue_script( 'amelie-flexslider', get_stylesheet_directory_uri() . '/assets/js/jquery.flexslider.js', array('jquery'), '2.2.2', true );
+		wp_enqueue_script( 'silk-flexslider', get_stylesheet_directory_uri() . '/assets/js/jquery.flexslider.js', array('jquery'), '2.2.2', true );
 
 	}
 
 	//Enqueue ImagesLoaded plugin
-	wp_enqueue_script( 'amelie-imagesloaded', get_stylesheet_directory_uri() . '/assets/js/imagesloaded.js', array(), '3.1.8', true );
+	wp_enqueue_script( 'silk-imagesloaded', get_stylesheet_directory_uri() . '/assets/js/imagesloaded.js', array(), '3.1.8', true );
 
 	//Enqueue HoverIntent plugin
-	wp_enqueue_script( 'amelie-hoverintent', get_stylesheet_directory_uri() . '/assets/js/jquery.hoverIntent.js', array( 'jquery' ), '1.8.0', true );
+	wp_enqueue_script( 'silk-hoverintent', get_stylesheet_directory_uri() . '/assets/js/jquery.hoverIntent.js', array( 'jquery' ), '1.8.0', true );
 
 	//Enqueue Velocity.js plugin
-	wp_enqueue_script( 'amelie-velocity', get_stylesheet_directory_uri() . '/assets/js/velocity.js', array(), '1.1.0', true );
+	wp_enqueue_script( 'silk-velocity', get_stylesheet_directory_uri() . '/assets/js/velocity.js', array(), '1.1.0', true );
 
-	//Enqueue Amelie Custom Scripts
-	wp_enqueue_script( 'amelie-scripts', get_stylesheet_directory_uri() . '/assets/js/main.js', array(
+	//Enqueue Silk Custom Scripts
+	wp_enqueue_script( 'silk-scripts', get_stylesheet_directory_uri() . '/assets/js/main.js', array(
 		'jquery',
 		'masonry',
-		'amelie-imagesloaded',
-		'amelie-hoverintent',
-		'amelie-velocity'
+		'silk-imagesloaded',
+		'silk-hoverintent',
+		'silk-velocity'
 	), '1.0.0', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -177,7 +177,7 @@ function amelie_scripts_styles() {
 	}
 }
 
-add_action( 'wp_enqueue_scripts', 'amelie_scripts_styles' );
+add_action( 'wp_enqueue_scripts', 'silk_scripts_styles' );
 
 /**
  * Implement the Custom Header feature.

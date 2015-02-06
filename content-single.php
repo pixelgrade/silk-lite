@@ -4,16 +4,16 @@
  *
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
- * @package Amelie
+ * @package Silk
  */
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
 		<div class="entry-meta">
-			<?php amelie_posted_on(); ?>
+			<?php silk_posted_on(); ?>
 
-			<?php amelie_cats_list(); ?>
+			<?php silk_cats_list(); ?>
 		</div><!-- .entry-meta -->
 
 		<?php the_title( '<h1 class="entry-title  page-title">', '</h1>' ); ?>
@@ -31,7 +31,7 @@
 
 		<?php
 		wp_link_pages( array(
-			'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'amelie_txtd' ),
+			'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'silk_txtd' ),
 			'after'  => '</span></div>',
 		) );
 		?>
@@ -42,6 +42,6 @@
 		<span class="separator-wrapper--accent">
 			<?php get_template_part("assets/svg/separator-simple"); ?>
 		</span>
-		<?php amelie_entry_footer(); ?>
+		<?php silk_entry_footer(); ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

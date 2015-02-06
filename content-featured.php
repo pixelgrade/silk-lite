@@ -2,10 +2,10 @@
 /**
  * The template for the home featured posts slider area.
  *
- * @package Amelie
+ * @package Silk
  */
 
-$featured = amelie_get_featured_posts();
+$featured = silk_get_featured_posts();
 
 if ( empty( $featured ) )
 	return;
@@ -25,7 +25,7 @@ if ( empty( $featured ) )
 					<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
 						<span class="entry-thumbnail">
 							<?php if ( has_post_thumbnail() ) : ?>
-								<?php the_post_thumbnail( 'amelie-single-image' ); ?>
+								<?php the_post_thumbnail( 'silk-single-image' ); ?>
 							<?php endif; ?>
 						</span>
 					</a>

@@ -57,7 +57,7 @@
 
 /* Widget - About me */
 
-.widget_amelie_about_me {
+.widget_silk_about_me {
 	position: relative;
 	background: $accent;
 	border: 0;
@@ -81,7 +81,7 @@
 		}
 	}
 
-	.attachment-amelie-masonry-image {
+	.attachment-silk-masonry-image {
 		position: absolute;
 		top: 50%;
 		left: 50%;
@@ -95,7 +95,7 @@
 		transform: translateX(-50%) translateY(-50%);
 	}
 
-	.amelie-about-me-widget__container {
+	.silk-about-me-widget__container {
 		position: relative;
 		z-index: 5;
 
@@ -108,7 +108,7 @@
 	}
 
 		&:hover, &:focus {
-			.amelie-about-me-widget__container {
+			.silk-about-me-widget__container {
 				transform: none;
 			}
 		}
@@ -117,7 +117,7 @@
 		color: white;
 	}
 
-	.amelie-about-me-widget__name {
+	.silk-about-me-widget__name {
 		@extend %alpha;
 		@include fs(30px);
 		font-style: italic;
@@ -319,7 +319,7 @@
 	}
 }
 
-.widget_amelie-popular-posts {
+.widget_silk-popular-posts {
 	padding: rem(30px);
 
 	ol {
@@ -478,7 +478,7 @@
 	max-width: 30%;
 }
 
-// Amelie's custom Instagram widget styling
+// Silk's custom Instagram widget styling
 
 .site-footer {
 	aside.widget_wpcom_instagram_widget {

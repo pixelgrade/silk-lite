@@ -1,20 +1,20 @@
-.widget .widget-inside .amelie-about-me-widget-form .amelie-about-me-widget-image-control.is-hidden {
+.widget .widget-inside .silk-about-me-widget-form .silk-about-me-widget-image-control.is-hidden {
 	display: none;
 }
 
-.widget .widget-inside .amelie-about-me-widget-form .amelie-about-me-widget-image-control {
+.widget .widget-inside .silk-about-me-widget-form .silk-about-me-widget-image-control {
 	border: 1px dashed #aaa;
 	padding: 20px 0;
 	text-align: center;
 }
 
-.widget .widget-inside .amelie-about-me-widget-form .amelie-about-me-widget-image-control.has-image {
+.widget .widget-inside .silk-about-me-widget-form .silk-about-me-widget-image-control.has-image {
 	border: 1px dashed #aaa;
 	padding: 10px;
 	text-align: left;
 }
 
-.widget .widget-inside .amelie-about-me-widget-form .amelie-about-me-widget-image-control img {
+.widget .widget-inside .silk-about-me-widget-form .silk-about-me-widget-image-control img {
 	display: block;
 	height: auto;
 	margin-bottom: 10px;

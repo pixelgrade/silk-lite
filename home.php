@@ -4,12 +4,12 @@
  *
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
- * @package Amelie
+ * @package Silk
  */
 
 get_header(); ?>
 
-	<?php if ( amelie_has_featured_posts( ) ) : ?>
+	<?php if ( silk_has_featured_posts( ) ) : ?>
 
 		<div class="featured-content">
 		

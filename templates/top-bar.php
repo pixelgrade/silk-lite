@@ -2,7 +2,7 @@
 /**
  * The template for the top header bar.
  *
- * @package Amelie
+ * @package Silk
  */
 ?>
 <div class="floating-nav" aria-hidden="true"><!-- Hide all this from screen readers -->
@@ -33,9 +33,9 @@
 			</div>
 			<div class="flag__body  align-right">
 				<?php
-				if ( ! get_theme_mod( 'amelie_disable_search_in_toolbar', false ) ) { ?>
+				if ( ! get_theme_mod( 'silk_disable_search_in_toolbar', false ) ) { ?>
 					<ul class="nav  nav--toolbar">
-						<li class="nav__item--search"><a href="#" tabindex="-1"><?php _e( 'Search', 'amelie_txtd' ); ?></a></li>
+						<li class="nav__item--search"><a href="#" tabindex="-1"><?php _e( 'Search', 'silk_txtd' ); ?></a></li>
 					</ul>
 				<?php }
 

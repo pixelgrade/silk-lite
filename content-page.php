@@ -2,7 +2,7 @@
 /**
  * The template used for displaying page content in page.php
  *
- * @package Amelie
+ * @package Silk
  */
 ?>
 
@@ -15,7 +15,7 @@
 		<?php the_content(); ?>
 		<?php
 			wp_link_pages( array(
-				'before' => '<div class="page-links">' . __( '<span class="pagination-title">Pages:</span>', 'amelie_txtd' ),
+				'before' => '<div class="page-links">' . __( '<span class="pagination-title">Pages:</span>', 'silk_txtd' ),
 				'after'  => '</div>',
 			) );
 		?>
@@ -26,7 +26,7 @@
 		<span class="separator-wrapper--accent">
 			<?php get_template_part("assets/svg/separator-simple"); ?>
 		</span>
-		<?php edit_post_link( __( 'Edit', 'amelie_txtd' ), '<span class="edit-link">', '</span>' ); ?>
+		<?php edit_post_link( __( 'Edit', 'silk_txtd' ), '<span class="edit-link">', '</span>' ); ?>
 		<?php } ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

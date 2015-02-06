@@ -2,7 +2,7 @@
 /**
  * The template used for displaying featured posts content in the home slider
  *
- * @package Amelie
+ * @package Silk
  */
 ?>
 
@@ -11,7 +11,7 @@
 	<header class="entry-header  entry-header--card">
 		<?php if ( 'post' == get_post_type() ) : ?>
 		<div class="entry-meta  entry-meta--card">
-			<?php amelie_posted_on_and_cats(); ?>
+			<?php silk_posted_on_and_cats(); ?>
 		</div><!-- .entry-meta -->
 		<?php endif; ?>
 

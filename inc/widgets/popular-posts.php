@@ -3,7 +3,7 @@
  * Popular Posts widget based on the Jetpack Stats
  * See: http://jetpack.me/
  *
- * @package Amelie
+ * @package Silk
  */
 
 /*
@@ -13,13 +13,13 @@
  * Instead, we don't register the widget if the Stats Module isn't active.
  */
 
-if ( ! function_exists('amelie_popular_posts_widget_init') ) :
+if ( ! function_exists('silk_popular_posts_widget_init') ) :
 	/**
 	 * Register our Popular Posts widget for use in Appearance -> Widgets
 	 */
-	add_action( 'widgets_init', 'amelie_popular_posts_widget_init' );
+	add_action( 'widgets_init', 'silk_popular_posts_widget_init' );
 
-	function amelie_popular_posts_widget_init() {
+	function silk_popular_posts_widget_init() {
 		// Currently, this widget depends on the Stats Module
 		if (
 			( !defined( 'IS_WPCOM' ) || !IS_WPCOM )
@@ -29,27 +29,27 @@ if ( ! function_exists('amelie_popular_posts_widget_init') ) :
 			return;
 		}
 
-		register_widget( 'Amelie_Popular_Posts_Widget' );
+		register_widget( 'Silk_Popular_Posts_Widget' );
 	}
 endif;
 
-if ( ! class_exists('Amelie_Popular_Posts_Widget') ) :
+if ( ! class_exists('Silk_Popular_Posts_Widget') ) :
 
-	class Amelie_Popular_Posts_Widget extends WP_Widget {
+	class Silk_Popular_Posts_Widget extends WP_Widget {
 
-		var $alt_option_name = 'widget_amelie_popularposts';
+		var $alt_option_name = 'widget_silk_popularposts';
 		var $default_title = '';
 
 		function __construct() {
 			parent::__construct(
-				'amelie-popular-posts',
-				apply_filters( 'amelie_widget_name', __( 'Amelie Popular Posts', 'amelie_txtd' ) ),
+				'silk-popular-posts',
+				apply_filters( 'silk_widget_name', __( 'Silk Popular Posts', 'silk_txtd' ) ),
 				array(
-					'description' => __( 'Shows your most viewed posts.', 'amelie_txtd' ),
+					'description' => __( 'Shows your most viewed posts.', 'silk_txtd' ),
 				)
 			);
 
-			$this->default_title =  __( 'Popular Posts', 'amelie_txtd' );
+			$this->default_title =  __( 'Popular Posts', 'silk_txtd' );
 		}
 
 		function form( $instance ) {
@@ -66,16 +66,16 @@ if ( ! class_exists('Amelie_Popular_Posts_Widget') ) :
 			?>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title:', 'amelie_txtd' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title:', 'silk_txtd' ); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'count' ); ?>"><?php esc_html_e( 'Maximum number of posts to show (no more than 10):', 'amelie_txtd' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'count' ); ?>"><?php esc_html_e( 'Maximum number of posts to show (no more than 10):', 'silk_txtd' ); ?></label>
 			<input id="<?php echo $this->get_field_id( 'count' ); ?>" name="<?php echo $this->get_field_name( 'count' ); ?>" type="number" value="<?php echo (int) $count; ?>" min="1" max="10" />
 		</p>
 
-		<p><?php esc_html_e( 'Popular Posts by views are calculated from 24-48 hours of stats. They take a while to change.', 'amelie_txtd' ); ?></p>
+		<p><?php esc_html_e( 'Popular Posts by views are calculated from 24-48 hours of stats. They take a while to change.', 'silk_txtd' ); ?></p>
 
 		<?php
 		}
@@ -105,14 +105,14 @@ if ( ! class_exists('Amelie_Popular_Posts_Widget') ) :
 			if ( $count < 1 || 10 < $count ) {
 				$count = 10;
 			}
-			$count = apply_filters( 'amelie_popular_posts_widget_count', $count );
+			$count = apply_filters( 'silk_popular_posts_widget_count', $count );
 
 			$get_image_options = array(
 				'fallback_to_avatars' => false,
 				'thumbnail_size' => 285,
 			);
 
-			$get_image_options = apply_filters( 'amelie_popular_posts_widget_image_options', $get_image_options );
+			$get_image_options = apply_filters( 'silk_popular_posts_widget_image_options', $get_image_options );
 
 			$posts = $this->get_by_views( $count );
 
@@ -127,7 +127,7 @@ if ( ! class_exists('Amelie_Popular_Posts_Widget') ) :
 			if ( !$posts ) {
 				if ( current_user_can( 'edit_theme_options' ) ) {
 					echo '<p>' . sprintf(
-							__( 'There are no posts to display. <a href="%s">Want more traffic?</a>', 'amelie_txtd' ),
+							__( 'There are no posts to display. <a href="%s">Want more traffic?</a>', 'silk_txtd' ),
 							'http://en.support.wordpress.com/getting-more-site-traffic/'
 						) . '</p>';
 				}
@@ -147,12 +147,12 @@ if ( ! class_exists('Amelie_Popular_Posts_Widget') ) :
 			echo '<ol>';
 			?>
 			<li class='popular-posts_item large-thumbnail'>
-				<?php do_action( 'amelie_widget_popular_posts_before_post', $post['post_id'] ); ?>
+				<?php do_action( 'silk_widget_popular_posts_before_post', $post['post_id'] ); ?>
 				<a href="<?php echo esc_url( $post['permalink'] ); ?>" title="<?php echo esc_attr( wp_kses( $post['title'], array() ) ); ?>" class="bump-view" data-bump-view="tp">
 					<img src="<?php echo esc_url( $post['image'] ); ?>" alt="<?php echo esc_attr( wp_kses( $post['title'], array() ) ); ?>" />
 				</a>
 				<?php
-					$cats_list = amelie_get_cats_list($post['post_id']);
+					$cats_list = silk_get_cats_list($post['post_id']);
 
 					if ( !empty($cats_list) ) {
 						echo '<div class="categories-list">' . $cats_list . '</div>';
@@ -161,7 +161,7 @@ if ( ! class_exists('Amelie_Popular_Posts_Widget') ) :
 				<a href="<?php echo esc_url( $post['permalink'] ); ?>" class="bump-view" data-bump-view="tp">
 					<?php echo esc_html( wp_kses( $post['title'], array() ) ); ?>
 				</a>
-				<?php do_action( 'amelie_widget_popular_posts_after_post', $post['post_id'] ); ?>
+				<?php do_action( 'silk_widget_popular_posts_after_post', $post['post_id'] ); ?>
 			</li>
 			<?php
 
@@ -169,18 +169,18 @@ if ( ! class_exists('Amelie_Popular_Posts_Widget') ) :
 			foreach ( $posts as $post ) :
 				?>
 				<li class='popular-posts_item'>
-					<?php do_action( 'amelie_widget_popular_posts_before_post', $post['post_id'] ); ?>
+					<?php do_action( 'silk_widget_popular_posts_before_post', $post['post_id'] ); ?>
 					<a href="<?php echo esc_url( $post['permalink'] ); ?>" class="bump-view" data-bump-view="tp">
 						<?php echo esc_html( wp_kses( $post['title'], array() ) ); ?>
 					</a>
 					<?php
-					$cats_list = amelie_get_cats_list($post['post_id']);
+					$cats_list = silk_get_cats_list($post['post_id']);
 
 					if ( !empty($cats_list) ) {
 						echo '<div class="categories-list">' . $cats_list . '</div>';
 					}
 					?>
-					<?php do_action( 'amelie_widget_popular_posts_after_post', $post['post_id'] ); ?>
+					<?php do_action( 'silk_widget_popular_posts_after_post', $post['post_id'] ); ?>
 				</li>
 			<?php
 			endforeach;
@@ -272,9 +272,9 @@ if ( ! class_exists('Amelie_Popular_Posts_Widget') ) :
 					break; // only need to load and show x number of likes
 			}
 
-			return apply_filters( 'amelie_widget_get_popular_posts', $posts, $post_ids, $count );
+			return apply_filters( 'silk_widget_get_popular_posts', $posts, $post_ids, $count );
 		}
 
-	} //Class Amelie Popular Posts Widget
+	} //Class Silk Popular Posts Widget
 
 endif; ?>

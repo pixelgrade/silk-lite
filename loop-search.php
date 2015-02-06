@@ -2,12 +2,12 @@
 /**
  * The template for displaying the search results loop content.
  *
- * @package Amelie
+ * @package Silk
  */
 
 $classes = 'archive__grid  grid';
 
-if ( ! get_theme_mod( 'amelie_single_column_archives', false ) ) {
+if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 	$classes .= '  masonry';
 }
 ?>

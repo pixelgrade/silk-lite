@@ -2,13 +2,13 @@
 /**
  * The template used for displaying post content on home and archive pages
  *
- * @package Amelie
+ * @package Silk
  */
 
-$thumbnail_size = "amelie-single-image";
+$thumbnail_size = "silk-single-image";
 
-if ( ! get_theme_mod( 'amelie_single_column_archives', false ) ) {
-	$thumbnail_size = '  amelie-masonry-image';
+if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
+	$thumbnail_size = '  silk-masonry-image';
 }
 ?>
 
@@ -17,7 +17,7 @@ if ( ! get_theme_mod( 'amelie_single_column_archives', false ) ) {
 	<header class="entry-header  entry-header--card">
 		<?php if ( 'post' == get_post_type() ) : ?>
 		<div class="entry-meta  entry-meta--card">
-			<?php amelie_posted_on_and_cats(); ?>
+			<?php silk_posted_on_and_cats(); ?>
 		</div><!-- .entry-meta -->
 		<?php endif; ?>
 
@@ -38,7 +38,7 @@ if ( ! get_theme_mod( 'amelie_single_column_archives', false ) ) {
 		if ( $has_more ) {
 			/* translators: %s: Name of current post */
 			the_content( sprintf(
-				__( 'Continue reading %s', 'amelie_txtd' ),
+				__( 'Continue reading %s', 'silk_txtd' ),
 				the_title( '<span class="screen-reader-text">', '</span>', false )
 			) );
 		} else {
@@ -47,7 +47,7 @@ if ( ! get_theme_mod( 'amelie_single_column_archives', false ) ) {
 
 		<?php
 			wp_link_pages( array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'amelie_txtd' ),
+				'before' => '<div class="page-links">' . __( 'Pages:', 'silk_txtd' ),
 				'after'  => '</div>',
 			) );
 		?>
