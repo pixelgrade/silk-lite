@@ -145,3 +145,7 @@ function setQueryParameter(uri, key, value) {
     return uri + separator + key + "=" + value;
   }
 }
+
+function is_touch() {
+  return $.support.touch;
+}

@@ -7,17 +7,17 @@ $(document).ready(function() {
 function init() {
   browserSize();
   platformDetect();
-  masonry.init();
-  navigation.init();
-  styleArchiveWidget();
-  wrapJetpackAfterContent();
 }
 
 /* ====== ON WINDOW LOAD ====== */
 
 $window.load(function() {
   browserSize();
+  navigation.init();
   slider.init();
+  wrapJetpackAfterContent();
+  masonry.init();
+  styleArchiveWidget();
   fixedSidebars.init();
   animator.animate();
 });
@@ -47,8 +47,4 @@ function update() {
   fixedSidebars.update();
   navigation.toggleTopBar();
   ticking = false;
-}
-
-function is_touch() {
-  return $.support.touch;
 }
