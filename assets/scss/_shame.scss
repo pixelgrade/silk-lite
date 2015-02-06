@@ -55,14 +55,14 @@ hr {
 .site-main--single .entry-title,
 .site-main--single .entry-content,
 .site-main--single .entry-footer,
+.post-navigation,
 .comments-area,
 .site-footer {
 	opacity: 0;
-	transform: translateZ(0);
 }
 
-.post-navigation {
-	opacity: 0;
+.top-bar {
+	transform: translateZ(0);
 }
 
 .separator-wrapper--accent {
