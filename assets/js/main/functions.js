@@ -48,7 +48,7 @@ function styleWidgets() {
     return;
   }
 
-  var $widgets = $('.sidebar--main .widget:not(.widget_silk_about_me, .widget_silk_popular_posts)');
+  var $widgets = $('.sidebar--main .widget_categories, .sidebar--main .widget_archive, .widget_tag_cloud');
   var separatorMarkup = '<span class="separator  separator--text" role="presentation"><span>More</span></a>';
 
   $widgets.each(function(){

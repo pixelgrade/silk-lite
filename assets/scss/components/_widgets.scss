@@ -38,6 +38,10 @@
 		.site-footer & {
 			color: white;
 		}
+
+		&:hover {
+			color: $accent;
+		}
 	}
 
 	&.widget a {
@@ -215,9 +219,7 @@
 .recentcomments{
 	padding: rem(6px) 0;
 
-	a{
-		text-decoration: underline;
-	}
+	color: $gray;
 }
 
 
