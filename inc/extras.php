@@ -410,7 +410,7 @@ if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_
 							while ( $menuposts->have_posts() )  : $menuposts->the_post();
 
 								if ( has_post_thumbnail() ) {
-									$menu_post_image = '<a href="' . get_permalink() . '" title="' . the_title_attribute( array( 'echo' => false ) ) .'">' .get_the_post_thumbnail( get_the_ID(), 'silk-small-image' ) . '</a>' . PHP_EOL;
+									$menu_post_image = '<a href="' . get_permalink() . '" title="' . the_title_attribute( array( 'echo' => false ) ) .'">' .get_the_post_thumbnail( get_the_ID(), 'silk-tiny-image' ) . '</a>' . PHP_EOL;
 								} else {
 									$menu_post_image = '';
 								}
