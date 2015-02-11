@@ -1457,9 +1457,9 @@ if (!Date.now) Date.now = function () {
       var $jpLikes = $('.sharedaddy.sd-like');
       var $jpRelatedPosts = $('#jp-relatedposts');
 
-      $('body').addClass('has--jetpack-sidebar');
-
       if ($jpSharing.length || $jpLikes.length || $jpRelatedPosts.length) {
+
+        $('body').addClass('has--jetpack-sidebar');
 
         var $jpWrapper = $('<div/>', {
           id: 'jp-post-flair'
@@ -1486,9 +1486,7 @@ if (!Date.now) Date.now = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      $('html, body').animate({
-        scrollTop: 0
-      }, 1000);
+      $('html').velocity("scroll", 1000);
     });
   }
 

@@ -84,9 +84,9 @@ function wrapJetpackAfterContent() {
     var $jpLikes = $('.sharedaddy.sd-like');
     var $jpRelatedPosts = $('#jp-relatedposts');
 
-    $('body').addClass('has--jetpack-sidebar');
-
     if ( $jpSharing.length || $jpLikes.length || $jpRelatedPosts.length ) {
+
+      $('body').addClass('has--jetpack-sidebar');
 
       var $jpWrapper = $('<div/>', { id: 'jp-post-flair' });
       $jpWrapper.appendTo($('.entry-content'));
@@ -111,9 +111,7 @@ function scrollToTop() {
     event.preventDefault();
     event.stopPropagation();
 
-    $('html, body').animate({
-      scrollTop: 0
-    }, 1000);
+    $('html').velocity("scroll", 1000);
   });
 }
 
