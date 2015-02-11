@@ -62,7 +62,7 @@ var animator = (function() {
 			descWidth = $descText.outerWidth();
 
 			$('.site-description').velocity({
-				color: '#000000'
+				color: '#b8b6b7'
 			}, {
 				duration: 300,
 				delay: 100,

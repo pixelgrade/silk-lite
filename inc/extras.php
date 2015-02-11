@@ -395,9 +395,9 @@ if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_
 							$menu_post_image .
 							'<header class="entry-header">' . PHP_EOL .
 								'<div class="entry-meta">' . PHP_EOL .
-									silk_get_posted_on_and_cats() . PHP_EOL .
+									silk_get_posted_on_and_cats_megamenu() . PHP_EOL .
 								'</div><!-- .entry-meta -->' . PHP_EOL .
-								'<a href="' . get_permalink() . '"><h1 class="entry-title">' . get_the_title() . '</h1></a>' . PHP_EOL .
+								'<a href="' . get_permalink() . '"><h2 class="entry-title">' . get_the_title() . '</h2></a>' . PHP_EOL .
 							'</header><!-- .entry-header -->' . PHP_EOL .
 							'<a class="separator  separator--text" role="presentation" href="' . get_permalink() . '"><span>' . _( 'More', 'silk_txtd' ) . '</span></a>' . PHP_EOL .
 						'</article>' . PHP_EOL;
@@ -422,7 +422,7 @@ if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_
 												$menu_post_image .
 											'</div>' . PHP_EOL .
 											'<div class="flag__body">' . PHP_EOL .
-												'<div class="entry-meta  entry-meta--card  align-left">' . silk_get_posted_on_and_cats() . '</div>' . PHP_EOL .
+												'<div class="entry-meta  entry-meta--card  align-left">' . silk_get_posted_on_and_cats_megamenu() . '</div>' . PHP_EOL .
 												'<a href="' . get_permalink() . '"><h3 class="entry-title  align-left">' . get_the_title() . '</h3></a>' . PHP_EOL .
 											'</div>' . PHP_EOL .
 										'</article>' . PHP_EOL .

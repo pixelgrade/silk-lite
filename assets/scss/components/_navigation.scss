@@ -132,6 +132,10 @@
 		}
 	}
 
+	.entry-meta {
+		@extend %gamma;
+	}
+
 	@include query-above($desk) {	
 		position: static !important;
 

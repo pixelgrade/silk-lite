@@ -3,6 +3,22 @@
 	.slides > li:first-child:last-child {
 		display: block;
 	}
+
+
+	.entry-title {
+		font-size: rem(45px);
+		line-height: 1.55;
+		margin-bottom: rhythm(2/3);
+	}
+
+	.entry-header,
+	.entry-content {
+		max-width: 35em;
+	}
+
+	.wide + .narrow {
+		margin-top: rem(-10px);
+	}
 	
 	.entry-content {
 		@extend .align-center;
