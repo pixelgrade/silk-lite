@@ -406,7 +406,7 @@ div.sharedaddy.sharedaddy h3.sd-title {
 
 	display: block;
 	margin-bottom: 0;
-	padding-bottom: rem(12px);
+	padding-bottom: rem(10px);
 
 	transform: none;
 	border-bottom: 1px solid $gray;
@@ -455,7 +455,7 @@ div.sd-social-icon-text, div.sd-social-text {
 		position: relative;
 
 		width: 100%;
-		padding: rem(14px) 0;
+		padding: rem(13px) 0;
 		margin: 0;
 
 		border: 0;
@@ -557,6 +557,18 @@ div#jp-relatedposts#jp-relatedposts h3.jp-relatedposts-headline {
 
 	width: 100%;
 	text-align: center;
+	margin-bottom: 0;
+
+	&:after {
+		content: "";
+
+		display: block;
+		width: 125px;
+		height: 9px;
+		margin: 9px auto 16px auto;
+
+		background: url('assets/svg/separator-related.svg') center center;
+	}
 }
 
 .jp-relatedposts-post-a, .jp-relatedposts-post-img {

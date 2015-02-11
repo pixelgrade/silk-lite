@@ -200,8 +200,9 @@ li.comment, li.pingback, li.trackback {
 		color: $dark;
 	}
 
-	.comment-author-admin & {
+	.bypostauthor & {
 		color: $accent;
+		border-bottom: 1px solid $accent;
 	}
 }
 
