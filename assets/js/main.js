@@ -1432,15 +1432,17 @@ if (!Date.now) Date.now = function () {
   function wrapJetpackAfterContent() {
     // check if we are on single post and the wrap has not been done already by Jetpack
     // (it happens when the theme is activated on a wordpress.com installation)
+    if ($('#jp-post-flair').length != 0) $('body').addClass('has--jetpack-sidebar');
+
     if ($('body').hasClass('single-post') && $('#jp-post-flair').length == 0) {
 
       var $jpSharing = $('.sharedaddy.sd-sharing-enabled');
       var $jpLikes = $('.sharedaddy.sd-like');
       var $jpRelatedPosts = $('#jp-relatedposts');
 
-      if ($jpSharing.length || $jpLikes.length || $jpRelatedPosts.length) {
+      $('body').addClass('has--jetpack-sidebar');
 
-        $('body').addClass('has--jetpack-sidebar');
+      if ($jpSharing.length || $jpLikes.length || $jpRelatedPosts.length) {
 
         var $jpWrapper = $('<div/>', {
           id: 'jp-post-flair'
