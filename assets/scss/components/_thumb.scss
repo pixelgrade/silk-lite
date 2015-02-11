@@ -1,8 +1,8 @@
 .thumb {
 
 	.entry-meta {
+		@extend .entry-meta--card;
 		font-size: rem(9px);
-		color: #808080;
 	}
 
 	.flag__img {
@@ -12,6 +12,6 @@
 	.entry-title {
 		color: $dark;
 		margin-top: 0;
-		@include fs(16px);
+		font-size: rem(16px);
 	}
 }

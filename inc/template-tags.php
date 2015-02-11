@@ -203,32 +203,11 @@ if ( ! function_exists( 'silk_get_posted_on_and_cats' ) ) :
 	 * Returns HTML with meta information for the current post-date/time and author.
 	 */
 	function silk_get_posted_on_and_cats() {
-		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s<sup>%3$s</sup> %4$s</time>';
-
-		$time_string = sprintf( $time_string,
-			esc_attr( get_the_date( 'c' ) ),
-			esc_html( get_the_date( 'F j') ),
-			esc_html( get_the_date( 'S' ) ),
-			esc_html( get_the_date( 'Y' ) )
-		);
-
-		$cats = silk_get_cats_list();
-
-		return '<span class="posted-on">' . $time_string . '</span>' . $cats;
-
-	}
-endif;
-
-if ( ! function_exists( 'silk_get_posted_on_and_cats_megamenu' ) ) :
-	/**
-	 * Returns HTML with meta information for the current post-date/time and author.
-	 */
-	function silk_get_posted_on_and_cats_megamenu() {
 		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 
 		$time_string = sprintf( $time_string,
 			esc_attr( get_the_date( 'c' ) ),
-			esc_html( get_the_date( 'M j, Y') )
+			esc_html( get_the_date() )
 		);
 
 		$cats = silk_get_cats_list();

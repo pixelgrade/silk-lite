@@ -7,9 +7,25 @@ var navigation = (function() {
 	init = function() {
 		// initialize the logic behind the main navigation
 		$nav.ariaNavigation();
+		$nav.clone(true)
+			.removeClass('nav--main')
+			.addClass('nav--toolbar')
+			.appendTo('.floating-nav .flag__body');
 
-		//make sure that the links in the floating-nav, that shows on scroll, are ignored by TAB
-		$('.floating-nav').find('a' ).attr( 'tabIndex', -1 );
+		$('.nav--toolbar--left')
+			.clone()
+			.removeClass('nav--toolbar nav--toolbar--left')
+			.addClass('nav--stacked nav--floating nav--floating--left')
+			.appendTo('.floating-nav');
+
+		$('.nav--toolbar--right')
+			.clone()
+			.removeClass('nav--toolbar nav--toolbar--right')
+			.addClass('nav--stacked nav--floating nav--floating--right')
+			.appendTo('.floating-nav');
+
+		// make sure that the links in the floating-nav, that shows on scroll, are ignored by TAB
+		$('.floating-nav').find('a').attr( 'tabIndex', -1 );
 	},
 
 	toggleTopBar = function() {

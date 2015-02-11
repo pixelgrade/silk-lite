@@ -23,8 +23,7 @@ body {
 }
 
 %gamma {
-	font-family: "Libre Baskerville", serif;
-	font-weight: 300;
+	@extend %beta;
 }
 
 %delta {
@@ -39,28 +38,25 @@ h1, .h1 {
     @extend %alpha;
     @extend .color-accent;
     @extend .italic;
-    @include font-size(45px);
-    @include baseline(45px);
-    @include rhythm(margin-top, 4, 45px);
-    @include rhythm(margin-bottom, 2, 45px);
+    font-size: rem(45px);
+    margin-top: rhythm(2);
+    margin-bottom: rhythm(1);
 }
 
 h2, .h2 {
     @extend %alpha;
 	@extend .color-accent;
 	@extend .italic;
-    @include font-size(30px);
-    @include baseline(30px);
-    @include rhythm(margin-top, 4, 30px);
-    @include rhythm(margin-bottom, 2, 30px);
+    font-size: rem(30px);
+    margin-top: rhythm(2);
+    margin-bottom: rhythm(1);
 }
 
 h3, .h3 {
     @extend %alpha;
-    @include font-size(20px);
-    @include baseline(20px);
-    @include rhythm(margin-top, 4, 20px);
-    @include rhythm(margin-bottom, 2, 20px);
+    font-size: rem(20px);
+    margin-top: rhythm(2);
+    margin-bottom: rhythm(1);
 }
 
 h4, .h4 {
@@ -68,10 +64,9 @@ h4, .h4 {
     @extend .color-accent;
     @extend .caps;
     font-style: normal;
-    @include font-size(11px);
-    @include baseline(11px);
-    @include rhythm(margin-top, 4, 11px);
-    @include rhythm(margin-bottom, 2, 11px);
+    font-size: rem(11px);
+    margin-top: rhythm(2);
+    margin-bottom: rhythm(1);
 }
 
 
@@ -79,13 +74,12 @@ h4, .h4 {
 /* Paragraphs */
 p {
 	margin-top: 0;
-	@include font-size(14px);
-    @include baseline(14px);
+	font-size: 1rem;
 
     @if $editor-style {
-    	@include rhythm(margin-bottom, 3);
+    	margin-bottom: rhythm(1.5);
     } @else {
-    	@include rhythm(margin-bottom, 2);
+    	margin-bottom: rhythm(1);
     }
 }
 

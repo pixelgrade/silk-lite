@@ -11,7 +11,7 @@
 			<?php
 			if ( ! get_theme_mod( 'silk_disable_search_in_toolbar', false ) ) { ?>
 				<ul class="nav  nav--toolbar">
-					<li class="nav__item--search"><a href="#"><?php _e( 'Search', 'silk_txtd' ); ?></a></li>
+					<li class="menu-item  nav__item--search"><a href="#"><?php _e( 'Search', 'silk_txtd' ); ?></a></li>
 				</ul>
 			<?php }
 
@@ -19,8 +19,8 @@
 				array(
 					'theme_location' => 'top_header_left',
 					'container'      => '',
-					'menu_class'     => 'nav  nav--toolbar',
-					'depth'          => -1, //flatten if there is any hierarchy
+					'menu_class'     => 'nav  nav--toolbar  nav--toolbar--left',
+					'depth'          => -1, // flatten if there is any hierarchy
 					'fallback_cb'    => false,
 				)
 			);
@@ -33,8 +33,8 @@
 				array(
 					'theme_location' => 'top_header_right',
 					'container'      => '',
-					'menu_class'     => 'nav  nav--toolbar  right',
-					'depth'          => -1, //flatten if there is any hierarchy
+					'menu_class'     => 'nav  nav--toolbar  nav--toolbar--right  right',
+					'depth'          => -1, // flatten if there is any hierarchy
 					'fallback_cb'    => false,
 				)
 			);

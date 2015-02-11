@@ -15,16 +15,6 @@
 	}
 }
 
-
-%menu-item {
-	position: relative;
-	text-align: left;
-
-	&:hover > ul {
-		display: block;
-	}
-}
-
 %sub-menu {
 	@extend .nav;
 	@extend .nav--stacked;
@@ -44,6 +34,15 @@
 	a {
 		display: block;
 		padding: rhythm(4/9) rhythm(2/3); 
+	}
+}
+
+%menu-item {
+	position: relative;
+	text-align: left;
+
+	&:hover > ul {
+		display: block;
 	}
 }
 
@@ -117,75 +116,6 @@
 	margin-top: rhythm(-3/2);
 }
 
-.menu-item--mega {
-
-	> a {
-		z-index: 20;
-	}
-
-	.sub-menu-wrapper .sub-menu {
-		> .menu-item {
-			border-bottom-color: $borders;
-			> a {
-				color: $dark;
-			}
-		}
-	}
-
-	.entry-meta {
-		@extend %gamma;
-	}
-
-	@include query-above($desk) {	
-		position: static !important;
-
-		.sub-menu-wrapper {
-			border: 1px solid $borders;
-			box-shadow: rgba(255,255,255,0.5) 0 0 0 rem(110px);
-			padding: rem(40px);
-			display: flex;
-
-			> .sub-menu {
-				// align-self: flex-start;
-				// align-items: flex-start;
-				padding: rhythm(1/2) rhythm(1.5);
-				flex-grow: 1;
-				text-align: left;
-				font-size: inherit;
-				display: flex;
-				flex-direction: column;
-
-				> li {
-					display: flex;
-					flex-direction: column;
-					justify-content: center;
-					// flex-grow: 1;
-				}
-			}
-		}
-
-		.sub-menu-wrapper > .sub-menu {
-			background-color: $accent;
-			color: white;
-			border: 0;
-
-			> .menu-item {
-				border-bottom-color: white;
-				border-bottom-color: rgba(255,255,255,0.5);
-
-				> a {
-					color: white;
-					padding: rhythm(2/3) 0;
-				}
-			}
-
-			> .menu-item:hover > a {
-				color: $secondary;
-			}
-		}
-	}
-}
-
 .submenu__card {
 	display: inline-block;	
 	width: rem(340px);
@@ -235,5 +165,6 @@
 
 @import "nav/nav--floating";
 @import "nav/nav--main";
+@import "nav/nav--mega";
 @import "nav/nav--social";
 @import "nav/nav--toolbar";

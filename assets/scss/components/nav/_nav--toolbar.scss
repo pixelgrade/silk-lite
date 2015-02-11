@@ -9,9 +9,9 @@
 		color: $gray;
 	}
 
-	li:hover > a {
-		color: white;
-	}
+	// li:hover > a {
+	// 	color: white;
+	// }
 
 	&.fixed {
 		top: 0;
@@ -79,65 +79,87 @@
 }
 
 .nav--toolbar {
-	@extend %delta;
 	@extend %nav--social;
 	display: inline-block;
-	font-size: rem(11px);
 	margin-left: rem(-15px); 
 	margin-right: rem(-15px);
 
-	& + & {
-		margin-left: rem(15px);
-	}
+	> .menu-item {
+		@extend %menu-item;
+		font-size: rem(11px);
 
-	li {
-		display: inline-block; 
-	}
-
-	a {
-		padding: rem(15px);
-
-		&:hover {
+		&:hover > a {
 			color: white;
+		}
+		
+		> a {
+			@extend %delta;
+			padding: rem(15px);
 		}
 	}
 
-	li {
-		@extend %menu-item;
+	> .menu-item-has-children,
+	> .menu-item--mega {
+		margin-right: rem(3px);
 
-		&.menu-item-has-children {
-			@extend %dropdown-arrow;
-			margin-right: rem(3px);
+		> a {
 
 			&:after {
-				top: rem(20px);
+				top: rem(22px);
 				right: rem(3px);
 			}
 		}
 	}
 
-	&.nav--dropdown, ul {
+	& + & {
+		margin-left: rem(15px);
+	}
+
+	// ul {
+	// 	@extend %sub-menu;
+	// 	background: black;
+	// }
+}
+
+.nav--dropdown {
+	@extend %delta;
+	margin-left: rhythm(-4/9);
+
+	.menu-item {
+		@extend %menu-item;
+		font-size: rem(11px);
+
+		&:hover {
+			> a {
+				color: white;
+			}
+		}
+	}
+
+
+	&, .sub-menu {
 		@extend %sub-menu;
 		background: black;
+	}
 
-		.menu-item-has-children {
+	.menu-item-has-children {
+
+		> a {
+			@extend %dropdown-arrow;
 
 			&:after {
 				border-width: rem(3px) rem(4px); 
 				border-top-color: transparent;
 				border-left-color: currentColor;
-				top: rem(14px);
+				top: rem(17px);
 				right: rhythm(4/9);
 			}
 		}
 	}
+}
 
-	&.nav--dropdown {
-		margin-left: rhythm(-4/9);
-	}
-
-	ul {
-		@extend %sub-menu;
-		background: black;
-	}
+// this is needed to overwrite .top-bar a
+// maybe find a better solution
+.separator--text.separator--text {
+	color: $secondary;
 }
