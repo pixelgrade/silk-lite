@@ -38,6 +38,10 @@
 		.site-footer & {
 			color: white;
 		}
+
+		&:hover {
+			color: $accent;
+		}
 	}
 
 	&.widget a {
@@ -144,7 +148,7 @@
 
 /* Widget - archive */
 
-.widget_archive.shrink {
+.widget.shrink {
 
 	.sidebar--main & {
 		max-height: 220px;
@@ -187,7 +191,7 @@
 	}
 }
 
-.widget_archive.focused {
+.widget.focused {
 	.separator {
 		display: none;
 	}
@@ -215,9 +219,7 @@
 .recentcomments{
 	padding: rem(6px) 0;
 
-	a{
-		text-decoration: underline;
-	}
+	color: $gray;
 }
 
 

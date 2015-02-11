@@ -1339,9 +1339,10 @@ if (!Date.now) Date.now = function () {
     navigation.init();
     slider.init();
     wrapJetpackAfterContent();
-    styleArchiveWidget();
+    styleWidgets();
     fixedSidebars.update();
     animator.animate();
+    scrollToTop();
 
     if (latestKnownScrollY) $window.trigger('scroll');
 
@@ -1420,26 +1421,27 @@ if (!Date.now) Date.now = function () {
    * archive widget to make it look splendid
    */
 
-  function styleArchiveWidget() {
+  function styleWidgets() {
 
     if ($.support.touch) {
       return;
     }
 
-    var $archiveWidget = $('.sidebar--main .widget_archive ul').parent();
+    var $widgets = $('.sidebar--main .widget_categories, .sidebar--main .widget_archive, .widget_tag_cloud');
+    var separatorMarkup = '<span class="separator  separator--text" role="presentation"><span>More</span></a>';
 
-    if ($archiveWidget.height() > $archiveWidget.width()) {
-      var separatorMarkup = '<span class="separator  separator--text" role="presentation"><span>More</span></a>';
+    $widgets.each(function () {
+      if ($(this).height() > $(this).width()) {
+        $(this).addClass('shrink');
+        $(this).append(separatorMarkup);
+        fixedSidebars.refresh();
+        masonry.refresh();
 
-      $archiveWidget.addClass('shrink');
-      $archiveWidget.append(separatorMarkup);
-      fixedSidebars.refresh();
-      masonry.refresh();
-
-      $archiveWidget.find('a').focus(function () {
-        $archiveWidget.removeClass('shrink').addClass('focused');
-      });
-    }
+        $(this).find('a').focus(function () {
+          $(this).removeClass('shrink').addClass('focused');
+        });
+      }
+    });
 
   }
 
@@ -1460,9 +1462,9 @@ if (!Date.now) Date.now = function () {
       var $jpLikes = $('.sharedaddy.sd-like');
       var $jpRelatedPosts = $('#jp-relatedposts');
 
-      $('body').addClass('has--jetpack-sidebar');
-
       if ($jpSharing.length || $jpLikes.length || $jpRelatedPosts.length) {
+
+        $('body').addClass('has--jetpack-sidebar');
 
         var $jpWrapper = $('<div/>', {
           id: 'jp-post-flair'
@@ -1484,6 +1486,14 @@ if (!Date.now) Date.now = function () {
     }
   }
 
+  function scrollToTop() {
+    $('a[href=#top]').click(function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      $('html').velocity("scroll", 1000);
+    });
+  }
 
 
   /**

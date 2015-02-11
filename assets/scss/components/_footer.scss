@@ -55,3 +55,14 @@
 	margin: 0 auto;
 	filter: hue-rotate(-319deg) saturate(46.7%) brightness(1.555);
 }
+
+.back-to-top-wrapper {
+	display: block;
+	text-align: center;
+}
+
+.back-to-top-button {
+	padding: rem(42px);
+	margin: 0 auto;
+	display: inline-block;
+}

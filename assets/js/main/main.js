@@ -16,9 +16,10 @@ $window.load(function() {
   navigation.init();
   slider.init();
   wrapJetpackAfterContent();
-  styleArchiveWidget();
+  styleWidgets();
   fixedSidebars.update();
   animator.animate();
+  scrollToTop();
 
   if (latestKnownScrollY) $window.trigger('scroll');
 
