@@ -31,6 +31,9 @@
 			<span class="sep"> | </span>
 			<?php printf( __( 'Theme: %1$s by %2$s.', 'silk_txtd' ), 'Silk', '<a href="http://pixelgrade.com" rel="designer">PixelGrade</a>' ); ?>
 		</div><!-- .site-info -->
+		<div class="back-to-top-wrapper">
+			<a href="#top" class="back-to-top-button"><?php get_template_part('assets/svg/back-to-top'); ?></a>
+		</div>
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 

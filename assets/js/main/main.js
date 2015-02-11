@@ -19,6 +19,7 @@ $window.load(function() {
   styleWidgets();
   fixedSidebars.update();
   animator.animate();
+  scrollToTop();
 
   if (latestKnownScrollY) $window.trigger('scroll');
 

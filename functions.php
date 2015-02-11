@@ -71,6 +71,7 @@ if ( ! function_exists( 'silk_setup' ) ) :
 			'primary'          => __( 'Primary Menu', 'silk_txtd' ),
 			'top_header_left'  => __( 'Top Header Left Menu', 'silk_txtd' ),
 			'top_header_right' => __( 'Top Header Right Menu', 'silk_txtd' ),
+			'hamburger' 	   => __( 'Hamburger Menu', 'silk_txtd' ),
 			'footer'           => __( 'Footer Menu', 'silk_txtd' ),
 		) );
 

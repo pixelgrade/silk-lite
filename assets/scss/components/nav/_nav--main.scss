@@ -1,35 +1,10 @@
 .nav--main {
-	@extend .nav;
 	text-align: center;
 	color: $dark;
 	border-top: rem(3px) solid $light;
 	position: relative;
 	z-index: 100;
 	background: white;
-
-	.sub-menu {
-		@extend %sub-menu;
-		display: block; 
-		text-align: center;
-		font-size: rem(12px);
-
-		.menu-item {
-			border-bottom: 1px solid $borders;
-		}
-
-		> .menu-item-has-children > a:after {
-			border-top-color: transparent; 
-			border-left-color: currentColor;
-			border-width: rem(3px) rem(4px);
-			right: 0;
-			top: 50%;
-			margin-top: rem(-4px);
-		}
-
-		li:last-child {
-			border-bottom: 0;
-		}
-	}
 
 	.menu-item {
 		position: relative;
@@ -41,11 +16,6 @@
 
 	> .menu-item:hover > a {
 		color: $accent;
-	}
-
-	.menu-item-has-children > a,
-	.menu-item--mega > a {
-		@extend %dropdown-arrow;
 	}
 
 	> .menu-item-has-children.hover > a,
@@ -66,12 +36,5 @@
 			border-left: 1px solid $borders;
 			border-top: 1px solid $borders;
 		}
-	}
-
-	.menu-link {
-		@extend %delta;
-		color: currentColor;
-		display: inline-block;
-		padding: rhythm(1) rhythm(1.5);
 	}
 }

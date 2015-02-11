@@ -84,9 +84,9 @@ function wrapJetpackAfterContent() {
     var $jpLikes = $('.sharedaddy.sd-like');
     var $jpRelatedPosts = $('#jp-relatedposts');
 
-    $('body').addClass('has--jetpack-sidebar');
-
     if ( $jpSharing.length || $jpLikes.length || $jpRelatedPosts.length ) {
+
+      $('body').addClass('has--jetpack-sidebar');
 
       var $jpWrapper = $('<div/>', { id: 'jp-post-flair' });
       $jpWrapper.appendTo($('.entry-content'));
@@ -106,6 +106,14 @@ function wrapJetpackAfterContent() {
   }
 }
 
+function scrollToTop() {
+  $('a[href=#top]').click(function(event){
+    event.preventDefault();
+    event.stopPropagation();
+
+    $('html').velocity("scroll", 1000);
+  });
+}
 
 
 /**

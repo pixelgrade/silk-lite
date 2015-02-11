@@ -936,8 +936,13 @@ if (!Date.now) Date.now = function () {
         init = function () {
         // initialize the logic behind the main navigation
         $nav.ariaNavigation();
+        $nav.clone(true).removeClass('nav--main').addClass('nav--toolbar').appendTo('.floating-nav .flag__body');
 
-        //make sure that the links in the floating-nav, that shows on scroll, are ignored by TAB
+        $('.nav--toolbar--left').clone().removeClass('nav--toolbar nav--toolbar--left').addClass('nav--stacked nav--floating nav--floating--left').appendTo('.floating-nav');
+
+        $('.nav--toolbar--right').clone().removeClass('nav--toolbar nav--toolbar--right').addClass('nav--stacked nav--floating nav--floating--right').appendTo('.floating-nav');
+
+        // make sure that the links in the floating-nav, that shows on scroll, are ignored by TAB
         $('.floating-nav').find('a').attr('tabIndex', -1);
         },
         
@@ -1029,7 +1034,7 @@ if (!Date.now) Date.now = function () {
     }
 
     // create animation and run it on
-    $('.nav__item--search').on('click touchstart', function (e) {
+    $('.nav__item--search, [href*="#search"]').on('click touchstart', function (e) {
       // prevent default behavior and stop propagation
       e.preventDefault();
       e.stopPropagation();
@@ -1337,6 +1342,7 @@ if (!Date.now) Date.now = function () {
     styleWidgets();
     fixedSidebars.update();
     animator.animate();
+    scrollToTop();
 
     if (latestKnownScrollY) $window.trigger('scroll');
 
@@ -1456,9 +1462,9 @@ if (!Date.now) Date.now = function () {
       var $jpLikes = $('.sharedaddy.sd-like');
       var $jpRelatedPosts = $('#jp-relatedposts');
 
-      $('body').addClass('has--jetpack-sidebar');
-
       if ($jpSharing.length || $jpLikes.length || $jpRelatedPosts.length) {
+
+        $('body').addClass('has--jetpack-sidebar');
 
         var $jpWrapper = $('<div/>', {
           id: 'jp-post-flair'
@@ -1480,6 +1486,14 @@ if (!Date.now) Date.now = function () {
     }
   }
 
+  function scrollToTop() {
+    $('a[href=#top]').click(function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      $('html').velocity("scroll", 1000);
+    });
+  }
 
 
   /**

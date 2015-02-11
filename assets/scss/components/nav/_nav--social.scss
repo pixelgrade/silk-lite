@@ -51,4 +51,5 @@
 	&[href*="last.fm"]:before       {content: $fa-var-lastfm;}
 	&[href*="slideshare"]:before    {content: $fa-var-slideshare;}
 	&[href*="twitch.tv"]:before     {content: $fa-var-twitch;}
+	&[href*="#search"]:before     	{content: $fa-var-search;}
 }
