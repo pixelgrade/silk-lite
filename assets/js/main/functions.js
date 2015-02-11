@@ -106,6 +106,16 @@ function wrapJetpackAfterContent() {
   }
 }
 
+function scrollToTop() {
+  $('a[href=#top]').click(function(event){
+    event.preventDefault();
+    event.stopPropagation();
+
+    $('html, body').animate({
+      scrollTop: 0
+    }, 1000);
+  });
+}
 
 
 /**

@@ -1337,6 +1337,7 @@ if (!Date.now) Date.now = function () {
     styleWidgets();
     fixedSidebars.update();
     animator.animate();
+    scrollToTop();
 
     if (latestKnownScrollY) $window.trigger('scroll');
 
@@ -1480,6 +1481,16 @@ if (!Date.now) Date.now = function () {
     }
   }
 
+  function scrollToTop() {
+    $('a[href=#top]').click(function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      $('html, body').animate({
+        scrollTop: 0
+      }, 1000);
+    });
+  }
 
 
   /**
