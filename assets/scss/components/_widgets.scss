@@ -333,9 +333,24 @@
 	}
 
 	.popular-posts_item {
+		position: relative;
+		padding-left: 20px;
+
+		margin-bottom: rem(12px);
+
+		&:first-child {
+			padding-left: 0;
+		}
+
 		&:before {
 			content: counter(my-counter) '.';
 			counter-increment: my-counter;
+
+			position: absolute;
+			left: 0;
+			top: 0;
+
+
 		}
 
 		.bump-view{
@@ -343,6 +358,8 @@
 			@extend %beta;
 
 			padding: 0;
+			display: inline;
+			margin-right: 5px;
 		}
 
 		&.large-thumbnail {
@@ -391,7 +408,7 @@
 			}
 
 			.categories-list {
-				margin-top: rem(12px);
+				margin: rem(12px) 0;
 				display: block;
 				text-align: center;
 			}
@@ -415,17 +432,23 @@
 				@include fs(16px);
 				@extend %alpha;
 			}
+
+			&:before {
+				@include fs(18px);
+			}
 		}
 	}
 
 	.categories-list {
 		display: inline-block;
 
-		a {
+		a, & {
 			@extend %beta;
 			@include fs(10px);
 			color: $gray;
 			text-transform: uppercase;
+
+			letter-spacing: 0.1em;
 		}
 	}
 
