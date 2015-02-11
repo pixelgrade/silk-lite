@@ -144,7 +144,7 @@
 
 /* Widget - archive */
 
-.widget_archive.shrink {
+.widget.shrink {
 
 	.sidebar--main & {
 		max-height: 220px;
@@ -187,7 +187,7 @@
 	}
 }
 
-.widget_archive.focused {
+.widget.focused {
 	.separator {
 		display: none;
 	}

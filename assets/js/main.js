@@ -1334,7 +1334,7 @@ if (!Date.now) Date.now = function () {
     navigation.init();
     slider.init();
     wrapJetpackAfterContent();
-    styleArchiveWidget();
+    styleWidgets();
     fixedSidebars.update();
     animator.animate();
 
@@ -1415,26 +1415,27 @@ if (!Date.now) Date.now = function () {
    * archive widget to make it look splendid
    */
 
-  function styleArchiveWidget() {
+  function styleWidgets() {
 
     if ($.support.touch) {
       return;
     }
 
-    var $archiveWidget = $('.sidebar--main .widget_archive ul').parent();
+    var $widgets = $('.sidebar--main .widget:not(.widget_silk_about_me, .widget_silk_popular_posts)');
+    var separatorMarkup = '<span class="separator  separator--text" role="presentation"><span>More</span></a>';
 
-    if ($archiveWidget.height() > $archiveWidget.width()) {
-      var separatorMarkup = '<span class="separator  separator--text" role="presentation"><span>More</span></a>';
+    $widgets.each(function () {
+      if ($(this).height() > $(this).width()) {
+        $(this).addClass('shrink');
+        $(this).append(separatorMarkup);
+        fixedSidebars.refresh();
+        masonry.refresh();
 
-      $archiveWidget.addClass('shrink');
-      $archiveWidget.append(separatorMarkup);
-      fixedSidebars.refresh();
-      masonry.refresh();
-
-      $archiveWidget.find('a').focus(function () {
-        $archiveWidget.removeClass('shrink').addClass('focused');
-      });
-    }
+        $(this).find('a').focus(function () {
+          $(this).removeClass('shrink').addClass('focused');
+        });
+      }
+    });
 
   }
 
