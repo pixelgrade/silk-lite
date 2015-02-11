@@ -16,25 +16,33 @@ $window.load(function() {
   navigation.init();
   slider.init();
   wrapJetpackAfterContent();
-  masonry.init();
   styleArchiveWidget();
-  fixedSidebars.init();
+  fixedSidebars.update();
   animator.animate();
+
+  if (latestKnownScrollY) $window.trigger('scroll');
+
 });
 
 /* ====== ON RESIZE ====== */
 
-$window.on('debouncedresize', function() {
+function onResize() {
   browserSize();
+  masonry.refresh();
   fixedSidebars.refresh();
-});
+  fixedSidebars.update();
+}
+
+$window.on('debouncedresize', onResize);
 
 /* ====== ON SCROLL ====== */
 
-$window.on('scroll', function(e) {
+function onScroll() {
   latestKnownScrollY = window.scrollY;
   requestTick();
-});
+}
+
+$window.on('scroll', onScroll);
 
 function requestTick() {
   if (!ticking) {

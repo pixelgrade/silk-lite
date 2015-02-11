@@ -5,13 +5,12 @@ var fixedSidebars = (function() {
 	var $smallSidebar       = $('#jp-post-flair'),
 		smallSidebarPinned  = false,
 		smallSidebarPadding = 100,
-		smallSidebarOffset;
-
-	var $sidebar        = $('.sidebar--main'),
-		$main           = $('.site-main'),
-		mainHeight      = $main.outerHeight(),
-		sidebarPinned   = false,
-		sidebarPadding  = 60,
+		smallSidebarOffset,
+		$sidebar        	= $('.sidebar--main'),
+		$main           	= $('.site-main'),
+		mainHeight      	= $main.outerHeight(),
+		sidebarPinned   	= false,
+		sidebarPadding  	= 60,
 		sidebarBottom,
 		mainOffset,
 		sidebarOffset, 
@@ -148,7 +147,6 @@ var fixedSidebars = (function() {
 			smallSidebarOffset = $smallSidebar.offset();
 			smallSidebarHeight = $smallSidebar.outerHeight();
 		}
-
 
 	};
 

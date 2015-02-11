@@ -19,30 +19,22 @@ var masonry = (function() {
 			sidebarTop = $sidebar.offset().top;
 		}
 
-		$container.imagesLoaded(function() {
-			$container.masonry({
-				isAnimated: false,
-				itemSelector: '.grid__item',
-				hiddenStyle: {
-					opacity: 0
-				}
-			});
-
-			if (sidebarMasonry()) {
-				$sidebar.masonry({
-					isAnimated: false,
-					itemSelector: '.grid__item',
-					hiddenStyle: {
-						opacity: 0
-					}
-				});
-			}
-
-			bindEvents();
-			showBlocks($blocks);
-			initialized = true;
-			refresh();
+		$container.masonry({
+			itemSelector: '.grid__item',
+			transitionDuration: 0
 		});
+
+		if (sidebarMasonry()) {
+			$sidebar.masonry({
+				itemSelector: '.grid__item',
+				transitionDuration: 0
+			});
+		}
+
+		bindEvents();
+		showBlocks($blocks);
+		initialized = true;
+		refresh();
 	},
 
 	sidebarMasonry = function() {
@@ -50,8 +42,14 @@ var masonry = (function() {
 	},
 
 	bindEvents = function() {
-		$window.on('debouncedresize', refresh);
 		$body.on('post-load', onLoad);
+		$container.masonry('on', 'layoutComplete', function() {
+			setTimeout(function() {
+				browserSize();
+				fixedSidebars.refresh();
+				fixedSidebars.update();
+			}, 350);
+		});
 	},
 
 	refresh = function() {
@@ -68,7 +66,11 @@ var masonry = (function() {
 
 	showBlocks = function($blocks) {
 		if ( ! $.support.touch ) {
-			$blocks.addHoverAnimation();
+			$blocks.each(function(i, obj) {
+				var $post = $(obj);
+				animator.animatePost($post, i * 100);
+			});
+			// $blocks.addHoverAnimation();
 		}
 	},
 

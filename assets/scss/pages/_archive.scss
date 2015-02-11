@@ -15,6 +15,7 @@
 }
 
 .archive__grid {
+	transition: height .3s ease-in-out;
 
 	> .grid__item {
 		width: 100%;
@@ -110,6 +111,12 @@
 		position: relative;
 		margin-bottom: 3em;
 	}
+}
+
+.infinite-loader {
+	position: absolute;
+	top: 100%;
+	left: 50%;
 }
 
 #infinite-handle {

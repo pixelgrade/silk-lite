@@ -1,6 +1,6 @@
 var animator = (function() {
 
-	initialize = function() {
+	var initialize = function() {
 
 	},
 
@@ -249,12 +249,7 @@ var animator = (function() {
 
 		if ($posts.length) {
 
-			$posts.each(function(i, obj) {
-				var $post = $(obj),
-					delay = i * 100;
-
-				animatePost($post, delay);
-			});
+			masonry.init();
 
 		} else {
 			animateMainSingle();
@@ -331,7 +326,8 @@ var animator = (function() {
 	};
 
 	return {
-		animate: animate
+		animate: animate,
+		animatePost: animatePost
 	}
 
 })();
