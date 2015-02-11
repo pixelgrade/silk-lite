@@ -453,338 +453,346 @@ if (!Date.now) Date.now = function () {
       ticking = false;
   var animator = (function () {
 
-    initialize = function () {
+    var initialize = function () {
 
     },
+        
+        
+        animate = function () {
 
-    animate = function () {
+        var isSingle = $('.site-main--single').length,
+            hasSlider = $('.flexslider').length,
+            hasSidebar = $('.sidebar--main').length,
+            delay;
 
-      var isSingle = $('.site-main--single').length,
-          hasSlider = $('.flexslider').length,
-          hasSidebar = $('.sidebar--main').length,
-          delay;
+        animateTopBar();
+        setTimeout(animateLogo, 100);
+        setTimeout(animateMenu, 200);
 
-      animateTopBar();
-      setTimeout(animateLogo, 100);
-      setTimeout(animateMenu, 200);
+        if (hasSlider) {
+          setTimeout(animateSlider, 300);
+          setTimeout(animateMain, 600);
+          delay = 600;
+        } else {
+          setTimeout(animateMain, 300);
+          delay = 600;
+        }
 
-      if (hasSlider) {
-        setTimeout(animateSlider, 300);
-        setTimeout(animateMain, 600);
-        delay = 600;
-      } else {
-        setTimeout(animateMain, 300);
-        delay = 600;
-      }
+        if (hasSidebar) {
+          setTimeout(animateSidebar, delay + 200);
+          setTimeout(animateFooter, delay + 400);
+          delay = delay + 400;
+        } else {
+          setTimeout(animateFooter, delay + 200);
+          delay = delay + 200;
+        }
+        },
+        
+        
+        animateTopBar = function () {
+        $('.top-bar').velocity({
+          opacity: 1
+        }, {
+          duration: 300,
+          easing: "easeOutCubic"
+        });
+        },
+        
+        
+        animateLogo = function () {
 
-      if (hasSidebar) {
-        setTimeout(animateSidebar, delay + 200);
-        setTimeout(animateFooter, delay + 400);
-        delay = delay + 400;
-      } else {
-        setTimeout(animateFooter, delay + 200);
-        delay = delay + 200;
-      }
-    },
+        var $title = $('.site-title'),
+            $description = $('.site-description'),
+            $descText = $('.site-description-text'),
+            $after = $('.site-description-after'),
+            descWidth;
 
-    animateTopBar = function () {
-      $('.top-bar').velocity({
-        opacity: 1
-      }, {
-        duration: 300,
-        easing: "easeOutCubic"
-      });
-    },
+        $title.velocity({
+          opacity: 1
+        }, {
+          duration: 300,
+          easing: 'easeOutCubic'
+        });
 
-    animateLogo = function () {
+        if ($description.length) {
+          descWidth = $descText.outerWidth();
 
-      var $title = $('.site-title'),
-          $description = $('.site-description'),
-          $descText = $('.site-description-text'),
-          $after = $('.site-description-after'),
-          descWidth;
+          $('.site-description').velocity({
+            color: '#000000'
+          }, {
+            duration: 300,
+            delay: 100,
+            easing: 'easeOutCubic'
+          });
 
-      $title.velocity({
-        opacity: 1
-      }, {
-        duration: 300,
-        easing: 'easeOutCubic'
-      });
+          $after.css({
+            width: descWidth,
+            opacity: 1
+          });
 
-      if ($description.length) {
-        descWidth = $descText.outerWidth();
+          $after.velocity({
+            width: '100%'
+          }, {
+            duration: 300,
+            delay: 200,
+            easing: 'easeOutCubic'
+          });
+        }
+        },
+        
+        
+        animateMenu = function () {
 
-        $('.site-description').velocity({
-          color: '#000000'
+        $('.nav--main').velocity({
+          borderTopColor: '#e6e6e6'
+        }, {
+          duration: 300,
+          easing: 'easeOutCubic'
+        });
+
+        $('.nav--main > li').velocity({
+          opacity: 1
+        }, {
+          duration: 300,
+          delay: 100,
+          easing: 'easeOutCubic'
+        });
+        },
+        
+        
+        animateSlider = function () {
+
+        var $slider = $('.flexslider'),
+            $container = $slider.find('.flag__body'),
+            $thumbnail = $slider.find('.flag__img img'),
+            $border = $slider.find('.entry-thumbnail-border'),
+            $meta = $container.find('.entry-meta'),
+            $title = $container.find('.entry-title'),
+            $content = $container.find('.entry-content'),
+            $divider = $container.find('.divider.narrow'),
+            $dividerBig = $container.find('.divider.wide');
+
+        $thumbnail.add($meta).velocity({
+          opacity: 1
+        }, {
+          duration: 300,
+          easing: 'easeOutQuad'
+        });
+
+        $border.velocity({
+          borderWidth: 0,
+        }, {
+          duration: 300,
+          easing: 'easeOutQuad'
+        });
+
+
+        $title.velocity({
+          opacity: 1
+        }, {
+          duration: 400,
+          delay: 100,
+          easing: 'easeOutCubic'
+        });
+
+        $content.velocity({
+          opacity: 1
+        }, {
+          duration: 400,
+          delay: 200,
+          easing: 'easeOutCubic'
+        });
+
+        setTimeout(function () {
+          animateLargeDivider($dividerBig);
+        }, 300);
+
+        setTimeout(function () {
+          animateSmallDivider($divider);
+        }, 600);
+        },
+        
+        
+        animateSmallDivider = function ($divider) {
+
+        var $squareLeft = $divider.find('.square-left'),
+            $squareMiddle = $divider.find('.square-middle'),
+            $squareRight = $divider.find('.square-right'),
+            $lineLeft = $divider.find('.line-left'),
+            $lineRight = $divider.find('.line-right');
+
+        $lineLeft.velocity({
+          'transform-origin': '0 50%',
+          scaleX: 0
+        }, {
+          duration: 0
+        });
+
+        $lineRight.velocity({
+          'transform-origin': '100% 50%',
+          scaleX: 0
+        }, {
+          duration: 0
+        });
+
+        $squareLeft.add($squareMiddle).add($squareRight).velocity({
+          scale: 0,
+          'transform-origin': '50% 50%'
+        }, {
+          duration: 0
+        })
+
+        $divider.css({
+          opacity: 1
+        });
+
+        $lineLeft.add($lineRight).velocity({
+          scaleX: 1
+        }, {
+          duration: 300,
+          easing: 'easeOutCubic'
+        });
+
+        $squareLeft.add($squareRight).velocity({
+          scale: 1
+        }, {
+          duration: 300,
+          delay: 240,
+          easing: 'easeOutCubic'
+        });
+
+        $squareMiddle.velocity({
+          scale: 1
+        }, {
+          duration: 300,
+          delay: 340,
+          easing: 'easeOutCubic'
+        });
+        },
+        
+        
+        animateLargeDivider = function ($divider) {
+        var $square = $divider.find('.square'),
+            $line = $divider.find('.line');
+
+        $square.velocity({
+          'transform-origin': '50% 50%',
+          scale: 0
+        }, {
+          duration: 0
+        });
+
+        $line.velocity({
+          'transform-origin': '50% 50%',
+          scaleX: 0
+        }, {
+          duration: 0
+        });
+
+        $divider.css('opacity', 1);
+
+        $line.velocity({
+          scaleX: 1
+        }, {
+          duration: 200
+        });
+
+        $square.velocity({
+          scale: 1
+        }, {
+          duration: 300,
+          delay: 100
+        });
+        },
+        
+        
+        animateMain = function () {
+
+        var $posts = $('.archive__grid').children();
+
+        if ($posts.length) {
+
+          masonry.init();
+
+        } else {
+          animateMainSingle();
+        }
+        },
+        
+        
+        animateMainSingle = function () {
+
+        var $main = $('.site-main'),
+            $header = $main.find('.entry-header');
+        $meta = $header.find('.entry-meta'), $title = $header.find('.entry-title')
+        $excerpt = $title.next('.intro'), $content = $main.find('.entry-content, .entry-footer, .post-navigation, .comments-area');
+
+        $meta.velocity({
+          opacity: 1
+        }, {
+          duration: 300,
+          easing: 'easeOutCubic'
+        });
+
+        $title.velocity({
+          opacity: 1
         }, {
           duration: 300,
           delay: 100,
           easing: 'easeOutCubic'
         });
 
-        $after.css({
-          width: descWidth,
+        $excerpt.velocity({
           opacity: 1
-        });
-
-        $after.velocity({
-          width: '100%'
         }, {
           duration: 300,
           delay: 200,
           easing: 'easeOutCubic'
         });
-      }
-    },
 
-    animateMenu = function () {
-
-      $('.nav--main').velocity({
-        borderTopColor: '#e6e6e6'
-      }, {
-        duration: 300,
-        easing: 'easeOutCubic'
-      });
-
-      $('.nav--main > li').velocity({
-        opacity: 1
-      }, {
-        duration: 300,
-        delay: 100,
-        easing: 'easeOutCubic'
-      });
-    },
-
-    animateSlider = function () {
-
-      var $slider = $('.flexslider'),
-          $container = $slider.find('.flag__body'),
-          $thumbnail = $slider.find('.flag__img img'),
-          $border = $slider.find('.entry-thumbnail-border'),
-          $meta = $container.find('.entry-meta'),
-          $title = $container.find('.entry-title'),
-          $content = $container.find('.entry-content'),
-          $divider = $container.find('.divider.narrow'),
-          $dividerBig = $container.find('.divider.wide');
-
-      $thumbnail.add($meta).velocity({
-        opacity: 1
-      }, {
-        duration: 300,
-        easing: 'easeOutQuad'
-      });
-
-      $border.velocity({
-        borderWidth: 0,
-      }, {
-        duration: 300,
-        easing: 'easeOutQuad'
-      });
-
-
-      $title.velocity({
-        opacity: 1
-      }, {
-        duration: 400,
-        delay: 100,
-        easing: 'easeOutCubic'
-      });
-
-      $content.velocity({
-        opacity: 1
-      }, {
-        duration: 400,
-        delay: 200,
-        easing: 'easeOutCubic'
-      });
-
-      setTimeout(function () {
-        animateLargeDivider($dividerBig);
-      }, 300);
-
-      setTimeout(function () {
-        animateSmallDivider($divider);
-      }, 600);
-    },
-
-    animateSmallDivider = function ($divider) {
-
-      var $squareLeft = $divider.find('.square-left'),
-          $squareMiddle = $divider.find('.square-middle'),
-          $squareRight = $divider.find('.square-right'),
-          $lineLeft = $divider.find('.line-left'),
-          $lineRight = $divider.find('.line-right');
-
-      $lineLeft.velocity({
-        'transform-origin': '0 50%',
-        scaleX: 0
-      }, {
-        duration: 0
-      });
-
-      $lineRight.velocity({
-        'transform-origin': '100% 50%',
-        scaleX: 0
-      }, {
-        duration: 0
-      });
-
-      $squareLeft.add($squareMiddle).add($squareRight).velocity({
-        scale: 0,
-        'transform-origin': '50% 50%'
-      }, {
-        duration: 0
-      })
-
-      $divider.css({
-        opacity: 1
-      });
-
-      $lineLeft.add($lineRight).velocity({
-        scaleX: 1
-      }, {
-        duration: 300,
-        easing: 'easeOutCubic'
-      });
-
-      $squareLeft.add($squareRight).velocity({
-        scale: 1
-      }, {
-        duration: 300,
-        delay: 240,
-        easing: 'easeOutCubic'
-      });
-
-      $squareMiddle.velocity({
-        scale: 1
-      }, {
-        duration: 300,
-        delay: 340,
-        easing: 'easeOutCubic'
-      });
-    },
-
-    animateLargeDivider = function ($divider) {
-      var $square = $divider.find('.square'),
-          $line = $divider.find('.line');
-
-      $square.velocity({
-        'transform-origin': '50% 50%',
-        scale: 0
-      }, {
-        duration: 0
-      });
-
-      $line.velocity({
-        'transform-origin': '50% 50%',
-        scaleX: 0
-      }, {
-        duration: 0
-      });
-
-      $divider.css('opacity', 1);
-
-      $line.velocity({
-        scaleX: 1
-      }, {
-        duration: 200
-      });
-
-      $square.velocity({
-        scale: 1
-      }, {
-        duration: 300,
-        delay: 100
-      });
-    },
-
-    animateMain = function () {
-
-      var $posts = $('.archive__grid').children();
-
-      if ($posts.length) {
-
-        $posts.each(function (i, obj) {
-          var $post = $(obj),
-              delay = i * 100;
-
-          animatePost($post, delay);
+        $content.velocity({
+          opacity: 1
+        }, {
+          duration: 300,
+          delay: 300,
+          easing: 'easeOutCubic'
         });
-
-      } else {
-        animateMainSingle();
-      }
-    },
-
-    animateMainSingle = function () {
-
-      var $main = $('.site-main'),
-          $header = $main.find('.entry-header');
-      $meta = $header.find('.entry-meta'), $title = $header.find('.entry-title')
-      $excerpt = $title.next('.intro'), $content = $main.find('.entry-content, .entry-footer, .post-navigation, .comments-area');
-
-      $meta.velocity({
-        opacity: 1
-      }, {
-        duration: 300,
-        easing: 'easeOutCubic'
-      });
-
-      $title.velocity({
-        opacity: 1
-      }, {
-        duration: 300,
-        delay: 100,
-        easing: 'easeOutCubic'
-      });
-
-      $excerpt.velocity({
-        opacity: 1
-      }, {
-        duration: 300,
-        delay: 200,
-        easing: 'easeOutCubic'
-      });
-
-      $content.velocity({
-        opacity: 1
-      }, {
-        duration: 300,
-        delay: 300,
-        easing: 'easeOutCubic'
-      });
-    },
-
-    animatePost = function ($post, delay) {
-      $post.velocity({
-        opacity: 1
-      }, {
-        duration: 300,
-        delay: delay,
-        easing: 'easeOutCubic'
-      });
-    },
-
-    animateSidebar = function () {
-      $('.sidebar--main').velocity({
-        opacity: 1
-      }, {
-        duration: 300,
-        easing: 'easeOutCubic'
-      });
-    },
-
-    animateFooter = function () {
-      $('.site-footer').velocity({
-        opacity: 1
-      }, {
-        duration: 300,
-        easing: 'easeOutCubic'
-      });
-    };
+        },
+        
+        
+        animatePost = function ($post, delay) {
+        $post.velocity({
+          opacity: 1
+        }, {
+          duration: 300,
+          delay: delay,
+          easing: 'easeOutCubic'
+        });
+        },
+        
+        
+        animateSidebar = function () {
+        $('.sidebar--main').velocity({
+          opacity: 1
+        }, {
+          duration: 300,
+          easing: 'easeOutCubic'
+        });
+        },
+        
+        
+        animateFooter = function () {
+        $('.site-footer').velocity({
+          opacity: 1
+        }, {
+          duration: 300,
+          easing: 'easeOutCubic'
+        });
+        };
 
     return {
-      animate: animate
+      animate: animate,
+      animatePost: animatePost
     }
 
   })(); /* ====== Masonry Logic ====== */
@@ -807,30 +815,22 @@ if (!Date.now) Date.now = function () {
           sidebarTop = $sidebar.offset().top;
         }
 
-        $container.imagesLoaded(function () {
-          $container.masonry({
-            isAnimated: false,
-            itemSelector: '.grid__item',
-            hiddenStyle: {
-              opacity: 0
-            }
-          });
-
-          if (sidebarMasonry()) {
-            $sidebar.masonry({
-              isAnimated: false,
-              itemSelector: '.grid__item',
-              hiddenStyle: {
-                opacity: 0
-              }
-            });
-          }
-
-          bindEvents();
-          showBlocks($blocks);
-          initialized = true;
-          refresh();
+        $container.masonry({
+          itemSelector: '.grid__item',
+          transitionDuration: 0
         });
+
+        if (sidebarMasonry()) {
+          $sidebar.masonry({
+            itemSelector: '.grid__item',
+            transitionDuration: 0
+          });
+        }
+
+        bindEvents();
+        showBlocks($blocks);
+        initialized = true;
+        refresh();
         },
         
         
@@ -840,8 +840,14 @@ if (!Date.now) Date.now = function () {
         
         
         bindEvents = function () {
-        $window.on('debouncedresize', refresh);
         $body.on('post-load', onLoad);
+        $container.masonry('on', 'layoutComplete', function () {
+          setTimeout(function () {
+            browserSize();
+            fixedSidebars.refresh();
+            fixedSidebars.update();
+          }, 350);
+        });
         },
         
         
@@ -860,7 +866,11 @@ if (!Date.now) Date.now = function () {
         
         showBlocks = function ($blocks) {
         if (!$.support.touch) {
-          $blocks.addHoverAnimation();
+          $blocks.each(function (i, obj) {
+            var $post = $(obj);
+            animator.animatePost($post, i * 100);
+          });
+          // $blocks.addHoverAnimation();
         }
         },
         
@@ -1120,9 +1130,7 @@ if (!Date.now) Date.now = function () {
     var $smallSidebar = $('#jp-post-flair'),
         smallSidebarPinned = false,
         smallSidebarPadding = 100,
-        smallSidebarOffset;
-
-    var $sidebar = $('.sidebar--main'),
+        smallSidebarOffset, $sidebar = $('.sidebar--main'),
         $main = $('.site-main'),
         mainHeight = $main.outerHeight(),
         sidebarPinned = false,
@@ -1269,7 +1277,6 @@ if (!Date.now) Date.now = function () {
           smallSidebarHeight = $smallSidebar.outerHeight();
         }
 
-
         };
 
     return {
@@ -1327,25 +1334,33 @@ if (!Date.now) Date.now = function () {
     navigation.init();
     slider.init();
     wrapJetpackAfterContent();
-    masonry.init();
     styleArchiveWidget();
-    fixedSidebars.init();
+    fixedSidebars.update();
     animator.animate();
+
+    if (latestKnownScrollY) $window.trigger('scroll');
+
   });
 
   /* ====== ON RESIZE ====== */
 
-  $window.on('debouncedresize', function () {
+  function onResize() {
     browserSize();
+    masonry.refresh();
     fixedSidebars.refresh();
-  });
+    fixedSidebars.update();
+  }
+
+  $window.on('debouncedresize', onResize);
 
   /* ====== ON SCROLL ====== */
 
-  $window.on('scroll', function (e) {
+  function onScroll() {
     latestKnownScrollY = window.scrollY;
     requestTick();
-  });
+  }
+
+  $window.on('scroll', onScroll);
 
   function requestTick() {
     if (!ticking) {
