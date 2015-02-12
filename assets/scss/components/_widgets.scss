@@ -146,7 +146,7 @@
 
 
 
-/* Widget - archive */
+/* Widgets */
 
 .widget.shrink {
 
@@ -453,9 +453,10 @@
 			letter-spacing: 0.1em;
 		}
 	}
+}
 
-
-
+.widget_top-posts a {
+	display: block;
 }
 
 /* Footer sidebar widgets */

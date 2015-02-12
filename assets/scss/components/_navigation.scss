@@ -143,6 +143,11 @@
 	flex-direction: column;
 	justify-content: space-around;
 
+	.ie9 & {
+		display: inline-block;
+		vertical-align: middle;
+	}
+
 	> li {
 		// flex: 0 1 auto;\
 		margin-bottom: rem(30px);
