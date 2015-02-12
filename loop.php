@@ -24,17 +24,7 @@ while ( have_posts() ) : the_post(); ?>
 		get_template_part( 'content', get_post_format() );
 	?>
 
-<?php
-endwhile;
-
-$is_infinite = class_exists( 'Jetpack') && Jetpack::is_module_active( 'infinite-scroll' );
-
-if ($is_infinite) {
-echo '<div id="infinite-handle"><span class="handle__icon">';
-	get_template_part("assets/svg/clepsydra");
-	echo '</span><span class="handle__text">View More Articles</span></div>';
-}
-?>
+<?php endwhile;?>
 
 </div><!-- .archive__grid -->
 

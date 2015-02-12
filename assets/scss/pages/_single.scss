@@ -5,7 +5,7 @@
 	}
 
 	.entry-header{
-		@include rhythm(margin-bottom, 5);
+		@include rhythm(margin-bottom, 4);
 	}
 
 	.intro-paragraph {
@@ -53,7 +53,7 @@
 
 		p {
 			@include query-above($lap) {
-				@include rhythm(margin-bottom, 3);
+				@include rhythm(margin-bottom, 2.5);
 			}
 		}
 
@@ -377,10 +377,11 @@ span.pagination-title {
 }
 
 
-#jp-post-flair {
+.entry-content #jp-post-flair {
 	position: absolute;
 	top: 0;
 	left: 0;
+	padding-top: 0;
 
 	width: em(190px);
 }
