@@ -68,7 +68,7 @@
     }
 
     .entry-footer{
-		@extend %alpha;
+		// @extend %alpha;
 		@include fs(14px);
 		text-align: center;
 
@@ -79,16 +79,18 @@
 			}
 		}
 
-		a{
-			color: $dark;
-			text-decoration: none;
+		a {
+			@extend %smarter-links-underlines;
+		}
 
-			border-bottom: 1px solid $dark;
+		.separator-wrapper--accent {
+			margin-top: 0;
+			margin-bottom: rem(18px);
 		}
     }
 
     .comments-area{
-		@include rhythm(margin-top, 3);
+		margin-top: rem(-6px);
 		@include rhythm(padding-bottom, 3);
     }
 
@@ -122,11 +124,6 @@
 			margin-bottom: 0.75em;
 		}
 	}
-}
-
-.single .post-edit-link {
-	margin: 0 $u/2;
-	text-decoration: underline;
 }
 
 .post-password-form, .search-form {
