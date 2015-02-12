@@ -21,6 +21,8 @@
     line-height: 0.85;
     letter-spacing: 0.03em;
 
+    @extend %h1;
+
     .site-logo-link + & {
         margin-top: rhythm(1);
     }

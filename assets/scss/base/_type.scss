@@ -45,9 +45,9 @@ body {
 
 /* Headings */
 
-h1, .h1 { 
+h1, %h1 { 
     @extend %alpha;
-    @extend .color-accent;
+    @extend %color-accent;
     @extend .italic;
     font-size: rem(45px);
     line-height:1.25;
@@ -55,9 +55,9 @@ h1, .h1 {
     margin-bottom: rhythm(1);
 }
 
-h2, .h2 {
+h2, %h2 {
     @extend %alpha;
-	@extend .color-accent;
+	@extend %color-accent;
 	@extend .italic;
     font-size: rem(30px);
     line-height: 1.25;
@@ -65,16 +65,16 @@ h2, .h2 {
     margin-bottom: rhythm(1);
 }
 
-h3, .h3 {
+h3, %h3 {
     @extend %alpha;
     font-size: rem(20px);
     margin-top: rhythm(2);
     margin-bottom: rhythm(1);
 }
 
-h4, .h4 {
+h4, %h4 {
     @extend %gamma;
-    @extend .color-accent;
+    @extend %color-accent;
     @extend .caps;
     font-style: normal;
     font-size: rem(11px);
@@ -134,13 +134,12 @@ p {
 
 a {
 	text-decoration: none;
-	// @extend .color-accent;
 	color: $black;
 	font-weight: 400;
 	
 	transition: all 0.15s;
 
-	h1 &, .h1 &, h2 &, h3 & {
+	h1 &, .site-title &, h2 &, h3 & {
 		color: $accent; 
 	}
 

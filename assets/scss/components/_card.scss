@@ -19,7 +19,7 @@
 	}
 
 	.entry-title {
-		@extend .h2;
+		@extend %h2;
 		margin-top: 0;
 	}
 
