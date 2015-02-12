@@ -72,8 +72,19 @@ function silk_has_featured_posts( $minimum = 1 ) {
 	return true;
 }
 
+/*
+ * Change the Jetpack Infinite Scroll load more button markup
+ */
 function silk_filter_jetpack_infinite_scroll_js_settings( $settings ) {
-	$settings['text'] = __( 'View More Articles', 'silk_txtd' );
+	//get the path to the file holding the svg
+	$clepsydra_template = locate_template( "assets/svg/clepsydra.php" );
+	$clepsydra = '';
+	//if the file was found save it's contents into the variable
+	if ( false !== $clepsydra_template ) {
+		$clepsydra = file_get_contents( locate_template( "assets/svg/clepsydra.php" ) );
+	}
+
+	$settings['text'] = '<span class="handle__icon">' . $clepsydra . '</span><span class="handle__text">' . __( 'View More Articles', 'silk_txtd' ) .'</span>';
 
 	return $settings;
 }
