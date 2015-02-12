@@ -6,14 +6,6 @@
 	z-index: 100;
 	background: white;
 
-	.menu-item {
-		position: relative;
-
-		&:hover {
-			z-index: 10;
-		}
-	}
-
 	> .menu-item:hover > a {
 		color: $accent;
 	}

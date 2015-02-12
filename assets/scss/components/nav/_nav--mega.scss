@@ -25,6 +25,15 @@
 		}
 	}
 
+	.menu-item {
+		position: relative;
+		z-index: 9;
+
+		&:hover {
+			z-index: 10;
+		}
+	}
+
 	.menu-link {
 		@extend %delta;
 		color: currentColor;
@@ -58,7 +67,7 @@
 	.entry-meta {
 		@extend %gamma;
 	}
-
+ 
 	@include query-above($desk) {	
 		position: static !important;
 

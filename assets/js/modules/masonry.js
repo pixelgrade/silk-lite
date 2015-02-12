@@ -7,12 +7,14 @@ var masonry = (function() {
 		$blocks			= $container.children().addClass('post--animated  post--loaded'),
 		initialized		= false,
 		containerTop,
+		containerBottom,
 		sidebarTop,
 
 	init = function() {
 
 		if ($container.length) {
 			containerTop = $container.offset().top;
+			containerBottom = containerTop + $container.outerHeight();
 		}
 
 		if ($sidebar.length) {
@@ -38,12 +40,12 @@ var masonry = (function() {
 	},
 
 	sidebarMasonry = function() {
-		return $sidebar.length && sidebarTop > containerTop;
+		return $sidebar.length && sidebarTop >= containerBottom;
 	},
 
 	bindEvents = function() {
 		$body.on('post-load', onLoad);
-		$container.masonry('on', 'layoutComplete', function() {
+		$container.masonry('on', 'layoutComplete', function() { 
 			setTimeout(function() {
 				browserSize();
 				fixedSidebars.refresh();

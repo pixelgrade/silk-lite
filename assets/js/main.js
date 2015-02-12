@@ -803,12 +803,13 @@ if (!Date.now) Date.now = function () {
         $sidebar = $('.sidebar--main'),
         $blocks = $container.children().addClass('post--animated  post--loaded'),
         initialized = false,
-        containerTop, sidebarTop,
+        containerTop, containerBottom, sidebarTop,
         
         init = function () {
 
         if ($container.length) {
           containerTop = $container.offset().top;
+          containerBottom = containerTop + $container.outerHeight();
         }
 
         if ($sidebar.length) {
@@ -835,7 +836,7 @@ if (!Date.now) Date.now = function () {
         
         
         sidebarMasonry = function () {
-        return $sidebar.length && sidebarTop > containerTop;
+        return $sidebar.length && sidebarTop >= containerBottom;
         },
         
         
