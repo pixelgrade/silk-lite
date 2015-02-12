@@ -1,3 +1,31 @@
+// #TYPOGRAPHY
+
+// Headings
+%alpha {
+    font-family: "Playfair Display", serif;
+    font-weight: normal;
+    -webkit-font-smoothing: auto;
+}
+
+// Body Text
+// Meta Data
+%beta, %gamma {
+    font-family: 'Merriweather', serif;
+    font-weight: 300;
+}
+
+// Menu
+// Footer
+%delta {
+	font-family: "Open Sans", sans-serif;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+}
+
+
+
+
+
 html {
 	font-size: percentage($base-font-size / 16px);
     line-height: $base-line-height / $base-font-size;
@@ -12,33 +40,17 @@ body {
 	color: $dark;
 }
 
-%alpha {
-    font-family: "Playfair Display", serif;
-    font-weight: normal;
-    -webkit-font-smoothing: auto;
-}
 
-%beta {
-    font-family: 'Merriweather', serif;
-}
-
-%gamma {
-	@extend %beta;
-}
-
-%delta {
-	font-family: "Open Sans", sans-serif;
-	text-transform: uppercase;
-	letter-spacing: 0.1em;
-}
 
 
 /* Headings */
+
 h1, .h1 { 
     @extend %alpha;
     @extend .color-accent;
     @extend .italic;
     font-size: rem(45px);
+    line-height:1.25;
     margin-top: rhythm(2);
     margin-bottom: rhythm(1);
 }
@@ -48,6 +60,7 @@ h2, .h2 {
 	@extend .color-accent;
 	@extend .italic;
     font-size: rem(30px);
+    line-height: 1.25;
     margin-top: rhythm(2);
     margin-bottom: rhythm(1);
 }
@@ -71,7 +84,10 @@ h4, .h4 {
 
 
 
+
+
 /* Paragraphs */
+
 p {
 	margin-top: 0;
 	font-size: 1rem;
@@ -83,10 +99,20 @@ p {
     }
 }
 
+
+
+
+
 /* Links */
 a {
 	text-decoration: none;
-	@extend .color-accent;
+	// @extend .color-accent;
+	color: black;
+	font-weight: 400;
+
+	.entry-content {
+
+	}
 }
 
 
@@ -215,6 +241,10 @@ table {
 		}
 	}
 }
+
+
+
+
 
 /* Code */
 
