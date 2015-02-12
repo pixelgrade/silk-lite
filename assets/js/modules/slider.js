@@ -6,6 +6,11 @@ var slider = (function () {
 
     init = function() {
 
+        if (!useSlider()) {
+            initFallback();
+            return;
+        }
+
         if ($.flexslider !== undefined && $sliders.length) {
 
             $sliders.flexslider({
@@ -21,6 +26,15 @@ var slider = (function () {
                 }
             });
         }
+    },
+
+    initFallback = function() {
+        $sliders.closest('.featured-content').insertAfter('#masthead').addClass('featured-content--scroll');
+    },
+
+    useSlider = function() {
+        // return !(touch && windowWidth < 800);
+        return !(windowWidth < 800);
     };
 
     return { 
