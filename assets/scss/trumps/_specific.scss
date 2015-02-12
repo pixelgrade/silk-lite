@@ -1,7 +1,7 @@
 .intro {
     margin-bottom: 2.25em;
-    font-size: (23/16) + em;
-    -webkit-font-smoothing: auto;
+    font-size: (21/16) + em;
+    line-height: 1.75;
 
     @include query-below($lap) {
         font-size: 1.2em;
