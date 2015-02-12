@@ -153,22 +153,22 @@
 		padding: 0;
 		height: 16px;
 		width: 15px;
-
-		-webkit-animation: clep-anim $clep-anim-duration infinite;
-		-moz-animation:    clep-anim $clep-anim-duration infinite;
-		-o-animation:      clep-anim $clep-anim-duration infinite;
-		animation:		   clep-anim $clep-anim-duration infinite;
-
 		transform-origin: center center;
-	}
 
-	$fill-anim-duration: 3s;
+		.loading-posts & {
+			-webkit-animation: clep-anim $clep-anim-duration infinite;
+			-moz-animation:    clep-anim $clep-anim-duration infinite;
+			-o-animation:      clep-anim $clep-anim-duration infinite;
+			animation:		   clep-anim $clep-anim-duration infinite;
+		}
+		
+	}
 	
-	#fill {
-		-webkit-animation: fill-anim $fill-anim-duration infinite;
-		-moz-animation:    fill-anim $fill-anim-duration infinite;
-		-o-animation:      fill-anim $fill-anim-duration infinite;
-		animation:		   fill-anim $fill-anim-duration infinite;
+	.loading-posts & #fill {
+		-webkit-animation: fill-anim $clep-anim-duration infinite;
+		-moz-animation:    fill-anim $clep-anim-duration infinite;
+		-o-animation:      fill-anim $clep-anim-duration infinite;
+		animation:		   fill-anim $clep-anim-duration infinite;
 	}
 }
 
