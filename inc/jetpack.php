@@ -16,6 +16,7 @@ function silk_jetpack_setup() {
 		'container' => 'posts', //here is where the posts are - help yourself
 		'wrapper'   => false, //we don't need a wrapper because it would mess with the masonry
 		'footer'    => 'page', //match footer width to this id
+		'click_handle' => false, //tell Jetpack not to output the load more button, we will do that
 	) );
 
 	/**
@@ -70,11 +71,4 @@ function silk_has_featured_posts( $minimum = 1 ) {
 		return false;
 
 	return true;
-}
-
-function silk_filter_jetpack_infinite_scroll_js_settings( $settings ) {
-	$settings['text'] = __( 'View More Articles', 'silk_txtd' );
-
-	return $settings;
-}
-add_filter( 'infinite_scroll_js_settings', 'silk_filter_jetpack_infinite_scroll_js_settings' ); ?>
+} ?>

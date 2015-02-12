@@ -20,6 +20,7 @@ $window.load(function() {
   fixedSidebars.update();
   animator.animate();
   scrollToTop();
+  infinityHandler();
 
   if (latestKnownScrollY) $window.trigger('scroll');
 
