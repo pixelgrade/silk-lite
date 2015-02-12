@@ -385,7 +385,9 @@ if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_
 						$menuposts->the_post();
 
 						if ( has_post_thumbnail() ) {
-							$menu_post_image = '<a href="' . get_permalink() . '" title="' . the_title_attribute( array( 'echo' => false ) ) .'"><div class="entry-image">' . get_the_post_thumbnail( get_the_ID(), 'silk-mega-menu-big-image' ) . '</div></a>' . PHP_EOL;
+							$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), 'silk-mega-menu-big-image' );
+
+							$menu_post_image = '<a href="' . get_permalink() . '" title="' . the_title_attribute( array( 'echo' => false ) ) .'" class="entry-image" style="background-image:url('. $thumb[0] .')"></a>' . PHP_EOL;
 						} else {
 							$menu_post_image = '';
 						}
@@ -410,7 +412,7 @@ if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_
 							while ( $menuposts->have_posts() )  : $menuposts->the_post();
 
 								if ( has_post_thumbnail() ) {
-									$menu_post_image = '<a href="' . get_permalink() . '" title="' . the_title_attribute( array( 'echo' => false ) ) .'">' .get_the_post_thumbnail( get_the_ID(), 'silk-small-image' ) . '</a>' . PHP_EOL;
+									$menu_post_image = '<a href="' . get_permalink() . '" title="' . the_title_attribute( array( 'echo' => false ) ) .'">' .get_the_post_thumbnail( get_the_ID(), 'silk-tiny-image' ) . '</a>' . PHP_EOL;
 								} else {
 									$menu_post_image = '';
 								}

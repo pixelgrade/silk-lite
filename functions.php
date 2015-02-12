@@ -45,17 +45,23 @@ if ( ! function_exists( 'silk_setup' ) ) :
 		 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 		 */
 		add_theme_support( 'post-thumbnails' );
-		//used for the thumbnails of next/prev post
-		add_image_size( 'silk-tiny-image', 90, 90, true );
-		//used for the small post thumbnails of the mega menu posts
-		add_image_size( 'silk-small-image', 115, 115, false );
+
+		//used for the small post thumbnails of the mega menu and next/prev post
+		add_image_size( 'silk-tiny-image', 125, 90, true );
+
+		//used for related posts sidebar
+		add_image_size( 'silk-small-image', 190, 85, true );
+
 		//used for the post thumbnail of the big mega menu post
 		add_image_size( 'silk-mega-menu-big-image', 340, 340, false );
+
 		//used as featured image for posts on archive pages
 		//also for the background image of About Me widget
 		add_image_size( 'silk-masonry-image', 450, 9999, false );
+
 		//used for the post thumbnail of the featured posts in the home slider
 		add_image_size( 'silk-slider-image', 650, 430, false );
+
 		//used for the post thumbnail of posts on archives when displayed on a single column (no masonry)
 		add_image_size( 'silk-single-image', 1024, 9999, false );
 		add_image_size( 'silk-site-logo', 1000, 500, false );

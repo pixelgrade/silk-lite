@@ -117,8 +117,8 @@
 }
 
 .submenu__card {
-	display: inline-block;	
-	width: rem(340px);
+	// display: inline-block;	
+	width: rem(300px);
 
 	.sub-menu + & {
 		margin-left: rem(55px);
@@ -128,7 +128,7 @@
 
 .submenu__thumbs {
 	display: inline-block;	
-	width: rem(380px);
+	width: rem(420px);
 	list-style: none;
 	margin: 0;
 
@@ -143,8 +143,18 @@
 	flex-direction: column;
 	justify-content: space-around;
 
+	.ie9 & {
+		display: inline-block;
+		vertical-align: middle;
+	}
+
 	> li {
-		// flex: 0 1 auto;
+		// flex: 0 1 auto;\
+		margin-bottom: rem(30px);
+
+		&:last-child {
+			margin-bottom: 0;
+		}
 	}
 }
 

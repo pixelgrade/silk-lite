@@ -1,13 +1,12 @@
 <?php
 /**
  * The header for our theme.
- *
  * Displays all of the <head> section and everything up till <div id="content">
- *
  * @package Silk
  */
 ?><!DOCTYPE html>
-<html <?php language_attributes(); ?>>
+<!--[if IE 9]> <html class="ie9 lt-ie10" <?php language_attributes(); ?>> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html <?php language_attributes(); ?>> <!--<![endif]-->
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
