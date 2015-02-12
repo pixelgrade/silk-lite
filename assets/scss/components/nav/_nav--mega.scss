@@ -27,9 +27,9 @@
 
 	.menu-item {
 		position: relative;
-		z-index: 9;
 
-		&:hover {
+		&:hover,
+		&.hover {
 			z-index: 10;
 		}
 	}
