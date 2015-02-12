@@ -110,6 +110,14 @@ if ( ! function_exists( 'silk_setup' ) ) :
 			'default-color' => 'ffffff',
 			'default-image' => '',
 		) ) );
+
+		add_theme_support( 'infinite-scroll', array(
+			'type'         => 'click',
+			'container'    => 'posts',
+			'wrapper'      => false,
+			'footer'       => false,
+			'click_handle' => false,
+		) );
 	}
 endif; // silk_setup
 add_action( 'after_setup_theme', 'silk_setup' );
