@@ -1300,6 +1300,11 @@ if (!Date.now) Date.now = function () {
         
         init = function () {
 
+        if (!useSlider()) {
+          initFallback();
+          return;
+        }
+
         if ($.flexslider !== undefined && $sliders.length) {
 
           $sliders.flexslider({
@@ -1316,6 +1321,17 @@ if (!Date.now) Date.now = function () {
             }
           });
         }
+        },
+        
+        
+        initFallback = function () {
+        $sliders.closest('.featured-content').insertAfter('#masthead').addClass('featured-content--scroll');
+        },
+        
+        
+        useSlider = function () {
+        // return !(touch && windowWidth < 800);
+        return !(windowWidth < 800);
         };
 
     return {

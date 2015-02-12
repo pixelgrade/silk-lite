@@ -29,6 +29,10 @@
 		visibility: visible;
 	}
 
+	@include query-below($lap) {
+		display: none;
+	}
+
 	@for $i from 1 through 10 {
 		li:nth-child( #{$i} ) {
 			transition-delay: $i * 20ms;
