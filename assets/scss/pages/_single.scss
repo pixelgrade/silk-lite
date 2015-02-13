@@ -68,9 +68,10 @@
     }
 
     .entry-footer{
-		// @extend %alpha;
 		@include fs(14px);
 		text-align: center;
+
+		margin: rem(40px) 0;
 
 		// making room for the left sidebar (jetpack)
 		@include query-above($lap) {
