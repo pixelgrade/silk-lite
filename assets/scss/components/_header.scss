@@ -31,6 +31,26 @@
         display: block;
         margin-top: rhythm(-1);
     }
+
+    svg {
+        display: none;
+    }
+}
+
+html.svg .site-title {
+    span {
+        display: none;
+    }
+
+    svg {
+        display: inline-block;
+
+        text {
+            fill: $accent;
+            stroke: #fff;
+            stroke-width: 2px;
+        }
+    }
 }
 
 .site-header .site-logo,
