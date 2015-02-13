@@ -98,7 +98,9 @@ function infinityHandler() {
   });
 
   $(document.body).on("post-load", function() {
+    setTimeout(function() {
       $('body').removeClass('loading-posts');
+    }, 1500);
   });
 }
 
