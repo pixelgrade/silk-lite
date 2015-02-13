@@ -26,18 +26,26 @@
 	<header id="masthead" class="site-header" role="banner">
 
 		<div class="site-branding">
-			<?php if ( function_exists( 'jetpack_the_site_logo' ) ) { //display the Site Logo if present
+			<?php if ( function_exists( 'jetpack_the_site_logo' ) ) { // display the Site Logo if present
 				jetpack_the_site_logo();
-			}
+			} ?>
 
-			//on the front page and home page we use H1 for the title
-			if ( is_front_page() && is_home() ) : ?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<?php else : ?>
-				<div class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></div>
-			<?php endif;
+			<?php 
+			// on the front page and home page we use H1 for the title
+			echo ( is_front_page() && is_home() ) ? '<h1 class="site-title">' : '<div class="site-title">';
+			?>
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+				<span><?php bloginfo( 'name' ); ?></span>
+				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<text x="0" y="140">
+						<?php bloginfo( 'name' ); ?>
+					</text>
+				</svg>
+			</a>
 
-			$description = get_bloginfo( 'description', 'display' );
+			<?php echo ( is_front_page() && is_home() ) ? '</h1>' : '</div>' ?>
+
+			<?php $description = get_bloginfo( 'description', 'display' );
 			if ( $description || is_customize_preview() ) : ?>
 
 				<p class="site-description">
