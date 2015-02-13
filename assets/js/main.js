@@ -871,7 +871,7 @@ if (!Date.now) Date.now = function () {
             var $post = $(obj);
             animator.animatePost($post, i * 100);
           });
-          // $blocks.addHoverAnimation();
+          $blocks.addHoverAnimation();
         }
         },
         
@@ -902,10 +902,15 @@ if (!Date.now) Date.now = function () {
 
     return this.each(function (i, obj) {
 
-      var $obj = $(obj);
+      var $obj = $(obj),
+          $top = $obj.find('.entry-header'),
+          $img = $obj.find('.entry-featured'),
+          $border = $obj.find('.entry-image-border'),
+          $content = $obj.find('.entry-content'),
+          $bottom = $content.children().not($img);
 
       // if we don't have have elements that need to be animated return
-      if (!$obj.length) {
+      if (!$obj.length || !$img.length) {
         return;
       }
 
@@ -918,11 +923,62 @@ if (!Date.now) Date.now = function () {
       });
 
       function animateHoverIn() {
+        $top.velocity({
+          translateY: 10
+        }, {
+          duration: 200,
+          easing: 'easeOutQuad'
+        });
 
+        $border.velocity({
+          'outline-width': 1
+        }, {
+          duration: 0
+        });
+
+        $border.velocity({
+          'border-width': 10
+        }, {
+          duration: 100,
+          easing: 'easeOutQuad'
+        });
+
+        $bottom.velocity({
+          translateY: -10
+        }, {
+          duration: 200,
+          easing: 'easeOutQuad'
+        });
       }
 
       function animateHoverOut() {
+        $top.velocity({
+          translateY: 0
+        }, {
+          duration: 200,
+          easing: 'easeInQuad'
+        });
 
+        $border.velocity({
+          'border-width': 0
+        }, {
+          duration: 100,
+          delay: 100,
+          easing: 'easeInQuad'
+        });
+
+        $border.velocity({
+          'outline-width': 0
+        }, {
+          duration: 0
+        });
+
+        $bottom.velocity({
+          translateY: 0
+        }, {
+          duration: 200,
+          easing: 'easeInQuad'
+        });
       }
 
     });
@@ -1139,9 +1195,11 @@ if (!Date.now) Date.now = function () {
         smallSidebarOffset, $sidebar = $('.sidebar--main'),
         $main = $('.site-main'),
         mainHeight = $main.outerHeight(),
+        mainOffset, mainTop = $main.offset().top,
+        mainBottom = mainTop + mainHeight,
         sidebarPinned = false,
         sidebarPadding = 60,
-        sidebarBottom, mainOffset, sidebarOffset, sidebarHeight,
+        sidebarBottom, sidebarHeight, sidebarOffset, sidebarTop, sidebarBottom,
         
         previousTop = 0,
         animating = false,
@@ -1156,8 +1214,90 @@ if (!Date.now) Date.now = function () {
          */
         
         init = function () {
+
+        if ($sidebar.length) {
+          sidebarOffset = $sidebar.offset();
+          sidebarTop = sidebarOffset.top;
+          sidebarHeight = $sidebar.outerHeight();
+          sidebarBottom = sidebarTop + sidebarHeight;
+        }
+        styleWidgets();
         refresh();
         initialized = true;
+        },
+        
+        
+        
+        
+        /**
+         * Adding a class and some mark-up to the
+         * archive widget to make it look splendid
+         */
+        
+        styleWidgets = function () {
+
+        if ($.support.touch) {
+          return;
+        }
+
+        var $widgets = $sidebar.find('.widget_categories, .widget_archive, .widget_tag_cloud'),
+            separatorMarkup = '<span class="separator  separator--text" role="presentation"><span>More</span></a>';
+
+        $widgets.each(function () {
+
+          var $widget = $(this),
+              widgetHeight = $widget.outerHeight(),
+              newHeight = 220,
+              heightDiffrence = widgetHeight - newHeight,
+              widgetWidth = $widget.outerWidth();
+
+          if (widgetHeight > widgetWidth) {
+
+            $widget.data('heightDiffrence', heightDiffrence);
+            $widget.css('max-height', newHeight);
+
+            $widget.addClass('shrink');
+            $widget.append(separatorMarkup);
+            refresh();
+            masonry.refresh();
+
+            $widget.find('a').focus(function () {
+              $widget.removeClass('shrink').addClass('focused');
+            });
+
+            $widget.on('mouseenter', function () {
+
+              $main.css({
+                'paddingBottom': $sidebar.offset().top + sidebarHeight + heightDiffrence - mainBottom
+              });
+
+              $widget.addClass('focused');
+              $widget.css({
+                'max-height': widgetHeight
+              });
+
+              setTimeout(function () {
+                refresh();
+                update();
+              }, 600);
+            });
+
+            $widget.on('mouseleave', function () {
+              $main.css({
+                'paddingBottom': ''
+              })
+              $widget.removeClass('focused');
+              $widget.css('max-height', newHeight);
+
+              setTimeout(function () {
+                refresh();
+                update();
+              }, 600);
+            });
+          }
+
+        });
+
         },
         
         
@@ -1172,10 +1312,10 @@ if (!Date.now) Date.now = function () {
           init();
         }
 
-        var windowBottom = latestKnownScrollY + windowHeight,
-            sidebarBottom = sidebarHeight + sidebarOffset.top + sidebarPadding,
-            mainBottom = mainHeight + sidebarOffset.top + sidebarPadding,
-            newTop;
+        var windowBottom = latestKnownScrollY + windowHeight;
+
+        sidebarBottom = sidebarHeight + sidebarOffset.top + sidebarPadding;
+        mainBottom = mainHeight + sidebarOffset.top + sidebarPadding;
 
         if (mainOffset.top != sidebarOffset.top || animating) {
           return;
@@ -1266,6 +1406,7 @@ if (!Date.now) Date.now = function () {
           sidebarPinned = false;
           sidebarOffset = $sidebar.offset();
           sidebarHeight = $sidebar.outerHeight();
+          sidebarBottom = sidebarOffset.top + sidebarHeight;
           mainHeight = $main.outerHeight();
 
           $sidebar.css({
@@ -1356,7 +1497,6 @@ if (!Date.now) Date.now = function () {
     navigation.init();
     slider.init();
     wrapJetpackAfterContent();
-    styleWidgets();
     fixedSidebars.update();
     animator.animate();
     scrollToTop();
@@ -1430,36 +1570,6 @@ if (!Date.now) Date.now = function () {
       }
     }
     return false;
-  }
-
-
-  /**
-   * Adding a class and some mark-up to the
-   * archive widget to make it look splendid
-   */
-
-  function styleWidgets() {
-
-    if ($.support.touch) {
-      return;
-    }
-
-    var $widgets = $('.sidebar--main .widget_categories, .sidebar--main .widget_archive, .widget_tag_cloud');
-    var separatorMarkup = '<span class="separator  separator--text" role="presentation"><span>More</span></a>';
-
-    $widgets.each(function () {
-      if ($(this).height() > $(this).width()) {
-        $(this).addClass('shrink');
-        $(this).append(separatorMarkup);
-        fixedSidebars.refresh();
-        masonry.refresh();
-
-        $(this).find('a').focus(function () {
-          $(this).removeClass('shrink').addClass('focused');
-        });
-      }
-    });
-
   }
 
   /**

@@ -26,9 +26,10 @@ if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 
 	<div class="entry-content">
 		<?php if ( has_post_thumbnail() ) { ?>
-			<div class="entry-featured  entry-thumbnail">
+			<a href="<?php the_permalink(); ?>" class="entry-featured  entry-thumbnail">
 				<?php the_post_thumbnail( $thumbnail_size ); ?>
-			</div>
+				<div class="entry-image-border"></div>
+			</a>
 		<?php }
 
 		global $post;

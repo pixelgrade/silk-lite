@@ -72,7 +72,7 @@ var masonry = (function() {
 				var $post = $(obj);
 				animator.animatePost($post, i * 100);
 			});
-			// $blocks.addHoverAnimation();
+			$blocks.addHoverAnimation();
 		}
 	},
 
@@ -102,10 +102,15 @@ $.fn.addHoverAnimation = function() {
 
 	return this.each(function(i, obj) {
 
-	    var $obj = $(obj);
+	    var $obj 		= $(obj),
+	    	$top    	= $obj.find('.entry-header'),
+	    	$img 		= $obj.find('.entry-featured'),
+	    	$border		= $obj.find('.entry-image-border'),
+	    	$content 	= $obj.find('.entry-content'),
+	    	$bottom 	= $content.children().not($img);
 
 	    // if we don't have have elements that need to be animated return
-	    if ( ! $obj.length ) {
+	    if ( !$obj.length || !$img.length ) {
 			return;
 	    }
 
@@ -118,11 +123,62 @@ $.fn.addHoverAnimation = function() {
 	    });
 
 	    function animateHoverIn() {
+	    	$top.velocity({
+	    		translateY: 10
+	    	}, {
+	    		duration: 200,
+	    		easing: 'easeOutQuad'
+	    	});
 
+	    	$border.velocity({
+	    		'outline-width': 1
+	    	}, {
+	    		duration: 0
+	    	});
+
+	    	$border.velocity({
+	    		'border-width': 10
+	    	}, {
+	    		duration: 100,
+	    		easing: 'easeOutQuad'
+	    	});
+
+	    	$bottom.velocity({
+	    		translateY: -10
+	    	}, {
+	    		duration: 200,
+	    		easing: 'easeOutQuad'
+	    	});
 	    }
 
 	    function animateHoverOut() {
+	    	$top.velocity({
+	    		translateY: 0
+	    	}, {
+	    		duration: 200,
+	    		easing: 'easeInQuad'
+	    	});
 
+	    	$border.velocity({
+	    		'border-width': 0
+	    	}, {
+	    		duration: 100,
+	    		delay: 100,
+	    		easing: 'easeInQuad'
+	    	});
+
+	    	$border.velocity({
+	    		'outline-width': 0
+	    	}, {
+	    		duration: 0
+	    	});
+
+	    	$bottom.velocity({
+	    		translateY: 0
+	    	}, {
+	    		duration: 200,
+	    		easing: 'easeInQuad'
+	    	});
 	    }
 
 	});

@@ -37,35 +37,6 @@ function getSupportedTransform() {
   return false;
 }
 
-
-/**
- * Adding a class and some mark-up to the
- * archive widget to make it look splendid
- */
-function styleWidgets() {
-
-  if ($.support.touch) {
-    return;
-  }
-
-  var $widgets = $('.sidebar--main .widget_categories, .sidebar--main .widget_archive, .widget_tag_cloud');
-  var separatorMarkup = '<span class="separator  separator--text" role="presentation"><span>More</span></a>';
-
-  $widgets.each(function(){
-    if( $(this).height() > $(this).width() ) {
-      $(this).addClass('shrink');
-      $(this).append(separatorMarkup);
-      fixedSidebars.refresh();
-      masonry.refresh();
-
-      $(this).find('a').focus(function () {
-        $(this).removeClass('shrink').addClass('focused');
-      });
-    }
-  });
-
-}
-
 /**
  * Wrap Jetpack's related posts and
  * Sharedaddy sharing into one div
