@@ -45,7 +45,8 @@ var masonry = (function() {
 
 	bindEvents = function() {
 		$body.on('post-load', onLoad);
-		$container.masonry('on', 'layoutComplete', function() { 
+
+		$container.masonry('on', 'layoutComplete', function() {
 			setTimeout(function() {
 				browserSize();
 				fixedSidebars.refresh();
@@ -82,7 +83,6 @@ var masonry = (function() {
 			$container.masonry('appended', $newBlocks, true).masonry('layout');
 			showBlocks($newBlocks);
 		});
-
 	};
 
 	return {
