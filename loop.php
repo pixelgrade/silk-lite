@@ -29,11 +29,16 @@ endwhile;
 
 //only display the load more button when Infinite Scroll is active
 $is_infinite = class_exists( 'Jetpack') && Jetpack::is_module_active( 'infinite-scroll' );
-if ( true === $is_infinite ) {
-	echo '<div id="infinite-handle"><span class="handle__icon">';
-	get_template_part("assets/svg/clepsydra");
-	echo '</span><span class="handle__text">' . __( 'View More Articles', 'silk_txtd' ) .'</span></div>';
-} ?>
+if ( true === $is_infinite ) : ?>
+
+	<div id="infinite-handle">
+		<span class="handle__icon">
+			<?php get_template_part("assets/svg/clepsydra"); ?>
+		</span>
+		<span class="handle__text"><?php _e( 'View More Articles', 'silk_txtd' ); ?></span>
+	</div>
+
+<?php endif; ?>
 
 </div><!-- .archive__grid -->
 

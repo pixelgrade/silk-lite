@@ -235,23 +235,6 @@ function silk_comment( $comment, $args, $depth ) {
 } // don't remove this bracket!
 
 /**
- * Filter wp_link_pages to wrap current page in span.
- *
- * @param $link
- *
- * @return string
- */
-function silk_link_pages( $link ) {
-	if ( is_numeric( $link ) ) {
-		return '<span class="current">' . $link . '</span>';
-	}
-
-	return $link;
-}
-
-add_filter( 'wp_link_pages_link', 'silk_link_pages' );
-
-/**
  * Wrap more link
  */
 function silk_read_more_link( $link ) {

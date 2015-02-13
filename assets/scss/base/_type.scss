@@ -45,9 +45,9 @@ body {
 
 /* Headings */
 
-h1, .h1 { 
+h1, %h1 { 
     @extend %alpha;
-    @extend .color-accent;
+    @extend %color-accent;
     @extend .italic;
     font-size: rem(45px);
     line-height:1.25;
@@ -55,9 +55,9 @@ h1, .h1 {
     margin-bottom: rhythm(1);
 }
 
-h2, .h2 {
+h2, %h2 {
     @extend %alpha;
-	@extend .color-accent;
+	@extend %color-accent;
 	@extend .italic;
     font-size: rem(30px);
     line-height: 1.25;
@@ -65,16 +65,16 @@ h2, .h2 {
     margin-bottom: rhythm(1);
 }
 
-h3, .h3 {
+h3, %h3 {
     @extend %alpha;
     font-size: rem(20px);
     margin-top: rhythm(2);
     margin-bottom: rhythm(1);
 }
 
-h4, .h4 {
+h4, %h4 {
     @extend %gamma;
-    @extend .color-accent;
+    @extend %color-accent;
     @extend .caps;
     font-style: normal;
     font-size: rem(11px);
@@ -104,15 +104,42 @@ p {
 
 
 /* Links */
+
+// Smarter Links Underlines
+
+%smarter-links-underlines {
+	// http://www.acusti.ca/blog/2014/11/28/towards-a-more-perfect-link-underline/
+	
+	text-decoration: none;
+	
+    // Underline via gradient background
+    background-image: linear-gradient(rgba($black, 0.25) 0%, $black 100%);
+    background-repeat: repeat-x; 
+    background-size: 1px 1px;
+    background-position: 0 95%;
+
+    // Tweak position + thickness for high res (1.75x and up) displays
+    @media (-webkit-min-device-pixel-ratio: 1.75), (min-resolution: 168dpi) {
+      background-image: linear-gradient(rgba($black, 0.25) 0%, $black 100%);
+      background-position: 0 93%;
+    }
+
+    // Clear descendors from underline
+    text-shadow: 3px 0 white, 2px 0 white, 1px 0 white, -1px 0 white, -2px 0 white, -3px 0 white;
+    
+    &:hover {
+      background-image: linear-gradient(to bottom, $accent 0%, $accent 100%);
+    }
+}
+
 a {
 	text-decoration: none;
-	// @extend .color-accent;
 	color: $black;
 	font-weight: 400;
 	
 	transition: all 0.15s;
 
-	h1 &, .h1 &, h2 &, h3 & {
+	h1 &, .site-title &, h2 &, h3 & {
 		color: $accent; 
 	}
 
@@ -121,31 +148,19 @@ a {
 		color: $accent;
 	}
 
-	.entry-content & {
-	    text-decoration: none;
+	 @if $editor-style { 
+	 	.mce-content-body & {
+			@extend %smarter-links-underlines;
+		}	
+	 }
+    	@else { 
+			.entry-content & {
+				@extend %smarter-links-underlines;
+			}
+    	}
 
-		// Smarter Links Underlines
-		// http://www.acusti.ca/blog/2014/11/28/towards-a-more-perfect-link-underline/
-		
-	    // Underline via gradient background
-	    background-image: linear-gradient(rgba($black, 0.25) 0%, $black 100%);
-	    background-repeat: repeat-x; 
-	    background-size: 1px 1px;
-	    background-position: 0 95%;
-
-	    // Tweak position + thickness for high res (1.75x and up) displays
-	    @media (-webkit-min-device-pixel-ratio: 1.75), (min-resolution: 168dpi) {
-	      background-image: linear-gradient(rgba($black, 0.25) 0%, $black 100%);
-	      background-position: 0 93%;
-	    }
-
-	    // Clear descendors from underline
-	    text-shadow: 3px 0 white, 2px 0 white, 1px 0 white, -1px 0 white, -2px 0 white, -3px 0 white;
-	    
-	    &:hover {
-	      background-image: linear-gradient(to bottom, $accent 0%, $accent 100%);
-	    }
-		
+	.edit-link & {
+		margin: 0 $u/4;
 	}
 }
 
