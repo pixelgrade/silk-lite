@@ -156,15 +156,14 @@ $.fn.addHoverAnimation = function() {
 	    		translateY: 0
 	    	}, {
 	    		duration: 200,
-	    		easing: 'easeInQuad'
+	    		easing: 'easeOutQuad'
 	    	});
 
 	    	$border.velocity({
 	    		'border-width': 0
 	    	}, {
-	    		duration: 100,
-	    		delay: 100,
-	    		easing: 'easeInQuad'
+	    		duration: 150,
+	    		easing: 'easeOutQuad'
 	    	});
 
 	    	$border.velocity({
@@ -177,7 +176,7 @@ $.fn.addHoverAnimation = function() {
 	    		translateY: 0
 	    	}, {
 	    		duration: 200,
-	    		easing: 'easeInQuad'
+	    		easing: 'easeOutQuad'
 	    	});
 	    }
 
