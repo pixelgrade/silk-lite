@@ -880,10 +880,8 @@ if (!Date.now) Date.now = function () {
         onLoad = function () {
         var $newBlocks = $container.children().not('.post--loaded').addClass('post--loaded');
         $newBlocks.imagesLoaded(function () {
-          setTimeout(function () {
-            $container.masonry('appended', $newBlocks, true).masonry('layout');
-            showBlocks($newBlocks);
-          }, 1500);
+          $container.masonry('appended', $newBlocks, true).masonry('layout');
+          showBlocks($newBlocks);
         });
         };
 
@@ -1638,9 +1636,7 @@ if (!Date.now) Date.now = function () {
     });
 
     $(document.body).on("post-load", function () {
-      setTimeout(function () {
-        $('body').removeClass('loading-posts');
-      }, 1500);
+      $('body').removeClass('loading-posts');
     });
   }
 
