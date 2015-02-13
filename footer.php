@@ -26,14 +26,17 @@
 				)
 			); ?>
 		</div>
+
 		<div class="site-info" role="contentinfo">
 			<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'silk_txtd' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'silk_txtd' ), 'WordPress' ); ?></a>
 			<span class="sep"> | </span>
 			<?php printf( __( 'Theme: %1$s by %2$s.', 'silk_txtd' ), 'Silk', '<a href="http://pixelgrade.com" rel="designer">PixelGrade</a>' ); ?>
 		</div><!-- .site-info -->
+
 		<div class="back-to-top-wrapper">
 			<a href="#top" class="back-to-top-button"><?php get_template_part('assets/svg/back-to-top'); ?></a>
 		</div>
+
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 
@@ -42,13 +45,18 @@
 </div>
 
 <?php if ( ! get_theme_mod( 'silk_disable_search_in_toolbar', false ) ) : ?>
+
 	<div class="overlay--search">
 		<div class="overlay__wrapper">
+
 			<?php get_search_form(); ?>
+
 			<p><?php _e( 'Begin typing your search above and press return to search. Press Esc to cancel.', 'silk_txtd' ); ?></p>
+
 		</div>
 		<b class="overlay__close"></b>
 	</div>
+
 <?php endif; ?>
 
 <?php get_template_part( 'templates/top-bar' ); ?>

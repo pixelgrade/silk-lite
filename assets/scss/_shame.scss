@@ -38,6 +38,9 @@ hr {
 	margin: $base-spacing-unit 0;
 }
 
+.site-main {
+	transition: padding-bottom .3s .3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
 
 // @todo animations
 

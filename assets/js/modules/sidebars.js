@@ -9,12 +9,16 @@ var fixedSidebars = (function() {
 		$sidebar        	= $('.sidebar--main'),
 		$main           	= $('.site-main'),
 		mainHeight      	= $main.outerHeight(),
+		mainOffset,
+		mainTop				= $main.offset().top,
+		mainBottom			= mainTop + mainHeight,
 		sidebarPinned   	= false,
 		sidebarPadding  	= 60,
 		sidebarBottom,
-		mainOffset,
-		sidebarOffset, 
 		sidebarHeight,
+		sidebarOffset,
+		sidebarTop,
+		sidebarBottom,
 
 		previousTop = 0,
 		animating = false,
@@ -25,8 +29,87 @@ var fixedSidebars = (function() {
 	 * initialize sidebar positioning
 	 */
 	init = function() {
+
+		if ($sidebar.length) {
+			sidebarOffset 	= $sidebar.offset();
+			sidebarTop 		= sidebarOffset.top;
+			sidebarHeight 	= $sidebar.outerHeight();
+			sidebarBottom 	= sidebarTop + sidebarHeight; 
+		}
+		styleWidgets();
 		refresh();
 		initialized = true;
+	},
+
+
+	/**
+	 * Adding a class and some mark-up to the
+	 * archive widget to make it look splendid
+	 */
+	styleWidgets = function() {
+
+	 	if ($.support.touch) {
+	 		return;
+	 	}
+
+	 	var $widgets 		= $sidebar.find('.widget_categories, .widget_archive, .widget_tag_cloud'),
+	 		separatorMarkup = '<span class="separator  separator--text" role="presentation"><span>More</span></a>';
+
+	 	$widgets.each(function() {
+
+	 		var $widget       	= $(this),
+		 		widgetHeight  	= $widget.outerHeight(),
+	 			newHeight		= 220,
+		 		heightDiffrence	= widgetHeight - newHeight,
+		 		widgetWidth   	= $widget.outerWidth();
+
+	 		if ( widgetHeight > widgetWidth ) {
+
+	 			$widget.data('heightDiffrence', heightDiffrence);
+	 			$widget.css('max-height', newHeight);
+
+	 			$widget.addClass('shrink');
+	 			$widget.append(separatorMarkup);
+	 			refresh();
+	 			masonry.refresh();
+
+	 			$widget.find('a').focus(function () {
+	 				$widget.removeClass('shrink').addClass('focused');
+	 			});
+
+	 			$widget.on('mouseenter', function() {
+
+	 				$main.css({
+	 					'paddingBottom': $sidebar.offset().top + sidebarHeight + heightDiffrence - mainBottom
+	 				});
+
+	 				$widget.addClass('focused');
+	 				$widget.css({
+	 					'max-height': widgetHeight
+	 				});
+
+	 				setTimeout(function() {
+	 					refresh();
+	 					update();
+	 				}, 600);
+	 			});
+
+	 			$widget.on('mouseleave', function() {
+	 				$main.css({
+	 					'paddingBottom': ''
+	 				})
+	 				$widget.removeClass('focused');
+	 				$widget.css('max-height', newHeight);
+
+	 				setTimeout(function() {
+	 					refresh();
+	 					update();
+	 				}, 600);
+	 			});
+	 		}
+
+	 	});
+
 	},
 
 	/**
@@ -38,10 +121,10 @@ var fixedSidebars = (function() {
 			init();
 		}
 
-		var windowBottom  = latestKnownScrollY + windowHeight,
-			sidebarBottom = sidebarHeight + sidebarOffset.top + sidebarPadding,
-			mainBottom    = mainHeight + sidebarOffset.top + sidebarPadding,
-			newTop;
+		var windowBottom  = latestKnownScrollY + windowHeight;
+
+		sidebarBottom = sidebarHeight + sidebarOffset.top + sidebarPadding;
+		mainBottom    = mainHeight + sidebarOffset.top + sidebarPadding;
 
 		if (mainOffset.top != sidebarOffset.top || animating) {
 			return;
@@ -131,6 +214,7 @@ var fixedSidebars = (function() {
 			sidebarPinned = false;
 			sidebarOffset = $sidebar.offset();
 			sidebarHeight = $sidebar.outerHeight();
+			sidebarBottom = sidebarOffset.top + sidebarHeight;
 			mainHeight    = $main.outerHeight();
 
 			$sidebar.css({

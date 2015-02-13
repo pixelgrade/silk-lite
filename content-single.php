@@ -11,17 +11,21 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
 		<div class="entry-meta">
+
 			<?php silk_posted_on(); ?>
 
 			<?php silk_cats_list(); ?>
+
 		</div><!-- .entry-meta -->
 
 		<?php the_title( '<h1 class="entry-title  page-title">', '</h1>' ); ?>
 
 		<?php if ( has_excerpt() ) : ?>
+
 			<p class="intro  intro--paragraph">
-			<?php echo get_the_excerpt(); //we need to this since Jetpack filters the_excerpt - we don't want this ?>
+				<?php echo get_the_excerpt(); //we need to this since Jetpack filters the_excerpt - we don't want this ?>
 			</p>
+
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 
@@ -43,9 +47,11 @@
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
-		<span class="separator-wrapper--accent">
+		<span class="separator-wrapper--accent" role="presentation">
 			<?php get_template_part("assets/svg/separator-simple"); ?>
 		</span>
+
 		<?php silk_entry_footer(); ?>
+
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

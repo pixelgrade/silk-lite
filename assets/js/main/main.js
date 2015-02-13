@@ -16,7 +16,6 @@ $window.load(function() {
   navigation.init();
   slider.init();
   wrapJetpackAfterContent();
-  styleWidgets();
   fixedSidebars.update();
   animator.animate();
   scrollToTop();

@@ -151,15 +151,12 @@
 .widget.shrink {
 
 	.sidebar--main & {
-		max-height: 220px;
 		overflow: hidden;
 		position: relative;
 
-		transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1);
-		transition-delay: .3s;
+		transition: all .3s .3s cubic-bezier(0.645, 0.045, 0.355, 1);
 
 		&:hover, &:focus {
-			max-height: 2000px;
 
 			.separator {
 				opacity: 0;
@@ -186,7 +183,7 @@
 
 			pointer-events: none;
 
-			transition: opacity .3s cubic-bezier(0.645, 0.045, 0.355, 1);
+			transition: opacity .3s .3s cubic-bezier(0.645, 0.045, 0.355, 1);
 		}
 	}
 }
