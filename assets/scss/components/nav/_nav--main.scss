@@ -30,3 +30,111 @@
 		}
 	}
 }
+
+.menu-toggle {
+	background: none;
+	border: 0;
+
+	.button-icon {
+		font-size: rem(20px);
+	}
+
+	@include query-above($lap) {
+		display: none;
+	}
+}
+
+@include query-below($lap) {
+
+	.main-navigation {
+		text-align: left;
+		position: fixed;
+		top: 0 !important;
+		left: 0;
+		z-index: 110;
+
+		.admin-bar & {
+			top: 32px !important;
+		}
+
+		.is--ancient-android .nav--is-open &{
+			left: 70%;
+		}
+	}
+
+	.nav--main {
+		padding: 0 rem(40px) 0 rem(30px);
+
+		border-top: 0;
+		position: fixed;
+		border-right: 1px solid $borders;
+		// overwrite inline properties written by JS
+		top: 0;
+		right: 100%;
+		left: auto;
+		width: 70%;
+		height: 100%;
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
+
+		.admin-bar & {
+			top: 32px !important;
+		}
+
+		.menu-item--home {
+			display: none !important;
+		}
+
+		.is--ancient-android .nav--is-open &{
+			left: 0 !important;
+			right: auto !important;
+		}
+
+		li, ul > li {
+			text-align: left;
+			display: block;
+			width: 100%;
+			overflow: hidden;
+
+			> a {
+				display: block;
+				padding: rem(20px) 0;
+			}
+
+			&, > a {
+				&:before, &:after {
+					display: none;
+				}
+			}
+
+			ul {
+				background: white;
+				display: block;
+
+				@include query-above($lap) {
+					padding-left: 2em;
+				}
+			}
+		}
+
+		> li {
+			border-bottom: 1px solid $borders;
+		}
+
+		.sub-menu {
+			padding-left: rem(12px);
+		}
+
+		ul ul ul {
+			padding-left: 0;
+		}
+	}
+}
+
+@media screen and (max-width: 782px) {
+	.admin-bar {
+		.main-navigation, .nav--main {
+			top: 46px !important;
+		}
+	}
+}

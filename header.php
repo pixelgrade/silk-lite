@@ -50,7 +50,10 @@
 
 		<nav id="site-navigation" class="main-navigation" role="navigation">
 
-			<button class="menu-toggle  assistive-text" aria-controls="menu-primary-menu" aria-expanded="false"><?php _e( 'Primary Menu', 'silk_txtd' ); ?></button>
+			<button class="menu-toggle  js-nav-trigger" aria-controls="menu-primary-menu" aria-expanded="false">
+				<span class="button-icon"><i class="fa fa-bars"></i></span>
+				<span class="button-text  assistive-text"><?php _e( 'Primary Menu', 'silk_txtd' ); ?></span>
+			</button>
 			<?php wp_nav_menu( array(
 				'theme_location' => 'primary',
 				'container'      => '',

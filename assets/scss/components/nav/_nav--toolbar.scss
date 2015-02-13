@@ -66,6 +66,10 @@
 			fill: currentColor;
 		}
 	}
+
+	@include query-below($lap) {
+		display: none;
+	}
 }
 
 .nav-trigger {
