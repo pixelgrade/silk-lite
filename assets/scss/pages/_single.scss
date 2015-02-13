@@ -5,7 +5,7 @@
 	}
 
 	.entry-header{
-		@include rhythm(margin-bottom, 5);
+		@include rhythm(margin-bottom, 4);
 	}
 
 	.intro-paragraph {
@@ -53,7 +53,7 @@
 
 		p {
 			@include query-above($lap) {
-				@include rhythm(margin-bottom, 3);
+				@include rhythm(margin-bottom, 2.5);
 			}
 		}
 
@@ -68,7 +68,7 @@
     }
 
     .entry-footer{
-		@extend %alpha;
+		// @extend %alpha;
 		@include fs(14px);
 		text-align: center;
 
@@ -79,16 +79,18 @@
 			}
 		}
 
-		a{
-			color: $dark;
-			text-decoration: none;
+		a {
+			@extend %smarter-links-underlines;
+		}
 
-			border-bottom: 1px solid $dark;
+		.separator-wrapper--accent {
+			margin-top: 0;
+			margin-bottom: rem(18px);
 		}
     }
 
     .comments-area{
-		@include rhythm(margin-top, 3);
+		margin-top: rem(-6px);
 		@include rhythm(padding-bottom, 3);
     }
 
@@ -124,11 +126,6 @@
 	}
 }
 
-.single .post-edit-link {
-	margin: 0 $u/2;
-	text-decoration: underline;
-}
-
 .post-password-form, .search-form {
 	label, input {
 		display: inline-block;
@@ -143,8 +140,7 @@
 	margin: em(40px) 0;
 
 	span, a {
-		padding: em(12px) em(6px);
-		text-decoration: underline;
+		padding: em(6px);
 	}
 
 	span.current {
@@ -377,10 +373,11 @@ span.pagination-title {
 }
 
 
-#jp-post-flair {
+.entry-content #jp-post-flair {
 	position: absolute;
 	top: 0;
 	left: 0;
+	padding-top: 0;
 
 	width: em(190px);
 }

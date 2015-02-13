@@ -2,6 +2,7 @@
 /**
  * The header for our theme.
  * Displays all of the <head> section and everything up till <div id="content">
+ *
  * @package Silk
  */
 ?><!DOCTYPE html>
@@ -25,35 +26,39 @@
 	<header id="masthead" class="site-header" role="banner">
 
 		<div class="site-branding">
-			<?php if ( function_exists( 'jetpack_the_site_logo' ) ) {
+			<?php if ( function_exists( 'jetpack_the_site_logo' ) ) { //display the Site Logo if present
 				jetpack_the_site_logo();
 			}
 
+			//on the front page and home page we use H1 for the title
 			if ( is_front_page() && is_home() ) : ?>
 				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 			<?php else : ?>
-				<div class="h1  site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></div>
+				<div class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></div>
 			<?php endif;
 
 			$description = get_bloginfo( 'description', 'display' );
 			if ( $description || is_customize_preview() ) : ?>
+
 				<p class="site-description">
 					<span class="site-description-text"><?php bloginfo( 'description' ); ?></span>
 					<span class="site-description-after" role="presentation"></span>
 				</p>
-			<?php endif;
-			?>
+
+			<?php endif; ?>
 		</div><!-- .site-branding -->
 
 		<nav id="site-navigation" class="main-navigation" role="navigation">
+
 			<button class="menu-toggle  assistive-text" aria-controls="menu-primary-menu" aria-expanded="false"><?php _e( 'Primary Menu', 'silk_txtd' ); ?></button>
 			<?php wp_nav_menu( array(
 				'theme_location' => 'primary',
 				'container'      => '',
 				'menu_class'     => 'nav  nav--main  nav--mega  js-nav--main',
 				'items_wrap' => '<ul id="%1$s" class="%2$s" role="menubar" aria-hidden="false">%3$s</ul>',
-				'walker'         => new Silk_Walker_Primary_Mega_Menu()
+				'walker'         => new Silk_Walker_Primary_Mega_Menu(),
 			) ); ?>
+
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
 

@@ -77,6 +77,9 @@ function wrapJetpackAfterContent() {
   }
 }
 
+/**
+ * Handler for the back to top button
+ */
 function scrollToTop() {
   $('a[href=#top]').click(function(event){
     event.preventDefault();
@@ -86,6 +89,18 @@ function scrollToTop() {
   });
 }
 
+/**
+ * Infinite scroll behaviour
+ */
+function infinityHandler() {
+  $("#infinite-handle").on("click", function() {
+    $('body').addClass('loading-posts');
+  });
+
+  $(document.body).on("post-load", function() {
+      $('body').removeClass('loading-posts');
+  });
+}
 
 /**
  * function similar to PHP's empty function

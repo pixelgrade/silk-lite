@@ -114,6 +114,12 @@
 	position: absolute;
 	top: 100%;
 	left: 50%;
+
+	display: block !important;
+
+	.spinner > div {
+		display: none;
+	}
 }
 
 #infinite-handle {
@@ -122,16 +128,69 @@
 	top: 100%;
 	left: 0;
 	text-align: center;
+	transition: all .3s linear;
+	transition-delay: .1s;
+
+	.infinity-end & {
+		opacity: 0 !important;
+	}
 
 	span {
+		display: inline-block;
+		vertical-align: middle;
+		background: none;
+	}
+
+	span.handle__text {
 		@extend %delta;
 		letter-spacing: 0.2em;
 		font-size: 1rem;
-		display: inline-block;
 		background: none;
 		color: $accent;
 		text-transform: uppercase;
+
+		display: inline-block;
+		vertical-align: middle;
 	}
+
+	$clep-anim-duration: 3s;
+
+	span.handle__icon {
+		padding: 0;
+		height: 16px;
+		width: 15px;
+		transform-origin: center center;
+
+		.loading-posts & {
+			-webkit-animation: clep-anim $clep-anim-duration infinite;
+			-moz-animation:    clep-anim $clep-anim-duration infinite;
+			-o-animation:      clep-anim $clep-anim-duration infinite;
+			animation:		   clep-anim $clep-anim-duration infinite;
+		}
+		
+	}
+	
+	.loading-posts & #fill {
+		-webkit-animation: fill-anim $clep-anim-duration infinite;
+		-moz-animation:    fill-anim $clep-anim-duration infinite;
+		-o-animation:      fill-anim $clep-anim-duration infinite;
+		animation:		   fill-anim $clep-anim-duration infinite;
+	}
+}
+
+@-webkit-keyframes clep-anim {
+	0%   { transform: rotate(0deg); }
+	40%   { transform: rotate(0deg); }
+	50%   { transform: rotate(180deg); }
+	90%   { transform: rotate(180deg); }
+	100% { transform: rotate(360deg); }
+}
+
+@-webkit-keyframes fill-anim {
+	0%   { transform: translateY(0); }
+	40%   { transform: translateY(7px); }
+	90% { transform: translateY(-3px); }
+	100% { transform: translateY(0); }
 }
 
 .featured-posts {

@@ -14,8 +14,8 @@ $black:						#000000;
 $borders:					$light;
 
 // ------ #COLOR HELPERS
-.color-accent { color: $accent; }
-.color-secondary { color: $secondary; }
+%color-accent { color: $accent; }
+%color-secondary { color: $secondary; }
 
 
 // ------ #SETTINGS

@@ -13,9 +13,8 @@ if ( empty( $featured ) )
 
 <div id="featured-content" class="flexslider">
 	<ul class="featured-posts slides" id="featured-slides">
-	<?php
-		foreach ( $featured as $post ) :
-			setup_postdata( $post ); ?>
+
+	<?php foreach ( $featured as $post ) : setup_postdata( $post ); ?>
 
 		<li id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
@@ -24,23 +23,32 @@ if ( empty( $featured ) )
 				<div class="flag__img  one-half">
 					<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
 						<span class="entry-thumbnail">
+
 							<?php if ( has_post_thumbnail() ) : ?>
+
 								<?php the_post_thumbnail( 'silk-slider-image' ); ?>
+
 								<span class="entry-thumbnail-border"></span>
+
 							<?php endif; ?>
+
 						</span>
 					</a>
-				</div>
+				</div><!-- .flag__img.one-half -->
 
 				<div class="flag__body  one-half">
-					<?php get_template_part("content-slide"); ?>
-				</div>
 
-			</div>
+					<?php get_template_part("content-slide"); ?>
+
+				</div><!-- .flag__body.one-half -->
+
+			</div><!-- .flag -->
 
 		</li><!-- #post-## -->
+
 	<?php
 		endforeach;
 		wp_reset_postdata(); ?>
+
 	</ul>
 </div>
