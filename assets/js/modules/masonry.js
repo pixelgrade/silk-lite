@@ -78,13 +78,13 @@ var masonry = (function() {
 	},
 
 	onLoad = function() {
-		setTimeout(function() {
 			var $newBlocks = $container.children().not('.post--loaded').addClass('post--loaded');
 			$newBlocks.imagesLoaded(function() {
-				$container.masonry('appended', $newBlocks, true).masonry('layout');
-				showBlocks($newBlocks);
+				setTimeout(function() {
+					$container.masonry('appended', $newBlocks, true).masonry('layout');
+					showBlocks($newBlocks);
+				}, 1500);
 			});
-		}, 1500);
 	};
 
 	return {
