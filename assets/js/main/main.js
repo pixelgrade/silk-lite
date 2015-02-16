@@ -15,7 +15,6 @@ function init() {
 $window.load(function() {
   browserSize();
   navigation.init();
-  navigation.mobileNavInit();
   slider.init();
   wrapJetpackAfterContent();
   fixedSidebars.update();

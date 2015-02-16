@@ -1000,6 +1000,8 @@ if (!Date.now) Date.now = function () {
 
         // make sure that the links in the floating-nav, that shows on scroll, are ignored by TAB
         $('.floating-nav').find('a').attr('tabIndex', -1);
+
+        mobileNav();
         },
         
         
@@ -1110,8 +1112,7 @@ if (!Date.now) Date.now = function () {
 
     return {
       init: init,
-      toggleTopBar: toggleTopBar,
-      mobileNavInit: mobileNav
+      toggleTopBar: toggleTopBar
     }
 
   })();
@@ -1639,7 +1640,6 @@ if (!Date.now) Date.now = function () {
   $window.load(function () {
     browserSize();
     navigation.init();
-    navigation.mobileNavInit();
     slider.init();
     wrapJetpackAfterContent();
     fixedSidebars.update();
