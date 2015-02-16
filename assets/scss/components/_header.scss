@@ -21,6 +21,8 @@
     letter-spacing: 0.05em;
     max-width: 100%;
 
+
+
     .site-header & {
         line-height: 0.85;
     }
@@ -110,8 +112,7 @@ html.svg .site-title {
     max-width: 100%;
     display: inline-block;
     margin: 0;
-    padding-left: 1.5em;
-    padding-right: 1.47em;
+    padding: 2px 1.47em 2px 1.5em;
     background: white;
 
     &:empty {
