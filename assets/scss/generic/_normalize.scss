@@ -100,7 +100,7 @@ img {
   border: 0;
 }
 
-svg:not(:root) {
+.ie9 svg:not(:root) {
   overflow: hidden;
 }
 

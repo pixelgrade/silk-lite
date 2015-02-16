@@ -55,7 +55,7 @@ function silk_customize_register ( $wp_customize ) {
 	) );
 
 	$wp_customize->add_setting( 'silk_site_title_outline', array(
-		'default'           => '0',
+		'default'           => '3',
 		'sanitize_callback' => 'silk_sanitize_site_title_outline',
 		'transport' => 'postMessage',
 	) );
@@ -97,7 +97,7 @@ function silk_sanitize_checkbox( $input ) {
  */
 function silk_sanitize_site_title_outline( $outline ) {
 	if ( ! in_array( $outline, array( '0', '1.2', '3', '5', '10' ) ) ) {
-		$outline = '2';
+		$outline = '3';
 	}
 
 	return $outline;
