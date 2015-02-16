@@ -18,8 +18,11 @@
     font-style: normal;
     margin: 0;
     text-transform: uppercase;
-    line-height: 0.85;
     letter-spacing: 0.03em;
+
+    .site-header & {
+        line-height: 0.85;
+    }
 
     @include query-below($desk) {
         font-size: rem(80px);

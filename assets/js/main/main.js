@@ -10,7 +10,7 @@ function init() {
 
   if ( $.support.svg ) {
     var $header     = $('.site-header'),
-        $title      = $('.site-title'),
+        $title      = $('.site-header .site-title'),
         $span       = $title.find('span'),
         $svg        = $title.find('svg'),
         $text       = $svg.find('text'),
