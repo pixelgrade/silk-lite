@@ -867,11 +867,11 @@ if (!Date.now) Date.now = function () {
         
         
         showBlocks = function ($blocks) {
+        $blocks.each(function (i, obj) {
+          var $post = $(obj);
+          animator.animatePost($post, i * 100);
+        });
         if (!$.support.touch) {
-          $blocks.each(function (i, obj) {
-            var $post = $(obj);
-            animator.animatePost($post, i * 100);
-          });
           $blocks.addHoverAnimation();
         }
         },
