@@ -9,6 +9,8 @@ $classes = 'archive__grid  grid';
 
 if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 	$classes .= '  masonry';
+} else {
+	$classes .= '  single-column';
 }
 ?>
 <div id="posts" class="<?php echo $classes; ?>">

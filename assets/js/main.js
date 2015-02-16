@@ -1574,7 +1574,7 @@ if (!Date.now) Date.now = function () {
     }
 
   })();
-  var svgLogo = (function () {
+  window.svgLogo = (function () {
 
     var init = function () {
 
@@ -1594,8 +1594,12 @@ if (!Date.now) Date.now = function () {
 
       $span.css('white-space', 'nowrap');
 
-      $svg.hide();
-      $span.show();
+      $title.css('width', '');
+      $svg.removeAttr('viewBox').hide();
+      $span.css({
+        'font-size': '',
+        'white-space': ''
+      }).show();
 
       titleWidth = $span.width();
 

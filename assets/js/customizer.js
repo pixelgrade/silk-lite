@@ -1,6 +1,6 @@
 /**
  * Silk Customizer JavaScript - keeps things nicer for all
- * v 1.0.0
+ * v 1.0.1
  */
 
 /**
@@ -12,7 +12,8 @@
 	// Change site title and description when they are typed
 	wp.customize( 'blogname', function( value ) {
 		value.bind( function( text ) {
-			//$( '.site-title a' ).text( text );
+			$( '.site-title a span, .site-title text' ).text( text );
+			svgLogo.init();
 		} );
 	} );
 
