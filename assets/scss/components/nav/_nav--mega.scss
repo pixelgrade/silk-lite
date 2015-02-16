@@ -4,11 +4,14 @@
 		@extend %sub-menu;
 		display: block; 
 		text-align: center;
-		font-size: rem(12px);
 		color: $dark;
 
-		.menu-item {
-			border-bottom: 1px solid $borders;
+		@include query-above($lap) {
+			font-size: rem(12px);
+
+			.menu-item {
+				border-bottom: 1px solid $borders;
+			}
 		}
 
 		> .menu-item-has-children > a:after {
@@ -39,6 +42,11 @@
 		// color: currentColor;
 		display: inline-block;
 		padding: rhythm(1) rhythm(1.5);
+
+		@include query-above($lap) {
+			display: inline-block;
+			padding: rhythm(1) rhythm(1.5);
+		}
 	}
 
 	.menu-item-has-children > a,
@@ -68,7 +76,7 @@
 		@extend %gamma;
 	}
  
-	@include query-above($desk) {	
+	@include query-above($desk) {
 		position: static !important;
 
 		> .sub-menu-wrapper {

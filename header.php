@@ -38,7 +38,7 @@
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
 				<span><?php bloginfo( 'name' ); ?></span>
 				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-					<text x="50%" y="0.82em" stroke="#fff" text-anchor="middle" stroke-width="<?php echo get_theme_mod( 'silk_site_title_outline', '0' ); ?>">
+					<text x="50%" y="0.82em" stroke="#fff" text-anchor="middle" stroke-width="<?php echo get_theme_mod( 'silk_site_title_outline', '3' ); ?>">
 						<?php bloginfo( 'name' ); ?>
 					</text>
 				</svg>
@@ -60,7 +60,10 @@
 
 		<nav id="site-navigation" class="main-navigation" role="navigation">
 
-			<button class="menu-toggle  assistive-text" aria-controls="menu-primary-menu" aria-expanded="false"><?php _e( 'Primary Menu', 'silk_txtd' ); ?></button>
+			<button class="menu-toggle  js-nav-trigger" aria-controls="menu-primary-menu" aria-expanded="false">
+				<span class="button-icon"><i class="fa fa-bars"></i></span>
+				<span class="button-text  assistive-text"><?php _e( 'Primary Menu', 'silk_txtd' ); ?></span>
+			</button>
 			<?php wp_nav_menu( array(
 				'theme_location' => 'primary',
 				'container'      => '',

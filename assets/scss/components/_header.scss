@@ -46,6 +46,10 @@
         margin-top: rhythm(-1);
     }
 
+    span {
+        font-weight: 700;
+    }
+
     svg {
         display: none;
     }
@@ -62,6 +66,7 @@ html.svg .site-title {
 
     text {
         fill: $accent;
+        font-weight: 700;
     }
 }
 
