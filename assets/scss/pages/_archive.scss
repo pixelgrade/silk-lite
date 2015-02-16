@@ -27,7 +27,6 @@
 	}
 
 	.entry-content p {
-		// @extend %gamma;
 		font-weight: 400;
 		@include fs(12px);
 		@include baseline(12px);
@@ -35,6 +34,7 @@
 		text-align: center;
 	}
 
+	// Sticky Post
 	.sticky {
 		position: relative;
 
@@ -46,24 +46,32 @@
 			content: "";
 
 			position: absolute;
+			top: 0;
+			bottom: rem(24px);
+			right: 0;
 
-			top: rem(-5px);
-			@include query-above($small)    { top: rem(-12px); }
-
-			bottom: rem(42px);
-
-			right: rem(-5px);
-			@include query-above($small)    { right: rem(-12px); }
-
-			left: rem(5px);
-			@include query-above($small)    { left: rem(12px); }
-			@include query-above($lap)      { left: rem(24px); }
-			@include query-above($desk)     { left: rem(42px); }
+			left: rem(11px);
+			@include query-above($small)    { left: rem(18px); }
+			@include query-above($lap)      { left: rem(30px); }
+			@include query-above($desk)     { left: rem(54px); }
 
 			pointer-events: none;
 			background-color: $accent;
 
 			z-index: -1;
+		}
+
+		.entry-header, .entry-content {
+			padding-left: 24px;
+			padding-right: 24px;
+		}
+
+		.entry-header {
+			padding-top: 24px;
+		}
+
+		.entry-content {
+			padding-bottom: 12px;
 		}
 	}
 }
