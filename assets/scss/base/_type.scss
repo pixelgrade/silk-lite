@@ -47,7 +47,7 @@ body {
 
 h1, %h1 { 
     @extend %alpha;
-    @extend %color-accent;
+    color: $accent;
     @extend .italic;
     font-size: rem(45px);
     line-height:1.25;
@@ -57,7 +57,7 @@ h1, %h1 {
 
 h2, %h2 {
     @extend %alpha;
-	@extend %color-accent;
+	color: $accent;
 	@extend .italic;
     font-size: rem(30px);
     line-height: 1.25;
@@ -74,7 +74,7 @@ h3, %h3 {
 
 h4, %h4 {
     @extend %gamma;
-    @extend %color-accent;
+    color: $accent;
     @extend .caps;
     font-style: normal;
     font-size: rem(11px);
@@ -195,7 +195,7 @@ blockquote {
 	text-align: center;
 
 	@include query-above($lap) {
-		margin: rem(60px) auto;
+		margin: rem(45px) auto;
 		padding: rem(40px) rem(70px);
 	}
 
