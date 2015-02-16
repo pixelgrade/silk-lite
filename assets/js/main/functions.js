@@ -12,9 +12,9 @@ function platformDetect() {
   $.support.transform = getSupportedTransform();
 
   $html
-    .toggleClass('touch', $.support.touch)
-    .toggleClass('svg', $.support.svg)
-    .toggleClass('transform', !!$.support.transform);
+    .addClass($.support.touch ? 'touch' : 'no-touch')
+    .addClass($.support.svg ? 'svg' : 'no-svg')
+    .addClass(!!$.support.transform ? 'transform' : 'no-transform');
 }
 
 

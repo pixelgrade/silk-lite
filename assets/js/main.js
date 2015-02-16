@@ -1481,6 +1481,56 @@ if (!Date.now) Date.now = function () {
       init: init
     }
 
+  })();
+  var svgLogo = (function () {
+
+    var init = function () {
+
+      if (!$.support.svg) return;
+
+      var $header = $('.site-header'),
+          $title = $('.site-header .site-title'),
+          $span = $title.find('span'),
+          $svg = $title.find('svg'),
+          $text = $svg.find('text'),
+          $rect = $svg.find('rect'),
+          headerWidth = $header.width(),
+          fontSize = parseInt($span.css('font-size')),
+          scaling = 1,
+          textWidth, titleHeight, titleWidth, spanWidth = $span.width(),
+          spanHeight = $span.height();
+
+      $span.css('white-space', 'nowrap');
+
+      $svg.hide();
+      $span.show();
+
+      titleWidth = $span.width();
+
+      if (titleWidth > headerWidth) {
+        scaling = titleWidth / parseFloat(headerWidth);
+        fontSize = parseInt(fontSize / scaling);
+        $span.css('font-size', fontSize);
+      }
+
+      titleWidth = $title.width();
+      titleHeight = $title.height();
+
+      $title.width(spanWidth);
+      $svg.attr('viewBox', "0 0 " + spanWidth + " " + spanHeight);
+
+      $span.hide();
+
+      var newSvg = $svg.clone().wrap('<div>').parent().html(),
+          $newSvg = $(newSvg);
+      $svg.remove();
+      $title.children('a').append($newSvg);
+      $newSvg.show();
+    }
+
+    return {
+      init: init
+    }
   })(); /* ====== ON DOCUMENT READY ====== */
 
   $(document).ready(function () {
@@ -1490,39 +1540,7 @@ if (!Date.now) Date.now = function () {
   function init() {
     browserSize();
     platformDetect();
-
-    if ($.support.svg) {
-      var $header = $('.site-header'),
-          $title = $('.site-header .site-title'),
-          $span = $title.find('span'),
-          $svg = $title.find('svg'),
-          $text = $svg.find('text'),
-          headerWidth = $header.width(),
-          fontSize = parseInt($span.css('font-size')),
-          textWidth, titleHeight, titleWidth;
-
-      $span.css('white-space', 'nowrap');
-
-      titleWidth = $span.show().width();
-
-      if (titleWidth > headerWidth) {
-        fontSize = fontSize / (titleWidth / headerWidth);
-        $span.css('font-size', fontSize);
-      }
-
-      titleWidth = $span.width();
-      titleHeight = $span.height();
-      $span.hide();
-
-      $title.css('font-size', fontSize);
-      $('.site-title svg').width(titleWidth).height(titleHeight);
-
-      setTimeout(function () {
-        textWidth = $text.width();
-        $text.attr('x', (titleWidth - textWidth) / 2);
-      }, 300);
-
-    }
+    svgLogo.init();
   }
 
   /* ====== ON WINDOW LOAD ====== */
@@ -1585,7 +1603,7 @@ if (!Date.now) Date.now = function () {
     $.support.svg = (document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1")) ? true : false;
     $.support.transform = getSupportedTransform();
 
-    $html.toggleClass('touch', $.support.touch).toggleClass('svg', $.support.svg).toggleClass('transform', !! $.support.transform);
+    $html.addClass($.support.touch ? 'touch' : 'no-touch').addClass($.support.svg ? 'svg' : 'no-svg').addClass( !! $.support.transform ? 'transform' : 'no-transform');
   }
 
 
