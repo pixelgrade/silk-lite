@@ -211,7 +211,7 @@ function silk_get_adjacent_image( $prev = true ) {
 	if ( ! $post = get_post() )
 		return null;
 
-	$attachments = array_values( get_children( array( 'post_parent' => $post->post_parent, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => 'ASC', 'orderby' => 'menu_order ID' ) ) );
+	$attachments = array_values( get_posts( array( 'post_parent' => $post->post_parent, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => 'ASC', 'orderby' => 'menu_order ID' ) ) );
 
 	foreach ( $attachments as $k => $attachment ) {
 		if ( $attachment->ID == $post->ID ) {
