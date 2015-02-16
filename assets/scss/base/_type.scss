@@ -195,7 +195,7 @@ blockquote {
 	text-align: center;
 
 	@include query-above($lap) {
-		margin: rem(60px) auto;
+		margin: rem(45px) auto;
 		padding: rem(40px) rem(70px);
 	}
 
