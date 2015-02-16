@@ -81,8 +81,10 @@
 
 		> .sub-menu-wrapper {
 			border: 1px solid $borders;
-			// that semi-transparent border
-			box-shadow: rgba(255,255,255,0.5) 0 rem(110px) 0 rem(110px);
+
+			// that semi-transparent border (or not)
+			// box-shadow: rgba(255,255,255,0.5) 0 rem(110px) 0 rem(110px);
+			
 			padding: rem(40px);
 			display: flex;
 

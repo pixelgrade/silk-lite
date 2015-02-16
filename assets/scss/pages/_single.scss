@@ -29,14 +29,14 @@
 
     .entry-title {
         margin-top: 0;
-		@include rhythm(margin-bottom, 2, 60px);
+	    margin-bottom: rhythm(2);
 
-		transform: none;
+	    @include query-above($lap) {
+			font-size: rem(60px);
+	    }
 
-		font-size: em(60px);
-
-	    @include query-below($lap) {
-		    @include rhythm(margin-bottom, 2, 30px);
+	    @include query-below($small) {
+	    	font-size: rem(32px);
 	    }
     }
 
@@ -375,12 +375,14 @@ span.pagination-title {
 
 
 .entry-content #jp-post-flair {
-	position: absolute;
-	top: 0;
-	left: 0;
-	padding-top: 0;
 
-	width: em(190px);
+	@include query-above($lap) {
+		position: absolute;
+		top: 0;
+		left: 0;
+		padding-top: 0;
+		width: em(190px);
+	}
 }
 
 
