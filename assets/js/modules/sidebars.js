@@ -35,8 +35,11 @@ var fixedSidebars = (function() {
 			sidebarTop 		= sidebarOffset.top;
 			sidebarHeight 	= $sidebar.outerHeight();
 			sidebarBottom 	= sidebarTop + sidebarHeight; 
+
+			if (mainTop >= sidebarTop) {
+				styleWidgets();
+			}
 		}
-		styleWidgets();
 		refresh();
 		initialized = true;
 	},

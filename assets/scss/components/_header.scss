@@ -21,6 +21,14 @@
     line-height: 0.85;
     letter-spacing: 0.03em;
 
+    @include query-below($desk) {
+        font-size: rem(80px);
+    }
+
+    @include query-below($small) {
+        font-size: rem(60px);
+    }
+
     @extend %h1;
 
     .site-logo-link + & {
@@ -34,6 +42,7 @@
 
     svg {
         display: none;
+        margin-bottom: -0.3em;
     }
 }
 
@@ -44,14 +53,39 @@ html.svg .site-title {
 
     svg {
         display: inline-block;
+    }
 
-        text {
-            fill: $accent;
-            stroke: #fff;
-            stroke-width: 2px;
-        }
+    text {
+        fill: $accent;
+        stroke: #fff;
     }
 }
+
+.outline-0 text { stroke-width: 0; }
+.outline-1 text { stroke-width: 1px; }
+.outline-2 text { stroke-width: 2px; }
+.outline-3 text { stroke-width: 3px; }
+
+@include query-below($desk) {
+    .outline-1 text { stroke-width: 0; }
+    .outline-2 text { stroke-width: 1px; }
+    .outline-3 text { stroke-width: 2px; }    
+}
+
+@include query-below($lap) {
+    .outline-1 text,
+    .outline-2 text { stroke-width: 0; }
+    .outline-3 text { stroke-width: 1px; }    
+}
+
+@include query-below($small) {
+    .outline-1 text,
+    .outline-2 text,
+    .outline-3 text {
+        stroke-width: 0;
+    }
+}
+
 
 .site-header .site-logo,
 .site-title {
