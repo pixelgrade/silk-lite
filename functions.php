@@ -201,6 +201,37 @@ function silk_scripts_styles() {
 add_action( 'wp_enqueue_scripts', 'silk_scripts_styles' );
 
 /**
+ * Registers/enqueues the scripts related to media JS APIs
+ *
+ */
+function silk_wp_enqueue_media() {
+	/*
+	 * Register the about-me.js here so we can upload images in the customizer
+	 */
+	if ( ! wp_script_is( 'silk-about-me-widget-admin', 'registered' ) ) {
+		wp_register_script( 'silk-about-me-widget-admin', get_template_directory_uri() . '/inc/widgets/assets/js/about-me.js', array(
+			'media-upload',
+			'media-views'
+		) );
+	}
+
+	wp_enqueue_script( 'silk-about-me-widget-admin' );
+
+	wp_localize_script(
+		'silk-about-me-widget-admin',
+		'SilkAboutMeWidget',
+		array(
+			'l10n' => array(
+				'frameTitle'      => __( 'Choose a Background Image', 'silk_txtd' ),
+				'frameUpdateText' => __( 'Update Background Image', 'silk_txtd' ),
+			),
+		)
+	);
+}
+
+add_action( 'wp_enqueue_media', 'silk_wp_enqueue_media' );
+
+/**
  * Implement the Custom Header feature.
  */
 //require get_template_directory() . '/inc/custom-header.php';

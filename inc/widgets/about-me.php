@@ -189,23 +189,8 @@ if ( ! class_exists( 'Silk_About_Me_Widget' ) ) :
 			global $pagenow;
 
 			if ( 'widgets.php' == $pagenow ) {
+				//the scripts are enqueued on wp_enqueue_media - see functions.php
 				wp_enqueue_media();
-
-				wp_enqueue_script( 'silk-about-me-widget-admin', get_template_directory_uri() . '/inc/widgets/assets/js/about-me.js', array(
-					'media-upload',
-					'media-views'
-				) );
-
-				wp_localize_script(
-					'silk-about-me-widget-admin',
-					'SilkAboutMeWidget',
-					array(
-						'l10n' => array(
-							'frameTitle'      => __( 'Choose a Background Image', 'silk_txtd' ),
-							'frameUpdateText' => __( 'Update Background Image', 'silk_txtd' ),
-						),
-					)
-				);
 
 				if ( is_rtl() ) {
 					wp_enqueue_style( 'silk-about-me-widget-admin', get_template_directory_uri() . '/inc/widgets/assets/css/about-me-rtl.css' );
@@ -214,6 +199,7 @@ if ( ! class_exists( 'Silk_About_Me_Widget' ) ) :
 				}
 			}
 		}
+
 	} // Class Silk About Me Widget
 
 endif; ?>
