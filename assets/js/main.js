@@ -1603,7 +1603,7 @@ if (!Date.now) Date.now = function () {
     $.support.svg = (document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1")) ? true : false;
     $.support.transform = getSupportedTransform();
 
-    $html.toggleClass('touch', $.support.touch).toggleClass('svg', $.support.svg).toggleClass('transform', !! $.support.transform);
+    $html.addClass($.support.touch ? 'touch' : 'no-touch').addClass($.support.svg ? 'svg' : 'no-svg').addClass( !! $.support.transform ? 'transform' : 'no-transform');
   }
 
 
