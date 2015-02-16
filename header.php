@@ -40,7 +40,7 @@
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="<?php echo $outline_class; ?>" rel="home">
 				<span><?php bloginfo( 'name' ); ?></span>
 				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-					<text x="0" y="140">
+					<text x="0" y="1em">
 						<?php bloginfo( 'name' ); ?>
 					</text>
 				</svg>
