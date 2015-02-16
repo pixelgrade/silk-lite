@@ -26,8 +26,9 @@
 		}
 	}
 
-	.entry-content {
-		@extend %gamma;
+	.entry-content p {
+		// @extend %gamma;
+		font-weight: 400;
 		@include fs(12px);
 		@include baseline(12px);
 

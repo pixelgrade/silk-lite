@@ -14,19 +14,25 @@
 }
 
 .site-title {
-    font-size: rem(107px);
+    font-size: rem(120px);
     font-style: normal;
     margin: 0;
     text-transform: uppercase;
-    line-height: 0.85;
     letter-spacing: 0.03em;
+    max-width: 100%;
 
-    @include query-below($desk) {
-        font-size: rem(80px);
+    .site-header & {
+        line-height: 0.85;
     }
 
-    @include query-below($small) {
-        font-size: rem(60px);
+    .no-svg & {
+        @include query-below($desk) {
+            font-size: rem(80px);
+        }
+
+        @include query-below($small) {
+            font-size: rem(60px);
+        }
     }
 
     @extend %h1;
@@ -40,9 +46,12 @@
         margin-top: rhythm(-1);
     }
 
+    span {
+        font-weight: 700;
+    }
+
     svg {
         display: none;
-        margin-bottom: -0.3em;
     }
 }
 
@@ -52,37 +61,12 @@ html.svg .site-title {
     }
 
     svg {
-        display: inline-block;
+        display: block;
     }
 
     text {
         fill: $accent;
-        stroke: #fff;
-    }
-}
-
-.outline-0 text { stroke-width: 0; }
-.outline-1 text { stroke-width: 1px; }
-.outline-2 text { stroke-width: 2px; }
-.outline-3 text { stroke-width: 3px; }
-
-@include query-below($desk) {
-    .outline-1 text { stroke-width: 0; }
-    .outline-2 text { stroke-width: 1px; }
-    .outline-3 text { stroke-width: 2px; }    
-}
-
-@include query-below($lap) {
-    .outline-1 text,
-    .outline-2 text { stroke-width: 0; }
-    .outline-3 text { stroke-width: 1px; }    
-}
-
-@include query-below($small) {
-    .outline-1 text,
-    .outline-2 text,
-    .outline-3 text {
-        stroke-width: 0;
+        font-weight: 700;
     }
 }
 

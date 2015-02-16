@@ -867,11 +867,11 @@ if (!Date.now) Date.now = function () {
         
         
         showBlocks = function ($blocks) {
+        $blocks.each(function (i, obj) {
+          var $post = $(obj);
+          animator.animatePost($post, i * 100);
+        });
         if (!$.support.touch) {
-          $blocks.each(function (i, obj) {
-            var $post = $(obj);
-            animator.animatePost($post, i * 100);
-          });
           $blocks.addHoverAnimation();
         }
         },
@@ -918,8 +918,8 @@ if (!Date.now) Date.now = function () {
       $obj.hoverIntent({
         over: animateHoverIn,
         out: animateHoverOut,
-        timeout: 100,
-        interval: 50
+        timeout: 0,
+        interval: 0
       });
 
       function animateHoverIn() {
@@ -1000,6 +1000,8 @@ if (!Date.now) Date.now = function () {
 
         // make sure that the links in the floating-nav, that shows on scroll, are ignored by TAB
         $('.floating-nav').find('a').attr('tabIndex', -1);
+
+        mobileNav();
         },
         
         
@@ -1015,6 +1017,96 @@ if (!Date.now) Date.now = function () {
           $('.nav--floating').removeClass('nav--floating--is-visible');
           $('.article-navigation .navigation-item').removeClass('hover-state');
         }
+
+        },
+        
+        
+        mobileNav = function () {
+        var $nav = $('.nav--main'),
+            $navTrigger = $('.js-nav-trigger'),
+            $navContainer = $('.main-navigation'),
+            navTop = (typeof $navContainer.offset() !== 'undefined') ? $navContainer.offset().top : 0,
+            navLeft = (typeof $navContainer.offset() !== 'undefined') ? $navContainer.offset().left : 0,
+            navWidth = $nav.outerWidth(),
+            containerWidth = $navContainer.outerWidth(),
+            navHeight = $navContainer.outerHeight(),
+            $toolbar = $('.toolbar'),
+            isOpen = false,
+            pageTop = $('#page').offset().top,
+            sticked = false;
+
+        /**
+         * bind toggling the navigation drawer to click and touchstart
+         *in order to get rid of the 300ms delay on touch devices we use the touchstart event
+         */
+        var triggerEvents = 'click touchstart';
+        if (android_ancient) triggerEvents = 'click';
+        $navTrigger.on(triggerEvents, function (e) {
+          // but we still have to prevent the default behavior of the touchstart event
+          // because this way we're making sure the click event won't fire anymore
+          e.preventDefault();
+          e.stopPropagation();
+
+          isOpen = !isOpen;
+          $('body').toggleClass('nav--is-open');
+
+          var offset;
+
+          navWidth = $nav.outerWidth();
+
+          if ($('body').hasClass('rtl')) {
+            offset = -1 * navWidth;
+          } else {
+            offset = navWidth;
+          }
+
+          if (!android_ancient) {
+            if (!isOpen) {
+
+              $([$nav, $navTrigger]).each(function (i, obj) {
+                $(obj).velocity({
+                  translateX: 0,
+                  translateZ: 0.01
+                }, {
+                  duration: 300,
+                  easing: "easeInQuart"
+                });
+              });
+
+            } else {
+
+              $([$nav, $navTrigger]).each(function (i, obj) {
+                $(obj).velocity({
+                  translateX: offset,
+                  translateZ: 0.01
+                }, {
+                  easing: "easeOutCubic",
+                  duration: 300
+                });
+              });
+
+            }
+            $nav.toggleClass('shadow', isOpen);
+          }
+        });
+
+        // clone and append secondary menus
+        $('<li/>', {
+          class: "nav--toolbar--left_wrapper"
+        }).appendTo('.js-nav--main');
+
+        $('<li/>', {
+          class: "nav--toolbar--right_wrapper"
+        }).appendTo('.js-nav--main');
+
+        $('<li/>', {
+          class: "nav-dropdown_wrapper"
+        }).appendTo('.js-nav--main');
+
+        $('.nav--toolbar--left_wrapper').append($('.nav--toolbar--left').clone());
+        $('.nav--toolbar--right_wrapper').append($('.nav--toolbar--right').clone());
+
+        $('.nav-dropdown_wrapper').append($('.nav--dropdown').clone());
 
         };
 
@@ -1481,6 +1573,56 @@ if (!Date.now) Date.now = function () {
       init: init
     }
 
+  })();
+  var svgLogo = (function () {
+
+    var init = function () {
+
+      if (!$.support.svg) return;
+
+      var $header = $('.site-header'),
+          $title = $('.site-header .site-title'),
+          $span = $title.find('span'),
+          $svg = $title.find('svg'),
+          $text = $svg.find('text'),
+          $rect = $svg.find('rect'),
+          headerWidth = $header.width(),
+          fontSize = parseInt($span.css('font-size')),
+          scaling = 1,
+          textWidth, titleHeight, titleWidth, spanWidth = $span.width(),
+          spanHeight = $span.height();
+
+      $span.css('white-space', 'nowrap');
+
+      $svg.hide();
+      $span.show();
+
+      titleWidth = $span.width();
+
+      if (titleWidth > headerWidth) {
+        scaling = titleWidth / parseFloat(headerWidth);
+        fontSize = parseInt(fontSize / scaling);
+        $span.css('font-size', fontSize);
+      }
+
+      titleWidth = $title.width();
+      titleHeight = $title.height();
+
+      $title.width(spanWidth);
+      $svg.attr('viewBox', "0 0 " + spanWidth + " " + spanHeight);
+
+      $span.hide();
+
+      var newSvg = $svg.clone().wrap('<div>').parent().html(),
+          $newSvg = $(newSvg);
+      $svg.remove();
+      $title.children('a').append($newSvg);
+      $newSvg.show();
+    }
+
+    return {
+      init: init
+    }
   })(); /* ====== ON DOCUMENT READY ====== */
 
   $(document).ready(function () {
@@ -1490,39 +1632,7 @@ if (!Date.now) Date.now = function () {
   function init() {
     browserSize();
     platformDetect();
-
-    if ($.support.svg) {
-      var $header = $('.site-header'),
-          $title = $('.site-title'),
-          $span = $title.find('span'),
-          $svg = $title.find('svg'),
-          $text = $svg.find('text'),
-          headerWidth = $header.width(),
-          fontSize = parseInt($span.css('font-size')),
-          textWidth, titleHeight, titleWidth;
-
-      $span.css('white-space', 'nowrap');
-
-      titleWidth = $span.show().width();
-
-      if (titleWidth > headerWidth) {
-        fontSize = fontSize / (titleWidth / headerWidth);
-        $span.css('font-size', fontSize);
-      }
-
-      titleWidth = $span.width();
-      titleHeight = $span.height();
-      $span.hide();
-
-      $title.css('font-size', fontSize);
-      $('.site-title svg').width(titleWidth).height(titleHeight);
-
-      setTimeout(function () {
-        textWidth = $text.width();
-        $text.attr('x', (titleWidth - textWidth) / 2);
-      }, 300);
-
-    }
+    svgLogo.init();
   }
 
   /* ====== ON WINDOW LOAD ====== */
@@ -1585,7 +1695,7 @@ if (!Date.now) Date.now = function () {
     $.support.svg = (document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1")) ? true : false;
     $.support.transform = getSupportedTransform();
 
-    $html.toggleClass('touch', $.support.touch).toggleClass('svg', $.support.svg).toggleClass('transform', !! $.support.transform);
+    $html.addClass($.support.touch ? 'touch' : 'no-touch').addClass($.support.svg ? 'svg' : 'no-svg').addClass( !! $.support.transform ? 'transform' : 'no-transform');
   }
 
 

@@ -5,14 +5,13 @@
 	position: absolute;
 	bottom: 0;
 	left: 0;
-	z-index: 15;
 
-	height: 35%;
+	height: 100%;
 	width: 100%;
 
 	opacity: 1;
 	transition: opacity .3s cubic-bezier(0.645, 0.045, 0.355, 1);
-    transition-delay: .3s;
+    // transition-delay: .3s;
 
 	pointer-events: none;
 }
@@ -27,7 +26,7 @@
 		@extend .nav--stacked;
 	}
 
-	a{
+	a {
 		@extend %alpha;
 
 		padding: rem(6px) 0;
@@ -46,11 +45,25 @@
 
 	&.widget a {
 		display: inline-block;
+
+		&.btn {
+			// display: block;
+			@extend .btn;
+			font-size: 12px;
+			margin-top: rhythm(0.25);
+			padding: rhythm(0.25);
+
+			&:before {
+				display:block;
+				content:'';
+			}
+		}
 	}
 }
 
 .widget-title {
 	@extend %h4;
+	letter-spacing: 0.1em;
 	margin-top: 0;
 	text-align: center;
 }
@@ -59,13 +72,17 @@
 
 
 
-/* Widget - About me */
+/* Custom Widget - About Me */
 
 .widget_silk_about_me {
+	display: table;
 	position: relative;
-	background: $accent;
+	padding: 0;
+
 	border: 0;
 	overflow: hidden;
+	
+	background: $accent;
 
 	min-height: rem(340px);
 
@@ -73,14 +90,32 @@
 		margin-bottom: rem(6px);
 	}
 
+	&:before {
+		@extend %widget-haze;
+		z-index: 9;
+		opacity: 1;
+
+		background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 56%,rgba(0,0,0,0.2) 64%,rgba(0,0,0,0.65) 100%);
+	}
+
 	&:after {
 		@extend %widget-haze;
+		z-index: 9;
+		opacity: 0;
 
-		background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.7) 100%);
+		background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.7) 100%);
 	}
 
 	&:hover, &:focus {
+		&:before {
+			opacity: 0;
+		}
+
 		&:after {
+			opacity: 1;
+		}
+
+		.silk-about-me-widget__container:after {
 			opacity: 0;
 		}
 	}
@@ -99,15 +134,28 @@
 	}
 
 	.silk-about-me-widget__container {
+		display: table-cell;
+	    vertical-align: top;
 		position: relative;
-		z-index: 5;
+		z-index: 10;
+		padding: rhythm(1.25) rhythm(1);
 
 		text-align: center;
 		color: white;
 
-		transform: translateY(70%);
-		transition: transform .3s cubic-bezier(0.645, 0.045, 0.355, 1);
-		transition-delay: .3s;
+		// transform: translateY(170px);
+		transform: translateY(calc(100% - 170px));
+		transition: all .3s cubic-bezier(0.645, 0.045, 0.355, 1);
+		transition-delay: .1s;
+
+		&:after {
+			@extend %widget-haze;
+			z-index: 11;
+			opacity: 1;
+
+			background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 110px, rgba(0,0,0,0.7) 170px);
+		}
+
 	}
 
 		&:hover, &:focus {
@@ -118,26 +166,45 @@
 
 	.widget-title {
 		color: white;
+		text-shadow: 0.5px 1px 0px rgba(0, 0, 0, 0.3);
 	}
 
 	.silk-about-me-widget__name {
 		@extend %alpha;
 		@include fs(30px);
 		font-style: italic;
+		-webkit-font-smoothing: antialiased;
 
-		text-shadow: 1px 1px 1px rgba(150, 150, 150, 1);
+		text-shadow: 0.5px 1px 0px rgba(0, 0, 0, 0.3);
+
 	}
 
-	.separator-wrapper--white {
+	.silk-about-me__text {
+		@include fs(12px);
+	}
+
+	.separator {
 		max-width: 128px;
 		overflow: hidden;
-		margin-left: auto;
-		margin-right: auto;
+		// margin-left: auto;
+		// margin-right: auto;
+		margin: rhythm(0.25) auto;
 
 		svg {
 			position: relative;
 			left: 50%;
 			transform: translateX(-50%);
+		}
+	}
+
+	a {
+		color: $secondary;
+	}
+
+	p {
+		margin-bottom: rhythm(0.25);
+		&:last-child {
+			margin-bottom: 0;
 		}
 	}
 }

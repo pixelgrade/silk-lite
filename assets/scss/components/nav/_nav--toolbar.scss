@@ -5,14 +5,6 @@
 	background: black;
 	color: $gray;
 
-	a {
-		color: $gray;
-	}
-
-	// li:hover > a {
-	// 	color: white;
-	// }
-
 	&.fixed {
 		top: 0;
 		left: 0;
@@ -33,15 +25,22 @@
 			}
 		}
 
-		.h3 {
+		.site-title {
+			display: inline-block;
+
 			margin: 0;
 			font-size: rem(33px);
+			// -webkit-font-smoothing: antialiased;
 			text-transform: uppercase;
 			white-space: nowrap;
 
 			i {
 				margin-right: rhythm(1);
 			}
+		}
+
+		.h3 {
+			
 		}
 
 		&.visible {
@@ -57,14 +56,45 @@
 				color: white;
 			}
 		}
-
+		
+		// Hamburger Menu
 		svg {
 			margin-top: 0.55em;
+			color: white;
 		}
 
 		path {
 			fill: currentColor;
 		}
+	}
+
+	//Floating bar
+	.floating-nav & {
+		.site-title, .nav--toolbar > .menu-item > a {
+			color: white;
+		}
+
+		.nav--toolbar > .menu-item > a {
+			font-size: rem(12px);
+			letter-spacing: 0.2em;
+			padding: rem(15px) rem(18px);
+		}
+	}
+	
+	// First Level Hover Color
+	svg,
+	.floating-nav & .nav--toolbar > .menu-item > a, 
+	.floating-nav & .site-title {
+
+		transition: color 0.2s;
+
+		&:hover { 
+			color: $secondary; 
+		}
+	}
+
+	@include query-below($lap) {
+		display: none;
 	}
 }
 
@@ -81,8 +111,11 @@
 .nav--toolbar {
 	@extend %nav--social;
 	display: inline-block;
-	margin-left: rem(-15px); 
-	margin-right: rem(-15px);
+
+	@include query-above($lap) {
+		margin-left: rem(-15px);
+		margin-right: rem(-15px);
+	}
 
 	> .menu-item {
 		@extend %menu-item;
@@ -93,6 +126,7 @@
 		}
 		
 		> a {
+			color: $gray;
 			@extend %delta;
 			padding: rem(15px);
 		}
@@ -106,7 +140,7 @@
 
 			&:after {
 				top: rem(22px);
-				right: rem(3px);
+				right: 5px;
 			}
 		}
 	}
@@ -128,6 +162,10 @@
 	.menu-item {
 		@extend %menu-item;
 		font-size: rem(11px);
+
+		> a {
+			color: $gray;
+		}
 
 		&:hover {
 			> a {

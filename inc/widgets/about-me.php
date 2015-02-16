@@ -80,7 +80,7 @@ if ( ! class_exists( 'Silk_About_Me_Widget' ) ) :
 				echo '<div class="silk-about-me-widget__name">' . $instance['name'] . '</div>' . PHP_EOL;
 			}
 
-			echo '<span class="separator-wrapper--white">';
+			echo '<span class="separator separator-wrapper--white">';
 				get_template_part("assets/svg/separator-simple");
 			echo '</span>';
 

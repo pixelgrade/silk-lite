@@ -68,11 +68,11 @@ var masonry = (function() {
 	},
 
 	showBlocks = function($blocks) {
+		$blocks.each(function(i, obj) {
+			var $post = $(obj);
+			animator.animatePost($post, i * 100);
+		});
 		if ( ! $.support.touch ) {
-			$blocks.each(function(i, obj) {
-				var $post = $(obj);
-				animator.animatePost($post, i * 100);
-			});
 			$blocks.addHoverAnimation();
 		}
 	},
@@ -118,8 +118,8 @@ $.fn.addHoverAnimation = function() {
 	    $obj.hoverIntent({
 	        over: animateHoverIn,
 	        out: animateHoverOut,
-	        timeout: 100,
-	        interval: 50
+	        timeout: 0,
+	        interval: 0
 	    });
 
 	    function animateHoverIn() {

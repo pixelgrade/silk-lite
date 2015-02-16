@@ -4,6 +4,7 @@
 	.entry-content {
 		max-width: rem(420px);
 		margin: 0 auto;
+		text-align: center;
 	}
 
 	.entry-meta {
@@ -25,12 +26,17 @@
 
 	.entry-featured {
 		display: inline-block;
-		margin-bottom: rhythm(1);
+		margin-bottom: rhythm(0.75);
 		position: relative;
 
 		img {
 			display: block;
 		}
+	}
+
+	.separator {
+		margin-top: rhythm(-0.5);
+		margin-bottom: rhythm(0.5);
 	}
 
 	.entry-image-border {
@@ -47,6 +53,7 @@
 .entry-meta--card {
 	
 	font-size: rem(10px);
+	margin-bottom: rhythm(0.25);
 
 	.cat-links {
 
