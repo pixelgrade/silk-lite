@@ -44,19 +44,17 @@ if ( ! function_exists( 'silk_the_post_navigation' ) ) :
  */
 function silk_the_post_navigation() {
 	// Don't print empty markup if there's nowhere to navigate.
-	$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
-	$next     = get_adjacent_post( false, '', false );
+	$prev_post = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_previous_post();
+	$next_post = get_next_post();
 
-	if ( ! $next && ! $previous ) {
+	if ( ! $next_post && ! $prev_post ) {
 		return;
-	}
-	?>
+	} ?>
+
 	<nav class="navigation post-navigation" role="navigation">
 		<h5 class="screen-reader-text"><?php _e( 'Post navigation', 'silk_txtd' ); ?></h5>
 		<div class="article-navigation">
 			<?php
-			$prev_post = get_previous_post();
-
 			if($prev_post) {
 				$prev_thumbnail = get_the_post_thumbnail($prev_post->ID, 'silk-tiny-image' );
 
@@ -93,8 +91,6 @@ function silk_the_post_navigation() {
                         </span>', $prev_thumbnail, __( 'Previous post', 'silk_txtd' ), $time_string, $post_category->name  ) );
 			}
 
-			$next_post = get_next_post();
-
 			if($next_post) {
 				$post_cat = wp_get_post_categories($next_post->ID);
 				$post_cat = $post_cat[0];
@@ -129,10 +125,109 @@ function silk_the_post_navigation() {
                             	</span>
                             </span>
                         </span>', $next_thumbnail, __( 'Next post', 'silk_txtd' ), $time_string, $post_category->name ) );
-			}
-			?>
+			} ?>
+
 	</nav><!-- .navigation -->
+
 	<?php
+}
+endif;
+
+if ( ! function_exists( 'silk_the_image_navigation' ) ) :
+/**
+ * Display navigation to next/previous image attachment
+ */
+function silk_the_image_navigation() {
+	// Don't print empty markup if there's nowhere to navigate.
+	$prev_image = silk_get_adjacent_image();
+	$next_image = silk_get_adjacent_image( false );
+
+	if ( ! $next_image && ! $prev_image ) {
+		return;
+	} ?>
+
+	<nav class="navigation post-navigation" role="navigation">
+		<h5 class="screen-reader-text"><?php _e( 'Image navigation', 'silk_txtd' ); ?></h5>
+		<div class="article-navigation">
+			<?php
+			if($prev_image) {
+				$prev_thumbnail = wp_get_attachment_image($prev_image->ID, 'silk-tiny-image' ); ?>
+
+				<span class="navigation-item  navigation-item--previous">
+					<a href="<?php echo get_attachment_link( $prev_image->ID ); ?>" rel="prev">
+						<span class="arrow"></span>
+	                    <span class="navigation-item__content">
+	                        <span class="navigation-item__wrapper  flexbox">
+	                            <span class="flexbox__item">
+	                                <span class="post-thumb"><?php echo $prev_thumbnail; ?></span>
+	                            </span>
+	                            <span class="flexbox__item">
+	                                <span class="navigation-item__name"><?php _e( 'Previous image', 'silk_txtd' ); ?></span>
+	                                <h3 class="post-title"><?php echo get_the_title( $prev_image->ID ); ?></h3>
+	                            </span>
+	                        </span>
+	                    </span>
+					</a>
+				</span>
+
+			<?php }
+
+			if($next_image) {
+				$next_thumbnail = wp_get_attachment_image($next_image->ID, 'silk-tiny-image'); ?>
+
+				<span class="navigation-item  navigation-item--next">
+					<a href="<?php echo get_attachment_link( $next_image->ID ); ?>" rel="prev">
+						<span class="arrow"></span>
+	                    <span class="navigation-item__content">
+	                        <span class="navigation-item__wrapper  flexbox">
+	                            <span class="flexbox__item">
+	                                <span class="post-thumb"><?php echo $next_thumbnail; ?></span>
+	                            </span>
+	                            <span class="flexbox__item">
+	                                <span class="navigation-item__name"><?php _e( 'Next image', 'silk_txtd' ); ?></span>
+	                                <h3 class="post-title"><?php echo get_the_title( $next_image->ID ); ?></h3>
+	                            </span>
+	                        </span>
+	                    </span>
+					</a>
+				</span>
+
+			<?php } ?>
+
+	</nav><!-- .navigation -->
+
+<?php
+}
+endif;
+
+if ( ! function_exists( 'silk_get_adjacent_image' ) ) :
+/**
+ * Inspired by the core function adjacent_image_link() from wp-includes/media.php
+ *
+ * @param bool $prev Optional. Default is true to display previous link, false for next.
+ * @return mixed  Attachment object if successful. Null if global $post is not set. false if no corresponding attachment exists.
+ */
+function silk_get_adjacent_image( $prev = true ) {
+	if ( ! $post = get_post() )
+		return null;
+
+	$attachments = array_values( get_children( array( 'post_parent' => $post->post_parent, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => 'ASC', 'orderby' => 'menu_order ID' ) ) );
+
+	foreach ( $attachments as $k => $attachment ) {
+		if ( $attachment->ID == $post->ID ) {
+			break;
+		}
+	}
+
+	if ( $attachments ) {
+		$k = $prev ? $k - 1 : $k + 1;
+
+		if ( isset( $attachments[ $k ] ) ) {
+			return $attachments[ $k ];
+		}
+	}
+
+	return false;
 }
 endif;
 
