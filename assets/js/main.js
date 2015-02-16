@@ -918,8 +918,8 @@ if (!Date.now) Date.now = function () {
       $obj.hoverIntent({
         over: animateHoverIn,
         out: animateHoverOut,
-        timeout: 100,
-        interval: 50
+        timeout: 0,
+        interval: 0
       });
 
       function animateHoverIn() {
