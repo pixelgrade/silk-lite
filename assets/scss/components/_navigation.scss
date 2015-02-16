@@ -22,18 +22,24 @@
 	text-align: left;
 	display: none;
 
-	position: absolute;
-	top: 100%;
-	left: 0;
+	@include query-above($lap) {
+		position: absolute;
+		top: 100%;
+		left: 0;
 
-	& & {
-		top: -1px;
-		left: 100%;
+		& & {
+			top: -1px;
+			left: 100%;
+		}
 	}
+
 
 	a {
 		display: block;
-		padding: rhythm(4/9) rhythm(2/3); 
+
+		@include query-above($lap) {
+			padding: rhythm(4/9) rhythm(2/3);
+		}
 	}
 }
 
@@ -51,22 +57,30 @@
 }
 
 %sub-menu-transition-out {
-	opacity: 0;
-	transition: opacity .2s ease-out, visibility 0s .3s linear, left 0s .3s linear;
-	left: 9999em;
+	@include query-above($lap) {
+		opacity: 0;
+		transition: opacity .2s ease-out, visibility 0s .3s linear, left 0s .3s linear;
+		left: 9999em;
+	}
 }
 
 %sub-menu-transition-in {
-	opacity: 1;
-	transition: opacity .2s ease-in;
-	left: 100%;
+	@include query-above($lap) {
+		opacity: 1;
+		transition: opacity .2s ease-in;
+		left: 100%;
+	}
 }
 
 .sub-menu-wrapper {
 	@extend .clearfix;
 	@extend %sub-menu-transition-out;
-	position: absolute;
-	top: 100%;
+
+	@include query-above($lap) {
+		position: absolute;
+		top: 100%;
+	}
+
 	background: white;
 	white-space: nowrap;
 
@@ -91,12 +105,21 @@
 
 	.sub-menu {
 		@extend %sub-menu-transition-out;
-		border: 1px solid $borders;
-		padding: rhythm(1/2) rhythm(1);
+
 		background: white;
-		position: absolute;
-		top: -1px;
+
 		margin-top: rhythm(-1/2);
+
+		@include query-above($lap) {
+			position: absolute;
+			top: -1px;
+
+			padding: rhythm(1/2) rhythm(1);
+		}
+
+		@include query-above($lap) {
+			border: 1px solid $borders;
+		}
 	}
 
 	> .sub-menu {
