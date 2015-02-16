@@ -20,16 +20,36 @@
 	> .grid__item {
 		width: 100%;
 		padding-bottom: em(30px);
+	}
+
+	&.masonry > .grid__item {
 
 		@include query-above($small) {
 			width: 50%;
 		}
 	}
 
+	&.single-column {
+
+		@include query-above($lap) {
+			.entry-header,
+			.entry-content {
+				max-width: rem(660px);
+			}
+
+			.entry-title {
+				font-size: rem(48px);
+			}
+
+			.entry-content p {
+				font-size: 1rem;
+			}
+		}
+	}
+
 	.entry-content p {
 		font-weight: 400;
-		@include fs(12px);
-		@include baseline(12px);
+		font-size: rem(12px);
 
 		text-align: center;
 	}
