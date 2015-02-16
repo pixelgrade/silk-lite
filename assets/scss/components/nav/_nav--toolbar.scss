@@ -6,7 +6,7 @@
 	color: $gray;
 
 	a {
-		color: $gray;
+		// color: $gray;
 	}
 
 	// li:hover > a {
@@ -93,6 +93,7 @@
 		}
 		
 		> a {
+			color: $gray;
 			@extend %delta;
 			padding: rem(15px);
 		}
@@ -128,6 +129,10 @@
 	.menu-item {
 		@extend %menu-item;
 		font-size: rem(11px);
+
+		> a {
+			color: $gray;
+		}
 
 		&:hover {
 			> a {
