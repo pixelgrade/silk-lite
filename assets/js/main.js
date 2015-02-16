@@ -996,6 +996,8 @@ if (!Date.now) Date.now = function () {
 
         $('.nav--toolbar--left').clone().removeClass('nav--toolbar nav--toolbar--left').addClass('nav--stacked nav--floating nav--floating--left').appendTo('.floating-nav');
 
+        $('.nav__item--search').prependTo('.nav--floating--left');
+
         $('.nav--toolbar--right').clone().removeClass('nav--toolbar nav--toolbar--right').addClass('nav--stacked nav--floating nav--floating--right').appendTo('.floating-nav');
 
         // make sure that the links in the floating-nav, that shows on scroll, are ignored by TAB

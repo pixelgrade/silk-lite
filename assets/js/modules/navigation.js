@@ -18,6 +18,8 @@ var navigation = (function() {
 			.addClass('nav--stacked nav--floating nav--floating--left')
 			.appendTo('.floating-nav');
 
+		$('.nav__item--search').prependTo('.nav--floating--left');
+
 		$('.nav--toolbar--right')
 			.clone()
 			.removeClass('nav--toolbar nav--toolbar--right')
