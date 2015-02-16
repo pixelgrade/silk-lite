@@ -90,7 +90,7 @@ gulp.task('server', ['styles', 'scripts'], function () {
 /**
  * Copy theme folder outside in a build folder, recreate styles before that
  */
-gulp.task('copy-folder', ['styles-prod', 'scripts'], function () {
+gulp.task('copy-folder', ['styles', 'scripts'], function () {
 
 	return gulp.src('./')
 		.pipe(exec('rm -Rf ./../build; mkdir -p ./../build/silk; rsync -av --exclude="node_modules" ./* ./../build/silk/', options));
