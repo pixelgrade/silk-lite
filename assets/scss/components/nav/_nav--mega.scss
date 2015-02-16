@@ -36,7 +36,7 @@
 
 	.menu-link {
 		@extend %delta;
-		color: currentColor;
+		// color: currentColor;
 		display: inline-block;
 		padding: rhythm(1) rhythm(1.5);
 	}
