@@ -39,7 +39,9 @@
 
 	.menu-link {
 		@extend %delta;
-		color: currentColor;
+		// color: currentColor;
+		display: inline-block;
+		padding: rhythm(1) rhythm(1.5);
 
 		@include query-above($lap) {
 			display: inline-block;

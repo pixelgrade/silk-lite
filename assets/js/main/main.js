@@ -10,29 +10,31 @@ function init() {
 
   if ( $.support.svg ) {
     var $header     = $('.site-header'),
-        $title      = $('.site-title'),
+        $title      = $('.site-header .site-title'),
         $span       = $title.find('span'),
         $svg        = $title.find('svg'),
         $text       = $svg.find('text'),
         headerWidth = $header.width(),
         fontSize    = parseInt($span.css('font-size')),
         textWidth,
+        titleHeight,
         titleWidth;
 
       $span.css('white-space', 'nowrap');
 
-      titleWidth = $span.show().width();
+      titleWidth = $span.show().width(); 
 
-      while (titleWidth > headerWidth) {
-        fontSize = fontSize - 1;
+      if (titleWidth > headerWidth) {
+        fontSize = fontSize / (titleWidth / headerWidth);
         $span.css('font-size', fontSize);
-        titleWidth = $span.width();
       }
 
+      titleWidth = $span.width();
+      titleHeight = $span.height();
       $span.hide();
 
       $title.css('font-size', fontSize);
-      $('.site-title svg').width(titleWidth);
+      $('.site-title svg').width(titleWidth).height(titleHeight);
       
       setTimeout(function() {
         textWidth = $text.width();

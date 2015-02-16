@@ -33,7 +33,7 @@
 			<?php endif; ?>
 
 			<div class="flag__img">
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="inline-block  h3" tabindex="-1"><?php bloginfo( 'name' ); ?></a>
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-title" tabindex="-1"><?php bloginfo( 'name' ); ?></a>
 			</div>
 
 			<div class="flag__body  align-right"></div>

@@ -586,9 +586,13 @@ div#jp-relatedposts#jp-relatedposts div.jp-relatedposts-items.jp-relatedposts-it
 	margin: 0;
 
 	a {
-		color: $dark;
-		font-weight: 500;
+		background: none;
 	}
+}
+
+div#jp-relatedposts div.jp-relatedposts-items div.jp-relatedposts-post:hover .jp-relatedposts-post-title a {
+	color: $accent;
+	text-decoration: none;
 }
 
 div#jp-relatedposts#jp-relatedposts div.jp-relatedposts-items.jp-relatedposts-items-minimal p {
