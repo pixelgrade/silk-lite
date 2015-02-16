@@ -57,6 +57,7 @@ function silk_customize_register ( $wp_customize ) {
 	$wp_customize->add_setting( 'silk_site_title_outline', array(
 		'default'           => '0',
 		'sanitize_callback' => 'silk_sanitize_site_title_outline',
+		'transport' => 'postMessage',
 	) );
 
 	$wp_customize->add_control( 'silk_site_title_outline', array(
@@ -66,10 +67,9 @@ function silk_customize_register ( $wp_customize ) {
 		'choices' => array(
 			'0' => __( '0', 'silk_txtd' ),
 			'1.2' => __( '-1', 'silk_txtd' ),
-			'2' => __( '-2', 'silk_txtd' ),
+			'3' => __( '-2', 'silk_txtd' ),
 			'5' => __( '-3', 'silk_txtd' ),
 			'10' => __( '-4', 'silk_txtd' ),
-
 		),
 	) );
 }
@@ -96,7 +96,7 @@ function silk_sanitize_checkbox( $input ) {
  * @return string Filtered outline (0|1|2|3).
  */
 function silk_sanitize_site_title_outline( $outline ) {
-	if ( ! in_array( $outline, array( '0', '1.2', '2', '5', '10' ) ) ) {
+	if ( ! in_array( $outline, array( '0', '1.2', '3', '5', '10' ) ) ) {
 		$outline = '2';
 	}
 
