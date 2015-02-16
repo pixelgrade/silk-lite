@@ -95,7 +95,7 @@ function silk_sanitize_checkbox( $input ) {
  */
 function silk_sanitize_site_title_outline( $outline ) {
 	if ( ! in_array( $outline, array( '0', '1', '2', '3' ) ) ) {
-		$outline = '0';
+		$outline = '3';
 	}
 
 	return $outline;
