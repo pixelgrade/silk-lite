@@ -38,7 +38,7 @@
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
 				<span><?php bloginfo( 'name' ); ?></span>
 				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-					<text x="50%" y="0.82em" stroke="#fff" text-anchor="middle" stroke-width="<?php echo get_theme_mod( 'silk_site_title_outline', '0' ); ?>">
+					<text x="50%" y="0.82em" stroke="#fff" text-anchor="middle" stroke-width="<?php echo get_theme_mod( 'silk_site_title_outline', '3' ); ?>">
 						<?php bloginfo( 'name' ); ?>
 					</text>
 				</svg>
