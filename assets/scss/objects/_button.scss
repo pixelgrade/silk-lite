@@ -9,4 +9,9 @@
 
 	color: white;
 	background-color: $accent;
+	transition: all 0.2s;
+
+	&:hover {
+		background-color: $dark;
+	}
 }
