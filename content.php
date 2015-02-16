@@ -61,7 +61,7 @@ if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 				'separator'   => '<span class="screen-reader-text">, </span>',
 			) );
 		?>
-		<span class="separator-wrapper--accent">
+		<span class="separator separator-wrapper--accent">
 			<?php get_template_part("assets/svg/separator-simple"); ?>
 		</span>
 
