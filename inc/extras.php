@@ -235,6 +235,23 @@ function silk_comment( $comment, $args, $depth ) {
 } // don't remove this bracket!
 
 /**
+ * Filter wp_link_pages to wrap current page in span.
+ *
+ * @param $link
+ *
+ * @return string
+ */
+function silk_link_pages( $link ) {
+	if ( is_numeric( $link ) ) {
+		return '<span class="current">' . $link . '</span>';
+	}
+
+	return $link;
+}
+
+add_filter( 'wp_link_pages_link', 'silk_link_pages' );
+
+/**
  * Wrap more link
  */
 function silk_read_more_link( $link ) {
@@ -311,6 +328,12 @@ if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_
 
 			// build html
 			$output .= '<li id="nav--top__item-' . $item->ID . '" class="nav__item ' . $depth_class_names . ' ' . $class_names . '">' . PHP_EOL;
+
+			if ( empty( $item->title ) && empty( $item->url ))
+			{
+				$item->url = get_permalink($item->ID);
+				$item->title = $item->post_title;
+			}
 
 			// link attributes
 			$attributes = ! empty( $item->attr_title ) ? ' title="' . esc_attr( $item->attr_title ) . '"' : '';
@@ -458,6 +481,91 @@ if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_
 
 	} # class
 
+endif;
+
+if ( ! function_exists( 'silk_custom_wp_page_menu' ) ) :
+	/**
+	 * Display the list of pages with a home link in case there is no menu in the primary location
+	 *
+	 * @param array|string $args {
+	 *     Optional. Arguments to generate a page menu. {@see wp_list_pages()}
+	 *     for additional arguments.
+	 *
+	 * @type string     $sort_column How to short the list of pages. Accepts post column names.
+	 *                               Default 'menu_order, post_title'.
+	 * @type string     $menu_class  Class to use for the div ID containing the page list. Default 'menu'.
+	 * @type bool       $echo        Whether to echo the list or return it. Accepts true (echo) or false (return).
+	 *                               Default true.
+	 * @type string     $link_before The HTML or text to prepend to $show_home text. Default empty.
+	 * @type string     $link_after  The HTML or text to append to $show_home text. Default empty.
+	 * @type int|string $show_home   Whether to display the link to the home page. Can just enter the text
+	 *                               you'd like shown for the home link. 1|true defaults to 'Home'.
+	 * }
+	 * @return string html menu
+	 */
+	function silk_custom_wp_page_menu( $args = array() ) {
+		$defaults = array('show_home' => true, 'sort_column' => 'menu_order, post_title', 'menu_class' => 'menu', 'echo' => true, 'link_before' => '', 'link_after' => '');
+		$args = wp_parse_args( $args, $defaults );
+
+		/**
+		 * Filter the arguments used to generate a page-based menu.
+		 *
+		 * @since 2.7.0
+		 *
+		 * @see wp_page_menu()
+		 *
+		 * @param array $args An array of page menu arguments.
+		 */
+		$args = apply_filters( 'wp_page_menu_args', $args );
+
+		$menu = '';
+
+		$list_args = $args;
+
+		// Show Home in the menu
+		if ( ! empty($args['show_home']) ) {
+			if ( true === $args['show_home'] || '1' === $args['show_home'] || 1 === $args['show_home'] )
+				$text = __('Home');
+			else
+				$text = $args['show_home'];
+			$class = '';
+			if ( is_front_page() && !is_paged() )
+				$class = 'class="current_page_item"';
+			$menu .= '<li ' . $class . '><a href="' . home_url( '/' ) . '">' . $args['link_before'] . $text . $args['link_after'] . '</a></li>';
+			// If the front page is a page, add it to the exclude list
+			if (get_option('show_on_front') == 'page') {
+				if ( !empty( $list_args['exclude'] ) ) {
+					$list_args['exclude'] .= ',';
+				} else {
+					$list_args['exclude'] = '';
+				}
+				$list_args['exclude'] .= get_option('page_on_front');
+			}
+		}
+
+		$list_args['echo'] = false;
+		$list_args['title_li'] = '';
+		$menu .= str_replace( array( "\r", "\n", "\t" ), '', wp_list_pages($list_args) );
+
+		if ( $menu )
+			$menu = '<ul class="' . esc_attr($args['menu_class']) . '">' . $menu . '</ul>' . PHP_EOL;
+
+		/**
+		 * Filter the HTML output of a page-based menu.
+		 *
+		 * @since 2.7.0
+		 *
+		 * @see wp_page_menu()
+		 *
+		 * @param string $menu The HTML output.
+		 * @param array  $args An array of arguments.
+		 */
+		$menu = apply_filters( 'wp_page_menu', $menu, $args );
+		if ( $args['echo'] )
+			echo $menu;
+		else
+			return $menu;
+	}
 endif;
 
 /**

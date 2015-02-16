@@ -64,6 +64,7 @@ if ( ! function_exists( 'silk_setup' ) ) :
 
 		//used for the post thumbnail of posts on archives when displayed on a single column (no masonry)
 		add_image_size( 'silk-single-image', 1024, 9999, false );
+
 		add_image_size( 'silk-site-logo', 1000, 500, false );
 
 		// This theme uses wp_nav_menu() in three locations.
