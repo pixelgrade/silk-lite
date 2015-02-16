@@ -36,7 +36,7 @@
 
 			// on the front page and home page we use H1 for the title
 			echo ( is_front_page() && is_home() ) ? '<h1 class="site-title">' : '<div class="site-title">'; ?>
-			
+
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="<?php echo $outline_class; ?>" rel="home">
 				<span><?php bloginfo( 'name' ); ?></span>
 				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
