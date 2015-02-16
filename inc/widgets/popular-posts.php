@@ -158,7 +158,7 @@ if ( ! class_exists('Silk_Popular_Posts_Widget') ) :
 						echo '<div class="categories-list">' . $cats_list . '</div>';
 					}
 				?>
-				<a href="<?php echo esc_url( $post['permalink'] ); ?>" class="bump-view" data-bump-view="tp">
+				<a href="<?php echo esc_url( $post['permalink'] ); ?>" class="bump-view  title" data-bump-view="tp">
 					<?php echo esc_html( wp_kses( $post['title'], array() ) ); ?>
 				</a>
 				<?php do_action( 'silk_widget_popular_posts_after_post', $post['post_id'] ); ?>
