@@ -1087,6 +1087,25 @@ if (!Date.now) Date.now = function () {
             $nav.toggleClass('shadow', isOpen);
           }
         });
+
+        // clone and append secondary menus
+        $('<li/>', {
+          class: "nav--toolbar--left_wrapper"
+        }).appendTo('.js-nav--main');
+
+        $('<li/>', {
+          class: "nav--toolbar--right_wrapper"
+        }).appendTo('.js-nav--main');
+
+        $('<li/>', {
+          class: "nav-dropdown_wrapper"
+        }).appendTo('.js-nav--main');
+
+        $('.nav--toolbar--left_wrapper').append($('.nav--toolbar--left').clone());
+        $('.nav--toolbar--right_wrapper').append($('.nav--toolbar--right').clone());
+
+        $('.nav-dropdown_wrapper').append($('.nav--dropdown').clone());
+
         };
 
     return {
