@@ -1,4 +1,4 @@
-var svgLogo = (function() {
+window.svgLogo = (function() {
 
 	var init = function() {
 
@@ -21,8 +21,12 @@ var svgLogo = (function() {
 
 		$span.css('white-space', 'nowrap');
 
-		$svg.hide();
-		$span.show();
+		$title.css('width', '');
+		$svg.removeAttr('viewBox').hide();
+		$span.css({
+			'font-size': '',
+			'white-space': ''
+		}).show();
 
 		titleWidth = $span.width();
 

@@ -65,9 +65,11 @@ function silk_customize_register ( $wp_customize ) {
 		'type'    => 'select',
 		'choices' => array(
 			'0' => __( '0', 'silk_txtd' ),
-			'1' => __( '-1', 'silk_txtd' ),
+			'1.2' => __( '-1', 'silk_txtd' ),
 			'2' => __( '-2', 'silk_txtd' ),
-			'3' => __( '-3', 'silk_txtd' ),
+			'5' => __( '-3', 'silk_txtd' ),
+			'10' => __( '-4', 'silk_txtd' ),
+
 		),
 	) );
 }
@@ -94,7 +96,7 @@ function silk_sanitize_checkbox( $input ) {
  * @return string Filtered outline (0|1|2|3).
  */
 function silk_sanitize_site_title_outline( $outline ) {
-	if ( ! in_array( $outline, array( '0', '1', '2', '3' ) ) ) {
+	if ( ! in_array( $outline, array( '0', '1.2', '2', '5', '10' ) ) ) {
 		$outline = '2';
 	}
 
@@ -105,6 +107,6 @@ function silk_sanitize_site_title_outline( $outline ) {
  * JavaScript that handles the Customizer AJAX logic
  */
 function silk_customizer_js() {
-	wp_enqueue_script( 'silk_customizer', get_stylesheet_directory_uri() . '/assets/js/customizer.js', array( 'customize-preview' ), '1.0.0', true );
+	wp_enqueue_script( 'silk_customizer', get_stylesheet_directory_uri() . '/assets/js/customizer.js', array( 'customize-preview' ), '1.0.3', true );
 }
 add_action( 'customize_preview_init', 'silk_customizer_js' ); ?>
