@@ -3,6 +3,7 @@
 
 	background-color: black;
 	color: white;
+	padding-top: em(30px);
 
 	@include query-above($lap) {
 		padding: em(60px) 0;

@@ -106,20 +106,6 @@
 		background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.7) 100%);
 	}
 
-	&:hover, &:focus {
-		&:before {
-			opacity: 0;
-		}
-
-		&:after {
-			opacity: 1;
-		}
-
-		.silk-about-me-widget__container:after {
-			opacity: 0;
-		}
-	}
-
 	.silk-about-me-widget__image {
 		position: absolute;
 		width: 100%;
@@ -158,11 +144,25 @@
 
 	}
 
-		&:hover, &:focus {
-			.silk-about-me-widget__container {
-				transform: none;
-			}
+
+	&:hover, &:focus, .touch & {
+
+		&:before {
+			opacity: 0;
 		}
+
+		&:after {
+			opacity: 1;
+		}
+
+		.silk-about-me-widget__container {
+			transform: none;
+		}
+
+		.silk-about-me-widget__container:after {
+			opacity: 0;
+		}
+	}
 
 	.widget-title {
 		color: white;
