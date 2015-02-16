@@ -68,8 +68,9 @@
 				'theme_location' => 'primary',
 				'container'      => '',
 				'menu_class'     => 'nav  nav--main  nav--mega  js-nav--main',
-				'items_wrap' => '<ul id="%1$s" class="%2$s" role="menubar" aria-hidden="false">%3$s</ul>',
+				'items_wrap'     => '<ul id="%1$s" class="%2$s" role="menubar" aria-hidden="false">%3$s</ul>',
 				'walker'         => new Silk_Walker_Primary_Mega_Menu(),
+				'fallback_cb'    => 'silk_custom_wp_page_menu',
 			) ); ?>
 
 		</nav><!-- #site-navigation -->
