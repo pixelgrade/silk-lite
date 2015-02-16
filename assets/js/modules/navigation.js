@@ -26,6 +26,8 @@ var navigation = (function() {
 
 		// make sure that the links in the floating-nav, that shows on scroll, are ignored by TAB
 		$('.floating-nav').find('a').attr( 'tabIndex', -1 );
+
+		mobileNav();
 	},
 
 	toggleTopBar = function() {
@@ -134,8 +136,7 @@ var navigation = (function() {
 
 	return {
 		init: init,
-		toggleTopBar: toggleTopBar,
-		mobileNavInit: mobileNav
+		toggleTopBar: toggleTopBar
 	}
 
 })();
