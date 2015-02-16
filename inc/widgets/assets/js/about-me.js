@@ -128,16 +128,16 @@
 	});
 
 	$(function(){
-		var $body = $( 'body' );
+		var $container = $( '.widgets-holder-wrap, .editwidget, .wp-core-ui' );
 		
 		// Open the media library frame when the button or image are clicked.
-		$body.on( 'click', '.silk-about-me-widget-image-control__choose, .silk-about-me-widget-form img', function( e ) {
+		$container.on( 'click', '.silk-about-me-widget-image-control__choose, .silk-about-me-widget-form img', function( e ) {
 			e.preventDefault();
 			SilkAboutMeWidget.getControl( this ).frame().open();
 		});
 
 		// Update the image preview in the widget when an image is selected.
-		$body.on( 'selectionChange.silkaboutmewidget', function( e, selection ) {
+		$container.on( 'selectionChange.silkaboutmewidget', function( e, selection ) {
 			var $control = $( e.target ),
 				model = selection.first(),
 				sizes = model.get( 'sizes' ),

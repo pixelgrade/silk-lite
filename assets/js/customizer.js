@@ -12,7 +12,7 @@
 	// Change site title and description when they are typed
 	wp.customize( 'blogname', function( value ) {
 		value.bind( function( text ) {
-			$( '.site-title a' ).text( text );
+			//$( '.site-title a' ).text( text );
 		} );
 	} );
 
