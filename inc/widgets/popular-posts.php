@@ -42,7 +42,7 @@ if ( ! class_exists('Silk_Popular_Posts_Widget') ) :
 
 		function __construct() {
 			parent::__construct(
-				'silk_popular_posts',
+				'silk-popular-posts',
 				apply_filters( 'silk_widget_name', __( 'Silk Popular Posts', 'silk_txtd' ) ),
 				array(
 					'description' => __( 'Shows your most viewed posts.', 'silk_txtd' ),
