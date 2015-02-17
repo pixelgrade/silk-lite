@@ -1690,8 +1690,6 @@ if (!Date.now) Date.now = function () {
           newVal = navHeight
         }
 
-        console.log(newVal);
-
         $newSvg.velocity({
           translateY: newVal
         }, {

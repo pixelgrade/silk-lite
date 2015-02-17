@@ -111,8 +111,6 @@ window.svgLogo = (function() {
 			newVal = navHeight
 		}
 
-		console.log(newVal);
-
 		$newSvg.velocity({
 			translateY: newVal
 		}, {
