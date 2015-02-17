@@ -1617,6 +1617,7 @@ if (!Date.now) Date.now = function () {
 
       $title.width(spanWidth);
       $svg.attr('viewBox', "0 0 " + spanWidth + " " + spanHeight);
+      $text.attr('font-size', fontSize);
 
       $span.hide();
 

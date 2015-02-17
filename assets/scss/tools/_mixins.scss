@@ -93,3 +93,31 @@ $typography-font-sizes: () !default;
 		@content
 	}
 }
+
+@mixin admin-bar($prop: 'top') {
+
+    .admin-bar & {
+        @media screen and (min-width: 783px) {
+            #{$prop}: 32px;
+        }
+
+        @media screen and (max-width: 782px) {
+            #{$prop}: 46px;
+        }
+    }
+}
+
+@mixin admin-bar-value($prop, $value) {
+
+    .admin-bar & {
+        #{$prop}: $value;
+
+        @media screen and (min-width: 783px) {
+            #{$prop}: $value + 32px;
+        }
+
+        @media screen and (max-width: 782px) {
+            #{$prop}: $value + 46px;
+        }
+    }
+}
