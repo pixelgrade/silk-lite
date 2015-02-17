@@ -12,7 +12,7 @@ if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 }
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class("card"); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 	<header class="entry-header  entry-header--card">
 
