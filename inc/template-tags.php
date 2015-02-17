@@ -489,4 +489,37 @@ function silk_category_transient_flusher() {
 	delete_transient( 'silk_categories' );
 }
 add_action( 'edit_category', 'silk_category_transient_flusher' );
-add_action( 'save_post',     'silk_category_transient_flusher' ); ?>
+add_action( 'save_post',     'silk_category_transient_flusher' );
+
+if ( ! function_exists( 'silk_get_post_format_first_image' ) ) :
+
+	function silk_get_post_format_first_image() {
+		global $post;
+
+		$output = preg_match( '/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches );
+
+		if ( empty( $matches[0] ) ) {
+			return '';
+		}
+
+		return $matches[0];
+	}
+
+endif;
+
+if ( ! function_exists( 'silk_get_post_format_link_url' ) ) :
+	/**
+	 * Returns the URL to use for the link post format.
+	 *
+	 * First it tries to get the first URL in the content; if not found it uses the permalink instead
+	 *
+	 * @return string URL
+	 */
+	function silk_get_post_format_link_url() {
+		$content = get_the_content();
+		$has_url = get_url_in_content( $content );
+
+		return ( $has_url ) ? $has_url : apply_filters( 'the_permalink', get_permalink() );
+	}
+
+endif; ?>

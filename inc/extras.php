@@ -271,6 +271,11 @@ if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_
 			// passed classes
 			$classes     = empty( $item->classes ) ? array() : (array) $item->classes;
 
+			//add this in case we fallback on wp_page_menu
+			if ( ! array_search( 'menu-item', $classes ) ) {
+				$classes[] = 'menu-item';
+			}
+
 			if ( true === $this->has_megamenu ) {
 				$classes[] = 'menu-item--mega';
 			}
