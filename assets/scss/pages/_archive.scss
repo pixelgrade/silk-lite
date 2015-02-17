@@ -174,16 +174,6 @@
 
 		.entry-content {
 			margin: 0;
-
-			blockquote {
-				@include rhythm(padding-top, 2.5);
-				@include rhythm(margin-top, 3);
-				@include rhythm(margin-bottom, 3);
-
-				cite {
-					@include rhythm(margin-top, 3);
-				}
-			}
 		}
 
 		.entry-footer {
@@ -191,6 +181,10 @@
 		}
 
 		blockquote {
+			@include rhythm(padding-top, 2.5);
+			@include rhythm(margin-top, 3);
+			@include rhythm(margin-bottom, 3);
+
 			&:before {
 				content: '\201C';
 
@@ -250,6 +244,7 @@
 		}
 
 		cite {
+			@include rhythm(margin-top, 3);
 			background: none;
 			color: white;
 		}
@@ -263,6 +258,22 @@
 		.separator:last-child {
 			display: none;
 		}
+	} // .format-quote
+
+	.format-link {
+		.link__text, .link__icon {
+			display: inline-block;
+			vertical-align: middle;
+		}
+
+		.link__icon {
+			margin-top: rem(7px);
+			font-size: rem(16px);
+		}
+	}
+
+	.entry-media {
+		margin-bottom: rem(15px);
 	}
 }
 
