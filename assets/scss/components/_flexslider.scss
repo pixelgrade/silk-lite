@@ -4,8 +4,12 @@
 		display: block;
 	}
 
+	.post {
+		@extend .card;
+	}
 
-	.entry-title {
+
+	.entry-title.entry-title {
 		font-size: rem(45px);
 		line-height: 1.55;
 		margin-bottom: rhythm(2/3);

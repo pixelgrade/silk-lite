@@ -836,7 +836,8 @@ if (!Date.now) Date.now = function () {
         
         
         sidebarMasonry = function () {
-        return $sidebar.length && sidebarTop >= containerBottom;
+        return false;
+        // return $sidebar.length && sidebarTop >= containerBottom;
         },
         
         
@@ -1286,8 +1287,7 @@ if (!Date.now) Date.now = function () {
         smallSidebarOffset, $sidebar = $('.sidebar--main'),
         $main = $('.site-main'),
         mainHeight = $main.outerHeight(),
-        mainOffset, mainTop = $main.offset().top,
-        mainBottom = mainTop + mainHeight,
+        mainOffset, mainTop, mainBottom = mainTop + mainHeight,
         sidebarPinned = false,
         sidebarPadding = 60,
         sidebarBottom, sidebarHeight, sidebarOffset, sidebarTop, sidebarBottom,
@@ -1311,6 +1311,7 @@ if (!Date.now) Date.now = function () {
           sidebarTop = sidebarOffset.top;
           sidebarHeight = $sidebar.outerHeight();
           sidebarBottom = sidebarTop + sidebarHeight;
+          mainTop = $main.offset().top;
 
           if (mainTop >= sidebarTop) {
             styleWidgets();
@@ -1365,7 +1366,7 @@ if (!Date.now) Date.now = function () {
                 'paddingBottom': $sidebar.offset().top + sidebarHeight + heightDiffrence - mainBottom
               });
 
-              $widget.addClass('focused');
+              // $widget.addClass('focused');
               $widget.css({
                 'max-height': widgetHeight
               });
@@ -1380,7 +1381,7 @@ if (!Date.now) Date.now = function () {
               $main.css({
                 'paddingBottom': ''
               })
-              $widget.removeClass('focused');
+              // $widget.removeClass('focused');
               $widget.css('max-height', newHeight);
 
               setTimeout(function () {

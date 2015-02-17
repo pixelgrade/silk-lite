@@ -40,7 +40,8 @@ var masonry = (function() {
 	},
 
 	sidebarMasonry = function() {
-		return $sidebar.length && sidebarTop >= containerBottom;
+		return false;
+		// return $sidebar.length && sidebarTop >= containerBottom;
 	},
 
 	bindEvents = function() {
