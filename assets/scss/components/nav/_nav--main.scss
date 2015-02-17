@@ -34,6 +34,11 @@
 .menu-toggle {
 	background: none;
 	border: 0;
+	position: absolute;
+	top: 0;
+	height: 100%;
+	padding-left: rem($gutter);
+	padding-right: rem($gutter);
 
 	.button-icon {
 		font-size: rem(20px);
@@ -44,18 +49,21 @@
 	}
 }
 
+.main-navigation {
+	@include admin-bar();	
+}
+
 @include query-below($lap) {
 
 	.main-navigation {
 		text-align: left;
 		position: fixed;
-		top: 0 !important;
 		left: 0;
 		z-index: 110;
-
-		.admin-bar & {
-			top: 32px !important;
-		}
+		width: 100%;
+		height: rem(60px);
+		border-bottom: 1px solid $borders;
+		background: white;
 
 		.is--ancient-android .nav--is-open &{
 			left: 70%;
