@@ -100,6 +100,181 @@
 			padding-bottom: 12px;
 		}
 	}
+
+	.more-link-wrapper {
+		margin-bottom: rem(30px);
+	}
+
+
+	.format-quote {
+		@include rhythm(margin-top, 2);
+
+		@include query-below(768px) {
+			width: auto;
+			right: 0;
+
+			blockquote {
+				@include font-size(18px);
+				padding-left: 0;
+				padding-right: 0;
+			}
+		}
+
+		// @todo
+		@include query-below(540px) {
+			@include rhythm(margin-right, -1.5);
+			@include rhythm(margin-left, -1.5);
+		}
+
+		.more-link {
+			color: white;
+		}
+
+		.entry-permalink {
+			display: block;
+			overflow: hidden;
+			position: relative;
+		}
+
+		.entry-thumbnail {
+			position: absolute;
+
+			bottom: rem(30px);
+			right: 0;
+			top: 0;
+
+			left: rem(11px);
+			@include query-above($small) {
+				left: rem(18px);
+			}
+			@include query-above($lap) {
+				left: rem(30px);
+			}
+			@include query-above($desk) {
+				left: rem(54px);
+			}
+
+
+
+			&:first-child{
+				margin: 0;
+			}
+		}
+
+		.content-quote {
+			position: relative;
+			z-index: 2;
+
+			@include rhythm(padding-left, 2);
+			@include rhythm(padding-right, 2);
+
+			color: white;
+			background: rgba(0, 0, 0, 0.7);
+		}
+
+		.entry-content {
+			margin: 0;
+		}
+
+		.entry-footer {
+			@include rhythm(margin-top, 1);
+		}
+
+		blockquote {
+			@include rhythm(padding-top, 2.5);
+			@include rhythm(margin-top, 3);
+			@include rhythm(margin-bottom, 3);
+
+			&:before {
+				content: '\201C';
+
+				position: absolute;
+				top: -0.5em;
+				left: 50%;
+
+				padding: 0 0.857em;
+
+				font-size: 56px;
+				color: $secondary;
+				background: none;
+
+				transform: translateX(-50%);
+			}
+
+			&:after {
+				top: rem(7px);
+
+				height: 2px;
+
+				background: $secondary;
+				box-shadow: $secondary 5.5em 0 0;
+				width: 3em;
+				margin-left: -2.75em;
+				transform: translateX(-50%);
+
+				border: 0;
+
+				.is--ancient-android & {
+					width: 9em;
+					margin-left: -4.5em;
+					transform: none;
+
+					height: auto;
+
+					background: none;
+					box-shadow: none;
+
+					border: 1px solid transparent;
+
+					border-left: 0;
+					border-right: 0;
+
+					border-image: linear-gradient(to right,
+							$secondary 0%,
+							$secondary 40%,
+							transparent 40.1%,
+							transparent 50%,
+							transparent 59.9%,
+							$secondary 60%,
+							$secondary 100%) 20%;
+
+					border-bottom: 0;
+				}
+			}
+		}
+
+		cite {
+			@include rhythm(margin-top, 3);
+			background: none;
+			color: white;
+		}
+
+		a {
+			color: white;
+			background: none;
+			text-shadow: none;
+		}
+
+		.separator:last-child {
+			display: none;
+		}
+	} // .format-quote
+
+	.format-link {
+		.link__text, .link__icon {
+			display: inline-block;
+			vertical-align: middle;
+		}
+
+		.link__icon {
+			margin-top: rem(7px);
+			font-size: rem(16px);
+		}
+	}
+
+	.entry-media {
+		margin-bottom: rem(15px);
+	}
 }
 
 .page-title {

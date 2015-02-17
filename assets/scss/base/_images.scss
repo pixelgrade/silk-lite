@@ -29,7 +29,11 @@ img{
 	padding: em(16px) 0;
 
 	border-bottom: 2px solid #f2f2f2;
-}} 
+
+	.archive__grid & {
+		border-bottom: 0;
+	}
+}}
 
 /* Galleries */
 .gallery {

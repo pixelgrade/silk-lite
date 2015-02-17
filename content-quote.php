@@ -14,18 +14,6 @@ if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-	<header class="entry-header  entry-header--card">
-
-		<?php if ( 'post' == get_post_type() ) : ?>
-
-			<div class="entry-meta  entry-meta--card">
-				<?php silk_posted_on_and_cats(); ?>
-			</div><!-- .entry-meta -->
-
-		<?php endif; ?>
-
-	</header><!-- .entry-header -->
-
 	<div class="entry-content">
 
 		<?php

@@ -16,16 +16,8 @@ if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 
 	<header class="entry-header  entry-header--card">
 
-		<?php if ( 'post' == get_post_type() ) : ?>
-
-			<div class="entry-meta  entry-meta--card">
-				<?php silk_posted_on_and_cats(); ?>
-			</div><!-- .entry-meta -->
-
-		<?php endif; ?>
-
 		<?php if ( ! has_post_thumbnail() ) {
-			the_title( sprintf( '<h2 class="entry-title  entry-title--card"><a href="%s" rel="bookmark">', esc_url( silk_get_post_format_link_url() ) ), '</a></h2>' );
+			the_title( sprintf( '<h2 class="entry-title  entry-title--card"><a href="%s" rel="bookmark"><span class="link__text">', esc_url( silk_get_post_format_link_url() ) ), '</span>&nbsp;<i class="link__icon  fa fa-external-link"></i></a></h2>' );
 		} ?>
 
 	</header><!-- .entry-header -->
