@@ -24,9 +24,13 @@ var ua                  = navigator.userAgent.toLowerCase(),
     ie_ancient          = ua.indexOf('msie 6') != -1,
     safari              = ua.indexOf('safari') != -1 && ua.indexOf('chrome') == -1,
 
+    is_small            = $('.js-nav-trigger').is(':visible');
+
     windowHeight        = $window.height(),
     windowWidth         = $window.width(),
     documentHeight      = $document.height(),
 
     latestKnownScrollY  = window.scrollY,
     ticking             = false;
+
+;

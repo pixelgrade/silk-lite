@@ -56,5 +56,6 @@ function requestTick() {
 function update() {
   fixedSidebars.update();
   navigation.toggleTopBar();
+  svgLogo.update();
   ticking = false;
 }
