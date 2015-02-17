@@ -30,6 +30,12 @@
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
+
+		<?php if ( has_post_thumbnail() && get_theme_mod( 'silk_single_featured_image', false ) ) : ?>
+			<div class="entry-featured  entry-thumbnail">
+				<?php the_post_thumbnail( 'silk-single-image' ); ?>
+			</div>
+		<?php endif; ?>
 		
 		<?php the_content(); ?>
 

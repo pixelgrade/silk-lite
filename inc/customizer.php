@@ -43,6 +43,17 @@ function silk_customize_register ( $wp_customize ) {
 		'type'              => 'checkbox',
 	) );
 
+	$wp_customize->add_setting( 'silk_single_featured_image', array(
+		'default'           => '',
+		'sanitize_callback' => 'silk_sanitize_checkbox',
+	) );
+
+	$wp_customize->add_control( 'silk_single_featured_image', array(
+		'label'             => __( 'Display the featured image on single posts.', 'silk_txtd' ),
+		'section'           => 'silk_theme_options',
+		'type'              => 'checkbox',
+	) );
+
 	$wp_customize->add_setting( 'silk_disable_search_in_toolbar', array(
 		'default'           => '',
 		'sanitize_callback' => 'silk_sanitize_checkbox',
