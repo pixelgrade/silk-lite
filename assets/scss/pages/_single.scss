@@ -142,14 +142,16 @@
 }
 
 .page-links {
-	margin: em(40px) 0;
+	margin: rem(40px) 0;
 
 	span, a {
-		padding: em(6px);
+		padding: rem(6px);
+		margin: 0 rem(6px);
 	}
 
-	span.current {
-		text-decoration: none;
+	a > span {
+		margin: 0;
+		padding: 0;
 	}
 }
 span.pagination-title {

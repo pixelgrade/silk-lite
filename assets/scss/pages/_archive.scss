@@ -71,9 +71,15 @@
 			right: 0;
 
 			left: rem(11px);
-			@include query-above($small)    { left: rem(18px); }
-			@include query-above($lap)      { left: rem(30px); }
-			@include query-above($desk)     { left: rem(54px); }
+			@include query-above($small) {
+				left: rem(18px);
+			}
+			@include query-above($lap) {
+				left: rem(30px);
+			}
+			@include query-above($desk) {
+				left: rem(54px);
+			}
 
 			pointer-events: none;
 			background-color: $accent;
@@ -126,9 +132,26 @@
 	color: $gray;
 }
 
+@include query-above($small) {
+	.posts-navigation {
+		.nav-links div {
+			width: 50%;
+			display: inline-block;
+		}
+
+		.nav-next {
+			text-align: right;
+		}
+
+		.nav-next:nth-child(1) {
+			margin-left: 50%;
+		}
+	}
+}
+
 // #JETPACK
 .infinite-scroll {
-	
+
 	.posts-navigation {
 		display: none;
 	}
@@ -197,9 +220,9 @@
 			-o-animation:      clep-anim $clep-anim-duration infinite;
 			animation:		   clep-anim $clep-anim-duration infinite;
 		}
-		
+
 	}
-	
+
 	.loading-posts & #fill {
 		-webkit-animation: fill-anim $clep-anim-duration infinite;
 		-moz-animation:    fill-anim $clep-anim-duration infinite;

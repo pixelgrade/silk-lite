@@ -335,12 +335,8 @@ li.comment, li.pingback, li.trackback {
 /* Comments Form */
 
 .comment-form {
-	@extend %grid;
+	@extend .grid;
 	@extend %clearfix;
-
-	.comment & {
-		padding-left: 0;
-	}
 
 	input, textarea {
 		font-weight: 300;
@@ -350,7 +346,7 @@ li.comment, li.pingback, li.trackback {
 	}
 
 	p{
-		@extend %grid__item;
+		@extend .grid__item;
 	}
 
 	@include query-above($lap){
