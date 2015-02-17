@@ -211,7 +211,7 @@ function silk_get_adjacent_image( $prev = true ) {
 	if ( ! $post = get_post() )
 		return null;
 
-	$attachments = array_values( get_posts( array( 'post_parent' => $post->post_parent, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => 'ASC', 'orderby' => 'menu_order ID' ) ) );
+	$attachments = get_attached_media( 'image', $post->post_parent );
 
 	foreach ( $attachments as $k => $attachment ) {
 		if ( $attachment->ID == $post->ID ) {
@@ -496,13 +496,28 @@ if ( ! function_exists( 'silk_get_post_format_first_image' ) ) :
 	function silk_get_post_format_first_image() {
 		global $post;
 
-		$output = preg_match( '/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches );
+		$output = '';
+		$pattern = get_shortcode_regex();
 
-		if ( empty( $matches[0] ) ) {
-			return '';
+		//first search for an image with a caption shortcode
+		if (   preg_match_all( '/'. $pattern .'/s', $post->post_content, $matches )
+		       && array_key_exists( 2, $matches )
+		       && in_array( 'caption', $matches[2] ) )
+		{
+			$key = array_search( 'caption', $matches[2] );
+			if ( false !== $key ) {
+				$output = do_shortcode( $matches[0][ $key ] );
+			}
+		} else {
+			//find regular images
+			preg_match( '/<img [^\>]*\ \/>/i', $post->post_content, $matches );
+
+			if ( ! empty( $matches[0] ) ) {
+				$output = $matches[0];
+			}
 		}
 
-		return $matches[0];
+		return $output;
 	}
 
 endif;
@@ -516,8 +531,7 @@ if ( ! function_exists( 'silk_get_post_format_link_url' ) ) :
 	 * @return string URL
 	 */
 	function silk_get_post_format_link_url() {
-		$content = get_the_content();
-		$has_url = get_url_in_content( $content );
+		$has_url = get_url_in_content( get_the_content() );
 
 		return ( $has_url ) ? $has_url : apply_filters( 'the_permalink', get_permalink() );
 	}

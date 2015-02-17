@@ -38,10 +38,10 @@ if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 		<?php } else { // we need to search in the content for an image - maybe we find one
 			$first_image = silk_get_post_format_first_image();
 			if ( ! empty( $first_image ) ) : ?>
-				<a href="<?php the_permalink(); ?>" class="entry-featured  entry-thumbnail">
+				<div class="entry-featured  entry-thumbnail">
 					<?php echo $first_image; ?>
 					<div class="entry-image-border"></div>
-				</a>
+				</div>
 			<?php endif;
 		} ?>
 
