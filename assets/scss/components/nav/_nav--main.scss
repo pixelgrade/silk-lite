@@ -49,8 +49,9 @@
 	}
 }
 
-.main-navigation {
-	@include admin-bar();	
+.main-navigation, .nav--main {
+	top: 0;
+	// @include admin-bar();
 }
 
 @include query-below($lap) {
@@ -77,11 +78,11 @@
 		position: fixed;
 		border-right: 1px solid $borders;
 		// overwrite inline properties written by JS
-		top: 0;
 		right: 100%;
 		left: auto;
 		width: 70%;
-		height: 100%;
+		// height: 100%;
+		bottom: 0;
 		overflow-y: auto;
 		-webkit-overflow-scrolling: touch;
 

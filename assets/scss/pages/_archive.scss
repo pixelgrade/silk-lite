@@ -63,7 +63,7 @@
 			color: white;
 		}
 
-		&:after {
+		&:before {
 			content: "";
 
 			position: absolute;
@@ -84,11 +84,10 @@
 
 			pointer-events: none;
 			background-color: $accent;
-
-			z-index: -1;
 		}
 
 		.entry-header, .entry-content {
+			position: relative;
 			padding-left: 24px;
 			padding-right: 24px;
 		}
