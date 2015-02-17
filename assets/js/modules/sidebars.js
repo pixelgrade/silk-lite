@@ -10,7 +10,7 @@ var fixedSidebars = (function() {
 		$main           	= $('.site-main'),
 		mainHeight      	= $main.outerHeight(),
 		mainOffset,
-		mainTop				= $main.offset().top,
+		mainTop,
 		mainBottom			= mainTop + mainHeight,
 		sidebarPinned   	= false,
 		sidebarPadding  	= 60,
@@ -34,7 +34,8 @@ var fixedSidebars = (function() {
 			sidebarOffset 	= $sidebar.offset();
 			sidebarTop 		= sidebarOffset.top;
 			sidebarHeight 	= $sidebar.outerHeight();
-			sidebarBottom 	= sidebarTop + sidebarHeight; 
+			sidebarBottom 	= sidebarTop + sidebarHeight;
+			mainTop			= $main.offset().top;
 
 			if (mainTop >= sidebarTop) {
 				styleWidgets();
@@ -86,7 +87,7 @@ var fixedSidebars = (function() {
 	 					'paddingBottom': $sidebar.offset().top + sidebarHeight + heightDiffrence - mainBottom
 	 				});
 
-	 				$widget.addClass('focused');
+	 				// $widget.addClass('focused');
 	 				$widget.css({
 	 					'max-height': widgetHeight
 	 				});
@@ -101,7 +102,7 @@ var fixedSidebars = (function() {
 	 				$main.css({
 	 					'paddingBottom': ''
 	 				})
-	 				$widget.removeClass('focused');
+	 				// $widget.removeClass('focused');
 	 				$widget.css('max-height', newHeight);
 
 	 				setTimeout(function() {
