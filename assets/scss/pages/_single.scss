@@ -99,6 +99,10 @@
 		@include rhythm(padding-bottom, 3);
     }
 
+	.jetpack-video-wrapper {
+		margin-bottom: rem(15px);
+	}
+
 } // .site-main--single
 
 .entry-content, .comment {

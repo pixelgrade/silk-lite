@@ -14,7 +14,6 @@ body {
 	max-width: em(1400px);
 
 	padding: 0 rem($gutter);
-	// @include query-above($small) 	{ padding: 0 rem($gutter); }
 	@include query-above($lap) 		{ padding: 0 rem($gutter-lap); }
 	@include query-above($desk) 	{ padding: 0 rem($gutter-desk); }
 }
@@ -40,6 +39,10 @@ hr {
 
 .site-main {
 	transition: padding-bottom .3s .3s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+	@include query-below($desk) {
+		margin-bottom: rem(60px);
+	}
 }
 
 // @todo animations
