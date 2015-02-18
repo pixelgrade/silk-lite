@@ -34,7 +34,8 @@ var slider = (function () {
 
     useSlider = function() {
         // return !(touch && windowWidth < 800);
-        return !(windowWidth < 800);
+        // return !(windowWidth < 800);
+        return !$.support.touch;
     };
 
     return { 
