@@ -279,8 +279,27 @@
       hideSubMenus();
     });
 
-    $nav.click(function (e) {
+    $nav.on('click touchstart', function (e) {
       e.stopPropagation();
+    });
+
+    $nav.find('.menu-item-has-children > a').on('touchstart', function (e) {
+
+      var $item = $(this).parent();
+
+      if (!$item.hasClass('hover')) {
+        e.preventDefault();
+        $item.addClass('hover');
+        $item.siblings().removeClass('hover');
+        return;
+      } else {
+        // $item.removeClass("hover");
+      }
+
+    });
+
+    $('body').on('touchstart', function () {
+      $('.menu-item-has-children').removeClass('hover');
     });
 
     function showSubMenu($item) {
@@ -289,6 +308,7 @@
 
         var $subMenu = $item.children('.sub-menu-wrapper'),
             offset, subMenuWidth;
+
 
         if ($subMenu.length) {
 
@@ -1577,7 +1597,8 @@ if (!Date.now) Date.now = function () {
         
         useSlider = function () {
         // return !(touch && windowWidth < 800);
-        return !(windowWidth < 800);
+        // return !(windowWidth < 800);
+        return !$.support.touch;
         };
 
     return {
@@ -1609,37 +1630,33 @@ if (!Date.now) Date.now = function () {
             $svg = $title.find('svg'),
             $text = $svg.find('text'),
             $rect = $svg.find('rect'),
-            headerWidth = $header.width(),
+            titleWidth = $title.width(),
+            titleHeight = $title.height(),
+            spanWidth = $span.width(),
+            spanHeight = $span.height(),
             fontSize = parseInt($span.css('font-size')),
-            scaling = 1,
-            textWidth, titleHeight, titleWidth, spanWidth = $span.width(),
-            spanHeight = $span.height();
+            scaling = spanWidth / parseFloat(titleWidth);
 
-        $span.css('white-space', 'nowrap');
-
-        $title.css('width', '');
         $svg.removeAttr('viewBox').hide();
+        $span.css('white-space', 'nowrap').show();
+
+        console.log(spanWidth, titleWidth);
+        // if (spanWidth > titleWidth) {
+        // 	fontSize 	= parseInt(fontSize / scaling);
+        // 	$span.css('font-size', fontSize);
+        // 	spanWidth	= $span.width();
+        // 	spanHeight	= $span.height();
+        // }
         $span.css({
           'font-size': '',
           'white-space': ''
-        }).show();
+        }).hide();
 
-        titleWidth = $span.width();
-
-        if (titleWidth > headerWidth) {
-          scaling = titleWidth / parseFloat(headerWidth);
-          fontSize = parseInt(fontSize / scaling);
-          $span.css('font-size', fontSize);
-        }
-
-        titleWidth = $title.width();
-        titleHeight = $title.height();
-
-        $title.width(spanWidth);
-        $svg.attr('viewBox', "0 0 " + spanWidth + " " + spanHeight);
+        // titleWidth = $title.width();
+        // titleHeight = $title.height();
+        $svg.width(spanWidth);
+        $svg.attr('viewBox', "0 0 " + spanWidth + " " + spanHeight * 0.5);
         $text.attr('font-size', fontSize);
-
-        $span.hide();
 
         var newSvg = $svg.clone().wrap('<div>').parent().html(),
             $newSvg = $(newSvg);
@@ -1678,6 +1695,11 @@ if (!Date.now) Date.now = function () {
         $svgClone.remove();
         $logoClone.append($newSvg);
         $logoClone.appendTo($nav);
+        $newSvg.velocity({
+          translateY: navHeight
+        }, {
+          duration: 0
+        });
         $logoClone.width($newSvg.width());
 
         logoInitialized = true;
@@ -1718,7 +1740,6 @@ if (!Date.now) Date.now = function () {
   function init() {
     browserSize();
     platformDetect();
-    svgLogo.init();
   }
 
   /* ====== ON WINDOW LOAD ====== */
@@ -1729,6 +1750,7 @@ if (!Date.now) Date.now = function () {
     slider.init();
     wrapJetpackAfterContent();
     fixedSidebars.update();
+    svgLogo.init();
     animator.animate();
     scrollToTop();
     infinityHandler();

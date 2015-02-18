@@ -7,12 +7,12 @@
 		font-size: rem(9px);
 	}
 
-	.flag__img {
-		width: 40%;
+	.flag__img img {
+		width: rem(90px);
+		max-width: none;
 	}
 
 	.entry-title {
-		// color: $dark;
 		margin-top: 0;
 		font-size: rem(16px);
 	}
