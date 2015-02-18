@@ -1633,39 +1633,47 @@ if (!Date.now) Date.now = function () {
             titleWidth = $title.width(),
             titleHeight = $title.height(),
             spanWidth = $span.width(),
-            spanHeight = $span.height(),
+            spanHeight = $title.height(),
             fontSize = parseInt($span.css('font-size')),
             scaling = spanWidth / parseFloat(titleWidth);
 
-        $svg.removeAttr('viewBox').hide();
-        $span.css('white-space', 'nowrap').show();
+        setTimeout(function () {
 
-        console.log(spanWidth, titleWidth);
-        // if (spanWidth > titleWidth) {
-        // 	fontSize 	= parseInt(fontSize / scaling);
-        // 	$span.css('font-size', fontSize);
-        // 	spanWidth	= $span.width();
-        // 	spanHeight	= $span.height();
-        // }
-        $span.css({
-          'font-size': '',
-          'white-space': ''
-        }).hide();
+          $svg.removeAttr('viewBox').hide();
+          $span.css('white-space', 'nowrap').show();
 
-        // titleWidth = $title.width();
-        // titleHeight = $title.height();
-        $svg.width(spanWidth);
-        $svg.attr('viewBox', "0 0 " + spanWidth + " " + spanHeight * 0.5);
-        $text.attr('font-size', fontSize);
+          fontSize = parseInt($span.css('font-size')), spanWidth = $span.width();
+          spanHeight = $title.height();
 
-        var newSvg = $svg.clone().wrap('<div>').parent().html(),
-            $newSvg = $(newSvg);
+          if (spanWidth > titleWidth) {
+            fontSize = parseInt(fontSize / scaling);
+            $span.css('font-size', fontSize);
+            spanWidth = $span.width();
+            spanHeight = $title.height();
+          }
 
-        $svg.remove();
-        $title.children('a').append($newSvg);
-        $newSvg.show();
+          $span.css({
+            'font-size': '',
+            'white-space': ''
+          }).hide();
 
-        logoAnimation();
+          console.log(fontSize);
+
+          // titleWidth = $title.width();
+          // titleHeight = $title.height();
+          $svg.width(spanWidth);
+          $svg.attr('viewBox', "0 0 " + spanWidth + " " + spanHeight);
+          $text.attr('font-size', fontSize);
+
+          var newSvg = $svg.clone().wrap('<div>').parent().html(),
+              $newSvg = $(newSvg);
+
+          $svg.remove();
+          $title.children('a').append($newSvg);
+          $newSvg.show();
+
+          logoAnimation();
+        }, 60);
         },
         
         

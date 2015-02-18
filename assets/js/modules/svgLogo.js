@@ -24,41 +24,49 @@ window.svgLogo = (function() {
 			titleWidth	= $title.width(),
 			titleHeight	= $title.height(),
 			spanWidth 	= $span.width(),
-			spanHeight	= $span.height(),
+			spanHeight	= $title.height(),
 			fontSize    = parseInt($span.css('font-size')),
 			scaling     = spanWidth / parseFloat(titleWidth);
 
-		$svg.removeAttr('viewBox').hide();
-		$span.css('white-space', 'nowrap').show();
+		setTimeout(function() {
 
-		console.log(spanWidth, titleWidth);
-		// if (spanWidth > titleWidth) {
-		// 	fontSize 	= parseInt(fontSize / scaling);
-		// 	$span.css('font-size', fontSize);
-		// 	spanWidth	= $span.width();
-		// 	spanHeight	= $span.height();
-		// }
+			$svg.removeAttr('viewBox').hide();
+			$span.css('white-space', 'nowrap').show();
+			
+			fontSize    = parseInt($span.css('font-size')),
+			spanWidth	= $span.width();
+			spanHeight	= $title.height();
 
-		$span.css({
-			'font-size': '',
-			'white-space': ''
-		}).hide();
+			if (spanWidth > titleWidth) { 
+				fontSize 	= parseInt(fontSize / scaling);
+				$span.css('font-size', fontSize);
+				spanWidth	= $span.width();
+				spanHeight	= $title.height();
+			}
 
-		// titleWidth = $title.width();
-		// titleHeight = $title.height();
-		
-		$svg.width(spanWidth);
-		$svg.attr('viewBox', "0 0 " + spanWidth + " " + spanHeight * 0.5);
-		$text.attr('font-size', fontSize);
+			$span.css({
+				'font-size': '',
+				'white-space': ''
+			}).hide();
 
-		var newSvg = $svg.clone().wrap('<div>').parent().html(),
-			$newSvg = $(newSvg);
+			console.log(fontSize);
 
-		$svg.remove();
-		$title.children('a').append($newSvg);
-		$newSvg.show();
+			// titleWidth = $title.width();
+			// titleHeight = $title.height();
+			
+			$svg.width(spanWidth);
+			$svg.attr('viewBox', "0 0 " + spanWidth + " " + spanHeight);
+			$text.attr('font-size', fontSize);
 
-		logoAnimation();
+			var newSvg = $svg.clone().wrap('<div>').parent().html(),
+				$newSvg = $(newSvg);
+
+			$svg.remove();
+			$title.children('a').append($newSvg);
+			$newSvg.show();
+
+			logoAnimation();
+		}, 60);
 	},
 
 	logoAnimation = function() {
