@@ -11,11 +11,14 @@
 
 	.entry-title.entry-title {
 		font-size: rem(45px);
-		line-height: 1.55;
+		line-height: 1.11;
 		margin-bottom: rhythm(2/3);
 	}
 
-	.entry-header,
+	.entry-header {
+		max-width: 45em;
+	}
+
 	.entry-content {
 		max-width: 35em;
 	}
