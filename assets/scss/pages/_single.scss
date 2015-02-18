@@ -604,7 +604,7 @@ div#jp-relatedposts#jp-relatedposts div.jp-relatedposts-items.jp-relatedposts-it
 
 div#jp-relatedposts div.jp-relatedposts-items div.jp-relatedposts-post:hover .jp-relatedposts-post-title a {
 	color: $accent;
-	text-decoration: none;
+	text-decoration: none !important;
 }
 
 div#jp-relatedposts#jp-relatedposts div.jp-relatedposts-items.jp-relatedposts-items-minimal p {
