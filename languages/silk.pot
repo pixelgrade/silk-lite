@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Silk 1.0-wpcom\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/theme/silk\n"
-"POT-Creation-Date: 2015-02-06 08:49:22+00:00\n"
+"POT-Creation-Date: 2015-02-18 15:20:35+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,124 +20,153 @@ msgstr ""
 msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
 msgstr ""
 
-#: comments.php:29
+#: comments.php:28
 msgid "Comment"
 msgid_plural "Comments"
 msgstr[0] ""
 msgstr[1] ""
 
-#: comments.php:31
+#: comments.php:30
 msgid "There are no comments"
 msgstr ""
 
-#: comments.php:34
+#: comments.php:33
 msgid "Add Yours"
 msgstr ""
 
-#: comments.php:39 comments.php:56
+#: comments.php:38 comments.php:55
 msgid "Comment navigation"
 msgstr ""
 
-#: comments.php:40 comments.php:57
+#: comments.php:39 comments.php:56
 msgid "&larr; Older Comments"
 msgstr ""
 
-#: comments.php:41 comments.php:58
+#: comments.php:40 comments.php:57
 msgid "Newer Comments &rarr;"
 msgstr ""
 
-#: comments.php:67
+#: comments.php:66
 msgid "Comments are closed."
+msgstr ""
+
+#. translators: %s: Name of current post
+
+#: content-aside.php:27 content-audio.php:11 content-gallery.php:49
+#: content-quote.php:37 content-video.php:11 content.php:47
+msgid "Continue reading %s"
+msgstr ""
+
+#: content-aside.php:33 content-attachment.php:36 content-audio.php:49
+#: content-gallery.php:58 content-page.php:20 content-single.php:44
+#: content-video.php:49 content.php:56
+msgid "Pages:"
+msgstr ""
+
+#: content-aside.php:37 content-attachment.php:40 content-audio.php:53
+#: content-gallery.php:62 content-page.php:24 content-single.php:48
+#: content-video.php:53 content.php:60
+msgid "Page"
+msgstr ""
+
+#: content-attachment.php:53 content-page.php:38 inc/extras.php:163
+msgid "Edit"
 msgstr ""
 
 #: content-none.php:13
 msgid "Nothing Found"
 msgstr ""
 
-#: content-none.php:19
+#: content-none.php:20
 msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
 msgstr ""
 
-#: content-none.php:23
+#: content-none.php:24
 msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
 msgstr ""
 
-#: content-none.php:28
+#: content-none.php:29
 msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
-msgstr ""
-
-#: content-page.php:18
-msgid "<span class=\"pagination-title\">Pages:</span>"
-msgstr ""
-
-#: content-page.php:29 inc/extras.php:213
-msgid "Edit"
-msgstr ""
-
-#: content-single.php:34 content.php:50
-msgid "Pages:"
-msgstr ""
-
-#. translators: %s: Name of current post
-
-#: content.php:41
-msgid "Continue reading %s"
 msgstr ""
 
 #: footer.php:25
 msgid "Footer navigation"
 msgstr ""
 
-#: footer.php:30
+#: footer.php:31
 msgid "http://wordpress.org/"
 msgstr ""
 
-#: footer.php:30
+#: footer.php:31
 msgid "Proudly powered by %s"
 msgstr ""
 
-#: footer.php:32
+#: footer.php:33
 msgid "Theme: %1$s by %2$s."
 msgstr ""
 
-#: footer.php:45
+#: footer.php:54
 msgid "Begin typing your search above and press return to search. Press Esc to cancel."
 msgstr ""
 
-#: functions.php:56 header.php:49
+#: functions.php:73 header.php:65
 msgid "Primary Menu"
 msgstr ""
 
-#: functions.php:57
+#: functions.php:74
 msgid "Top Header Left Menu"
 msgstr ""
 
-#: functions.php:58
+#: functions.php:75
 msgid "Top Header Right Menu"
 msgstr ""
 
-#: functions.php:59
+#: functions.php:76
+msgid "Hamburger Menu"
+msgstr ""
+
+#: functions.php:77
 msgid "Footer Menu"
 msgstr ""
 
-#: functions.php:108
+#: functions.php:128
 msgid "Sidebar"
 msgstr ""
 
-#: functions.php:110
+#: functions.php:130
 msgid "Add widgets here to appear in your main sidebar."
 msgstr ""
 
-#: functions.php:118
+#: functions.php:138
 msgid "Footer"
 msgstr ""
 
-#: functions.php:120
+#: functions.php:140
 msgid "Add widgets here to appear in your footer sidebar."
+msgstr ""
+
+#: functions.php:176
+msgid "Previous"
+msgstr ""
+
+#: functions.php:177
+msgid "Next"
+msgstr ""
+
+#: functions.php:229
+msgid "Choose a Background Image"
+msgstr ""
+
+#: functions.php:230
+msgid "Update Background Image"
 msgstr ""
 
 #: header.php:22
 msgid "Skip to content"
+msgstr ""
+
+#: image.php:30
+msgid "Published in"
 msgstr ""
 
 #: inc/customizer.php:24
@@ -153,11 +182,35 @@ msgid "Display single column posts on front page and archives."
 msgstr ""
 
 #: inc/customizer.php:52
+msgid "Display the featured image on single posts."
+msgstr ""
+
+#: inc/customizer.php:63
 msgid "Hide search button in toolbar"
 msgstr ""
 
-#: inc/extras.php:80
-msgid "Page %s"
+#: inc/customizer.php:75
+msgid "Site Title Outline"
+msgstr ""
+
+#: inc/customizer.php:79
+msgid "0"
+msgstr ""
+
+#: inc/customizer.php:80
+msgid "-1"
+msgstr ""
+
+#: inc/customizer.php:81
+msgid "-2"
+msgstr ""
+
+#: inc/customizer.php:82
+msgid "-3"
+msgstr ""
+
+#: inc/customizer.php:83
+msgid "-4"
 msgstr ""
 
 #. Translators: If there are characters in your language that are not
@@ -165,7 +218,7 @@ msgstr ""
 #. translate
 #. 		* into your own language.
 
-#: inc/extras.php:119
+#: inc/extras.php:69
 msgctxt "Libre Baskerville font: on or off"
 msgid "on"
 msgstr ""
@@ -174,7 +227,7 @@ msgstr ""
 #. 		* supported by Playfair Display, translate this to 'off'. Do not translate
 #. 		* into your own language.
 
-#: inc/extras.php:127
+#: inc/extras.php:77
 msgctxt "Playfair Display font: on or off"
 msgid "on"
 msgstr ""
@@ -183,7 +236,7 @@ msgstr ""
 #. 		* supported by Merriweather, translate this to 'off'. Do not translate
 #. 		* into your own language.
 
-#: inc/extras.php:135
+#: inc/extras.php:85
 msgctxt "Merriweather font: on or off"
 msgid "on"
 msgstr ""
@@ -192,36 +245,40 @@ msgstr ""
 #. language, translate this to 'greek', 'cyrillic', 'devanagari' or
 #. 'vietnamese'. Do not translate into your own language.
 
-#: inc/extras.php:140
+#: inc/extras.php:90
 msgctxt "Add new subset (greek, cyrillic, devanagari, vietnamese)"
 msgid "no-subset"
 msgstr ""
 
-#: inc/extras.php:208
+#: inc/extras.php:158
 msgid "on %s at %s"
 msgstr ""
 
-#: inc/extras.php:225
+#: inc/extras.php:175
 msgid "Your comment is awaiting moderation."
 msgstr ""
 
-#: inc/extras.php:398
+#: inc/extras.php:365
 msgid "More"
 msgstr ""
 
-#: inc/extras.php:490
+#: inc/extras.php:483
+msgid "Home"
+msgstr ""
+
+#: inc/extras.php:543
 msgid "Intro Text"
 msgstr ""
 
-#: inc/extras.php:491
+#: inc/extras.php:544
 msgid "Dropcap"
 msgstr ""
 
-#: inc/extras.php:492
+#: inc/extras.php:545
 msgid "Highlight"
 msgstr ""
 
-#: inc/extras.php:493
+#: inc/extras.php:546
 msgid "Two Columns"
 msgstr ""
 
@@ -237,149 +294,161 @@ msgstr ""
 msgid "Newer posts"
 msgstr ""
 
-#: inc/template-tags.php:56
+#: inc/template-tags.php:55
 msgid "Post navigation"
 msgstr ""
 
-#: inc/template-tags.php:94
+#: inc/template-tags.php:91
 msgid "Previous post"
 msgstr ""
 
-#: inc/template-tags.php:132
+#: inc/template-tags.php:127
 msgid "Next post"
 msgstr ""
 
-#: inc/template-tags.php:156
+#: inc/template-tags.php:150
+msgid "Image navigation"
+msgstr ""
+
+#: inc/template-tags.php:165
+msgid "Previous image"
+msgstr ""
+
+#: inc/template-tags.php:187
+msgid "Next image"
+msgstr ""
+
+#: inc/template-tags.php:250
 msgctxt "post date"
 msgid "%s"
 msgstr ""
 
 #. translators: used between list items, there is a space after the comma
 
-#: inc/template-tags.php:178 inc/template-tags.php:240
-#: inc/template-tags.php:246
+#: inc/template-tags.php:272 inc/template-tags.php:332
+#: inc/template-tags.php:338
 msgid ", "
 msgstr ""
 
-#: inc/template-tags.php:242
+#: inc/template-tags.php:334
 msgid "Posted in %1$s"
 msgstr ""
 
-#: inc/template-tags.php:248
+#: inc/template-tags.php:340
 msgid " and tagged with %1$s"
 msgstr ""
 
-#: inc/template-tags.php:256
+#: inc/template-tags.php:348
 msgid "Leave a comment"
 msgstr ""
 
-#: inc/template-tags.php:256
+#: inc/template-tags.php:348
 msgid "1 Comment"
 msgstr ""
 
-#: inc/template-tags.php:256
+#: inc/template-tags.php:348
 msgid "% Comments"
 msgstr ""
 
-#: inc/template-tags.php:260
+#: inc/template-tags.php:352
 msgid "Edit post"
 msgstr ""
 
-#: inc/template-tags.php:277
+#: inc/template-tags.php:369
 msgid "Category: %s"
 msgstr ""
 
-#: inc/template-tags.php:279
+#: inc/template-tags.php:371
 msgid "Tag: %s"
 msgstr ""
 
-#: inc/template-tags.php:281
+#: inc/template-tags.php:373
 msgid "Author: %s"
 msgstr ""
 
-#: inc/template-tags.php:283
+#: inc/template-tags.php:375
 msgid "Year: %s"
 msgstr ""
 
-#: inc/template-tags.php:283
+#: inc/template-tags.php:375
 msgctxt "yearly archives date format"
 msgid "Y"
 msgstr ""
 
-#: inc/template-tags.php:285
+#: inc/template-tags.php:377
 msgid "Month: %s"
 msgstr ""
 
-#: inc/template-tags.php:285
+#: inc/template-tags.php:377
 msgctxt "monthly archives date format"
 msgid "F Y"
 msgstr ""
 
-#: inc/template-tags.php:287
+#: inc/template-tags.php:379
 msgid "Day: %s"
 msgstr ""
 
-#: inc/template-tags.php:287
+#: inc/template-tags.php:379
 msgctxt "daily archives date format"
 msgid "F j, Y"
 msgstr ""
 
-#: inc/template-tags.php:290
+#: inc/template-tags.php:382
 msgctxt "post format archive title"
 msgid "Asides"
 msgstr ""
 
-#: inc/template-tags.php:292
+#: inc/template-tags.php:384
 msgctxt "post format archive title"
 msgid "Galleries"
 msgstr ""
 
-#: inc/template-tags.php:294
+#: inc/template-tags.php:386
 msgctxt "post format archive title"
 msgid "Images"
 msgstr ""
 
-#: inc/template-tags.php:296
+#: inc/template-tags.php:388
 msgctxt "post format archive title"
 msgid "Videos"
 msgstr ""
 
-#: inc/template-tags.php:298
+#: inc/template-tags.php:390
 msgctxt "post format archive title"
 msgid "Quotes"
 msgstr ""
 
-#: inc/template-tags.php:300
+#: inc/template-tags.php:392
 msgctxt "post format archive title"
 msgid "Links"
 msgstr ""
 
-#: inc/template-tags.php:302
+#: inc/template-tags.php:394
 msgctxt "post format archive title"
 msgid "Statuses"
 msgstr ""
 
-#: inc/template-tags.php:304
+#: inc/template-tags.php:396
 msgctxt "post format archive title"
 msgid "Audio"
 msgstr ""
 
-#: inc/template-tags.php:306
+#: inc/template-tags.php:398
 msgctxt "post format archive title"
 msgid "Chats"
 msgstr ""
 
-#: inc/template-tags.php:309
+#: inc/template-tags.php:401
 msgid "Archives: %s"
 msgstr ""
 
 #. translators: 1: Taxonomy singular name, 2: Current taxonomy term
 
-#: inc/template-tags.php:313
+#: inc/template-tags.php:405
 msgid "%1$s: %2$s"
 msgstr ""
 
-#: inc/template-tags.php:315
+#: inc/template-tags.php:407
 msgid "Archives"
 msgstr ""
 
@@ -395,72 +464,68 @@ msgstr ""
 msgid "About Me"
 msgstr ""
 
-#: inc/widgets/about-me.php:147 inc/widgets/popular-posts.php:69
+#: inc/widgets/about-me.php:154 inc/widgets/popular-posts.php:65
 msgid "Title:"
 msgstr ""
 
-#: inc/widgets/about-me.php:152 inc/widgets/about-me.php:160
+#: inc/widgets/about-me.php:159 inc/widgets/about-me.php:167
 msgid "Choose an Background Image"
 msgstr ""
 
-#: inc/widgets/about-me.php:153
+#: inc/widgets/about-me.php:160
 msgid "Update Image"
 msgstr ""
 
-#: inc/widgets/about-me.php:164
+#: inc/widgets/about-me.php:171
 msgid "Your Name:"
 msgstr ""
 
-#: inc/widgets/about-me.php:169
+#: inc/widgets/about-me.php:176
 msgid "About You:"
 msgstr ""
 
-#: inc/widgets/about-me.php:174
+#: inc/widgets/about-me.php:181
 msgid "Automatically add paragraphs"
 msgstr ""
 
-#: inc/widgets/about-me.php:197
-msgid "Choose a Background Image"
-msgstr ""
-
-#: inc/widgets/about-me.php:198
-msgid "Update Background Image"
-msgstr ""
-
-#: inc/widgets/popular-posts.php:46
+#: inc/widgets/popular-posts.php:42
 msgid "Silk Popular Posts"
 msgstr ""
 
-#: inc/widgets/popular-posts.php:48
+#: inc/widgets/popular-posts.php:44
 msgid "Shows your most viewed posts."
 msgstr ""
 
-#: inc/widgets/popular-posts.php:52
+#: inc/widgets/popular-posts.php:48
 msgid "Popular Posts"
 msgstr ""
 
-#: inc/widgets/popular-posts.php:74
+#: inc/widgets/popular-posts.php:70
 msgid "Maximum number of posts to show (no more than 10):"
 msgstr ""
 
-#: inc/widgets/popular-posts.php:78
+#: inc/widgets/popular-posts.php:74
 msgid "Popular Posts by views are calculated from 24-48 hours of stats. They take a while to change."
 msgstr ""
 
-#: inc/widgets/popular-posts.php:130
+#: inc/widgets/popular-posts.php:126
 msgid "There are no posts to display. <a href=\"%s\">Want more traffic?</a>"
+msgstr ""
+
+#: loop.php:39
+msgid "View More Articles"
 msgstr ""
 
 #: search.php:16
 msgid "Search Results for: %s"
 msgstr ""
 
-#: templates/top-bar.php:38 templates/top-header-bar.php:14
-msgid "Search"
-msgstr ""
-
 #: templates/top-header-bar.php:10
 msgid "Secondary left navigation"
+msgstr ""
+
+#: templates/top-header-bar.php:14
+msgid "Search"
 msgstr ""
 
 #: templates/top-header-bar.php:30
@@ -475,7 +540,7 @@ msgid "http://pixelgrade.com/demos/silk/"
 msgstr ""
 
 #. Description of the plugin/theme
-msgid "More to come..."
+msgid "An enchanting magazine style theme for fashion bloggers, prized for its smart layout and smooth animations. Whether you're looking to share your own thoughts, write about your latest findings or just have a scrapbook of photos, SILK is designed to fulfill these and a lot more."
 msgstr ""
 
 #. Author of the plugin/theme
