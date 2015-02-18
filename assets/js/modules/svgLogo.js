@@ -102,6 +102,10 @@ window.svgLogo = (function() {
 		});
 		// $logoClone.width($newSvg.width());
 		
+		if ( ! $body.hasClass('home') ) {
+			window.scrollTo(0, $('.site-header').height() - navHeight);
+		}
+
 		logoInitialized = true; 
 	},
 
