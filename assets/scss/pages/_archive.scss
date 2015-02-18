@@ -330,9 +330,17 @@
 	}
 }
 
+.page-header {
+	opacity: 0;
+}
+
 .taxonomy-description {
 	margin-top: rhythm(0.5);
 	color: $gray;
+}
+
+.posts-navigation {
+	opacity: 0;
 }
 
 @include query-above($small) {
