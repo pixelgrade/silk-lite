@@ -21,7 +21,11 @@ if ( ! function_exists('silk_popular_posts_widget_init') ) :
 
 	function silk_popular_posts_widget_init() {
 		// Currently, this widget depends on the Stats Module
-		if ( !function_exists( 'stats_get_csv' ) ) {
+		if (
+			( !defined( 'IS_WPCOM' ) || !IS_WPCOM )
+			&&
+			!function_exists( 'stats_get_csv' )
+		) {
 			return;
 		}
 
