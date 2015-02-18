@@ -324,6 +324,7 @@
 					offset,
 					subMenuWidth;
 
+
 				if ( $subMenu.length ) {
 
 					subMenuWidth = $subMenu.outerWidth();

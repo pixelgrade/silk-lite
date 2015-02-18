@@ -290,6 +290,7 @@
         var $subMenu = $item.children('.sub-menu-wrapper'),
             offset, subMenuWidth;
 
+
         if ($subMenu.length) {
 
           subMenuWidth = $subMenu.outerWidth();

@@ -76,33 +76,49 @@
 		@extend %gamma;
 	}
  
-	@include query-above($desk) {
+	@include query-above($lap) {
 		position: static !important;
 
 		> .sub-menu-wrapper {
+			max-width: 100%;
 			border: 1px solid $borders;
-
-			// that semi-transparent border (or not)
-			// box-shadow: rgba(255,255,255,0.5) 0 rem(110px) 0 rem(110px);
-			
-			padding: rem(40px);
 			display: flex;
+			flex-wrap: wrap;
+
+			padding: rem($gutter);
+			padding-bottom: 0;
+
+			@include query-above($desk) {
+				padding: rem($gutter-lap);
+				padding-bottom: 0;
+			}
+
+			> * {
+				margin-bottom: rem($gutter);
+
+				@include query-above($desk) {
+					margin-bottom: rem($gutter-lap);
+				}
+			}
 
 			> .sub-menu {
-				// align-self: flex-start;
-				// align-items: flex-start;
-				padding: rhythm(1/2) rhythm(1.5);
-				flex-grow: 1;
-				text-align: left;
-				font-size: 1rem;
 				display: flex;
+				flex-grow: 1;
 				flex-direction: column;
+				flex-shrink: 1;
+				padding: rhythm(1/2) rhythm(1);
+				font-size: 1rem;
+				text-align: left;
+
+				@include query-above($desk) {
+					padding: rhythm(1/2) rhythm(1.5);
+				}
 
 				> li {
 					display: flex;
-					flex-direction: column;
 					justify-content: center;
-					// flex-grow: 1;
+					flex-direction: column;
+					flex-grow: 1;
 				}
 			}
 		}
@@ -125,6 +141,83 @@
 			> .menu-item:hover > a {
 				color: $secondary;
 			}
+		}
+	}
+}
+
+.menu-item--mega .sub-menu-wrapper > .sub-menu > .menu-item > .sub-menu {
+	top: 50%;
+	margin-top: rhythm(-3/2);
+}
+
+.submenu__card {
+	width: rem(300px);
+	flex-grow: 1;
+	flex-shrink: 1;
+
+	.sub-menu + & {
+		margin-left: rem($gutter-lap);
+
+		@include query-above($desk) {
+			// margin-left: rem(55px);
+			margin-left: rem($gutter-desk);
+		}
+	}
+}
+
+
+.submenu__thumbs {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	
+	width: 100%;
+	flex-grow: 1;
+	flex-shrink: 1;
+	margin: 0;
+	margin-top: rem($gutter);
+
+	list-style: none;
+
+	@include query-above(1200px) {
+		width: rem(320px);
+		padding-left: rem($gutter);
+		margin-left: rem($gutter);
+		border-left: 1px solid $borders;
+		flex-direction: column;
+		justify-content: space-around;
+		margin-top: 0;
+
+		> li {
+			margin-bottom: rem($gutter);
+			flex-grow: 0;
+		}
+	}
+
+	@include query-above($desk) {
+		padding-left: rem($gutter-lap);
+		margin-left: rem($gutter-lap);
+	}
+
+	.ie9 & {
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+	> li {
+		margin-left: rem($gutter);
+		flex-grow: 1;
+
+		&:first-child {
+			margin-left: 0;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		.flag__img {
+			vertical-align: top;
 		}
 	}
 }
