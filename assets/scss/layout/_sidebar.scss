@@ -1,4 +1,6 @@
 .sidebar--main {
+	@extend .grid;
+
 	> .grid__item {
 		width: 100%;
 	}
@@ -34,7 +36,7 @@
 			width: rem(860px);
 			max-width: 100%;
 			vertical-align: top;
-			margin-left: rem(-1 * $gutter-lap);
+//			margin-left: rem(-1 * $gutter-lap);
 
 			> .grid__item {
 				float: left;

@@ -53,4 +53,9 @@
 	&[href*="twitch.tv"]:before     {content: $fa-var-twitch;}
 	&[href*="bloglovin"]:before     {content: $fa-var-heart;}
 	&[href*="#search"]:before     	{content: $fa-var-search;}
+	&[href*="medium.com"]:before    {content: $fa-var-medium;}
+	&[href*="whatsapp"]:before     	{content: $fa-var-whatsapp;}
+	&[href*="leanpub"]:before     	{content: $fa-var-leanpub;}
+	&[href*="renren"]:before     	{content: $fa-var-renren;}
+	&[href*="twitch.tv"]:before     {content: $fa-var-twitch;}
 }

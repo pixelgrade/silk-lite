@@ -22,19 +22,11 @@
 
 	<div class="entry-content">
 		<?php
-		global $post;
-		// Check the content for the more text
-		$has_more = strpos( $post->post_content, '<!--more' );
-
-		if ( $has_more ) {
-			/* translators: %s: Name of current post */
-			the_content( sprintf(
-				__( 'Continue reading %s', 'silk_txtd' ),
-				the_title( '<span class="screen-reader-text">', '</span>', false )
-			) );
-		} else {
-			the_excerpt();
-		} ?>
+		/* translators: %s: Name of current post */
+		the_content( sprintf(
+			__( 'Continue reading %s', 'silk_txtd' ),
+			the_title( '<span class="screen-reader-text">', '</span>', false )
+		) ); ?>
 
 		<?php
 		wp_link_pages( array(

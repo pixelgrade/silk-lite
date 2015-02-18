@@ -715,6 +715,14 @@ if (!Date.now) Date.now = function () {
 
           masonry.init();
 
+          $('.posts-navigation').velocity({
+            opacity: 1
+          }, {
+            duration: 300,
+            delay: 100,
+            easing: 'easeOutCubic'
+          });
+
         } else {
           animateMainSingle();
         }
@@ -726,7 +734,7 @@ if (!Date.now) Date.now = function () {
         var $main = $('.site-main'),
             $header = $main.find('.entry-header');
         $meta = $header.find('.entry-meta'), $title = $header.find('.entry-title')
-        $excerpt = $title.next('.intro'), $content = $main.find('.entry-content, .entry-footer, .post-navigation, .comments-area');
+        $excerpt = $title.next('.intro'), $content = $main.find('.entry-featured, .entry-content, .entry-footer, .post-navigation, .comments-area');
 
         $meta.velocity({
           opacity: 1

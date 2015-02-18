@@ -251,6 +251,14 @@ var animator = (function() {
 
 			masonry.init();
 
+			$('.posts-navigation').velocity({
+				opacity: 1
+			}, {
+				duration: 300,
+				delay: 100,
+				easing: 'easeOutCubic'
+			});
+
 		} else {
 			animateMainSingle();
 		}
@@ -263,7 +271,7 @@ var animator = (function() {
 			$meta 		= $header.find('.entry-meta'),
 			$title 		= $header.find('.entry-title')
 			$excerpt	= $title.next('.intro'),
-			$content	= $main.find('.entry-content, .entry-footer, .post-navigation, .comments-area');
+			$content	= $main.find('.entry-featured, .entry-content, .entry-footer, .post-navigation, .comments-area');
 
 		$meta.velocity({
 			opacity: 1
