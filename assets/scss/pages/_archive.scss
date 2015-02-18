@@ -281,10 +281,6 @@
 	margin-bottom: 0;
 }
 
-.archive .page-header {
-	opacity: 0;
-}
-
 .search,
 .archive,
 .blog {
@@ -304,6 +300,10 @@
 			font-size: 0.75em;
 		}
 	}
+}
+
+.page-header {
+	opacity: 0;
 }
 
 .taxonomy-description {
