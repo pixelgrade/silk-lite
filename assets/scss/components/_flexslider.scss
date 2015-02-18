@@ -1,5 +1,6 @@
 .flexslider {
-
+	margin-bottom: rem($gutter-desk);
+	
 	.slides > li:first-child:last-child {
 		display: block;
 	}
@@ -40,7 +41,6 @@
 	.archive-layout--column & {
 		padding-bottom: rem($gutter-desk);
 		border-bottom: 3px solid transparent;
-		margin-bottom: rem($gutter-desk);
 	}
 
 	@include query-below($lap) {
