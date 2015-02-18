@@ -180,7 +180,7 @@
 	list-style: none;
 
 	@include query-above(1200px) {
-		width: rem(320px);
+		width: rem(360px);
 		padding-left: rem($gutter);
 		margin-left: rem($gutter);
 		border-left: 1px solid $borders;

@@ -54,6 +54,12 @@
 
 .main-navigation {
 	margin-bottom: rhythm(2);
+
+	.site-title {
+		display: block;
+		margin-left: rem($gutter-desk);
+		margin-right: rem($gutter-desk);
+	}
 }
 
 %sub-menu-transition-out {

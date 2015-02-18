@@ -71,6 +71,11 @@
 }
 
 html.svg .site-title {
+
+    > a {
+        display: block;
+    }
+    
     span {
         display: none;
     }

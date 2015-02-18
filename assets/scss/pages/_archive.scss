@@ -32,7 +32,7 @@
 
 	&.single-column {
 
-		@include query-above($lap) {
+		@include query-above(660px) {
 			.entry-header,
 			.entry-content {
 				max-width: rem(660px);
@@ -44,6 +44,10 @@
 
 			.entry-content p {
 				font-size: 1rem;
+			}
+
+			.entry-featured img {
+				display: block;
 			}
 		}
 	}

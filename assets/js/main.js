@@ -1633,23 +1633,28 @@ if (!Date.now) Date.now = function () {
             titleWidth = $title.width(),
             titleHeight = $title.height(),
             spanWidth = $span.width(),
-            spanHeight = $title.height(),
+            spanHeight = $span.height(),
             fontSize = parseInt($span.css('font-size')),
             scaling = spanWidth / parseFloat(titleWidth);
 
         setTimeout(function () {
 
           $svg.removeAttr('viewBox').hide();
-          $span.css('white-space', 'nowrap').show();
+          $span.css({
+            'white-space': 'nowrap',
+            display: 'inline-block'
+          });
 
           fontSize = parseInt($span.css('font-size')), spanWidth = $span.width();
-          spanHeight = $title.height();
+          spanHeight = $span.height();
+          titleWidth = $title.width();
+          scaling = spanWidth / parseFloat(titleWidth);
 
           if (spanWidth > titleWidth) {
             fontSize = parseInt(fontSize / scaling);
             $span.css('font-size', fontSize);
             spanWidth = $span.width();
-            spanHeight = $title.height();
+            spanHeight = $span.height();
           }
 
           $span.css({
@@ -1657,10 +1662,6 @@ if (!Date.now) Date.now = function () {
             'white-space': ''
           }).hide();
 
-          console.log(fontSize);
-
-          // titleWidth = $title.width();
-          // titleHeight = $title.height();
           $svg.width(spanWidth);
           $svg.attr('viewBox', "0 0 " + spanWidth + " " + spanHeight);
           $text.attr('font-size', fontSize);
@@ -1708,8 +1709,7 @@ if (!Date.now) Date.now = function () {
         }, {
           duration: 0
         });
-        $logoClone.width($newSvg.width());
-
+        // $logoClone.width($newSvg.width());
         logoInitialized = true;
         },
         
