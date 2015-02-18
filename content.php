@@ -32,8 +32,10 @@ if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 	
 		<?php if ( has_post_thumbnail() ) { ?>
 			<a href="<?php the_permalink(); ?>" class="entry-featured  entry-thumbnail">
-				<?php the_post_thumbnail( $thumbnail_size ); ?>
-				<div class="entry-image-border"></div>
+				<div>
+					<?php the_post_thumbnail( $thumbnail_size ); ?>
+					<div class="entry-image-border"></div>
+				</div>
 			</a>
 		<?php }
 
@@ -61,9 +63,14 @@ if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 				'separator'   => '<span class="screen-reader-text">, </span>',
 			) );
 		?>
-		<span class="separator separator-wrapper--accent">
+	<div class="color-secondary" role="presentation">
+		<div class="divider  wide">
+			<?php get_template_part("assets/svg/separator-not-simple-svg"); ?>
+		</div>
+		<div class="divider  narrow">
 			<?php get_template_part("assets/svg/separator-simple"); ?>
-		</span>
+		</div>
+	</div>
 
 	</div><!-- .entry-content -->
 </article><!-- #post-## -->

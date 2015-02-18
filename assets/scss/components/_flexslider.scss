@@ -30,7 +30,36 @@
 
 	.flag__img {
 		img {
-			display: inline-block;
+			margin: 0 auto;
+		}
+	}
+
+	.archive-layout--column & {
+		padding-bottom: rem($gutter-desk);
+		border-bottom: 3px solid transparent;
+		margin-bottom: rem($gutter-desk);
+	}
+
+	@include query-below($lap) {
+		.flag__img,
+		.flag__body {
+			display: block;
+		}
+
+		.flag__img {
+			width: 100%;
+			margin-bottom: rem($gutter);
+			padding-right: 0;
+		}
+	}
+
+	@include query-below($desk) {
+		.entry-title.entry-title {
+			font-size: rem(30px); 
+		}
+
+		.flag__img {
+			text-align: center;
 		}
 	}
 

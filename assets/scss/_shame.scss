@@ -16,6 +16,10 @@ body {
 	padding: 0 rem($gutter);
 	@include query-above($lap) 		{ padding: 0 rem($gutter-lap); }
 	@include query-above($desk) 	{ padding: 0 rem($gutter-desk); }
+
+	.archive-layout--column & {
+		max-width: em(1160px);
+	}
 }
 
 .site-header {

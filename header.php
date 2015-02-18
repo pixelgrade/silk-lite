@@ -18,7 +18,19 @@
 </head>
 
 <body <?php body_class(); ?>>
-<div id="page" class="hfeed site">
+
+
+
+<?php
+$classes = '';
+if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
+	$classes .= 'archive-layout--masonry';
+} else {
+	$classes .= 'archive-layout--column';
+}
+?>
+
+<div id="page" class="hfeed site <?php echo $classes; ?>">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'silk_txtd' ); ?></a>
 
 	<?php get_template_part( 'templates/top-header-bar' ); ?>
