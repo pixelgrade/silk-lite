@@ -742,6 +742,14 @@ if (!Date.now) Date.now = function () {
             easing: 'easeOutCubic'
           });
 
+          $('.page-header').velocity({
+            opacity: 1
+          }, {
+            duration: 300,
+            delay: 100,
+            easing: 'easeOutCubic'
+          });
+
         } else {
           animateMainSingle();
         }

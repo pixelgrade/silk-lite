@@ -281,6 +281,10 @@
 	margin-bottom: 0;
 }
 
+.archive .page-header {
+	opacity: 0;
+}
+
 .search,
 .archive,
 .blog {
@@ -305,6 +309,10 @@
 .taxonomy-description {
 	margin-top: rhythm(0.5);
 	color: $gray;
+}
+
+.posts-navigation {
+	opacity: 0;
 }
 
 @include query-above($small) {
