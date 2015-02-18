@@ -154,8 +154,13 @@ a {
 		}	
 	 }
     	@else { 
-			.entry-content & {
+			.single .entry-content &, .page .entry-content & {
 				@extend %smarter-links-underlines;
+
+				&[href~="jpg"], &[href~="jpeg"], &[href~="gif"], &[href~="png"] {
+					background: none;
+					text-shadow: none;
+				}
 			}
     	}
 
