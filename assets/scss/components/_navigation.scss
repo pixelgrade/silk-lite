@@ -60,7 +60,9 @@
 	@include query-above($lap) {
 		opacity: 0;
 		transition: opacity .2s ease-out, visibility 0s .3s linear, left 0s .3s linear;
-		left: 9999em;
+		pointer-events: none; 
+		left: 0;
+		// left: 9999em;
 	}
 }
 
@@ -68,7 +70,8 @@
 	@include query-above($lap) {
 		opacity: 1;
 		transition: opacity .2s ease-in;
-		left: 100%;
+		pointer-events: auto;
+		// left: 100%;
 	}
 }
 
@@ -82,11 +85,11 @@
 	}
 
 	background: white;
-	white-space: nowrap;
+	// white-space: nowrap;
 
 	> * {
-		white-space: normal;
-		vertical-align: top;
+		// white-space: normal;
+		// vertical-align: top;
 	}
 
 	.hover & {
@@ -113,7 +116,6 @@
 		@include query-above($lap) {
 			position: absolute;
 			top: -1px;
-
 			padding: rhythm(1/2) rhythm(1);
 		}
 
@@ -126,73 +128,17 @@
 		position: static; 
 		display: inline-block;
 		margin-top: 0;
+		pointer-events: none;
+
+	}
+
+	.hover & .sub-menu {
+		pointer-events: auto;
 	}
 
 	> .sub-menu,
 	> .sub-menu .hover > .sub-menu {
 		@extend %sub-menu-transition-in;
-	}
-}
-
-.menu-item--mega .sub-menu-wrapper > .sub-menu > .menu-item > .sub-menu {
-	top: 50%;
-	margin-top: rhythm(-3/2);
-}
-
-.submenu__card {
-	// display: inline-block;	
-	width: rem(300px);
-
-	.sub-menu + & {
-		margin-left: rem(55px);
-	}
-}
-
-
-.submenu__thumbs {
-	display: inline-block;	
-	width: rem(420px);
-	list-style: none;
-	margin: 0;
-
-	// this should never happen
-	// .submenu__card + & {
-		padding-left: rem(40px);
-		border-left: 1px solid $borders;
-		margin-left: rem(40px);
-	// }
-
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-
-	.ie9 & {
-		display: inline-block;
-		vertical-align: middle;
-	}
-
-	> li {
-		// flex: 0 1 auto;\
-		margin-bottom: rem(30px);
-
-		&:last-child {
-			margin-bottom: 0;
-		}
-	}
-}
-
-@include query-below($desk) {
-	.menu-item--mega {
-		position: relative;
-
-		> .sub-menu-wrapper {
-			left: 0 !important;
-		}
-	}
-
-	.submenu__card,
-	.submenu__thumbs {
-		display: none;
 	}
 }
 

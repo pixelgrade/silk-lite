@@ -312,9 +312,28 @@
 			hideSubMenus();
 		} );
 
-		$nav.click( function( e ) {
+		$nav.on('click touchstart', function(e) {
 			e.stopPropagation();
-		} );
+		});
+
+		$nav.find('.menu-item-has-children > a').on('touchstart', function(e) {
+
+			var $item = $(this).parent();
+
+			if ( ! $item.hasClass('hover') ) {
+				e.preventDefault();
+				$item.addClass('hover');
+				$item.siblings().removeClass('hover');
+				return;
+			} else {
+				// $item.removeClass("hover");
+			}
+
+		});
+
+		$('body').on('touchstart', function() {
+			$('.menu-item-has-children').removeClass('hover');
+		});
 
 		function showSubMenu( $item ) {
 
@@ -323,6 +342,7 @@
 				var $subMenu = $item.children( '.sub-menu-wrapper' ),
 					offset,
 					subMenuWidth;
+
 
 				if ( $subMenu.length ) {
 

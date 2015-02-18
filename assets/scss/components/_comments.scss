@@ -345,7 +345,7 @@ li.comment, li.pingback, li.trackback {
 		box-shadow: none;
 	}
 
-	p{
+	p, iframe{
 		@extend .grid__item;
 	}
 

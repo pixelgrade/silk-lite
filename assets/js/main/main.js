@@ -7,7 +7,6 @@ $(document).ready(function() {
 function init() {
   browserSize();
   platformDetect();
-  svgLogo.init();
 }
 
 /* ====== ON WINDOW LOAD ====== */
@@ -18,6 +17,7 @@ $window.load(function() {
   slider.init();
   wrapJetpackAfterContent();
   fixedSidebars.update();
+  svgLogo.init();
   animator.animate();
   scrollToTop();
   infinityHandler();
