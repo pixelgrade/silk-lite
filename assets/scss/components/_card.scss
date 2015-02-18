@@ -29,8 +29,10 @@
 		margin-bottom: rhythm(0.75);
 		position: relative;
 
+		width: 100%;
+
 		img {
-			display: block;
+			display: inline-block;
 		}
 	}
 

@@ -362,7 +362,7 @@ if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_
 								'</div><!-- .entry-meta -->' . PHP_EOL .
 								'<a href="' . get_permalink() . '"><h2 class="entry-title">' . get_the_title() . '</h2></a>' . PHP_EOL .
 							'</header><!-- .entry-header -->' . PHP_EOL .
-							'<a class="separator  separator--text" role="presentation" href="' . get_permalink() . '"><span>' . _( 'More', 'silk_txtd' ) . '</span></a>' . PHP_EOL .
+							'<a class="separator  separator--text" role="presentation" href="' . get_permalink() . '"><span>' . __( 'More', 'silk_txtd' ) . '</span></a>' . PHP_EOL .
 						'</article>' . PHP_EOL;
 
 						//if we still have posts - it's time for the little ones
