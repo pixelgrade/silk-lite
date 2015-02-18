@@ -1736,6 +1736,10 @@ if (!Date.now) Date.now = function () {
           duration: 0
         });
         // $logoClone.width($newSvg.width());
+        if (!$body.hasClass('home')) {
+          window.scrollTo(0, $('.site-header').height() - navHeight);
+        }
+
         logoInitialized = true;
         },
         
