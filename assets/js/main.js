@@ -1341,7 +1341,8 @@ if (!Date.now) Date.now = function () {
     var $smallSidebar = $('#jp-post-flair'),
         smallSidebarPinned = false,
         smallSidebarPadding = 100,
-        smallSidebarOffset, $sidebar = $('.sidebar--main'),
+        smallSidebarPinTop = $('.top-bar.fixed').outerHeight() + smallSidebarPadding,
+        smallSidebarOffset, smallSidebarBottom, $sidebar = $('.sidebar--main'),
         $main = $('.site-main'),
         mainHeight = $main.outerHeight(),
         mainOffset, mainTop, mainBottom = mainTop + mainHeight,
@@ -1374,8 +1375,52 @@ if (!Date.now) Date.now = function () {
             styleWidgets();
           }
         }
+        wrapJetpackAfterContent();
         refresh();
         initialized = true;
+        },
+        
+        
+        
+        /**
+         * Wrap Jetpack's related posts and
+         * Sharedaddy sharing into one div
+         * to make a left sidebar on single posts
+         */
+        
+        wrapJetpackAfterContent = function () {
+        // check if we are on single post and the wrap has not been done already by Jetpack
+        // (it happens when the theme is activated on a wordpress.com installation)
+        if ($('#jp-post-flair').length != 0) $('body').addClass('has--jetpack-sidebar');
+
+        if ($('body').hasClass('single-post') && $('#jp-post-flair').length == 0) {
+
+          var $jpSharing = $('.sharedaddy.sd-sharing-enabled');
+          var $jpLikes = $('.sharedaddy.sd-like');
+          var $jpRelatedPosts = $('#jp-relatedposts');
+
+          if ($jpSharing.length || $jpLikes.length || $jpRelatedPosts.length) {
+
+            $('body').addClass('has--jetpack-sidebar');
+
+            var $jpWrapper = $('<div/>', {
+              id: 'jp-post-flair'
+            });
+            $jpWrapper.appendTo($('.entry-content'));
+
+            if ($jpSharing.length) {
+              $jpSharing.appendTo($jpWrapper);
+            }
+
+            if ($jpLikes.length) {
+              $jpLikes.appendTo($jpWrapper);
+            }
+
+            if ($jpRelatedPosts.length) {
+              $jpRelatedPosts.appendTo($jpWrapper);
+            }
+          }
+        }
         },
         
         
@@ -1441,15 +1486,22 @@ if (!Date.now) Date.now = function () {
               // $widget.removeClass('focused');
               $widget.css('max-height', newHeight);
 
-              setTimeout(function () {
-                refresh();
-                update();
-              }, 600);
+              delayUpdate();
             });
           }
 
+          delayUpdate();
+
         });
 
+        },
+        
+        
+        delayUpdate = function () {
+        setTimeout(function () {
+          refresh();
+          update();
+        }, 600);
         },
         
         
@@ -1464,76 +1516,73 @@ if (!Date.now) Date.now = function () {
           init();
         }
 
-        if ($sidebar.length) {
+        var windowBottom = latestKnownScrollY + windowHeight;
 
-          var windowBottom = latestKnownScrollY + windowHeight;
+        sidebarBottom = sidebarHeight + sidebarOffset.top + sidebarPadding;
+        mainBottom = mainHeight + sidebarOffset.top + sidebarPadding;
 
-          sidebarBottom = sidebarHeight + sidebarOffset.top + sidebarPadding;
-          mainBottom = mainHeight + sidebarOffset.top + sidebarPadding;
+        /* adjust right sidebar positioning if needed */
+        if (mainOffset.top == sidebarOffset.top && sidebarHeight < mainHeight) {
 
-          if (mainOffset.top != sidebarOffset.top || animating) {
-            return;
+          // pin sidebar
+          if (windowBottom > sidebarBottom && !sidebarPinned) {
+            $sidebar.css({
+              position: 'fixed',
+              top: windowHeight - sidebarHeight - sidebarPadding,
+              left: sidebarOffset.left
+            });
+            sidebarPinned = true;
           }
 
-          /* adjust right sidebar positioning if needed */
-          if (sidebarHeight < mainHeight) {
-
-            // pin sidebar
-            if (windowBottom > sidebarBottom && !sidebarPinned) {
-              $sidebar.css({
-                position: 'fixed',
-                top: windowHeight - sidebarHeight - sidebarPadding,
-                left: sidebarOffset.left
-              });
-              sidebarPinned = true;
-            }
-
-            // unpin sidebar
-            if (windowBottom <= sidebarBottom && sidebarPinned) {
-              $sidebar.css({
-                position: '',
-                top: '',
-                left: ''
-              });
-              sidebarPinned = false;
-            }
-
-            if (windowBottom <= mainBottom) {
-              $sidebar.css('top', windowHeight - sidebarHeight - sidebarPadding);
-            }
-
-            if (windowBottom > mainBottom && windowBottom < documentHeight) {
-              $sidebar.css('top', mainBottom - sidebarPadding - sidebarHeight - latestKnownScrollY);
-            }
-
-            if (windowBottom >= documentHeight) {
-              $sidebar.css('top', mainBottom - sidebarPadding - sidebarHeight - documentHeight + windowHeight);
-            }
-
+          // unpin sidebar
+          if (windowBottom <= sidebarBottom && sidebarPinned) {
+            $sidebar.css({
+              position: '',
+              top: '',
+              left: ''
+            });
+            sidebarPinned = false;
           }
+
+          if (windowBottom <= mainBottom) {
+            $sidebar.css('top', windowHeight - sidebarHeight - sidebarPadding);
+          }
+
+          if (windowBottom > mainBottom && windowBottom < documentHeight) {
+            $sidebar.css('top', mainBottom - sidebarPadding - sidebarHeight - latestKnownScrollY);
+          }
+
+          if (windowBottom >= documentHeight) {
+            $sidebar.css('top', mainBottom - sidebarPadding - sidebarHeight - documentHeight + windowHeight);
+          }
+
         }
 
         /* adjust left sidebar positioning if needed */
-        if (!$smallSidebar.length) {
-          return;
-        }
+        if ($smallSidebar.length) {
 
-        if (smallSidebarOffset.top - smallSidebarPadding < latestKnownScrollY && !smallSidebarPinned) {
-          $smallSidebar.css({
-            position: 'fixed',
-            top: smallSidebarPadding,
-            left: smallSidebarOffset.left
-          });
-          smallSidebarPinned = true;
-        }
+          if (smallSidebarOffset.top - smallSidebarPinTop < latestKnownScrollY && !smallSidebarPinned) {
+            $smallSidebar.css({
+              position: 'fixed',
+              top: smallSidebarPinTop,
+              left: smallSidebarOffset.left
+            });
+            smallSidebarPinned = true;
+          }
 
-        if (smallSidebarOffset.top - smallSidebarPadding >= latestKnownScrollY && smallSidebarPinned) {
-          $smallSidebar.css({
-            position: '',
-            top: '',
-            left: ''
-          });
-          smallSidebarPinned = false;
+          if (smallSidebarOffset.top - smallSidebarPinTop >= latestKnownScrollY && smallSidebarPinned) {
+            $smallSidebar.css({
+              position: '',
+              top: '',
+              left: ''
+            });
+            smallSidebarPinned = false;
+          }
+
+          if (windowBottom > mainBottom && windowBottom < documentHeight) {
+            $smallSidebar.css('top', mainBottom - smallSidebarPadding - smallSidebarHeight - latestKnownScrollY);
+          }
+
         }
 
         },
@@ -1574,9 +1623,33 @@ if (!Date.now) Date.now = function () {
         }
 
         if ($smallSidebar.length) {
+
+          $smallSidebar.find('.sd-sharing-enabled, .sd-like, .jp-relatedposts-post').show().each(function (i, obj) {
+            var $box = $(obj),
+                boxOffset = $box.offset(),
+                boxHeight = $box.outerHeight(),
+                boxBottom = boxOffset.top + boxHeight - latestKnownScrollY;
+
+            if (smallSidebarPinTop + boxBottom > windowHeight + smallSidebarPadding) {
+              $box.hide();
+            } else {
+              $box.show();
+            }
+          });
+
+          var $relatedposts = $('.jp-relatedposts');
+
+          if ($relatedposts.length) {
+            $relatedposts.show();
+            if (!$relatedposts.find('.jp-relatedposts-post:visible').length) {
+              $relatedposts.hide();
+            }
+          }
+
           smallSidebarPinned = false;
           smallSidebarOffset = $smallSidebar.offset();
           smallSidebarHeight = $smallSidebar.outerHeight();
+          smallSidebarBottom = smallSidebarOffset.top + smallSidebarHeight;
         }
 
         };
@@ -1703,6 +1776,15 @@ if (!Date.now) Date.now = function () {
           $title.children('a').append($newSvg);
           $newSvg.show();
 
+          var $topLogo = $('.top-bar .site-title'),
+              topLogoHeight = $topLogo.outerHeight(),
+              $clone = $newSvg.clone();
+
+          $clone.outerHeight(topLogoHeight);
+          $clone.find('text').attr('stroke', '#000');
+
+          $topLogo.empty().append($clone);
+
           logoAnimation();
         }, 60);
         },
@@ -1790,7 +1872,6 @@ if (!Date.now) Date.now = function () {
     browserSize();
     navigation.init();
     slider.init();
-    wrapJetpackAfterContent();
     fixedSidebars.update();
     svgLogo.init();
     animator.animate();
@@ -1867,47 +1948,6 @@ if (!Date.now) Date.now = function () {
       }
     }
     return false;
-  }
-
-  /**
-   * Wrap Jetpack's related posts and
-   * Sharedaddy sharing into one div
-   * to make a left sidebar on single posts
-   */
-
-  function wrapJetpackAfterContent() {
-    // check if we are on single post and the wrap has not been done already by Jetpack
-    // (it happens when the theme is activated on a wordpress.com installation)
-    if ($('#jp-post-flair').length != 0) $('body').addClass('has--jetpack-sidebar');
-
-    if ($('body').hasClass('single-post') && $('#jp-post-flair').length == 0) {
-
-      var $jpSharing = $('.sharedaddy.sd-sharing-enabled');
-      var $jpLikes = $('.sharedaddy.sd-like');
-      var $jpRelatedPosts = $('#jp-relatedposts');
-
-      if ($jpSharing.length || $jpLikes.length || $jpRelatedPosts.length) {
-
-        $('body').addClass('has--jetpack-sidebar');
-
-        var $jpWrapper = $('<div/>', {
-          id: 'jp-post-flair'
-        });
-        $jpWrapper.appendTo($('.entry-content'));
-
-        if ($jpSharing.length) {
-          $jpSharing.appendTo($jpWrapper);
-        }
-
-        if ($jpLikes.length) {
-          $jpLikes.appendTo($jpWrapper);
-        }
-
-        if ($jpRelatedPosts.length) {
-          $jpRelatedPosts.appendTo($jpWrapper);
-        }
-      }
-    }
   }
 
   /**

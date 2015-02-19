@@ -89,6 +89,20 @@
 	}
 }
 
+.svg .top-bar .flag__img {
+	width: 30%;
+
+	svg {
+		margin-top: 0.08em;
+		width: auto !important;
+		margin-left: 0;
+	}
+
+	text {
+		fill: white;
+	}
+}
+
 .nav-trigger {
 	@extend %menu-item;
 }
