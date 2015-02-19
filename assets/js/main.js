@@ -1514,6 +1514,8 @@ if (!Date.now) Date.now = function () {
         }
 
         /* adjust left sidebar positioning if needed */
+        console.log($smallSidebar);
+        debugger;
         if (!$smallSidebar.length) {
           return;
         }
