@@ -19,18 +19,9 @@
 
 <body <?php body_class(); ?>>
 
+<?php $classes = ( ! get_theme_mod( 'silk_single_column_archives', false ) ) ? 'archive-layout--masonry' : 'archive-layout--column'; ?>
 
-
-<?php
-$classes = '';
-if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
-	$classes .= 'archive-layout--masonry';
-} else {
-	$classes .= 'archive-layout--column';
-}
-?>
-
-<div id="page" class="hfeed site <?php echo $classes; ?>">
+<div id="page" class="hfeed site <?php echo esc_attr( $classes ); ?>">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'silk_txtd' ); ?></a>
 
 	<?php get_template_part( 'templates/top-header-bar' ); ?>
