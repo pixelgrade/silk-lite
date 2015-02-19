@@ -5,7 +5,9 @@ var fixedSidebars = (function() {
 	var $smallSidebar       = $('#jp-post-flair'),
 		smallSidebarPinned  = false,
 		smallSidebarPadding = 100,
+		smallSidebarPinTop	= $('.top-bar.fixed').outerHeight() + smallSidebarPadding,
 		smallSidebarOffset,
+		smallSidebarBottom,
 		$sidebar        	= $('.sidebar--main'),
 		$main           	= $('.site-main'),
 		mainHeight      	= $main.outerHeight(),
@@ -105,15 +107,21 @@ var fixedSidebars = (function() {
 	 				// $widget.removeClass('focused');
 	 				$widget.css('max-height', newHeight);
 
-	 				setTimeout(function() {
-	 					refresh();
-	 					update();
-	 				}, 600);
+	 				delayUpdate();
 	 			});
 	 		}
 
+			delayUpdate();
+
 	 	});
 
+	},
+
+	delayUpdate = function() {
+		setTimeout(function() {
+			refresh();
+			update();
+		}, 600);
 	},
 
 	/**
@@ -125,89 +133,80 @@ var fixedSidebars = (function() {
 			init();
 		}
 
-		if ( $sidebar.length ) {
+		var windowBottom  = latestKnownScrollY + windowHeight;
 
-			var windowBottom = latestKnownScrollY + windowHeight;
+		sidebarBottom = sidebarHeight + sidebarOffset.top + sidebarPadding;
+		mainBottom    = mainHeight + sidebarOffset.top + sidebarPadding;
 
-			sidebarBottom = sidebarHeight + sidebarOffset.top + sidebarPadding;
-			mainBottom = mainHeight + sidebarOffset.top + sidebarPadding;
+		/* adjust right sidebar positioning if needed */
+		if (mainOffset.top == sidebarOffset.top && sidebarHeight < mainHeight) {
 
-			if ( mainOffset.top != sidebarOffset.top || animating ) {
-				return;
+			// pin sidebar
+			if ( windowBottom > sidebarBottom && !sidebarPinned ) {
+				$sidebar.css({  
+					position: 'fixed',
+					top:      windowHeight - sidebarHeight - sidebarPadding,
+					left:     sidebarOffset.left
+				});
+				sidebarPinned = true;
 			}
 
-			/* adjust right sidebar positioning if needed */
-			if ( sidebarHeight < mainHeight ) {
-
-				// pin sidebar
-				if ( windowBottom > sidebarBottom && !sidebarPinned ) {
-					$sidebar.css( {
-						position: 'fixed',
-						top: windowHeight - sidebarHeight - sidebarPadding,
-						left: sidebarOffset.left
-					} );
-					sidebarPinned = true;
-				}
-
-				// unpin sidebar
-				if ( windowBottom <= sidebarBottom && sidebarPinned ) {
-					$sidebar.css( {
-						position: '',
-						top: '',
-						left: ''
-					} );
-					sidebarPinned = false;
-				}
-
-				if ( windowBottom <= mainBottom ) {
-					$sidebar.css( 'top', windowHeight - sidebarHeight - sidebarPadding );
-				}
-
-				if ( windowBottom > mainBottom && windowBottom < documentHeight ) {
-					$sidebar.css( 'top', mainBottom - sidebarPadding - sidebarHeight - latestKnownScrollY );
-				}
-
-				if ( windowBottom >= documentHeight ) {
-					$sidebar.css( 'top', mainBottom - sidebarPadding - sidebarHeight - documentHeight + windowHeight );
-				}
-
+			// unpin sidebar
+			if ( windowBottom <= sidebarBottom && sidebarPinned ) {
+				$sidebar.css({
+					position: '',
+					top:      '',
+					left:     ''
+				});
+				sidebarPinned = false;
 			}
+
+			if ( windowBottom <= mainBottom ) {
+				$sidebar.css('top', windowHeight - sidebarHeight - sidebarPadding);
+			}
+
+			if ( windowBottom > mainBottom && windowBottom < documentHeight ) {
+				$sidebar.css('top', mainBottom - sidebarPadding - sidebarHeight - latestKnownScrollY);
+			}
+
+			if ( windowBottom >= documentHeight ) {
+				$sidebar.css('top', mainBottom - sidebarPadding - sidebarHeight - documentHeight + windowHeight);
+			}	
+			
 		}
 
 		/* adjust left sidebar positioning if needed */
-		console.log($smallSidebar);
-		debugger;
-		if ( ! $smallSidebar.length ) {
-			return;
-		}   
+		if ( $smallSidebar.length ) {
+			console.log(smallSidebarOffset.top, latestKnownScrollY);
+		 	if ( smallSidebarOffset.top - smallSidebarPinTop < latestKnownScrollY && ! smallSidebarPinned ) {
+				$smallSidebar.css({  
+					position: 'fixed',
+					top: smallSidebarPinTop,
+					left: smallSidebarOffset.left
+				});
+				smallSidebarPinned = true;
+			}   
 
-	 	if ( smallSidebarOffset.top - smallSidebarPadding < latestKnownScrollY && ! smallSidebarPinned ) {
-			$smallSidebar.css({  
-				position: 'fixed',
-				top: smallSidebarPadding,
-				left: smallSidebarOffset.left
-			});
-			smallSidebarPinned = true;
-		}   
-
-	 	if ( smallSidebarOffset.top - smallSidebarPadding >= latestKnownScrollY && smallSidebarPinned ) {
-			$smallSidebar.css({
-				position: '',
-				top: '',
-				left: ''
-			});
-			smallSidebarPinned = false;
+		 	if ( smallSidebarOffset.top - smallSidebarPinTop >= latestKnownScrollY && smallSidebarPinned ) {
+				$smallSidebar.css({
+					position: '',
+					top: '',
+					left: ''
+				});
+				smallSidebarPinned = false;
+			}
+			
 		}
 
 	},
 
 	refresh = function() {
 
-		if ($main.length) {
+		if ( $main.length ) {
 			mainOffset = $main.offset();
 		}
 
-		if ($sidebar.length) {
+		if ( $sidebar.length ) {
 
 			var positionValue 	= $sidebar.css('position'),
 				topValue 		= $sidebar.css('top'),
@@ -235,10 +234,35 @@ var fixedSidebars = (function() {
 			sidebarPinned = pinnedValue;
 		}
 
-		if ($smallSidebar.length) {
+		if ( $smallSidebar.length ) {
+
+			$smallSidebar.find('.sd-sharing-enabled, .sd-like, .jp-relatedposts-post').show().each(function(i, obj) {
+				var $box 		= $(obj),
+					boxOffset	= $box.offset(),
+					boxHeight	= $box.outerHeight(),
+					boxBottom	= boxOffset.top + boxHeight - latestKnownScrollY;
+
+					console.log($box.selector, boxBottom, windowHeight, smallSidebarPadding);
+				if ( smallSidebarPinTop + boxBottom > windowHeight + smallSidebarPadding ) {
+					$box.hide();
+				} else {
+					$box.show();
+				}
+			});
+
+			var $relatedposts = $('.jp-relatedposts');
+
+			if ( $relatedposts.length ) {
+				$relatedposts.show();
+				if ( ! $relatedposts.find('.jp-relatedposts-post:visible').length ) {
+					$relatedposts.hide();
+				}
+			}
+
 			smallSidebarPinned = false;
 			smallSidebarOffset = $smallSidebar.offset();
 			smallSidebarHeight = $smallSidebar.outerHeight();
+			smallSidebarBottom = smallSidebarOffset.top + smallSidebarHeight;
 		}
 
 	};
