@@ -65,6 +65,15 @@ window.svgLogo = (function() {
 			$title.children('a').append($newSvg);
 			$newSvg.show();
 
+			var $topLogo 		= $('.top-bar .site-title'),
+				topLogoHeight	= $topLogo.outerHeight(),
+				$clone 			= $newSvg.clone();
+
+			$clone.outerHeight(topLogoHeight);
+			$clone.find('text').attr('stroke', '#000');
+
+			$topLogo.empty().append($clone);
+
 			logoAnimation();
 		}, 60);
 	},

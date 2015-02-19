@@ -43,8 +43,49 @@ var fixedSidebars = (function() {
 				styleWidgets();
 			}
 		}
+		wrapJetpackAfterContent();
 		refresh();
 		initialized = true;
+	},
+
+	/**
+	* Wrap Jetpack's related posts and
+	* Sharedaddy sharing into one div
+	* to make a left sidebar on single posts
+	*/
+	wrapJetpackAfterContent = function() {
+		// check if we are on single post and the wrap has not been done already by Jetpack
+		// (it happens when the theme is activated on a wordpress.com installation)
+
+		if ( $('#jp-post-flair').length != 0 )
+			$('body').addClass('has--jetpack-sidebar');
+
+		if( $('body').hasClass('single-post') && $('#jp-post-flair').length == 0 ) {
+
+			var $jpSharing = $('.sharedaddy.sd-sharing-enabled');
+			var $jpLikes = $('.sharedaddy.sd-like');
+			var $jpRelatedPosts = $('#jp-relatedposts');
+
+			if ( $jpSharing.length || $jpLikes.length || $jpRelatedPosts.length ) {
+
+				$('body').addClass('has--jetpack-sidebar');
+
+				var $jpWrapper = $('<div/>', { id: 'jp-post-flair' });
+				$jpWrapper.appendTo($('.entry-content'));
+
+				if( $jpSharing.length ) {
+					$jpSharing.appendTo($jpWrapper);
+				}
+
+				if( $jpLikes.length ) {
+					$jpLikes.appendTo($jpWrapper);
+				}
+
+				if( $jpRelatedPosts.length ) {
+					$jpRelatedPosts.appendTo($jpWrapper);
+				}
+			}
+		}
 	},
 
 
@@ -171,13 +212,13 @@ var fixedSidebars = (function() {
 
 			if ( windowBottom >= documentHeight ) {
 				$sidebar.css('top', mainBottom - sidebarPadding - sidebarHeight - documentHeight + windowHeight);
-			}	
+			}
 			
 		}
 
 		/* adjust left sidebar positioning if needed */
 		if ( $smallSidebar.length ) {
-			console.log(smallSidebarOffset.top, latestKnownScrollY);
+			
 		 	if ( smallSidebarOffset.top - smallSidebarPinTop < latestKnownScrollY && ! smallSidebarPinned ) {
 				$smallSidebar.css({  
 					position: 'fixed',
@@ -195,7 +236,11 @@ var fixedSidebars = (function() {
 				});
 				smallSidebarPinned = false;
 			}
-			
+
+			if ( windowBottom > mainBottom && windowBottom < documentHeight ) {
+				$smallSidebar.css('top', mainBottom - smallSidebarPadding - smallSidebarHeight - latestKnownScrollY);
+			}
+
 		}
 
 	},
@@ -242,7 +287,6 @@ var fixedSidebars = (function() {
 					boxHeight	= $box.outerHeight(),
 					boxBottom	= boxOffset.top + boxHeight - latestKnownScrollY;
 
-					console.log($box.selector, boxBottom, windowHeight, smallSidebarPadding);
 				if ( smallSidebarPinTop + boxBottom > windowHeight + smallSidebarPadding ) {
 					$box.hide();
 				} else {
