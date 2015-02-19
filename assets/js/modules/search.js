@@ -60,7 +60,7 @@
     if (e.keyCode == 27) {
       closeOverlay();
     }
-  } 
+  }
 
   // create animation and run it on
   $('.nav__item--search, [href*="#search"]').on('click touchstart', function(e) {

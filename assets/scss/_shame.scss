@@ -116,3 +116,8 @@ hr {
 		display: inline-block;
 	}
 }
+
+// override default link hover
+.single .entry-content .tiled-gallery a:hover {
+	background: none;
+}

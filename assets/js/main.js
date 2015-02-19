@@ -1263,6 +1263,7 @@ if (!Date.now) Date.now = function () {
       $overlay.velocity({
         translateX: 0
       }, {
+
         duration: 0
       }).velocity({
         translateX: offset

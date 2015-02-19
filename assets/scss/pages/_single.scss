@@ -211,6 +211,14 @@ span.pagination-title {
 			padding: rem(12px);
 
 			border: 1px solid $borders;
+
+			.flexbox {
+				display: block;
+			}
+
+			.flexbox__item {
+				display: inline-block;
+			}
 		}
 	}
 
@@ -587,6 +595,8 @@ div#jp-relatedposts#jp-relatedposts h3.jp-relatedposts-headline {
 
 .jp-relatedposts-post-a {
 	@include rhythm(margin-bottom, 0.5);
+	background: none;
+	text-shadow: none;
 }
 
 div#jp-relatedposts#jp-relatedposts div.jp-relatedposts-items p,

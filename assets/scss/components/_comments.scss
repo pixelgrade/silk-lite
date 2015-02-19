@@ -191,18 +191,21 @@ li.comment, li.pingback, li.trackback {
 	}
 }
 
+.comment__meta {
+	margin-bottom: rem(6px);
+}
 
 .comment__author-name {
 	@include fs(14px);
 
 	a{
-		border-bottom: 1px solid $dark;
-		color: $dark;
+		@extend %smarter-links-underlines;
 	}
 
 	.bypostauthor & {
+		@extend %smarter-links-underlines;
+		border-color: $accent;
 		color: $accent;
-		border-bottom: 1px solid $accent;
 	}
 }
 
@@ -234,7 +237,7 @@ li.comment, li.pingback, li.trackback {
 }
 
 .comment__timestamp {
-	@include fs(11px);
+	@include fs(10px);
 	text-transform: uppercase;
 
 	color: $gray;
@@ -250,7 +253,8 @@ li.comment, li.pingback, li.trackback {
 	@include rhythm(margin-bottom, 2, 12px);
 
 	p {
-		@include font-size(12px);
+		font-size: rem(12px);
+		line-height: 1.7;
 	}
 }
 

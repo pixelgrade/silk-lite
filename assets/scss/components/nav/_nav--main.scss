@@ -31,14 +31,21 @@
 	}
 }
 
-.menu-toggle {
+.button-toggle {
 	background: none;
 	border: 0;
 	position: absolute;
 	top: 0;
+	left: 0;
 	height: 100%;
-	padding-left: rem($gutter);
-	padding-right: rem($gutter);
+	padding-left: rem(20px);
+	padding-right: rem(20px);
+
+	z-index: 20;
+
+	.nav--is-open & {
+		background-color: white;
+	}
 
 	.button-icon {
 		font-size: rem(20px);
@@ -46,6 +53,69 @@
 
 	@include query-above($lap) {
 		display: none;
+	}
+}
+
+.button-toggle--search {
+	left: auto;
+	right: rem(12px);
+	top: rem(12px);
+	height: auto;
+
+	border: 1px solid $borders;
+	border-radius: 50%;
+
+	padding: rem(4px) rem(10px);
+
+	.button-icon {
+		font-size: rem(16px);
+	}
+}
+
+.nav-icon {
+	position: relative;
+	top: 2px;
+	right: inherit;
+	display: block;
+	width: 20px;
+	height: 3px;
+
+	background: $dark;
+
+	border-radius: 2.5rem;
+	transition: all .3s;
+
+	&:after, &:before {
+		display: block;
+		content: "";
+		height: 3px;
+		width: 100%;
+		background: $dark;
+		position: absolute;
+		z-index: -1;
+		transition: all .3s;
+	}
+
+	&:after {
+		top: -7px;
+	}
+
+	&:before {
+		top: 7px;
+	}
+
+	.nav--is-open & {
+		background:transparent;
+
+		&:after{
+			transform: rotate(45deg);
+			top: 0;
+		}
+
+		&:before{
+			transform: rotate(-45deg);
+			top: 0;
+		}
 	}
 }
 
