@@ -41,6 +41,12 @@
 	padding-left: rem(20px);
 	padding-right: rem(20px);
 
+	z-index: 20;
+
+	.nav--is-open & {
+		background-color: white;
+	}
+
 	.button-icon {
 		font-size: rem(20px);
 	}
@@ -63,6 +69,53 @@
 
 	.button-icon {
 		font-size: rem(16px);
+	}
+}
+
+.nav-icon {
+	position: relative;
+	top: 2px;
+	right: inherit;
+	display: block;
+	width: 26px;
+	height: 3px;
+
+	background: $dark;
+
+	border-radius: 2.5rem;
+	transition: all .3s;
+
+	&:after, &:before {
+		display: block;
+		content: "";
+		height: 3px;
+		width: 100%;
+		background: $dark;
+		position: absolute;
+		z-index: -1;
+		transition: all .3s;
+	}
+
+	&:after {
+		top: -7px;
+	}
+
+	&:before {
+		top: 7px;
+	}
+
+	.nav--is-open & {
+		background:transparent;
+
+		&:after{
+			transform: rotate(45deg);
+			top: 0;
+		}
+
+		&:before{
+			transform: rotate(-45deg);
+			top: 0;
+		}
 	}
 }
 

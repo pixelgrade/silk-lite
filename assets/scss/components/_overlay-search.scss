@@ -123,7 +123,7 @@
 	@include query-below($desk) {
 		@include rhythm(width, 3);
 		@include rhythm(height, 3);
-		@include rhythm(top, 4);
+		@include rhythm(top, 6);
 		@include rhythm(right, 3);
 	}
 }
