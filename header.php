@@ -72,7 +72,7 @@ if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 
 		<nav id="site-navigation" class="main-navigation" role="navigation">
 
-			<button class="menu-toggle  js-nav-trigger" aria-controls="menu-primary-menu" aria-expanded="false">
+			<button class="button-toggle  js-nav-trigger" aria-controls="menu-primary-menu" aria-expanded="false">
 				<span class="button-icon"><i class="fa fa-bars"></i></span>
 				<span class="button-text  assistive-text"><?php _e( 'Primary Menu', 'silk_txtd' ); ?></span>
 			</button>
@@ -84,6 +84,10 @@ if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 				'walker'         => new Silk_Walker_Primary_Mega_Menu(),
 				'fallback_cb'    => 'silk_custom_wp_page_menu',
 			) ); ?>
+			<a href="#search" class="button-toggle  button-toggle--search">
+				<span class="button-icon"><i class="fa fa-search"></i></span>
+				<span class="button-text  assistive-text"><?php _e( 'Search', 'silk_txtd' ); ?></span>
+			</a>
 
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->

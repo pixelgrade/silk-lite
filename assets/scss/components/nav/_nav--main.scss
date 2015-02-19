@@ -31,14 +31,15 @@
 	}
 }
 
-.menu-toggle {
+.button-toggle {
 	background: none;
 	border: 0;
 	position: absolute;
 	top: 0;
+	left: 0;
 	height: 100%;
-	padding-left: rem($gutter);
-	padding-right: rem($gutter);
+	padding-left: rem(20px);
+	padding-right: rem(20px);
 
 	.button-icon {
 		font-size: rem(20px);
@@ -46,6 +47,22 @@
 
 	@include query-above($lap) {
 		display: none;
+	}
+}
+
+.button-toggle--search {
+	left: auto;
+	right: rem(12px);
+	top: rem(12px);
+	height: auto;
+
+	border: 1px solid $borders;
+	border-radius: 50%;
+
+	padding: rem(4px) rem(10px);
+
+	.button-icon {
+		font-size: rem(16px);
 	}
 }
 
