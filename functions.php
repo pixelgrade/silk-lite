@@ -9,8 +9,30 @@
  * Set the content width based on the theme's design and stylesheet.
  */
 if ( ! isset( $content_width ) ) {
-	$content_width = 660; /* pixels */
+	$content_width = 662; /* pixels */
 }
+
+if ( ! function_exists( 'silk_content_width' ) ) :
+	/**
+	 * Adjusts content_width value for few pages and attachment templates.
+	 */
+	function silk_content_width() {
+		global $content_width;
+
+		if ( ! is_active_sidebar( 'sidebar-1' ) ) {
+			$content_width = 1062; /* pixels */
+		}
+
+		if ( is_attachment() ) {
+			$content_width = 892; /* pixels */
+
+			if ( ! is_active_sidebar( 'sidebar-1' ) ) {
+				$content_width = 1292; /* pixels */
+			}
+		}
+	}
+endif; //silk_content_width
+add_action( 'template_redirect', 'silk_content_width' );
 
 if ( ! function_exists( 'silk_setup' ) ) :
 	/**
@@ -65,8 +87,6 @@ if ( ! function_exists( 'silk_setup' ) ) :
 		//used for the post thumbnail of posts on archives when displayed in a single column (no masonry)
 		//and for the single post featured image
 		add_image_size( 'silk-single-image', 1024, 9999, false );
-
-		add_image_size( 'silk-site-logo', 1000, 500, false );
 
 		// This theme uses wp_nav_menu() in three locations.
 		register_nav_menus( array(

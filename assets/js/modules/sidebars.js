@@ -125,50 +125,53 @@ var fixedSidebars = (function() {
 			init();
 		}
 
-		var windowBottom  = latestKnownScrollY + windowHeight;
+		if ( $sidebar.length ) {
 
-		sidebarBottom = sidebarHeight + sidebarOffset.top + sidebarPadding;
-		mainBottom    = mainHeight + sidebarOffset.top + sidebarPadding;
+			var windowBottom = latestKnownScrollY + windowHeight;
 
-		if (mainOffset.top != sidebarOffset.top || animating) {
-			return;
-		}
+			sidebarBottom = sidebarHeight + sidebarOffset.top + sidebarPadding;
+			mainBottom = mainHeight + sidebarOffset.top + sidebarPadding;
 
-		/* adjust right sidebar positioning if needed */
-		if ( sidebarHeight < mainHeight ) {
-
-			// pin sidebar
-			if ( windowBottom > sidebarBottom && !sidebarPinned ) {
-				$sidebar.css({  
-					position: 'fixed',
-					top:      windowHeight - sidebarHeight - sidebarPadding,
-					left:     sidebarOffset.left
-				});
-				sidebarPinned = true;
+			if ( mainOffset.top != sidebarOffset.top || animating ) {
+				return;
 			}
 
-			// unpin sidebar
-			if ( windowBottom <= sidebarBottom && sidebarPinned ) {
-				$sidebar.css({
-					position: '',
-					top:      '',
-					left:     ''
-				});
-				sidebarPinned = false;
+			/* adjust right sidebar positioning if needed */
+			if ( sidebarHeight < mainHeight ) {
+
+				// pin sidebar
+				if ( windowBottom > sidebarBottom && !sidebarPinned ) {
+					$sidebar.css( {
+						position: 'fixed',
+						top: windowHeight - sidebarHeight - sidebarPadding,
+						left: sidebarOffset.left
+					} );
+					sidebarPinned = true;
+				}
+
+				// unpin sidebar
+				if ( windowBottom <= sidebarBottom && sidebarPinned ) {
+					$sidebar.css( {
+						position: '',
+						top: '',
+						left: ''
+					} );
+					sidebarPinned = false;
+				}
+
+				if ( windowBottom <= mainBottom ) {
+					$sidebar.css( 'top', windowHeight - sidebarHeight - sidebarPadding );
+				}
+
+				if ( windowBottom > mainBottom && windowBottom < documentHeight ) {
+					$sidebar.css( 'top', mainBottom - sidebarPadding - sidebarHeight - latestKnownScrollY );
+				}
+
+				if ( windowBottom >= documentHeight ) {
+					$sidebar.css( 'top', mainBottom - sidebarPadding - sidebarHeight - documentHeight + windowHeight );
+				}
+
 			}
-
-			if ( windowBottom <= mainBottom ) {
-				$sidebar.css('top', windowHeight - sidebarHeight - sidebarPadding);
-			}
-
-			if ( windowBottom > mainBottom && windowBottom < documentHeight ) {
-				$sidebar.css('top', mainBottom - sidebarPadding - sidebarHeight - latestKnownScrollY);
-			}
-
-			if ( windowBottom >= documentHeight ) {
-				$sidebar.css('top', mainBottom - sidebarPadding - sidebarHeight - documentHeight + windowHeight);
-			}	
-
 		}
 
 		/* adjust left sidebar positioning if needed */

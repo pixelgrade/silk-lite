@@ -129,60 +129,62 @@ function silk_setup_author() {
 
 add_action( 'wp', 'silk_setup_author' );
 
-/*
- * Individual comment layout
- */
-function silk_comment( $comment, $args, $depth ) {
-	static $comment_number;
+if ( ! function_exists( 'silk_comment' ) ) :
+	/*
+	 * Individual comment layout
+	 */
+	function silk_comment( $comment, $args, $depth ) {
+		static $comment_number;
 
-	if ( ! isset( $comment_number ) ) {
-		$comment_number = $args['per_page'] * ( $args['page'] - 1 ) + 1;
-	} else {
-		$comment_number ++;
-	}
+		if ( ! isset( $comment_number ) ) {
+			$comment_number = $args['per_page'] * ( $args['page'] - 1 ) + 1;
+		} else {
+			$comment_number ++;
+		}
 
-	$GLOBALS['comment'] = $comment; ?>
-<li <?php comment_class(empty( $args['has_children'] ) ? '' : 'parent'); ?>>
-	<article id="comment-<?php comment_ID() ?>" class="comment-article  media">
-		<span class="comment-number"><?php echo $comment_number ?></span>
-		<?php
-		//grab the avatar - by default the Mystery Man
-		$avatar = get_avatar( $comment ); ?>
+		$GLOBALS['comment'] = $comment; ?>
+	<li <?php comment_class(empty( $args['has_children'] ) ? '' : 'parent'); ?>>
+		<article id="comment-<?php comment_ID() ?>" class="comment-article  media">
+			<span class="comment-number"><?php echo $comment_number ?></span>
+			<?php
+			//grab the avatar - by default the Mystery Man
+			$avatar = get_avatar( $comment ); ?>
 
-		<aside class="comment__avatar  media__img"><?php echo $avatar; ?></aside>
+			<aside class="comment__avatar  media__img"><?php echo $avatar; ?></aside>
 
-		<div class="media__body">
-			<header class="comment__meta comment-author">
-				<?php printf( '<span class="comment__author-name">%s</span>', get_comment_author_link() ) ?>
-				<time class="comment__time" datetime="<?php comment_time( 'c' ); ?>">
-					<a href="<?php echo esc_url( get_comment_link( get_comment_ID() ) ) ?>" class="comment__timestamp"><?php printf( __( 'on %s at %s', 'silk_txtd' ), get_comment_date(), get_comment_time() ); ?> </a>
-				</time>
-				<div class="comment__links">
-					<?php
-					//we need some space before Edit
-					edit_comment_link( __( 'Edit', 'silk_txtd' ), '  ' );
+			<div class="media__body">
+				<header class="comment__meta comment-author">
+					<?php printf( '<span class="comment__author-name">%s</span>', get_comment_author_link() ) ?>
+					<time class="comment__time" datetime="<?php comment_time( 'c' ); ?>">
+						<a href="<?php echo esc_url( get_comment_link( get_comment_ID() ) ) ?>" class="comment__timestamp"><?php printf( __( 'on %s at %s', 'silk_txtd' ), get_comment_date(), get_comment_time() ); ?> </a>
+					</time>
+					<div class="comment__links">
+						<?php
+						//we need some space before Edit
+						edit_comment_link( __( 'Edit', 'silk_txtd' ), '  ' );
 
-					comment_reply_link( array_merge( $args, array(
-						'depth'     => $depth,
-						'max_depth' => $args['max_depth']
-					) ) );
-					?>
-				</div>
-			</header>
-			<!-- .comment-meta -->
-			<?php if ( $comment->comment_approved == '0' ) : ?>
-				<div class="alert info">
-					<p><?php _e( 'Your comment is awaiting moderation.', 'silk_txtd' ) ?></p>
-				</div>
-			<?php endif; ?>
-			<section class="comment__content comment">
-				<?php comment_text() ?>
-			</section>
-		</div>
-	</article>
-	<!-- </li> is added by WordPress automatically -->
-<?php
-} // don't remove this bracket!
+						comment_reply_link( array_merge( $args, array(
+							'depth'     => $depth,
+							'max_depth' => $args['max_depth']
+						) ) );
+						?>
+					</div>
+				</header>
+				<!-- .comment-meta -->
+				<?php if ( $comment->comment_approved == '0' ) : ?>
+					<div class="alert info">
+						<p><?php _e( 'Your comment is awaiting moderation.', 'silk_txtd' ) ?></p>
+					</div>
+				<?php endif; ?>
+				<section class="comment__content comment">
+					<?php comment_text() ?>
+				</section>
+			</div>
+		</article>
+		<!-- </li> is added by WordPress automatically -->
+	<?php
+	} // don't remove this bracket!
+endif; //silk_comment
 
 /**
  * Filter wp_link_pages to wrap current page in span.
@@ -224,38 +226,46 @@ if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_
 
 	/**
 	 * Special menu walker to generate the mega menu system of the primary menu location
+	 *
+	 * @uses Walker_Nav_Menu
 	 */
 	class Silk_Walker_Primary_Mega_Menu extends Walker_Nav_Menu {
+
 		protected $has_megamenu;
 
+		/**
+		 * Starts the list before the elements are added.
+		 *
+		 * @see Walker::start_lvl()
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param string $output Passed by reference. Used to append additional content.
+		 * @param int    $depth  Depth of menu item. Used for padding.
+		 * @param array  $args   An array of arguments. @see wp_nav_menu()
+		 */
 		public function start_lvl( &$output, $depth = 0, $args = array() ) {
-			$output .= '<ul class="sub-menu" aria-hidden="true" role="menu">' . PHP_EOL;
+			$indent = str_repeat("\t", $depth);
+			$output .= PHP_EOL . $indent . '<ul class="sub-menu" aria-hidden="true" role="menu">' . PHP_EOL;
 		}
 
-		public function end_lvl( &$output, $depth = 0, $args = array() ) {
-			$output .= "</ul>" . PHP_EOL;
-		}
-
-		public function display_element( $element, &$children_elements, $max_depth, $depth = 0, $args, &$output ) {
-			$id_field = $this->db_fields['id'];
-
-			// check whether there are children for the given ID
-			$element->hasChildren = isset( $children_elements[ $element->$id_field ] ) && ! empty( $children_elements[ $element->$id_field ] );
-
-			$temp_classes = $element->classes;
-			if ( ! empty( $children_elements[ $element->$id_field ] ) ) {
-				$temp_classes[] = 'menu-item--parent';
-			} else {
-				$temp_classes[] = 'menu-item--no-children';
-			}
-			$element->classes = $temp_classes;
-
-			Walker_Nav_Menu::display_element( $element, $children_elements, $max_depth, $depth, $args, $output );
-		}
-
-		// add main/sub classes to li's and links
+		/**
+		 * Start the element output.
+		 * modification - add main/sub classes to li's and links
+		 *
+		 * @see Walker::start_el()
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param string $output Passed by reference. Used to append additional content.
+		 * @param object $item   Menu item data object.
+		 * @param int    $depth  Depth of menu item. Used for padding.
+		 * @param array  $args   An array of arguments. @see wp_nav_menu()
+		 * @param int    $id     Current item ID.
+		 */
 		public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
-			global $wp_query;
+
+			$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
 
 			$this->has_megamenu = $this->main_has_megamenu( $item, $depth );
 
@@ -270,6 +280,7 @@ if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_
 
 			// passed classes
 			$classes     = empty( $item->classes ) ? array() : (array) $item->classes;
+			$classes[] = 'nav--top__item-' . $item->ID;
 
 			//add this in case we fallback on wp_page_menu
 			if ( ! array_search( 'menu-item', $classes ) ) {
@@ -279,10 +290,24 @@ if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_
 			if ( true === $this->has_megamenu ) {
 				$classes[] = 'menu-item--mega';
 			}
-			$class_names = esc_attr( implode( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) ) );
+			$class_names = esc_attr( join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item,  $args, $depth ) ) );
 
 			// build html
-			$output .= '<li id="nav--top__item-' . $item->ID . '" class="nav__item ' . $depth_class_names . ' ' . $class_names . '">' . PHP_EOL;
+			/**
+			 * Filter the ID applied to a menu item's list item element.
+			 *
+			 * @since 3.0.1
+			 * @since 4.1.0 The `$depth` parameter was added.
+			 *
+			 * @param string $menu_id The ID that is applied to the menu item's `<li>` element.
+			 * @param object $item    The current menu item.
+			 * @param array  $args    An array of {@see wp_nav_menu()} arguments.
+			 * @param int    $depth   Depth of menu item. Used for padding.
+			 */
+			$id = apply_filters( 'nav_menu_item_id', 'nav--top__item-'. $item->ID, $item, $args, $depth );
+			$id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
+
+			$output .= $indent . '<li ' . $id . '" class="nav__item ' . $depth_class_names . ' ' . $class_names . '">' . PHP_EOL;
 
 			if ( empty( $item->title ) && empty( $item->url ))
 			{
@@ -290,33 +315,82 @@ if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_
 				$item->title = $item->post_title;
 			}
 
-			// link attributes
-			$attributes = ! empty( $item->attr_title ) ? ' title="' . esc_attr( $item->attr_title ) . '"' : '';
-			$attributes .= ! empty( $item->target ) ? ' target="' . esc_attr( $item->target ) . '"' : '';
-			$attributes .= ! empty( $item->xfn ) ? ' rel="' . esc_attr( $item->xfn ) . '"' : '';
-			$attributes .= ! empty( $item->url ) ? ' href="' . esc_attr( $item->url ) . '"' : '';
+			$atts = array();
+			$atts['title']  = ! empty( $item->attr_title ) ? $item->attr_title : '';
+			$atts['target'] = ! empty( $item->target )     ? $item->target     : '';
+			$atts['rel']    = ! empty( $item->xfn )        ? $item->xfn        : '';
+			$atts['href']   = ! empty( $item->url )        ? $item->url        : '';
+
+			/**
+			 * Filter the HTML attributes applied to a menu item's anchor element.
+			 *
+			 * @since 3.6.0
+			 * @since 4.1.0 The `$depth` parameter was added.
+			 *
+			 * @param array $atts {
+			 *     The HTML attributes applied to the menu item's `<a>` element, empty strings are ignored.
+			 *
+			 *     @type string $title  Title attribute.
+			 *     @type string $target Target attribute.
+			 *     @type string $rel    The rel attribute.
+			 *     @type string $href   The href attribute.
+			 * }
+			 * @param object $item  The current menu item.
+			 * @param array  $args  An array of {@see wp_nav_menu()} arguments.
+			 * @param int    $depth Depth of menu item. Used for padding.
+			 */
+			$atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args, $depth );
+
+			$attributes = '';
+			foreach ( $atts as $attr => $value ) {
+				if ( ! empty( $value ) ) {
+					$value = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
+					$attributes .= ' ' . $attr . '="' . $value . '"';
+				}
+			}
 			$attributes .= ' class="menu-link ' . ( $depth > 0 ? 'sub-menu-link' : 'main-menu-link' ) . '"';
 
-			$item_output = sprintf
-			(
-				'%1$s<a%2$s>%3$s%4$s%5$s</a>%6$s',
-				$args['before'],
-				$attributes,
-				$args['link_before'],
-				apply_filters( 'the_title', $item->title, $item->ID ),
-				$args['link_after'],
-				$args['after']
-			) . PHP_EOL;
+			$item_output = $args['before'];
+			$item_output .= '<a'. $attributes .'>';
+			/** This filter is documented in wp-includes/post-template.php */
+			$item_output .= $args['link_before'] . apply_filters( 'the_title', $item->title, $item->ID ) . $args['link_after'];
+			$item_output .= '</a>';
+			$item_output .= $args['after'];
 
 			if ( $depth === 0 && ( $this->has_children || $this->has_megamenu ) ) {
 				//the mega menu wrapper
 				$item_output .= '<div class="sub-menu-wrapper">' . PHP_EOL;
 			}
 
-			// build html
+			/**
+			 * Filter a menu item's starting output.
+			 *
+			 * The menu item's starting output only includes `$args->before`, the opening `<a>`,
+			 * the menu item's title, the closing `</a>`, and `$args->after`. Currently, there is
+			 * no filter for modifying the opening and closing `<li>` for a menu item.
+			 *
+			 * @since 3.0.0
+			 *
+			 * @param string $item_output The menu item's starting HTML output.
+			 * @param object $item        Menu item data object.
+			 * @param int    $depth       Depth of menu item. Used for padding.
+			 * @param array  $args        An array of {@see wp_nav_menu()} arguments.
+			 */
 			$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 		}
 
+		/**
+		 * Ends the element output, if needed.
+		 *
+		 * @see Walker::end_el()
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param string $output Passed by reference. Used to append additional content.
+		 * @param object $item   Page data object. Not used.
+		 * @param int    $depth  Depth of page. Not Used.
+		 * @param array  $args   An array of arguments. @see wp_nav_menu()
+		 */
 		public function end_el( &$output, $item, $depth = 0, $args = array() ) {
 
 			$item_output = '';
@@ -412,6 +486,77 @@ if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_
 			$output .= "</li>" . PHP_EOL;
 		}
 
+		/**
+		 * Traverse elements to create list from elements.
+		 *
+		 * Display one element if the element doesn't have any children otherwise,
+		 * display the element and its children. Will only traverse up to the max
+		 * depth and no ignore elements under that depth. It is possible to set the
+		 * max depth to include all depths, see walk() method.
+		 *
+		 * This method should not be called directly, use the walk() method instead.
+		 *
+		 * @since 2.5.0
+		 *
+		 * @param object $element           Data object.
+		 * @param array  $children_elements List of elements to continue traversing.
+		 * @param int    $max_depth         Max depth to traverse.
+		 * @param int    $depth             Depth of current element.
+		 * @param array  $args              An array of arguments.
+		 * @param string $output            Passed by reference. Used to append additional content.
+		 * @return null Null on failure with no changes to parameters.
+		 */
+		public function display_element( $element, &$children_elements, $max_depth, $depth, $args, &$output ) {
+
+			if ( !$element )
+				return;
+
+			$id_field = $this->db_fields['id'];
+			$id       = $element->$id_field;
+
+			//display this element
+			$this->has_children = ! empty( $children_elements[ $id ] );
+			if ( isset( $args[0] ) && is_array( $args[0] ) ) {
+				$args[0]['has_children'] = $this->has_children; // Backwards compatibility.
+			}
+
+			$temp_classes = $element->classes;
+			if ( $this->has_children ) {
+				$temp_classes[] = 'menu-item--parent';
+			} else {
+				$temp_classes[] = 'menu-item--no-children';
+			}
+			$element->classes = $temp_classes;
+
+			$cb_args = array_merge( array(&$output, $element, $depth), $args);
+			call_user_func_array(array($this, 'start_el'), $cb_args);
+
+			// descend only when the depth is right and there are childrens for this element
+			if ( ($max_depth == 0 || $max_depth > $depth+1 ) && isset( $children_elements[$id]) ) {
+				foreach( $children_elements[ $id ] as $child ){
+
+					if ( !isset($newlevel) ) {
+						$newlevel = true;
+						//start the child delimiter
+						$cb_args = array_merge( array(&$output, $depth), $args);
+						call_user_func_array(array($this, 'start_lvl'), $cb_args);
+					}
+					$this->display_element( $child, $children_elements, $max_depth, $depth + 1, $args, $output );
+				}
+				unset( $children_elements[ $id ] );
+			}
+
+			if ( isset($newlevel) && $newlevel ){
+				//end the child delimiter
+				$cb_args = array_merge( array(&$output, $depth), $args);
+				call_user_func_array(array($this, 'end_lvl'), $cb_args);
+			}
+
+			//end this element
+			$cb_args = array_merge( array(&$output, $element, $depth), $args);
+			call_user_func_array(array($this, 'end_el'), $cb_args);
+		}
+
 		private function main_has_megamenu( $item, $depth ) {
 
 			if ( 0 === $depth && $item->object == 'category' ) {
@@ -435,6 +580,156 @@ if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_
 		}
 
 	} # class
+
+endif;
+
+
+if ( ! class_exists( "Silk_Walker_Page_Primary" ) && class_exists( 'Walker_Page' ) ):
+/**
+ * Create HTML list of pages for the primary menu when no menu assigned to location
+ *
+ * @uses Walker_Page
+ */
+class Silk_Walker_Page_Primary extends Walker_Page {
+
+	/**
+	 * @see Walker::start_lvl()
+	 * @since 2.1.0
+	 *
+	 * @param string $output Passed by reference. Used to append additional content.
+	 * @param int $depth Depth of page. Used for padding.
+	 * @param array $args
+	 */
+	public function start_lvl( &$output, $depth = 0, $args = array() ) {
+		$indent = str_repeat("\t", $depth);
+		$output .= PHP_EOL . $indent . '<ul class="sub-menu" aria-hidden="true" role="menu">' . PHP_EOL;
+	}
+
+	/**
+	 * @see Walker::start_el()
+	 * @since 2.1.0
+	 *
+	 * @param string $output Passed by reference. Used to append additional content.
+	 * @param object $page Page data object.
+	 * @param int $depth Depth of page. Used for padding.
+	 * @param int $current_page Page ID.
+	 * @param array $args
+	 */
+	public function start_el( &$output, $page, $depth = 0, $args = array(), $current_page = 0 ) {
+
+		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
+
+		$css_class = array( 'page_item', 'page-item-' . $page->ID );
+
+		if ( isset( $args['pages_with_children'][ $page->ID ] ) ) {
+			$css_class[] = 'menu-item-has-children';
+		}
+
+		if ( ! empty( $current_page ) ) {
+			$_current_page = get_post( $current_page );
+			if ( $_current_page && in_array( $page->ID, $_current_page->ancestors ) ) {
+				$css_class[] = 'current_page_ancestor';
+			}
+			if ( $page->ID == $current_page ) {
+				$css_class[] = 'current_page_item';
+			} elseif ( $_current_page && $page->ID == $_current_page->post_parent ) {
+				$css_class[] = 'current_page_parent';
+			}
+		} elseif ( $page->ID == get_option('page_for_posts') ) {
+			$css_class[] = 'current_page_parent';
+		}
+
+		//add some classes used with regular menus
+		$css_class[] = 'nav--top__item-' . $page->ID;
+		$css_class[] = 'menu-item';
+		$css_class[] = 'nav__item';
+		$css_class[] = 'depth-' . $depth;
+
+		/**
+		 * Filter the list of CSS classes to include with each page item in the list.
+		 *
+		 * @since 2.8.0
+		 *
+		 * @see wp_list_pages()
+		 *
+		 * @param array   $css_class    An array of CSS classes to be applied
+		 *                             to each list item.
+		 * @param WP_Post $page         Page data object.
+		 * @param int     $depth        Depth of page, used for padding.
+		 * @param array   $args         An array of arguments.
+		 * @param int     $current_page ID of the current page.
+		 */
+		$css_classes = implode( ' ', apply_filters( 'page_css_class', $css_class, $page, $depth, $args, $current_page ) );
+
+		/**
+		 * Filter the ID applied to a menu item's list item element.
+		 *
+		 * @since 3.0.1
+		 * @since 4.1.0 The `$depth` parameter was added.
+		 *
+		 * @param string $menu_id The ID that is applied to the menu item's `<li>` element.
+		 * @param object $item    The current menu item.
+		 * @param array  $args    An array of {@see wp_nav_menu()} arguments.
+		 * @param int    $depth   Depth of menu item. Used for padding.
+		 */
+		$css_id = apply_filters( 'nav_menu_item_id', 'nav--top__item-'. $page->ID, $page, $args, $depth );
+		$css_id = $css_id ? ' id="' . esc_attr( $css_id ) . '"' : '';
+
+		if ( '' === $page->post_title ) {
+			$page->post_title = sprintf( __( '#%d (no title)' ), $page->ID );
+		}
+
+		$args['link_before'] = empty( $args['link_before'] ) ? '' : $args['link_before'];
+		$args['link_after'] = empty( $args['link_after'] ) ? '' : $args['link_after'];
+
+		$link_classes = ' class="menu-link ' . ( $depth > 0 ? 'sub-menu-link' : 'main-menu-link' ) . '"';
+
+		/** This filter is documented in wp-includes/post-template.php */
+		$output .= $indent . sprintf(
+				'<li %s class="%s"><a %s href="%s">%s%s%s</a>',
+				$css_id,
+				$css_classes,
+				$link_classes,
+				get_permalink( $page->ID ),
+				$args['link_before'],
+				apply_filters( 'the_title', $page->post_title, $page->ID ),
+				$args['link_after']
+			);
+
+		if ( ! empty( $args['show_date'] ) ) {
+			if ( 'modified' == $args['show_date'] ) {
+				$time = $page->post_modified;
+			} else {
+				$time = $page->post_date;
+			}
+
+			$date_format = empty( $args['date_format'] ) ? '' : $args['date_format'];
+			$output .= " " . mysql2date( $date_format, $time );
+		}
+
+		if ( $depth === 0 && isset( $args['pages_with_children'][ $page->ID ] ) ) {
+			//the mega menu wrapper
+			$output .= '<div class="sub-menu-wrapper">' . PHP_EOL;
+		}
+	}
+
+	/**
+	 * @see Walker::end_el()
+	 * @since 2.1.0
+	 *
+	 * @param string $output Passed by reference. Used to append additional content.
+	 * @param object $page Page data object. Not used.
+	 * @param int $depth Depth of page. Not Used.
+	 * @param array $args
+	 */
+	public function end_el( &$output, $page, $depth = 0, $args = array() ) {
+		if ( $this->has_children ) {
+			$output .= '</div>' . PHP_EOL; //close the .sub-menu-wrapper
+		}
+		$output .= "</li>\n";
+	}
+
+} #class
 
 endif;
 
@@ -501,10 +796,17 @@ if ( ! function_exists( 'silk_custom_wp_page_menu' ) ) :
 
 		$list_args['echo'] = false;
 		$list_args['title_li'] = '';
+		$list_args['walker'] = new Silk_Walker_Page_Primary();
+
 		$menu .= str_replace( array( "\r", "\n", "\t" ), '', wp_list_pages($list_args) );
 
-		if ( $menu )
-			$menu = '<ul class="' . esc_attr($args['menu_class']) . '">' . $menu . '</ul>' . PHP_EOL;
+		/**
+		 * We had to create a modified version of the core one because of this
+		 * To have ul instead of div here - a option for this would be nice :)
+		 */
+		if ( $menu ) {
+			$menu = '<ul class="' . esc_attr( $args['menu_class'] ) . '">' . $menu . '</ul>' . PHP_EOL;
+		}
 
 		/**
 		 * Filter the HTML output of a page-based menu.
