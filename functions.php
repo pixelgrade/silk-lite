@@ -176,7 +176,7 @@ function silk_scripts_styles() {
 	wp_enqueue_style( 'silk-font-awesome-style', get_stylesheet_directory_uri() . '/assets/css/font-awesome.css', array(), '4.2.0' );
 
 	//Main Stylesheet
-	wp_enqueue_style( 'hive-style', get_stylesheet_uri(), array( 'silk-font-awesome-style' ) );
+	wp_enqueue_style( 'silk-style', get_stylesheet_uri(), array( 'silk-font-awesome-style' ) );
 
 	//Default Fonts
 	wp_enqueue_style( 'silk-fonts', silk_fonts_url(), array(), null );
