@@ -499,7 +499,6 @@ if ( ! class_exists( 'Silk_Walker_Primary_Mega_Menu' ) && class_exists( 'Walker_
 				}
 			}
 
-
 			$output .= $item_output;
 			$output .= '</li>' . PHP_EOL;
 		}

@@ -4,6 +4,7 @@
  *
  * @package Silk
  */
+global $content_width;
 
 $content_width = 892; /* pixels */
 

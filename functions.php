@@ -14,7 +14,7 @@ if ( ! isset( $content_width ) ) {
 
 if ( ! function_exists( 'silk_content_width' ) ) :
 	/**
-	 * Adjusts content_width value for few pages and attachment templates.
+	 * Adjusts content_width value depending on situation.
 	 */
 	function silk_content_width() {
 		global $content_width;

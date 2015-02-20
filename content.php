@@ -9,8 +9,7 @@ $thumbnail_size = "silk-single-image";
 
 if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 	$thumbnail_size = '  silk-masonry-image';
-}
-?>
+} ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
@@ -65,10 +64,10 @@ if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 		?>
 	<div class="color-secondary" role="presentation">
 		<div class="divider  wide">
-			<?php get_template_part("assets/svg/separator-not-simple-svg"); ?>
+			<?php get_template_part( 'assets/svg/separator-not-simple-svg' ); ?>
 		</div>
 		<div class="divider  narrow">
-			<?php get_template_part("assets/svg/separator-simple"); ?>
+			<?php get_template_part( 'assets/svg/separator-simple' ); ?>
 		</div>
 	</div>
 
