@@ -66,11 +66,13 @@ function silk_has_featured_posts( $minimum = 1 ) {
 	$minimum = absint( $minimum );
 	$featured_posts = silk_get_featured_posts();
 
-	if ( ! is_array( $featured_posts ) )
+	if ( ! is_array( $featured_posts ) ) {
 		return false;
+	}
 
-	if ( $minimum > count( $featured_posts ) )
+	if ( $minimum > count( $featured_posts ) ) {
 		return false;
+	}
 
 	return true;
 } ?>

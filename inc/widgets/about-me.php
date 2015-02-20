@@ -54,7 +54,7 @@ if ( ! class_exists( 'Silk_About_Me_Widget' ) ) :
 				'text'    => '',
 			) );
 
-			$args['before_widget'] = substr($args['before_widget'], 0, -1) . ' tabindex="0">';
+			$args['before_widget'] = substr( $args['before_widget'], 0, -1 ) . ' tabindex="0">';
 			echo $args['before_widget'] . PHP_EOL;
 
 			// The Background Image - empty string in case of error
@@ -81,12 +81,12 @@ if ( ! class_exists( 'Silk_About_Me_Widget' ) ) :
 			}
 
 			echo '<span class="separator separator-wrapper--white">';
-				get_template_part("assets/svg/separator-simple");
+			get_template_part( 'assets/svg/separator-simple' );
 			echo '</span>';
 
 			// About the author
 			if ( ! empty( $instance['filter'] ) ) {
-				$text = wpautop($instance['text']);
+				$text = wpautop( $instance['text'] );
 			} else {
 				$text = $instance['text'];
 			}

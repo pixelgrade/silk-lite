@@ -23,13 +23,7 @@ if ( ! function_exists( 'silk_content_width' ) ) :
 			$content_width = 1062; /* pixels */
 		}
 
-		if ( is_attachment() ) {
-			$content_width = 892; /* pixels */
-
-			if ( ! is_active_sidebar( 'sidebar-1' ) ) {
-				$content_width = 1292; /* pixels */
-			}
-		}
+		//for attachments the $content_width is set in image.php
 	}
 endif; //silk_content_width
 add_action( 'template_redirect', 'silk_content_width' );
@@ -190,7 +184,7 @@ function silk_scripts_styles() {
 	//only include the slider script if we have at least 2 featured posts
 	if ( silk_has_featured_posts( 2 ) ) {
 		//Enqueue FlexSlider plugin
-		wp_enqueue_script( 'silk-flexslider', get_stylesheet_directory_uri() . '/assets/js/jquery.flexslider.js', array('jquery'), '2.2.2', true );
+		wp_enqueue_script( 'silk-flexslider', get_stylesheet_directory_uri() . '/assets/js/jquery.flexslider.js', array( 'jquery' ), '2.2.2', true );
 
 		wp_localize_script( 'silk-flexslider', 'silkFeaturedSlider', array(
 			'prevText' => __( 'Previous', 'silk_txtd' ),
@@ -214,7 +208,7 @@ function silk_scripts_styles() {
 		'masonry',
 		'silk-imagesloaded',
 		'silk-hoverintent',
-		'silk-velocity'
+		'silk-velocity',
 	), '1.0.0', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -235,7 +229,7 @@ function silk_wp_enqueue_media() {
 	if ( ! wp_script_is( 'silk-about-me-widget-admin', 'registered' ) ) {
 		wp_register_script( 'silk-about-me-widget-admin', get_template_directory_uri() . '/inc/widgets/assets/js/about-me.js', array(
 			'media-upload',
-			'media-views'
+			'media-views',
 		) );
 	}
 

@@ -5,6 +5,12 @@
  * @package Silk
  */
 
+$content_width = 892; /* pixels */
+
+if ( ! is_active_sidebar( 'sidebar-1' ) ) {
+	$content_width = 1292; /* pixels */
+}
+
 get_header(); ?>
 
 <div id="primary" class="content-area">
@@ -27,7 +33,7 @@ get_header(); ?>
 
 			// The parent post link.
 			the_post_navigation( array(
-				'prev_text' => '<span class="meta-nav">' . __('Published in', 'silk_txtd') . '</span><span class="post-title">%title</span>',
+				'prev_text' => '<span class="meta-nav">' . __( 'Published in', 'silk_txtd' ) . '</span><span class="post-title">%title</span>',
 				)
 			); ?>
 

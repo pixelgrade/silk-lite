@@ -16,7 +16,7 @@
 					<div class="nav-trigger  relative">
 						<?php
 
-						get_template_part('assets/svg/menu-icon-svg');
+						get_template_part( 'assets/svg/menu-icon-svg' );
 
 						wp_nav_menu(
 							array(
