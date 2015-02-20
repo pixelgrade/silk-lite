@@ -187,9 +187,24 @@ if ( ! function_exists( 'silk_comment' ) ) :
 endif; //silk_comment
 
 /**
+ * Filter comment_form_defaults to remove the notes after the comment form textarea.
+ *
+ * @param array $defaults
+ *
+ * @return array
+ */
+function silk_comment_form_remove_notes_after( $defaults ) {
+	$defaults['comment_notes_after'] = '';
+
+	return $defaults;
+}
+
+add_filter( 'comment_form_defaults', 'silk_comment_form_remove_notes_after' );
+
+/**
  * Filter wp_link_pages to wrap current page in span.
  *
- * @param $link
+ * @param string $link
  *
  * @return string
  */
