@@ -970,7 +970,7 @@ if (!Date.now) Date.now = function () {
       }
 
       // bind the tweens we created above to mouse events accordingly, through hoverIntent to avoid flickering
-      $obj.hoverIntent({
+      $obj.find('.entry__wrapper').hoverIntent({
         over: animateHoverIn,
         out: animateHoverOut,
         timeout: 0,
@@ -1059,6 +1059,7 @@ if (!Date.now) Date.now = function () {
         $('.floating-nav').find('a').attr('tabIndex', -1);
 
         mobileNav();
+        handleTopBar();
         },
         
         
@@ -1165,11 +1166,27 @@ if (!Date.now) Date.now = function () {
 
         $('.nav-dropdown_wrapper').append($('.nav--dropdown').clone());
 
+        },
+        
+        
+        handleTopBar = function () {
+        if ($('body').hasClass('admin-bar') && is_small) {
+          var offset = $('#wpadminbar').height();
+
+          $(window).scroll(function () {
+            if ($(this).scrollTop() > offset) {
+              $('.main-navigation').addClass('fixed');
+            } else {
+              $('.main-navigation').removeClass('fixed');
+            }
+          });
+        }
         };
 
     return {
       init: init,
-      toggleTopBar: toggleTopBar
+      toggleTopBar: toggleTopBar,
+      handleTopBar: handleTopBar
     }
 
   })();
@@ -1878,7 +1895,6 @@ if (!Date.now) Date.now = function () {
     infinityHandler();
 
     if (latestKnownScrollY) $window.trigger('scroll');
-
   });
 
   /* ====== ON RESIZE ====== */

@@ -44,11 +44,11 @@
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
-		<?php if ( current_user_can('edit_post', get_the_ID() ) ) : ?>
+		<?php if ( current_user_can( 'edit_post', get_the_ID() ) ) : ?>
 
 			<span class="separator-wrapper--accent" role="presentation">
-							<?php get_template_part("assets/svg/separator-simple"); ?>
-						</span>
+				<?php get_template_part( 'assets/svg/separator-simple' ); ?>
+			</span>
 
 			<?php edit_post_link( __( 'Edit', 'silk_txtd' ), '<span class="edit-link">', '</span>' ); ?>
 

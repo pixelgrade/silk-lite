@@ -47,7 +47,7 @@
 				</svg>
 			</a>
 
-			<?php echo ( is_front_page() && is_home() ) ? '</h1>' : '</div>' ?>
+			<?php echo ( is_front_page() && is_home() ) ? '</h1>' : '</div>'; ?>
 
 			<?php
 			$description = get_bloginfo( 'description', 'display' );

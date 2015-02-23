@@ -9,9 +9,9 @@ $classes = 'archive__grid  grid';
 
 if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 	$classes .= '  masonry';
-}
-?>
-<div id="posts" class="<?php echo $classes; ?>">
+} ?>
+
+<div id="posts" class="<?php echo esc_attr( $classes ); ?>">
 
 <?php
 /* Start the Loop */

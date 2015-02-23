@@ -39,7 +39,7 @@
 		) );
 		?>
 		<span class="separator separator-wrapper--accent">
-			<?php get_template_part("assets/svg/separator-simple"); ?>
+			<?php get_template_part( 'assets/svg/separator-simple' ); ?>
 		</span>
 
 	</div><!-- .entry-content -->

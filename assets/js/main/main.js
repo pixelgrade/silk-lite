@@ -22,7 +22,6 @@ $window.load(function() {
   infinityHandler();
 
   if (latestKnownScrollY) $window.trigger('scroll');
-
 });
 
 /* ====== ON RESIZE ====== */
