@@ -970,7 +970,7 @@ if (!Date.now) Date.now = function () {
       }
 
       // bind the tweens we created above to mouse events accordingly, through hoverIntent to avoid flickering
-      $obj.hoverIntent({
+      $obj.find('.entry__wrapper').hoverIntent({
         over: animateHoverIn,
         out: animateHoverOut,
         timeout: 0,
@@ -1263,7 +1263,6 @@ if (!Date.now) Date.now = function () {
       $overlay.velocity({
         translateX: 0
       }, {
-
         duration: 0
       }).velocity({
         translateX: offset
