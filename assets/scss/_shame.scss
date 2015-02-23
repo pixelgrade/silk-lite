@@ -121,3 +121,10 @@ hr {
 .single .entry-content .tiled-gallery a:hover {
 	background: none;
 }
+
+//some space for the post-navigation in attachment pages
+.post-navigation {
+	.meta-nav {
+		margin-right: em(5px);
+	}
+}

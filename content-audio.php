@@ -8,14 +8,13 @@
 //get the media objects from the content and bring up only the first one
 /* translators: %s: Name of current post */
 $content = apply_filters( 'the_content', get_the_content( sprintf(
-		__( 'Continue reading %s', 'silk_txtd' ),
-		the_title( '<span class="screen-reader-text">', '</span>', false )
-	) ) );
+	__( 'Continue reading %s', 'silk_txtd' ),
+	the_title( '<span class="screen-reader-text">', '</span>', false )
+) ) );
 $media   = get_media_embedded_in_content( $content );
 if ( ! empty( $media ) ) {
 	$content = str_replace( $media[0], '', $content );
-}
-?>
+} ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
@@ -37,7 +36,7 @@ if ( ! empty( $media ) ) {
 
 		<?php if ( ! empty( $media ) ) { ?>
 			<div class="entry-media">
-				<?php echo apply_filters('embed_oembed_html', $media[0] ); ?>
+				<?php echo apply_filters( 'embed_oembed_html', $media[0] ); ?>
 			</div><!-- .entry-media -->
 		<?php
 		}
@@ -56,7 +55,7 @@ if ( ! empty( $media ) ) {
 		} ?>
 
 		<span class="separator separator-wrapper--accent">
-			<?php get_template_part("assets/svg/separator-simple"); ?>
+			<?php get_template_part( 'assets/svg/separator-simple' ); ?>
 		</span>
 
 	</div><!-- .entry-content -->

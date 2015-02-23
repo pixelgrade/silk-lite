@@ -143,7 +143,7 @@ if ( ! function_exists( 'silk_comment' ) ) :
 		}
 
 		$GLOBALS['comment'] = $comment; ?>
-	<li <?php comment_class(empty( $args['has_children'] ) ? '' : 'parent'); ?>>
+	<li <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?>>
 		<article id="comment-<?php comment_ID() ?>" class="comment-article  media">
 			<span class="comment-number"><?php echo $comment_number ?></span>
 			<?php
@@ -165,13 +165,13 @@ if ( ! function_exists( 'silk_comment' ) ) :
 
 						comment_reply_link( array_merge( $args, array(
 							'depth'     => $depth,
-							'max_depth' => $args['max_depth']
+							'max_depth' => $args['max_depth'],
 						) ) );
 						?>
 					</div>
 				</header>
 				<!-- .comment-meta -->
-				<?php if ( $comment->comment_approved == '0' ) : ?>
+				<?php if ( '0' == $comment->comment_approved ) : ?>
 					<div class="alert info">
 						<p><?php _e( 'Your comment is awaiting moderation.', 'silk_txtd' ) ?></p>
 					</div>
@@ -187,9 +187,24 @@ if ( ! function_exists( 'silk_comment' ) ) :
 endif; //silk_comment
 
 /**
+ * Filter comment_form_defaults to remove the notes after the comment form textarea.
+ *
+ * @param array $defaults
+ *
+ * @return array
+ */
+function silk_comment_form_remove_notes_after( $defaults ) {
+	$defaults['comment_notes_after'] = '';
+
+	return $defaults;
+}
+
+add_filter( 'comment_form_defaults', 'silk_comment_form_remove_notes_after' );
+
+/**
  * Filter wp_link_pages to wrap current page in span.
  *
- * @param $link
+ * @param string $link
  *
  * @return string
  */
@@ -222,7 +237,7 @@ function silk_excerpt_length( $length ) {
 add_filter( 'excerpt_length', 'silk_excerpt_length', 999 );
 
 
-if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_Nav_Menu' ) ):
+if ( ! class_exists( 'Silk_Walker_Primary_Mega_Menu' ) && class_exists( 'Walker_Nav_Menu' ) ):
 
 	/**
 	 * Special menu walker to generate the mega menu system of the primary menu location
@@ -245,7 +260,7 @@ if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_
 		 * @param array  $args   An array of arguments. @see wp_nav_menu()
 		 */
 		public function start_lvl( &$output, $depth = 0, $args = array() ) {
-			$indent = str_repeat("\t", $depth);
+			$indent = str_repeat( "\t", $depth );
 			$output .= PHP_EOL . $indent . '<ul class="sub-menu" aria-hidden="true" role="menu">' . PHP_EOL;
 		}
 
@@ -309,9 +324,8 @@ if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_
 
 			$output .= $indent . '<li ' . $id . '" class="nav__item ' . $depth_class_names . ' ' . $class_names . '">' . PHP_EOL;
 
-			if ( empty( $item->title ) && empty( $item->url ))
-			{
-				$item->url = get_permalink($item->ID);
+			if ( empty( $item->title ) && empty( $item->url ) ) {
+				$item->url = get_permalink( $item->ID );
 				$item->title = $item->post_title;
 			}
 
@@ -357,7 +371,7 @@ if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_
 			$item_output .= '</a>';
 			$item_output .= $args['after'];
 
-			if ( $depth === 0 && ( $this->has_children || $this->has_megamenu ) ) {
+			if ( 0 === $depth && ( $this->has_children || $this->has_megamenu ) ) {
 				//the mega menu wrapper
 				$item_output .= '<div class="sub-menu-wrapper">' . PHP_EOL;
 			}
@@ -395,9 +409,9 @@ if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_
 
 			$item_output = '';
 
-			if ( $depth == 0 ) {
+			if ( 0 === $depth ) {
 
-				if ( $item->object == 'category' ) {
+				if ( 'category' == $item->object ) {
 					/**
 					 * This is a mega menu so we need to output some posts with featured images
 					 */
@@ -420,9 +434,12 @@ if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_
 						$menuposts->the_post();
 
 						if ( has_post_thumbnail() ) {
-							$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), 'silk-mega-menu-big-image' );
+							$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'silk-mega-menu-big-image' );
 
-							$menu_post_image = '<a href="' . get_permalink() . '" title="' . the_title_attribute( array( 'echo' => false ) ) .'" class="entry-image" style="background-image:url('. $thumb[0] .')"></a>' . PHP_EOL;
+							$menu_post_image = '<a href="' . get_permalink()
+							                   . '" title="'
+							                   . the_title_attribute( array( 'echo' => false ) )
+							                   .'" class="entry-image" style="background-image:url(' . $thumb[0] . ')"></a>' . PHP_EOL;
 						} else {
 							$menu_post_image = '';
 						}
@@ -436,7 +453,9 @@ if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_
 								'</div><!-- .entry-meta -->' . PHP_EOL .
 								'<a href="' . get_permalink() . '"><h2 class="entry-title">' . get_the_title() . '</h2></a>' . PHP_EOL .
 							'</header><!-- .entry-header -->' . PHP_EOL .
-							'<a class="separator  separator--text" role="presentation" href="' . get_permalink() . '"><span>' . __( 'More', 'silk_txtd' ) . '</span></a>' . PHP_EOL .
+							'<a class="separator  separator--text" role="presentation" href="' . get_permalink() . '">
+								<span>' . __( 'More', 'silk_txtd' ) . '</span>
+							</a>' . PHP_EOL .
 						'</article>' . PHP_EOL;
 
 						//if we still have posts - it's time for the little ones
@@ -478,12 +497,10 @@ if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_
 				if ( $this->has_children || $this->has_megamenu ) {
 					$item_output .= '</div>' . PHP_EOL; //close the .sub-menu-wrapper
 				}
-
 			}
 
-
 			$output .= $item_output;
-			$output .= "</li>" . PHP_EOL;
+			$output .= '</li>' . PHP_EOL;
 		}
 
 		/**
@@ -508,8 +525,9 @@ if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_
 		 */
 		public function display_element( $element, &$children_elements, $max_depth, $depth, $args, &$output ) {
 
-			if ( !$element )
+			if ( ! $element ) {
 				return;
+			}
 
 			$id_field = $this->db_fields['id'];
 			$id       = $element->$id_field;
@@ -528,18 +546,18 @@ if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_
 			}
 			$element->classes = $temp_classes;
 
-			$cb_args = array_merge( array(&$output, $element, $depth), $args);
-			call_user_func_array(array($this, 'start_el'), $cb_args);
+			$cb_args = array_merge( array( &$output, $element, $depth ), $args );
+			call_user_func_array( array( $this, 'start_el' ), $cb_args );
 
 			// descend only when the depth is right and there are childrens for this element
-			if ( ($max_depth == 0 || $max_depth > $depth+1 ) && isset( $children_elements[$id]) ) {
-				foreach( $children_elements[ $id ] as $child ){
+			if ( ( 0 == $max_depth || $max_depth > $depth + 1 ) && isset( $children_elements[ $id ] ) ) {
+				foreach ( $children_elements[ $id ] as $child ){
 
-					if ( !isset($newlevel) ) {
+					if ( ! isset( $newlevel ) ) {
 						$newlevel = true;
 						//start the child delimiter
-						$cb_args = array_merge( array(&$output, $depth), $args);
-						call_user_func_array(array($this, 'start_lvl'), $cb_args);
+						$cb_args = array_merge( array( &$output, $depth ), $args );
+						call_user_func_array( array( $this, 'start_lvl' ), $cb_args );
 					}
 					$this->display_element( $child, $children_elements, $max_depth, $depth + 1, $args, $output );
 				}
@@ -548,18 +566,18 @@ if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_
 
 			if ( isset($newlevel) && $newlevel ){
 				//end the child delimiter
-				$cb_args = array_merge( array(&$output, $depth), $args);
-				call_user_func_array(array($this, 'end_lvl'), $cb_args);
+				$cb_args = array_merge( array( &$output, $depth ), $args );
+				call_user_func_array( array( $this, 'end_lvl' ), $cb_args );
 			}
 
 			//end this element
-			$cb_args = array_merge( array(&$output, $element, $depth), $args);
-			call_user_func_array(array($this, 'end_el'), $cb_args);
+			$cb_args = array_merge( array( &$output, $element, $depth ), $args );
+			call_user_func_array( array( $this, 'end_el' ), $cb_args );
 		}
 
 		private function main_has_megamenu( $item, $depth ) {
 
-			if ( 0 === $depth && $item->object == 'category' ) {
+			if ( 0 === $depth && 'category' == $item->object ) {
 
 				$post_args = array(
 					'posts_per_page' => 1,
@@ -584,108 +602,107 @@ if ( ! class_exists( "Silk_Walker_Primary_Mega_Menu" ) && class_exists( 'Walker_
 endif;
 
 
-if ( ! class_exists( "Silk_Walker_Page_Primary" ) && class_exists( 'Walker_Page' ) ):
-/**
- * Create HTML list of pages for the primary menu when no menu assigned to location
- *
- * @uses Walker_Page
- */
-class Silk_Walker_Page_Primary extends Walker_Page {
-
+if ( ! class_exists( 'Silk_Walker_Page_Primary' ) && class_exists( 'Walker_Page' ) ):
 	/**
-	 * @see Walker::start_lvl()
-	 * @since 2.1.0
+	 * Create HTML list of pages for the primary menu when no menu assigned to location
 	 *
-	 * @param string $output Passed by reference. Used to append additional content.
-	 * @param int $depth Depth of page. Used for padding.
-	 * @param array $args
+	 * @uses Walker_Page
 	 */
-	public function start_lvl( &$output, $depth = 0, $args = array() ) {
-		$indent = str_repeat("\t", $depth);
-		$output .= PHP_EOL . $indent . '<ul class="sub-menu" aria-hidden="true" role="menu">' . PHP_EOL;
-	}
-
-	/**
-	 * @see Walker::start_el()
-	 * @since 2.1.0
-	 *
-	 * @param string $output Passed by reference. Used to append additional content.
-	 * @param object $page Page data object.
-	 * @param int $depth Depth of page. Used for padding.
-	 * @param int $current_page Page ID.
-	 * @param array $args
-	 */
-	public function start_el( &$output, $page, $depth = 0, $args = array(), $current_page = 0 ) {
-
-		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
-
-		$css_class = array( 'page_item', 'page-item-' . $page->ID );
-
-		if ( isset( $args['pages_with_children'][ $page->ID ] ) ) {
-			$css_class[] = 'menu-item-has-children';
+	class Silk_Walker_Page_Primary extends Walker_Page {
+		/**
+		 * @see Walker::start_lvl()
+		 * @since 2.1.0
+		 *
+		 * @param string $output Passed by reference. Used to append additional content.
+		 * @param int $depth Depth of page. Used for padding.
+		 * @param array $args
+		 */
+		public function start_lvl( &$output, $depth = 0, $args = array() ) {
+			$indent = str_repeat( "\t", $depth );
+			$output .= PHP_EOL . $indent . '<ul class="sub-menu" aria-hidden="true" role="menu">' . PHP_EOL;
 		}
 
-		if ( ! empty( $current_page ) ) {
-			$_current_page = get_post( $current_page );
-			if ( $_current_page && in_array( $page->ID, $_current_page->ancestors ) ) {
-				$css_class[] = 'current_page_ancestor';
+		/**
+		 * @see Walker::start_el()
+		 * @since 2.1.0
+		 *
+		 * @param string $output Passed by reference. Used to append additional content.
+		 * @param object $page Page data object.
+		 * @param int $depth Depth of page. Used for padding.
+		 * @param int $current_page Page ID.
+		 * @param array $args
+		 */
+		public function start_el( &$output, $page, $depth = 0, $args = array(), $current_page = 0 ) {
+
+			$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
+
+			$css_class = array( 'page_item', 'page-item-' . $page->ID );
+
+			if ( isset( $args['pages_with_children'][ $page->ID ] ) ) {
+				$css_class[] = 'menu-item-has-children';
 			}
-			if ( $page->ID == $current_page ) {
-				$css_class[] = 'current_page_item';
-			} elseif ( $_current_page && $page->ID == $_current_page->post_parent ) {
+
+			if ( ! empty( $current_page ) ) {
+				$_current_page = get_post( $current_page );
+				if ( $_current_page && in_array( $page->ID, $_current_page->ancestors ) ) {
+					$css_class[] = 'current_page_ancestor';
+				}
+				if ( $page->ID == $current_page ) {
+					$css_class[] = 'current_page_item';
+				} elseif ( $_current_page && $page->ID == $_current_page->post_parent ) {
+					$css_class[] = 'current_page_parent';
+				}
+			} elseif ( $page->ID == get_option( 'page_for_posts' ) ) {
 				$css_class[] = 'current_page_parent';
 			}
-		} elseif ( $page->ID == get_option('page_for_posts') ) {
-			$css_class[] = 'current_page_parent';
-		}
 
-		//add some classes used with regular menus
-		$css_class[] = 'nav--top__item-' . $page->ID;
-		$css_class[] = 'menu-item';
-		$css_class[] = 'nav__item';
-		$css_class[] = 'depth-' . $depth;
+			//add some classes used with regular menus
+			$css_class[] = 'nav--top__item-' . $page->ID;
+			$css_class[] = 'menu-item';
+			$css_class[] = 'nav__item';
+			$css_class[] = 'depth-' . $depth;
 
-		/**
-		 * Filter the list of CSS classes to include with each page item in the list.
-		 *
-		 * @since 2.8.0
-		 *
-		 * @see wp_list_pages()
-		 *
-		 * @param array   $css_class    An array of CSS classes to be applied
-		 *                             to each list item.
-		 * @param WP_Post $page         Page data object.
-		 * @param int     $depth        Depth of page, used for padding.
-		 * @param array   $args         An array of arguments.
-		 * @param int     $current_page ID of the current page.
-		 */
-		$css_classes = implode( ' ', apply_filters( 'page_css_class', $css_class, $page, $depth, $args, $current_page ) );
+			/**
+			 * Filter the list of CSS classes to include with each page item in the list.
+			 *
+			 * @since 2.8.0
+			 *
+			 * @see wp_list_pages()
+			 *
+			 * @param array   $css_class    An array of CSS classes to be applied
+			 *                             to each list item.
+			 * @param WP_Post $page         Page data object.
+			 * @param int     $depth        Depth of page, used for padding.
+			 * @param array   $args         An array of arguments.
+			 * @param int     $current_page ID of the current page.
+			 */
+			$css_classes = implode( ' ', apply_filters( 'page_css_class', $css_class, $page, $depth, $args, $current_page ) );
 
-		/**
-		 * Filter the ID applied to a menu item's list item element.
-		 *
-		 * @since 3.0.1
-		 * @since 4.1.0 The `$depth` parameter was added.
-		 *
-		 * @param string $menu_id The ID that is applied to the menu item's `<li>` element.
-		 * @param object $item    The current menu item.
-		 * @param array  $args    An array of {@see wp_nav_menu()} arguments.
-		 * @param int    $depth   Depth of menu item. Used for padding.
-		 */
-		$css_id = apply_filters( 'nav_menu_item_id', 'nav--top__item-'. $page->ID, $page, $args, $depth );
-		$css_id = $css_id ? ' id="' . esc_attr( $css_id ) . '"' : '';
+			/**
+			 * Filter the ID applied to a menu item's list item element.
+			 *
+			 * @since 3.0.1
+			 * @since 4.1.0 The `$depth` parameter was added.
+			 *
+			 * @param string $menu_id The ID that is applied to the menu item's `<li>` element.
+			 * @param object $item    The current menu item.
+			 * @param array  $args    An array of {@see wp_nav_menu()} arguments.
+			 * @param int    $depth   Depth of menu item. Used for padding.
+			 */
+			$css_id = apply_filters( 'nav_menu_item_id', 'nav--top__item-'. $page->ID, $page, $args, $depth );
+			$css_id = $css_id ? ' id="' . esc_attr( $css_id ) . '"' : '';
 
-		if ( '' === $page->post_title ) {
-			$page->post_title = sprintf( __( '#%d (no title)' ), $page->ID );
-		}
+			if ( '' === $page->post_title ) {
+				$page->post_title = sprintf( __( '#%d (no title)' ), $page->ID );
+			}
 
-		$args['link_before'] = empty( $args['link_before'] ) ? '' : $args['link_before'];
-		$args['link_after'] = empty( $args['link_after'] ) ? '' : $args['link_after'];
+			$args['link_before'] = empty( $args['link_before'] ) ? '' : $args['link_before'];
+			$args['link_after'] = empty( $args['link_after'] ) ? '' : $args['link_after'];
 
-		$link_classes = ' class="menu-link ' . ( $depth > 0 ? 'sub-menu-link' : 'main-menu-link' ) . '"';
+			$link_classes = ' class="menu-link ' . ( $depth > 0 ? 'sub-menu-link' : 'main-menu-link' ) . '"';
 
-		/** This filter is documented in wp-includes/post-template.php */
-		$output .= $indent . sprintf(
+			/** This filter is documented in wp-includes/post-template.php */
+			$output .= $indent . sprintf(
 				'<li %s class="%s"><a %s href="%s">%s%s%s</a>',
 				$css_id,
 				$css_classes,
@@ -696,44 +713,45 @@ class Silk_Walker_Page_Primary extends Walker_Page {
 				$args['link_after']
 			);
 
-		if ( ! empty( $args['show_date'] ) ) {
-			if ( 'modified' == $args['show_date'] ) {
-				$time = $page->post_modified;
-			} else {
-				$time = $page->post_date;
+			if ( ! empty( $args['show_date'] ) ) {
+				if ( 'modified' == $args['show_date'] ) {
+					$time = $page->post_modified;
+				} else {
+					$time = $page->post_date;
+				}
+
+				$date_format = empty( $args['date_format'] ) ? '' : $args['date_format'];
+				$output .= ' ' . mysql2date( $date_format, $time );
 			}
 
-			$date_format = empty( $args['date_format'] ) ? '' : $args['date_format'];
-			$output .= " " . mysql2date( $date_format, $time );
+			if ( 0 === $depth && isset( $args['pages_with_children'][ $page->ID ] ) ) {
+				//the mega menu wrapper
+				$output .= '<div class="sub-menu-wrapper">' . PHP_EOL;
+			}
 		}
 
-		if ( $depth === 0 && isset( $args['pages_with_children'][ $page->ID ] ) ) {
-			//the mega menu wrapper
-			$output .= '<div class="sub-menu-wrapper">' . PHP_EOL;
+		/**
+		 * @see Walker::end_el()
+		 * @since 2.1.0
+		 *
+		 * @param string $output Passed by reference. Used to append additional content.
+		 * @param object $page Page data object. Not used.
+		 * @param int $depth Depth of page. Not Used.
+		 * @param array $args
+		 */
+		public function end_el( &$output, $page, $depth = 0, $args = array() ) {
+			if ( $this->has_children ) {
+				$output .= '</div>' . PHP_EOL; //close the .sub-menu-wrapper
+			}
+			$output .= "</li>\n";
 		}
-	}
 
-	/**
-	 * @see Walker::end_el()
-	 * @since 2.1.0
-	 *
-	 * @param string $output Passed by reference. Used to append additional content.
-	 * @param object $page Page data object. Not used.
-	 * @param int $depth Depth of page. Not Used.
-	 * @param array $args
-	 */
-	public function end_el( &$output, $page, $depth = 0, $args = array() ) {
-		if ( $this->has_children ) {
-			$output .= '</div>' . PHP_EOL; //close the .sub-menu-wrapper
-		}
-		$output .= "</li>\n";
-	}
-
-} #class
+	} #class
 
 endif;
 
 if ( ! function_exists( 'silk_custom_wp_page_menu' ) ) :
+
 	/**
 	 * Display the list of pages with a home link in case there is no menu in the primary location
 	 *
@@ -754,7 +772,7 @@ if ( ! function_exists( 'silk_custom_wp_page_menu' ) ) :
 	 * @return string html menu
 	 */
 	function silk_custom_wp_page_menu( $args = array() ) {
-		$defaults = array('show_home' => true, 'sort_column' => 'menu_order, post_title', 'menu_class' => 'menu', 'echo' => true, 'link_before' => '', 'link_after' => '');
+		$defaults = array( 'show_home' => true, 'sort_column' => 'menu_order, post_title', 'menu_class' => 'menu', 'echo' => true, 'link_before' => '', 'link_after' => '' );
 		$args = wp_parse_args( $args, $defaults );
 
 		/**
@@ -774,23 +792,25 @@ if ( ! function_exists( 'silk_custom_wp_page_menu' ) ) :
 
 		// Show Home in the menu
 		if ( ! empty($args['show_home']) ) {
-			if ( true === $args['show_home'] || '1' === $args['show_home'] || 1 === $args['show_home'] )
-				$text = __('Home');
-			else
+			if ( true === $args['show_home'] || '1' === $args['show_home'] || 1 === $args['show_home'] ) {
+				$text = __( 'Home' );
+			} else {
 				$text = $args['show_home'];
+			}
 			$class = '';
-			if ( is_front_page() && !is_paged() )
+			if ( is_front_page() && ! is_paged() ) {
 				$class .= 'class="current_page_item"';
+			}
 
 			$menu .= '<li ' . $class . '><a class="menu-link main-menu-link" href="' . home_url( '/' ) . '">' . $args['link_before'] . $text . $args['link_after'] . '</a></li>';
 			// If the front page is a page, add it to the exclude list
-			if (get_option('show_on_front') == 'page') {
-				if ( !empty( $list_args['exclude'] ) ) {
+			if ( 'page' == get_option( 'show_on_front' ) ) {
+				if ( ! empty( $list_args['exclude'] ) ) {
 					$list_args['exclude'] .= ',';
 				} else {
 					$list_args['exclude'] = '';
 				}
-				$list_args['exclude'] .= get_option('page_on_front');
+				$list_args['exclude'] .= get_option( 'page_on_front' );
 			}
 		}
 
@@ -798,7 +818,7 @@ if ( ! function_exists( 'silk_custom_wp_page_menu' ) ) :
 		$list_args['title_li'] = '';
 		$list_args['walker'] = new Silk_Walker_Page_Primary();
 
-		$menu .= str_replace( array( "\r", "\n", "\t" ), '', wp_list_pages($list_args) );
+		$menu .= str_replace( array( "\r", "\n", "\t" ), '', wp_list_pages( $list_args ) );
 
 		/**
 		 * We had to create a modified version of the core one because of this
@@ -819,11 +839,13 @@ if ( ! function_exists( 'silk_custom_wp_page_menu' ) ) :
 		 * @param array  $args An array of arguments.
 		 */
 		$menu = apply_filters( 'wp_page_menu', $menu, $args );
-		if ( $args['echo'] )
+		if ( $args['echo'] ) {
 			echo $menu;
-		else
+		} else {
 			return $menu;
-	}
+		}
+	} #function
+
 endif;
 
 /**
@@ -831,7 +853,7 @@ endif;
  */
 add_filter( 'mce_buttons_2', 'silk_mce_editor_buttons' );
 function silk_mce_editor_buttons( $buttons ) {
-	array_unshift($buttons, 'styleselect' );
+	array_unshift( $buttons, 'styleselect' );
 	return $buttons;
 }
 
@@ -841,11 +863,11 @@ function silk_mce_editor_buttons( $buttons ) {
 add_filter( 'tiny_mce_before_init', 'silk_mce_before_init' );
 function silk_mce_before_init( $settings ) {
 
-	$style_formats =array(
-		array( 'title' => __( 'Intro Text', 'silk_txtd' ), 'selector' => 'p', 'classes' => 'intro'),
-		array( 'title' => __( 'Dropcap', 'silk_txtd' ), 'inline' => 'span', 'classes' => 'dropcap'),
+	$style_formats = array(
+		array( 'title' => __( 'Intro Text', 'silk_txtd' ), 'selector' => 'p', 'classes' => 'intro' ),
+		array( 'title' => __( 'Dropcap', 'silk_txtd' ), 'inline' => 'span', 'classes' => 'dropcap' ),
 		array( 'title' => __( 'Highlight', 'silk_txtd' ), 'inline' => 'span', 'classes' => 'highlight' ),
-		array( 'title' => __( 'Two Columns', 'silk_txtd' ), 'selector' => 'p', 'classes' => 'twocolumn', 'wrapper' => true )
+		array( 'title' => __( 'Two Columns', 'silk_txtd' ), 'selector' => 'p', 'classes' => 'twocolumn', 'wrapper' => true ),
 	);
 
 	$settings['style_formats'] = json_encode( $style_formats );

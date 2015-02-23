@@ -130,6 +130,7 @@
 		text-align: left;
 		position: fixed;
 		left: 0;
+		top: 0;
 		z-index: 110;
 		width: 100%;
 		height: rem(60px);
@@ -138,6 +139,16 @@
 
 		.is--ancient-android .nav--is-open &{
 			left: 70%;
+		}
+
+		.admin-bar & {
+			position: absolute;
+			top: 46px;
+		}
+
+		&.fixed {
+			position: fixed;
+			top: 0;
 		}
 	}
 

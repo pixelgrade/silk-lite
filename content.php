@@ -9,8 +9,7 @@ $thumbnail_size = "silk-single-image";
 
 if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 	$thumbnail_size = '  silk-masonry-image';
-}
-?>
+} ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
@@ -53,25 +52,23 @@ if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 				the_excerpt();
 			} ?>
 
-			<?php
-				wp_link_pages( array(
-					'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'silk_txtd' ),
-					'after'  => '</span></div>',
-					'link_before' => '<span>',
-					'link_after'  => '</span>',
-					'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'silk_txtd' ) . ' </span>%',
-					'separator'   => '<span class="screen-reader-text">, </span>',
-				) );
-			?>
-		<div class="color-secondary" role="presentation">
-			<div class="divider  wide">
-				<?php get_template_part("assets/svg/separator-not-simple-svg"); ?>
-			</div>
-			<div class="divider  narrow">
-				<?php get_template_part("assets/svg/separator-simple"); ?>
-			</div>
+		<?php
+			wp_link_pages( array(
+				'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'silk_txtd' ),
+				'after'  => '</span></div>',
+				'link_before' => '<span>',
+				'link_after'  => '</span>',
+				'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'silk_txtd' ) . ' </span>%',
+				'separator'   => '<span class="screen-reader-text">, </span>',
+			) );
+		?>
+	<div class="color-secondary" role="presentation">
+		<div class="divider  wide">
+			<?php get_template_part( 'assets/svg/separator-not-simple-svg' ); ?>
 		</div>
-
+		<div class="divider  narrow">
+			<?php get_template_part( 'assets/svg/separator-simple' ); ?>
+		</div>
 	</div>
 
 	</div><!-- .entry-content -->

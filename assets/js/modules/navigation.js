@@ -30,6 +30,7 @@ var navigation = (function() {
 		$('.floating-nav').find('a').attr( 'tabIndex', -1 );
 
 		mobileNav();
+		handleTopBar();
 	},
 
 	toggleTopBar = function() {
@@ -134,11 +135,26 @@ var navigation = (function() {
 
 		$('.nav-dropdown_wrapper').append($('.nav--dropdown').clone());
 
+	},
+
+	handleTopBar = function() {
+		if( $('body').hasClass('admin-bar') && is_small ) {
+			var offset = $('#wpadminbar').height();
+
+			$(window).scroll(function() {
+				if ($(this).scrollTop() > offset) {
+					$('.main-navigation').addClass('fixed');
+				} else {
+					$('.main-navigation').removeClass('fixed');
+				}
+			});
+		}
 	};
 
 	return {
 		init: init,
-		toggleTopBar: toggleTopBar
+		toggleTopBar: toggleTopBar,
+		handleTopBar: handleTopBar
 	}
 
 })();
