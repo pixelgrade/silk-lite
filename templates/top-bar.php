@@ -5,6 +5,9 @@
  * @package Silk
  */
 ?>
+
+<?php if ( get_theme_mod( 'silk_sticky_menus', false ) ): ?>
+
 <div class="floating-nav" aria-hidden="true"><!-- Hide all this from screen readers -->
 	<div class="top-bar  one-whole  fixed">
 		<div class="content">
@@ -43,3 +46,5 @@
 		</div>
 	</div><!-- .top-bar -->
 </div>
+
+<?php endif; ?>
