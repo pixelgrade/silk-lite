@@ -83,6 +83,17 @@ function silk_customize_register ( $wp_customize ) {
 			'10' => __( '-4', 'silk_txtd' ),
 		),
 	) );
+
+	$wp_customize->add_setting( 'silk_sticky_menus', array(
+		'default'           => '',
+		'sanitize_callback' => 'silk_sanitize_checkbox',
+	) );
+
+	$wp_customize->add_control( 'silk_sticky_menus', array(
+		'label'             => __( 'Show sticky menus on scroll.', 'silk_txtd' ),
+		'section'           => 'silk_theme_options',
+		'type'              => 'checkbox',
+	) );
 }
 add_action( 'customize_register', 'silk_customize_register' );
 
