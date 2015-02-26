@@ -166,7 +166,7 @@ span.pagination-title {
 // Next / Previous links
 
 .article-navigation {
-	.post-meta {
+	.post-meta, .navigation-item__name {
 		@extend %beta;
 		@include fs(10px);
 
@@ -175,7 +175,7 @@ span.pagination-title {
 
 	.post-thumb {
 		float: left;
-		margin-right: 22px;
+		margin-right: rem(12px);
 
 		img {
 			display: block;
@@ -202,30 +202,69 @@ span.pagination-title {
 
 	.navigation-item__wrapper {
 		@extend .clearfix;
+		@extend .flexbox;
+	}
+
+	.post-image, .post-info {
+		@extend .flexbox__item;
 	}
 
 	@include query-below($lap) {
 		.navigation-item {
 			display: block;
-			@include rhythm(margin-bottom, 2);
 			padding: rem(12px);
 
 			border: 1px solid $borders;
 
-			.flexbox {
-				display: block;
+			&:first-child {
+				border-bottom: 0;
 			}
 
-			.flexbox__item {
-				display: inline-block;
+		}
+
+		.navigation-item__wrapper {
+			display: block;
+		}
+
+		.post-info {
+			display: inline;
+		}
+
+		.entry-date {
+			display: none;
+		}
+
+		.post-category:before {
+			display: none;
+		}
+
+		.navigation-item__name {
+			margin-bottom: 0;
+			text-transform: uppercase;
+
+			&:after {
+				content: "/";
+				margin-left: 3px;
 			}
 		}
-	}
 
-	.navigation-item__name {
-		display: block;
-		margin-bottom: rem(12px);
-		@include fs(12px);
+		.post-thumb {
+			position: relative;
+
+			float: left;
+			display: block;
+			width: 70px;
+			height: 70px;
+			overflow: hidden;
+
+			img {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+
+				transform: translateX(-50%) translateY(-50%);
+			}
+		}
 	}
 }
 

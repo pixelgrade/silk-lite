@@ -78,11 +78,9 @@ if ( ! function_exists( 'silk_the_post_navigation' ) ) :
 					previous_post_link('<span class="navigation-item  navigation-item--previous">%link</span>',
 						sprintf('<span class="arrow"></span>
 	                        <span class="navigation-item__content">
-	                            <span class="navigation-item__wrapper  flexbox">
-	                                <span class="flexbox__item">
-	                                    <span class="post-thumb">%s</span>
-	                                </span>
-	                                <span class="flexbox__item">
+	                            <span class="navigation-item__wrapper">
+                                    <span class="post-thumb">%s</span>
+	                                <span class="post-info">
 	                                    <span class="navigation-item__name">%s</span>
 		                                <span class="post-meta">
 		                                %s
@@ -91,7 +89,7 @@ if ( ! function_exists( 'silk_the_post_navigation' ) ) :
 		                                <h3 class="post-title">%%title</h3>
 	                                </span>
 	                            </span>
-	                        </span>', $prev_thumbnail, __( 'Previous post', 'silk_txtd' ), $time_string, $post_category->name  ) );
+	                        </span>', $prev_thumbnail, __( 'Previous', 'silk_txtd' ), $time_string, $post_category->name  ) );
 				}
 
 				if ( $next_post ) {
@@ -115,10 +113,8 @@ if ( ! function_exists( 'silk_the_post_navigation' ) ) :
 						sprintf('<span class="arrow"></span>
 	                         <span class="navigation-item__content">
 	                            <span class="navigation-item__wrapper  flexbox">
-	                                <span class="flexbox__item">
-	                                    <span class="post-thumb">%s</span>
-	                                </span>
-	                                <span class="flexbox__item">
+                                    <span class="post-thumb">%s</span>
+	                                <span class="post-info">
 	                                    <span class="navigation-item__name">%s</span>
 		                                <span class="post-meta">
 		                                %s
@@ -127,7 +123,7 @@ if ( ! function_exists( 'silk_the_post_navigation' ) ) :
 		                                <h3 class="post-title">%%title</h3>
 	                                </span>
 	                            </span>
-	                        </span>', $next_thumbnail, __( 'Next post', 'silk_txtd' ), $time_string, $post_category->name ) );
+	                        </span>', $next_thumbnail, __( 'Next', 'silk_txtd' ), $time_string, $post_category->name ) );
 				} ?>
 
 		</nav><!-- .navigation -->
