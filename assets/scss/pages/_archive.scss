@@ -25,7 +25,7 @@
 	}
 
 	.entry__wrapper {
-		display: inline-block; 
+		display: block;
 	}
 
 	.archive-layout--masonry & > .grid__item {
@@ -115,7 +115,7 @@
 				left: rem(30px);
 			}
 			@include query-above($desk) {
-				left: rem(54px);
+				left: rem(42px);
 			}
 
 			pointer-events: none;
