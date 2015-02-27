@@ -5,6 +5,9 @@
  * @package Silk
  */
 ?>
+
+<?php if ( get_theme_mod( 'silk_sticky_menus', false ) ): ?>
+
 <div class="floating-nav" aria-hidden="true"><!-- Hide all this from screen readers -->
 	<div class="top-bar  one-whole  fixed">
 		<div class="content">
@@ -16,7 +19,7 @@
 					<div class="nav-trigger  relative">
 						<?php
 
-						get_template_part('assets/svg/menu-icon-svg');
+						get_template_part( 'assets/svg/menu-icon-svg' );
 
 						wp_nav_menu(
 							array(
@@ -43,3 +46,5 @@
 		</div>
 	</div><!-- .top-bar -->
 </div>
+
+<?php endif; ?>

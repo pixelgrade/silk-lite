@@ -11,11 +11,14 @@ body {
 .content {
 	margin-left: auto;
 	margin-right: auto;
-	max-width: em(1400px);
+	max-width: em(1358px);
 
 	padding: 0 rem($gutter);
-	@include query-above($lap) 		{ padding: 0 rem($gutter-lap); }
-	@include query-above($desk) 	{ padding: 0 rem($gutter-desk); }
+	@include query-above($small) 		{ padding: 0 rem($gutter-desk); }
+
+	.archive-layout--column & {
+		max-width: em(1160px);
+	}
 }
 
 .site-header {
@@ -110,5 +113,17 @@ hr {
 
 	svg {
 		display: inline-block;
+	}
+}
+
+// override default link hover
+.single .entry-content .tiled-gallery a:hover {
+	background: none;
+}
+
+//some space for the post-navigation in attachment pages
+.post-navigation {
+	.meta-nav {
+		margin-right: em(5px);
 	}
 }

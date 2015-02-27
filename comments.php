@@ -24,12 +24,11 @@ if ( post_password_required() ) {
 	<?php if ( have_comments() ) : ?>
 		<div class="comments-area-title">
 			<h3 class="comments-title"><?php
-				if ( have_comments() ) {
+			if ( have_comments() ) {
 					echo number_format_i18n( get_comments_number() ) . ' ' . _n( 'Comment', 'Comments', get_comments_number(), 'silk_txtd' );
 				} else {
 					echo __( 'There are no comments', 'silk_txtd' );
-				} ?>
-			</h3>
+				} ?></h3>
 			<?php echo '<a class="comments_add-comment" href="#reply-title">' . __( 'Add Yours', 'silk_txtd' ) . '</a>'; ?>
 		</div>
 
@@ -61,8 +60,8 @@ if ( post_password_required() ) {
 	<?php endif; // have_comments() ?>
 
 	<?php
-		// If comments are closed and there are comments, let's leave a little note, shall we?
-		if ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
+	// If comments are closed and there are comments, let's leave a little note, shall we?
+	if ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
 		<p class="no-comments"><?php _e( 'Comments are closed.', 'silk_txtd' ); ?></p>
 	<?php endif; ?>
 

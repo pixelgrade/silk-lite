@@ -49,11 +49,11 @@ if ( ! class_exists('Silk_Popular_Posts_Widget') ) :
 				)
 			);
 
-			$this->default_title =  __( 'Popular Posts', 'silk_txtd' );
+			$this->default_title = __( 'Popular Posts', 'silk_txtd' );
 		}
 
 		function form( $instance ) {
-			$title = isset( $instance['title' ] ) ? $instance['title'] : false;
+			$title = isset( $instance['title'] ) ? $instance['title'] : false;
 			if ( false === $title ) {
 				$title = $this->default_title;
 			}
@@ -96,9 +96,10 @@ if ( ! class_exists('Silk_Popular_Posts_Widget') ) :
 		}
 
 		function widget( $args, $instance ) {
-			$title = isset( $instance['title' ] ) ? $instance['title'] : false;
-			if ( false === $title )
+			$title = isset( $instance['title'] ) ? $instance['title'] : false;
+			if ( false === $title ) {
 				$title = $this->default_title;
+			}
 			$title = apply_filters( 'widget_title', $title );
 
 			$count = isset( $instance['count'] ) ? (int) $instance['count'] : 5;
@@ -116,20 +117,21 @@ if ( ! class_exists('Silk_Popular_Posts_Widget') ) :
 
 			$posts = $this->get_by_views( $count );
 
-			if ( !$posts ) {
+			if ( ! $posts ) {
 				$posts = $this->get_fallback_posts();
 			}
 
 			echo $args['before_widget'];
-			if ( ! empty( $title ) )
+			if ( ! empty( $title ) ) {
 				echo $args['before_title'] . $title . $args['after_title'];
+			}
 
-			if ( !$posts ) {
+			if ( ! $posts ) {
 				if ( current_user_can( 'edit_theme_options' ) ) {
 					echo '<p>' . sprintf(
-							__( 'There are no posts to display. <a href="%s">Want more traffic?</a>', 'silk_txtd' ),
-							'http://en.support.wordpress.com/getting-more-site-traffic/'
-						) . '</p>';
+						__( 'There are no posts to display. <a href="%s">Want more traffic?</a>', 'silk_txtd' ),
+						'http://en.support.wordpress.com/getting-more-site-traffic/'
+					) . '</p>';
 				}
 
 				echo $args['after_widget'];
@@ -137,7 +139,7 @@ if ( ! class_exists('Silk_Popular_Posts_Widget') ) :
 			}
 
 			//the first post has a nice image unlike the rest
-			$post = array_shift($posts);
+			$post = array_shift( $posts );
 			$image = Jetpack_PostImages::get_image( $post['post_id'], array( 'fallback_to_avatars' => true ) );
 			$post['image'] = $image['src'];
 			if ( 'blavatar' != $image['from'] && 'gravatar' != $image['from'] ) {
@@ -152,9 +154,9 @@ if ( ! class_exists('Silk_Popular_Posts_Widget') ) :
 					<img src="<?php echo esc_url( $post['image'] ); ?>" alt="<?php echo esc_attr( wp_kses( $post['title'], array() ) ); ?>" />
 				</a>
 				<?php
-					$cats_list = silk_get_cats_list($post['post_id']);
+					$cats_list = silk_get_cats_list( $post['post_id'] );
 
-					if ( !empty($cats_list) ) {
+					if ( ! empty( $cats_list ) ) {
 						echo '<div class="categories-list">' . $cats_list . '</div>';
 					}
 				?>
@@ -174,9 +176,9 @@ if ( ! class_exists('Silk_Popular_Posts_Widget') ) :
 						<?php echo esc_html( wp_kses( $post['title'], array() ) ); ?>
 					</a>
 					<?php
-					$cats_list = silk_get_cats_list($post['post_id']);
+					$cats_list = silk_get_cats_list( $post['post_id'] );
 
-					if ( !empty($cats_list) ) {
+					if ( ! empty( $cats_list ) ) {
 						echo '<div class="categories-list">' . $cats_list . '</div>';
 					}
 					?>
@@ -201,12 +203,12 @@ if ( ! class_exists('Silk_Popular_Posts_Widget') ) :
 			}
 
 			$post_view_posts = stats_get_csv( 'postviews', array( 'days' => absint( $days ), 'limit' => 11 ) );
-			if ( !$post_view_posts ) {
+			if ( ! $post_view_posts ) {
 				return array();
 			}
 
 			$post_view_ids = array_filter( wp_list_pluck( $post_view_posts, 'post_id' ) );
-			if ( !$post_view_ids ) {
+			if ( ! $post_view_ids ) {
 				return array();
 			}
 
@@ -227,7 +229,7 @@ if ( ! class_exists('Silk_Popular_Posts_Widget') ) :
 				'no_found_rows' => true,
 			) );
 
-			if ( !$posts ) {
+			if ( ! $posts ) {
 				return array();
 			}
 
@@ -243,16 +245,19 @@ if ( ! class_exists('Silk_Popular_Posts_Widget') ) :
 			foreach ( (array) $post_ids as $post_id ) {
 				$post = get_post( $post_id );
 
-				if ( !$post )
+				if ( ! $post ) {
 					continue;
+				}
 
 				// Only posts, no attachments or pages
-				if ( 'attachment' == $post->post_type || 'page' == $post->post_type )
+				if ( 'attachment' == $post->post_type || 'page' == $post->post_type ) {
 					continue;
+				}
 
 				// hide private and password protected posts
-				if ( 'publish' != $post->post_status || !empty( $post->post_password ) || empty( $post->ID ) )
+				if ( 'publish' != $post->post_status || ! empty( $post->post_password ) || empty( $post->ID ) ) {
 					continue;
+				}
 
 				// Both get HTML stripped etc on display
 				if ( empty( $post->post_title ) ) {
@@ -268,8 +273,9 @@ if ( ! class_exists('Silk_Popular_Posts_Widget') ) :
 				$posts[] = compact( 'title', 'permalink', 'post_id' );
 				$counter++;
 
-				if ( $counter == $count )
+				if ( $counter == $count ) {
 					break; // only need to load and show x number of posts
+				}
 			}
 
 			return apply_filters( 'silk_widget_get_popular_posts', $posts, $post_ids, $count );

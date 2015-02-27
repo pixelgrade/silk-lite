@@ -128,7 +128,6 @@ var animator = (function() {
 			easing: 'easeOutQuad'
 		});
 
-
 		$title.velocity({
 			opacity: 1
 		}, {
@@ -152,6 +151,14 @@ var animator = (function() {
 		setTimeout(function() {
 			animateSmallDivider($divider);
 		}, 600);
+
+		$slider.velocity({
+			borderBottomColor: '#e6e6e6'
+		}, {
+			duration: 300,
+			easing: 'easeOutCubic',
+			delay: 200
+		});
 	},
 
 	animateSmallDivider = function($divider) {
@@ -321,6 +328,17 @@ var animator = (function() {
 			delay: delay,
 			easing: 'easeOutCubic'
 		});
+
+		var $divider 	= $post.find('.divider.narrow'),
+			$dividerBig = $post.find('.divider.wide');
+			
+		setTimeout(function() {
+			animateLargeDivider($dividerBig);
+		}, 100);
+
+		setTimeout(function() {
+			animateSmallDivider($divider);
+		}, 400);
 	},
 
 	animateSidebar = function() {

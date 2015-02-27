@@ -24,35 +24,35 @@ window.svgLogo = (function() {
 			titleWidth	= $title.width(),
 			titleHeight	= $title.height(),
 			spanWidth 	= $span.width(),
-			spanHeight	= $title.height(),
+			spanHeight	= $span.height(),
 			fontSize    = parseInt($span.css('font-size')),
 			scaling     = spanWidth / parseFloat(titleWidth);
 
 		setTimeout(function() {
 
 			$svg.removeAttr('viewBox').hide();
-			$span.css('white-space', 'nowrap').show();
+			$span.css({
+				'white-space': 'nowrap',
+				display: 'inline-block'
+			});
 			
 			fontSize    = parseInt($span.css('font-size')),
 			spanWidth	= $span.width();
-			spanHeight	= $title.height();
+			spanHeight	= $span.height();
+			titleWidth	= $title.width();
+			scaling     = spanWidth / parseFloat(titleWidth);
 
 			if (spanWidth > titleWidth) { 
 				fontSize 	= parseInt(fontSize / scaling);
 				$span.css('font-size', fontSize);
 				spanWidth	= $span.width();
-				spanHeight	= $title.height();
+				spanHeight	= $span.height();
 			}
 
 			$span.css({
 				'font-size': '',
 				'white-space': ''
 			}).hide();
-
-			console.log(fontSize);
-
-			// titleWidth = $title.width();
-			// titleHeight = $title.height();
 			
 			$svg.width(spanWidth);
 			$svg.attr('viewBox', "0 0 " + spanWidth + " " + spanHeight);
@@ -64,6 +64,15 @@ window.svgLogo = (function() {
 			$svg.remove();
 			$title.children('a').append($newSvg);
 			$newSvg.show();
+
+			var $topLogo 		= $('.top-bar .site-title'),
+				topLogoHeight	= $topLogo.outerHeight(),
+				$clone 			= $newSvg.clone();
+
+			$clone.outerHeight(topLogoHeight);
+			$clone.find('text').attr('stroke', '#000');
+
+			$topLogo.empty().append($clone);
 
 			logoAnimation();
 		}, 60);
@@ -100,8 +109,12 @@ window.svgLogo = (function() {
 		}, {
 			duration: 0
 		});
-		$logoClone.width($newSvg.width());
+		// $logoClone.width($newSvg.width());
 		
+		if ( ! $body.hasClass('home') ) {
+			window.scrollTo(0, $('.site-header').height() - navHeight);
+		}
+
 		logoInitialized = true; 
 	},
 

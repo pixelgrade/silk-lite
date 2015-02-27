@@ -54,7 +54,7 @@
 
 	<footer class="entry-footer">
 		<span class="separator-wrapper--accent" role="presentation">
-			<?php get_template_part("assets/svg/separator-simple"); ?>
+			<?php get_template_part( 'assets/svg/separator-simple' ); ?>
 		</span>
 
 		<?php silk_entry_footer(); ?>

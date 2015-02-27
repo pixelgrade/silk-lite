@@ -7,27 +7,33 @@ var navigation = (function() {
 	init = function() {
 		// initialize the logic behind the main navigation
 		$nav.ariaNavigation();
-		$nav.clone(true)
-			.removeClass('nav--main')
-			.addClass('nav--toolbar')
-			.appendTo('.floating-nav .flag__body');
 
-		$('.nav--toolbar--left')
-			.clone()
-			.removeClass('nav--toolbar nav--toolbar--left')
-			.addClass('nav--stacked nav--floating nav--floating--left')
-			.appendTo('.floating-nav');
+		if ( $('.floating-nav').length ) {
 
-		$('.nav__item--search').prependTo('.nav--floating--left');
+			$nav.clone(true)
+				.removeClass('nav--main')
+				.addClass('nav--toolbar')
+				.appendTo('.floating-nav .flag__body');
 
-		$('.nav--toolbar--right')
-			.clone()
-			.removeClass('nav--toolbar nav--toolbar--right')
-			.addClass('nav--stacked nav--floating nav--floating--right')
-			.appendTo('.floating-nav');
+			$('.nav--toolbar--left')
+				.clone()
+				.removeClass('nav--toolbar nav--toolbar--left')
+				.addClass('nav--stacked nav--floating nav--floating--left')
+				.appendTo('.floating-nav');
 
-		// make sure that the links in the floating-nav, that shows on scroll, are ignored by TAB
-		$('.floating-nav').find('a').attr( 'tabIndex', -1 );
+			$('.nav__item--search').prependTo('.nav--floating--left');
+
+			$('.nav--toolbar--right')
+				.clone()
+				.removeClass('nav--toolbar nav--toolbar--right')
+				.addClass('nav--stacked nav--floating nav--floating--right')
+				.appendTo('.floating-nav');
+
+			// make sure that the links in the floating-nav, that shows on scroll, are ignored by TAB
+			$('.floating-nav').find('a').attr( 'tabIndex', -1 );
+			handleTopBar();
+			
+		}
 
 		mobileNav();
 	},
@@ -134,11 +140,26 @@ var navigation = (function() {
 
 		$('.nav-dropdown_wrapper').append($('.nav--dropdown').clone());
 
+	},
+
+	handleTopBar = function() {
+		if( $('body').hasClass('admin-bar') && is_small ) {
+			var offset = $('#wpadminbar').height();
+
+			$(window).scroll(function() {
+				if ($(this).scrollTop() > offset) {
+					$('.main-navigation').addClass('fixed');
+				} else {
+					$('.main-navigation').removeClass('fixed');
+				}
+			});
+		}
 	};
 
 	return {
 		init: init,
-		toggleTopBar: toggleTopBar
+		toggleTopBar: toggleTopBar,
+		handleTopBar: handleTopBar
 	}
 
 })();

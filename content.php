@@ -9,47 +9,48 @@ $thumbnail_size = "silk-single-image";
 
 if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 	$thumbnail_size = '  silk-masonry-image';
-}
-?>
+} ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-	<header class="entry-header  entry-header--card">
+	<div class="entry__wrapper">
 
-		<?php if ( 'post' == get_post_type() ) : ?>
+		<header class="entry-header  entry-header--card">
 
-			<div class="entry-meta  entry-meta--card">
-				<?php silk_posted_on_and_cats(); ?>
-			</div><!-- .entry-meta -->
+			<?php if ( 'post' == get_post_type() ) : ?>
 
-		<?php endif; ?>
+				<div class="entry-meta  entry-meta--card">
+					<?php silk_posted_on_and_cats(); ?>
+				</div><!-- .entry-meta -->
 
-		<?php the_title( sprintf( '<h2 class="entry-title  entry-title--card"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
+			<?php endif; ?>
 
-	</header><!-- .entry-header -->
+			<?php the_title( sprintf( '<h2 class="entry-title  entry-title--card"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
 
-	<div class="entry-content">
-	
-		<?php if ( has_post_thumbnail() ) { ?>
-			<a href="<?php the_permalink(); ?>" class="entry-featured  entry-thumbnail">
-				<?php the_post_thumbnail( $thumbnail_size ); ?>
-				<div class="entry-image-border"></div>
-			</a>
-		<?php }
+		</header><!-- .entry-header -->
 
-		global $post;
-		// Check the content for the more text
-		$has_more = strpos( $post->post_content, '<!--more' );
+		<div class="entry-content">
+		
+			<?php if ( has_post_thumbnail() ) { ?>
+				<a href="<?php the_permalink(); ?>" class="entry-featured  entry-thumbnail">
+					<?php the_post_thumbnail( $thumbnail_size ); ?>
+					<div class="entry-image-border"></div>
+				</a>
+			<?php }
 
-		if ( $has_more ) {
-			/* translators: %s: Name of current post */
-			the_content( sprintf(
-				__( 'Continue reading %s', 'silk_txtd' ),
-				the_title( '<span class="screen-reader-text">', '</span>', false )
-			) );
-		} else {
-			the_excerpt();
-		} ?>
+			global $post;
+			// Check the content for the more text
+			$has_more = strpos( $post->post_content, '<!--more' );
+
+			if ( $has_more ) {
+				/* translators: %s: Name of current post */
+				the_content( sprintf(
+					__( 'Continue reading %s', 'silk_txtd' ),
+					the_title( '<span class="screen-reader-text">', '</span>', false )
+				) );
+			} else {
+				the_excerpt();
+			} ?>
 
 		<?php
 			wp_link_pages( array(
@@ -61,9 +62,14 @@ if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 				'separator'   => '<span class="screen-reader-text">, </span>',
 			) );
 		?>
-		<span class="separator separator-wrapper--accent">
-			<?php get_template_part("assets/svg/separator-simple"); ?>
-		</span>
+	<div class="color-secondary" role="presentation">
+		<div class="divider  wide">
+			<?php get_template_part( 'assets/svg/separator-not-simple-svg' ); ?>
+		</div>
+		<div class="divider  narrow">
+			<?php get_template_part( 'assets/svg/separator-simple' ); ?>
+		</div>
+	</div>
 
 	</div><!-- .entry-content -->
 </article><!-- #post-## -->

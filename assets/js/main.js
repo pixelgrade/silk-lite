@@ -606,7 +606,6 @@ if (!Date.now) Date.now = function () {
           easing: 'easeOutQuad'
         });
 
-
         $title.velocity({
           opacity: 1
         }, {
@@ -630,6 +629,14 @@ if (!Date.now) Date.now = function () {
         setTimeout(function () {
           animateSmallDivider($divider);
         }, 600);
+
+        $slider.velocity({
+          borderBottomColor: '#e6e6e6'
+        }, {
+          duration: 300,
+          easing: 'easeOutCubic',
+          delay: 200
+        });
         },
         
         
@@ -804,6 +811,17 @@ if (!Date.now) Date.now = function () {
           delay: delay,
           easing: 'easeOutCubic'
         });
+
+        var $divider = $post.find('.divider.narrow'),
+            $dividerBig = $post.find('.divider.wide');
+
+        setTimeout(function () {
+          animateLargeDivider($dividerBig);
+        }, 100);
+
+        setTimeout(function () {
+          animateSmallDivider($divider);
+        }, 400);
         },
         
         
@@ -952,7 +970,7 @@ if (!Date.now) Date.now = function () {
       }
 
       // bind the tweens we created above to mouse events accordingly, through hoverIntent to avoid flickering
-      $obj.hoverIntent({
+      $obj.find('.entry__wrapper').hoverIntent({
         over: animateHoverIn,
         out: animateHoverOut,
         timeout: 0,
@@ -1029,16 +1047,22 @@ if (!Date.now) Date.now = function () {
         init = function () {
         // initialize the logic behind the main navigation
         $nav.ariaNavigation();
-        $nav.clone(true).removeClass('nav--main').addClass('nav--toolbar').appendTo('.floating-nav .flag__body');
 
-        $('.nav--toolbar--left').clone().removeClass('nav--toolbar nav--toolbar--left').addClass('nav--stacked nav--floating nav--floating--left').appendTo('.floating-nav');
+        if ($('.floating-nav').length) {
 
-        $('.nav__item--search').prependTo('.nav--floating--left');
+          $nav.clone(true).removeClass('nav--main').addClass('nav--toolbar').appendTo('.floating-nav .flag__body');
 
-        $('.nav--toolbar--right').clone().removeClass('nav--toolbar nav--toolbar--right').addClass('nav--stacked nav--floating nav--floating--right').appendTo('.floating-nav');
+          $('.nav--toolbar--left').clone().removeClass('nav--toolbar nav--toolbar--left').addClass('nav--stacked nav--floating nav--floating--left').appendTo('.floating-nav');
 
-        // make sure that the links in the floating-nav, that shows on scroll, are ignored by TAB
-        $('.floating-nav').find('a').attr('tabIndex', -1);
+          $('.nav__item--search').prependTo('.nav--floating--left');
+
+          $('.nav--toolbar--right').clone().removeClass('nav--toolbar nav--toolbar--right').addClass('nav--stacked nav--floating nav--floating--right').appendTo('.floating-nav');
+
+          // make sure that the links in the floating-nav, that shows on scroll, are ignored by TAB
+          $('.floating-nav').find('a').attr('tabIndex', -1);
+          handleTopBar();
+
+        }
 
         mobileNav();
         },
@@ -1147,11 +1171,27 @@ if (!Date.now) Date.now = function () {
 
         $('.nav-dropdown_wrapper').append($('.nav--dropdown').clone());
 
+        },
+        
+        
+        handleTopBar = function () {
+        if ($('body').hasClass('admin-bar') && is_small) {
+          var offset = $('#wpadminbar').height();
+
+          $(window).scroll(function () {
+            if ($(this).scrollTop() > offset) {
+              $('.main-navigation').addClass('fixed');
+            } else {
+              $('.main-navigation').removeClass('fixed');
+            }
+          });
+        }
         };
 
     return {
       init: init,
-      toggleTopBar: toggleTopBar
+      toggleTopBar: toggleTopBar,
+      handleTopBar: handleTopBar
     }
 
   })();
@@ -1322,7 +1362,8 @@ if (!Date.now) Date.now = function () {
     var $smallSidebar = $('#jp-post-flair'),
         smallSidebarPinned = false,
         smallSidebarPadding = 100,
-        smallSidebarOffset, $sidebar = $('.sidebar--main'),
+        smallSidebarPinTop = $('.top-bar.fixed').outerHeight() + smallSidebarPadding,
+        smallSidebarOffset, smallSidebarBottom, $sidebar = $('.sidebar--main'),
         $main = $('.site-main'),
         mainHeight = $main.outerHeight(),
         mainOffset, mainTop, mainBottom = mainTop + mainHeight,
@@ -1355,8 +1396,52 @@ if (!Date.now) Date.now = function () {
             styleWidgets();
           }
         }
+        wrapJetpackAfterContent();
         refresh();
         initialized = true;
+        },
+        
+        
+        
+        /**
+         * Wrap Jetpack's related posts and
+         * Sharedaddy sharing into one div
+         * to make a left sidebar on single posts
+         */
+        
+        wrapJetpackAfterContent = function () {
+        // check if we are on single post and the wrap has not been done already by Jetpack
+        // (it happens when the theme is activated on a wordpress.com installation)
+        if ($('#jp-post-flair').length != 0) $('body').addClass('has--jetpack-sidebar');
+
+        if ($('body').hasClass('single-post') && $('#jp-post-flair').length == 0) {
+
+          var $jpSharing = $('.sharedaddy.sd-sharing-enabled');
+          var $jpLikes = $('.sharedaddy.sd-like');
+          var $jpRelatedPosts = $('#jp-relatedposts');
+
+          if ($jpSharing.length || $jpLikes.length || $jpRelatedPosts.length) {
+
+            $('body').addClass('has--jetpack-sidebar');
+
+            var $jpWrapper = $('<div/>', {
+              id: 'jp-post-flair'
+            });
+            $jpWrapper.appendTo($('.entry-content'));
+
+            if ($jpSharing.length) {
+              $jpSharing.appendTo($jpWrapper);
+            }
+
+            if ($jpLikes.length) {
+              $jpLikes.appendTo($jpWrapper);
+            }
+
+            if ($jpRelatedPosts.length) {
+              $jpRelatedPosts.appendTo($jpWrapper);
+            }
+          }
+        }
         },
         
         
@@ -1422,15 +1507,22 @@ if (!Date.now) Date.now = function () {
               // $widget.removeClass('focused');
               $widget.css('max-height', newHeight);
 
-              setTimeout(function () {
-                refresh();
-                update();
-              }, 600);
+              delayUpdate();
             });
           }
 
+          delayUpdate();
+
         });
 
+        },
+        
+        
+        delayUpdate = function () {
+        setTimeout(function () {
+          refresh();
+          update();
+        }, 600);
         },
         
         
@@ -1450,12 +1542,8 @@ if (!Date.now) Date.now = function () {
         sidebarBottom = sidebarHeight + sidebarOffset.top + sidebarPadding;
         mainBottom = mainHeight + sidebarOffset.top + sidebarPadding;
 
-        if (mainOffset.top != sidebarOffset.top || animating) {
-          return;
-        }
-
         /* adjust right sidebar positioning if needed */
-        if (sidebarHeight < mainHeight) {
+        if (mainOffset.top == sidebarOffset.top && sidebarHeight < mainHeight) {
 
           // pin sidebar
           if (windowBottom > sidebarBottom && !sidebarPinned) {
@@ -1492,26 +1580,30 @@ if (!Date.now) Date.now = function () {
         }
 
         /* adjust left sidebar positioning if needed */
-        if (!$smallSidebar.length) {
-          return;
-        }
+        if ($smallSidebar.length) {
 
-        if (smallSidebarOffset.top - smallSidebarPadding < latestKnownScrollY && !smallSidebarPinned) {
-          $smallSidebar.css({
-            position: 'fixed',
-            top: smallSidebarPadding,
-            left: smallSidebarOffset.left
-          });
-          smallSidebarPinned = true;
-        }
+          if (smallSidebarOffset.top - smallSidebarPinTop < latestKnownScrollY && !smallSidebarPinned) {
+            $smallSidebar.css({
+              position: 'fixed',
+              top: smallSidebarPinTop,
+              left: smallSidebarOffset.left
+            });
+            smallSidebarPinned = true;
+          }
 
-        if (smallSidebarOffset.top - smallSidebarPadding >= latestKnownScrollY && smallSidebarPinned) {
-          $smallSidebar.css({
-            position: '',
-            top: '',
-            left: ''
-          });
-          smallSidebarPinned = false;
+          if (smallSidebarOffset.top - smallSidebarPinTop >= latestKnownScrollY && smallSidebarPinned) {
+            $smallSidebar.css({
+              position: '',
+              top: '',
+              left: ''
+            });
+            smallSidebarPinned = false;
+          }
+
+          if (windowBottom > mainBottom && windowBottom < documentHeight) {
+            $smallSidebar.css('top', mainBottom - smallSidebarPadding - smallSidebarHeight - latestKnownScrollY);
+          }
+
         }
 
         },
@@ -1552,9 +1644,33 @@ if (!Date.now) Date.now = function () {
         }
 
         if ($smallSidebar.length) {
+
+          $smallSidebar.find('.sd-sharing-enabled, .sd-like, .jp-relatedposts-post').show().each(function (i, obj) {
+            var $box = $(obj),
+                boxOffset = $box.offset(),
+                boxHeight = $box.outerHeight(),
+                boxBottom = boxOffset.top + boxHeight - latestKnownScrollY;
+
+            if (smallSidebarPinTop + boxBottom > windowHeight + smallSidebarPadding) {
+              $box.hide();
+            } else {
+              $box.show();
+            }
+          });
+
+          var $relatedposts = $('.jp-relatedposts');
+
+          if ($relatedposts.length) {
+            $relatedposts.show();
+            if (!$relatedposts.find('.jp-relatedposts-post:visible').length) {
+              $relatedposts.hide();
+            }
+          }
+
           smallSidebarPinned = false;
           smallSidebarOffset = $smallSidebar.offset();
           smallSidebarHeight = $smallSidebar.outerHeight();
+          smallSidebarBottom = smallSidebarOffset.top + smallSidebarHeight;
         }
 
         };
@@ -1641,23 +1757,28 @@ if (!Date.now) Date.now = function () {
             titleWidth = $title.width(),
             titleHeight = $title.height(),
             spanWidth = $span.width(),
-            spanHeight = $title.height(),
+            spanHeight = $span.height(),
             fontSize = parseInt($span.css('font-size')),
             scaling = spanWidth / parseFloat(titleWidth);
 
         setTimeout(function () {
 
           $svg.removeAttr('viewBox').hide();
-          $span.css('white-space', 'nowrap').show();
+          $span.css({
+            'white-space': 'nowrap',
+            display: 'inline-block'
+          });
 
           fontSize = parseInt($span.css('font-size')), spanWidth = $span.width();
-          spanHeight = $title.height();
+          spanHeight = $span.height();
+          titleWidth = $title.width();
+          scaling = spanWidth / parseFloat(titleWidth);
 
           if (spanWidth > titleWidth) {
             fontSize = parseInt(fontSize / scaling);
             $span.css('font-size', fontSize);
             spanWidth = $span.width();
-            spanHeight = $title.height();
+            spanHeight = $span.height();
           }
 
           $span.css({
@@ -1665,10 +1786,6 @@ if (!Date.now) Date.now = function () {
             'white-space': ''
           }).hide();
 
-          console.log(fontSize);
-
-          // titleWidth = $title.width();
-          // titleHeight = $title.height();
           $svg.width(spanWidth);
           $svg.attr('viewBox', "0 0 " + spanWidth + " " + spanHeight);
           $text.attr('font-size', fontSize);
@@ -1679,6 +1796,15 @@ if (!Date.now) Date.now = function () {
           $svg.remove();
           $title.children('a').append($newSvg);
           $newSvg.show();
+
+          var $topLogo = $('.top-bar .site-title'),
+              topLogoHeight = $topLogo.outerHeight(),
+              $clone = $newSvg.clone();
+
+          $clone.outerHeight(topLogoHeight);
+          $clone.find('text').attr('stroke', '#000');
+
+          $topLogo.empty().append($clone);
 
           logoAnimation();
         }, 60);
@@ -1716,7 +1842,10 @@ if (!Date.now) Date.now = function () {
         }, {
           duration: 0
         });
-        $logoClone.width($newSvg.width());
+        // $logoClone.width($newSvg.width());
+        if (!$body.hasClass('home')) {
+          window.scrollTo(0, $('.site-header').height() - navHeight);
+        }
 
         logoInitialized = true;
         },
@@ -1764,7 +1893,6 @@ if (!Date.now) Date.now = function () {
     browserSize();
     navigation.init();
     slider.init();
-    wrapJetpackAfterContent();
     fixedSidebars.update();
     svgLogo.init();
     animator.animate();
@@ -1772,7 +1900,6 @@ if (!Date.now) Date.now = function () {
     infinityHandler();
 
     if (latestKnownScrollY) $window.trigger('scroll');
-
   });
 
   /* ====== ON RESIZE ====== */
@@ -1841,47 +1968,6 @@ if (!Date.now) Date.now = function () {
       }
     }
     return false;
-  }
-
-  /**
-   * Wrap Jetpack's related posts and
-   * Sharedaddy sharing into one div
-   * to make a left sidebar on single posts
-   */
-
-  function wrapJetpackAfterContent() {
-    // check if we are on single post and the wrap has not been done already by Jetpack
-    // (it happens when the theme is activated on a wordpress.com installation)
-    if ($('#jp-post-flair').length != 0) $('body').addClass('has--jetpack-sidebar');
-
-    if ($('body').hasClass('single-post') && $('#jp-post-flair').length == 0) {
-
-      var $jpSharing = $('.sharedaddy.sd-sharing-enabled');
-      var $jpLikes = $('.sharedaddy.sd-like');
-      var $jpRelatedPosts = $('#jp-relatedposts');
-
-      if ($jpSharing.length || $jpLikes.length || $jpRelatedPosts.length) {
-
-        $('body').addClass('has--jetpack-sidebar');
-
-        var $jpWrapper = $('<div/>', {
-          id: 'jp-post-flair'
-        });
-        $jpWrapper.appendTo($('.entry-content'));
-
-        if ($jpSharing.length) {
-          $jpSharing.appendTo($jpWrapper);
-        }
-
-        if ($jpLikes.length) {
-          $jpLikes.appendTo($jpWrapper);
-        }
-
-        if ($jpRelatedPosts.length) {
-          $jpRelatedPosts.appendTo($jpWrapper);
-        }
-      }
-    }
   }
 
   /**

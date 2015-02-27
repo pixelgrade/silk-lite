@@ -9,24 +9,22 @@ $thumbnail_size = "silk-single-image";
 
 if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 	$thumbnail_size = '  silk-masonry-image';
-}
-?>
+} ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-	<div class="entry-content">
-
-		<?php
-		//let's see if we have a featured image
-		$post_thumbnail_html = '';
-		if ( has_post_thumbnail() ) {
-			$post_thumbnail     = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), $thumbnail_size );
-			if (isset($post_thumbnail[ 0 ])) {
-				$post_thumbnail_html = '<div class="entry-thumbnail  quote-wrapper" style="background-image: url(' . $post_thumbnail[ 0 ] . ');" ></div>';
-			}
+	<?php
+	//let's see if we have a featured image
+	$post_thumbnail_style = '';
+	if ( has_post_thumbnail() ) {
+		$post_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), $thumbnail_size );
+		if ( isset( $post_thumbnail[0] ) ) {
+			$post_thumbnail_style = 'style="background-image: url(' . esc_url( $post_thumbnail[0] ) . ');"';
 		}
+	}
+	?>
 
-		echo $post_thumbnail_html; ?>
+	<div class="entry-content" <?php echo $post_thumbnail_style; ?> >
 
 		<div class="content-quote">
 			<div class="flexbox">
@@ -39,7 +37,7 @@ if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 					) );
 
 					//test if there is a </blockquote> tag in here
-					if ( strpos($content,'</blockquote>') !== false ) {
+					if ( false !== strpos( $content,'</blockquote>' ) ) {
 						echo $content;
 					} else {
 						//we will wrap the whole content in blockquote since this is definitely intended as a quote
@@ -50,7 +48,7 @@ if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 		</div>
 
 		<span class="separator separator-wrapper--accent">
-			<?php get_template_part("assets/svg/separator-simple"); ?>
+			<?php get_template_part( 'assets/svg/separator-simple' ); ?>
 		</span>
 
 	</div><!-- .entry-content -->

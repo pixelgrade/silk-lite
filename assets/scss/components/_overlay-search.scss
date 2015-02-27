@@ -10,6 +10,8 @@
 	background: white;
 	border-left: 1px solid $borders;
 
+	text-align: center;
+
 	@include query-below($desk) {
 		@include rhythm(padding-right, 8);
 		@include rhythm(padding-left, 8);
@@ -25,6 +27,17 @@
 	.search-form > label {
 		position: static;
 		height: auto;
+
+		&:after {
+			content: "";
+			
+			height: 12px;
+			width: 194px;
+			display: block;
+			margin: rem(20px) auto;
+			
+			background: url('assets/svg/separator-simple-inversed.svg') $secondary center center;
+		}
 	}
 
 	.search-form, .search-field {
@@ -41,6 +54,8 @@
 	}
 
 	.search-field {
+		@extend %alpha;
+
 		border: 0;
 		padding: 0;
 		@include fs(100px);
@@ -48,9 +63,12 @@
 		outline: 0;
 		height: auto;
 		-webkit-appearance: none;
+		text-align: center;
 
 		@include placeholder {
-			color: $black;
+			opacity: .5;
+			color: $accent;
+			font-style: italic;
 		}
 
 		@at-root {
@@ -62,10 +80,6 @@
 
 		@include query-below($lap) {
 			@include fs(32px);
-		}
-
-		@include query-below($lap) {
-			@include rhythm(margin-bottom, 1);
 		}
 	}
 }
@@ -109,7 +123,7 @@
 	@include query-below($desk) {
 		@include rhythm(width, 3);
 		@include rhythm(height, 3);
-		@include rhythm(top, 4);
+		@include rhythm(top, 6);
 		@include rhythm(right, 3);
 	}
 }

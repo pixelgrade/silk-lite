@@ -22,15 +22,13 @@
 	ul {
 		@extend .nav;
 
-		margin: em(30px) 0;
-
-		@include fs(11px);
+		@include fs(13px);
 		text-transform: uppercase;
 		text-align: center;
 
 		li {
 			a{
-				padding: em(10px);
+				padding: em(32px) em(10px);
 			}
 
 			&:after {

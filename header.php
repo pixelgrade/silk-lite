@@ -18,7 +18,10 @@
 </head>
 
 <body <?php body_class(); ?>>
-<div id="page" class="hfeed site">
+
+<?php $classes = ( ! get_theme_mod( 'silk_single_column_archives', false ) ) ? 'archive-layout--masonry' : 'archive-layout--column'; ?>
+
+<div id="page" class="hfeed site <?php echo esc_attr( $classes ); ?>">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'silk_txtd' ); ?></a>
 
 	<?php get_template_part( 'templates/top-header-bar' ); ?>
@@ -44,7 +47,7 @@
 				</svg>
 			</a>
 
-			<?php echo ( is_front_page() && is_home() ) ? '</h1>' : '</div>' ?>
+			<?php echo ( is_front_page() && is_home() ) ? '</h1>' : '</div>'; ?>
 
 			<?php
 			$description = get_bloginfo( 'description', 'display' );
@@ -60,8 +63,8 @@
 
 		<nav id="site-navigation" class="main-navigation" role="navigation">
 
-			<button class="menu-toggle  js-nav-trigger" aria-controls="menu-primary-menu" aria-expanded="false">
-				<span class="button-icon"><i class="fa fa-bars"></i></span>
+			<button class="button-toggle  js-nav-trigger" aria-controls="menu-primary-menu" aria-expanded="false">
+				<span class="nav-icon icon--lines"></span>
 				<span class="button-text  assistive-text"><?php _e( 'Primary Menu', 'silk_txtd' ); ?></span>
 			</button>
 			<?php wp_nav_menu( array(
@@ -72,6 +75,10 @@
 				'walker'         => new Silk_Walker_Primary_Mega_Menu(),
 				'fallback_cb'    => 'silk_custom_wp_page_menu',
 			) ); ?>
+			<a href="#search" class="button-toggle  button-toggle--search">
+				<span class="button-icon"><i class="fa fa-search"></i></span>
+				<span class="button-text  assistive-text"><?php _e( 'Search', 'silk_txtd' ); ?></span>
+			</a>
 
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->

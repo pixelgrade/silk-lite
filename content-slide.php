@@ -29,15 +29,10 @@
 
 	<div class="color-secondary" role="presentation">
 		<div class="divider  wide">
-
-			<?php get_template_part("assets/svg/separator-not-simple-svg"); ?>
-
+			<?php get_template_part( 'assets/svg/separator-not-simple-svg' ); ?>
 		</div>
-
 		<div class="divider  narrow">
-
-			<?php get_template_part("assets/svg/separator-simple"); ?>
-
+			<?php get_template_part( 'assets/svg/separator-simple' ); ?>
 		</div>
 	</div>
 	

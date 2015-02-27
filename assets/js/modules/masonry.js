@@ -116,7 +116,7 @@ $.fn.addHoverAnimation = function() {
 	    }
 
 	    // bind the tweens we created above to mouse events accordingly, through hoverIntent to avoid flickering
-	    $obj.hoverIntent({
+	    $obj.find('.entry__wrapper').hoverIntent({
 	        over: animateHoverIn,
 	        out: animateHoverOut,
 	        timeout: 0,

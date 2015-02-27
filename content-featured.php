@@ -7,9 +7,9 @@
 
 $featured = silk_get_featured_posts();
 
-if ( empty( $featured ) )
+if ( empty( $featured ) ) {
 	return;
-?>
+} ?>
 
 <div id="featured-content" class="flexslider">
 	<ul class="featured-posts slides" id="featured-slides">
@@ -38,7 +38,7 @@ if ( empty( $featured ) )
 
 				<div class="flag__body  one-half">
 
-					<?php get_template_part("content-slide"); ?>
+					<?php get_template_part( 'content-slide' ); ?>
 
 				</div><!-- .flag__body.one-half -->
 

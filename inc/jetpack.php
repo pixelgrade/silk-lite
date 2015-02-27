@@ -43,6 +43,8 @@ function silk_jetpack_setup() {
 		)
 	) );
 
+	add_image_size( 'silk-site-logo', 1000, 500, false );
+
 	/**
 	 * Add theme support for Jetpack responsive videos
 	 */
@@ -64,11 +66,13 @@ function silk_has_featured_posts( $minimum = 1 ) {
 	$minimum = absint( $minimum );
 	$featured_posts = silk_get_featured_posts();
 
-	if ( ! is_array( $featured_posts ) )
+	if ( ! is_array( $featured_posts ) ) {
 		return false;
+	}
 
-	if ( $minimum > count( $featured_posts ) )
+	if ( $minimum > count( $featured_posts ) ) {
 		return false;
+	}
 
 	return true;
 } ?>

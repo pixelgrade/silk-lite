@@ -5,15 +5,10 @@
  * @package Silk
  */
 
-$classes = 'archive__grid  grid';
+$classes = 'archive__grid  grid'; ?>
 
-if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
-	$classes .= '  masonry';
-} else {
-	$classes .= '  single-column';
-} ?>
+<div id="posts" class="<?php echo esc_attr( $classes ); ?>">
 
-<div id="posts" class="<?php echo $classes; ?>">
 <?php
 /* Start the Loop */
 while ( have_posts() ) : the_post(); ?>
@@ -29,12 +24,12 @@ while ( have_posts() ) : the_post(); ?>
 
 <?php
 //only display the load more button when Infinite Scroll is active
-$is_infinite = class_exists( 'Jetpack') && Jetpack::is_module_active( 'infinite-scroll' );
+$is_infinite = class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'infinite-scroll' );
 if ( true === $is_infinite ) : ?>
 
 	<div id="infinite-handle">
 		<span class="handle__icon">
-			<?php get_template_part("assets/svg/clepsydra"); ?>
+			<?php get_template_part( 'assets/svg/clepsydra' ); ?>
 		</span>
 		<span class="handle__text"><?php _e( 'View More Articles', 'silk_txtd' ); ?></span>
 	</div>

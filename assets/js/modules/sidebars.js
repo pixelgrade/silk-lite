@@ -5,7 +5,9 @@ var fixedSidebars = (function() {
 	var $smallSidebar       = $('#jp-post-flair'),
 		smallSidebarPinned  = false,
 		smallSidebarPadding = 100,
+		smallSidebarPinTop	= $('.top-bar.fixed').outerHeight() + smallSidebarPadding,
 		smallSidebarOffset,
+		smallSidebarBottom,
 		$sidebar        	= $('.sidebar--main'),
 		$main           	= $('.site-main'),
 		mainHeight      	= $main.outerHeight(),
@@ -41,8 +43,49 @@ var fixedSidebars = (function() {
 				styleWidgets();
 			}
 		}
+		wrapJetpackAfterContent();
 		refresh();
 		initialized = true;
+	},
+
+	/**
+	* Wrap Jetpack's related posts and
+	* Sharedaddy sharing into one div
+	* to make a left sidebar on single posts
+	*/
+	wrapJetpackAfterContent = function() {
+		// check if we are on single post and the wrap has not been done already by Jetpack
+		// (it happens when the theme is activated on a wordpress.com installation)
+
+		if ( $('#jp-post-flair').length != 0 )
+			$('body').addClass('has--jetpack-sidebar');
+
+		if( $('body').hasClass('single-post') && $('#jp-post-flair').length == 0 ) {
+
+			var $jpSharing = $('.sharedaddy.sd-sharing-enabled');
+			var $jpLikes = $('.sharedaddy.sd-like');
+			var $jpRelatedPosts = $('#jp-relatedposts');
+
+			if ( $jpSharing.length || $jpLikes.length || $jpRelatedPosts.length ) {
+
+				$('body').addClass('has--jetpack-sidebar');
+
+				var $jpWrapper = $('<div/>', { id: 'jp-post-flair' });
+				$jpWrapper.appendTo($('.entry-content'));
+
+				if( $jpSharing.length ) {
+					$jpSharing.appendTo($jpWrapper);
+				}
+
+				if( $jpLikes.length ) {
+					$jpLikes.appendTo($jpWrapper);
+				}
+
+				if( $jpRelatedPosts.length ) {
+					$jpRelatedPosts.appendTo($jpWrapper);
+				}
+			}
+		}
 	},
 
 
@@ -105,15 +148,21 @@ var fixedSidebars = (function() {
 	 				// $widget.removeClass('focused');
 	 				$widget.css('max-height', newHeight);
 
-	 				setTimeout(function() {
-	 					refresh();
-	 					update();
-	 				}, 600);
+	 				delayUpdate();
 	 			});
 	 		}
 
+			delayUpdate();
+
 	 	});
 
+	},
+
+	delayUpdate = function() {
+		setTimeout(function() {
+			refresh();
+			update();
+		}, 600);
 	},
 
 	/**
@@ -130,12 +179,8 @@ var fixedSidebars = (function() {
 		sidebarBottom = sidebarHeight + sidebarOffset.top + sidebarPadding;
 		mainBottom    = mainHeight + sidebarOffset.top + sidebarPadding;
 
-		if (mainOffset.top != sidebarOffset.top || animating) {
-			return;
-		}
-
 		/* adjust right sidebar positioning if needed */
-		if ( sidebarHeight < mainHeight ) {
+		if (mainOffset.top == sidebarOffset.top && sidebarHeight < mainHeight) {
 
 			// pin sidebar
 			if ( windowBottom > sidebarBottom && !sidebarPinned ) {
@@ -167,42 +212,46 @@ var fixedSidebars = (function() {
 
 			if ( windowBottom >= documentHeight ) {
 				$sidebar.css('top', mainBottom - sidebarPadding - sidebarHeight - documentHeight + windowHeight);
-			}	
-
+			}
+			
 		}
 
 		/* adjust left sidebar positioning if needed */
-		if ( ! $smallSidebar.length ) {
-			return;
-		}   
+		if ( $smallSidebar.length ) {
+			
+		 	if ( smallSidebarOffset.top - smallSidebarPinTop < latestKnownScrollY && ! smallSidebarPinned ) {
+				$smallSidebar.css({  
+					position: 'fixed',
+					top: smallSidebarPinTop,
+					left: smallSidebarOffset.left
+				});
+				smallSidebarPinned = true;
+			}   
 
-	 	if ( smallSidebarOffset.top - smallSidebarPadding < latestKnownScrollY && ! smallSidebarPinned ) {
-			$smallSidebar.css({  
-				position: 'fixed',
-				top: smallSidebarPadding,
-				left: smallSidebarOffset.left
-			});
-			smallSidebarPinned = true;
-		}   
+		 	if ( smallSidebarOffset.top - smallSidebarPinTop >= latestKnownScrollY && smallSidebarPinned ) {
+				$smallSidebar.css({
+					position: '',
+					top: '',
+					left: ''
+				});
+				smallSidebarPinned = false;
+			}
 
-	 	if ( smallSidebarOffset.top - smallSidebarPadding >= latestKnownScrollY && smallSidebarPinned ) {
-			$smallSidebar.css({
-				position: '',
-				top: '',
-				left: ''
-			});
-			smallSidebarPinned = false;
+			if ( windowBottom > mainBottom && windowBottom < documentHeight ) {
+				$smallSidebar.css('top', mainBottom - smallSidebarPadding - smallSidebarHeight - latestKnownScrollY);
+			}
+
 		}
 
 	},
 
 	refresh = function() {
 
-		if ($main.length) {
+		if ( $main.length ) {
 			mainOffset = $main.offset();
 		}
 
-		if ($sidebar.length) {
+		if ( $sidebar.length ) {
 
 			var positionValue 	= $sidebar.css('position'),
 				topValue 		= $sidebar.css('top'),
@@ -230,10 +279,34 @@ var fixedSidebars = (function() {
 			sidebarPinned = pinnedValue;
 		}
 
-		if ($smallSidebar.length) {
+		if ( $smallSidebar.length ) {
+
+			$smallSidebar.find('.sd-sharing-enabled, .sd-like, .jp-relatedposts-post').show().each(function(i, obj) {
+				var $box 		= $(obj),
+					boxOffset	= $box.offset(),
+					boxHeight	= $box.outerHeight(),
+					boxBottom	= boxOffset.top + boxHeight - latestKnownScrollY;
+
+				if ( smallSidebarPinTop + boxBottom > windowHeight + smallSidebarPadding ) {
+					$box.hide();
+				} else {
+					$box.show();
+				}
+			});
+
+			var $relatedposts = $('.jp-relatedposts');
+
+			if ( $relatedposts.length ) {
+				$relatedposts.show();
+				if ( ! $relatedposts.find('.jp-relatedposts-post:visible').length ) {
+					$relatedposts.hide();
+				}
+			}
+
 			smallSidebarPinned = false;
 			smallSidebarOffset = $smallSidebar.offset();
 			smallSidebarHeight = $smallSidebar.outerHeight();
+			smallSidebarBottom = smallSidebarOffset.top + smallSidebarHeight;
 		}
 
 	};

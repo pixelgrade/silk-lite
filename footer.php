@@ -12,7 +12,7 @@
 
 	<footer id="colophon" class="site-footer">
 
-		<?php get_sidebar('footer'); ?>
+		<?php get_sidebar( 'footer' ); ?>
 
 		<div class="footer-navigation" role="navigation">
 			<?php
@@ -34,14 +34,14 @@
 		</div><!-- .site-info -->
 
 		<div class="back-to-top-wrapper">
-			<a href="#top" class="back-to-top-button"><?php get_template_part('assets/svg/back-to-top'); ?></a>
+			<a href="#top" class="back-to-top-button"><?php get_template_part( 'assets/svg/back-to-top' ); ?></a>
 		</div>
 
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 
 <div class="svg-templates  hidden">
-	<?php get_template_part("assets/svg/slider-arrow-svg") ?>
+	<?php get_template_part( 'assets/svg/slider-arrow-svg' ); ?>
 </div>
 
 <?php if ( ! get_theme_mod( 'silk_disable_search_in_toolbar', false ) ) : ?>

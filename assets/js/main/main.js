@@ -15,7 +15,6 @@ $window.load(function() {
   browserSize();
   navigation.init();
   slider.init();
-  wrapJetpackAfterContent();
   fixedSidebars.update();
   svgLogo.init();
   animator.animate();
@@ -23,7 +22,6 @@ $window.load(function() {
   infinityHandler();
 
   if (latestKnownScrollY) $window.trigger('scroll');
-
 });
 
 /* ====== ON RESIZE ====== */

@@ -1,12 +1,13 @@
 .site-header {
     @extend .align-center;
+    margin-bottom: rem(30px);
 }
 
 .site-branding {
 	max-width: 100%;
     line-height: 1;
     display: inline-block;
-    margin: rem(90px) auto rem(30px);
+    margin: rem(90px) auto 0;
 
     @include query-above($lap) {
         margin: rem(80px) auto;
@@ -71,6 +72,11 @@
 }
 
 html.svg .site-title {
+
+    > a {
+        display: block;
+    }
+
     span {
         display: none;
     }
