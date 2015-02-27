@@ -278,4 +278,14 @@ require get_template_directory() . '/inc/jetpack.php';
  * Load custom widgets
  */
 require get_template_directory() . '/inc/widgets/popular-posts.php';
-require get_template_directory() . '/inc/widgets/about-me.php'; ?>
+require get_template_directory() . '/inc/widgets/about-me.php';
+
+/**
+ * Load Customify plugin configuration
+ */
+require get_template_directory() . '/inc/customify_config.php';
+
+/**
+ * Load Recommended/Required plugins notification
+ */
+require get_template_directory() . '/inc/required-plugins/required-plugins.php'; ?>
