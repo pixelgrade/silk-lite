@@ -253,7 +253,9 @@ var fixedSidebars = (function() {
 	refresh = function() {
 
 		$sidebar = $('.sidebar--main');
-		$smallSidebar = $('#jp-post-flair')
+		$smallSidebar = $('#jp-post-flair');
+
+		console.log('refresh');
 
 		if ( $main.length ) {
 			mainOffset = $main.offset();
@@ -276,12 +278,13 @@ var fixedSidebars = (function() {
 			sidebarOffset = $sidebar.offset();
 			sidebarHeight = $sidebar.outerHeight();
 			sidebarBottom = sidebarOffset.top + sidebarHeight;
+			leftValue 	  = sidebarOffset.left,
 			mainHeight    = $main.outerHeight();
 
 			$sidebar.css({
 				position: positionValue,
 				top: topValue,
-				left: leftValue
+				left: leftValue 
 			});
 
 			sidebarPinned = pinnedValue;
@@ -289,18 +292,30 @@ var fixedSidebars = (function() {
 
 		if ( $smallSidebar.length ) {
 
+			$smallSidebar.css({
+				position: '',
+				top: '',
+				left: ''
+			});
+
+			smallSidebarPinned = false;
+			smallSidebarOffset = $smallSidebar.offset();
+
 			$smallSidebar.find('.sd-sharing-enabled, .sd-like, .jp-relatedposts-post').show().each(function(i, obj) {
 				var $box 		= $(obj),
 					boxOffset	= $box.offset(),
 					boxHeight	= $box.outerHeight(),
-					boxBottom	= boxOffset.top + boxHeight - latestKnownScrollY;
+					boxBottom	= boxOffset.top - smallSidebarOffset.top + boxHeight;
 
-				if ( smallSidebarPinTop + boxBottom > windowHeight + smallSidebarPadding ) {
+				console.log(boxBottom);
+
+				if ( boxBottom + smallSidebarPadding + smallSidebarPinTop > windowHeight ) {
 					$box.hide();
 				} else {
 					$box.show();
 				}
 			});
+
 
 			var $relatedposts = $('.jp-relatedposts');
 
@@ -311,8 +326,6 @@ var fixedSidebars = (function() {
 				}
 			}
 
-			smallSidebarPinned = false;
-			smallSidebarOffset = $smallSidebar.offset();
 			smallSidebarHeight = $smallSidebar.outerHeight();
 			smallSidebarBottom = smallSidebarOffset.top + smallSidebarHeight;
 		}

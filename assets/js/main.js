@@ -1616,7 +1616,10 @@ if (!Date.now) Date.now = function () {
         
         refresh = function () {
 
-        $sidebar = $('#jp-post-flair');
+        $sidebar = $('.sidebar--main');
+        $smallSidebar = $('#jp-post-flair');
+
+        console.log('refresh');
 
         if ($main.length) {
           mainOffset = $main.offset();
@@ -1639,7 +1642,7 @@ if (!Date.now) Date.now = function () {
           sidebarOffset = $sidebar.offset();
           sidebarHeight = $sidebar.outerHeight();
           sidebarBottom = sidebarOffset.top + sidebarHeight;
-          mainHeight = $main.outerHeight();
+          leftValue = sidebarOffset.left, mainHeight = $main.outerHeight();
 
           $sidebar.css({
             position: positionValue,
@@ -1652,18 +1655,30 @@ if (!Date.now) Date.now = function () {
 
         if ($smallSidebar.length) {
 
+          $smallSidebar.css({
+            position: '',
+            top: '',
+            left: ''
+          });
+
+          smallSidebarPinned = false;
+          smallSidebarOffset = $smallSidebar.offset();
+
           $smallSidebar.find('.sd-sharing-enabled, .sd-like, .jp-relatedposts-post').show().each(function (i, obj) {
             var $box = $(obj),
                 boxOffset = $box.offset(),
                 boxHeight = $box.outerHeight(),
-                boxBottom = boxOffset.top + boxHeight - latestKnownScrollY;
+                boxBottom = boxOffset.top - smallSidebarOffset.top + boxHeight;
 
-            if (smallSidebarPinTop + boxBottom > windowHeight + smallSidebarPadding) {
+            console.log(boxBottom);
+
+            if (boxBottom + smallSidebarPadding + smallSidebarPinTop > windowHeight) {
               $box.hide();
             } else {
               $box.show();
             }
           });
+
 
           var $relatedposts = $('.jp-relatedposts');
 
@@ -1674,8 +1689,6 @@ if (!Date.now) Date.now = function () {
             }
           }
 
-          smallSidebarPinned = false;
-          smallSidebarOffset = $smallSidebar.offset();
           smallSidebarHeight = $smallSidebar.outerHeight();
           smallSidebarBottom = smallSidebarOffset.top + smallSidebarHeight;
         }
