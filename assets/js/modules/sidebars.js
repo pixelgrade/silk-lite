@@ -32,6 +32,12 @@ var fixedSidebars = (function() {
 	 */
 	init = function() {
 
+		if (initialized) {
+			return;
+		}
+
+		console.log('init');
+
 		if ($sidebar.length) {
 			sidebarOffset 	= $sidebar.offset();
 			sidebarTop 		= sidebarOffset.top;
@@ -135,10 +141,7 @@ var fixedSidebars = (function() {
 	 					'max-height': widgetHeight
 	 				});
 
-	 				setTimeout(function() {
-	 					refresh();
-	 					update();
-	 				}, 600);
+	 				delayUpdate();
 	 			});
 
 	 			$widget.on('mouseleave', function() {
@@ -169,6 +172,8 @@ var fixedSidebars = (function() {
 	 * update position of the two sidebars depending on scroll position
 	 */
 	update = function() {
+
+		console.log('update');
 
 		if ( !initialized ) {
 			init();
@@ -246,6 +251,9 @@ var fixedSidebars = (function() {
 	},
 
 	refresh = function() {
+
+		$sidebar = $('.sidebar--main');
+		$smallSidebar = $('#jp-post-flair')
 
 		if ( $main.length ) {
 			mainOffset = $main.offset();

@@ -1385,6 +1385,12 @@ if (!Date.now) Date.now = function () {
         
         init = function () {
 
+        if (initialized) {
+          return;
+        }
+
+        console.log('init');
+
         if ($sidebar.length) {
           sidebarOffset = $sidebar.offset();
           sidebarTop = sidebarOffset.top;
@@ -1494,10 +1500,7 @@ if (!Date.now) Date.now = function () {
                 'max-height': widgetHeight
               });
 
-              setTimeout(function () {
-                refresh();
-                update();
-              }, 600);
+              delayUpdate();
             });
 
             $widget.on('mouseleave', function () {
@@ -1532,6 +1535,8 @@ if (!Date.now) Date.now = function () {
          */
         
         update = function () {
+
+        console.log('update');
 
         if (!initialized) {
           init();
@@ -1610,6 +1615,8 @@ if (!Date.now) Date.now = function () {
         
         
         refresh = function () {
+
+        $sidebar = $('#jp-post-flair');
 
         if ($main.length) {
           mainOffset = $main.offset();
@@ -1930,6 +1937,7 @@ if (!Date.now) Date.now = function () {
   }
 
   function update() {
+    fixedSidebars.init();
     fixedSidebars.update();
     navigation.toggleTopBar();
     svgLogo.update();
