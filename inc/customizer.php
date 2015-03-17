@@ -60,7 +60,7 @@ function silk_customize_register ( $wp_customize ) {
 	) );
 
 	$wp_customize->add_control( 'silk_disable_search_in_toolbar', array(
-		'label'             => __( 'Hide search button in toolbar', 'silk_txtd' ),
+		'label'             => __( 'Hide search button in top header bar', 'silk_txtd' ),
 		'section'           => 'silk_theme_options',
 		'type'              => 'checkbox',
 	) );
