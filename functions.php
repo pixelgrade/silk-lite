@@ -196,8 +196,8 @@ function silk_scripts_styles() {
 	//Enqueue ImagesLoaded plugin
 	wp_enqueue_script( 'silk-imagesloaded', get_stylesheet_directory_uri() . '/assets/js/imagesloaded.js', array(), '3.1.8', true );
 
-	//Enqueue HoverIntent plugin
-	wp_enqueue_script( 'silk-hoverintent', get_stylesheet_directory_uri() . '/assets/js/jquery.hoverIntent.js', array( 'jquery' ), '1.8.0', true );
+	//Enqueue HoverIntent
+	wp_enqueue_script( 'hoverIntent' );
 
 	//Enqueue Velocity.js plugin
 	wp_enqueue_script( 'silk-velocity', get_stylesheet_directory_uri() . '/assets/js/velocity.js', array(), '1.1.0', true );
@@ -206,8 +206,8 @@ function silk_scripts_styles() {
 	wp_enqueue_script( 'silk-scripts', get_stylesheet_directory_uri() . '/assets/js/main.js', array(
 		'jquery',
 		'masonry',
+		'hoverIntent',
 		'silk-imagesloaded',
-		'silk-hoverintent',
 		'silk-velocity',
 	), '1.0.0', true );
 
