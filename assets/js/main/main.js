@@ -52,6 +52,7 @@ function requestTick() {
 }
 
 function update() {
+  fixedSidebars.init();
   fixedSidebars.update();
   navigation.toggleTopBar();
   svgLogo.update();
