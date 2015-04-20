@@ -672,3 +672,7 @@ div#jp-relatedposts div.jp-relatedposts-items div.jp-relatedposts-post:hover .jp
 div#jp-relatedposts#jp-relatedposts div.jp-relatedposts-items.jp-relatedposts-items-minimal p {
 	@include rhythm(margin-bottom, 2);
 }
+
+.wp-playlist-item a {
+	text-shadow: none !important;
+}
