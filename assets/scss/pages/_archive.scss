@@ -172,8 +172,6 @@
 			position: relative;
 		}
 
-
-
 		.content-quote {
 			position: relative;
 			z-index: 2;
@@ -195,8 +193,24 @@
 				left: 0;
 				z-index: -1;
 
-				background: $accent;
+				background-color: $accent;
 				opacity: 0.8;
+			}
+		}
+
+		.entry-content[style] {
+			& {
+				background-position: center center;
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
+			.content-quote > div {
+				background-color: rgba(255, 255, 255, 0.7);
+			}
+
+			.content-quote:after{
+				background: none;
 			}
 		}
 
@@ -204,7 +218,7 @@
 			position: relative;
 		}
 
-		.entry-footer123 {
+		.entry-footer {
 			@include rhythm(margin-top, 1);
 		}
 
@@ -280,7 +294,8 @@
 		}
 
 		cite {
-			margin-top: rem(39px); 
+			margin-top: rem(39px);
+			background: none;
 		}
 
 		a {
