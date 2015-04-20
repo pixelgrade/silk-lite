@@ -743,7 +743,7 @@ if ( ! class_exists( 'Silk_Walker_Page_Primary' ) && class_exists( 'Walker_Page'
 			$css_id = $css_id ? ' id="' . esc_attr( $css_id ) . '"' : '';
 
 			if ( '' === $page->post_title ) {
-				$page->post_title = sprintf( __( '#%d (no title)' ), $page->ID );
+				$page->post_title = sprintf( __( '#%d (no title)', 'silk' ), $page->ID );
 			}
 
 			$args['link_before'] = empty( $args['link_before'] ) ? '' : $args['link_before'];
@@ -843,7 +843,7 @@ if ( ! function_exists( 'silk_custom_wp_page_menu' ) ) :
 		// Show Home in the menu
 		if ( ! empty($args['show_home']) ) {
 			if ( true === $args['show_home'] || '1' === $args['show_home'] || 1 === $args['show_home'] ) {
-				$text = __( 'Home' );
+				$text = __( 'Home', 'silk' );
 			} else {
 				$text = $args['show_home'];
 			}
