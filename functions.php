@@ -175,9 +175,6 @@ function silk_scripts_styles() {
 	//Default Fonts
 	wp_enqueue_style( 'silk-fonts', silk_fonts_url(), array(), null );
 
-	//Enqueue jQuery
-	wp_enqueue_script( 'jquery' );
-
 	//Enqueue Masonry
 	wp_enqueue_script( 'jquery-masonry' );
 
