@@ -95,7 +95,7 @@ if ( ! class_exists( 'Silk_About_Me_Widget' ) ) :
 			echo '</div><!-- .silk-about-me-widget-container -->' . "\n";
 
 			echo $args['after_widget'] . "\n";
-			
+
 		}
 
 		/**

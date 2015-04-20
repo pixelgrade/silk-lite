@@ -179,7 +179,7 @@ function silk_scripts_styles() {
 	wp_enqueue_script( 'jquery' );
 
 	//Enqueue Masonry
-	wp_enqueue_script( 'masonry' );
+	wp_enqueue_script( 'jquery-masonry' );
 
 	//only include the slider script if we have at least 2 featured posts
 	if ( silk_has_featured_posts( 2 ) ) {
@@ -205,7 +205,7 @@ function silk_scripts_styles() {
 	//Enqueue Silk Custom Scripts
 	wp_enqueue_script( 'silk-scripts', get_stylesheet_directory_uri() . '/assets/js/main.js', array(
 		'jquery',
-		'masonry',
+		'jquery-masonry',
 		'hoverIntent',
 		'imagesLoaded',
 		'velocity',
