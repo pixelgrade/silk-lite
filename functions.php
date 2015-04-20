@@ -167,7 +167,7 @@ add_action( 'widgets_init', 'silk_widgets_init' );
 function silk_scripts_styles() {
 
 	//FontAwesome Stylesheet
-	wp_enqueue_style( 'font-awesome', get_stylesheet_directory_uri() . '/assets/css/font-awesome.css', array(), '4.2.0' );
+	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.css', array(), '4.2.0' );
 
 	//Main Stylesheet
 	wp_enqueue_style( 'silk-style', get_stylesheet_uri(), array( 'font-awesome' ) );
@@ -184,7 +184,7 @@ function silk_scripts_styles() {
 	//only include the slider script if we have at least 2 featured posts
 	if ( silk_has_featured_posts( 2 ) ) {
 		//Enqueue FlexSlider plugin
-		wp_enqueue_script( 'flexslider', get_stylesheet_directory_uri() . '/assets/js/jquery.flexslider.js', array( 'jquery' ), '2.2.2', true );
+		wp_enqueue_script( 'flexslider', get_template_directory_uri() . '/assets/js/jquery.flexslider.js', array( 'jquery' ), '2.2.2', true );
 
 		wp_localize_script( 'flexslider', 'silkFeaturedSlider', array(
 			'prevText' => __( 'Previous', 'silk_txtd' ),
@@ -194,16 +194,16 @@ function silk_scripts_styles() {
 	}
 
 	//Enqueue ImagesLoaded plugin
-	wp_enqueue_script( 'imagesLoaded', get_stylesheet_directory_uri() . '/assets/js/imagesloaded.js', array(), '3.1.8', true );
+	wp_enqueue_script( 'imagesLoaded', get_template_directory_uri() . '/assets/js/imagesloaded.js', array(), '3.1.8', true );
 
 	//Enqueue HoverIntent
 	wp_enqueue_script( 'hoverIntent' );
 
 	//Enqueue Velocity.js plugin
-	wp_enqueue_script( 'velocity', get_stylesheet_directory_uri() . '/assets/js/velocity.js', array(), '1.1.0', true );
+	wp_enqueue_script( 'velocity', get_template_directory_uri() . '/assets/js/velocity.js', array(), '1.1.0', true );
 
 	//Enqueue Silk Custom Scripts
-	wp_enqueue_script( 'silk-scripts', get_stylesheet_directory_uri() . '/assets/js/main.js', array(
+	wp_enqueue_script( 'silk-scripts', get_template_directory_uri() . '/assets/js/main.js', array(
 		'jquery',
 		'jquery-masonry',
 		'hoverIntent',

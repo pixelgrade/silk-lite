@@ -129,6 +129,6 @@ function silk_sanitize_site_title_outline( $outline ) {
  * JavaScript that handles the Customizer AJAX logic
  */
 function silk_customizer_js() {
-	wp_enqueue_script( 'silk_customizer', get_stylesheet_directory_uri() . '/assets/js/customizer.js', array( 'customize-preview' ), '1.0.3', true );
+	wp_enqueue_script( 'silk_customizer', get_template_directory_uri() . '/assets/js/customizer.js', array( 'customize-preview' ), '1.0.3', true );
 }
 add_action( 'customize_preview_init', 'silk_customizer_js' ); ?>
