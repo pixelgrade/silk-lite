@@ -55,7 +55,7 @@ if ( ! class_exists( 'Silk_About_Me_Widget' ) ) :
 			) );
 
 			$args['before_widget'] = substr( $args['before_widget'], 0, -1 ) . ' tabindex="0">';
-			echo $args['before_widget'] . PHP_EOL;
+			echo $args['before_widget'] . "\n";
 
 			// The Background Image - empty string in case of error
 			$thumb = wp_get_attachment_image_src( $instance['image_id'], 'silk-masonry-image' );
@@ -64,20 +64,20 @@ if ( ! class_exists( 'Silk_About_Me_Widget' ) ) :
 			} else {
 				$thumb = '';
 			}
-			echo '<div class="silk-about-me-widget__image" style="background-image: url('. $thumb .');"></div>' . PHP_EOL;
+			echo '<div class="silk-about-me-widget__image" style="background-image: url('. $thumb .');"></div>' . "\n";
 
-			echo '<div class="silk-about-me-widget__container">' . PHP_EOL;
+			echo '<div class="silk-about-me-widget__container">' . "\n";
 
 
 			// The widget title
 			$title = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 			if ( ! empty( $title ) ) {
-				echo $args['before_title'] . $title . $args['after_title'] . PHP_EOL;
+				echo $args['before_title'] . $title . $args['after_title'] . "\n";
 			}
 
 			// The author's name
 			if ( ! empty( $instance['name'] ) ) {
-				echo '<div class="silk-about-me-widget__name">' . $instance['name'] . '</div>' . PHP_EOL;
+				echo '<div class="silk-about-me-widget__name">' . $instance['name'] . '</div>' . "\n";
 			}
 
 			echo '<span class="separator separator-wrapper--white">';
@@ -90,11 +90,11 @@ if ( ! class_exists( 'Silk_About_Me_Widget' ) ) :
 			} else {
 				$text = $instance['text'];
 			}
-			echo '<div class="silk-about-me__text">' . $text . '</div>' . PHP_EOL;
+			echo '<div class="silk-about-me__text">' . $text . '</div>' . "\n";
 
-			echo '</div><!-- .silk-about-me-widget-container -->' . PHP_EOL;
+			echo '</div><!-- .silk-about-me-widget-container -->' . "\n";
 
-			echo $args['after_widget'] . PHP_EOL;
+			echo $args['after_widget'] . "\n";
 		}
 
 		/**
