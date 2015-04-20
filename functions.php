@@ -42,7 +42,7 @@ if ( ! function_exists( 'silk_setup' ) ) :
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
 		 */
-		load_theme_textdomain( 'silk_txtd', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'silk', get_template_directory() . '/languages' );
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
@@ -84,11 +84,11 @@ if ( ! function_exists( 'silk_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in three locations.
 		register_nav_menus( array(
-			'primary'          => __( 'Primary Menu', 'silk_txtd' ),
-			'top_header_left'  => __( 'Top Header Left Menu', 'silk_txtd' ),
-			'top_header_right' => __( 'Top Header Right Menu', 'silk_txtd' ),
-			'hamburger' 	   => __( 'Hamburger Menu', 'silk_txtd' ),
-			'footer'           => __( 'Footer Menu', 'silk_txtd' ),
+			'primary'          => __( 'Primary Menu', 'silk' ),
+			'top_header_left'  => __( 'Top Header Left Menu', 'silk' ),
+			'top_header_right' => __( 'Top Header Right Menu', 'silk' ),
+			'hamburger' 	   => __( 'Hamburger Menu', 'silk' ),
+			'footer'           => __( 'Footer Menu', 'silk' ),
 		) );
 
 		/*
@@ -139,9 +139,9 @@ add_action( 'after_setup_theme', 'silk_setup' );
  */
 function silk_widgets_init() {
 	register_sidebar( array(
-		'name'          => __( 'Sidebar', 'silk_txtd' ),
+		'name'          => __( 'Sidebar', 'silk' ),
 		'id'            => 'sidebar-1',
-		'description'   => __( 'Add widgets here to appear in your main sidebar.', 'silk_txtd' ),
+		'description'   => __( 'Add widgets here to appear in your main sidebar.', 'silk' ),
 		'before_widget' => '<div class="grid__item"><aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside></div>',
 		'before_title'  => '<h3 class="widget-title">',
@@ -149,9 +149,9 @@ function silk_widgets_init() {
 	) );
 
 	register_sidebar( array(
-		'name'          => __( 'Footer', 'silk_txtd' ),
+		'name'          => __( 'Footer', 'silk' ),
 		'id'            => 'footer-1',
-		'description'   => __( 'Add widgets here to appear in your footer sidebar.', 'silk_txtd' ),
+		'description'   => __( 'Add widgets here to appear in your footer sidebar.', 'silk' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h3 class="widget-title">',
@@ -184,8 +184,8 @@ function silk_scripts_styles() {
 		wp_enqueue_script( 'flexslider', get_template_directory_uri() . '/assets/js/jquery.flexslider.js', array( 'jquery' ), '2.2.2', true );
 
 		wp_localize_script( 'flexslider', 'silkFeaturedSlider', array(
-			'prevText' => __( 'Previous', 'silk_txtd' ),
-			'nextText' => __( 'Next', 'silk_txtd' ),
+			'prevText' => __( 'Previous', 'silk' ),
+			'nextText' => __( 'Next', 'silk' ),
 		) );
 
 	}
@@ -237,8 +237,8 @@ function silk_wp_enqueue_media() {
 		'SilkAboutMeWidget',
 		array(
 			'l10n' => array(
-				'frameTitle'      => __( 'Choose a Background Image', 'silk_txtd' ),
-				'frameUpdateText' => __( 'Update Background Image', 'silk_txtd' ),
+				'frameTitle'      => __( 'Choose a Background Image', 'silk' ),
+				'frameUpdateText' => __( 'Update Background Image', 'silk' ),
 			),
 		)
 	);

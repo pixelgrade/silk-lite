@@ -32,7 +32,7 @@ if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 					<?php
 					/* translators: %s: Name of current post */
 					$content = get_the_content( sprintf(
-						__( 'Continue reading %s', 'silk_txtd' ),
+						__( 'Continue reading %s', 'silk' ),
 						the_title( '<span class="screen-reader-text">', '</span>', false )
 					) );
 

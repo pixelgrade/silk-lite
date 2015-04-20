@@ -15,11 +15,11 @@ function silk_add_customify_options( $options ) {
 	 */
 	$options['sections'] = array(
 		'colors_section' => array(
-			'title'    => __( 'Colors', 'silk_txtd' ),
+			'title'    => __( 'Colors', 'silk' ),
 			'options' => array(
 				'accent_color'   => array(
 					'type'      => 'color',
-					'label'     => __( 'Accent Color', 'silk_txtd' ),
+					'label'     => __( 'Accent Color', 'silk' ),
 					'live' => true,
 					'default'   => '#ffeb00',
 					'css'  => array(
@@ -74,7 +74,7 @@ function silk_add_customify_options( $options ) {
 				),
 				'headings_color' => array(
 					'type'      => 'color',
-					'label'     => __( 'Headings Color', 'silk_txtd' ),
+					'label'     => __( 'Headings Color', 'silk' ),
 					'live' => true,
 					'default'   => '#171617',
 					'css'  => array(
@@ -86,7 +86,7 @@ function silk_add_customify_options( $options ) {
 				),
 				'body_color'     => array(
 					'type'      => 'color',
-					'label'     => __( 'Body Color', 'silk_txtd' ),
+					'label'     => __( 'Body Color', 'silk' ),
 					'live' => true,
 					'default'   => '#3d3e40',
 					'css'  => array(
@@ -99,7 +99,7 @@ function silk_add_customify_options( $options ) {
 
 				'border_color'	=> array(
 					'type'      => 'color',
-					'label'     => __( 'Border Color', 'silk_txtd' ),
+					'label'     => __( 'Border Color', 'silk' ),
 					'live' => true,
 					'default'   => '#171617',
 					'css'  => array(
@@ -124,11 +124,11 @@ function silk_add_customify_options( $options ) {
 		 */
 
 		'typography_section' => array(
-			'title'    => __( 'Fonts', 'silk_txtd' ),
+			'title'    => __( 'Fonts', 'silk' ),
 			'options' => array(
 				'headings_font' => array(
 					'type'     => 'typography',
-					'label'    => __( 'Headings', 'silk_txtd' ),
+					'label'    => __( 'Headings', 'silk' ),
 					'default'  => 'Playfair Display", serif',
 					'selector' => '.dropcap,  .single .entry-content:before,  .page .entry-content:before,
 									.site-title, h1, h2, h3, h4, h5, h6,
@@ -161,7 +161,7 @@ function silk_add_customify_options( $options ) {
 				),
 				'body_font'     => array(
 					'type'    => 'typography',
-					'label'   => __( 'Body Text', 'silk_txtd' ),
+					'label'   => __( 'Body Text', 'silk' ),
 					'default' => '"Droid Serif", serif',
 					'selector' => 'html body',
 					'load_all_weights' => true,

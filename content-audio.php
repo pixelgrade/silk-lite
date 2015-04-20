@@ -8,7 +8,7 @@
 //get the media objects from the content and bring up only the first one
 /* translators: %s: Name of current post */
 $content = apply_filters( 'the_content', get_the_content( sprintf(
-	__( 'Continue reading %s', 'silk_txtd' ),
+	__( 'Continue reading %s', 'silk' ),
 	the_title( '<span class="screen-reader-text">', '</span>', false )
 ) ) );
 $media   = get_media_embedded_in_content( $content );
@@ -45,11 +45,11 @@ if ( ! empty( $media ) ) {
 			echo $content;
 
 			wp_link_pages( array(
-				'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'silk_txtd' ),
+				'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'silk' ),
 				'after'  => '</span></div>',
 				'link_before' => '<span>',
 				'link_after'  => '</span>',
-				'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'silk_txtd' ) . ' </span>%',
+				'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'silk' ) . ' </span>%',
 				'separator'   => '<span class="screen-reader-text">, </span>',
 			) );
 		} ?>

@@ -45,7 +45,7 @@ if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 		if ( $has_more ) {
 			/* translators: %s: Name of current post */
 			the_content( sprintf(
-				__( 'Continue reading %s', 'silk_txtd' ),
+				__( 'Continue reading %s', 'silk' ),
 				the_title( '<span class="screen-reader-text">', '</span>', false )
 			) );
 		} else {
@@ -54,11 +54,11 @@ if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 
 		<?php
 		wp_link_pages( array(
-			'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'silk_txtd' ),
+			'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'silk' ),
 			'after'  => '</span></div>',
 			'link_before' => '<span>',
 			'link_after'  => '</span>',
-			'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'silk_txtd' ) . ' </span>%',
+			'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'silk' ) . ' </span>%',
 			'separator'   => '<span class="screen-reader-text">, </span>',
 		) );
 		?>

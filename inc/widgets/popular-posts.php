@@ -39,13 +39,13 @@ if ( ! class_exists('Silk_Popular_Posts_Widget') ) :
 		function __construct() {
 			parent::__construct(
 				'silk-popular-posts',
-				apply_filters( 'silk_widget_name', __( 'Silk Popular Posts', 'silk_txtd' ) ),
+				apply_filters( 'silk_widget_name', __( 'Silk Popular Posts', 'silk' ) ),
 				array(
-					'description' => __( 'Shows your most viewed posts.', 'silk_txtd' ),
+					'description' => __( 'Shows your most viewed posts.', 'silk' ),
 				)
 			);
 
-			$this->default_title = __( 'Popular Posts', 'silk_txtd' );
+			$this->default_title = __( 'Popular Posts', 'silk' );
 		}
 
 		function form( $instance ) {
@@ -62,16 +62,16 @@ if ( ! class_exists('Silk_Popular_Posts_Widget') ) :
 			?>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title:', 'silk_txtd' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title:', 'silk' ); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'count' ); ?>"><?php esc_html_e( 'Maximum number of posts to show (no more than 10):', 'silk_txtd' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'count' ); ?>"><?php esc_html_e( 'Maximum number of posts to show (no more than 10):', 'silk' ); ?></label>
 			<input id="<?php echo $this->get_field_id( 'count' ); ?>" name="<?php echo $this->get_field_name( 'count' ); ?>" type="number" value="<?php echo (int) $count; ?>" min="1" max="10" />
 		</p>
 
-		<p><?php esc_html_e( 'Popular Posts by views are calculated from 24-48 hours of stats. They take a while to change.', 'silk_txtd' ); ?></p>
+		<p><?php esc_html_e( 'Popular Posts by views are calculated from 24-48 hours of stats. They take a while to change.', 'silk' ); ?></p>
 
 		<?php
 		}
@@ -125,7 +125,7 @@ if ( ! class_exists('Silk_Popular_Posts_Widget') ) :
 			if ( ! $posts ) {
 				if ( current_user_can( 'edit_theme_options' ) ) {
 					echo '<p>' . sprintf(
-						__( 'There are no posts to display. <a href="%s">Want more traffic?</a>', 'silk_txtd' ),
+						__( 'There are no posts to display. <a href="%s">Want more traffic?</a>', 'silk' ),
 						'http://en.support.wordpress.com/getting-more-site-traffic/'
 					) . '</p>';
 				}

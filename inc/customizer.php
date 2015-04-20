@@ -21,14 +21,14 @@ function silk_customize_register ( $wp_customize ) {
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 
 	// Rename the label to "Display Site Title & Tagline" in order to make this option clearer.
-	$wp_customize->get_control( 'display_header_text' )->label = __( 'Display Site Title &amp; Tagline', 'silk_txtd' );
+	$wp_customize->get_control( 'display_header_text' )->label = __( 'Display Site Title &amp; Tagline', 'silk' );
 
 	/*
 	 * Add custom settings
 	 */
 
 	$wp_customize->add_section( 'silk_theme_options', array(
-		'title'             => __( 'Theme', 'silk_txtd' ),
+		'title'             => __( 'Theme', 'silk' ),
 		'priority'          => 30,
 	) );
 
@@ -38,7 +38,7 @@ function silk_customize_register ( $wp_customize ) {
 	) );
 
 	$wp_customize->add_control( 'silk_single_column_archives', array(
-		'label'             => __( 'Display single column posts on front page and archives.', 'silk_txtd' ),
+		'label'             => __( 'Display single column posts on front page and archives.', 'silk' ),
 		'section'           => 'silk_theme_options',
 		'type'              => 'checkbox',
 	) );
@@ -49,7 +49,7 @@ function silk_customize_register ( $wp_customize ) {
 	) );
 
 	$wp_customize->add_control( 'silk_single_featured_image', array(
-		'label'             => __( 'Display the featured image on single posts.', 'silk_txtd' ),
+		'label'             => __( 'Display the featured image on single posts.', 'silk' ),
 		'section'           => 'silk_theme_options',
 		'type'              => 'checkbox',
 	) );
@@ -60,7 +60,7 @@ function silk_customize_register ( $wp_customize ) {
 	) );
 
 	$wp_customize->add_control( 'silk_disable_search_in_toolbar', array(
-		'label'             => __( 'Hide search button in top header bar', 'silk_txtd' ),
+		'label'             => __( 'Hide search button in top header bar', 'silk' ),
 		'section'           => 'silk_theme_options',
 		'type'              => 'checkbox',
 	) );
@@ -72,15 +72,15 @@ function silk_customize_register ( $wp_customize ) {
 	) );
 
 	$wp_customize->add_control( 'silk_site_title_outline', array(
-		'label'   => __( 'Site Title Outline', 'silk_txtd' ),
+		'label'   => __( 'Site Title Outline', 'silk' ),
 		'section' => 'silk_theme_options',
 		'type'    => 'select',
 		'choices' => array(
-			'0' => __( '0', 'silk_txtd' ),
-			'1.2' => __( '-1', 'silk_txtd' ),
-			'3' => __( '-2', 'silk_txtd' ),
-			'5' => __( '-3', 'silk_txtd' ),
-			'10' => __( '-4', 'silk_txtd' ),
+			'0' => __( '0', 'silk' ),
+			'1.2' => __( '-1', 'silk' ),
+			'3' => __( '-2', 'silk' ),
+			'5' => __( '-3', 'silk' ),
+			'10' => __( '-4', 'silk' ),
 		),
 	) );
 
@@ -90,7 +90,7 @@ function silk_customize_register ( $wp_customize ) {
 	) );
 
 	$wp_customize->add_control( 'silk_sticky_menus', array(
-		'label'             => __( 'Show sticky menus on scroll.', 'silk_txtd' ),
+		'label'             => __( 'Show sticky menus on scroll.', 'silk' ),
 		'section'           => 'silk_theme_options',
 		'type'              => 'checkbox',
 	) );

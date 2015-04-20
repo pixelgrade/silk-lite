@@ -33,11 +33,11 @@
 		the_content();
 
 		wp_link_pages( array(
-			'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'silk_txtd' ),
+			'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'silk' ),
 			'after'  => '</span></div>',
 			'link_before' => '<span>',
 			'link_after'  => '</span>',
-			'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'silk_txtd' ) . ' </span>%',
+			'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'silk' ) . ' </span>%',
 			'separator'   => '<span class="screen-reader-text">, </span>',
 		) );
 		?>
@@ -50,7 +50,7 @@
 				<?php get_template_part( 'assets/svg/separator-simple' ); ?>
 			</span>
 
-			<?php edit_post_link( __( 'Edit', 'silk_txtd' ), '<span class="edit-link">', '</span>' ); ?>
+			<?php edit_post_link( __( 'Edit', 'silk' ), '<span class="edit-link">', '</span>' ); ?>
 
 		<?php endif; ?>
 	</footer><!-- .entry-footer -->

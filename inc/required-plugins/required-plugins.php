@@ -36,7 +36,7 @@ function wpgrade_register_required_plugins() {
 	);
 
 	$config = array(
-		'domain'           => 'silk_txtd', // Text domain - likely want to be the same as your theme.
+		'domain'           => 'silk', // Text domain - likely want to be the same as your theme.
 		'default_path'     => '', // Default absolute path to pre-packaged plugins
 		'parent_menu_slug' => 'themes.php', // Default parent menu slug
 		'parent_url_slug'  => 'themes.php', // Default parent URL slug
@@ -45,32 +45,32 @@ function wpgrade_register_required_plugins() {
 		'is_automatic'     => false, // Automatically activate plugins after installation or not
 		'message'          => '', // Message to output right before the plugins table
 		'strings'          => array(
-			'page_title'                      => __( 'Install Required Plugins', 'silk_txtd' ),
-			'menu_title'                      => __( 'Install Plugins', 'silk_txtd' ),
-			'installing'                      => __( 'Installing Plugin: %s', 'silk_txtd' ),
+			'page_title'                      => __( 'Install Required Plugins', 'silk' ),
+			'menu_title'                      => __( 'Install Plugins', 'silk' ),
+			'installing'                      => __( 'Installing Plugin: %s', 'silk' ),
 			// %1$s = plugin name
-			'oops'                            => __( 'Something went wrong with the plugin API.', 'silk_txtd' ),
-			'notice_can_install_required'     => _n_noop( 'This theme requires the following plugin: %1$s.', 'This theme requires the following plugins: %1$s.', 'silk_txtd' ),
+			'oops'                            => __( 'Something went wrong with the plugin API.', 'silk' ),
+			'notice_can_install_required'     => _n_noop( 'This theme requires the following plugin: %1$s.', 'This theme requires the following plugins: %1$s.', 'silk' ),
 			// %1$s = plugin name(s)
-			'notice_can_install_recommended'  => _n_noop( 'This theme recommends the following plugin: %1$s.', 'This theme recommends the following plugins: %1$s.', 'silk_txtd' ),
+			'notice_can_install_recommended'  => _n_noop( 'This theme recommends the following plugin: %1$s.', 'This theme recommends the following plugins: %1$s.', 'silk' ),
 			// %1$s = plugin name(s)
-			'notice_cannot_install'           => _n_noop( 'Sorry, but you do not have the correct permissions to install the %s plugin. Contact the administrator of this site for help on getting the plugin installed.', 'Sorry, but you do not have the correct permissions to install the %s plugins. Contact the administrator of this site for help on getting the plugins installed.', 'silk_txtd' ),
+			'notice_cannot_install'           => _n_noop( 'Sorry, but you do not have the correct permissions to install the %s plugin. Contact the administrator of this site for help on getting the plugin installed.', 'Sorry, but you do not have the correct permissions to install the %s plugins. Contact the administrator of this site for help on getting the plugins installed.', 'silk' ),
 			// %1$s = plugin name(s)
-			'notice_can_activate_required'    => _n_noop( 'The following required plugin is currently inactive: %1$s.', 'The following required plugins are currently inactive: %1$s.', 'silk_txtd' ),
+			'notice_can_activate_required'    => _n_noop( 'The following required plugin is currently inactive: %1$s.', 'The following required plugins are currently inactive: %1$s.', 'silk' ),
 			// %1$s = plugin name(s)
-			'notice_can_activate_recommended' => _n_noop( 'The following recommended plugin is currently inactive: %1$s.', 'The following recommended plugins are currently inactive: %1$s.', 'silk_txtd' ),
+			'notice_can_activate_recommended' => _n_noop( 'The following recommended plugin is currently inactive: %1$s.', 'The following recommended plugins are currently inactive: %1$s.', 'silk' ),
 			// %1$s = plugin name(s)
-			'notice_cannot_activate'          => _n_noop( 'Sorry, but you do not have the correct permissions to activate the %s plugin. Contact the administrator of this site for help on getting the plugin activated.', 'Sorry, but you do not have the correct permissions to activate the %s plugins. Contact the administrator of this site for help on getting the plugins activated.', 'silk_txtd' ),
+			'notice_cannot_activate'          => _n_noop( 'Sorry, but you do not have the correct permissions to activate the %s plugin. Contact the administrator of this site for help on getting the plugin activated.', 'Sorry, but you do not have the correct permissions to activate the %s plugins. Contact the administrator of this site for help on getting the plugins activated.', 'silk' ),
 			// %1$s = plugin name(s)
-			'notice_ask_to_update'            => _n_noop( 'The following plugin needs to be updated to its latest version to ensure maximum compatibility with this theme: %1$s.', 'The following plugins need to be updated to their latest version to ensure maximum compatibility with this theme: %1$s.', 'silk_txtd' ),
+			'notice_ask_to_update'            => _n_noop( 'The following plugin needs to be updated to its latest version to ensure maximum compatibility with this theme: %1$s.', 'The following plugins need to be updated to their latest version to ensure maximum compatibility with this theme: %1$s.', 'silk' ),
 			// %1$s = plugin name(s)
-			'notice_cannot_update'            => _n_noop( 'Sorry, but you do not have the correct permissions to update the %s plugin. Contact the administrator of this site for help on getting the plugin updated.', 'Sorry, but you do not have the correct permissions to update the %s plugins. Contact the administrator of this site for help on getting the plugins updated.', 'silk_txtd' ),
+			'notice_cannot_update'            => _n_noop( 'Sorry, but you do not have the correct permissions to update the %s plugin. Contact the administrator of this site for help on getting the plugin updated.', 'Sorry, but you do not have the correct permissions to update the %s plugins. Contact the administrator of this site for help on getting the plugins updated.', 'silk' ),
 			// %1$s = plugin name(s)
-			'install_link'                    => _n_noop( 'Begin installing plugin', 'Begin installing plugins', 'silk_txtd' ),
-			'activate_link'                   => _n_noop( 'Activate installed plugin', 'Activate installed plugins', 'silk_txtd' ),
-			'return'                          => __( 'Return to Required Plugins Installer', 'silk_txtd' ),
-			'plugin_activated'                => __( 'Plugin activated successfully.', 'silk_txtd' ),
-			'complete'                        => __( 'All plugins installed and activated successfully. %s', 'silk_txtd' )
+			'install_link'                    => _n_noop( 'Begin installing plugin', 'Begin installing plugins', 'silk' ),
+			'activate_link'                   => _n_noop( 'Activate installed plugin', 'Activate installed plugins', 'silk' ),
+			'return'                          => __( 'Return to Required Plugins Installer', 'silk' ),
+			'plugin_activated'                => __( 'Plugin activated successfully.', 'silk' ),
+			'complete'                        => __( 'All plugins installed and activated successfully. %s', 'silk' )
 			// %1$s = dashboard link
 		)
 	);

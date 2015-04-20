@@ -77,7 +77,7 @@ if ( version_compare( $GLOBALS['wp_version'], '4.1', '<' ) ) :
 
 		// Add a page number if necessary:
 		if ( ( $paged >= 2 || $page >= 2 ) && ! is_404() ) {
-			$title .= " $sep " . sprintf( __( 'Page %s', 'silk_txtd' ), max( $paged, $page ) );
+			$title .= " $sep " . sprintf( __( 'Page %s', 'silk' ), max( $paged, $page ) );
 		}
 
 		return $title;
@@ -116,7 +116,7 @@ if ( ! function_exists( 'silk_fonts_url' ) ) :
 		* supported by Libre Baskerville, translate this to 'off'. Do not translate
 		* into your own language.
 		*/
-		if ( 'off' !== _x( 'on', 'Libre Baskerville font: on or off', 'silk_txtd' ) ) {
+		if ( 'off' !== _x( 'on', 'Libre Baskerville font: on or off', 'silk' ) ) {
 			$fonts[] = 'Libre Baskerville:400,700,400italic';
 		}
 
@@ -124,7 +124,7 @@ if ( ! function_exists( 'silk_fonts_url' ) ) :
 		* supported by Playfair Display, translate this to 'off'. Do not translate
 		* into your own language.
 		*/
-		if ( 'off' !== _x( 'on', 'Playfair Display font: on or off', 'silk_txtd' ) ) {
+		if ( 'off' !== _x( 'on', 'Playfair Display font: on or off', 'silk' ) ) {
 			$fonts[] = 'Playfair Display:400,700,900,400italic,700italic,900italic';
 		}
 
@@ -132,12 +132,12 @@ if ( ! function_exists( 'silk_fonts_url' ) ) :
 		* supported by Merriweather, translate this to 'off'. Do not translate
 		* into your own language.
 		*/
-		if ( 'off' !== _x( 'on', 'Merriweather font: on or off', 'silk_txtd' ) ) {
+		if ( 'off' !== _x( 'on', 'Merriweather font: on or off', 'silk' ) ) {
 			$fonts[] = 'Merriweather:400italic,400,300,700';
 		}
 
 		/* translators: To add an additional character subset specific to your language, translate this to 'greek', 'cyrillic', 'devanagari' or 'vietnamese'. Do not translate into your own language. */
-		$subset = _x( 'no-subset', 'Add new subset (greek, cyrillic, devanagari, vietnamese)', 'silk_txtd' );
+		$subset = _x( 'no-subset', 'Add new subset (greek, cyrillic, devanagari, vietnamese)', 'silk' );
 
 		if ( 'cyrillic' == $subset ) {
 			$subsets .= ',cyrillic,cyrillic-ext';
@@ -206,12 +206,12 @@ if ( ! function_exists( 'silk_comment' ) ) :
 				<header class="comment__meta comment-author">
 					<?php printf( '<span class="comment__author-name">%s</span>', get_comment_author_link() ) ?>
 					<time class="comment__time" datetime="<?php comment_time( 'c' ); ?>">
-						<a href="<?php echo esc_url( get_comment_link( get_comment_ID() ) ) ?>" class="comment__timestamp"><?php printf( __( 'on %s at %s', 'silk_txtd' ), get_comment_date(), get_comment_time() ); ?> </a>
+						<a href="<?php echo esc_url( get_comment_link( get_comment_ID() ) ) ?>" class="comment__timestamp"><?php printf( __( 'on %s at %s', 'silk' ), get_comment_date(), get_comment_time() ); ?> </a>
 					</time>
 					<div class="comment__links">
 						<?php
 						//we need some space before Edit
-						edit_comment_link( __( 'Edit', 'silk_txtd' ), '  ' );
+						edit_comment_link( __( 'Edit', 'silk' ), '  ' );
 
 						comment_reply_link( array_merge( $args, array(
 							'depth'     => $depth,
@@ -223,7 +223,7 @@ if ( ! function_exists( 'silk_comment' ) ) :
 				<!-- .comment-meta -->
 				<?php if ( '0' == $comment->comment_approved ) : ?>
 					<div class="alert info">
-						<p><?php _e( 'Your comment is awaiting moderation.', 'silk_txtd' ) ?></p>
+						<p><?php _e( 'Your comment is awaiting moderation.', 'silk' ) ?></p>
 					</div>
 				<?php endif; ?>
 				<section class="comment__content comment">
@@ -504,7 +504,7 @@ if ( ! class_exists( 'Silk_Walker_Primary_Mega_Menu' ) && class_exists( 'Walker_
 								'<a href="' . get_permalink() . '"><h2 class="entry-title">' . get_the_title() . '</h2></a>' . "\n" .
 							'</header><!-- .entry-header -->' . "\n" .
 							'<a class="separator  separator--text" role="presentation" href="' . get_permalink() . '">
-								<span>' . __( 'More', 'silk_txtd' ) . '</span>
+								<span>' . __( 'More', 'silk' ) . '</span>
 							</a>' . "\n" .
 						'</article>' . "\n";
 
@@ -914,10 +914,10 @@ add_filter( 'tiny_mce_before_init', 'silk_mce_before_init' );
 function silk_mce_before_init( $settings ) {
 
 	$style_formats = array(
-		array( 'title' => __( 'Intro Text', 'silk_txtd' ), 'selector' => 'p', 'classes' => 'intro' ),
-		array( 'title' => __( 'Dropcap', 'silk_txtd' ), 'inline' => 'span', 'classes' => 'dropcap' ),
-		array( 'title' => __( 'Highlight', 'silk_txtd' ), 'inline' => 'span', 'classes' => 'highlight' ),
-		array( 'title' => __( 'Two Columns', 'silk_txtd' ), 'selector' => 'p', 'classes' => 'twocolumn', 'wrapper' => true ),
+		array( 'title' => __( 'Intro Text', 'silk' ), 'selector' => 'p', 'classes' => 'intro' ),
+		array( 'title' => __( 'Dropcap', 'silk' ), 'inline' => 'span', 'classes' => 'dropcap' ),
+		array( 'title' => __( 'Highlight', 'silk' ), 'inline' => 'span', 'classes' => 'highlight' ),
+		array( 'title' => __( 'Two Columns', 'silk' ), 'selector' => 'p', 'classes' => 'twocolumn', 'wrapper' => true ),
 	);
 
 	$settings['style_formats'] = json_encode( $style_formats );
