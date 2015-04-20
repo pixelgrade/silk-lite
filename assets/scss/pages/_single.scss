@@ -30,6 +30,8 @@
     .entry-title {
         margin-top: 0;
 	    margin-bottom: rem(24px);
+		-ms-word-wrap: break-word;
+		word-wrap: break-word;
 
 	    @include query-above($lap) {
 			font-size: rem(60px);
@@ -47,6 +49,8 @@
     .entry-content {
 		@extend %clearfix;
 		position: relative;
+		-ms-word-wrap: break-word;
+		word-wrap: break-word;
 
 		// making room for the left sidebar (jetpack)
 		@include query-above($lap) {
