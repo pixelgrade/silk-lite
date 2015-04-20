@@ -272,6 +272,11 @@ require get_template_directory() . '/inc/customizer.php';
 require get_template_directory() . '/inc/jetpack.php';
 
 /**
+ * Load the Hybrid Media Grabber class
+ */
+require get_template_directory() . '/inc/hybrid-media-grabber.php';
+
+/**
  * Load custom widgets
  */
 require get_template_directory() . '/inc/widgets/popular-posts.php';

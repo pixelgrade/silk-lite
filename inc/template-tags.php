@@ -554,4 +554,21 @@ if ( ! function_exists( 'silk_get_post_format_link_url' ) ) :
 		return ( $has_url ) ? $has_url : apply_filters( 'the_permalink', get_permalink() );
 	}
 
-endif; ?>
+endif;
+
+/**
+ * Handles the output of the media for audio attachment posts. This should be used within The Loop.
+ *
+ * @return string
+ */
+function silk_audio_attachment() {
+	return hybrid_media_grabber( array( 'type' => 'audio', 'split_media' => true ) );
+}
+/**
+ * Handles the output of the media for video attachment posts. This should be used within The Loop.
+ *
+ * @return string
+ */
+function silk_video_attachment() {
+	return hybrid_media_grabber( array( 'type' => 'video', 'split_media' => true ) );
+} ?>
