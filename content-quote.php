@@ -4,12 +4,7 @@
  *
  * @package Silk
  */
-
-$thumbnail_size = "silk-single-image";
-
-if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
-	$thumbnail_size = '  silk-masonry-image';
-} ?>
+?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
@@ -17,7 +12,7 @@ if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 	//let's see if we have a featured image
 	$post_thumbnail_style = '';
 	if ( has_post_thumbnail() ) {
-		$post_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), $thumbnail_size );
+		$post_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), silk_get_thumbnail_size() );
 		if ( isset( $post_thumbnail[0] ) ) {
 			$post_thumbnail_style = 'style="background-image: url(' . esc_url( $post_thumbnail[0] ) . ');"';
 		}

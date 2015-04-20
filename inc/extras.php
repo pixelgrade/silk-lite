@@ -923,4 +923,13 @@ function silk_mce_before_init( $settings ) {
 	$settings['style_formats'] = json_encode( $style_formats );
 
 	return $settings;
+}
+
+/**
+ * Get the featured image thumb size depending on whether we are using a single column layout or masonry
+ *
+ * @return string
+ */
+function silk_get_thumbnail_size() {
+	return get_theme_mod( 'silk_single_column_archives', false ) ? 'silk-single-image' : 'silk-masonry-image';
 } ?>

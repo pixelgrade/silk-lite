@@ -4,12 +4,7 @@
  *
  * @package Silk
  */
-
-$thumbnail_size = "silk-single-image";
-
-if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
-	$thumbnail_size = '  silk-masonry-image';
-} ?>
+?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
