@@ -21,6 +21,9 @@
 	padding: rhythm(1);
 	margin-bottom: rhythm(1/2);
 
+	-ms-word-wrap: break-word;
+	word-wrap: break-word;
+
 	.site-footer &:last-child {
 		margin-bottom: 0;
 		padding-bottom: 0;

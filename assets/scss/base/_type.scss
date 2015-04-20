@@ -334,3 +334,7 @@ pre {
 		}
 	}
 }
+
+video {
+	@include rhythm(margin-bottom, 1);
+}
