@@ -167,10 +167,10 @@ add_action( 'widgets_init', 'silk_widgets_init' );
 function silk_scripts_styles() {
 
 	//FontAwesome Stylesheet
-	wp_enqueue_style( 'silk-font-awesome-style', get_stylesheet_directory_uri() . '/assets/css/font-awesome.css', array(), '4.2.0' );
+	wp_enqueue_style( 'font-awesome', get_stylesheet_directory_uri() . '/assets/css/font-awesome.css', array(), '4.2.0' );
 
 	//Main Stylesheet
-	wp_enqueue_style( 'silk-style', get_stylesheet_uri(), array( 'silk-font-awesome-style' ) );
+	wp_enqueue_style( 'silk-style', get_stylesheet_uri(), array( 'font-awesome' ) );
 
 	//Default Fonts
 	wp_enqueue_style( 'silk-fonts', silk_fonts_url(), array(), null );
@@ -184,9 +184,9 @@ function silk_scripts_styles() {
 	//only include the slider script if we have at least 2 featured posts
 	if ( silk_has_featured_posts( 2 ) ) {
 		//Enqueue FlexSlider plugin
-		wp_enqueue_script( 'silk-flexslider', get_stylesheet_directory_uri() . '/assets/js/jquery.flexslider.js', array( 'jquery' ), '2.2.2', true );
+		wp_enqueue_script( 'flexslider', get_stylesheet_directory_uri() . '/assets/js/jquery.flexslider.js', array( 'jquery' ), '2.2.2', true );
 
-		wp_localize_script( 'silk-flexslider', 'silkFeaturedSlider', array(
+		wp_localize_script( 'flexslider', 'silkFeaturedSlider', array(
 			'prevText' => __( 'Previous', 'silk_txtd' ),
 			'nextText' => __( 'Next', 'silk_txtd' ),
 		) );
@@ -194,21 +194,21 @@ function silk_scripts_styles() {
 	}
 
 	//Enqueue ImagesLoaded plugin
-	wp_enqueue_script( 'silk-imagesloaded', get_stylesheet_directory_uri() . '/assets/js/imagesloaded.js', array(), '3.1.8', true );
+	wp_enqueue_script( 'imagesLoaded', get_stylesheet_directory_uri() . '/assets/js/imagesloaded.js', array(), '3.1.8', true );
 
 	//Enqueue HoverIntent
 	wp_enqueue_script( 'hoverIntent' );
 
 	//Enqueue Velocity.js plugin
-	wp_enqueue_script( 'silk-velocity', get_stylesheet_directory_uri() . '/assets/js/velocity.js', array(), '1.1.0', true );
+	wp_enqueue_script( 'velocity', get_stylesheet_directory_uri() . '/assets/js/velocity.js', array(), '1.1.0', true );
 
 	//Enqueue Silk Custom Scripts
 	wp_enqueue_script( 'silk-scripts', get_stylesheet_directory_uri() . '/assets/js/main.js', array(
 		'jquery',
 		'masonry',
 		'hoverIntent',
-		'silk-imagesloaded',
-		'silk-velocity',
+		'imagesLoaded',
+		'velocity',
 	), '1.0.0', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
