@@ -1389,8 +1389,6 @@ if (!Date.now) Date.now = function () {
           return;
         }
 
-        console.log('init');
-
         if ($sidebar.length) {
           sidebarOffset = $sidebar.offset();
           sidebarTop = sidebarOffset.top;
@@ -1536,8 +1534,6 @@ if (!Date.now) Date.now = function () {
         
         update = function () {
 
-        console.log('update');
-
         if (!initialized) {
           init();
         }
@@ -1619,8 +1615,6 @@ if (!Date.now) Date.now = function () {
         $sidebar = $('.sidebar--main');
         $smallSidebar = $('#jp-post-flair');
 
-        console.log('refresh');
-
         if ($main.length) {
           mainOffset = $main.offset();
         }
@@ -1669,8 +1663,6 @@ if (!Date.now) Date.now = function () {
                 boxOffset = $box.offset(),
                 boxHeight = $box.outerHeight(),
                 boxBottom = boxOffset.top - smallSidebarOffset.top + boxHeight;
-
-            console.log(boxBottom);
 
             if (boxBottom + smallSidebarPadding + smallSidebarPinTop > windowHeight) {
               $box.hide();
