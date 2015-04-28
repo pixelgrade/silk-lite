@@ -35,7 +35,7 @@ function silk_add_customify_options( $options ) {
 							'options' => array(
 								'accent_color' => '#a33b61',
 								'secondary_color' => '#fcc9b0',
-								'headings_font' => 'PlayFair Display',
+								'headings_font' => 'Playfair Display',
 								'body_font' => 'Merriweather',
 								'nav_font' => 'Open Sans'
 							)
