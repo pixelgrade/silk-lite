@@ -6,7 +6,8 @@
  */
 
 //get the media objects from the content and bring up only the first one
-$media   = silk_audio_attachment(); ?>
+$media = silk_audio_attachment();
+$media = apply_filters('embed_oembed_html', $media ); ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
