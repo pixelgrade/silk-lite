@@ -2,7 +2,7 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Silk 1.0-wpcom\n"
+"Project-Id-Version: Silk 1.0.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/theme/silk\n"
 "POT-Creation-Date: 2015-02-27 11:01:57+00:00\n"
 "MIME-Version: 1.0\n"
