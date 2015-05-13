@@ -6,7 +6,7 @@ Stable tag: 4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Sobe is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc.
+Silk is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc.
 
 == Description ==
 
