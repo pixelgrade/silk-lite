@@ -94,6 +94,18 @@ function silk_customize_register ( $wp_customize ) {
 		'section'           => 'silk_theme_options',
 		'type'              => 'checkbox',
 	) );
+
+	$wp_customize->add_setting( 'silk_footer_copyright', array(
+		'default'           => '',
+		'sanitize_callback' => 'wp_kses_post',
+	) );
+
+	$wp_customize->add_control( 'silk_footer_copyright', array(
+		'label'             => __( 'Additional Copyright Text', 'silk' ),
+		'description' => '',
+		'section'           => 'silk_theme_options',
+		'type'              => 'text',
+	) );
 }
 add_action( 'customize_register', 'silk_customize_register' );
 
