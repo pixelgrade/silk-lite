@@ -42,7 +42,7 @@ if ( ! function_exists( 'silk_setup' ) ) :
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
 		 */
-		load_theme_textdomain( 'silk_txtd', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'silk', get_template_directory() . '/languages' );
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
@@ -84,11 +84,11 @@ if ( ! function_exists( 'silk_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in three locations.
 		register_nav_menus( array(
-			'primary'          => __( 'Primary Menu', 'silk_txtd' ),
-			'top_header_left'  => __( 'Top Header Left Menu', 'silk_txtd' ),
-			'top_header_right' => __( 'Top Header Right Menu', 'silk_txtd' ),
-			'hamburger' 	   => __( 'Hamburger Menu', 'silk_txtd' ),
-			'footer'           => __( 'Footer Menu', 'silk_txtd' ),
+			'primary'          => __( 'Primary Menu', 'silk' ),
+			'top_header_left'  => __( 'Top Header Left Menu', 'silk' ),
+			'top_header_right' => __( 'Top Header Right Menu', 'silk' ),
+			'hamburger' 	   => __( 'Hamburger Menu', 'silk' ),
+			'footer'           => __( 'Footer Menu', 'silk' ),
 		) );
 
 		/*
@@ -139,9 +139,9 @@ add_action( 'after_setup_theme', 'silk_setup' );
  */
 function silk_widgets_init() {
 	register_sidebar( array(
-		'name'          => __( 'Sidebar', 'silk_txtd' ),
+		'name'          => __( 'Sidebar', 'silk' ),
 		'id'            => 'sidebar-1',
-		'description'   => __( 'Add widgets here to appear in your main sidebar.', 'silk_txtd' ),
+		'description'   => __( 'Add widgets here to appear in your main sidebar.', 'silk' ),
 		'before_widget' => '<div class="grid__item"><aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside></div>',
 		'before_title'  => '<h3 class="widget-title">',
@@ -149,9 +149,9 @@ function silk_widgets_init() {
 	) );
 
 	register_sidebar( array(
-		'name'          => __( 'Footer', 'silk_txtd' ),
+		'name'          => __( 'Footer', 'silk' ),
 		'id'            => 'footer-1',
-		'description'   => __( 'Add widgets here to appear in your footer sidebar.', 'silk_txtd' ),
+		'description'   => __( 'Add widgets here to appear in your footer sidebar.', 'silk' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h3 class="widget-title">',
@@ -167,49 +167,49 @@ add_action( 'widgets_init', 'silk_widgets_init' );
 function silk_scripts_styles() {
 
 	//FontAwesome Stylesheet
-	wp_enqueue_style( 'silk-font-awesome-style', get_stylesheet_directory_uri() . '/assets/css/font-awesome.css', array(), '4.2.0' );
+	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.css', array(), '4.2.0' );
 
 	//Main Stylesheet
-	wp_enqueue_style( 'silk-style', get_stylesheet_uri(), array( 'silk-font-awesome-style' ) );
+	wp_enqueue_style( 'silk-style', get_stylesheet_uri(), array( 'font-awesome' ) );
 
 	//Default Fonts
 	wp_enqueue_style( 'silk-fonts', silk_fonts_url(), array(), null );
 
-	//Enqueue jQuery
-	wp_enqueue_script( 'jquery' );
-
 	//Enqueue Masonry
-	wp_enqueue_script( 'masonry' );
+	wp_enqueue_script( 'jquery-masonry' );
 
 	//only include the slider script if we have at least 2 featured posts
 	if ( silk_has_featured_posts( 2 ) ) {
 		//Enqueue FlexSlider plugin
-		wp_enqueue_script( 'silk-flexslider', get_stylesheet_directory_uri() . '/assets/js/jquery.flexslider.js', array( 'jquery' ), '2.2.2', true );
+		wp_enqueue_script( 'flexslider', get_template_directory_uri() . '/assets/js/jquery.flexslider.js', array( 'jquery' ), '2.2.2', true );
 
-		wp_localize_script( 'silk-flexslider', 'silkFeaturedSlider', array(
-			'prevText' => __( 'Previous', 'silk_txtd' ),
-			'nextText' => __( 'Next', 'silk_txtd' ),
+		wp_localize_script( 'flexslider', 'silkFeaturedSlider', array(
+			'prevText' => __( 'Previous', 'silk' ),
+			'nextText' => __( 'Next', 'silk' ),
 		) );
 
 	}
 
 	//Enqueue ImagesLoaded plugin
-	wp_enqueue_script( 'silk-imagesloaded', get_stylesheet_directory_uri() . '/assets/js/imagesloaded.js', array(), '3.1.8', true );
+	wp_enqueue_script( 'imagesLoaded', get_template_directory_uri() . '/assets/js/imagesloaded.js', array(), '3.1.8', true );
 
 	//Enqueue HoverIntent
 	wp_enqueue_script( 'hoverIntent' );
 
 	//Enqueue Velocity.js plugin
-	wp_enqueue_script( 'silk-velocity', get_stylesheet_directory_uri() . '/assets/js/velocity.js', array(), '1.1.0', true );
+	wp_enqueue_script( 'velocity', get_template_directory_uri() . '/assets/js/velocity.js', array(), '1.1.0', true );
 
 	//Enqueue Silk Custom Scripts
-	wp_enqueue_script( 'silk-scripts', get_stylesheet_directory_uri() . '/assets/js/main.js', array(
+	wp_enqueue_script( 'silk-scripts', get_template_directory_uri() . '/assets/js/main.js', array(
 		'jquery',
-		'masonry',
+		'jquery-masonry',
 		'hoverIntent',
-		'silk-imagesloaded',
-		'silk-velocity',
+		'imagesLoaded',
+		'velocity',
 	), '1.0.0', true );
+
+	$js_url = ( is_ssl() ) ? 'https://v0.wordpress.com/js/videopress.js' : 'http://s0.videopress.com/js/videopress.js';
+	wp_enqueue_script( 'videopress', $js_url, array( 'jquery', 'swfobject' ), '1.09' );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -240,8 +240,8 @@ function silk_wp_enqueue_media() {
 		'SilkAboutMeWidget',
 		array(
 			'l10n' => array(
-				'frameTitle'      => __( 'Choose a Background Image', 'silk_txtd' ),
-				'frameUpdateText' => __( 'Update Background Image', 'silk_txtd' ),
+				'frameTitle'      => __( 'Choose a Background Image', 'silk' ),
+				'frameUpdateText' => __( 'Update Background Image', 'silk' ),
 			),
 		)
 	);
@@ -273,6 +273,11 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
+/**
+ * Load the Hybrid Media Grabber class
+ */
+require get_template_directory() . '/inc/hybrid-media-grabber.php';
 
 /**
  * Load custom widgets

@@ -30,6 +30,8 @@
     .entry-title {
         margin-top: 0;
 	    margin-bottom: rem(24px);
+		-ms-word-wrap: break-word;
+		word-wrap: break-word;
 
 	    @include query-above($lap) {
 			font-size: rem(60px);
@@ -47,6 +49,8 @@
     .entry-content {
 		@extend %clearfix;
 		position: relative;
+		-ms-word-wrap: break-word;
+		word-wrap: break-word;
 
 		// making room for the left sidebar (jetpack)
 		@include query-above($lap) {
@@ -130,6 +134,7 @@
 		margin-left: 1.5em;
 
 		li {
+			margin-top: 0.75em;
 			margin-bottom: 0.75em;
 		}
 	}
@@ -666,4 +671,8 @@ div#jp-relatedposts div.jp-relatedposts-items div.jp-relatedposts-post:hover .jp
 
 div#jp-relatedposts#jp-relatedposts div.jp-relatedposts-items.jp-relatedposts-items-minimal p {
 	@include rhythm(margin-bottom, 2);
+}
+
+.wp-playlist-item a {
+	text-shadow: none !important;
 }

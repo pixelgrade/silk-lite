@@ -4,12 +4,7 @@
  *
  * @package Silk
  */
-
-$thumbnail_size = "silk-single-image";
-
-if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
-	$thumbnail_size = '  silk-masonry-image';
-} ?>
+?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
@@ -31,7 +26,7 @@ if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 
 		<?php if ( has_post_thumbnail() ) { ?>
 			<a href="<?php the_permalink(); ?>" class="entry-featured  entry-thumbnail">
-				<?php the_post_thumbnail( $thumbnail_size ); ?>
+				<?php the_post_thumbnail( silk_get_thumbnail_size() ); ?>
 				<div class="entry-image-border"></div>
 			</a>
 		<?php } else { // we need to search in the content for an image - maybe we find one

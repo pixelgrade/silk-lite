@@ -6,15 +6,8 @@
  */
 
 //get the media objects from the content and bring up only the first one
-/* translators: %s: Name of current post */
-$content = apply_filters( 'the_content', get_the_content( sprintf(
-	__( 'Continue reading %s', 'silk_txtd' ),
-	the_title( '<span class="screen-reader-text">', '</span>', false )
-) ) );
-$media   = get_media_embedded_in_content( $content );
-if ( ! empty( $media ) ) {
-	$content = str_replace( $media[0], '', $content );
-} ?>
+$media = silk_video_attachment();
+$media = apply_filters('embed_oembed_html', $media ); ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
@@ -36,23 +29,33 @@ if ( ! empty( $media ) ) {
 
 		<?php if ( ! empty( $media ) ) { ?>
 			<div class="entry-media">
-				<?php echo apply_filters( 'embed_oembed_html', $media[0] ); ?>
+				<?php echo $media; ?>
 			</div><!-- .entry-media -->
 		<?php
 		}
 
-		if ( $content ) {
-			echo $content;
+		global $post;
+		// Check the content for the more text
+		$has_more = strpos( $post->post_content, '<!--more' );
 
-			wp_link_pages( array(
-				'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'silk_txtd' ),
-				'after'  => '</span></div>',
-				'link_before' => '<span>',
-				'link_after'  => '</span>',
-				'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'silk_txtd' ) . ' </span>%',
-				'separator'   => '<span class="screen-reader-text">, </span>',
+		if ( $has_more ) {
+			/* translators: %s: Name of current post */
+			the_content( sprintf(
+				__( 'Continue reading %s', 'silk' ),
+				the_title( '<span class="screen-reader-text">', '</span>', false )
 			) );
-		} ?>
+		} else {
+			the_excerpt();
+		}
+
+		wp_link_pages( array(
+			'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'silk' ),
+			'after'  => '</span></div>',
+			'link_before' => '<span>',
+			'link_after'  => '</span>',
+			'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'silk' ) . ' </span>%',
+			'separator'   => '<span class="screen-reader-text">, </span>',
+		) ); ?>
 
 		<span class="separator separator-wrapper--accent">
 			<?php get_template_part( 'assets/svg/separator-simple' ); ?>

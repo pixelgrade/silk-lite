@@ -2,9 +2,9 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Silk 1.0-wpcom\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/support/theme/silk\n"
-"POT-Creation-Date: 2015-02-27 11:01:57+00:00\n"
+"Project-Id-Version: Silk 1.0.0\n"
+"Report-Msgid-Bugs-To: https://help.pixelgrade.com\n"
+"POT-Creation-Date: 2015-05-27 08:10:22+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,7 +17,7 @@ msgid "Oops! That page can&rsquo;t be found."
 msgstr ""
 
 #: 404.php:19
-msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search."
 msgstr ""
 
 #: comments.php:28
@@ -52,20 +52,20 @@ msgstr ""
 
 #. translators: %s: Name of current post
 
-#: content-aside.php:27 content-audio.php:11 content-gallery.php:48
-#: content-quote.php:35 content-video.php:11 content.php:48
+#: content-aside.php:27 content-audio.php:44 content-gallery.php:43
+#: content-quote.php:30 content-video.php:44 content.php:43
 msgid "Continue reading %s"
 msgstr ""
 
-#: content-aside.php:33 content-attachment.php:36 content-audio.php:48
-#: content-gallery.php:57 content-page.php:20 content-single.php:44
-#: content-video.php:48 content.php:57
+#: content-aside.php:33 content-attachment.php:36 content-audio.php:52
+#: content-gallery.php:52 content-page.php:20 content-single.php:44
+#: content-video.php:52 content.php:52
 msgid "Pages:"
 msgstr ""
 
-#: content-aside.php:37 content-attachment.php:40 content-audio.php:52
-#: content-gallery.php:61 content-page.php:24 content-single.php:48
-#: content-video.php:52 content.php:61
+#: content-aside.php:37 content-attachment.php:40 content-audio.php:56
+#: content-gallery.php:56 content-page.php:24 content-single.php:48
+#: content-video.php:56 content.php:56
 msgid "Page"
 msgstr ""
 
@@ -93,19 +93,23 @@ msgstr ""
 msgid "Footer navigation"
 msgstr ""
 
-#: footer.php:31
-msgid "http://wordpress.org/"
+#: footer.php:39
+msgid "by"
 msgstr ""
 
-#: footer.php:31
-msgid "Proudly powered by %s"
+#: footer.php:40
+msgid "SILK - A Fashion Magazine WordPress Theme"
 msgstr ""
 
-#: footer.php:33
-msgid "Theme: %1$s by %2$s."
+#: footer.php:40
+msgid "Silk Theme"
 msgstr ""
 
-#: footer.php:54
+#: footer.php:41
+msgid "The PixelGrade Website"
+msgstr ""
+
+#: footer.php:64
 msgid "Begin typing your search above and press return to search. Press Esc to cancel."
 msgstr ""
 
@@ -145,11 +149,11 @@ msgstr ""
 msgid "Add widgets here to appear in your footer sidebar."
 msgstr ""
 
-#: functions.php:190 inc/template-tags.php:92
+#: functions.php:187 inc/template-tags.php:92
 msgid "Previous"
 msgstr ""
 
-#: functions.php:191 inc/template-tags.php:126
+#: functions.php:188 inc/template-tags.php:126
 msgid "Next"
 msgstr ""
 
@@ -173,36 +177,68 @@ msgstr ""
 msgid "Published in"
 msgstr ""
 
-#: inc/customify_config.php:18
-msgid "Colors"
+#: inc/customify_config.php:17
+msgid "Style Presets"
+msgstr ""
+
+#: inc/customify_config.php:21
+msgid "Select a style:"
 msgstr ""
 
 #: inc/customify_config.php:22
+msgid "Conveniently change the design of your site with built-in style presets. Easy as pie."
+msgstr ""
+
+#: inc/customify_config.php:27
+msgid "Silk"
+msgstr ""
+
+#: inc/customify_config.php:46
+msgid "Adler"
+msgstr ""
+
+#: inc/customify_config.php:64
+msgid "Royal"
+msgstr ""
+
+#: inc/customify_config.php:82
+msgid "Queen"
+msgstr ""
+
+#: inc/customify_config.php:100
+msgid "Carrot"
+msgstr ""
+
+#: inc/customify_config.php:117
+msgid "Velvet"
+msgstr ""
+
+#: inc/customify_config.php:139
+msgid "Colors"
+msgstr ""
+
+#: inc/customify_config.php:143
 msgid "Accent Color"
 msgstr ""
 
-#: inc/customify_config.php:77
-msgid "Headings Color"
+#: inc/customify_config.php:249
+msgid "Secondary Accent Color"
 msgstr ""
 
-#: inc/customify_config.php:89
-msgid "Body Color"
-msgstr ""
-
-#: inc/customify_config.php:102
-msgid "Border Color"
-msgstr ""
-
-#: inc/customify_config.php:127
+#: inc/customify_config.php:323
 msgid "Fonts"
 msgstr ""
 
-#: inc/customify_config.php:131
+#: inc/customify_config.php:327
 msgid "Headings"
 msgstr ""
 
-#: inc/customify_config.php:164
+#: inc/customify_config.php:376
 msgid "Body Text"
+msgstr ""
+
+#: inc/customify_config.php:406
+msgid "Navigation Font"
 msgstr ""
 
 #: inc/customizer.php:24
@@ -222,7 +258,7 @@ msgid "Display the featured image on single posts."
 msgstr ""
 
 #: inc/customizer.php:63
-msgid "Hide search button in toolbar"
+msgid "Hide search button in top header bar"
 msgstr ""
 
 #: inc/customizer.php:75
@@ -251,6 +287,10 @@ msgstr ""
 
 #: inc/customizer.php:93
 msgid "Show sticky menus on scroll."
+msgstr ""
+
+#: inc/customizer.php:104
+msgid "Additional Copyright Text"
 msgstr ""
 
 #: inc/extras.php:80
@@ -330,297 +370,272 @@ msgstr ""
 msgid "Two Columns"
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:137
+#: inc/required-plugins/class-tgm-plugin-activation.php:161
 #: inc/required-plugins/required-plugins.php:48
 msgid "Install Required Plugins"
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:138
+#: inc/required-plugins/class-tgm-plugin-activation.php:162
 #: inc/required-plugins/required-plugins.php:49
 msgid "Install Plugins"
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:139
+#: inc/required-plugins/class-tgm-plugin-activation.php:163
 #: inc/required-plugins/required-plugins.php:50
 msgid "Installing Plugin: %s"
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:140
+#: inc/required-plugins/class-tgm-plugin-activation.php:164
 msgid "Something went wrong."
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:141
+#: inc/required-plugins/class-tgm-plugin-activation.php:165
 #: inc/required-plugins/required-plugins.php:53
 msgid "This theme requires the following plugin: %1$s."
 msgid_plural "This theme requires the following plugins: %1$s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:142
+#: inc/required-plugins/class-tgm-plugin-activation.php:166
 #: inc/required-plugins/required-plugins.php:55
 msgid "This theme recommends the following plugin: %1$s."
 msgid_plural "This theme recommends the following plugins: %1$s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:143
-msgid "There is a new update for %1$s."
-msgid_plural "There are several plugins updates available %1$s."
-msgstr[0] ""
-msgstr[1] ""
-
-#: inc/required-plugins/class-tgm-plugin-activation.php:144
-msgid "This theme requires the following plugin to be updated: %1$s."
-msgid_plural "This theme requires the following plugins to be updated: %1$s."
-msgstr[0] ""
-msgstr[1] ""
-
-#: inc/required-plugins/class-tgm-plugin-activation.php:145
+#: inc/required-plugins/class-tgm-plugin-activation.php:167
 #: inc/required-plugins/required-plugins.php:57
 msgid "Sorry, but you do not have the correct permissions to install the %s plugin. Contact the administrator of this site for help on getting the plugin installed."
 msgid_plural "Sorry, but you do not have the correct permissions to install the %s plugins. Contact the administrator of this site for help on getting the plugins installed."
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:146
+#: inc/required-plugins/class-tgm-plugin-activation.php:168
 #: inc/required-plugins/required-plugins.php:59
 msgid "The following required plugin is currently inactive: %1$s."
 msgid_plural "The following required plugins are currently inactive: %1$s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:147
+#: inc/required-plugins/class-tgm-plugin-activation.php:169
 #: inc/required-plugins/required-plugins.php:61
 msgid "The following recommended plugin is currently inactive: %1$s."
 msgid_plural "The following recommended plugins are currently inactive: %1$s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:148
+#: inc/required-plugins/class-tgm-plugin-activation.php:170
 #: inc/required-plugins/required-plugins.php:63
 msgid "Sorry, but you do not have the correct permissions to activate the %s plugin. Contact the administrator of this site for help on getting the plugin activated."
 msgid_plural "Sorry, but you do not have the correct permissions to activate the %s plugins. Contact the administrator of this site for help on getting the plugins activated."
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:149
+#: inc/required-plugins/class-tgm-plugin-activation.php:171
 #: inc/required-plugins/required-plugins.php:65
 msgid "The following plugin needs to be updated to its latest version to ensure maximum compatibility with this theme: %1$s."
 msgid_plural "The following plugins need to be updated to their latest version to ensure maximum compatibility with this theme: %1$s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:150
+#: inc/required-plugins/class-tgm-plugin-activation.php:172
 #: inc/required-plugins/required-plugins.php:67
 msgid "Sorry, but you do not have the correct permissions to update the %s plugin. Contact the administrator of this site for help on getting the plugin updated."
 msgid_plural "Sorry, but you do not have the correct permissions to update the %s plugins. Contact the administrator of this site for help on getting the plugins updated."
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:151
+#: inc/required-plugins/class-tgm-plugin-activation.php:173
 #: inc/required-plugins/required-plugins.php:69
 msgid "Begin installing plugin"
 msgid_plural "Begin installing plugins"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:152
-msgid "Begin updating plugin"
-msgid_plural "Begin updating plugins"
+#: inc/required-plugins/class-tgm-plugin-activation.php:174
+msgid "Begin activating plugin"
+msgid_plural "Begin activating plugins"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:153
-#: inc/required-plugins/required-plugins.php:70
-msgid "Activate installed plugin"
-msgid_plural "Activate installed plugins"
-msgstr[0] ""
-msgstr[1] ""
-
-#: inc/required-plugins/class-tgm-plugin-activation.php:154
-#: inc/required-plugins/class-tgm-plugin-activation.php:478
+#: inc/required-plugins/class-tgm-plugin-activation.php:175
 #: inc/required-plugins/required-plugins.php:71
 msgid "Return to Required Plugins Installer"
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:155
-#: inc/required-plugins/class-tgm-plugin-activation.php:1804
+#: inc/required-plugins/class-tgm-plugin-activation.php:176
+msgid "Return to the dashboard"
+msgstr ""
+
+#: inc/required-plugins/class-tgm-plugin-activation.php:177
+#: inc/required-plugins/class-tgm-plugin-activation.php:1939
 #: inc/required-plugins/required-plugins.php:72
 msgid "Plugin activated successfully."
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:156
+#: inc/required-plugins/class-tgm-plugin-activation.php:178
+#: inc/required-plugins/class-tgm-plugin-activation.php:1630
+msgid "The following plugin was activated successfully:"
+msgstr ""
+
+#: inc/required-plugins/class-tgm-plugin-activation.php:179
 msgid "All plugins installed and activated successfully. %1$s"
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:503
-#: inc/required-plugins/class-tgm-plugin-activation.php:1998
-msgid "Return to the Dashboard"
-msgstr ""
-
-#: inc/required-plugins/class-tgm-plugin-activation.php:529
-msgid "The following plugin was activated successfully: %s."
-msgstr ""
-
-#: inc/required-plugins/class-tgm-plugin-activation.php:681
+#: inc/required-plugins/class-tgm-plugin-activation.php:180
 msgid "Dismiss this notice"
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1058
-msgid "External Link"
+#: inc/required-plugins/class-tgm-plugin-activation.php:531
+#: inc/required-plugins/class-tgm-plugin-activation.php:2156
+msgid "Return to the Dashboard"
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1062
+#: inc/required-plugins/class-tgm-plugin-activation.php:1166
 msgid "Private Repository"
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1064
+#: inc/required-plugins/class-tgm-plugin-activation.php:1169
 msgid "Pre-Packaged"
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1067
+#: inc/required-plugins/class-tgm-plugin-activation.php:1174
 msgid "WordPress Repository"
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1070
+#: inc/required-plugins/class-tgm-plugin-activation.php:1177
 msgid "Required"
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1070
+#: inc/required-plugins/class-tgm-plugin-activation.php:1177
 msgid "Recommended"
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1073
+#: inc/required-plugins/class-tgm-plugin-activation.php:1180
 msgid "Not Installed"
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1075
+#: inc/required-plugins/class-tgm-plugin-activation.php:1182
 msgid "Installed But Not Activated"
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1077
-msgid "Not Updated"
-msgstr ""
-
-#: inc/required-plugins/class-tgm-plugin-activation.php:1079
-msgid "Active"
-msgstr ""
-
-#: inc/required-plugins/class-tgm-plugin-activation.php:1244
-msgid "No plugins to install or activate. <a href=\"%1$s\" title=\"Return to the Dashboard\">Return to the Dashboard</a>"
-msgstr ""
-
-#: inc/required-plugins/class-tgm-plugin-activation.php:1258
-msgid "Plugin"
-msgstr ""
-
-#: inc/required-plugins/class-tgm-plugin-activation.php:1259
-msgid "Source"
-msgstr ""
-
-#: inc/required-plugins/class-tgm-plugin-activation.php:1260
-msgid "Type"
-msgstr ""
-
-#: inc/required-plugins/class-tgm-plugin-activation.php:1261
-msgid "Status"
-msgstr ""
-
-#: inc/required-plugins/class-tgm-plugin-activation.php:1277
+#: inc/required-plugins/class-tgm-plugin-activation.php:1287
+#: inc/required-plugins/class-tgm-plugin-activation.php:1395
 msgid "Install"
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1278
+#: inc/required-plugins/class-tgm-plugin-activation.php:1309
+#: inc/required-plugins/class-tgm-plugin-activation.php:1396
 msgid "Activate"
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1510
-msgid "The following plugin was activated successfully:"
-msgid_plural "The following plugins were activated successfully:"
-msgstr[0] ""
-msgstr[1] ""
+#: inc/required-plugins/class-tgm-plugin-activation.php:1358
+msgid "No plugins to install or activate. <a href=\"%1$s\" title=\"Return to the Dashboard\">Return to the Dashboard</a>"
+msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1788
+#: inc/required-plugins/class-tgm-plugin-activation.php:1374
+msgid "Plugin"
+msgstr ""
+
+#: inc/required-plugins/class-tgm-plugin-activation.php:1375
+msgid "Source"
+msgstr ""
+
+#: inc/required-plugins/class-tgm-plugin-activation.php:1376
+msgid "Type"
+msgstr ""
+
+#: inc/required-plugins/class-tgm-plugin-activation.php:1377
+msgid "Status"
+msgstr ""
+
+#: inc/required-plugins/class-tgm-plugin-activation.php:1922
 msgid "Install package not available."
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1789
+#: inc/required-plugins/class-tgm-plugin-activation.php:1923
 msgid "Downloading install package from <span class=\"code\">%s</span>&#8230;"
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1790
+#: inc/required-plugins/class-tgm-plugin-activation.php:1924
 msgid "Unpacking the package&#8230;"
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1791
+#: inc/required-plugins/class-tgm-plugin-activation.php:1925
 msgid "Installing the plugin&#8230;"
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1792
+#: inc/required-plugins/class-tgm-plugin-activation.php:1926
 msgid "Plugin install failed."
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1793
+#: inc/required-plugins/class-tgm-plugin-activation.php:1927
 msgid "Plugin installed successfully."
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1803
+#: inc/required-plugins/class-tgm-plugin-activation.php:1938
 msgid "Plugin activation failed."
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1902
+#: inc/required-plugins/class-tgm-plugin-activation.php:2052
 msgid "The installation and activation process is starting. This process may take a while on some hosts, so please be patient."
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1903
+#: inc/required-plugins/class-tgm-plugin-activation.php:2053
 msgid "%1$s installed and activated successfully."
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1903
-#: inc/required-plugins/class-tgm-plugin-activation.php:1910
+#: inc/required-plugins/class-tgm-plugin-activation.php:2053
+#: inc/required-plugins/class-tgm-plugin-activation.php:2062
 msgid "Show Details"
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1903
-#: inc/required-plugins/class-tgm-plugin-activation.php:1910
+#: inc/required-plugins/class-tgm-plugin-activation.php:2053
+#: inc/required-plugins/class-tgm-plugin-activation.php:2062
 msgid "Hide Details"
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1904
+#: inc/required-plugins/class-tgm-plugin-activation.php:2054
 msgid "All installations and activations have been completed."
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1905
+#: inc/required-plugins/class-tgm-plugin-activation.php:2055
 msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1907
+#: inc/required-plugins/class-tgm-plugin-activation.php:2059
 msgid "The installation process is starting. This process may take a while on some hosts, so please be patient."
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1908
+#: inc/required-plugins/class-tgm-plugin-activation.php:2060
 msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1909
+#: inc/required-plugins/class-tgm-plugin-activation.php:2061
 msgid "The installation of %1$s failed."
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1910
+#: inc/required-plugins/class-tgm-plugin-activation.php:2062
 msgid "%1$s installed successfully."
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1911
+#: inc/required-plugins/class-tgm-plugin-activation.php:2063
 msgid "All installations have been completed."
 msgstr ""
 
-#: inc/required-plugins/class-tgm-plugin-activation.php:1912
+#: inc/required-plugins/class-tgm-plugin-activation.php:2064
 msgid "Installing Plugin %1$s (%2$d/%3$d)"
 msgstr ""
 
 #: inc/required-plugins/required-plugins.php:52
 msgid "Something went wrong with the plugin API."
 msgstr ""
+
+#: inc/required-plugins/required-plugins.php:70
+msgid "Activate installed plugin"
+msgid_plural "Activate installed plugins"
+msgstr[0] ""
+msgstr[1] ""
 
 #: inc/required-plugins/required-plugins.php:73
 msgid "All plugins installed and activated successfully. %s"
@@ -800,51 +815,51 @@ msgstr ""
 msgid "About Me"
 msgstr ""
 
-#: inc/widgets/about-me.php:154 inc/widgets/popular-posts.php:69
+#: inc/widgets/about-me.php:155 inc/widgets/popular-posts.php:65
 msgid "Title:"
 msgstr ""
 
-#: inc/widgets/about-me.php:159 inc/widgets/about-me.php:167
+#: inc/widgets/about-me.php:160 inc/widgets/about-me.php:168
 msgid "Choose an Background Image"
 msgstr ""
 
-#: inc/widgets/about-me.php:160
+#: inc/widgets/about-me.php:161
 msgid "Update Image"
 msgstr ""
 
-#: inc/widgets/about-me.php:171
+#: inc/widgets/about-me.php:172
 msgid "Your Name:"
 msgstr ""
 
-#: inc/widgets/about-me.php:176
+#: inc/widgets/about-me.php:177
 msgid "About You:"
 msgstr ""
 
-#: inc/widgets/about-me.php:181
+#: inc/widgets/about-me.php:182
 msgid "Automatically add paragraphs"
 msgstr ""
 
-#: inc/widgets/popular-posts.php:46
+#: inc/widgets/popular-posts.php:42
 msgid "Silk Popular Posts"
 msgstr ""
 
-#: inc/widgets/popular-posts.php:48
+#: inc/widgets/popular-posts.php:44
 msgid "Shows your most viewed posts."
 msgstr ""
 
-#: inc/widgets/popular-posts.php:52
+#: inc/widgets/popular-posts.php:48
 msgid "Popular Posts"
 msgstr ""
 
-#: inc/widgets/popular-posts.php:74
+#: inc/widgets/popular-posts.php:70
 msgid "Maximum number of posts to show (no more than 10):"
 msgstr ""
 
-#: inc/widgets/popular-posts.php:78
+#: inc/widgets/popular-posts.php:74
 msgid "Popular Posts by views are calculated from 24-48 hours of stats. They take a while to change."
 msgstr ""
 
-#: inc/widgets/popular-posts.php:132
+#: inc/widgets/popular-posts.php:128
 msgid "There are no posts to display. <a href=\"%s\">Want more traffic?</a>"
 msgstr ""
 
@@ -863,12 +878,9 @@ msgstr ""
 #: templates/top-header-bar.php:30
 msgid "Secondary right navigation"
 msgstr ""
-#. Theme Name of the plugin/theme
-msgid "Silk"
-msgstr ""
 
 #. Theme URI of the plugin/theme
-msgid "http://pixelgrade.com/demos/silk/"
+msgid "https://pixelgrade.com/demos/silk/"
 msgstr ""
 
 #. Description of the plugin/theme
@@ -880,5 +892,5 @@ msgid "PixelGrade"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "http://pixelgrade.com"
+msgid "https://pixelgrade.com/"
 msgstr ""

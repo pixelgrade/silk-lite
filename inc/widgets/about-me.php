@@ -26,14 +26,14 @@ if ( ! class_exists( 'Silk_About_Me_Widget' ) ) :
 		public function __construct() {
 			parent::__construct(
 				'silk-about-me',
-				apply_filters( 'silk_widget_name', esc_html__( 'Silk About Me', 'silk_txtd' ) ),
+				apply_filters( 'silk_widget_name', esc_html__( 'Silk About Me', 'silk' ) ),
 				array(
 					'classname'   => 'widget_silk_about_me',
-					'description' => __( 'Display some info about you with an image background.', 'silk_txtd' )
+					'description' => __( 'Display some info about you with an image background.', 'silk' )
 				)
 			);
 
-			$this->default_title = __( 'About Me', 'silk_txtd' );
+			$this->default_title = __( 'About Me', 'silk' );
 
 			add_action( 'admin_init', array( $this, 'admin_init' ) );
 		}
@@ -55,7 +55,7 @@ if ( ! class_exists( 'Silk_About_Me_Widget' ) ) :
 			) );
 
 			$args['before_widget'] = substr( $args['before_widget'], 0, -1 ) . ' tabindex="0">';
-			echo $args['before_widget'] . PHP_EOL;
+			echo $args['before_widget'] . "\n";
 
 			// The Background Image - empty string in case of error
 			$thumb = wp_get_attachment_image_src( $instance['image_id'], 'silk-masonry-image' );
@@ -64,20 +64,20 @@ if ( ! class_exists( 'Silk_About_Me_Widget' ) ) :
 			} else {
 				$thumb = '';
 			}
-			echo '<div class="silk-about-me-widget__image" style="background-image: url('. $thumb .');"></div>' . PHP_EOL;
+			echo '<div class="silk-about-me-widget__image" style="background-image: url('. $thumb .');"></div>' . "\n";
 
-			echo '<div class="silk-about-me-widget__container">' . PHP_EOL;
+			echo '<div class="silk-about-me-widget__container">' . "\n";
 
 
 			// The widget title
 			$title = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 			if ( ! empty( $title ) ) {
-				echo $args['before_title'] . $title . $args['after_title'] . PHP_EOL;
+				echo $args['before_title'] . $title . $args['after_title'] . "\n";
 			}
 
 			// The author's name
 			if ( ! empty( $instance['name'] ) ) {
-				echo '<div class="silk-about-me-widget__name">' . $instance['name'] . '</div>' . PHP_EOL;
+				echo '<div class="silk-about-me-widget__name">' . $instance['name'] . '</div>' . "\n";
 			}
 
 			echo '<span class="separator separator-wrapper--white">';
@@ -90,11 +90,12 @@ if ( ! class_exists( 'Silk_About_Me_Widget' ) ) :
 			} else {
 				$text = $instance['text'];
 			}
-			echo '<div class="silk-about-me__text">' . $text . '</div>' . PHP_EOL;
+			echo '<div class="silk-about-me__text">' . $text . '</div>' . "\n";
 
-			echo '</div><!-- .silk-about-me-widget-container -->' . PHP_EOL;
+			echo '</div><!-- .silk-about-me-widget-container -->' . "\n";
 
-			echo $args['after_widget'] . PHP_EOL;
+			echo $args['after_widget'] . "\n";
+
 		}
 
 		/**
@@ -151,34 +152,34 @@ if ( ! class_exists( 'Silk_About_Me_Widget' ) ) :
 
 			<div class="silk-about-me-widget-form">
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Title:', 'silk_txtd' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Title:', 'silk' ); ?></label>
 					<input class="widefat" type="text" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" value="<?php echo esc_attr( $title ); ?>">
 				</p>
 
 				<p class="silk-about-me-widget-image-control<?php echo ( $image_id ) ? ' has-image' : ''; ?>"
-				   data-title="<?php esc_attr_e( 'Choose an Background Image', 'silk_txtd' ); ?>"
-				   data-update-text="<?php esc_attr_e( 'Update Image', 'silk_txtd' ); ?>">
+				   data-title="<?php esc_attr_e( 'Choose an Background Image', 'silk' ); ?>"
+				   data-update-text="<?php esc_attr_e( 'Update Image', 'silk' ); ?>">
 					<?php
 					if ( ! empty( $image_id ) ) {
 						echo wp_get_attachment_image( $image_id, 'medium', false );
 					}
 					?>
 					<input class="silk-about-me-image-id" type="hidden" name="<?php echo esc_attr( $this->get_field_name( 'image_id' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'image_id' ) ); ?>" value="<?php echo esc_attr( $image_id ); ?>">
-					<a class="button silk-about-me-widget-image-control__choose" href="#"><?php _e( 'Choose an Background Image', 'silk_txtd' ); ?></a>
+					<a class="button silk-about-me-widget-image-control__choose" href="#"><?php _e( 'Choose an Background Image', 'silk' ); ?></a>
 				</p>
 
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'name' ) ); ?>"><?php _e( 'Your Name:', 'silk_txtd' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'name' ) ); ?>"><?php _e( 'Your Name:', 'silk' ); ?></label>
 					<input class="widefat" type="text" name="<?php echo esc_attr( $this->get_field_name( 'name' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'name' ) ); ?>" value="<?php echo esc_attr( $name ); ?>">
 				</p>
 
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>"><?php _e( 'About You:', 'silk_txtd' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>"><?php _e( 'About You:', 'silk' ); ?></label>
 					<textarea class="widefat" name="<?php echo esc_attr( $this->get_field_name( 'text' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>" rows="4"><?php echo esc_textarea( $text ); ?></textarea>
 				</p>
 
 				<p>
-					<input id="<?php echo $this->get_field_id( 'filter' ); ?>" name="<?php echo $this->get_field_name( 'filter' ); ?>" type="checkbox" <?php checked( isset( $instance['filter'] ) ? $instance['filter'] : 0 ); ?> />&nbsp;<label for="<?php echo $this->get_field_id( 'filter' ); ?>"><?php _e( 'Automatically add paragraphs', 'silk_txtd' ); ?></label>
+					<input id="<?php echo $this->get_field_id( 'filter' ); ?>" name="<?php echo $this->get_field_name( 'filter' ); ?>" type="checkbox" <?php checked( isset( $instance['filter'] ) ? $instance['filter'] : 0 ); ?> />&nbsp;<label for="<?php echo $this->get_field_id( 'filter' ); ?>"><?php _e( 'Automatically add paragraphs', 'silk' ); ?></label>
 				</p>
 
 			</div>

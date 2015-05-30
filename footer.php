@@ -22,15 +22,25 @@
 					'container'      => '',
 					'menu_class'     => 'nav  nav--footer',
 					'depth'          => - 1, //flatten if there is any hierarchy
-					'items_wrap'         => '<nav><h5 class="screen-reader-text">'.__( 'Footer navigation', 'silk_txtd' ).'</h5><ul id="%1$s" class="%2$s">%3$s</ul></nav>',
+					'items_wrap'         => '<nav><h5 class="screen-reader-text">'.__( 'Footer navigation', 'silk' ).'</h5><ul id="%1$s" class="%2$s">%3$s</ul></nav>',
 				)
 			); ?>
 		</div>
 
 		<div class="site-info" role="contentinfo">
-			<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'silk_txtd' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'silk_txtd' ), 'WordPress' ); ?></a>
-			<span class="sep"> | </span>
-			<?php printf( __( 'Theme: %1$s by %2$s.', 'silk_txtd' ), 'Silk', '<a href="http://pixelgrade.com" rel="designer">PixelGrade</a>' ); ?>
+
+			<?php
+			if ( get_theme_mod( 'silk_footer_copyright', false ) ) {
+				echo get_theme_mod( 'silk_footer_copyright', '' );
+			} else {
+				echo '© '.get_bloginfo('name').' –';
+			}
+
+			printf( ' %1$s <span>'. __( 'by', 'silk' ) .'</span> %2$s',
+				'<a href="https://pixelgrade.com/themes/silk/" title="'. __( 'SILK - A Fashion Magazine WordPress Theme', 'silk' ) .'" rel="theme">'. __( 'Silk Theme', 'silk' ) .'</a>',
+				'<a href="https://pixelgrade.com" title="'. __( 'The PixelGrade Website', 'silk' ) .'" rel="designer">PixelGrade</a>');
+			?>
+
 		</div><!-- .site-info -->
 
 		<div class="back-to-top-wrapper">
@@ -51,7 +61,7 @@
 
 			<?php get_search_form(); ?>
 
-			<p><?php _e( 'Begin typing your search above and press return to search. Press Esc to cancel.', 'silk_txtd' ); ?></p>
+			<p><?php _e( 'Begin typing your search above and press return to search. Press Esc to cancel.', 'silk' ); ?></p>
 
 		</div>
 		<b class="overlay__close"></b>

@@ -4,12 +4,7 @@
  *
  * @package Silk
  */
-
-$thumbnail_size = "silk-single-image";
-
-if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
-	$thumbnail_size = '  silk-masonry-image';
-} ?>
+?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
@@ -33,7 +28,7 @@ if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 		
 			<?php if ( has_post_thumbnail() ) { ?>
 				<a href="<?php the_permalink(); ?>" class="entry-featured  entry-thumbnail">
-					<?php the_post_thumbnail( $thumbnail_size ); ?>
+					<?php the_post_thumbnail( silk_get_thumbnail_size() ); ?>
 					<div class="entry-image-border"></div>
 				</a>
 			<?php }
@@ -45,7 +40,7 @@ if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 			if ( $has_more ) {
 				/* translators: %s: Name of current post */
 				the_content( sprintf(
-					__( 'Continue reading %s', 'silk_txtd' ),
+					__( 'Continue reading %s', 'silk' ),
 					the_title( '<span class="screen-reader-text">', '</span>', false )
 				) );
 			} else {
@@ -54,11 +49,11 @@ if ( ! get_theme_mod( 'silk_single_column_archives', false ) ) {
 
 		<?php
 			wp_link_pages( array(
-				'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'silk_txtd' ),
+				'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'silk' ),
 				'after'  => '</span></div>',
 				'link_before' => '<span>',
 				'link_after'  => '</span>',
-				'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'silk_txtd' ) . ' </span>%',
+				'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'silk' ) . ' </span>%',
 				'separator'   => '<span class="screen-reader-text">, </span>',
 			) );
 		?>

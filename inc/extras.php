@@ -77,7 +77,7 @@ if ( version_compare( $GLOBALS['wp_version'], '4.1', '<' ) ) :
 
 		// Add a page number if necessary:
 		if ( ( $paged >= 2 || $page >= 2 ) && ! is_404() ) {
-			$title .= " $sep " . sprintf( __( 'Page %s', 'silk_txtd' ), max( $paged, $page ) );
+			$title .= " $sep " . sprintf( __( 'Page %s', 'silk' ), max( $paged, $page ) );
 		}
 
 		return $title;
@@ -116,7 +116,7 @@ if ( ! function_exists( 'silk_fonts_url' ) ) :
 		* supported by Libre Baskerville, translate this to 'off'. Do not translate
 		* into your own language.
 		*/
-		if ( 'off' !== _x( 'on', 'Libre Baskerville font: on or off', 'silk_txtd' ) ) {
+		if ( 'off' !== _x( 'on', 'Libre Baskerville font: on or off', 'silk' ) ) {
 			$fonts[] = 'Libre Baskerville:400,700,400italic';
 		}
 
@@ -124,7 +124,7 @@ if ( ! function_exists( 'silk_fonts_url' ) ) :
 		* supported by Playfair Display, translate this to 'off'. Do not translate
 		* into your own language.
 		*/
-		if ( 'off' !== _x( 'on', 'Playfair Display font: on or off', 'silk_txtd' ) ) {
+		if ( 'off' !== _x( 'on', 'Playfair Display font: on or off', 'silk' ) ) {
 			$fonts[] = 'Playfair Display:400,700,900,400italic,700italic,900italic';
 		}
 
@@ -132,12 +132,12 @@ if ( ! function_exists( 'silk_fonts_url' ) ) :
 		* supported by Merriweather, translate this to 'off'. Do not translate
 		* into your own language.
 		*/
-		if ( 'off' !== _x( 'on', 'Merriweather font: on or off', 'silk_txtd' ) ) {
+		if ( 'off' !== _x( 'on', 'Merriweather font: on or off', 'silk' ) ) {
 			$fonts[] = 'Merriweather:400italic,400,300,700';
 		}
 
 		/* translators: To add an additional character subset specific to your language, translate this to 'greek', 'cyrillic', 'devanagari' or 'vietnamese'. Do not translate into your own language. */
-		$subset = _x( 'no-subset', 'Add new subset (greek, cyrillic, devanagari, vietnamese)', 'silk_txtd' );
+		$subset = _x( 'no-subset', 'Add new subset (greek, cyrillic, devanagari, vietnamese)', 'silk' );
 
 		if ( 'cyrillic' == $subset ) {
 			$subsets .= ',cyrillic,cyrillic-ext';
@@ -206,12 +206,12 @@ if ( ! function_exists( 'silk_comment' ) ) :
 				<header class="comment__meta comment-author">
 					<?php printf( '<span class="comment__author-name">%s</span>', get_comment_author_link() ) ?>
 					<time class="comment__time" datetime="<?php comment_time( 'c' ); ?>">
-						<a href="<?php echo esc_url( get_comment_link( get_comment_ID() ) ) ?>" class="comment__timestamp"><?php printf( __( 'on %s at %s', 'silk_txtd' ), get_comment_date(), get_comment_time() ); ?> </a>
+						<a href="<?php echo esc_url( get_comment_link( get_comment_ID() ) ) ?>" class="comment__timestamp"><?php printf( __( 'on %s at %s', 'silk' ), get_comment_date(), get_comment_time() ); ?> </a>
 					</time>
 					<div class="comment__links">
 						<?php
 						//we need some space before Edit
-						edit_comment_link( __( 'Edit', 'silk_txtd' ), '  ' );
+						edit_comment_link( __( 'Edit', 'silk' ), '  ' );
 
 						comment_reply_link( array_merge( $args, array(
 							'depth'     => $depth,
@@ -223,7 +223,7 @@ if ( ! function_exists( 'silk_comment' ) ) :
 				<!-- .comment-meta -->
 				<?php if ( '0' == $comment->comment_approved ) : ?>
 					<div class="alert info">
-						<p><?php _e( 'Your comment is awaiting moderation.', 'silk_txtd' ) ?></p>
+						<p><?php _e( 'Your comment is awaiting moderation.', 'silk' ) ?></p>
 					</div>
 				<?php endif; ?>
 				<section class="comment__content comment">
@@ -311,7 +311,7 @@ if ( ! class_exists( 'Silk_Walker_Primary_Mega_Menu' ) && class_exists( 'Walker_
 		 */
 		public function start_lvl( &$output, $depth = 0, $args = array() ) {
 			$indent = str_repeat( "\t", $depth );
-			$output .= PHP_EOL . $indent . '<ul class="sub-menu" aria-hidden="true" role="menu">' . PHP_EOL;
+			$output .= "\n" . $indent . '<ul class="sub-menu" aria-hidden="true" role="menu">' . "\n";
 		}
 
 		/**
@@ -372,7 +372,7 @@ if ( ! class_exists( 'Silk_Walker_Primary_Mega_Menu' ) && class_exists( 'Walker_
 			$id = apply_filters( 'nav_menu_item_id', 'nav--top__item-'. $item->ID, $item, $args, $depth );
 			$id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
 
-			$output .= $indent . '<li ' . $id . '" class="nav__item ' . $depth_class_names . ' ' . $class_names . '">' . PHP_EOL;
+			$output .= $indent . '<li ' . $id . '" class="nav__item ' . $depth_class_names . ' ' . $class_names . '">' . "\n";
 
 			if ( empty( $item->title ) && empty( $item->url ) ) {
 				$item->url = get_permalink( $item->ID );
@@ -423,7 +423,7 @@ if ( ! class_exists( 'Silk_Walker_Primary_Mega_Menu' ) && class_exists( 'Walker_
 
 			if ( 0 === $depth && ( $this->has_children || $this->has_megamenu ) ) {
 				//the mega menu wrapper
-				$item_output .= '<div class="sub-menu-wrapper">' . PHP_EOL;
+				$item_output .= '<div class="sub-menu-wrapper">' . "\n";
 			}
 
 			/**
@@ -489,54 +489,54 @@ if ( ! class_exists( 'Silk_Walker_Primary_Mega_Menu' ) && class_exists( 'Walker_
 							$menu_post_image = '<a href="' . get_permalink()
 							                   . '" title="'
 							                   . the_title_attribute( array( 'echo' => false ) )
-							                   .'" class="entry-image" style="background-image:url(' . $thumb[0] . ')"></a>' . PHP_EOL;
+							                   .'" class="entry-image" style="background-image:url(' . $thumb[0] . ')"></a>' . "\n";
 						} else {
 							$menu_post_image = '';
 						}
 
 						$item_output .=
-						'<article class="submenu__card  card">' . PHP_EOL .
+						'<article class="submenu__card  card">' . "\n" .
 							$menu_post_image .
-							'<header class="entry-header">' . PHP_EOL .
-								'<div class="entry-meta">' . PHP_EOL .
-									silk_get_posted_on_and_cats() . PHP_EOL .
-								'</div><!-- .entry-meta -->' . PHP_EOL .
-								'<a href="' . get_permalink() . '"><h2 class="entry-title">' . get_the_title() . '</h2></a>' . PHP_EOL .
-							'</header><!-- .entry-header -->' . PHP_EOL .
+							'<header class="entry-header">' . "\n" .
+								'<div class="entry-meta">' . "\n" .
+									silk_get_posted_on_and_cats() . "\n" .
+								'</div><!-- .entry-meta -->' . "\n" .
+								'<a href="' . get_permalink() . '"><h2 class="entry-title">' . get_the_title() . '</h2></a>' . "\n" .
+							'</header><!-- .entry-header -->' . "\n" .
 							'<a class="separator  separator--text" role="presentation" href="' . get_permalink() . '">
-								<span>' . __( 'More', 'silk_txtd' ) . '</span>
-							</a>' . PHP_EOL .
-						'</article>' . PHP_EOL;
+								<span>' . __( 'More', 'silk' ) . '</span>
+							</a>' . "\n" .
+						'</article>' . "\n";
 
 						//if we still have posts - it's time for the little ones
 						if ( $menuposts->have_posts() ) {
 
-							$item_output .= '<ul class="submenu__thumbs">' . PHP_EOL;
+							$item_output .= '<ul class="submenu__thumbs">' . "\n";
 
 							while ( $menuposts->have_posts() )  : $menuposts->the_post();
 
 								if ( has_post_thumbnail() ) {
-									$menu_post_image = '<a href="' . get_permalink() . '" title="' . the_title_attribute( array( 'echo' => false ) ) .'">' .get_the_post_thumbnail( get_the_ID(), 'silk-tiny-image' ) . '</a>' . PHP_EOL;
+									$menu_post_image = '<a href="' . get_permalink() . '" title="' . the_title_attribute( array( 'echo' => false ) ) .'">' .get_the_post_thumbnail( get_the_ID(), 'silk-tiny-image' ) . '</a>' . "\n";
 								} else {
 									$menu_post_image = '';
 								}
 
 								$item_output .=
-									'<li>' . PHP_EOL .
-										'<article class="thumb  flag">' . PHP_EOL .
-											'<div class="flag__img">' . PHP_EOL .
+									'<li>' . "\n" .
+										'<article class="thumb  flag">' . "\n" .
+											'<div class="flag__img">' . "\n" .
 												$menu_post_image .
-											'</div>' . PHP_EOL .
-											'<div class="flag__body">' . PHP_EOL .
-												'<div class="entry-meta  entry-meta--card  align-left">' . silk_get_posted_on_and_cats() . '</div>' . PHP_EOL .
-												'<a href="' . get_permalink() . '"><h3 class="entry-title  align-left">' . get_the_title() . '</h3></a>' . PHP_EOL .
-											'</div>' . PHP_EOL .
-										'</article>' . PHP_EOL .
-									'</li>' . PHP_EOL;
+											'</div>' . "\n" .
+											'<div class="flag__body">' . "\n" .
+												'<div class="entry-meta  entry-meta--card  align-left">' . silk_get_posted_on_and_cats() . '</div>' . "\n" .
+												'<a href="' . get_permalink() . '"><h3 class="entry-title  align-left">' . get_the_title() . '</h3></a>' . "\n" .
+											'</div>' . "\n" .
+										'</article>' . "\n" .
+									'</li>' . "\n";
 
 							endwhile;
 
-							$item_output .= '</ul>' . PHP_EOL;
+							$item_output .= '</ul>' . "\n";
 						}
 
 						wp_reset_postdata();
@@ -545,12 +545,12 @@ if ( ! class_exists( 'Silk_Walker_Primary_Mega_Menu' ) && class_exists( 'Walker_
 				}
 
 				if ( $this->has_children || $this->has_megamenu ) {
-					$item_output .= '</div>' . PHP_EOL; //close the .sub-menu-wrapper
+					$item_output .= '</div>' . "\n"; //close the .sub-menu-wrapper
 				}
 			}
 
 			$output .= $item_output;
-			$output .= '</li>' . PHP_EOL;
+			$output .= '</li>' . "\n";
 		}
 
 		/**
@@ -669,7 +669,7 @@ if ( ! class_exists( 'Silk_Walker_Page_Primary' ) && class_exists( 'Walker_Page'
 		 */
 		public function start_lvl( &$output, $depth = 0, $args = array() ) {
 			$indent = str_repeat( "\t", $depth );
-			$output .= PHP_EOL . $indent . '<ul class="sub-menu" aria-hidden="true" role="menu">' . PHP_EOL;
+			$output .= "\n" . $indent . '<ul class="sub-menu" aria-hidden="true" role="menu">' . "\n";
 		}
 
 		/**
@@ -743,7 +743,7 @@ if ( ! class_exists( 'Silk_Walker_Page_Primary' ) && class_exists( 'Walker_Page'
 			$css_id = $css_id ? ' id="' . esc_attr( $css_id ) . '"' : '';
 
 			if ( '' === $page->post_title ) {
-				$page->post_title = sprintf( __( '#%d (no title)' ), $page->ID );
+				$page->post_title = sprintf( __( '#%d (no title)', 'silk' ), $page->ID );
 			}
 
 			$args['link_before'] = empty( $args['link_before'] ) ? '' : $args['link_before'];
@@ -776,7 +776,7 @@ if ( ! class_exists( 'Silk_Walker_Page_Primary' ) && class_exists( 'Walker_Page'
 
 			if ( 0 === $depth && isset( $args['pages_with_children'][ $page->ID ] ) ) {
 				//the mega menu wrapper
-				$output .= '<div class="sub-menu-wrapper">' . PHP_EOL;
+				$output .= '<div class="sub-menu-wrapper">' . "\n";
 			}
 		}
 
@@ -791,7 +791,7 @@ if ( ! class_exists( 'Silk_Walker_Page_Primary' ) && class_exists( 'Walker_Page'
 		 */
 		public function end_el( &$output, $page, $depth = 0, $args = array() ) {
 			if ( $this->has_children ) {
-				$output .= '</div>' . PHP_EOL; //close the .sub-menu-wrapper
+				$output .= '</div>' . "\n"; //close the .sub-menu-wrapper
 			}
 			$output .= "</li>\n";
 		}
@@ -843,7 +843,7 @@ if ( ! function_exists( 'silk_custom_wp_page_menu' ) ) :
 		// Show Home in the menu
 		if ( ! empty($args['show_home']) ) {
 			if ( true === $args['show_home'] || '1' === $args['show_home'] || 1 === $args['show_home'] ) {
-				$text = __( 'Home' );
+				$text = __( 'Home', 'silk' );
 			} else {
 				$text = $args['show_home'];
 			}
@@ -875,7 +875,7 @@ if ( ! function_exists( 'silk_custom_wp_page_menu' ) ) :
 		 * To have ul instead of div here - a option for this would be nice :)
 		 */
 		if ( $menu ) {
-			$menu = '<ul class="' . esc_attr( $args['menu_class'] ) . '">' . $menu . '</ul>' . PHP_EOL;
+			$menu = '<ul class="' . esc_attr( $args['menu_class'] ) . '">' . $menu . '</ul>' . "\n";
 		}
 
 		/**
@@ -914,13 +914,22 @@ add_filter( 'tiny_mce_before_init', 'silk_mce_before_init' );
 function silk_mce_before_init( $settings ) {
 
 	$style_formats = array(
-		array( 'title' => __( 'Intro Text', 'silk_txtd' ), 'selector' => 'p', 'classes' => 'intro' ),
-		array( 'title' => __( 'Dropcap', 'silk_txtd' ), 'inline' => 'span', 'classes' => 'dropcap' ),
-		array( 'title' => __( 'Highlight', 'silk_txtd' ), 'inline' => 'span', 'classes' => 'highlight' ),
-		array( 'title' => __( 'Two Columns', 'silk_txtd' ), 'selector' => 'p', 'classes' => 'twocolumn', 'wrapper' => true ),
+		array( 'title' => __( 'Intro Text', 'silk' ), 'selector' => 'p', 'classes' => 'intro' ),
+		array( 'title' => __( 'Dropcap', 'silk' ), 'inline' => 'span', 'classes' => 'dropcap' ),
+		array( 'title' => __( 'Highlight', 'silk' ), 'inline' => 'span', 'classes' => 'highlight' ),
+		array( 'title' => __( 'Two Columns', 'silk' ), 'selector' => 'p', 'classes' => 'twocolumn', 'wrapper' => true ),
 	);
 
 	$settings['style_formats'] = json_encode( $style_formats );
 
 	return $settings;
+}
+
+/**
+ * Get the featured image thumb size depending on whether we are using a single column layout or masonry
+ *
+ * @return string
+ */
+function silk_get_thumbnail_size() {
+	return get_theme_mod( 'silk_single_column_archives', false ) ? 'silk-single-image' : 'silk-masonry-image';
 } ?>
