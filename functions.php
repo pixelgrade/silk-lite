@@ -290,8 +290,11 @@ require get_template_directory() . '/inc/customify_config.php';
  */
 require get_template_directory() . '/inc/required-plugins/required-plugins.php';
 
+require_once( get_template_directory() . '/inc/typekit.php' );
+
 /**
  * Load the theme update logic
  */
 require_once( get_template_directory() . '/inc/wp-updates-theme.php' );
+
 new WPUpdatesThemeUpdater_1221( 'http://wp-updates.com/api/2/theme', basename( get_template_directory() ) ); ?>
