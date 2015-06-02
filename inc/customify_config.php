@@ -9,6 +9,10 @@ function silk_add_customify_options( $options ) {
 
 	$options['opt-name'] = 'silk_options';
 
+	$options['typekit_options'] = array(
+
+	);
+
 	/**
 	 * COLORS - This section will handle different elements colors (eg. links, headings)
 	 */
@@ -40,8 +44,6 @@ function silk_add_customify_options( $options ) {
 								'nav_font' => 'Open Sans'
 							)
 						),
-
-
 						'adler' => array(
 							'label' => __( 'Adler', 'silk' ),
 							'preview' => array(
@@ -77,7 +79,7 @@ function silk_add_customify_options( $options ) {
 								'nav_font' => 'PT Sans'
 							)
 						),
-						
+
 						'queen' => array(
 							'label' => __( 'Queen', 'silk' ),
 							'preview' => array(
@@ -130,7 +132,7 @@ function silk_add_customify_options( $options ) {
 								'nav_font' => 'Josefin Sans'
 							)
 						),
-						
+
 					)
 				),
 			)
@@ -477,7 +479,7 @@ if ( !function_exists('silk_dropcap_text_shadow') ) {
 		$output = $selector . '{
 			text-shadow: 2px 2px 0 white, 4px 4px 0 ' . $value .
 		'}';
-		return $output;		
+		return $output;
 	}
 }
 

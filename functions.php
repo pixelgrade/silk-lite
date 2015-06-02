@@ -295,7 +295,7 @@ require get_template_directory() . '/inc/customify_config.php';
  */
 require get_template_directory() . '/inc/required-plugins/required-plugins.php';
 
-require_once( get_template_directory() . '/inc/typekit.php' );
+require_once( get_template_directory() . '/inc/silk-self-hosted.php' );
 
 /**
  * Load the theme update logic
