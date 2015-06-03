@@ -69,15 +69,18 @@ add_action( 'after_switch_theme', 'pixelgrade_activate_silk' );
 function silk_typekit_script_embed() {
 	$id = get_option('silk_typekit_id');
 	if ( ! empty ( $id ) ) { ?>
-<script>
-(function(d) {
-	var config = {
-			kitId: '<?php echo $id; ?>',
-			scriptTimeout: 3000
-		},
-		h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='//use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-})(document);
-</script><?php }
+		<script src="//use.typekit.net/<?php echo $id; ?>.js"></script>
+		<script>
+			try{
+				var config = {
+					classes: false,
+					async: true
+				};
+				Typekit.load(config);
+
+			}catch(e){}
+		</script><?php return;
+	}
 
 }
 
