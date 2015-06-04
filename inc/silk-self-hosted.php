@@ -27,7 +27,7 @@ function pixelgrade_activate_silk() {
 		$license_key = file_get_contents( get_template_directory() . '/license_key.txt');
 	}
 
-	$url = 'http://themesapi.pixelgrade.com/wp-json/api/licenses/activate_theme';
+	$url = 'https://themesapi.pixelgrade.com/wp-json/api/licenses/activate_theme';
 
 	$request_args = array(
 		'method' => 'GET',
@@ -69,19 +69,29 @@ add_action( 'after_switch_theme', 'pixelgrade_activate_silk' );
 function silk_typekit_script_embed() {
 	$id = get_option('silk_typekit_id');
 	if ( ! empty ( $id ) ) { ?>
-		<script src="//use.typekit.net/<?php echo $id; ?>.js"></script>
 		<script>
-			try{
-				var config = {
-					classes: false,
-					async: true
-				};
-				Typekit.load(config);
-
-			}catch(e){}
+(function() {
+	var config = {
+		kitId: '<?php echo $id; ?>',
+		classes: false,
+		events: false
+	};
+	var d = false;
+	var tk = document.createElement('script');
+	tk.src = '//use.typekit.net/' + config.kitId + '.js';
+	tk.type = 'text/javascript';
+	tk.async = 'true';
+	tk.onload = tk.onreadystatechange = function() {
+		var rs = this.readyState;
+		if (d || rs && rs != 'complete' && rs != 'loaded') return;
+		d = true;
+		try { Typekit.load( config ); } catch (e) {}
+	};
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(tk, s);
+})();
 		</script><?php return;
 	}
-
 }
 
 add_action( 'wp_head', 'silk_typekit_script_embed'); ?>
