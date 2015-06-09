@@ -101,6 +101,7 @@
 	.entry-featured {
 		display: block;
 		line-height: 0;
+		max-width: 100%;
 
 		img {
 			display: inline-block;
@@ -307,7 +308,7 @@
 		.separator:last-child {
 			display: none;
 		}
-	} 
+	}
 
 
 
