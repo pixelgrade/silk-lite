@@ -36,7 +36,7 @@
 				<?php the_post_thumbnail( 'silk-single-image' ); ?>
 			</div>
 		<?php endif; ?>
-		
+
 		<?php the_content(); ?>
 
 		<?php

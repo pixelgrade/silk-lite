@@ -49,6 +49,8 @@ var fixedSidebars = (function() {
 		}
 		wrapJetpackAfterContent();
 		refresh();
+
+		mainBottom = $('#content').offset().top + $('#content').height();
 		initialized = true;
 	},
 
@@ -178,14 +180,14 @@ var fixedSidebars = (function() {
 		var windowBottom  = latestKnownScrollY + windowHeight;
 
 		sidebarBottom = sidebarHeight + sidebarOffset.top + sidebarPadding;
-		mainBottom    = mainHeight + sidebarOffset.top + sidebarPadding;
+		// mainBottom    = mainHeight + sidebarOffset.top + sidebarPadding;
 
-		/* adjust right sidebar positioning if needed */
+		/* adjust right sidebar positioninggulp if needed */
 		if (mainOffset.top == sidebarOffset.top && sidebarHeight < mainHeight) {
 
 			// pin sidebar
 			if ( windowBottom > sidebarBottom && !sidebarPinned ) {
-				$sidebar.css({  
+				$sidebar.css({
 					position: 'fixed',
 					top:      windowHeight - sidebarHeight - sidebarPadding,
 					left:     sidebarOffset.left
@@ -214,32 +216,33 @@ var fixedSidebars = (function() {
 			if ( windowBottom >= documentHeight ) {
 				$sidebar.css('top', mainBottom - sidebarPadding - sidebarHeight - documentHeight + windowHeight);
 			}
-			
+
 		}
 
 		/* adjust left sidebar positioning if needed */
 		if ( $smallSidebar.length ) {
-			
+
+			if ( windowBottom > mainBottom && windowBottom < documentHeight ) {
+				$smallSidebar.css('top', mainBottom - smallSidebarPadding - smallSidebarHeight - latestKnownScrollY);
+				return;
+			}
+
 		 	if ( smallSidebarOffset.top - smallSidebarPinTop < latestKnownScrollY && ! smallSidebarPinned ) {
-				$smallSidebar.css({  
+				$smallSidebar.css({
 					position: 'fixed',
 					top: smallSidebarPinTop,
 					left: smallSidebarOffset.left
 				});
 				smallSidebarPinned = true;
-			}   
+			}
 
-		 	if ( smallSidebarOffset.top - smallSidebarPinTop >= latestKnownScrollY && smallSidebarPinned ) {
+		 	if ( ( smallSidebarOffset.top - smallSidebarPinTop >= latestKnownScrollY || latestKnownScrollY + smallSidebarPinTop + smallSidebarHeight >= mainBottom ) && smallSidebarPinned ) {
 				$smallSidebar.css({
 					position: '',
 					top: '',
 					left: ''
 				});
 				smallSidebarPinned = false;
-			}
-
-			if ( windowBottom > mainBottom && windowBottom < documentHeight ) {
-				$smallSidebar.css('top', mainBottom - smallSidebarPadding - smallSidebarHeight - latestKnownScrollY);
 			}
 
 		}
@@ -278,7 +281,7 @@ var fixedSidebars = (function() {
 			$sidebar.css({
 				position: positionValue,
 				top: topValue,
-				left: leftValue 
+				left: leftValue
 			});
 
 			sidebarPinned = pinnedValue;
@@ -329,5 +332,5 @@ var fixedSidebars = (function() {
 		update: update,
 		refresh: refresh
 	}
-			
+
 })();
