@@ -16,7 +16,7 @@
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class('tk-ltc-bodoni-175'); ?>>
+<body <?php body_class(); ?>>
 
 <?php $classes = ( ! get_theme_mod( 'silk_single_column_archives', false ) ) ? 'archive-layout--masonry' : 'archive-layout--column'; ?>
 

@@ -68,30 +68,20 @@ add_action( 'after_switch_theme', 'pixelgrade_activate_silk' );
 
 function silk_typekit_script_embed() {
 	$id = get_option('silk_typekit_id');
+
 	if ( ! empty ( $id ) ) { ?>
+		<script src="//use.typekit.net/<?php echo $id; ?>.js"></script>
 		<script>
-(function() {
-	var config = {
-		kitId: '<?php echo $id; ?>',
-		classes: false,
-		events: false
-	};
-	var d = false;
-	var tk = document.createElement('script');
-	tk.src = '//use.typekit.net/' + config.kitId + '.js';
-	tk.type = 'text/javascript';
-	tk.async = 'true';
-	tk.onload = tk.onreadystatechange = function() {
-		var rs = this.readyState;
-		if (d || rs && rs != 'complete' && rs != 'loaded') return;
-		d = true;
-		try { Typekit.load( config ); } catch (e) {}
-	};
-	var s = document.getElementsByTagName('script')[0];
-	s.parentNode.insertBefore(tk, s);
-})();
-		</script><?php return;
-	}
+			try{
+				var config = {
+					kitId: '<?php echo $id; ?>',
+					classes: false,
+					events: false
+				};
+				Typekit.load( config );
+			}catch(e){ console.log(e); };
+		</script>
+	<?php }
 }
 
-add_action( 'wp_head', 'silk_typekit_script_embed'); ?>
+add_action( 'wp_head', 'silk_typekit_script_embed', 1); ?>
