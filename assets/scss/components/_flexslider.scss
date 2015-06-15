@@ -82,7 +82,7 @@
 
 		.entry-title {
 			font-size: rem(30px);
-			line-height: inherit;
+			// line-height: inherit;
 		}
 
 		.slides {
@@ -118,11 +118,11 @@
 		}
 
 		.flag__img {
-			margin-bottom: rhythm(1);
+			margin-bottom: rhythm(1/2);
 		}
 
 		.flag__body {
-			padding: 0 rem($gutter);
+			padding: 0 rem($gutter/2);
 		}
 	}
 }
