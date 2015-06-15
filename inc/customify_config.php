@@ -169,7 +169,7 @@ function silk_add_customify_options( $options ) {
 								.widget_silk-popular-posts .popular-posts_item.large-thumbnail .bump-view,
 								div#infinite-handle span.handle__text,
 								div#jp-relatedposts div.jp-relatedposts-items div.jp-relatedposts-post:hover .jp-relatedposts-post-title a,
-								.menu-item--mega.hover > a'
+								.nav--main > li.hover > a'
 						),
 						array(
 							'property' => 'color',

@@ -73,18 +73,10 @@
 		@extend %gamma;
 	}
 
-
-	&.hover {
-		> a {
-			color: $accent;
-		}
-
-		> .sub-menu-wrapper {
-			display: block;
-		}
-	}
-
 	@include query-below($lap) {
+
+		> a:after { display: none; }
+		&.menu-item-has-children > a:after { display: block; }
 
 		> .sub-menu-wrapper {
 

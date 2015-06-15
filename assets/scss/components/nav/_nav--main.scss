@@ -10,6 +10,21 @@
 		color: $accent;
 	}
 
+
+	> li.hover {
+		> a {
+			color: $accent;
+		}
+	}
+
+	@include query-below($lap) {
+		> li.hover {
+			> .sub-menu-wrapper {
+				display: block;
+			}
+		}
+	}
+
 	> .menu-item-has-children.hover > a,
 	> .menu-item--mega.hover > a {
 		position: relative;
