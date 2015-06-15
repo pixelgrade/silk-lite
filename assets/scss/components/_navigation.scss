@@ -59,6 +59,10 @@
 		display: block;
 		margin-left: rem($gutter-desk);
 		margin-right: rem($gutter-desk);
+
+		@include query-above($lap) {
+			display: none;
+		}
 	}
 }
 

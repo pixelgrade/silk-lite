@@ -27,6 +27,7 @@ $window.load(function() {
 /* ====== ON RESIZE ====== */
 
 function onResize() {
+  slider.init();
   browserSize();
   masonry.refresh();
   fixedSidebars.refresh();
