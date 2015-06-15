@@ -1730,13 +1730,25 @@ if (!Date.now) Date.now = function () {
         
         initFallback = function () {
         $sliders.closest('.featured-content').insertAfter('#masthead').addClass('featured-content--scroll');
+
+        var $slides = $sliders.find('.slides'),
+            slidesWidth = $slides.width(),
+            slideWidth = $slides.children().first().width(),
+            marginLeft = parseInt($sliders.css('margin-left'), 10),
+            padding = marginLeft + (slidesWidth - slideWidth) / 2;
+
+        $slides.css({
+          paddingLeft: padding
+        });
+
+        $slides.append('<li style="width:' + padding + 'px">');
         },
         
         
         useSlider = function () {
-        // return !(touch && windowWidth < 800);
+        return !($.support.touch && windowWidth < 800);
         // return !(windowWidth < 800);
-        return !$.support.touch;
+        // return !$.support.touch;
         };
 
     return {
