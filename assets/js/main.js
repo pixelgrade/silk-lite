@@ -1596,7 +1596,6 @@ if (!Date.now) Date.now = function () {
               left: smallSidebarOffset.left
             });
             smallSidebarPinned = true;
-            console.log('pin');
           }
 
           if ((smallSidebarOffset.top - smallSidebarPinTop >= latestKnownScrollY || latestKnownScrollY + smallSidebarPinTop + smallSidebarHeight >= mainBottom) && smallSidebarPinned) {
@@ -1606,7 +1605,6 @@ if (!Date.now) Date.now = function () {
               left: ''
             });
             smallSidebarPinned = false;
-            console.log('unpin');
           }
 
         }

@@ -96,10 +96,10 @@
 				vertical-align: top;
 				display: inline-block;
 				white-space: normal;
-				width: calc(100% - #{rem($gutter)});
+				width: calc(100% - #{rem(2 * $gutter)});
 
 				&:first-child {
-					margin-left: 0;
+					margin-left: rem($gutter);
 				}
 			}
 
