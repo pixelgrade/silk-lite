@@ -20,21 +20,18 @@ if ( empty( $featured ) ) {
 
 			<div class="flag">
 
-				<div class="flag__img  one-half">
-					<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-						<span class="entry-thumbnail">
+				<?php if ( has_post_thumbnail() ) : ?>
 
-							<?php if ( has_post_thumbnail() ) : ?>
+					<div class="flag__img  one-half">
+						<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+							<span class="entry-thumbnail">
+									<?php the_post_thumbnail( 'silk-slider-image' ); ?>
+									<span class="entry-thumbnail-border"></span>
+							</span>
+						</a>
+					</div><!-- .flag__img.one-half -->
 
-								<?php the_post_thumbnail( 'silk-slider-image' ); ?>
-
-								<span class="entry-thumbnail-border"></span>
-
-							<?php endif; ?>
-
-						</span>
-					</a>
-				</div><!-- .flag__img.one-half -->
+				<?php endif; ?>
 
 				<div class="flag__body  one-half">
 
