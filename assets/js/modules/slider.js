@@ -2,18 +2,22 @@
 
 var slider = (function () {
 
-    var $sliders = $('.flexslider'),
+    var $target = $('.flexslider').hide(),
 
     init = function() {
+
+        $('.js-slider-clone').remove();
 
         if (!useSlider()) {
             initFallback();
             return;
         }
 
-        if ($.flexslider !== undefined && $sliders.length) {
+        if ($.flexslider !== undefined && $target.length) {
 
-            $sliders.flexslider({
+            var $clone = $target.clone().addClass('js-slider-clone').show().insertBefore($target);
+
+            $clone.flexslider({
                 animation: "fade",
                 slideshow: false, //no autostart slideshow for accessibility purposes
                 controlNav: false,
@@ -29,12 +33,16 @@ var slider = (function () {
     },
 
     initFallback = function() {
-        $sliders.closest('.featured-content').insertAfter('#masthead').addClass('featured-content--scroll');
 
-        var $slides     = $sliders.find('.slides'),
+        var $myTarget = $target.clone();
+
+        $myTarget.wrap('<div class="featured-content">').parent().insertAfter('#masthead').addClass('featured-content--scroll js-slider-clone');
+        $myTarget.show();
+
+        var $slides     = $myTarget.find('.slides'),
             slidesWidth = $slides.width(),
             slideWidth  = $slides.children().first().width(),
-            marginLeft  = parseInt($sliders.css('margin-left'), 10),
+            marginLeft  = parseInt($target.css('margin-left'), 10),
             padding     = marginLeft + (slidesWidth - slideWidth) / 2;
 
         $slides.css({
