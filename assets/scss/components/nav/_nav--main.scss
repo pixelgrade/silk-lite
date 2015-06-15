@@ -6,6 +6,10 @@
 	z-index: 100;
 	background: white;
 
+	@include query-above($lap) {
+		transform: none !important;
+	}
+
 	> .menu-item:hover > a {
 		color: $accent;
 	}
