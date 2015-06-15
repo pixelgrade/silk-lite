@@ -77,6 +77,10 @@
 
 }
 
+.featured-content {
+	max-width: 100%;
+}
+
 .featured-content--scroll {
 
 	.flexslider {
@@ -108,17 +112,7 @@
 				vertical-align: top;
 				display: inline-block;
 				white-space: normal;
-				width: calc(100% - #{rem(2 * $gutter)});
-
-				&:first-child {
-					margin-left: rem($gutter);
-				}
-			}
-
-			&:after {
-				content: "";
-				display: inline-block;
-				width: rem($gutter);
+				max-width: calc(100% - #{rem(2 * $gutter)});
 			}
 		}
 
