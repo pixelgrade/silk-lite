@@ -209,6 +209,15 @@
 
 		.sub-menu {
 			padding-left: rem(12px);
+			padding-bottom: rem(10px);
+
+			a {
+				padding: rem(10px) 0;
+			}
+
+			li:first-child > a {
+				padding-top: 0;
+			}
 		}
 
 		.sub-menu-wrapper {
