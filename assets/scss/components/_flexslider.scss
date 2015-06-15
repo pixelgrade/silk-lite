@@ -1,6 +1,14 @@
 .flexslider {
 	margin-bottom: rem(80px);
 
+	.slides {
+		display: flex;
+
+		> li {
+			align-self: center;
+		}
+	}
+
 	.slides > li:first-child:last-child {
 		display: block;
 	}
@@ -85,7 +93,12 @@
 			// line-height: inherit;
 		}
 
+		.entry-content {
+			font-size: rem(12px);
+		}
+
 		.slides {
+			display: block;
 			white-space: nowrap;
 			margin-bottom: 0;
 			overflow-x: scroll;
