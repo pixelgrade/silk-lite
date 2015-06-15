@@ -1402,6 +1402,8 @@ if (!Date.now) Date.now = function () {
         }
         wrapJetpackAfterContent();
         refresh();
+
+        mainBottom = $('#content').offset().top + $('#content').height();
         initialized = true;
         },
         
@@ -1541,9 +1543,8 @@ if (!Date.now) Date.now = function () {
         var windowBottom = latestKnownScrollY + windowHeight;
 
         sidebarBottom = sidebarHeight + sidebarOffset.top + sidebarPadding;
-        mainBottom = mainHeight + sidebarOffset.top + sidebarPadding;
-
-        /* adjust right sidebar positioning if needed */
+        // mainBottom    = mainHeight + sidebarOffset.top + sidebarPadding;
+        /* adjust right sidebar positioninggulp if needed */
         if (mainOffset.top == sidebarOffset.top && sidebarHeight < mainHeight) {
 
           // pin sidebar
@@ -1583,6 +1584,11 @@ if (!Date.now) Date.now = function () {
         /* adjust left sidebar positioning if needed */
         if ($smallSidebar.length) {
 
+          if (windowBottom > mainBottom && windowBottom < documentHeight) {
+            $smallSidebar.css('top', mainBottom - smallSidebarPadding - smallSidebarHeight - latestKnownScrollY);
+            return;
+          }
+
           if (smallSidebarOffset.top - smallSidebarPinTop < latestKnownScrollY && !smallSidebarPinned) {
             $smallSidebar.css({
               position: 'fixed',
@@ -1590,19 +1596,17 @@ if (!Date.now) Date.now = function () {
               left: smallSidebarOffset.left
             });
             smallSidebarPinned = true;
+            console.log('pin');
           }
 
-          if (smallSidebarOffset.top - smallSidebarPinTop >= latestKnownScrollY && smallSidebarPinned) {
+          if ((smallSidebarOffset.top - smallSidebarPinTop >= latestKnownScrollY || latestKnownScrollY + smallSidebarPinTop + smallSidebarHeight >= mainBottom) && smallSidebarPinned) {
             $smallSidebar.css({
               position: '',
               top: '',
               left: ''
             });
             smallSidebarPinned = false;
-          }
-
-          if (windowBottom > mainBottom && windowBottom < documentHeight) {
-            $smallSidebar.css('top', mainBottom - smallSidebarPadding - smallSidebarHeight - latestKnownScrollY);
+            console.log('unpin');
           }
 
         }

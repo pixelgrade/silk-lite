@@ -77,7 +77,7 @@ function silk_add_customify_options( $options ) {
 								'nav_font' => 'PT Sans'
 							)
 						),
-						
+
 						'queen' => array(
 							'label' => __( 'Queen', 'silk' ),
 							'preview' => array(
@@ -130,7 +130,7 @@ function silk_add_customify_options( $options ) {
 								'nav_font' => 'Josefin Sans'
 							)
 						),
-						
+
 					)
 				),
 			)
@@ -168,7 +168,8 @@ function silk_add_customify_options( $options ) {
 								.jetpack_subscription_widget input[type="submit"],
 								.widget_silk-popular-posts .popular-posts_item.large-thumbnail .bump-view,
 								div#infinite-handle span.handle__text,
-								div#jp-relatedposts div.jp-relatedposts-items div.jp-relatedposts-post:hover .jp-relatedposts-post-title a'
+								div#jp-relatedposts div.jp-relatedposts-items div.jp-relatedposts-post:hover .jp-relatedposts-post-title a,
+								.nav--main > li.hover > a'
 						),
 						array(
 							'property' => 'color',
@@ -477,7 +478,7 @@ if ( !function_exists('silk_dropcap_text_shadow') ) {
 		$output = $selector . '{
 			text-shadow: 2px 2px 0 white, 4px 4px 0 ' . $value .
 		'}';
-		return $output;		
+		return $output;
 	}
 }
 

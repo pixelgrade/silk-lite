@@ -61,7 +61,7 @@ var masonry = (function() {
 		if (!initialized) {
 			return;
 		}
-		
+
 		$container.masonry('layout');
 		if (sidebarMasonry()) {
 			$sidebar.masonry('layout');

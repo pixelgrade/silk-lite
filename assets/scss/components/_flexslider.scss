@@ -27,7 +27,7 @@
 	.wide + .narrow {
 		margin-top: rem(-10px);
 	}
-	
+
 	.entry-content {
 		@extend .align-center;
 	}
@@ -59,7 +59,7 @@
 
 	@include query-below($desk) {
 		.entry-title.entry-title {
-			font-size: rem(30px); 
+			font-size: rem(30px);
 		}
 
 		.flag__img {
@@ -74,7 +74,6 @@
 	.flexslider {
 		width: 100%;
 		padding-left: rem($gutter);
-		padding-right: rem($gutter);
 		margin-bottom: rem($gutter);
 
 		.entry-meta,
@@ -97,6 +96,7 @@
 				vertical-align: top;
 				display: inline-block;
 				white-space: normal;
+				width: calc(100% - rem($gutter));
 
 				&:first-child {
 					margin-left: 0;

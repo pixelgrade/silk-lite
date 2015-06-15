@@ -6,7 +6,7 @@ body {
 
 #page {
 	overflow: hidden;
-} 
+}
 
 .content {
 	margin-left: auto;
@@ -15,9 +15,13 @@ body {
 
 	padding: 0 rem($gutter);
 	@include query-above($small) 		{ padding: 0 rem($gutter-desk); }
+}
 
-	.archive-layout--column & {
-		max-width: em(1160px);
+.archive, .blog, .search {
+	.archive-layout--column {
+		.content {
+			max-width: em(1160px);
+		}
 	}
 }
 
@@ -51,7 +55,7 @@ hr {
 // @todo animations
 
 .top-bar,
-.site-title, 
+.site-title,
 .nav--main > li,
 .flexslider .entry-meta,
 .flexslider img,
@@ -125,5 +129,44 @@ hr {
 .post-navigation {
 	.meta-nav {
 		margin-right: em(5px);
+	}
+}
+.entry-content {
+	.video-player, .videopress-placeholder, .videopress-poster {
+		height: auto !important;
+		width: 100% !important;
+	}
+}
+
+// Videopress style
+.jetpack-video-wrapper, .entry-content{
+
+	.video-player,
+	.videopress-poster,
+	.videopress-placeholder {
+		width: 100% !important;
+		height: auto !important;
+	}
+
+	.videopress-poster {
+		display: block;
+	}
+
+	.videopress-placeholder .play-button{
+		span {
+			margin: 0 !important;
+
+			transform: translateX(-50%) translateY(-50%);
+		}
+
+		img {
+			width: auto !important;
+			height: auto !important;
+		}
+
+		& + div {
+			position: absolute !important;
+			right: 0;
+		}
 	}
 }

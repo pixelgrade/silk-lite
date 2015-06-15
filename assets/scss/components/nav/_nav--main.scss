@@ -6,8 +6,27 @@
 	z-index: 100;
 	background: white;
 
+	@include query-above($lap) {
+		transform: none !important;
+	}
+
 	> .menu-item:hover > a {
 		color: $accent;
+	}
+
+
+	> li.hover {
+		> a {
+			color: $accent;
+		}
+	}
+
+	@include query-below($lap) {
+		> li.hover {
+			> .sub-menu-wrapper {
+				display: block;
+			}
+		}
 	}
 
 	> .menu-item-has-children.hover > a,
@@ -188,7 +207,7 @@
 			}
 
 			&, > a {
-				&:before, &:after {
+				&:before {
 					display: none;
 				}
 			}
@@ -209,6 +228,22 @@
 
 		.sub-menu {
 			padding-left: rem(12px);
+			padding-bottom: rem(10px);
+			min-width: 0;
+
+			a {
+				padding: rem(10px) 0;
+			}
+
+			li:first-child > a {
+				padding-top: 0;
+			}
+		}
+
+		a {
+			padding-right: rem(40px) !important;
+			display: inline-block !important;
+			width: auto;
 		}
 
 		.sub-menu-wrapper {

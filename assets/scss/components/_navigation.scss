@@ -2,15 +2,15 @@
 // ---------- #MAIN MENU
 
 %dropdown-arrow {
-	position: relative;  
-	
+	position: relative;
+
 	&:after {
 		content: "";
 		position: absolute;
 		top: rem(32px);
 		right: rem(22px);
 		border: 0 solid transparent;
-		border-width: rem(4px) rem(3px); 
+		border-width: rem(4px) rem(3px);
 		border-top-color: currentColor;
 	}
 }
@@ -18,11 +18,11 @@
 %sub-menu {
 	@extend .nav;
 	@extend .nav--stacked;
-	min-width: rem(240px);
 	text-align: left;
 	display: none;
 
 	@include query-above($lap) {
+		min-width: rem(240px);
 		position: absolute;
 		top: 100%;
 		left: 0;
@@ -66,7 +66,7 @@
 	@include query-above($lap) {
 		opacity: 0;
 		transition: opacity .2s ease-out, visibility 0s .3s linear, left 0s .3s linear;
-		pointer-events: none; 
+		pointer-events: none;
 		left: 0;
 		// left: 9999em;
 	}
@@ -131,7 +131,7 @@
 	}
 
 	> .sub-menu {
-		position: static; 
+		position: static;
 		display: inline-block;
 		margin-top: 0;
 		pointer-events: none;
