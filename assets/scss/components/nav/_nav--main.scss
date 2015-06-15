@@ -188,7 +188,7 @@
 			}
 
 			&, > a {
-				&:before, &:after {
+				&:before {
 					display: none;
 				}
 			}
@@ -210,6 +210,7 @@
 		.sub-menu {
 			padding-left: rem(12px);
 			padding-bottom: rem(10px);
+			min-width: 0;
 
 			a {
 				padding: rem(10px) 0;
@@ -218,6 +219,12 @@
 			li:first-child > a {
 				padding-top: 0;
 			}
+		}
+
+		a {
+			padding-right: rem(40px) !important;
+			display: inline-block !important;
+			width: auto;
 		}
 
 		.sub-menu-wrapper {
