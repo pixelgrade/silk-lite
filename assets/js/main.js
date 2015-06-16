@@ -1583,6 +1583,7 @@ if (!Date.now) Date.now = function () {
         
         
         refresh = function () {
+        $smallSidebar = $('#jp-post-flair');
         refreshMain();
         refreshMainSidebar();
         refreshSmallSidebar();
