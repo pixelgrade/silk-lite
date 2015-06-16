@@ -4,7 +4,7 @@ var fixedSidebars = (function() {
 
 	var $smallSidebar       = $('#jp-post-flair'),
 		smallSidebarPinned  = false,
-		smallSidebarPadding = 100,
+		smallSidebarPadding = parseInt($('.site-header').css('marginBottom'), 10),
 		smallSidebarPinTop	= $('.top-bar.fixed').outerHeight() + smallSidebarPadding,
 		smallSidebarOffset,
 		smallSidebarBottom,
@@ -219,34 +219,41 @@ var fixedSidebars = (function() {
 
 		}
 
-		/* adjust left sidebar positioning if needed */
+		updateSmallSidebar();
+
+	},
+
+	updateSmallSidebar = function() {
+		var newTopValue = '',
+			unpinSidebar = false;
+
+		// if we do have a sidebar to work if
 		if ( $smallSidebar.length ) {
 
-			if ( windowBottom > mainBottom && windowBottom < documentHeight ) {
-				$smallSidebar.css('top', mainBottom - smallSidebarPadding - smallSidebarHeight - latestKnownScrollY);
-				return;
-			}
-
-		 	if ( smallSidebarOffset.top - smallSidebarPinTop < latestKnownScrollY && ! smallSidebarPinned ) {
+			// if it is already pinned
+	 		if (latestKnownScrollY <= smallSidebarOffset.top - smallSidebarPinTop) {
+		 		// apply needed properties
+		 		$smallSidebar.css({
+		 			position: '',
+		 			top: '',
+		 			left: ''
+		 		});
+	 		// or if it needs to be pinned to the bottom
+	 		} else if (latestKnownScrollY >= mainBottom - smallSidebarPinTop - smallSidebarHeight) {
+				$smallSidebar.css({
+		 			position: '',
+		 			top: mainBottom - smallSidebarBottom,
+		 			left: ''
+		 		});
+	 		} else {
 				$smallSidebar.css({
 					position: 'fixed',
 					top: smallSidebarPinTop,
 					left: smallSidebarOffset.left
 				});
-				smallSidebarPinned = true;
-			}
-
-		 	if ( ( smallSidebarOffset.top - smallSidebarPinTop >= latestKnownScrollY || latestKnownScrollY + smallSidebarPinTop + smallSidebarHeight >= mainBottom ) && smallSidebarPinned ) {
-				$smallSidebar.css({
-					position: '',
-					top: '',
-					left: ''
-				});
-				smallSidebarPinned = false;
-			}
+	 		}
 
 		}
-
 	},
 
 	refresh = function() {
