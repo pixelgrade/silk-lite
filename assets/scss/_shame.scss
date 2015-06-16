@@ -49,6 +49,7 @@ hr {
 
 	@include query-below($desk) {
 		margin-bottom: rem(60px);
+		padding-bottom: 0 !important;
 	}
 }
 

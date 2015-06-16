@@ -3,27 +3,18 @@
 var fixedSidebars = (function() {
 
 	var $smallSidebar       = $('#jp-post-flair'),
-		smallSidebarPinned  = false,
-		smallSidebarPadding = parseInt($('.site-header').css('marginBottom'), 10),
-		smallSidebarPinTop	= $('.top-bar.fixed').outerHeight() + smallSidebarPadding,
 		smallSidebarOffset,
+		smallSidebarHeight,
 		smallSidebarBottom,
 		$sidebar        	= $('.sidebar--main'),
-		$main           	= $('.site-main'),
-		mainHeight      	= $main.outerHeight(),
-		mainOffset,
-		mainTop,
-		mainBottom			= mainTop + mainHeight,
-		sidebarPinned   	= false,
-		sidebarPadding  	= 60,
-		sidebarBottom,
 		sidebarHeight,
 		sidebarOffset,
-		sidebarTop,
 		sidebarBottom,
 
-		previousTop = 0,
-		animating = false,
+		padding 			= parseInt($('.site-header').css('marginBottom'), 10),
+		adminBar   			= $('#wpadminbar').length ? 32 : 0,
+		$main 				= $('.site-main'),
+		mainBottom,
 
 		initialized = false,
 
@@ -36,21 +27,9 @@ var fixedSidebars = (function() {
 			return;
 		}
 
-		if ($sidebar.length) {
-			sidebarOffset 	= $sidebar.offset();
-			sidebarTop 		= sidebarOffset.top;
-			sidebarHeight 	= $sidebar.outerHeight();
-			sidebarBottom 	= sidebarTop + sidebarHeight;
-			mainTop			= $main.offset().top;
-
-			if (mainTop >= sidebarTop) {
-				styleWidgets();
-			}
-		}
+		styleWidgets();
 		wrapJetpackAfterContent();
 		refresh();
-
-		mainBottom = $('#content').offset().top + $('#content').height();
 		initialized = true;
 	},
 
@@ -108,9 +87,8 @@ var fixedSidebars = (function() {
 	 	var $widgets 		= $sidebar.find('.widget_categories, .widget_archive, .widget_tag_cloud'),
 	 		separatorMarkup = '<span class="separator  separator--text" role="presentation"><span>More</span></a>';
 
-	 	$widgets.each(function() {
-
-	 		var $widget       	= $(this),
+	 	$widgets.each(function(i, obj) {
+	 		var $widget       	= $(obj),
 		 		widgetHeight  	= $widget.outerHeight(),
 	 			newHeight		= 220,
 		 		heightDiffrence	= widgetHeight - newHeight,
@@ -140,8 +118,6 @@ var fixedSidebars = (function() {
 	 				$widget.css({
 	 					'max-height': widgetHeight
 	 				});
-
-	 				delayUpdate();
 	 			});
 
 	 			$widget.on('mouseleave', function() {
@@ -150,8 +126,6 @@ var fixedSidebars = (function() {
 	 				})
 	 				// $widget.removeClass('focused');
 	 				$widget.css('max-height', newHeight);
-
-	 				delayUpdate();
 	 			});
 	 		}
 
@@ -177,61 +151,45 @@ var fixedSidebars = (function() {
 			init();
 		}
 
-		var windowBottom  = latestKnownScrollY + windowHeight;
-
-		sidebarBottom = sidebarHeight + sidebarOffset.top + sidebarPadding;
-		// mainBottom    = mainHeight + sidebarOffset.top + sidebarPadding;
-
-		/* adjust right sidebar positioninggulp if needed */
-		if (mainOffset.top == sidebarOffset.top && sidebarHeight < mainHeight) {
-
-			// pin sidebar
-			if ( windowBottom > sidebarBottom && !sidebarPinned ) {
-				$sidebar.css({
-					position: 'fixed',
-					top:      windowHeight - sidebarHeight - sidebarPadding,
-					left:     sidebarOffset.left
-				});
-				sidebarPinned = true;
-			}
-
-			// unpin sidebar
-			if ( windowBottom <= sidebarBottom && sidebarPinned ) {
-				$sidebar.css({
-					position: '',
-					top:      '',
-					left:     ''
-				});
-				sidebarPinned = false;
-			}
-
-			if ( windowBottom <= mainBottom ) {
-				$sidebar.css('top', windowHeight - sidebarHeight - sidebarPadding);
-			}
-
-			if ( windowBottom > mainBottom && windowBottom < documentHeight ) {
-				$sidebar.css('top', mainBottom - sidebarPadding - sidebarHeight - latestKnownScrollY);
-			}
-
-			if ( windowBottom >= documentHeight ) {
-				$sidebar.css('top', mainBottom - sidebarPadding - sidebarHeight - documentHeight + windowHeight);
-			}
-
-		}
-
+		updateMainSidebar();
 		updateSmallSidebar();
 
 	},
 
-	updateSmallSidebar = function() {
-		var newTopValue = '',
-			unpinSidebar = false;
+	updateMainSidebar = function() {
+		// if we do have a sidebar to work if
+		if ( $sidebar.length ) {
+			// if it is already pinned
+	 		if (latestKnownScrollY <= sidebarOffset.top + sidebarHeight - windowHeight + padding) {
+		 		// apply needed properties
+		 		$sidebar.css({
+		 			position: '',
+		 			top: '',
+		 			left: ''
+		 		});
+	 		// or if it needs to be pinned to the bottom
+	 		} else if (latestKnownScrollY >= mainBottom - windowHeight + padding) {
+				$sidebar.css({
+		 			position: '',
+		 			top: mainBottom - sidebarBottom,
+		 			left: ''
+		 		});
+		 	// or it just needs to be sticky and move with the scroll
+	 		} else {
+				$sidebar.css({
+					position: 'fixed',
+					top: windowHeight - sidebarHeight - padding,
+					left: sidebarOffset.left
+				});
+	 		}
+		}
+	},
 
+	updateSmallSidebar = function() {
 		// if we do have a sidebar to work if
 		if ( $smallSidebar.length ) {
-
 			// if it is already pinned
-	 		if (latestKnownScrollY <= smallSidebarOffset.top - smallSidebarPinTop) {
+	 		if ( latestKnownScrollY <= smallSidebarOffset.top - padding ) {
 		 		// apply needed properties
 		 		$smallSidebar.css({
 		 			position: '',
@@ -239,38 +197,35 @@ var fixedSidebars = (function() {
 		 			left: ''
 		 		});
 	 		// or if it needs to be pinned to the bottom
-	 		} else if (latestKnownScrollY >= mainBottom - smallSidebarPinTop - smallSidebarHeight) {
+	 		} else if ( latestKnownScrollY >= mainBottom - smallSidebarHeight - padding ) {
 				$smallSidebar.css({
 		 			position: '',
 		 			top: mainBottom - smallSidebarBottom,
 		 			left: ''
 		 		});
+		 	// or it just needs to be sticky and move with the scroll
 	 		} else {
 				$smallSidebar.css({
 					position: 'fixed',
-					top: smallSidebarPinTop,
+					top: padding,
 					left: smallSidebarOffset.left
 				});
 	 		}
-
 		}
 	},
 
 	refresh = function() {
+		refreshMain();
+		refreshMainSidebar();
+		refreshSmallSidebar();
+	},
 
-		$sidebar = $('.sidebar--main');
-		$smallSidebar = $('#jp-post-flair');
+	refreshMain = function() {
+		mainBottom = $('#content').offset().top + $('#content').height()
+	},
 
-		if ( $main.length ) {
-			mainOffset = $main.offset();
-		}
-
+	refreshMainSidebar = function() {
 		if ( $sidebar.length ) {
-
-			var positionValue 	= $sidebar.css('position'),
-				topValue 		= $sidebar.css('top'),
-				leftValue 		= $sidebar.css('left'),
-				pinnedValue		= sidebarPinned;
 
 			$sidebar.css({
 				position: '',
@@ -278,22 +233,14 @@ var fixedSidebars = (function() {
 				left: ''
 			});
 
-			sidebarPinned = false;
 			sidebarOffset = $sidebar.offset();
 			sidebarHeight = $sidebar.outerHeight();
 			sidebarBottom = sidebarOffset.top + sidebarHeight;
-			leftValue 	  = sidebarOffset.left,
-			mainHeight    = $main.outerHeight();
 
-			$sidebar.css({
-				position: positionValue,
-				top: topValue,
-				left: leftValue
-			});
-
-			sidebarPinned = pinnedValue;
 		}
+	},
 
+	refreshSmallSidebar = function() {
 		if ( $smallSidebar.length ) {
 
 			$smallSidebar.css({
@@ -302,22 +249,21 @@ var fixedSidebars = (function() {
 				left: ''
 			});
 
-			smallSidebarPinned = false;
 			smallSidebarOffset = $smallSidebar.offset();
 
 			$smallSidebar.find('.sd-sharing-enabled, .sd-like, .jp-relatedposts-post').show().each(function(i, obj) {
+
 				var $box 		= $(obj),
 					boxOffset	= $box.offset(),
 					boxHeight	= $box.outerHeight(),
 					boxBottom	= boxOffset.top - smallSidebarOffset.top + boxHeight;
 
-				if ( boxBottom + smallSidebarPadding + smallSidebarPinTop > windowHeight ) {
+				if ( boxBottom + padding > windowHeight ) {
 					$box.hide();
 				} else {
 					$box.show();
 				}
 			});
-
 
 			var $relatedposts = $('.jp-relatedposts');
 
@@ -331,7 +277,6 @@ var fixedSidebars = (function() {
 			smallSidebarHeight = $smallSidebar.outerHeight();
 			smallSidebarBottom = smallSidebarOffset.top + smallSidebarHeight;
 		}
-
 	};
 
 	return {
