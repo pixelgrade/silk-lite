@@ -622,6 +622,13 @@ div#jp-relatedposts div.jp-relatedposts-items .jp-relatedposts-post.jp-relatedpo
 	float: none;
 
 	opacity: 1;
+
+	@include query-below($lap) {
+		display: block !important;
+
+		a 	{ background: none !important; }
+		img { margin: 0 auto; }
+	}
 }
 
 div#jp-relatedposts div.jp-relatedposts-items p.jp-relatedposts-post span {
