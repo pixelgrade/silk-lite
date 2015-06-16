@@ -1,8 +1,13 @@
 .sidebar--main {
 	@extend .grid;
+	position: relative;
 
 	> .grid__item {
 		width: 100%;
+	}
+
+	@include query-below($desk) {
+		position: static !important;
 	}
 }
 
