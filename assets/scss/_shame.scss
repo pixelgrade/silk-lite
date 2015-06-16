@@ -171,3 +171,9 @@ hr {
 		}
 	}
 }
+
+.post-navigation {
+	@include query-below($lap) {
+		margin-bottom: rhythm(1);
+	}
+}
