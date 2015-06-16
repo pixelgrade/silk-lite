@@ -215,6 +215,7 @@ var fixedSidebars = (function() {
 	},
 
 	refresh = function() {
+		$smallSidebar = $('#jp-post-flair');
 		refreshMain();
 		refreshMainSidebar();
 		refreshSmallSidebar();
