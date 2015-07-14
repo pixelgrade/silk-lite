@@ -84,4 +84,74 @@ function silk_typekit_script_embed() {
 	<?php }
 }
 
-add_action( 'wp_head', 'silk_typekit_script_embed', 1); ?>
+add_action( 'wp_head', 'silk_typekit_script_embed', 1);
+
+function silk_add_typekit_settings_into_wp_editor() {
+
+	ob_start();
+	silk_typekit_script_embed();
+	$custom_css = ob_get_clean(); ?>
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		(function($){
+			$(window).load(function(){
+				var silk_append_script_to_iframe = function( ifrm_id, scriptEl ) {
+					var  myIframe = document.getElementById(ifrm_id);
+
+					var script = myIframe.contentWindow.document.createElement("script");
+					script.type = "text/javascript";
+					script.innerHTML = scriptEl.innerHTML;
+
+					if ( script.innerHTML === '' ) {
+						script.src = scriptEl.getAttribute('src');
+					}
+
+					myIframe.contentWindow.document.head.appendChild(script);
+				};
+
+				var silk_append_style_to_iframe = function( ifrm_id, styleElment ) {
+					var ifrm = window.frames[ ifrm_id ];
+					ifrm = ( ifrm.contentDocument || ifrm.contentDocument || ifrm.document );
+					var head = ifrm.getElementsByTagName('head')[0];
+
+					if ( typeof styleElment !== "undefined" ){
+						head.appendChild( styleElment );
+					}
+				};
+
+				var xmlString = <?php echo json_encode( str_replace("\n", "", $custom_css ) ); ?>,
+					parser = new DOMParser(),
+					doc = parser.parseFromString( xmlString, "text/html" );
+
+				if ( typeof window.frames['content_ifr'] !== 'undefined' ) {
+
+					$.each( doc.head.childNodes, function( key, el ){
+
+						if ( typeof el !== "undefined" && typeof el.tagName !== "undefined" ) {
+
+							switch ( el.tagName ) {
+
+								case 'STYLE' :
+									silk_append_style_to_iframe( 'content_ifr', el );
+									break;
+
+								case 'SCRIPT' :
+									silk_append_script_to_iframe( 'content_ifr', el );
+									break;
+								default:
+									break;
+							}
+						}
+					});
+				}
+			});
+		})(jQuery);
+		/* ]]> */
+	</script>
+<?php
+}
+
+global $pixcustomify_plugin;
+if ( isset( $pixcustomify_plugin ) && $pixcustomify_plugin::get_plugin_option( 'enable_editor_style', true ) ) {
+	add_action('admin_head', 'silk_add_typekit_settings_into_wp_editor' );
+} ?>
