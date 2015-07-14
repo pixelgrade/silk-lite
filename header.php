@@ -13,7 +13,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
-
 	<?php wp_head(); ?>
 </head>
 
@@ -37,7 +36,7 @@
 
 			// on the front page and home page we use H1 for the title
 			echo ( is_front_page() && is_home() ) ? '<h1 class="site-title">' : '<div class="site-title">'; ?>
-			
+
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
 				<span><?php bloginfo( 'name' ); ?></span>
 				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
