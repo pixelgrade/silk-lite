@@ -298,6 +298,12 @@
 
     });
 
+    $nav.find('.menu-item--no-children > a').on('touchstart', function (e) {
+      var $linkToAffect = $(this);
+      var $linkToAffectHref = $linkToAffect.attr('href');
+      window.location = $linkToAffectHref;
+    });
+
     $('body').on('touchstart', function () {
       $('.menu-item-has-children').removeClass('hover');
     });
