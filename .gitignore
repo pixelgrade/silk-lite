@@ -24,7 +24,10 @@ node_modules/
 
 .svn
 README.md
+license_key.txt
 
 style.css
 editor-style.css
 rtl.css
+
+license_key.txt
