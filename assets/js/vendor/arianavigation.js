@@ -331,10 +331,10 @@
 
 		});
 
-		$nav.find('.menu-item--no-children > a').on('touchstart', function(e) {
-			var $linkToAffect = $(this);
-			var $linkToAffectHref = $linkToAffect.attr('href');
-			window.location = $linkToAffectHref;
+		$nav.find('.menu-item--no-children > a').on('hover', function(e) {
+			var el = $(this);
+			var link = el.attr('href');
+			window.location = link;
 		});
 
 		$('body').on('touchstart', function() {
