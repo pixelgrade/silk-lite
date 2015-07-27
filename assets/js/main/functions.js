@@ -11,10 +11,20 @@ function platformDetect() {
   $.support.svg       = (document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1")) ? true : false;
   $.support.transform = getSupportedTransform();
 
+  iOS                 = getIOSVersion(ua);
+
   $html
     .addClass($.support.touch ? 'touch' : 'no-touch')
     .addClass($.support.svg ? 'svg' : 'no-svg')
     .addClass(!!$.support.transform ? 'transform' : 'no-transform');
+}
+
+function getIOSVersion(ua) {
+    ua = ua || navigator.userAgent;
+    return parseFloat(
+        ('' + (/CPU.*OS ([0-9_]{1,5})|(CPU like).*AppleWebKit.*Mobile/i.exec(ua) || [0,''])[1])
+            .replace('undefined', '3_2').replace('_', '.').replace('_', '')
+    ) || false;
 }
 
 

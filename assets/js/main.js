@@ -468,6 +468,7 @@ if (!Date.now) Date.now = function () {
       ie_older = ie && !ie_newer,
       ie_ancient = ua.indexOf('msie 6') != -1,
       safari = ua.indexOf('safari') != -1 && ua.indexOf('chrome') == -1,
+      iOS = false,
       
       
       is_small = $('.js-nav-trigger').is(':visible');
@@ -1201,6 +1202,71 @@ if (!Date.now) Date.now = function () {
     }
 
   })();
+  var overscroll = (function () {
+
+    function prepare() {
+      if (iOS) {
+        $('html, body, #page').css('height', '100%');
+        $('#page').css('overflow-y', 'auto');
+        $('body').css('overflow', 'hidden');
+        init();
+      }
+    }
+
+    function init() {
+      var e, d, g, f, c = 0,
+          b = 0,
+          a;
+      document.addEventListener("touchstart", function (h) {
+        clearInterval(a);
+        g = h.target;
+        f = h.target;
+        while ((window.getComputedStyle(g)["overflow-x"] != "auto" && window.getComputedStyle(g)["overflow-x"] != "scroll") || g.parentNode == null) {
+          g = g.parentNode
+        }
+        while ((window.getComputedStyle(f)["overflow-y"] != "auto" && window.getComputedStyle(f)["overflow-y"] != "auto") || f.parentNode == null) {
+          f = f.parentNode
+        }
+        if (g.parentNode == null) {
+          g = null
+        }
+        if (f.parentNode == null) {
+          f = null
+        }
+        var i = h.touches[0];
+        e = i.pageX;
+        d = i.pageY
+      }, false);
+      document.addEventListener("touchmove", function (h) {
+        clearInterval(a);
+        h.preventDefault();
+        var i = h.touches[0];
+        g.scrollLeft = g.scrollLeft - (i.pageX - e);
+        f.scrollTop = f.scrollTop - (i.pageY - d);
+        c = (i.pageX - e);
+        b = (i.pageY - d);
+        e = i.pageX;
+        d = i.pageY
+      }, false);
+      document.addEventListener("touchend", function (h) {
+        clearInterval(a);
+        a = setInterval(function () {
+          g.scrollLeft = g.scrollLeft - c;
+          f.scrollTop = f.scrollTop - b;
+          c = c * 0.9;
+          b = b * 0.9;
+          if (c < 1 && c > -1 && b < 1 && b > -1) {
+            clearInterval(a)
+          }
+        }, 15)
+      }, false);
+    }
+
+    return {
+      prepare: prepare
+    }
+
+  })();
   // /* ====== Search Overlay Logic ====== */
   (function () {
 
@@ -1895,6 +1961,7 @@ if (!Date.now) Date.now = function () {
     browserSize();
     navigation.init();
     slider.init();
+    overscroll.prepare();
     fixedSidebars.update();
     svgLogo.init();
     animator.animate();
@@ -1961,7 +2028,14 @@ if (!Date.now) Date.now = function () {
     $.support.svg = (document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1")) ? true : false;
     $.support.transform = getSupportedTransform();
 
+    iOS = getIOSVersion(ua);
+
     $html.addClass($.support.touch ? 'touch' : 'no-touch').addClass($.support.svg ? 'svg' : 'no-svg').addClass( !! $.support.transform ? 'transform' : 'no-transform');
+  }
+
+  function getIOSVersion(ua) {
+    ua = ua || navigator.userAgent;
+    return parseFloat(('' + (/CPU.*OS ([0-9_]{1,5})|(CPU like).*AppleWebKit.*Mobile/i.exec(ua) || [0, ''])[1]).replace('undefined', '3_2').replace('_', '.').replace('_', '')) || false;
   }
 
 

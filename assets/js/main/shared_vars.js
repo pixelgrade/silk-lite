@@ -23,6 +23,7 @@ var ua                  = navigator.userAgent.toLowerCase(),
     ie_older            = ie && !ie_newer,
     ie_ancient          = ua.indexOf('msie 6') != -1,
     safari              = ua.indexOf('safari') != -1 && ua.indexOf('chrome') == -1,
+    iOS                 = false,
 
     is_small            = $('.js-nav-trigger').is(':visible');
 
