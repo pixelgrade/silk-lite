@@ -472,7 +472,7 @@ if (!Date.now) Date.now = function () {
       
       is_small = $('.js-nav-trigger').is(':visible');
 
-  windowHeight = $window.height(), windowWidth = $window.width(), documentHeight = $document.height(),
+  windowHeight = $window.height(), windowWidth = $window.width(), documentHeight = $document.height(), orientation = windowWidth >= windowHeight ? 'landscape' : 'portrait',
 
   latestKnownScrollY = window.scrollY, ticking = false;
 
@@ -1907,7 +1907,17 @@ if (!Date.now) Date.now = function () {
   /* ====== ON RESIZE ====== */
 
   function onResize() {
-    slider.init();
+    var newOrientation = windowWidth >= windowHeight ? 'landscape' : 'portrait';
+
+    if (Modernizr.touch) {
+      if (orientation != newOrientation) {
+        slider.init();
+      }
+    } else {
+      slider.init();
+    }
+
+
     browserSize();
     masonry.refresh();
     fixedSidebars.refresh();
@@ -1960,6 +1970,7 @@ if (!Date.now) Date.now = function () {
     windowHeight = $window.height();
     windowWidth = $window.width();
     documentHeight = $document.height();
+    orientation = windowWidth >= windowHeight ? 'landscape' : 'portrait';
   }
 
 

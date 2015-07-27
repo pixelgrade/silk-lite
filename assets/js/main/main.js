@@ -27,7 +27,17 @@ $window.load(function() {
 /* ====== ON RESIZE ====== */
 
 function onResize() {
-  slider.init();
+  var newOrientation = windowWidth >= windowHeight ? 'landscape' : 'portrait';
+
+  if (Modernizr.touch) {
+    if (orientation != newOrientation) {
+      slider.init();
+    }
+  } else {
+    slider.init();
+  }
+
+
   browserSize();
   masonry.refresh();
   fixedSidebars.refresh();

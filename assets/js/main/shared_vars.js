@@ -7,7 +7,7 @@ var ua                  = navigator.userAgent.toLowerCase(),
     $document           = $(document),
     $html               = $('html'),
     $body               = $('body'),
-    
+
     iphone              = platform.indexOf("iphone"),
     ipod                = platform.indexOf("ipod"),
     android             = platform.indexOf("android"),
@@ -29,6 +29,7 @@ var ua                  = navigator.userAgent.toLowerCase(),
     windowHeight        = $window.height(),
     windowWidth         = $window.width(),
     documentHeight      = $document.height(),
+    orientation         = windowWidth >= windowHeight ? 'landscape' : 'portrait',
 
     latestKnownScrollY  = window.scrollY,
     ticking             = false;
