@@ -105,7 +105,8 @@
 			display: block;
 			white-space: nowrap;
 			margin-bottom: 0;
-			overflow-x: scroll;
+			// overflow-x: scroll;
+			overflow-y: hidden;
 			-webkit-overflow-scrolling: touch;
 
 			> li {

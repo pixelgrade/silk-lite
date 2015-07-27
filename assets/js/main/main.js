@@ -15,7 +15,6 @@ $window.load(function() {
   browserSize();
   navigation.init();
   slider.init();
-  overscroll.prepare();
   fixedSidebars.update();
   svgLogo.init();
   animator.animate();
