@@ -84,17 +84,6 @@ function silk_customize_register ( $wp_customize ) {
 		),
 	) );
 
-	$wp_customize->add_setting( 'silk_sticky_menus', array(
-		'default'           => '',
-		'sanitize_callback' => 'silk_sanitize_checkbox',
-	) );
-
-	$wp_customize->add_control( 'silk_sticky_menus', array(
-		'label'             => __( 'Show sticky menus on scroll.', 'silk' ),
-		'section'           => 'silk_theme_options',
-		'type'              => 'checkbox',
-	) );
-
 	$wp_customize->add_setting( 'silk_footer_copyright', array(
 		'default'           => '',
 		'sanitize_callback' => 'wp_kses_post',

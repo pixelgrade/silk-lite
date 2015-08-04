@@ -298,11 +298,18 @@
 
     });
 
-    $nav.find('.menu-item--no-children > a').on('hover', function (e) {
-      var el = $(this);
-      var link = el.attr('href');
-      window.location = link;
-    });
+    function getIOSVersion(ua) {
+      ua = ua || navigator.userAgent;
+      return parseFloat(('' + (/CPU.*OS ([0-9_]{1,5})|(CPU like).*AppleWebKit.*Mobile/i.exec(ua) || [0, ''])[1]).replace('undefined', '3_2').replace('_', '.').replace('_', '')) || false;
+    }
+
+    if (getIOSVersion()) {
+      $nav.find('.menu-item--no-children > a').on('hover', function (e) {
+        var el = $(this);
+        var link = el.attr('href');
+        window.location = link;
+      });
+    }
 
     $('body').on('touchstart', function () {
       $('.menu-item-has-children').removeClass('hover');
@@ -1055,39 +1062,7 @@ if (!Date.now) Date.now = function () {
         // initialize the logic behind the main navigation
         $nav.ariaNavigation();
 
-        if ($('.floating-nav').length) {
-
-          $nav.clone(true).removeClass('nav--main').addClass('nav--toolbar').appendTo('.floating-nav .flag__body');
-
-          $('.nav--toolbar--left').clone().removeClass('nav--toolbar nav--toolbar--left').addClass('nav--stacked nav--floating nav--floating--left').appendTo('.floating-nav');
-
-          $('.nav__item--search').prependTo('.nav--floating--left');
-
-          $('.nav--toolbar--right').clone().removeClass('nav--toolbar nav--toolbar--right').addClass('nav--stacked nav--floating nav--floating--right').appendTo('.floating-nav');
-
-          // make sure that the links in the floating-nav, that shows on scroll, are ignored by TAB
-          $('.floating-nav').find('a').attr('tabIndex', -1);
-          handleTopBar();
-
-        }
-
         mobileNav();
-        },
-        
-        
-        toggleTopBar = function () {
-        var navBottom = $nav.offset().top + $nav.outerHeight();
-
-        if (navBottom < latestKnownScrollY) {
-          $('.top-bar.fixed').addClass('visible');
-          $('.nav--floating').addClass('nav--floating--is-visible');
-          $('.article-navigation .navigation-item').addClass('hover-state');
-        } else {
-          $('.top-bar.fixed').removeClass('visible');
-          $('.nav--floating').removeClass('nav--floating--is-visible');
-          $('.article-navigation .navigation-item').removeClass('hover-state');
-        }
-
         },
         
         
@@ -1197,7 +1172,6 @@ if (!Date.now) Date.now = function () {
 
     return {
       init: init,
-      toggleTopBar: toggleTopBar,
       handleTopBar: handleTopBar
     }
 
@@ -1946,7 +1920,6 @@ if (!Date.now) Date.now = function () {
   function update() {
     fixedSidebars.init();
     fixedSidebars.update();
-    navigation.toggleTopBar();
     svgLogo.update();
     ticking = false;
   } /* ====== HELPER FUNCTIONS ====== */

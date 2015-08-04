@@ -22,7 +22,7 @@
 					'container'      => '',
 					'menu_class'     => 'nav  nav--footer',
 					'depth'          => - 1, //flatten if there is any hierarchy
-					'items_wrap'         => '<nav><h5 class="screen-reader-text">'.__( 'Footer navigation', 'silk' ).'</h5><ul id="%1$s" class="%2$s">%3$s</ul></nav>',
+					'items_wrap'     => '<nav><h5 class="screen-reader-text">'.__( 'Footer navigation', 'silk' ).'</h5><ul id="%1$s" class="%2$s">%3$s</ul></nav>',
 				)
 			); ?>
 		</div>
@@ -33,13 +33,12 @@
 			if ( get_theme_mod( 'silk_footer_copyright', false ) ) {
 				echo get_theme_mod( 'silk_footer_copyright', '' );
 			} else {
-				echo '© '.get_bloginfo('name').' –';
-			}
+				echo '© ' . get_bloginfo('name') . ' – ';
+			} ?>
 
-			printf( ' %1$s <span>'. __( 'by', 'silk' ) .'</span> %2$s',
-				'<a href="https://pixelgrade.com/themes/silk/" title="'. __( 'SILK - A Fashion Magazine WordPress Theme', 'silk' ) .'" rel="theme">'. __( 'Silk Theme', 'silk' ) .'</a>',
-				'<a href="https://pixelgrade.com" title="'. __( 'The PixelGrade Website', 'silk' ) .'" rel="designer">PixelGrade</a>');
-			?>
+			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'silk' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'silk' ), 'WordPress' ); ?></a>
+			<span class="sep"> | </span>
+			<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'silk' ), 'Silk', '<a href="https://pixelgrade.com" title="'. __( 'The PixelGrade Website', 'silk' ) .'" rel="designer">PixelGrade</a>' ); ?>
 
 		</div><!-- .site-info -->
 
@@ -68,8 +67,6 @@
 	</div>
 
 <?php endif; ?>
-
-<?php get_template_part( 'templates/top-bar' ); ?>
 
 <?php wp_footer(); ?>
 

@@ -20,16 +20,6 @@ function silk_jetpack_setup() {
 	) );
 
 	/**
-	 * Add theme support for Featured Content
-	 * See: http://jetpack.me/support/featured-content/
-	 */
-	add_theme_support( 'featured-content', array(
-		'filter'     => 'silk_get_featured_posts',
-		'max_posts'  => 10,
-		'post_types' => array( 'post' ),
-	) );
-
-	/**
 	 * Add theme support for site logo
 	 *
 	 * First, it's the image size we want to use for the logo thumbnails

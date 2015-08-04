@@ -331,11 +331,21 @@
 
 		});
 
-		$nav.find('.menu-item--no-children > a').on('hover', function(e) {
-			var el = $(this);
-			var link = el.attr('href');
-			window.location = link;
-		});
+		function getIOSVersion(ua) {
+			ua = ua || navigator.userAgent;
+			return parseFloat(
+					('' + (/CPU.*OS ([0-9_]{1,5})|(CPU like).*AppleWebKit.*Mobile/i.exec(ua) || [0,''])[1])
+						.replace('undefined', '3_2').replace('_', '.').replace('_', '')
+				) || false;
+		}
+
+		if ( getIOSVersion() ) {
+			$nav.find('.menu-item--no-children > a').on('hover', function(e) {
+				var el = $(this);
+				var link = el.attr('href');
+				window.location = link;
+			});
+		}
 
 		$('body').on('touchstart', function() {
 			$('.menu-item-has-children').removeClass('hover');

@@ -68,15 +68,9 @@ if ( ! function_exists( 'silk_setup' ) ) :
 		//used for related posts sidebar
 		add_image_size( 'silk-small-image', 190, 85, true );
 
-		//used for the post thumbnail of the big mega menu post
-		add_image_size( 'silk-mega-menu-big-image', 340, 340, false );
-
 		//used as featured image for posts on archive pages
 		//also for the background image of About Me widget
 		add_image_size( 'silk-masonry-image', 450, 9999, false );
-
-		//used for the post thumbnail of the featured posts in the home slider
-		add_image_size( 'silk-slider-image', 650, 430, true );
 
 		//used for the post thumbnail of posts on archives when displayed in a single column (no masonry)
 		//and for the single post featured image
@@ -87,7 +81,6 @@ if ( ! function_exists( 'silk_setup' ) ) :
 			'primary'          => __( 'Primary Menu', 'silk' ),
 			'top_header_left'  => __( 'Top Header Left Menu', 'silk' ),
 			'top_header_right' => __( 'Top Header Right Menu', 'silk' ),
-			'hamburger' 	   => __( 'Hamburger Menu', 'silk' ),
 			'footer'           => __( 'Footer Menu', 'silk' ),
 		) );
 
@@ -177,18 +170,6 @@ function silk_scripts_styles() {
 
 	//Enqueue Masonry
 	wp_enqueue_script( 'jquery-masonry' );
-
-	//only include the slider script if we have at least 2 featured posts
-	if ( silk_has_featured_posts( 2 ) ) {
-		//Enqueue FlexSlider plugin
-		wp_enqueue_script( 'flexslider', get_template_directory_uri() . '/assets/js/jquery.flexslider.js', array( 'jquery' ), '2.2.2', true );
-
-		wp_localize_script( 'flexslider', 'silkFeaturedSlider', array(
-			'prevText' => __( 'Previous', 'silk' ),
-			'nextText' => __( 'Next', 'silk' ),
-		) );
-
-	}
 
 	//Enqueue ImagesLoaded plugin
 	wp_enqueue_script( 'imagesLoaded', get_template_directory_uri() . '/assets/js/imagesloaded.js', array(), '3.1.8', true );
@@ -283,23 +264,4 @@ require get_template_directory() . '/inc/hybrid-media-grabber.php';
  * Load custom widgets
  */
 require get_template_directory() . '/inc/widgets/popular-posts.php';
-require get_template_directory() . '/inc/widgets/about-me.php';
-
-/**
- * Load Customify plugin configuration
- */
-require get_template_directory() . '/inc/customify_config.php';
-
-/**
- * Load Recommended/Required plugins notification
- */
-require get_template_directory() . '/inc/required-plugins/required-plugins.php';
-
-require_once( get_template_directory() . '/inc/silk-self-hosted.php' );
-
-/**
- * Load the theme update logic
- */
-require_once( get_template_directory() . '/inc/wp-updates-theme.php' );
-
-new WPUpdatesThemeUpdater_1221( 'http://wp-updates.com/api/2/theme', basename( get_template_directory() ) ); ?>
+require get_template_directory() . '/inc/widgets/about-me.php'; ?>
