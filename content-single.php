@@ -4,7 +4,7 @@
  *
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
- * @package Silk
+ * @package Silk Lite
  */
 ?>
 
@@ -12,9 +12,9 @@
 	<header class="entry-header">
 		<div class="entry-meta">
 
-			<?php silk_posted_on(); ?>
+			<?php silklite_posted_on(); ?>
 
-			<?php silk_cats_list(); ?>
+			<?php silklite_cats_list(); ?>
 
 		</div><!-- .entry-meta -->
 
@@ -31,9 +31,9 @@
 
 	<div class="entry-content">
 
-		<?php if ( has_post_thumbnail() && get_theme_mod( 'silk_single_featured_image', false ) ) : ?>
+		<?php if ( has_post_thumbnail() && get_theme_mod( 'silklite_single_featured_image', false ) ) : ?>
 			<div class="entry-featured  entry-thumbnail">
-				<?php the_post_thumbnail( 'silk-single-image' ); ?>
+				<?php the_post_thumbnail( 'silklite-single-image' ); ?>
 			</div>
 		<?php endif; ?>
 
@@ -41,11 +41,11 @@
 
 		<?php
 		wp_link_pages( array(
-			'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'silk' ),
+			'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'silklite' ),
 			'after'  => '</span></div>',
 			'link_before' => '<span>',
 			'link_after'  => '</span>',
-			'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'silk' ) . ' </span>%',
+			'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'silklite' ) . ' </span>%',
 			'separator'   => '<span class="screen-reader-text">, </span>',
 		) );
 		?>
@@ -57,7 +57,7 @@
 			<?php get_template_part( 'assets/svg/separator-simple' ); ?>
 		</span>
 
-		<?php silk_entry_footer(); ?>
+		<?php silklite_entry_footer(); ?>
 
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

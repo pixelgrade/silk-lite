@@ -4,7 +4,7 @@
  *
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
- * @package Silk
+ * @package Silk Lite
  */
 
 get_header(); ?>

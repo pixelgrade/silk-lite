@@ -2,7 +2,7 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Silk 1.0.0\n"
+"Project-Id-Version: Silk Lite 1.0.0\n"
 "Report-Msgid-Bugs-To: https://help.pixelgrade.com\n"
 "POT-Creation-Date: 2015-05-27 08:10:22+00:00\n"
 "MIME-Version: 1.0\n"
@@ -102,7 +102,7 @@ msgid "SILK - A Fashion Magazine WordPress Theme"
 msgstr ""
 
 #: footer.php:40
-msgid "Silk Theme"
+msgid "Silk Lite Theme"
 msgstr ""
 
 #: footer.php:41
@@ -804,7 +804,7 @@ msgid "Archives"
 msgstr ""
 
 #: inc/widgets/about-me.php:29
-msgid "Silk About Me"
+msgid "Silk Lite About Me"
 msgstr ""
 
 #: inc/widgets/about-me.php:32
@@ -840,7 +840,7 @@ msgid "Automatically add paragraphs"
 msgstr ""
 
 #: inc/widgets/popular-posts.php:42
-msgid "Silk Popular Posts"
+msgid "Silk Lite Popular Posts"
 msgstr ""
 
 #: inc/widgets/popular-posts.php:44

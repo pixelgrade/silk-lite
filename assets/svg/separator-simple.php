@@ -2,7 +2,7 @@
 /**
  * Separator
  *
- * @package Silk
+ * @package Silk Lite
  */ ?><svg width="196px" height="9px" viewBox="0 0 196 9" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 	<g id="group-2" fill="none" stroke="currentColor">
 		<path class="square square-middle" d="M92.7573593,4.49999999 L97.2573591,0 L101.757359,4.49999999 L97.2573591,9 L92.7573593,4.49999999 L92.7573593,4.49999999 Z" id="Rectangle-11-path" sketch:type="MSShapeGroup"></path>

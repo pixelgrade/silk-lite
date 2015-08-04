@@ -2,7 +2,7 @@
 /**
  * The template used for displaying page content in page.php
  *
- * @package Silk
+ * @package Silk Lite
  */
 ?>
 
@@ -17,11 +17,11 @@
 
 		<?php
 			wp_link_pages( array(
-				'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'silk' ),
+				'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'silklite' ),
 				'after'  => '</span></div>',
 				'link_before' => '<span>',
 				'link_after'  => '</span>',
-				'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'silk' ) . ' </span>%',
+				'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'silklite' ) . ' </span>%',
 				'separator'   => '<span class="screen-reader-text">, </span>',
 			) );
 		?>
@@ -35,7 +35,7 @@
 				<?php get_template_part( 'assets/svg/separator-simple' ); ?>
 			</span>
 
-			<?php edit_post_link( __( 'Edit', 'silk' ), '<span class="edit-link">', '</span>' ); ?>
+			<?php edit_post_link( __( 'Edit', 'silklite' ), '<span class="edit-link">', '</span>' ); ?>
 
 		<?php endif; ?>
 	</footer><!-- .entry-footer -->

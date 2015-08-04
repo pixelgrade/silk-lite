@@ -1,8 +1,8 @@
 <?php
 /**
- * Silk About Me widget
+ * Silk Lite About Me widget
  *
- * @package Silk
+ * @package Silk Lite
  */
 
 if ( ! function_exists( 'silk_about_me_widget_init' ) ) :
@@ -26,14 +26,14 @@ if ( ! class_exists( 'Silk_About_Me_Widget' ) ) :
 		public function __construct() {
 			parent::__construct(
 				'silk-about-me',
-				apply_filters( 'silk_widget_name', esc_html__( 'Silk About Me', 'silk' ) ),
+				apply_filters( 'silk_widget_name', esc_html__( 'Silk Lite About Me', 'silklite' ) ),
 				array(
 					'classname'   => 'widget_silk_about_me',
-					'description' => __( 'Display some info about you with an image background.', 'silk' )
+					'description' => __( 'Display some info about you with an image background.', 'silklite' )
 				)
 			);
 
-			$this->default_title = __( 'About Me', 'silk' );
+			$this->default_title = __( 'About Me', 'silklite' );
 
 			add_action( 'admin_init', array( $this, 'admin_init' ) );
 		}
@@ -152,34 +152,34 @@ if ( ! class_exists( 'Silk_About_Me_Widget' ) ) :
 
 			<div class="silk-about-me-widget-form">
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Title:', 'silk' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Title:', 'silklite' ); ?></label>
 					<input class="widefat" type="text" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" value="<?php echo esc_attr( $title ); ?>">
 				</p>
 
 				<p class="silk-about-me-widget-image-control<?php echo ( $image_id ) ? ' has-image' : ''; ?>"
-				   data-title="<?php esc_attr_e( 'Choose an Background Image', 'silk' ); ?>"
-				   data-update-text="<?php esc_attr_e( 'Update Image', 'silk' ); ?>">
+				   data-title="<?php esc_attr_e( 'Choose an Background Image', 'silklite' ); ?>"
+				   data-update-text="<?php esc_attr_e( 'Update Image', 'silklite' ); ?>">
 					<?php
 					if ( ! empty( $image_id ) ) {
 						echo wp_get_attachment_image( $image_id, 'medium', false );
 					}
 					?>
 					<input class="silk-about-me-image-id" type="hidden" name="<?php echo esc_attr( $this->get_field_name( 'image_id' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'image_id' ) ); ?>" value="<?php echo esc_attr( $image_id ); ?>">
-					<a class="button silk-about-me-widget-image-control__choose" href="#"><?php _e( 'Choose an Background Image', 'silk' ); ?></a>
+					<a class="button silk-about-me-widget-image-control__choose" href="#"><?php _e( 'Choose an Background Image', 'silklite' ); ?></a>
 				</p>
 
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'name' ) ); ?>"><?php _e( 'Your Name:', 'silk' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'name' ) ); ?>"><?php _e( 'Your Name:', 'silklite' ); ?></label>
 					<input class="widefat" type="text" name="<?php echo esc_attr( $this->get_field_name( 'name' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'name' ) ); ?>" value="<?php echo esc_attr( $name ); ?>">
 				</p>
 
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>"><?php _e( 'About You:', 'silk' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>"><?php _e( 'About You:', 'silklite' ); ?></label>
 					<textarea class="widefat" name="<?php echo esc_attr( $this->get_field_name( 'text' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>" rows="4"><?php echo esc_textarea( $text ); ?></textarea>
 				</p>
 
 				<p>
-					<input id="<?php echo $this->get_field_id( 'filter' ); ?>" name="<?php echo $this->get_field_name( 'filter' ); ?>" type="checkbox" <?php checked( isset( $instance['filter'] ) ? $instance['filter'] : 0 ); ?> />&nbsp;<label for="<?php echo $this->get_field_id( 'filter' ); ?>"><?php _e( 'Automatically add paragraphs', 'silk' ); ?></label>
+					<input id="<?php echo $this->get_field_id( 'filter' ); ?>" name="<?php echo $this->get_field_name( 'filter' ); ?>" type="checkbox" <?php checked( isset( $instance['filter'] ) ? $instance['filter'] : 0 ); ?> />&nbsp;<label for="<?php echo $this->get_field_id( 'filter' ); ?>"><?php _e( 'Automatically add paragraphs', 'silklite' ); ?></label>
 				</p>
 
 			</div>

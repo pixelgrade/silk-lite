@@ -2,7 +2,7 @@
 /**
  * The template used for displaying post content on home and archive pages
  *
- * @package Silk
+ * @package Silk Lite
  */
 ?>
 
@@ -15,7 +15,7 @@
 			<?php if ( 'post' == get_post_type() ) : ?>
 
 				<div class="entry-meta  entry-meta--card">
-					<?php silk_posted_on_and_cats(); ?>
+					<?php silklite_posted_on_and_cats(); ?>
 				</div><!-- .entry-meta -->
 
 			<?php endif; ?>
@@ -28,7 +28,7 @@
 		
 			<?php if ( has_post_thumbnail() ) { ?>
 				<a href="<?php the_permalink(); ?>" class="entry-featured  entry-thumbnail">
-					<?php the_post_thumbnail( silk_get_thumbnail_size() ); ?>
+					<?php the_post_thumbnail( silklite_get_thumbnail_size() ); ?>
 					<div class="entry-image-border"></div>
 				</a>
 			<?php }
@@ -40,7 +40,7 @@
 			if ( $has_more ) {
 				/* translators: %s: Name of current post */
 				the_content( sprintf(
-					__( 'Continue reading %s', 'silk' ),
+					__( 'Continue reading %s', 'silklite' ),
 					the_title( '<span class="screen-reader-text">', '</span>', false )
 				) );
 			} else {
@@ -49,11 +49,11 @@
 
 		<?php
 			wp_link_pages( array(
-				'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'silk' ),
+				'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'silklite' ),
 				'after'  => '</span></div>',
 				'link_before' => '<span>',
 				'link_after'  => '</span>',
-				'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'silk' ) . ' </span>%',
+				'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'silklite' ) . ' </span>%',
 				'separator'   => '<span class="screen-reader-text">, </span>',
 			) );
 		?>

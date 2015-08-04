@@ -2,7 +2,7 @@
 /**
  * The template for displaying the quote post format on archives.
  *
- * @package Silk
+ * @package Silk Lite
  */
 ?>
 
@@ -12,7 +12,7 @@
 	//let's see if we have a featured image
 	$post_thumbnail_style = '';
 	if ( has_post_thumbnail() ) {
-		$post_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), silk_get_thumbnail_size() );
+		$post_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), silklite_get_thumbnail_size() );
 		if ( isset( $post_thumbnail[0] ) ) {
 			$post_thumbnail_style = 'style="background-image: url(' . esc_url( $post_thumbnail[0] ) . ');"';
 		}
@@ -27,7 +27,7 @@
 					<?php
 					/* translators: %s: Name of current post */
 					$content = get_the_content( sprintf(
-						__( 'Continue reading %s', 'silk' ),
+						__( 'Continue reading %s', 'silklite' ),
 						the_title( '<span class="screen-reader-text">', '</span>', false )
 					) );
 

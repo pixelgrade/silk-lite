@@ -2,16 +2,16 @@
 /**
  * The template for the top header bar.
  *
- * @package Silk
+ * @package Silk Lite
  */ ?>
 <div class="top-bar  top-bar--fixed">
 	<div class="content">
 		<nav id="top-header-left-navigation" class="toolbar-navigation  left" role="navigation">
-			<h5 class="screen-reader-text"><?php _e( 'Secondary left navigation', 'silk' ); ?></h5>
+			<h5 class="screen-reader-text"><?php _e( 'Secondary left navigation', 'silklite' ); ?></h5>
 			<?php
-			if ( ! get_theme_mod( 'silk_disable_search_in_toolbar', false ) ) { ?>
+			if ( ! get_theme_mod( 'silklite_disable_search_in_toolbar', false ) ) { ?>
 				<ul class="nav  nav--toolbar">
-					<li class="menu-item  nav__item--search"><a href="#"><?php _e( 'Search', 'silk' ); ?></a></li>
+					<li class="menu-item  nav__item--search"><a href="#"><?php _e( 'Search', 'silklite' ); ?></a></li>
 				</ul>
 			<?php }
 
@@ -27,7 +27,7 @@
 			?>
 		</nav><!-- #top-header-left-navigation -->
 		<nav id="top-header-right-navigation" class="toolbar-navigation  right" role="navigation">
-			<h5 class="screen-reader-text"><?php _e( 'Secondary right navigation', 'silk' ); ?></h5>
+			<h5 class="screen-reader-text"><?php _e( 'Secondary right navigation', 'silklite' ); ?></h5>
 			<?php
 			wp_nav_menu(
 				array(

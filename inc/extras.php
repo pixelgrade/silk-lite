@@ -4,7 +4,7 @@
  *
  * Eventually, some of the functionality here could be replaced by core features
  *
- * @package Silk
+ * @package Silk Lite
  */
 
 /**
@@ -14,7 +14,7 @@
  *
  * @return array
  */
-function silk_body_classes( $classes ) {
+function silklite_body_classes( $classes ) {
 	// Adds a class of group-blog to blogs with more than 1 published author.
 	if ( is_multi_author() ) {
 		$classes[] = 'group-blog';
@@ -27,18 +27,18 @@ function silk_body_classes( $classes ) {
 	return $classes;
 }
 
-add_filter( 'body_class', 'silk_body_classes' );
+add_filter( 'body_class', 'silklite_body_classes' );
 
 /**
  * Extend the default WordPress post classes.
  *
- * @since Silk 1.0
+ * @since Silk Lite 1.0
  *
  * @param array $classes A list of existing post class values.
  *
  * @return array The filtered post class list.
  */
-function silk_post_classes( $classes ) {
+function silklite_post_classes( $classes ) {
 	$post_format = get_post_format();
 
 	if ( is_archive() || is_home() || is_search() ) {
@@ -48,7 +48,7 @@ function silk_post_classes( $classes ) {
 	return $classes;
 }
 
-add_filter( 'post_class', 'silk_post_classes' );
+add_filter( 'post_class', 'silklite_post_classes' );
 
 if ( version_compare( $GLOBALS['wp_version'], '4.1', '<' ) ) :
 	/**
@@ -59,7 +59,7 @@ if ( version_compare( $GLOBALS['wp_version'], '4.1', '<' ) ) :
 	 *
 	 * @return string The filtered title.
 	 */
-	function silk_wp_title( $title, $sep ) {
+	function silklite_wp_title( $title, $sep ) {
 		if ( is_feed() ) {
 			return $title;
 		}
@@ -77,13 +77,13 @@ if ( version_compare( $GLOBALS['wp_version'], '4.1', '<' ) ) :
 
 		// Add a page number if necessary:
 		if ( ( $paged >= 2 || $page >= 2 ) && ! is_404() ) {
-			$title .= " $sep " . sprintf( __( 'Page %s', 'silk' ), max( $paged, $page ) );
+			$title .= " $sep " . sprintf( __( 'Page %s', 'silklite' ), max( $paged, $page ) );
 		}
 
 		return $title;
 	}
 
-	add_filter( 'wp_title', 'silk_wp_title', 10, 2 );
+	add_filter( 'wp_title', 'silklite_wp_title', 10, 2 );
 
 	/**
 	 * Title shim for sites older than WordPress 4.1.
@@ -91,23 +91,23 @@ if ( version_compare( $GLOBALS['wp_version'], '4.1', '<' ) ) :
 	 * @link https://make.wordpress.org/core/2014/10/29/title-tags-in-4-1/
 	 * @todo Remove this function when WordPress 4.3 is released.
 	 */
-	function silk_render_title() {
+	function silklite_render_title() {
 		?>
 		<title><?php wp_title( '|', true, 'right' ); ?></title>
 	<?php
 	}
 
-	add_action( 'wp_head', 'silk_render_title' );
+	add_action( 'wp_head', 'silklite_render_title' );
 endif;
 
-if ( ! function_exists( 'silk_fonts_url' ) ) :
+if ( ! function_exists( 'silklite_fonts_url' ) ) :
 	/**
-	 * Register Google fonts for Silk.
-	 * @since Silk 1.0
+	 * Register Google fonts for Silk Lite.
+	 * @since Silk Lite 1.0
 	 *
 	 * @return string Google fonts URL for the theme.
 	 */
-	function silk_fonts_url() {
+	function silklite_fonts_url() {
 		$fonts_url = '';
 		$fonts     = array();
 		$subsets   = 'latin,latin-ext';
@@ -116,7 +116,7 @@ if ( ! function_exists( 'silk_fonts_url' ) ) :
 		* supported by Libre Baskerville, translate this to 'off'. Do not translate
 		* into your own language.
 		*/
-		if ( 'off' !== _x( 'on', 'Libre Baskerville font: on or off', 'silk' ) ) {
+		if ( 'off' !== _x( 'on', 'Libre Baskerville font: on or off', 'silklite' ) ) {
 			$fonts[] = 'Libre Baskerville:400,700,400italic';
 		}
 
@@ -124,7 +124,7 @@ if ( ! function_exists( 'silk_fonts_url' ) ) :
 		* supported by Playfair Display, translate this to 'off'. Do not translate
 		* into your own language.
 		*/
-		if ( 'off' !== _x( 'on', 'Playfair Display font: on or off', 'silk' ) ) {
+		if ( 'off' !== _x( 'on', 'Playfair Display font: on or off', 'silklite' ) ) {
 			$fonts[] = 'Playfair Display:400,700,900,400italic,700italic,900italic';
 		}
 
@@ -132,12 +132,12 @@ if ( ! function_exists( 'silk_fonts_url' ) ) :
 		* supported by Merriweather, translate this to 'off'. Do not translate
 		* into your own language.
 		*/
-		if ( 'off' !== _x( 'on', 'Merriweather font: on or off', 'silk' ) ) {
+		if ( 'off' !== _x( 'on', 'Merriweather font: on or off', 'silklite' ) ) {
 			$fonts[] = 'Merriweather:400italic,400,300,700';
 		}
 
 		/* translators: To add an additional character subset specific to your language, translate this to 'greek', 'cyrillic', 'devanagari' or 'vietnamese'. Do not translate into your own language. */
-		$subset = _x( 'no-subset', 'Add new subset (greek, cyrillic, devanagari, vietnamese)', 'silk' );
+		$subset = _x( 'no-subset', 'Add new subset (greek, cyrillic, devanagari, vietnamese)', 'silklite' );
 
 		if ( 'cyrillic' == $subset ) {
 			$subsets .= ',cyrillic,cyrillic-ext';
@@ -169,7 +169,7 @@ endif;
  * @global WP_Query $wp_query WordPress Query object.
  * @return void
  */
-function silk_setup_author() {
+function silklite_setup_author() {
 	global $wp_query;
 
 	if ( $wp_query->is_author() && isset( $wp_query->post ) ) {
@@ -177,13 +177,13 @@ function silk_setup_author() {
 	}
 }
 
-add_action( 'wp', 'silk_setup_author' );
+add_action( 'wp', 'silklite_setup_author' );
 
-if ( ! function_exists( 'silk_comment' ) ) :
+if ( ! function_exists( 'silklite_comment' ) ) :
 	/*
 	 * Individual comment layout
 	 */
-	function silk_comment( $comment, $args, $depth ) {
+	function silklite_comment( $comment, $args, $depth ) {
 		static $comment_number;
 
 		if ( ! isset( $comment_number ) ) {
@@ -206,12 +206,12 @@ if ( ! function_exists( 'silk_comment' ) ) :
 				<header class="comment__meta comment-author">
 					<?php printf( '<span class="comment__author-name">%s</span>', get_comment_author_link() ) ?>
 					<time class="comment__time" datetime="<?php comment_time( 'c' ); ?>">
-						<a href="<?php echo esc_url( get_comment_link( get_comment_ID() ) ) ?>" class="comment__timestamp"><?php printf( __( 'on %s at %s', 'silk' ), get_comment_date(), get_comment_time() ); ?> </a>
+						<a href="<?php echo esc_url( get_comment_link( get_comment_ID() ) ) ?>" class="comment__timestamp"><?php printf( __( 'on %s at %s', 'silklite' ), get_comment_date(), get_comment_time() ); ?> </a>
 					</time>
 					<div class="comment__links">
 						<?php
 						//we need some space before Edit
-						edit_comment_link( __( 'Edit', 'silk' ), '  ' );
+						edit_comment_link( __( 'Edit', 'silklite' ), '  ' );
 
 						comment_reply_link( array_merge( $args, array(
 							'depth'     => $depth,
@@ -223,7 +223,7 @@ if ( ! function_exists( 'silk_comment' ) ) :
 				<!-- .comment-meta -->
 				<?php if ( '0' == $comment->comment_approved ) : ?>
 					<div class="alert info">
-						<p><?php _e( 'Your comment is awaiting moderation.', 'silk' ) ?></p>
+						<p><?php _e( 'Your comment is awaiting moderation.', 'silklite' ) ?></p>
 					</div>
 				<?php endif; ?>
 				<section class="comment__content comment">
@@ -234,7 +234,7 @@ if ( ! function_exists( 'silk_comment' ) ) :
 		<!-- </li> is added by WordPress automatically -->
 	<?php
 	} // don't remove this bracket!
-endif; //silk_comment
+endif; //silklite_comment
 
 /**
  * Filter comment_form_defaults to remove the notes after the comment form textarea.
@@ -243,13 +243,13 @@ endif; //silk_comment
  *
  * @return array
  */
-function silk_comment_form_remove_notes_after( $defaults ) {
+function silklite_comment_form_remove_notes_after( $defaults ) {
 	$defaults['comment_notes_after'] = '';
 
 	return $defaults;
 }
 
-add_filter( 'comment_form_defaults', 'silk_comment_form_remove_notes_after' );
+add_filter( 'comment_form_defaults', 'silklite_comment_form_remove_notes_after' );
 
 /**
  * Filter wp_link_pages to wrap current page in span.
@@ -258,7 +258,7 @@ add_filter( 'comment_form_defaults', 'silk_comment_form_remove_notes_after' );
  *
  * @return string
  */
-function silk_link_pages( $link ) {
+function silklite_link_pages( $link ) {
 	if ( is_numeric( $link ) ) {
 		return '<span class="current">' . $link . '</span>';
 	}
@@ -266,31 +266,31 @@ function silk_link_pages( $link ) {
 	return $link;
 }
 
-add_filter( 'wp_link_pages_link', 'silk_link_pages' );
+add_filter( 'wp_link_pages_link', 'silklite_link_pages' );
 
 /**
  * Wrap more link
  */
-function silk_read_more_link( $link ) {
+function silklite_read_more_link( $link ) {
 	return '<div class="more-link-wrapper">' . $link . '</div>';
 }
 
-add_filter( 'the_content_more_link', 'silk_read_more_link' );
+add_filter( 'the_content_more_link', 'silklite_read_more_link' );
 
 /**
  * Constrain the excerpt length
  */
-function silk_excerpt_length( $length ) {
+function silklite_excerpt_length( $length ) {
 	return 18;
 }
 
-add_filter( 'excerpt_length', 'silk_excerpt_length', 999 );
+add_filter( 'excerpt_length', 'silklite_excerpt_length', 999 );
 
 /**
  * Add "Styles" drop-down
  */
-add_filter( 'mce_buttons_2', 'silk_mce_editor_buttons' );
-function silk_mce_editor_buttons( $buttons ) {
+add_filter( 'mce_buttons_2', 'silklite_mce_editor_buttons' );
+function silklite_mce_editor_buttons( $buttons ) {
 	array_unshift( $buttons, 'styleselect' );
 	return $buttons;
 }
@@ -298,14 +298,14 @@ function silk_mce_editor_buttons( $buttons ) {
 /**
  * Add styles/classes to the "Styles" drop-down
  */
-add_filter( 'tiny_mce_before_init', 'silk_mce_before_init' );
-function silk_mce_before_init( $settings ) {
+add_filter( 'tiny_mce_before_init', 'silklite_mce_before_init' );
+function silklite_mce_before_init( $settings ) {
 
 	$style_formats = array(
-		array( 'title' => __( 'Intro Text', 'silk' ), 'selector' => 'p', 'classes' => 'intro' ),
-		array( 'title' => __( 'Dropcap', 'silk' ), 'inline' => 'span', 'classes' => 'dropcap' ),
-		array( 'title' => __( 'Highlight', 'silk' ), 'inline' => 'span', 'classes' => 'highlight' ),
-		array( 'title' => __( 'Two Columns', 'silk' ), 'selector' => 'p', 'classes' => 'twocolumn', 'wrapper' => true ),
+		array( 'title' => __( 'Intro Text', 'silklite' ), 'selector' => 'p', 'classes' => 'intro' ),
+		array( 'title' => __( 'Dropcap', 'silklite' ), 'inline' => 'span', 'classes' => 'dropcap' ),
+		array( 'title' => __( 'Highlight', 'silklite' ), 'inline' => 'span', 'classes' => 'highlight' ),
+		array( 'title' => __( 'Two Columns', 'silklite' ), 'selector' => 'p', 'classes' => 'twocolumn', 'wrapper' => true ),
 	);
 
 	$settings['style_formats'] = json_encode( $style_formats );
@@ -318,6 +318,6 @@ function silk_mce_before_init( $settings ) {
  *
  * @return string
  */
-function silk_get_thumbnail_size() {
-	return get_theme_mod( 'silk_single_column_archives', false ) ? 'silk-single-image' : 'silk-masonry-image';
+function silklite_get_thumbnail_size() {
+	return get_theme_mod( 'silklite_single_column_archives', false ) ? 'silklite-single-image' : 'silklite-masonry-image';
 } ?>

@@ -1,8 +1,8 @@
 <?php
 /**
- * Silk functions and definitions
+ * Silk Lite functions and definitions
  *
- * @package Silk
+ * @package Silk Lite
  */
 
 /**
@@ -12,11 +12,11 @@ if ( ! isset( $content_width ) ) {
 	$content_width = 662; /* pixels */
 }
 
-if ( ! function_exists( 'silk_content_width' ) ) :
+if ( ! function_exists( 'silklite_content_width' ) ) :
 	/**
 	 * Adjusts content_width value depending on situation.
 	 */
-	function silk_content_width() {
+	function silklite_content_width() {
 		global $content_width;
 
 		if ( ! is_active_sidebar( 'sidebar-1' ) ) {
@@ -25,10 +25,10 @@ if ( ! function_exists( 'silk_content_width' ) ) :
 
 		//for attachments the $content_width is set in image.php
 	}
-endif; //silk_content_width
-add_action( 'template_redirect', 'silk_content_width' );
+endif; //silklite_content_width
+add_action( 'template_redirect', 'silklite_content_width' );
 
-if ( ! function_exists( 'silk_setup' ) ) :
+if ( ! function_exists( 'silklite_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -36,13 +36,13 @@ if ( ! function_exists( 'silk_setup' ) ) :
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	function silk_setup() {
+	function silklite_setup() {
 
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
 		 */
-		load_theme_textdomain( 'silk', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'silklite', get_template_directory() . '/languages' );
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
@@ -63,25 +63,25 @@ if ( ! function_exists( 'silk_setup' ) ) :
 		add_theme_support( 'post-thumbnails' );
 
 		//used for the small post thumbnails of the mega menu and next/prev post
-		add_image_size( 'silk-tiny-image', 125, 90, true );
+		add_image_size( 'silklite-tiny-image', 125, 90, true );
 
 		//used for related posts sidebar
-		add_image_size( 'silk-small-image', 190, 85, true );
+		add_image_size( 'silklite-small-image', 190, 85, true );
 
 		//used as featured image for posts on archive pages
 		//also for the background image of About Me widget
-		add_image_size( 'silk-masonry-image', 450, 9999, false );
+		add_image_size( 'silklite-masonry-image', 450, 9999, false );
 
 		//used for the post thumbnail of posts on archives when displayed in a single column (no masonry)
 		//and for the single post featured image
-		add_image_size( 'silk-single-image', 1024, 9999, false );
+		add_image_size( 'silklite-single-image', 1024, 9999, false );
 
 		// This theme uses wp_nav_menu() in three locations.
 		register_nav_menus( array(
-			'primary'          => __( 'Primary Menu', 'silk' ),
-			'top_header_left'  => __( 'Top Header Left Menu', 'silk' ),
-			'top_header_right' => __( 'Top Header Right Menu', 'silk' ),
-			'footer'           => __( 'Footer Menu', 'silk' ),
+			'primary'          => __( 'Primary Menu', 'silklite' ),
+			'top_header_left'  => __( 'Top Header Left Menu', 'silklite' ),
+			'top_header_right' => __( 'Top Header Right Menu', 'silklite' ),
+			'footer'           => __( 'Footer Menu', 'silklite' ),
 		) );
 
 		/*
@@ -114,27 +114,27 @@ if ( ! function_exists( 'silk_setup' ) ) :
 		 * Add editor custom style to make it look more like the frontend
 		 * Also enqueue the custom Google Fonts also
 		 */
-		add_editor_style( array( 'editor-style.css', silk_fonts_url() ) );
+		add_editor_style( array( 'editor-style.css', silklite_fonts_url() ) );
 
 		// Set up the WordPress core custom background feature.
-		add_theme_support( 'custom-background', apply_filters( 'silk_custom_background_args', array(
+		add_theme_support( 'custom-background', apply_filters( 'silklite_custom_background_args', array(
 			'default-color' => 'ffffff',
 			'default-image' => '',
 		) ) );
 	}
-endif; // silk_setup
-add_action( 'after_setup_theme', 'silk_setup' );
+endif; // silklite_setup
+add_action( 'after_setup_theme', 'silklite_setup' );
 
 /**
  * Register widget area.
  *
  * @link http://codex.wordpress.org/Function_Reference/register_sidebar
  */
-function silk_widgets_init() {
+function silklite_widgets_init() {
 	register_sidebar( array(
-		'name'          => __( 'Sidebar', 'silk' ),
+		'name'          => __( 'Sidebar', 'silklite' ),
 		'id'            => 'sidebar-1',
-		'description'   => __( 'Add widgets here to appear in your main sidebar.', 'silk' ),
+		'description'   => __( 'Add widgets here to appear in your main sidebar.', 'silklite' ),
 		'before_widget' => '<div class="grid__item"><aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside></div>',
 		'before_title'  => '<h3 class="widget-title">',
@@ -142,9 +142,9 @@ function silk_widgets_init() {
 	) );
 
 	register_sidebar( array(
-		'name'          => __( 'Footer', 'silk' ),
+		'name'          => __( 'Footer', 'silklite' ),
 		'id'            => 'footer-1',
-		'description'   => __( 'Add widgets here to appear in your footer sidebar.', 'silk' ),
+		'description'   => __( 'Add widgets here to appear in your footer sidebar.', 'silklite' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h3 class="widget-title">',
@@ -152,21 +152,21 @@ function silk_widgets_init() {
 	) );
 }
 
-add_action( 'widgets_init', 'silk_widgets_init' );
+add_action( 'widgets_init', 'silklite_widgets_init' );
 
 /**
  * Enqueue scripts and styles.
  */
-function silk_scripts_styles() {
+function silklite_scripts_styles() {
 
 	//FontAwesome Stylesheet
 	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.css', array(), '4.2.0' );
 
 	//Main Stylesheet
-	wp_enqueue_style( 'silk-style', get_stylesheet_uri(), array( 'font-awesome' ) );
+	wp_enqueue_style( 'silklite-style', get_stylesheet_uri(), array( 'font-awesome' ) );
 
 	//Default Fonts
-	wp_enqueue_style( 'silk-fonts', silk_fonts_url(), array(), null );
+	wp_enqueue_style( 'silklite-fonts', silklite_fonts_url(), array(), null );
 
 	//Enqueue Masonry
 	wp_enqueue_script( 'jquery-masonry' );
@@ -180,8 +180,8 @@ function silk_scripts_styles() {
 	//Enqueue Velocity.js plugin
 	wp_enqueue_script( 'velocity', get_template_directory_uri() . '/assets/js/velocity.js', array(), '1.1.0', true );
 
-	//Enqueue Silk Custom Scripts
-	wp_enqueue_script( 'silk-scripts', get_template_directory_uri() . '/assets/js/main.js', array(
+	//Enqueue Silk Lite Custom Scripts
+	wp_enqueue_script( 'silklite-scripts', get_template_directory_uri() . '/assets/js/main.js', array(
 		'jquery',
 		'jquery-masonry',
 		'hoverIntent',
@@ -197,13 +197,13 @@ function silk_scripts_styles() {
 	}
 }
 
-add_action( 'wp_enqueue_scripts', 'silk_scripts_styles' );
+add_action( 'wp_enqueue_scripts', 'silklite_scripts_styles' );
 
 /**
  * Registers/enqueues the scripts related to media JS APIs
  *
  */
-function silk_wp_enqueue_media() {
+function silklite_wp_enqueue_media() {
 	/*
 	 * Register the about-me.js here so we can upload images in the customizer
 	 */
@@ -221,14 +221,14 @@ function silk_wp_enqueue_media() {
 		'SilkAboutMeWidget',
 		array(
 			'l10n' => array(
-				'frameTitle'      => __( 'Choose a Background Image', 'silk' ),
-				'frameUpdateText' => __( 'Update Background Image', 'silk' ),
+				'frameTitle'      => __( 'Choose a Background Image', 'silklite' ),
+				'frameUpdateText' => __( 'Update Background Image', 'silklite' ),
 			),
 		)
 	);
 }
 
-add_action( 'wp_enqueue_media', 'silk_wp_enqueue_media' );
+add_action( 'wp_enqueue_media', 'silklite_wp_enqueue_media' );
 
 /**
  * Implement the Custom Header feature.
@@ -258,7 +258,7 @@ require get_template_directory() . '/inc/jetpack.php';
 /**
  * Load the Hybrid Media Grabber class
  */
-require get_template_directory() . '/inc/hybrid-media-grabber.php';
+require get_template_directory() . '/inc/silklite-hybrid-media-grabber.php';
 
 /**
  * Load custom widgets

@@ -4,7 +4,7 @@
  *
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
- * @package Silk
+ * @package Silk Lite
  */
 ?>
 
@@ -17,7 +17,7 @@
 
 			<div class="entry-meta">
 
-				<?php silk_posted_on(); ?>
+				<?php silklite_posted_on(); ?>
 
 			</div><!-- .entry-meta -->
 
@@ -33,7 +33,7 @@
 
 	<footer class="entry-footer">
 
-		<?php silk_entry_footer(); ?>
+		<?php silklite_entry_footer(); ?>
 
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

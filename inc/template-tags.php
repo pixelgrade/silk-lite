@@ -4,7 +4,7 @@
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
- * @package Silk
+ * @package Silk Lite
  */
 
 if ( ! function_exists( 'the_posts_navigation' ) ) :
@@ -21,15 +21,15 @@ if ( ! function_exists( 'the_posts_navigation' ) ) :
 		}
 		?>
 		<nav class="navigation posts-navigation" role="navigation">
-			<h2 class="screen-reader-text"><?php _e( 'Posts navigation', 'silk' ); ?></h2>
+			<h2 class="screen-reader-text"><?php _e( 'Posts navigation', 'silklite' ); ?></h2>
 			<div class="nav-links">
 
 				<?php if ( get_next_posts_link() ) : ?>
-				<div class="nav-previous"><?php next_posts_link( __( 'Older posts', 'silk' ) ); ?></div>
+				<div class="nav-previous"><?php next_posts_link( __( 'Older posts', 'silklite' ) ); ?></div>
 				<?php endif; ?>
 
 				<?php if ( get_previous_posts_link() ) : ?>
-				<div class="nav-next"><?php previous_posts_link( __( 'Newer posts', 'silk' ) ); ?></div>
+				<div class="nav-next"><?php previous_posts_link( __( 'Newer posts', 'silklite' ) ); ?></div>
 				<?php endif; ?>
 
 			</div><!-- .nav-links -->
@@ -39,13 +39,13 @@ if ( ! function_exists( 'the_posts_navigation' ) ) :
 
 endif;
 
-if ( ! function_exists( 'silk_the_post_navigation' ) ) :
+if ( ! function_exists( 'silklite_the_post_navigation' ) ) :
 
 	/**
 	 * Display navigation to next/previous post when applicable, with thumbnail images
 	 *
 	 */
-	function silk_the_post_navigation() {
+	function silklite_the_post_navigation() {
 		// Don't print empty markup if there's nowhere to navigate.
 		$prev_post = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_previous_post();
 		$next_post = get_next_post();
@@ -55,11 +55,11 @@ if ( ! function_exists( 'silk_the_post_navigation' ) ) :
 		} ?>
 
 		<nav class="navigation post-navigation" role="navigation">
-			<h5 class="screen-reader-text"><?php _e( 'Post navigation', 'silk' ); ?></h5>
+			<h5 class="screen-reader-text"><?php _e( 'Post navigation', 'silklite' ); ?></h5>
 			<div class="article-navigation">
 				<?php
 				if ( $prev_post ) {
-					$prev_thumbnail = get_the_post_thumbnail( $prev_post->ID, 'silk-tiny-image' );
+					$prev_thumbnail = get_the_post_thumbnail( $prev_post->ID, 'silklite-tiny-image' );
 
 					$post_cat = wp_get_post_categories( $prev_post->ID );
 					$post_cat = $post_cat[0];
@@ -89,7 +89,7 @@ if ( ! function_exists( 'silk_the_post_navigation' ) ) :
 		                                <h3 class="post-title">%%title</h3>
 	                                </span>
 	                            </span>
-	                        </span>', $prev_thumbnail, __( 'Previous', 'silk' ), $time_string, $post_category->name  ) );
+	                        </span>', $prev_thumbnail, __( 'Previous', 'silklite' ), $time_string, $post_category->name  ) );
 				}
 
 				if ( $next_post ) {
@@ -97,7 +97,7 @@ if ( ! function_exists( 'silk_the_post_navigation' ) ) :
 					$post_cat = $post_cat[0];
 					$post_category = get_category( $post_cat );
 
-					$next_thumbnail = get_the_post_thumbnail( $next_post->ID, 'silk-tiny-image' );
+					$next_thumbnail = get_the_post_thumbnail( $next_post->ID, 'silklite-tiny-image' );
 
 					$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 					if ( get_the_time( 'U', $next_post->ID ) !== get_the_modified_time( 'U', $next_post->ID ) ) {
@@ -123,7 +123,7 @@ if ( ! function_exists( 'silk_the_post_navigation' ) ) :
 		                                <h3 class="post-title">%%title</h3>
 	                                </span>
 	                            </span>
-	                        </span>', $next_thumbnail, __( 'Next', 'silk' ), $time_string, $post_category->name ) );
+	                        </span>', $next_thumbnail, __( 'Next', 'silklite' ), $time_string, $post_category->name ) );
 				} ?>
 
 		</nav><!-- .navigation -->
@@ -133,26 +133,26 @@ if ( ! function_exists( 'silk_the_post_navigation' ) ) :
 
 endif;
 
-if ( ! function_exists( 'silk_the_image_navigation' ) ) :
+if ( ! function_exists( 'silklite_the_image_navigation' ) ) :
 
 	/**
 	 * Display navigation to next/previous image attachment
 	 */
-	function silk_the_image_navigation() {
+	function silklite_the_image_navigation() {
 		// Don't print empty markup if there's nowhere to navigate.
-		$prev_image = silk_get_adjacent_image();
-		$next_image = silk_get_adjacent_image( false );
+		$prev_image = silklite_get_adjacent_image();
+		$next_image = silklite_get_adjacent_image( false );
 
 		if ( ! $next_image && ! $prev_image ) {
 			return;
 		} ?>
 
 		<nav class="navigation post-navigation" role="navigation">
-			<h5 class="screen-reader-text"><?php _e( 'Image navigation', 'silk' ); ?></h5>
+			<h5 class="screen-reader-text"><?php _e( 'Image navigation', 'silklite' ); ?></h5>
 			<div class="article-navigation">
 				<?php
 				if ( $prev_image ) {
-					$prev_thumbnail = wp_get_attachment_image( $prev_image->ID, 'silk-tiny-image' ); ?>
+					$prev_thumbnail = wp_get_attachment_image( $prev_image->ID, 'silklite-tiny-image' ); ?>
 
 					<span class="navigation-item  navigation-item--previous">
 						<a href="<?php echo get_attachment_link( $prev_image->ID ); ?>" rel="prev">
@@ -163,7 +163,7 @@ if ( ! function_exists( 'silk_the_image_navigation' ) ) :
 		                                <span class="post-thumb"><?php echo $prev_thumbnail; ?></span>
 		                            </span>
 		                            <span class="flexbox__item">
-		                                <span class="navigation-item__name"><?php _e( 'Previous image', 'silk' ); ?></span>
+		                                <span class="navigation-item__name"><?php _e( 'Previous image', 'silklite' ); ?></span>
 		                                <h3 class="post-title"><?php echo get_the_title( $prev_image->ID ); ?></h3>
 		                            </span>
 		                        </span>
@@ -174,7 +174,7 @@ if ( ! function_exists( 'silk_the_image_navigation' ) ) :
 				<?php }
 
 				if ( $next_image ) {
-					$next_thumbnail = wp_get_attachment_image( $next_image->ID, 'silk-tiny-image' ); ?>
+					$next_thumbnail = wp_get_attachment_image( $next_image->ID, 'silklite-tiny-image' ); ?>
 
 					<span class="navigation-item  navigation-item--next">
 						<a href="<?php echo get_attachment_link( $next_image->ID ); ?>" rel="prev">
@@ -185,7 +185,7 @@ if ( ! function_exists( 'silk_the_image_navigation' ) ) :
 		                                <span class="post-thumb"><?php echo $next_thumbnail; ?></span>
 		                            </span>
 		                            <span class="flexbox__item">
-		                                <span class="navigation-item__name"><?php _e( 'Next image', 'silk' ); ?></span>
+		                                <span class="navigation-item__name"><?php _e( 'Next image', 'silklite' ); ?></span>
 		                                <h3 class="post-title"><?php echo get_the_title( $next_image->ID ); ?></h3>
 		                            </span>
 		                        </span>
@@ -202,7 +202,7 @@ if ( ! function_exists( 'silk_the_image_navigation' ) ) :
 
 endif;
 
-if ( ! function_exists( 'silk_get_adjacent_image' ) ) :
+if ( ! function_exists( 'silklite_get_adjacent_image' ) ) :
 
 	/**
 	 * Inspired by the core function adjacent_image_link() from wp-includes/media.php
@@ -210,7 +210,7 @@ if ( ! function_exists( 'silk_get_adjacent_image' ) ) :
 	 * @param bool $prev Optional. Default is true to display previous link, false for next.
 	 * @return mixed  Attachment object if successful. Null if global $post is not set. false if no corresponding attachment exists.
 	 */
-	function silk_get_adjacent_image( $prev = true ) {
+	function silklite_get_adjacent_image( $prev = true ) {
 		if ( ! $post = get_post() ) {
 			return null;
 		}
@@ -236,12 +236,12 @@ if ( ! function_exists( 'silk_get_adjacent_image' ) ) :
 
 endif;
 
-if ( ! function_exists( 'silk_posted_on' ) ) :
+if ( ! function_exists( 'silklite_posted_on' ) ) :
 
 	/**
 	 * Prints HTML with meta information for the current post-date/time and author.
 	 */
-	function silk_posted_on() {
+	function silklite_posted_on() {
 		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 		if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 			$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time>';
@@ -253,7 +253,7 @@ if ( ! function_exists( 'silk_posted_on' ) ) :
 		);
 
 		$posted_on = sprintf(
-			_x( '%s', 'post date', 'silk' ),
+			_x( '%s', 'post date', 'silklite' ),
 			'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
 		);
 
@@ -263,12 +263,12 @@ if ( ! function_exists( 'silk_posted_on' ) ) :
 
 endif;
 
-if ( ! function_exists( 'silk_get_cats_list' ) ) :
+if ( ! function_exists( 'silklite_get_cats_list' ) ) :
 
 	/**
 	 * Returns HTML with comma separated category links
 	 */
-	function silk_get_cats_list( $post_ID = null) {
+	function silklite_get_cats_list( $post_ID = null) {
 
 		//use the current post ID is none given
 		if ( empty( $post_ID ) ) {
@@ -277,8 +277,8 @@ if ( ! function_exists( 'silk_get_cats_list' ) ) :
 
 		$cats = '';
 		/* translators: used between list items, there is a space after the comma */
-		$categories_list = get_the_category_list( __( ', ', 'silk' ), '', $post_ID );
-		if ( $categories_list && silk_categorized_blog() ) {
+		$categories_list = get_the_category_list( __( ', ', 'silklite' ), '', $post_ID );
+		if ( $categories_list && silklite_categorized_blog() ) {
 			$cats = '<span class="cat-links">' . $categories_list . '</span>';
 		}
 
@@ -288,25 +288,25 @@ if ( ! function_exists( 'silk_get_cats_list' ) ) :
 
 endif;
 
-if ( ! function_exists( 'silk_cats_list' ) ) :
+if ( ! function_exists( 'silklite_cats_list' ) ) :
 
 	/**
 	 * Prints HTML with comma separated category links
 	 */
-	function silk_cats_list( $post_ID = null) {
+	function silklite_cats_list( $post_ID = null) {
 
-		echo silk_get_cats_list( $post_ID );
+		echo silklite_get_cats_list( $post_ID );
 
 	} #function
 
 endif;
 
-if ( ! function_exists( 'silk_get_posted_on_and_cats' ) ) :
+if ( ! function_exists( 'silklite_get_posted_on_and_cats' ) ) :
 
 	/**
 	 * Returns HTML with meta information for the current post-date/time and author.
 	 */
-	function silk_get_posted_on_and_cats() {
+	function silklite_get_posted_on_and_cats() {
 		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 
 		$time_string = sprintf( $time_string,
@@ -314,7 +314,7 @@ if ( ! function_exists( 'silk_get_posted_on_and_cats' ) ) :
 			esc_html( get_the_date() )
 		);
 
-		$cats = silk_get_cats_list();
+		$cats = silklite_get_cats_list();
 
 		return '<span class="posted-on">' . $time_string . '</span>' . $cats;
 
@@ -322,35 +322,35 @@ if ( ! function_exists( 'silk_get_posted_on_and_cats' ) ) :
 
 endif;
 
-if ( ! function_exists( 'silk_posted_on_and_cats' ) ) :
+if ( ! function_exists( 'silklite_posted_on_and_cats' ) ) :
 
 	/**
 	 * Prints HTML with meta information for the current post-date/time and author.
 	 */
-	function silk_posted_on_and_cats() {
-		echo silk_get_posted_on_and_cats();
+	function silklite_posted_on_and_cats() {
+		echo silklite_get_posted_on_and_cats();
 	}
 
 endif;
 
-if ( ! function_exists( 'silk_entry_footer' ) ) :
+if ( ! function_exists( 'silklite_entry_footer' ) ) :
 
 	/**
 	 * Prints HTML with meta information for the categories, tags and comments.
 	 */
-	function silk_entry_footer() {
+	function silklite_entry_footer() {
 		// Hide category and tag text for pages.
 		if ( 'post' == get_post_type() ) {
 			/* translators: used between list items, there is a space after the comma */
-			$categories_list = get_the_category_list( __( ', ', 'silk' ) );
-			if ( $categories_list && silk_categorized_blog() ) {
-				printf( '<span class="cat-links">' . __( 'Posted in %1$s', 'silk' ) . '</span>', $categories_list );
+			$categories_list = get_the_category_list( __( ', ', 'silklite' ) );
+			if ( $categories_list && silklite_categorized_blog() ) {
+				printf( '<span class="cat-links">' . __( 'Posted in %1$s', 'silklite' ) . '</span>', $categories_list );
 			}
 
 			/* translators: used between list items, there is a space after the comma */
-			$tags_list = get_the_tag_list( '', __( ', ', 'silk' ) );
+			$tags_list = get_the_tag_list( '', __( ', ', 'silklite' ) );
 			if ( $tags_list ) {
-				printf( '<span class="tags-links">' . __( ' and tagged with %1$s', 'silk' ) . '</span>', $tags_list );
+				printf( '<span class="tags-links">' . __( ' and tagged with %1$s', 'silklite' ) . '</span>', $tags_list );
 			}
 
 			printf( '.' );
@@ -358,11 +358,11 @@ if ( ! function_exists( 'silk_entry_footer' ) ) :
 
 		if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
 			echo '<span class="comments-link">';
-			comments_popup_link( __( 'Leave a comment', 'silk' ), __( '1 Comment', 'silk' ), __( '% Comments', 'silk' ) );
+			comments_popup_link( __( 'Leave a comment', 'silklite' ), __( '1 Comment', 'silklite' ), __( '% Comments', 'silklite' ) );
 			echo '</span>';
 		}
 
-		edit_post_link( __( 'Edit post', 'silk' ), '<span class="edit-link">', '</span>' );
+		edit_post_link( __( 'Edit post', 'silklite' ), '<span class="edit-link">', '</span>' );
 	} #function
 
 endif;
@@ -381,45 +381,45 @@ if ( ! function_exists( 'the_archive_title' ) ) :
 	 */
 	function the_archive_title( $before = '', $after = '' ) {
 		if ( is_category() ) {
-			$title = sprintf( __( 'Category: %s', 'silk' ), single_cat_title( '', false ) );
+			$title = sprintf( __( 'Category: %s', 'silklite' ), single_cat_title( '', false ) );
 		} elseif ( is_tag() ) {
-			$title = sprintf( __( 'Tag: %s', 'silk' ), single_tag_title( '', false ) );
+			$title = sprintf( __( 'Tag: %s', 'silklite' ), single_tag_title( '', false ) );
 		} elseif ( is_author() ) {
-			$title = sprintf( __( 'Author: %s', 'silk' ), '<span class="vcard">' . get_the_author() . '</span>' );
+			$title = sprintf( __( 'Author: %s', 'silklite' ), '<span class="vcard">' . get_the_author() . '</span>' );
 		} elseif ( is_year() ) {
-			$title = sprintf( __( 'Year: %s', 'silk' ), get_the_date( _x( 'Y', 'yearly archives date format', 'silk' ) ) );
+			$title = sprintf( __( 'Year: %s', 'silklite' ), get_the_date( _x( 'Y', 'yearly archives date format', 'silklite' ) ) );
 		} elseif ( is_month() ) {
-			$title = sprintf( __( 'Month: %s', 'silk' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'silk' ) ) );
+			$title = sprintf( __( 'Month: %s', 'silklite' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'silklite' ) ) );
 		} elseif ( is_day() ) {
-			$title = sprintf( __( 'Day: %s', 'silk' ), get_the_date( _x( 'F j, Y', 'daily archives date format', 'silk' ) ) );
+			$title = sprintf( __( 'Day: %s', 'silklite' ), get_the_date( _x( 'F j, Y', 'daily archives date format', 'silklite' ) ) );
 		} elseif ( is_tax( 'post_format' ) ) {
 			if ( is_tax( 'post_format', 'post-format-aside' ) ) {
-				$title = _x( 'Asides', 'post format archive title', 'silk' );
+				$title = _x( 'Asides', 'post format archive title', 'silklite' );
 			} elseif ( is_tax( 'post_format', 'post-format-gallery' ) ) {
-				$title = _x( 'Galleries', 'post format archive title', 'silk' );
+				$title = _x( 'Galleries', 'post format archive title', 'silklite' );
 			} elseif ( is_tax( 'post_format', 'post-format-image' ) ) {
-				$title = _x( 'Images', 'post format archive title', 'silk' );
+				$title = _x( 'Images', 'post format archive title', 'silklite' );
 			} elseif ( is_tax( 'post_format', 'post-format-video' ) ) {
-				$title = _x( 'Videos', 'post format archive title', 'silk' );
+				$title = _x( 'Videos', 'post format archive title', 'silklite' );
 			} elseif ( is_tax( 'post_format', 'post-format-quote' ) ) {
-				$title = _x( 'Quotes', 'post format archive title', 'silk' );
+				$title = _x( 'Quotes', 'post format archive title', 'silklite' );
 			} elseif ( is_tax( 'post_format', 'post-format-link' ) ) {
-				$title = _x( 'Links', 'post format archive title', 'silk' );
+				$title = _x( 'Links', 'post format archive title', 'silklite' );
 			} elseif ( is_tax( 'post_format', 'post-format-status' ) ) {
-				$title = _x( 'Statuses', 'post format archive title', 'silk' );
+				$title = _x( 'Statuses', 'post format archive title', 'silklite' );
 			} elseif ( is_tax( 'post_format', 'post-format-audio' ) ) {
-				$title = _x( 'Audio', 'post format archive title', 'silk' );
+				$title = _x( 'Audio', 'post format archive title', 'silklite' );
 			} elseif ( is_tax( 'post_format', 'post-format-chat' ) ) {
-				$title = _x( 'Chats', 'post format archive title', 'silk' );
+				$title = _x( 'Chats', 'post format archive title', 'silklite' );
 			}
 		} elseif ( is_post_type_archive() ) {
-			$title = sprintf( __( 'Archives: %s', 'silk' ), post_type_archive_title( '', false ) );
+			$title = sprintf( __( 'Archives: %s', 'silklite' ), post_type_archive_title( '', false ) );
 		} elseif ( is_tax() ) {
 			$tax = get_taxonomy( get_queried_object()->taxonomy );
 			/* translators: 1: Taxonomy singular name, 2: Current taxonomy term */
-			$title = sprintf( __( '%1$s: %2$s', 'silk' ), $tax->labels->singular_name, single_term_title( '', false ) );
+			$title = sprintf( __( '%1$s: %2$s', 'silklite' ), $tax->labels->singular_name, single_term_title( '', false ) );
 		} else {
-			$title = __( 'Archives', 'silk' );
+			$title = __( 'Archives', 'silklite' );
 		}
 
 		/**
@@ -470,8 +470,8 @@ endif;
  *
  * @return bool
  */
-function silk_categorized_blog() {
-	if ( false === ( $all_the_cool_cats = get_transient( 'silk_categories' ) ) ) {
+function silklite_categorized_blog() {
+	if ( false === ( $all_the_cool_cats = get_transient( 'silklite_categories' ) ) ) {
 		// Create an array of all the categories that are attached to posts.
 		$all_the_cool_cats = get_categories( array(
 			'fields'     => 'ids',
@@ -484,34 +484,34 @@ function silk_categorized_blog() {
 		// Count the number of categories that are attached to the posts.
 		$all_the_cool_cats = count( $all_the_cool_cats );
 
-		set_transient( 'silk_categories', $all_the_cool_cats );
+		set_transient( 'silklite_categories', $all_the_cool_cats );
 	}
 
 	if ( $all_the_cool_cats > 1 ) {
-		// This blog has more than 1 category so silk_categorized_blog should return true.
+		// This blog has more than 1 category so silklite_categorized_blog should return true.
 		return true;
 	} else {
-		// This blog has only 1 category so silk_categorized_blog should return false.
+		// This blog has only 1 category so silklite_categorized_blog should return false.
 		return false;
 	}
 }
 
 /**
- * Flush out the transients used in silk_categorized_blog.
+ * Flush out the transients used in silklite_categorized_blog.
  */
-function silk_category_transient_flusher() {
+function silklite_category_transient_flusher() {
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 		return;
 	}
 	// Like, beat it. Dig?
-	delete_transient( 'silk_categories' );
+	delete_transient( 'silklite_categories' );
 }
-add_action( 'edit_category', 'silk_category_transient_flusher' );
-add_action( 'save_post',     'silk_category_transient_flusher' );
+add_action( 'edit_category', 'silklite_category_transient_flusher' );
+add_action( 'save_post',     'silklite_category_transient_flusher' );
 
-if ( ! function_exists( 'silk_get_post_format_first_image' ) ) :
+if ( ! function_exists( 'silklite_get_post_format_first_image' ) ) :
 
-	function silk_get_post_format_first_image() {
+	function silklite_get_post_format_first_image() {
 		global $post;
 
 		$output = '';
@@ -539,7 +539,7 @@ if ( ! function_exists( 'silk_get_post_format_first_image' ) ) :
 
 endif;
 
-if ( ! function_exists( 'silk_get_post_format_link_url' ) ) :
+if ( ! function_exists( 'silklite_get_post_format_link_url' ) ) :
 
 	/**
 	 * Returns the URL to use for the link post format.
@@ -548,7 +548,7 @@ if ( ! function_exists( 'silk_get_post_format_link_url' ) ) :
 	 *
 	 * @return string URL
 	 */
-	function silk_get_post_format_link_url() {
+	function silklite_get_post_format_link_url() {
 		$has_url = get_url_in_content( get_the_content() );
 
 		return ( $has_url ) ? $has_url : apply_filters( 'the_permalink', get_permalink() );
@@ -561,14 +561,14 @@ endif;
  *
  * @return string
  */
-function silk_audio_attachment() {
-	return hybrid_media_grabber( array( 'type' => 'audio', 'split_media' => true ) );
+function silklite_audio_attachment() {
+	return silklite_hybrid_media_grabber( array( 'type' => 'audio', 'split_media' => true ) );
 }
 /**
  * Handles the output of the media for video attachment posts. This should be used within The Loop.
  *
  * @return string
  */
-function silk_video_attachment() {
-	return hybrid_media_grabber( array( 'type' => 'video', 'split_media' => true ) );
+function silklite_video_attachment() {
+	return silklite_hybrid_media_grabber( array( 'type' => 'video', 'split_media' => true ) );
 } ?>

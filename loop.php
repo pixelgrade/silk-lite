@@ -2,7 +2,7 @@
 /**
  * The template for displaying the archives loop content.
  *
- * @package Silk
+ * @package Silk Lite
  */
 
 $classes = 'archive__grid  grid'; ?>
@@ -31,7 +31,7 @@ if ( true === $is_infinite ) : ?>
 		<span class="handle__icon">
 			<?php get_template_part( 'assets/svg/clepsydra' ); ?>
 		</span>
-		<span class="handle__text"><?php _e( 'View More Articles', 'silk' ); ?></span>
+		<span class="handle__text"><?php _e( 'View More Articles', 'silklite' ); ?></span>
 	</div>
 
 <?php endif; ?>

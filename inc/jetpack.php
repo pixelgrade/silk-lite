@@ -3,10 +3,10 @@
  * Jetpack Compatibility File
  * See: http://jetpack.me/
  *
- * @package Silk
+ * @package Silk Lite
  */
 
-function silk_jetpack_setup() {
+function silklite_jetpack_setup() {
 	/**
 	 * Add theme support for Infinite Scroll
 	 * See: http://jetpack.me/support/infinite-scroll/
@@ -42,27 +42,4 @@ function silk_jetpack_setup() {
 
 }
 
-add_action( 'after_setup_theme', 'silk_jetpack_setup' );
-
-function silk_get_featured_posts() {
-	return apply_filters( 'silk_get_featured_posts', array() );
-}
-
-function silk_has_featured_posts( $minimum = 1 ) {
-	if ( is_paged() ) {
-		return false;
-	}
-
-	$minimum = absint( $minimum );
-	$featured_posts = silk_get_featured_posts();
-
-	if ( ! is_array( $featured_posts ) ) {
-		return false;
-	}
-
-	if ( $minimum > count( $featured_posts ) ) {
-		return false;
-	}
-
-	return true;
-} ?>
+add_action( 'after_setup_theme', 'silklite_jetpack_setup' ); ?>

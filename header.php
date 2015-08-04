@@ -3,7 +3,7 @@
  * The header for our theme.
  * Displays all of the <head> section and everything up till <div id="content">
  *
- * @package Silk
+ * @package Silk Lite
  */
 ?><!DOCTYPE html>
 <!--[if IE 9]> <html class="ie9 lt-ie10" <?php language_attributes(); ?>> <![endif]-->
@@ -18,10 +18,10 @@
 
 <body <?php body_class(); ?>>
 
-<?php $classes = ( ! get_theme_mod( 'silk_single_column_archives', false ) ) ? 'archive-layout--masonry' : 'archive-layout--column'; ?>
+<?php $classes = ( ! get_theme_mod( 'silklite_single_column_archives', false ) ) ? 'archive-layout--masonry' : 'archive-layout--column'; ?>
 
 <div id="page" class="hfeed site <?php echo esc_attr( $classes ); ?>">
-	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'silk' ); ?></a>
+	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'silklite' ); ?></a>
 
 	<?php get_template_part( 'templates/top-header-bar' ); ?>
 
@@ -40,7 +40,7 @@
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
 				<span><?php bloginfo( 'name' ); ?></span>
 				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-					<text x="50%" y="0.82em" stroke="#fff" text-anchor="middle" stroke-width="<?php echo esc_attr( get_theme_mod( 'silk_site_title_outline', '3' ) ); ?>">
+					<text x="50%" y="0.82em" stroke="#fff" text-anchor="middle" stroke-width="<?php echo esc_attr( get_theme_mod( 'silklite_site_title_outline', '3' ) ); ?>">
 						<?php bloginfo( 'name' ); ?>
 					</text>
 				</svg>
@@ -64,7 +64,7 @@
 
 			<button class="button-toggle  js-nav-trigger" aria-controls="menu-primary-menu" aria-expanded="false">
 				<span class="nav-icon icon--lines"></span>
-				<span class="button-text  assistive-text"><?php _e( 'Primary Menu', 'silk' ); ?></span>
+				<span class="button-text  assistive-text"><?php _e( 'Primary Menu', 'silklite' ); ?></span>
 			</button>
 			<?php wp_nav_menu( array(
 				'theme_location' => 'primary',
@@ -74,7 +74,7 @@
 			) ); ?>
 			<a href="#search" class="button-toggle  button-toggle--search">
 				<span class="button-icon"><i class="fa fa-search"></i></span>
-				<span class="button-text  assistive-text"><?php _e( 'Search', 'silk' ); ?></span>
+				<span class="button-text  assistive-text"><?php _e( 'Search', 'silklite' ); ?></span>
 			</a>
 
 		</nav><!-- #site-navigation -->

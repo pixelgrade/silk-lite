@@ -18,16 +18,16 @@
  */
 
 /**
- * Wrapper function for the Hybrid_Media_Grabber class.  Returns the HTML output for the found media.
+ * Wrapper function for the Silklite_Hybrid_Media_Grabber class.  Returns the HTML output for the found media.
  *
  * @since  1.6.0
  * @access public
  * @param  array
  * @return string
  */
-function hybrid_media_grabber( $args = array() ) {
+function silklite_hybrid_media_grabber( $args = array() ) {
 
-	$media = new Hybrid_Media_Grabber( $args );
+	$media = new Silklite_Hybrid_Media_Grabber( $args );
 
 	return $media->get_media();
 }
@@ -39,7 +39,7 @@ function hybrid_media_grabber( $args = array() ) {
  * @access public
  * @return void
  */
-class Hybrid_Media_Grabber {
+class Silklite_Hybrid_Media_Grabber {
 
 	/**
 	 * The HTML version of the media to return.
@@ -99,8 +99,8 @@ class Hybrid_Media_Grabber {
 		global $wp_embed, $content_width;
 
 		/* Use WP's embed functionality to handle the [embed] shortcode and autoembeds. */
-		add_filter( 'hybrid_media_grabber_embed_shortcode_media', array( $wp_embed, 'run_shortcode' ) );
-		add_filter( 'hybrid_media_grabber_autoembed_media',       array( $wp_embed, 'autoembed' ) );
+		add_filter( 'silklite_hybrid_media_grabber_embed_shortcode_media', array( $wp_embed, 'run_shortcode' ) );
+		add_filter( 'silklite_hybrid_media_grabber_autoembed_media',       array( $wp_embed, 'autoembed' ) );
 
 		/* Don't return a link if embeds don't work. Need media or nothing at all. */
 		add_filter( 'embed_maybe_make_link', '__return_false' );
@@ -116,7 +116,7 @@ class Hybrid_Media_Grabber {
 		);
 
 		/* Set the object properties. */
-		$this->args    = apply_filters( 'hybrid_media_grabber_args', wp_parse_args( $args, $defaults ) );
+		$this->args    = apply_filters( 'silklite_hybrid_media_grabber_args', wp_parse_args( $args, $defaults ) );
 		$this->content = get_post_field( 'post_content', $this->args['post_id'] );
 		$this->type    = isset( $this->args['type'] ) && in_array( $this->args['type'], array( 'audio', 'video' ) ) ? $this->args['type'] : 'video';
 
@@ -143,7 +143,7 @@ class Hybrid_Media_Grabber {
 	 * @return string
 	 */
 	public function get_media() {
-		return apply_filters( 'hybrid_media_grabber_media', $this->media, $this );
+		return apply_filters( 'silklite_hybrid_media_grabber_media', $this->media, $this );
 	}
 
 	/**
@@ -257,7 +257,7 @@ class Hybrid_Media_Grabber {
 		$this->original_media = array_shift( $shortcode );
 
 		$this->media = apply_filters(
-			'hybrid_media_grabber_embed_shortcode_media',
+			'silklite_hybrid_media_grabber_embed_shortcode_media',
 			$this->original_media
 		);
 	}
@@ -325,7 +325,7 @@ class Hybrid_Media_Grabber {
 			foreach ( $matches as $value ) {
 
 				/* Let WP work its magic with the 'autoembed' method. */
-				$embed = trim( apply_filters( 'hybrid_media_grabber_autoembed_media', $value[0] ) );
+				$embed = trim( apply_filters( 'silklite_hybrid_media_grabber_autoembed_media', $value[0] ) );
 
 				if ( !empty( $embed ) ) {
 					$this->original_media = $value[0];
@@ -455,7 +455,7 @@ class Hybrid_Media_Grabber {
 
 		/* Allow devs to filter the final width and height of the media. */
 		list( $width, $height ) = apply_filters( 
-			'hybrid_media_grabber_dimensions', 
+			'silklite_hybrid_media_grabber_dimensions', 
 			$dimensions,                       // width/height array
 			$media_atts,                       // media HTML attributes
 			$this                              // media grabber object

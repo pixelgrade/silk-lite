@@ -1,7 +1,7 @@
 <?php
 /**
- * Silk Theme Customizer
- * @package Silk
+ * Silk Lite Theme Customizer
+ * @package Silk Lite
  */
 
 
@@ -10,7 +10,7 @@
  *
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  */
-function silk_customize_register ( $wp_customize ) {
+function silklite_customize_register ( $wp_customize ) {
 
 	/*
 	 * Change defaults
@@ -21,82 +21,82 @@ function silk_customize_register ( $wp_customize ) {
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 
 	// Rename the label to "Display Site Title & Tagline" in order to make this option clearer.
-	$wp_customize->get_control( 'display_header_text' )->label = __( 'Display Site Title &amp; Tagline', 'silk' );
+	$wp_customize->get_control( 'display_header_text' )->label = __( 'Display Site Title &amp; Tagline', 'silklite' );
 
 	/*
 	 * Add custom settings
 	 */
 
-	$wp_customize->add_section( 'silk_theme_options', array(
-		'title'             => __( 'Theme', 'silk' ),
+	$wp_customize->add_section( 'silklite_theme_options', array(
+		'title'             => __( 'Theme', 'silklite' ),
 		'priority'          => 30,
 	) );
 
-	$wp_customize->add_setting( 'silk_single_column_archives', array(
+	$wp_customize->add_setting( 'silklite_single_column_archives', array(
 		'default'           => '',
-		'sanitize_callback' => 'silk_sanitize_checkbox',
+		'sanitize_callback' => 'silklite_sanitize_checkbox',
 	) );
 
-	$wp_customize->add_control( 'silk_single_column_archives', array(
-		'label'             => __( 'Display single column posts on front page and archives.', 'silk' ),
-		'section'           => 'silk_theme_options',
+	$wp_customize->add_control( 'silklite_single_column_archives', array(
+		'label'             => __( 'Display single column posts on front page and archives.', 'silklite' ),
+		'section'           => 'silklite_theme_options',
 		'type'              => 'checkbox',
 	) );
 
-	$wp_customize->add_setting( 'silk_single_featured_image', array(
+	$wp_customize->add_setting( 'silklite_single_featured_image', array(
 		'default'           => '',
-		'sanitize_callback' => 'silk_sanitize_checkbox',
+		'sanitize_callback' => 'silklite_sanitize_checkbox',
 	) );
 
-	$wp_customize->add_control( 'silk_single_featured_image', array(
-		'label'             => __( 'Display the featured image on single posts.', 'silk' ),
-		'section'           => 'silk_theme_options',
+	$wp_customize->add_control( 'silklite_single_featured_image', array(
+		'label'             => __( 'Display the featured image on single posts.', 'silklite' ),
+		'section'           => 'silklite_theme_options',
 		'type'              => 'checkbox',
 	) );
 
-	$wp_customize->add_setting( 'silk_disable_search_in_toolbar', array(
+	$wp_customize->add_setting( 'silklite_disable_search_in_toolbar', array(
 		'default'           => '',
-		'sanitize_callback' => 'silk_sanitize_checkbox',
+		'sanitize_callback' => 'silklite_sanitize_checkbox',
 	) );
 
-	$wp_customize->add_control( 'silk_disable_search_in_toolbar', array(
-		'label'             => __( 'Hide search button in top header bar', 'silk' ),
-		'section'           => 'silk_theme_options',
+	$wp_customize->add_control( 'silklite_disable_search_in_toolbar', array(
+		'label'             => __( 'Hide search button in top header bar', 'silklite' ),
+		'section'           => 'silklite_theme_options',
 		'type'              => 'checkbox',
 	) );
 
-	$wp_customize->add_setting( 'silk_site_title_outline', array(
+	$wp_customize->add_setting( 'silklite_site_title_outline', array(
 		'default'           => '3',
-		'sanitize_callback' => 'silk_sanitize_site_title_outline',
+		'sanitize_callback' => 'silklite_sanitize_site_title_outline',
 		'transport' => 'postMessage',
 	) );
 
-	$wp_customize->add_control( 'silk_site_title_outline', array(
-		'label'   => __( 'Site Title Outline', 'silk' ),
-		'section' => 'silk_theme_options',
+	$wp_customize->add_control( 'silklite_site_title_outline', array(
+		'label'   => __( 'Site Title Outline', 'silklite' ),
+		'section' => 'silklite_theme_options',
 		'type'    => 'select',
 		'choices' => array(
-			'0' => __( '0', 'silk' ),
-			'1.2' => __( '-1', 'silk' ),
-			'3' => __( '-2', 'silk' ),
-			'5' => __( '-3', 'silk' ),
-			'10' => __( '-4', 'silk' ),
+			'0' => __( '0', 'silklite' ),
+			'1.2' => __( '-1', 'silklite' ),
+			'3' => __( '-2', 'silklite' ),
+			'5' => __( '-3', 'silklite' ),
+			'10' => __( '-4', 'silklite' ),
 		),
 	) );
 
-	$wp_customize->add_setting( 'silk_footer_copyright', array(
+	$wp_customize->add_setting( 'silklite_footer_copyright', array(
 		'default'           => '',
 		'sanitize_callback' => 'wp_kses_post',
 	) );
 
-	$wp_customize->add_control( 'silk_footer_copyright', array(
-		'label'             => __( 'Additional Copyright Text', 'silk' ),
+	$wp_customize->add_control( 'silklite_footer_copyright', array(
+		'label'             => __( 'Additional Copyright Text', 'silklite' ),
 		'description' => '',
-		'section'           => 'silk_theme_options',
+		'section'           => 'silklite_theme_options',
 		'type'              => 'text',
 	) );
 }
-add_action( 'customize_register', 'silk_customize_register' );
+add_action( 'customize_register', 'silklite_customize_register' );
 
 /**
  * Sanitize the checkbox.
@@ -104,7 +104,7 @@ add_action( 'customize_register', 'silk_customize_register' );
  * @param boolean $input.
  * @return boolean true if is 1 or '1', false if anything else
  */
-function silk_sanitize_checkbox( $input ) {
+function silklite_sanitize_checkbox( $input ) {
 	if ( 1 == $input ) {
 		return true;
 	} else {
@@ -118,7 +118,7 @@ function silk_sanitize_checkbox( $input ) {
  * @param string $outline Outline thickness.
  * @return string Filtered outline (0|1|2|3).
  */
-function silk_sanitize_site_title_outline( $outline ) {
+function silklite_sanitize_site_title_outline( $outline ) {
 	if ( ! in_array( $outline, array( '0', '1.2', '3', '5', '10' ) ) ) {
 		$outline = '3';
 	}
@@ -129,7 +129,7 @@ function silk_sanitize_site_title_outline( $outline ) {
 /**
  * JavaScript that handles the Customizer AJAX logic
  */
-function silk_customizer_js() {
-	wp_enqueue_script( 'silk_customizer', get_template_directory_uri() . '/assets/js/customizer.js', array( 'customize-preview' ), '1.0.3', true );
+function silklite_customizer_js() {
+	wp_enqueue_script( 'silklite_customizer', get_template_directory_uri() . '/assets/js/customizer.js', array( 'customize-preview' ), '1.0.3', true );
 }
-add_action( 'customize_preview_init', 'silk_customizer_js' ); ?>
+add_action( 'customize_preview_init', 'silklite_customizer_js' ); ?>
