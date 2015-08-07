@@ -2,17 +2,25 @@
 
 var navigation = (function() {
 
-	var $nav = $('.nav--main'),
+	var $nav = $('ul.nav--main'),
 
 	init = function() {
 		// initialize the logic behind the main navigation
+
+		// When there is no main menu selected, a default menu drops in
+		// the actual menu ( <ul/> ) is inside a wrapper div.nav.nav--main
+		if (!$nav.length) {
+			$nav = $('div.nav.nav--main > ul').addClass('nav  nav--main  js-nav--main  is--visible');
+			$('div.nav.nav--main').removeClass();
+		}
+
 		$nav.ariaNavigation();
 
 		mobileNav();
 	},
 
 	mobileNav = function () {
-		var $nav = $('.nav--main'),
+		var $nav = $('ul.nav--main'),
 			$navTrigger = $('.js-nav-trigger'),
 			$navContainer = $('.main-navigation'),
 			navTop = (typeof $navContainer.offset() !== 'undefined') ? $navContainer.offset().top : 0,

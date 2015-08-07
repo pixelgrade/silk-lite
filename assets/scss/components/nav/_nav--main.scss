@@ -10,24 +10,26 @@
 		transform: none !important;
 	}
 
-	> .menu-item:hover > a {
+	.menu-item:hover > a,
+	.page_item:hover > a {
 		color: $accent;
 	}
 
 
-	> li.hover {
+	li.hover {
 		> a {
 			color: $accent;
 		}
 	}
 
 	li:hover, li.hover {
-		> .sub-menu {
+		> .sub-menu, > .children {
 			display: block;
 		}
 	}
 
-	> .menu-item-has-children:hover > a {
+	.menu-item-has-children:hover > a,
+	.page_item_has_children:hover > a {
 		position: relative;
 
 		&:before {
@@ -219,11 +221,11 @@
 			}
 		}
 
-		> li {
+		li {
 			border-bottom: 1px solid $borders;
 		}
 
-		.sub-menu {
+		.sub-menu, .children {
 			padding-left: rem(12px);
 			padding-bottom: rem(10px);
 			min-width: 0;
@@ -243,11 +245,16 @@
 			width: auto;
 		}
 
-		.sub-menu {
+		.sub-menu, .children {
 			display: none;
 		}
 
 		ul ul ul {
+			padding-left: 0;
+		}
+
+
+		ul ul ul ul {
 			padding-left: 0;
 		}
 	}
@@ -289,14 +296,9 @@
 }
 
 
-
-
-
-
-
 .nav--main {
 
-	.sub-menu {
+	.sub-menu, .children {
 		@extend %sub-menu;
 		color: $dark;
 		background: white;
@@ -308,12 +310,13 @@
 			border: 1px solid $borders;
 			padding: rhythm(1/2) rhythm(1);
 
-			.menu-item {
+			.menu-item, .page_item {
 				border-bottom: 1px solid $borders;
 			}
 		}
 
-		> .menu-item-has-children > a:after {
+		> .menu-item-has-children > a:after,
+		> .page_item_has_children > a:after {
 			border-top-color: transparent;
 			border-left-color: currentColor;
 			border-width: rem(3px) rem(4px);
@@ -327,7 +330,7 @@
 		}
 	}
 
-	.menu-item {
+	.menu-item, .page_item {
 		position: relative;
 
 		&:hover,
@@ -345,7 +348,23 @@
 		}
 	}
 
-	.menu-item-has-children > a {
+	.menu-item-has-children > a,
+	.page_item_has_children > a {
 		@extend %dropdown-arrow;
+	}
+}
+
+
+// When there is no main menu selected, a default menu drops in
+// the actual menu ( <ul/> ) is inside a wrapper div.nav.nav--main
+div.nav.nav--main > ul {
+	display: none;
+	opacity: 0;
+
+	transition: .2s linear opacity;
+
+	&.is--visible {
+		display: block;
+		opacity: 1;
 	}
 }
