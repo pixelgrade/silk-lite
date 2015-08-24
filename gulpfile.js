@@ -93,7 +93,7 @@ gulp.task('server', ['styles', 'scripts'], function () {
 gulp.task('copy-folder', ['styles', 'scripts'], function () {
 
 	return gulp.src('./')
-		.pipe(exec('rm -Rf ./../build; mkdir -p ./../build/silk; rsync -av --exclude="node_modules" ./* ./../build/silk/', options));
+		.pipe(exec('rm -Rf ./../build; mkdir -p ./../build/silk-lite; rsync -av --exclude="node_modules" ./* ./../build/silk-lite/', options));
 });
 
 /**
@@ -127,7 +127,7 @@ gulp.task('build', ['copy-folder'], function () {
 	];
 
 	files_to_remove.forEach(function (e, k) {
-		files_to_remove[k] = '../build/silk/' + e;
+		files_to_remove[k] = '../build/silk-lite/' + e;
 	});
 
 	return gulp.src(files_to_remove, {read: false})
@@ -140,7 +140,7 @@ gulp.task('build', ['copy-folder'], function () {
 gulp.task('zip', ['build'], function(){
 
 	return gulp.src('./')
-		.pipe(exec('cd ./../; rm -rf silk.zip; cd ./build/; zip -r -X ./../silk.zip ./silk; cd ./../; rm -rf build'));
+		.pipe(exec('cd ./../; rm -rf silk-lite.zip; cd ./build/; zip -r -X ./../silk-lite.zip ./silk-lite; cd ./../; rm -rf build'));
 
 });
 
@@ -158,7 +158,7 @@ gulp.task('help', function () {
 	var $help = '\nCommands available : \n \n' +
 		'=== General Commands === \n' +
 		'start              (default)Compiles all styles and scripts and makes the theme ready to start \n' +
-		'zip               	Generate the zip arcsilk \n' +
+		'zip               	Generate the zip archive \n' +
 		'build				Generate the build directory with the cleaned theme \n' +
 		'help               Print all commands \n' +
 		'=== Style === \n' +

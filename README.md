@@ -1,4 +1,4 @@
-Silk
+Silk Lite
 ======
 
 
