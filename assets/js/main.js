@@ -1076,16 +1076,8 @@ if (!Date.now) Date.now = function () {
         mobileNav = function () {
         var $nav = $('ul.nav--main'),
             $navTrigger = $('.js-nav-trigger'),
-            $navContainer = $('.main-navigation'),
-            navTop = (typeof $navContainer.offset() !== 'undefined') ? $navContainer.offset().top : 0,
-            navLeft = (typeof $navContainer.offset() !== 'undefined') ? $navContainer.offset().left : 0,
             navWidth = $nav.outerWidth(),
-            containerWidth = $navContainer.outerWidth(),
-            navHeight = $navContainer.outerHeight(),
-            $toolbar = $('.toolbar'),
-            isOpen = false,
-            pageTop = $('#page').offset().top,
-            sticked = false;
+            isOpen = false;
 
         /**
          * bind toggling the navigation drawer to click and touchstart
