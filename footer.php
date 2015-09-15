@@ -33,7 +33,7 @@
 			if ( get_theme_mod( 'silklite_footer_copyright', false ) ) {
 				echo get_theme_mod( 'silklite_footer_copyright', '' );
 			} else {
-				echo '&copy; ' . get_bloginfo('name') . ' – ';
+				echo '&copy; ' . get_bloginfo('name') . ' &ndash; ';
 			} ?>
 
 			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'silklite' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'silklite' ), 'WordPress' ); ?></a>
