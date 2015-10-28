@@ -1,7 +1,0 @@
-Silk Lite
-======
-
-
-
-Getting Started
---------
