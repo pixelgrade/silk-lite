@@ -169,7 +169,6 @@ function silklite_scripts_styles() {
 	wp_enqueue_style( 'silklite-fonts', silklite_fonts_url(), array(), null );
 
 	//Enqueue Masonry
-	//wp_enqueue_script( 'jquery-masonry' );
 	wp_enqueue_script( 'masonry-local', get_template_directory_uri() . '/assets/js/masonry.pkgd.min.js', array( 'jquery' ), '3.3.2', true );
 
 	//Enqueue ImagesLoaded plugin
@@ -190,7 +189,7 @@ function silklite_scripts_styles() {
 		'velocity',
 	), '1.0.0', true );
 
-	$js_url = ( is_ssl() ) ? 'https://v0.wordpress.com/js/videopress.js' : 'http://s0.videopress.com/js/videopress.js';
+	$js_url = ( is_ssl() ) ? get_template_directory_uri() . '/assets/js/videopress.js' : get_template_directory_uri() . '/assets/js/videopress.js';
 	wp_enqueue_script( 'videopress', $js_url, array( 'jquery', 'swfobject' ), '1.09' );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {

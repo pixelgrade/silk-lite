@@ -3,7 +3,6 @@ var gulp 		= require('gulp'),
 	prefix 		= require('gulp-autoprefixer'),
 	exec 		= require('gulp-exec'),
 	replace 	= require('gulp-replace'),
-	clean 		= require('gulp-clean'),
 	minify 		= require('gulp-minify-css'),
 	livereload 	= require('gulp-livereload'),
 	concat 		= require('gulp-concat'),
@@ -11,7 +10,9 @@ var gulp 		= require('gulp'),
 	beautify 	= require('gulp-beautify'),
 	csscomb 	= require('gulp-csscomb'),
 	cmq 		= require('gulp-combine-media-queries'),
-	chmod 		= require('gulp-chmod');
+	chmod 		= require('gulp-chmod'),
+	fs          = require('fs'),
+	del         = require('del');
 
 jsFiles = [
 	'./assets/js/vendor/*.js',
@@ -127,20 +128,40 @@ gulp.task('build', ['copy-folder'], function () {
 	];
 
 	files_to_remove.forEach(function (e, k) {
-		files_to_remove[k] = '../build/silk-lite/' + e;
+		files_to_remove[k] = '../build//' + e;
 	});
 
-	return gulp.src(files_to_remove, {read: false})
-		.pipe(clean({force: true}));
+	del.sync(files_to_remove, {force: true});
 });
 
 /**
- * Create a zip arcsilk out of the cleaned folder and delete the folder
+ * Create a zip archive out of the cleaned folder and delete the folder
  */
 gulp.task('zip', ['build'], function(){
 
+	var versionString = '';
+	//get theme version from styles.css
+	var contents = fs.readFileSync("./style.css", "utf8");
+
+	// split it by lines
+	var lines = contents.split(/[\r\n]/);
+
+	function checkIfVersionLine(value, index, ar) {
+		var myRegEx = /^[Vv]ersion:/;
+		if ( myRegEx.test(value) ) {
+			return true;
+		}
+		return false;
+	}
+
+	// apply the filter
+	var versionLine = lines.filter(checkIfVersionLine);
+
+	versionString = versionLine[0].replace(/^[Vv]ersion:/, '' ).trim();
+	versionString = '-' + versionString.replace(/\./g,'-');
+
 	return gulp.src('./')
-		.pipe(exec('cd ./../; rm -rf silk-lite.zip; cd ./build/; zip -r -X ./../silk-lite.zip ./silk-lite; cd ./../; rm -rf build'));
+		.pipe(exec('cd ./../; rm -rf Silk-Lite*.zip; cd ./build/; zip -r -X ./../Silk-Lite' + versionString +'.zip ./; cd ./../; rm -rf build'));
 
 });
 

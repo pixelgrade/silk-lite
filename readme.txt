@@ -21,5 +21,9 @@ By installing Jetpack plugin, you'll be able to get special widgets like Newslet
 
 == Credits ==
 
+Unless otherwise specified, all the theme files, scripts and images are licensed under GNU General Public License.
+
+* Hybrid Media Grabber: script by Justin Tadlock (http://themehybrid.com/hybrid-core), licensed under [GPLv2](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
+
 * Font Awesome: font by Dave Gandy (http://fontawesome.io/), licensed under [SIL OFL 1.1](http://fontawesome.io/), CSS released under the [MIT License](http://opensource.org/licenses/mit-license.html).
-* Images: image by Lechon Kirb (https://unsplash.com/lechonkirb), London Scout (https://unsplash.com/scoutthecity), Abigail Keenan(https://unsplash.com/akeenster) and Benjamin Combs(https://unsplash.com/b3njamin). All licensed under [CC0](http://creativecommons.org/choose/zero/), 
+* Images: image by Lechon Kirb (https://unsplash.com/lechonkirb) - [Source](https://unsplash.com/photos/yvx7LSZSzeo), London Scout (https://unsplash.com/scoutthecity) - [Source](https://unsplash.com/photos/YLMs82LF6FY), Abigail Keenan(https://unsplash.com/akeenster) - [Source](https://unsplash.com/photos/8jqna7aA-vs) and Benjamin Combs(https://unsplash.com/b3njamin) - [Source](https://unsplash.com/photos/hiAdjnXZxl8). All licensed under [CC0](http://creativecommons.org/choose/zero/), 
