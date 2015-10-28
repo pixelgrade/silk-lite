@@ -189,9 +189,6 @@ function silklite_scripts_styles() {
 		'velocity',
 	), '1.0.0', true );
 
-	$js_url = ( is_ssl() ) ? get_template_directory_uri() . '/assets/js/videopress.js' : get_template_directory_uri() . '/assets/js/videopress.js';
-	wp_enqueue_script( 'videopress', $js_url, array( 'jquery', 'swfobject' ), '1.09' );
-
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
