@@ -169,7 +169,7 @@ function silklite_scripts_styles() {
 	wp_enqueue_style( 'silklite-fonts', silklite_fonts_url(), array(), null );
 
 	//Enqueue Masonry
-	wp_enqueue_script( 'masonry-local', get_template_directory_uri() . '/assets/js/masonry.pkgd.min.js', array( 'jquery' ), '3.3.2', true );
+	wp_enqueue_script( 'masonry-local', get_template_directory_uri() . '/assets/js/masonry.pkgd.js', array( 'jquery' ), '3.3.2', true );
 
 	//Enqueue ImagesLoaded plugin
 	wp_enqueue_script( 'imagesLoaded', get_template_directory_uri() . '/assets/js/imagesloaded.js', array(), '3.1.8', true );

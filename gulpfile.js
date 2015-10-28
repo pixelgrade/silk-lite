@@ -128,7 +128,7 @@ gulp.task('build', ['copy-folder'], function () {
 	];
 
 	files_to_remove.forEach(function (e, k) {
-		files_to_remove[k] = '../build//' + e;
+		files_to_remove[k] = '../build/silk-lite/' + e;
 	});
 
 	del.sync(files_to_remove, {force: true});
