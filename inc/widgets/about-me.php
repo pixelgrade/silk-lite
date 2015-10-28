@@ -11,13 +11,13 @@ if ( ! function_exists( 'silk_about_me_widget_init' ) ) :
 	 */
 	add_action( 'widgets_init', 'silk_about_me_widget_init' );
 	function silk_about_me_widget_init() {
-		register_widget( 'Silk_About_Me_Widget' );
+		register_widget( 'SilkLite_About_Me_Widget' );
 	}
 endif;
 
-if ( ! class_exists( 'Silk_About_Me_Widget' ) ) :
+if ( ! class_exists( 'SilkLite_About_Me_Widget' ) ) :
 
-	class Silk_About_Me_Widget extends WP_Widget {
+	class SilkLite_About_Me_Widget extends WP_Widget {
 		var $default_title = '';
 
 		/**
@@ -25,7 +25,7 @@ if ( ! class_exists( 'Silk_About_Me_Widget' ) ) :
 		 */
 		public function __construct() {
 			parent::__construct(
-				'silk-about-me',
+				'silklite-about-me',
 				apply_filters( 'silk_widget_name', esc_html__( 'Silk Lite About Me', 'silklite' ) ),
 				array(
 					'classname'   => 'widget_silk_about_me',
