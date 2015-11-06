@@ -46,7 +46,7 @@
 
 	.archive-layout--masonry & > .grid__item {
 		@include query-above($small) {
-			width: 50%;
+			width: 49.5%;
 		}
 	}
 
