@@ -42,7 +42,7 @@ if ( ! function_exists( 'silklite_setup' ) ) :
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
 		 */
-		load_theme_textdomain( 'silklite', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'silk-lite', get_template_directory() . '/languages' );
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
@@ -78,10 +78,10 @@ if ( ! function_exists( 'silklite_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in three locations.
 		register_nav_menus( array(
-			'primary'          => __( 'Primary Menu', 'silklite' ),
-			'top_header_left'  => __( 'Top Header Left Menu', 'silklite' ),
-			'top_header_right' => __( 'Top Header Right Menu', 'silklite' ),
-			'footer'           => __( 'Footer Menu', 'silklite' ),
+			'primary'          => __( 'Primary Menu', 'silk-lite' ),
+			'top_header_left'  => __( 'Top Header Left Menu', 'silk-lite' ),
+			'top_header_right' => __( 'Top Header Right Menu', 'silk-lite' ),
+			'footer'           => __( 'Footer Menu', 'silk-lite' ),
 		) );
 
 		/*
@@ -132,9 +132,9 @@ add_action( 'after_setup_theme', 'silklite_setup' );
  */
 function silklite_widgets_init() {
 	register_sidebar( array(
-		'name'          => __( 'Sidebar', 'silklite' ),
+		'name'          => __( 'Sidebar', 'silk-lite' ),
 		'id'            => 'sidebar-1',
-		'description'   => __( 'Add widgets here to appear in your main sidebar.', 'silklite' ),
+		'description'   => __( 'Add widgets here to appear in your main sidebar.', 'silk-lite' ),
 		'before_widget' => '<div class="grid__item"><aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside></div>',
 		'before_title'  => '<h3 class="widget-title">',
@@ -142,9 +142,9 @@ function silklite_widgets_init() {
 	) );
 
 	register_sidebar( array(
-		'name'          => __( 'Footer', 'silklite' ),
+		'name'          => __( 'Footer', 'silk-lite' ),
 		'id'            => 'footer-1',
-		'description'   => __( 'Add widgets here to appear in your footer sidebar.', 'silklite' ),
+		'description'   => __( 'Add widgets here to appear in your footer sidebar.', 'silk-lite' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h3 class="widget-title">',
@@ -218,8 +218,8 @@ function silklite_wp_enqueue_media() {
 		'SilkAboutMeWidget',
 		array(
 			'l10n' => array(
-				'frameTitle'      => __( 'Choose a Background Image', 'silklite' ),
-				'frameUpdateText' => __( 'Update Background Image', 'silklite' ),
+				'frameTitle'      => __( 'Choose a Background Image', 'silk-lite' ),
+				'frameUpdateText' => __( 'Update Background Image', 'silk-lite' ),
 			),
 		)
 	);

@@ -24,17 +24,17 @@
 		<?php
 		/* translators: %s: Name of current post */
 		the_content( sprintf(
-			__( 'Continue reading %s', 'silklite' ),
+			__( 'Continue reading %s', 'silk-lite' ),
 			the_title( '<span class="screen-reader-text">', '</span>', false )
 		) ); ?>
 
 		<?php
 		wp_link_pages( array(
-			'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'silklite' ),
+			'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'silk-lite' ),
 			'after'  => '</span></div>',
 			'link_before' => '<span>',
 			'link_after'  => '</span>',
-			'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'silklite' ) . ' </span>%',
+			'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'silk-lite' ) . ' </span>%',
 			'separator'   => '<span class="screen-reader-text">, </span>',
 		) );
 		?>

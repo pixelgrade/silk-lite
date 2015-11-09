@@ -22,7 +22,7 @@
 					'container'      => '',
 					'menu_class'     => 'nav  nav--footer',
 					'depth'          => - 1, //flatten if there is any hierarchy
-					'items_wrap'     => '<nav><h5 class="screen-reader-text">'.__( 'Footer navigation', 'silklite' ).'</h5><ul id="%1$s" class="%2$s">%3$s</ul></nav>',
+					'items_wrap'     => '<nav><h5 class="screen-reader-text">'.__( 'Footer navigation', 'silk-lite' ).'</h5><ul id="%1$s" class="%2$s">%3$s</ul></nav>',
 				)
 			); ?>
 		</div>
@@ -36,9 +36,9 @@
 				echo '&copy; ' . get_bloginfo('name') . ' &ndash; ';
 			} ?>
 
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'silklite' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'silklite' ), 'WordPress' ); ?></a>
+			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'silk-lite' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'silk-lite' ), 'WordPress' ); ?></a>
 			<span class="sep"> | </span>
-			<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'silklite' ), 'Silk', '<a href="https://pixelgrade.com" title="'. __( 'The PixelGrade Website', 'silklite' ) .'" rel="designer">PixelGrade</a>' ); ?>
+			<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'silk-lite' ), 'Silk', '<a href="https://pixelgrade.com" title="'. __( 'The PixelGrade Website', 'silk-lite' ) .'" rel="designer">PixelGrade</a>' ); ?>
 
 		</div><!-- .site-info -->
 
@@ -60,7 +60,7 @@
 
 			<?php get_search_form(); ?>
 
-			<p><?php _e( 'Begin typing your search above and press return to search. Press Esc to cancel.', 'silklite' ); ?></p>
+			<p><?php _e( 'Begin typing your search above and press return to search. Press Esc to cancel.', 'silk-lite' ); ?></p>
 
 		</div>
 		<b class="overlay__close"></b>

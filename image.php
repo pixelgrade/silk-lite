@@ -34,7 +34,7 @@ get_header(); ?>
 
 			// The parent post link.
 			the_post_navigation( array(
-				'prev_text' => '<span class="meta-nav">' . __( 'Published in', 'silklite' ) . '</span><span class="post-title">%title</span>',
+				'prev_text' => '<span class="meta-nav">' . __( 'Published in', 'silk-lite' ) . '</span><span class="post-title">%title</span>',
 				)
 			); ?>
 
