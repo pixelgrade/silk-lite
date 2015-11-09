@@ -547,7 +547,6 @@ if (!Date.now)
         latestKnownScrollY = $window.scrollTop(),
         ticking = false;
 
-    ;
     var animator = (function() {
 
         var initialize = function() {
@@ -1917,6 +1916,15 @@ if (!Date.now)
 
     function onResize() {
         var newOrientation = windowWidth >= windowHeight ? 'landscape' : 'portrait';
+
+        if ($.support.touch) {
+            if (orientation != newOrientation) {
+                slider.init();
+            }
+        } else {
+            slider.init();
+        }
+
 
         browserSize();
         masonry.refresh();
