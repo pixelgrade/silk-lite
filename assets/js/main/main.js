@@ -40,7 +40,8 @@ $window.on('debouncedresize', onResize);
 /* ====== ON SCROLL ====== */
 
 function onScroll() {
-  latestKnownScrollY = window.scrollY;
+  latestKnownScrollY = $window.scrollTop();
+
   requestTick();
 }
 

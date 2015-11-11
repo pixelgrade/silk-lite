@@ -544,7 +544,7 @@ if (!Date.now)
         documentHeight = $document.height(),
         orientation = windowWidth >= windowHeight ? 'landscape' : 'portrait',
 
-        latestKnownScrollY = window.scrollY,
+        latestKnownScrollY = $window.scrollTop(),
         ticking = false;
 
     ;
@@ -1929,7 +1929,8 @@ if (!Date.now)
     /* ====== ON SCROLL ====== */
 
     function onScroll() {
-        latestKnownScrollY = window.scrollY;
+        latestKnownScrollY = $window.scrollTop();
+
         requestTick();
     }
 
