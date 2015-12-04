@@ -6,6 +6,27 @@
  * @package Silk Lite
  */
 
+/**
+ * Load the theme's duplicate files if Jetpack is not present
+ * This way we provide a smooth transition to those that decide to use Jetpack
+ * See: http://jetpack.me/
+ *
+ * @package Silk Lite
+ * @since Silk 1.0.5
+ */
+function silklite_load_jetpack_compatibility() {
+
+	//first test if Jetpack is present and activated
+	// only if it is not present load the duplicated code from the theme
+	if ( ! class_exists( 'Jetpack' ) ) {
+		//these are safe as they do their own house cleaning
+		require_once get_template_directory() . '/inc/jetpack/site-logo.php';
+		//this is not safe -- needed to prefix the functions
+		require_once get_template_directory() . '/inc/jetpack/responsive-videos.php';
+	}
+}
+add_action( 'after_setup_theme', 'silklite_load_jetpack_compatibility' );
+
 function silklite_jetpack_setup() {
 	/**
 	 * Add theme support for Infinite Scroll
