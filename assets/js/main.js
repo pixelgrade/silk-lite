@@ -1849,8 +1849,6 @@ if (!Date.now)
     /* ====== ON RESIZE ====== */
 
     function onResize() {
-        var newOrientation = windowWidth >= windowHeight ? 'landscape' : 'portrait';
-
         browserSize();
         masonry.refresh();
         fixedSidebars.refresh();

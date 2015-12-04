@@ -182,3 +182,32 @@ hr {
 .customizer-preview .posts-navigation {
 	display: none;
 }
+
+.skip-link.screen-reader-text {
+	@extend %btn;
+
+	position: absolute;
+	left: 25px;
+	top: 25px;
+	z-index: -1;
+
+	display: block;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+
+	pointer-events: none;
+}
+
+.skip-link:focus {
+	z-index: 100000;
+
+	padding: 15px;
+	width: auto;
+	height: auto;
+	overflow: visible;
+	visibility: visible;
+
+	font-size: 20px;
+	pointer-events: auto;
+}

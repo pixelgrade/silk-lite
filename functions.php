@@ -180,6 +180,8 @@ function silklite_scripts_styles() {
 	//Enqueue Velocity.js plugin
 	wp_enqueue_script( 'velocity', get_template_directory_uri() . '/assets/js/velocity.js', array(), '1.1.0', true );
 
+	wp_enqueue_script( 'silklite-skip-link-focus-fix', get_template_directory_uri() . '/assets/js/skip-link-focus-fix.js', array(), '20130115', true );
+
 	//Enqueue Silk Lite Custom Scripts
 	wp_enqueue_script( 'silklite-scripts', get_template_directory_uri() . '/assets/js/main.js', array(
 		'jquery',
