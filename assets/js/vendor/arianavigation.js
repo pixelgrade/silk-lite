@@ -77,7 +77,7 @@
 		 */
 
 		// Add ARIA role to menubar and menu items
-		$nav.attr( 'role', 'menubar' ).find( 'li' ).attr( 'role', 'menuitem' );
+		$nav.find( 'li' ).attr( 'role', 'menuitem' );
 
 		$topLevelLinks.each( function() {
 			//for regular sub-menus

@@ -62,7 +62,6 @@
 		</div><!-- .site-branding -->
 
 		<nav id="site-navigation" class="main-navigation" role="navigation">
-
 			<button class="button-toggle  js-nav-trigger" aria-controls="menu-primary-menu" aria-expanded="false">
 				<span class="nav-icon icon--lines"></span>
 				<span class="button-text  assistive-text"><?php _e( 'Primary Menu', 'silk-lite' ); ?></span>
@@ -71,13 +70,13 @@
 				'theme_location' => 'primary',
 				'container'      => '',
 				'menu_class'     => 'nav  nav--main  js-nav--main',
-				'items_wrap'     => '<ul id="%1$s" class="%2$s" role="menubar" aria-hidden="false">%3$s</ul>',
+				'menu_id'        => 'menu-primary-menu',
+				'items_wrap'     => '<ul id="%1$s" class="%2$s" aria-hidden="false">%3$s</ul>',
 			) ); ?>
 			<a href="#search" class="button-toggle  button-toggle--search">
 				<span class="button-icon"><i class="fa fa-search"></i></span>
 				<span class="button-text  assistive-text"><?php _e( 'Search', 'silk-lite' ); ?></span>
 			</a>
-
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
 
