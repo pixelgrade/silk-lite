@@ -28,8 +28,10 @@
 		}
 	}
 
-	.menu-item-has-children:hover > a,
-	.page_item_has_children:hover > a {
+	& > .menu-item-has-children:hover > a,
+	& > .page_item_has_children:hover > a,
+	& > .menu-item-has-children.hover > a,
+	& > .page_item_has_children.hover > a {
 		position: relative;
 
 		&:before {

@@ -60,7 +60,7 @@
 				105: "9"
 			},
 			$nav = $( this ),
-			$allLinks = $nav.find( 'li.nav__item > a' ),
+			$allLinks = $nav.find( 'li.menu-item > a, li.page_item > a' ),
 			$topLevelLinks = $nav.find( '> li > a' ),
 			subLevelLinks = $topLevelLinks.parent( 'li' ).find( 'ul' ).find( 'a' );
 			navWidth = $nav.outerWidth();
@@ -92,17 +92,28 @@
 				$( this ).parent( 'li' ).attr( 'aria-haspopup', 'true' );
 			}
 
-			//for mega menus
 			// Set tabIndex to -1 so that links can't receive focus until menu is open
-			$( this ).next( '.sub-menu-wrapper' ).children('ul' )
+			$( this ).next( '.menu-item-has-children' ).children('ul' )
 				.attr( {'aria-hidden': 'true', 'role': 'menu'} )
 				.find( 'a' ).attr( 'tabIndex', -1 );
 
-			$( this ).next( '.sub-menu-wrapper' )
+			$( this ).next( '.menu-item-has-children' )
 				.find( 'a' ).attr( 'tabIndex', -1 );
 
 			// Add aria-haspopup for appropriate items
-			if ( $( this ).next( '.sub-menu-wrapper' ).length > 0 )
+			if ( $( this ).next( '.sub-menu' ).length > 0 )
+				$( this ).parent( 'li' ).attr( 'aria-haspopup', 'true' );
+
+			// Set tabIndex to -1 so that links can't receive focus until menu is open
+			$( this ).next( '.page_item_has_children' ).children('ul' )
+					.attr( {'aria-hidden': 'true', 'role': 'menu'} )
+					.find( 'a' ).attr( 'tabIndex', -1 );
+
+			$( this ).next( '.page_item_has_children' )
+					.find( 'a' ).attr( 'tabIndex', -1 );
+
+			// Add aria-haspopup for appropriate items
+			if ( $( this ).next( '.children' ).length > 0 )
 				$( this ).parent( 'li' ).attr( 'aria-haspopup', 'true' );
 		} );
 
@@ -316,7 +327,7 @@
 			e.stopPropagation();
 		});
 
-		$nav.find('.menu-item-has-children > a').on('touchstart', function(e) {
+		$nav.find('.menu-item-has-children > a, .page_item_has_children > a').on('touchstart', function(e) {
 
 			var $item = $(this).parent();
 
@@ -349,36 +360,14 @@
 
 		$('body').on('touchstart', function() {
 			$('.menu-item-has-children').removeClass('hover');
+			$('.page_item_has_children').removeClass('hover');
 		});
 
 		function showSubMenu( $item ) {
 
-			if ( $item.hasClass( 'menu-item--mega' ) ) {
-
-				var $subMenu = $item.children( '.sub-menu-wrapper' ),
-					offset,
-					subMenuWidth;
-
-
-				if ( $subMenu.length ) {
-
-					subMenuWidth = $subMenu.outerWidth();
-
-					// calculations for positioning the sub-menu
-					var a = $item.index(),
-						b = $nav.children().length,
-						c = navWidth - subMenuWidth,
-						x = (a - b / 2 + 1 / 2) * c / b + c / 2;
-
-					$subMenu.css( 'left', x );
-				}
-
-
-			}
-
 			$item.addClass( settings.topMenuHoverClass );
 
-			$item.find( '.sub-menu' ).first() //affect only the first ul found - the one with the submenus, ignore the mega menu items
+			$item.find( '.sub-menu, .children' ).first() //affect only the first ul found - the one with the submenus, ignore the mega menu items
 				.attr( 'aria-hidden', 'false' )
 				.addClass( settings.menuHoverClass );
 
@@ -388,8 +377,12 @@
 
 		function hideSubMenu( $item ) {
 
-			if ( $item.hasClass( 'menu-item--mega' ) ) {
-				$item.children( '.sub-menu-wrapper' ).css( 'left', '' );
+			if ( $item.hasClass( 'menu-item-has-children' ) ) {
+				$item.children( '.sub-menu' ).css( 'left', '' );
+			}
+
+			if ( $item.hasClass( 'page_item_has_children' ) ) {
+				$item.children( '.children' ).css( 'left', '' );
 			}
 
 			$item.children('a' ).first().next('ul')
@@ -399,11 +392,17 @@
 				.attr( 'tabIndex', -1 );
 
 			//when dealing with first level submenus - they are wrapped
-			$item.children('a' ).first().next('.sub-menu-wrapper' ).children('ul' )
+			$item.children('a' ).first().next('.sub-menu' )
 				.attr( 'aria-hidden', 'true' )
 				.removeClass( settings.menuHoverClass )
 				.find( 'a' )
 				.attr( 'tabIndex', -1 );
+
+			$item.children('a' ).first().next('.children' )
+					.attr( 'aria-hidden', 'true' )
+					.removeClass( settings.menuHoverClass )
+					.find( 'a' )
+					.attr( 'tabIndex', -1 );
 
 			$item.removeClass( settings.topMenuHoverClass );
 		}

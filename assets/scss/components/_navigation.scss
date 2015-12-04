@@ -33,6 +33,10 @@
 		}
 	}
 
+	.nav--main > li > & {
+		left: 50%;
+		transform: translateX(-50%);
+	}
 
 	a {
 		display: block;
