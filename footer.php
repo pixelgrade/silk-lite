@@ -59,7 +59,7 @@
 			<p><?php _e( 'Begin typing your search above and press return to search. Press Esc to cancel.', 'silk-lite' ); ?></p>
 
 		</div>
-		<b class="overlay__close"></b>
+		<button class="overlay__close"></button>
 	</div>
 
 <?php endif; ?>

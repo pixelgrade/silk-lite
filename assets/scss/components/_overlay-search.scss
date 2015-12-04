@@ -97,6 +97,11 @@
 	@include rhythm(right, 5);
 	cursor: pointer;
 
+	background-color: transparent;
+	border: 0;
+	padding: 0;
+	-webkit-appearance: none;
+
 	&:before, &:after {
 		content: "";
 		display: block;
@@ -108,6 +113,7 @@
 
 	&:before {
 		top: 50%;
+		left: 0;
 		width: 100%;
 		height: .16em;
 		margin-top: -.08em;
@@ -115,6 +121,7 @@
 
 	&:after {
 		left: 50%;
+		top: 0;
 		height: 100%;
 		width: .16em;
 		margin-left: -.08em;

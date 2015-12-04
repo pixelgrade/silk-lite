@@ -11,7 +11,7 @@
 			<?php
 			if ( ! get_theme_mod( 'silklite_disable_search_in_toolbar', false ) ) { ?>
 				<ul class="nav  nav--toolbar">
-					<li class="menu-item  nav__item--search"><a href="#"><?php _e( 'Search', 'silk-lite' ); ?></a></li>
+					<li class="menu-item  nav__item--search"><button class="js-search-trigger"><?php _e( 'Search', 'silk-lite' ); ?></button></li>
 				</ul>
 			<?php }
 

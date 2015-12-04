@@ -1289,7 +1289,7 @@ if (!Date.now)
         }
 
         // create animation and run it on
-        $('.nav__item--search, [href*="#search"]').on('click touchstart', function(e) {
+        $('.js-search-trigger, [href*="#search"]').on('click touchstart', function(e) {
             // prevent default behavior and stop propagation
             e.preventDefault();
             e.stopPropagation();

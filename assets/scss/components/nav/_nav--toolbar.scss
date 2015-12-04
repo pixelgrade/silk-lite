@@ -40,8 +40,25 @@
 }
 
 .nav__item--search {
-	> a:before {
+	> button {
+		border: 0;
+		background-color: transparent;
+		color: #b8b6b7;
+		padding: rem(15px);
+		display: inline-block;
+		zoom: 1;
+		font-family: "Open Sans", sans-serif;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		font-weight: 400;
+		text-decoration: none;
+		transition: all 0.15s;
+	}
+
+	> button:before {
+		font-family: FontAwesome;
 		content: $fa-var-search;
+		margin-right: 5px;
 	}
 }
 
