@@ -14,7 +14,6 @@ function init() {
 $window.load(function() {
   browserSize();
   navigation.init();
-  slider.init();
   fixedSidebars.update();
   svgLogo.init();
   animator.animate();
@@ -27,17 +26,6 @@ $window.load(function() {
 /* ====== ON RESIZE ====== */
 
 function onResize() {
-  var newOrientation = windowWidth >= windowHeight ? 'landscape' : 'portrait';
-
-  if ($.support.touch) {
-    if (orientation != newOrientation) {
-      slider.init();
-    }
-  } else {
-    slider.init();
-  }
-
-
   browserSize();
   masonry.refresh();
   fixedSidebars.refresh();

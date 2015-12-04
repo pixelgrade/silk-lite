@@ -49,10 +49,6 @@
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 
-<div class="svg-templates  hidden">
-	<?php get_template_part( 'assets/svg/slider-arrow-svg' ); ?>
-</div>
-
 <?php if ( ! get_theme_mod( 'silklite_disable_search_in_toolbar', false ) ) : ?>
 
 	<div class="overlay--search">

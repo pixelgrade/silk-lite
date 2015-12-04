@@ -27,7 +27,7 @@
 		<div class="entry-content">
 		
 			<?php if ( has_post_thumbnail() ) { ?>
-				<a href="<?php the_permalink(); ?>" class="entry-featured  entry-thumbnail">
+				<a href="<?php the_permalink(); ?>" class="entry-featured  entry-thumbnail" aria-hidden="true">
 					<?php the_post_thumbnail( silklite_get_thumbnail_size() ); ?>
 					<div class="entry-image-border"></div>
 				</a>
