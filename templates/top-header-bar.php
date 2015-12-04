@@ -7,7 +7,7 @@
 <div class="top-bar  top-bar--fixed">
 	<div class="content">
 		<nav id="top-header-left-navigation" class="toolbar-navigation  left" role="navigation">
-			<h5 class="screen-reader-text"><?php _e( 'Secondary left navigation', 'silk-lite' ); ?></h5>
+			<h2 class="screen-reader-text"><?php _e( 'Secondary left navigation', 'silk-lite' ); ?></h2>
 			<?php
 			if ( ! get_theme_mod( 'silklite_disable_search_in_toolbar', false ) ) { ?>
 				<ul class="nav  nav--toolbar">
@@ -27,7 +27,7 @@
 			?>
 		</nav><!-- #top-header-left-navigation -->
 		<nav id="top-header-right-navigation" class="toolbar-navigation  right" role="navigation">
-			<h5 class="screen-reader-text"><?php _e( 'Secondary right navigation', 'silk-lite' ); ?></h5>
+			<h2 class="screen-reader-text"><?php _e( 'Secondary right navigation', 'silk-lite' ); ?></h2>
 			<?php
 			wp_nav_menu(
 				array(

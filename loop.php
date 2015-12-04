@@ -7,8 +7,8 @@
 
 $classes = 'archive__grid  grid'; ?>
 
+<h1 class="screen-reader-text"><?php _e( 'Blog', 'silk-lite' ); ?></h1>
 <div id="posts" class="<?php echo esc_attr( $classes ); ?>">
-
 <?php
 /* Start the Loop */
 while ( have_posts() ) : the_post(); ?>

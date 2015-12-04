@@ -55,7 +55,7 @@ if ( ! function_exists( 'silklite_the_post_navigation' ) ) :
 		} ?>
 
 		<nav class="navigation post-navigation" role="navigation">
-			<h5 class="screen-reader-text"><?php _e( 'Post navigation', 'silk-lite' ); ?></h5>
+			<h2 class="screen-reader-text"><?php _e( 'Post navigation', 'silk-lite' ); ?></h2>
 			<div class="article-navigation">
 				<?php
 				if ( $prev_post ) {
@@ -148,7 +148,7 @@ if ( ! function_exists( 'silklite_the_image_navigation' ) ) :
 		} ?>
 
 		<nav class="navigation post-navigation" role="navigation">
-			<h5 class="screen-reader-text"><?php _e( 'Image navigation', 'silk-lite' ); ?></h5>
+			<h2 class="screen-reader-text"><?php _e( 'Image navigation', 'silk-lite' ); ?></h2>
 			<div class="article-navigation">
 				<?php
 				if ( $prev_image ) {

@@ -22,7 +22,7 @@
 					'container'      => '',
 					'menu_class'     => 'nav  nav--footer',
 					'depth'          => - 1, //flatten if there is any hierarchy
-					'items_wrap'     => '<nav><h5 class="screen-reader-text">'.__( 'Footer navigation', 'silk-lite' ).'</h5><ul id="%1$s" class="%2$s">%3$s</ul></nav>',
+					'items_wrap'     => '<nav><h2 class="screen-reader-text">'.__( 'Footer navigation', 'silk-lite' ).'</h2><ul id="%1$s" class="%2$s">%3$s</ul></nav>',
 				)
 			); ?>
 		</div>
