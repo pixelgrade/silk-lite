@@ -1379,10 +1379,17 @@ if (!Date.now)
             e.stopPropagation();
 
             closeOverlay();
+            $('.js-search-trigger').focus();
+
 
             // unbind overlay dismissal from escape key
             $(document).off('keyup', escOverlay);
 
+        });
+
+        // Trap focus inside of search overlay
+        $('.overlay--search .overlay__close').blur(function() {
+            $('.overlay--search').focus();
         });
 
     })();
@@ -1499,12 +1506,9 @@ if (!Date.now)
                         });
 
                         $widget.on('mouseenter', function() {
-
                             $main.css({
                                 'paddingBottom': $sidebar.offset().top + sidebarHeight + heightDiffrence - mainBottom
                             });
-
-                            // $widget.addClass('focused');
                             $widget.css({
                                 'max-height': widgetHeight
                             });
@@ -1512,9 +1516,8 @@ if (!Date.now)
 
                         $widget.on('mouseleave', function() {
                             $main.css({
-                                    'paddingBottom': ''
-                                })
-                                // $widget.removeClass('focused');
+                                'paddingBottom': ''
+                            });
                             $widget.css('max-height', newHeight);
                         });
                     }

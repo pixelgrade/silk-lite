@@ -291,6 +291,8 @@
 }
 
 .widget.focused {
+	max-height: none !important;
+
 	.separator {
 		display: none;
 	}

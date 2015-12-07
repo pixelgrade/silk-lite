@@ -1,7 +1,3 @@
-input[type="submit"]{
-	@extend .btn;
-}
-
 // Common form controls
 // 
 // Shared size and type resets for form controls. Apply `.form-control` to any
@@ -28,12 +24,16 @@ input[type="color"],
 	vertical-align: middle;
 	width: 100%;
 	padding: $u/2;
-	outline: 0 !important;
+}
 
-	&:focus {
-		outline: 1px solid $accent;
+input[type="submit"]{
+	@extend .btn;
+
+	&:hover {
+		border: 1px solid $dark;
 	}
 }
+
 
 
 // Checkboxes and radios

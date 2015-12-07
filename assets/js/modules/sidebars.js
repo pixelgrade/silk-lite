@@ -109,24 +109,20 @@ var fixedSidebars = (function() {
 	 			});
 
 	 			$widget.on('mouseenter', function() {
-
 	 				$main.css({
 	 					'paddingBottom': $sidebar.offset().top + sidebarHeight + heightDiffrence - mainBottom
 	 				});
-
-	 				// $widget.addClass('focused');
 	 				$widget.css({
 	 					'max-height': widgetHeight
 	 				});
 	 			});
 
-	 			$widget.on('mouseleave', function() {
-	 				$main.css({
-	 					'paddingBottom': ''
-	 				})
-	 				// $widget.removeClass('focused');
-	 				$widget.css('max-height', newHeight);
-	 			});
+			    $widget.on('mouseleave', function() {
+				    $main.css({
+					    'paddingBottom': ''
+				    });
+				    $widget.css('max-height', newHeight);
+			    });
 	 		}
 
 			delayUpdate();
