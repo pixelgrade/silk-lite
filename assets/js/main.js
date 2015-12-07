@@ -1230,7 +1230,8 @@ if (!Date.now)
     (function() {
 
         var isOpen = false,
-            $overlay = $('.overlay--search');
+            $overlay = $('.overlay--search'),
+            $whoTriggered = null;
 
         // update overlay position (if it's open) on window.resize
         $window.on('debouncedresize', function() {
@@ -1282,6 +1283,8 @@ if (!Date.now)
             $overlay.find('input').blur();
 
             isOpen = false;
+
+            if ($whoTriggered) $whoTriggered.focus();
         }
 
         function escOverlay(e) {
@@ -1302,6 +1305,8 @@ if (!Date.now)
             }
 
             var offset;
+
+            $whoTriggered = $(this);
 
             if ($body.hasClass('rtl')) {
                 offset = windowWidth
@@ -1379,17 +1384,14 @@ if (!Date.now)
             e.stopPropagation();
 
             closeOverlay();
-            $('.js-search-trigger').focus();
-
 
             // unbind overlay dismissal from escape key
             $(document).off('keyup', escOverlay);
-
         });
 
         // Trap focus inside of search overlay
         $('.overlay--search .overlay__close').blur(function() {
-            $('.overlay--search').focus();
+            if (isOpen) $('.overlay--search input.search-field').focus();
         });
 
     })();

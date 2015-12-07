@@ -2,7 +2,8 @@
 (function () {
 
 	var isOpen = false,
-		$overlay = $('.overlay--search');
+		$overlay = $('.overlay--search'),
+		$whoTriggered = null;
 
 	// update overlay position (if it's open) on window.resize
 	$window.on('debouncedresize', function () {
@@ -54,6 +55,8 @@
 		$overlay.find('input').blur();
 
 		isOpen = false;
+
+		if( $whoTriggered ) $whoTriggered.focus();
 	}
 
 	function escOverlay(e) {
@@ -74,6 +77,8 @@
 		}
 
 		var offset;
+
+		$whoTriggered = $(this);
 
 		if ($body.hasClass('rtl')) {
 			offset = windowWidth
@@ -151,17 +156,14 @@
 		e.stopPropagation();
 
 		closeOverlay();
-		$('.js-search-trigger').focus();
-
 
 		// unbind overlay dismissal from escape key
 		$(document).off('keyup', escOverlay);
-
 	});
 
 	// Trap focus inside of search overlay
 	$('.overlay--search .overlay__close').blur( function () {
-		$('.overlay--search').focus();
+		if ( isOpen ) $('.overlay--search input.search-field').focus();
 	});
 
 })();

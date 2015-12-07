@@ -28,10 +28,12 @@ $is_infinite = class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'infinite
 if ( true === $is_infinite ) : ?>
 
 	<div id="infinite-handle">
-		<span class="handle__icon">
-			<?php get_template_part( 'assets/svg/clepsydra' ); ?>
-		</span>
-		<span class="handle__text"><?php _e( 'View More Articles', 'silk-lite' ); ?></span>
+		<button>
+			<span class="handle__icon">
+				<?php get_template_part( 'assets/svg/clepsydra' ); ?>
+			</span>
+			<span class="handle__text"><?php _e( 'View More Articles', 'silk-lite' ); ?></span>
+		</button>
 	</div>
 
 <?php endif; ?>
