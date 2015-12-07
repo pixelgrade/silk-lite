@@ -1505,6 +1505,7 @@ if (!Date.now)
 
                         $widget.find('a').focus(function() {
                             $widget.removeClass('shrink').addClass('focused');
+                            refreshMainSidebar();
                         });
 
                         $widget.on('mouseenter', function() {
