@@ -33,9 +33,11 @@
 		}
 	}
 
-	.nav--main > li > & {
-		left: 50%;
-		transform: translateX(-50%);
+	@include query-above($lap) {
+		.nav--main > li > & {
+			left: 50%;
+			transform: translateX(-50%);
+		}
 	}
 
 	a {

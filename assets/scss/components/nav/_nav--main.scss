@@ -15,7 +15,6 @@
 		color: $accent;
 	}
 
-
 	li.hover {
 		> a {
 			color: $accent;
@@ -64,7 +63,7 @@
 	z-index: 20;
 
 	.nav--is-open & {
-		background-color: white;
+		background-color: white !important;
 	}
 
 	.button-icon {
@@ -73,6 +72,15 @@
 
 	@include query-above($lap) {
 		display: none;
+	}
+
+
+	&:focus {
+		.nav-icon {
+			&:before, &:after {
+				background-color: $accent;
+			}
+		}
 	}
 }
 

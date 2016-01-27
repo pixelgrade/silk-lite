@@ -162,8 +162,13 @@
 	});
 
 	// Trap focus inside of search overlay
-	$('.overlay--search .overlay__close').blur( function () {
-		if ( isOpen ) $('.overlay--search input.search-field').focus();
+	$('.overlay--search .overlay__close').blur( function (e) {
+		e.preventDefault();
+		e.stopPropagation();
+
+		if ( isOpen ) {
+			$('.overlay--search .search-field').focus();
+		}
 	});
 
 })();

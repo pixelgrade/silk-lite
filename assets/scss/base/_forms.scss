@@ -24,6 +24,11 @@ input[type="color"],
 	vertical-align: middle;
 	width: 100%;
 	padding: $u/2;
+
+
+	&:focus {
+		outline: 1px dotted $accent;
+	}
 }
 
 input[type="submit"]{

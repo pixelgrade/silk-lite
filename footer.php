@@ -10,6 +10,21 @@
 
 	</div><!-- #content -->
 
+	<?php if ( ! get_theme_mod( 'silklite_disable_search_in_toolbar', false ) ) : ?>
+
+		<div class="overlay--search">
+			<div class="overlay__wrapper">
+
+				<?php get_search_form(); ?>
+
+				<p><?php _e( 'Begin typing your search above and press return to search. Press Esc to cancel.', 'silk-lite' ); ?></p>
+
+			</div>
+			<button class="overlay__close"><span class="screen-reader-text"><?php _e( 'Close search', 'silk-lite' ); ?></span></button>
+		</div>
+
+	<?php endif; ?>
+
 	<footer id="colophon" class="site-footer">
 
 		<?php get_sidebar( 'footer' ); ?>
@@ -48,21 +63,6 @@
 
 	</footer><!-- #colophon -->
 </div><!-- #page -->
-
-<?php if ( ! get_theme_mod( 'silklite_disable_search_in_toolbar', false ) ) : ?>
-
-	<div class="overlay--search">
-		<div class="overlay__wrapper">
-
-			<?php get_search_form(); ?>
-
-			<p><?php _e( 'Begin typing your search above and press return to search. Press Esc to cancel.', 'silk-lite' ); ?></p>
-
-		</div>
-		<button class="overlay__close"></button>
-	</div>
-
-<?php endif; ?>
 
 <?php wp_footer(); ?>
 
