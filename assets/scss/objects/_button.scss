@@ -14,4 +14,9 @@
 	&:hover {
 		background-color: $dark;
 	}
+
+	&:focus, &:active {
+		background-color: $dark;
+		border: 1px dotted $gray;
+	}
 }
