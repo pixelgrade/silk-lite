@@ -23,13 +23,81 @@ function silklite_customize_register ( $wp_customize ) {
 	// Rename the label to "Display Site Title & Tagline" in order to make this option clearer.
 	$wp_customize->get_control( 'display_header_text' )->label = __( 'Display Site Title &amp; Tagline', 'silk-lite' );
 
+
+	// Style Presets
+	$wp_customize->add_section( 'silklite_style_presets', array(
+		'title'   => '&#x1f3ad; ' . esc_html__( 'Style Presets', 'silk-lite' ),
+		'priority'          => 29,
+	) );
+	$wp_customize->add_setting( 'silklite_style_presets_desc', array(
+		'default'           => '',
+		'sanitize_callback' => 'silklite_sanitize_checkbox',
+	) );
+	$wp_customize->add_control( 'silklite_style_presets_desc', array(
+		'description' 		=> sprintf(
+			__( '%s to instantly apply hand-picked style presets (fonts and colors) to your website.', 'silk-lite' ),
+			sprintf('<a href="%1$s" target="_blank">%2$s</a>', esc_url( silklite_get_pro_link() ), __( 'Upgrade to Silk Pro', 'silk-lite' )
+			)
+		),
+		'section'           => 'silklite_style_presets',
+		'type'              => 'checkbox',
+	) );
+
+
+	// Colors
+	$wp_customize->add_section( 'silklite_colors', array(
+		'title'       => '&#x1f3a8; ' . esc_html__( 'Colors', 'silk-lite' ),
+		'priority'          => 30,
+	) );
+
+	$wp_customize->add_setting( 'silklite_colors_desc', array(
+		'default'           => '',
+		'sanitize_callback' => 'silklite_sanitize_checkbox',
+	) );
+
+	$wp_customize->add_control( 'silklite_colors_desc', array(
+		'label'             => __( '-', 'silk-lite' ),
+		'description' 		=> sprintf(
+			__( '%s to instantly apply hand-picked style presets (colors and colors) to your website.', 'silk-lite' ),
+			sprintf('<a href="%1$s" target="_blank">%2$s</a>', esc_url( silklite_get_pro_link() ), __( 'Upgrade to Silk Pro', 'silk-lite' )
+			)
+		),
+		'section'           => 'silklite_colors',
+		'type'              => 'checkbox',
+	) );
+
+
+
+	// Fonts
+	$wp_customize->add_section( 'silklite_fonts', array(
+		'title'    => '&#x1f4dd; ' . esc_html__( 'Fonts', 'silk-lite' ),
+		'priority'          => 31,
+	) );
+
+	$wp_customize->add_setting( 'silklite_fonts_desc', array(
+		'default'           => '',
+		'sanitize_callback' => 'silklite_sanitize_checkbox',
+	) );
+
+	$wp_customize->add_control( 'silklite_fonts_desc', array(
+		'label'             => __( '-', 'silk-lite' ),
+		'description' 		=> sprintf(
+			__( '%s to instantly apply hand-picked style presets (colors and colors) to your website.', 'silk-lite' ),
+			sprintf('<a href="%1$s" target="_blank">%2$s</a>', esc_url( silklite_get_pro_link() ), __( 'Upgrade to Silk Pro', 'silk-lite' )
+			)
+		),
+		'section'           => 'silklite_fonts',
+		'type'              => 'checkbox',
+	) );
+
+
 	/*
 	 * Add custom settings
 	 */
 
 	$wp_customize->add_section( 'silklite_theme_options', array(
-		'title'             => __( 'Theme', 'silk-lite' ),
-		'priority'          => 30,
+		'title'    => '&#x1f506; ' . esc_html__( 'Theme Options', 'silk-lite' ),
+		'priority'          => 25,
 	) );
 
 	$wp_customize->add_setting( 'silklite_single_column_archives', array(
@@ -132,4 +200,12 @@ function silklite_sanitize_site_title_outline( $outline ) {
 function silklite_customizer_js() {
 	wp_enqueue_script( 'silklite_customizer', get_template_directory_uri() . '/assets/js/customizer.js', array( 'customize-preview' ), '1.0.3', true );
 }
-add_action( 'customize_preview_init', 'silklite_customizer_js' ); ?>
+add_action( 'customize_preview_init', 'silklite_customizer_js' ); 
+
+/**
+ * Generate a link to the Silk Pro info page.
+ */
+function silklite_get_pro_link() {
+	return 'https://pixelgrade.com/themes/silk/';
+}
+?>
