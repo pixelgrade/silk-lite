@@ -201,10 +201,17 @@ function silklite_customizer_assets() {
 
 	wp_enqueue_script( 'silklite_customizer', get_template_directory_uri() . '/assets/js/customizer.js', array( 'jquery' ), '1.0.4', false );
 
+	$dismiss_user = get_user_meta( get_current_user_id(), 'silk_upgrade_dismissed_notice', 1 );
+
+	if ( $dismiss_user ) {
+		return;
+	}
+
 	$localized_strings = array(
-		'upsell_link'     => '#',
+		'upsell_link'     => '/?silk-upgrade-dismiss=true',
 		'upsell_label'    => esc_html__( 'Upgrade to Silk Pro', 'silk' ),
 		'pro_badge_label' => esc_html__( 'Pro', 'silk' ) . '<span class="star"></span>',
+		'dismiss_link' => esc_url( wp_nonce_url( add_query_arg( 'silk-upgrade-dismiss', 'true' ), 'silk-upgrade-dismiss-' . get_current_user_id() ) )
 	);
 
 	wp_localize_script( 'silklite_customizer', 'silkCustomizerObject', $localized_strings );
@@ -227,10 +234,11 @@ function silk_customizer_reorder_fields( $wp_customize ) {
 	$wp_customize->get_control( 'site_logo' )->section = 'silklite_theme_options';
 	$wp_customize->get_control( 'site_logo' )->priority = '1';
 
-	// $logo_header_text = $wp_customize->get_control( 'logo_header_text' );
-	// if(! empty($logo_header_text)) {
-	// 	$logo_header_text->section = 'silklite_theme_options';
-	// }
+	// uncomment this to put back your dismiss notice
+	//update_user_meta( get_current_user_id(), 'silk_upgrade_dismissed_notice', 1 );
+	if ( isset( $_GET['silk-upgrade-dismiss'] ) && check_admin_referer( 'silk-upgrade-dismiss-' . get_current_user_id() ) ) {
+		update_user_meta( get_current_user_id(), 'silk_upgrade_dismissed_notice', 1 );
+	}
 }
 add_action( 'customize_register', 'silk_customizer_reorder_fields', 9999 );
 

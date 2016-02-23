@@ -115,12 +115,6 @@ if ( ! function_exists( 'silklite_setup' ) ) :
 		 * Also enqueue the custom Google Fonts also
 		 */
 		add_editor_style( array( 'editor-style.css', silklite_fonts_url() ) );
-
-		// Set up the WordPress core custom background feature.
-		add_theme_support( 'custom-background', apply_filters( 'silklite_custom_background_args', array(
-			'default-color' => 'ffffff',
-			'default-image' => '',
-		) ) );
 	}
 endif; // silklite_setup
 add_action( 'after_setup_theme', 'silklite_setup' );
