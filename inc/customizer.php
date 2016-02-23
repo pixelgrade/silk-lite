@@ -151,7 +151,7 @@ function silklite_customize_register( $wp_customize ) {
 	) );
 }
 
-add_action( 'customize_register', 'silklite_customize_register' );
+add_action( 'customize_register', 'silklite_customize_register', 15 );
 
 /**
  * Sanitize the checkbox.
@@ -219,9 +219,18 @@ add_action( 'customize_controls_enqueue_scripts', 'silklite_customizer_assets' )
 function silk_customizer_reorder_fields( $wp_customize ) {
 	$wp_customize->get_control( 'blogname' )->section = 'silklite_theme_options';
 	$wp_customize->get_control( 'blogdescription' )->section = 'silklite_theme_options';
-	$wp_customize->get_control( 'site_icon' )->section = 'silklite_theme_options';
-	$wp_customize->get_control( 'site_logo' )->section = 'silklite_theme_options';
 
+	$wp_customize->get_control( 'site_icon' )->section = 'silklite_theme_options';
+	$wp_customize->get_control( 'site_icon' )->section = 'silklite_theme_options';
+
+
+	$wp_customize->get_control( 'site_logo' )->section = 'silklite_theme_options';
+	$wp_customize->get_control( 'site_logo' )->priority = '1';
+
+	// $logo_header_text = $wp_customize->get_control( 'logo_header_text' );
+	// if(! empty($logo_header_text)) {
+	// 	$logo_header_text->section = 'silklite_theme_options';
+	// }
 }
 add_action( 'customize_register', 'silk_customizer_reorder_fields', 9999 );
 
