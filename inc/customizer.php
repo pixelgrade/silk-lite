@@ -196,11 +196,21 @@ function silklite_sanitize_site_title_outline( $outline ) {
 
 /**
  * JavaScript that handles the Customizer AJAX logic
+ * This will be added in the preview part
  */
-function silklite_customizer_js() {
+function silklite_customizer_preview_assets() {
 	wp_enqueue_script( 'silklite_customizer', get_template_directory_uri() . '/assets/js/customizer.js', array( 'customize-preview' ), '1.0.3', true );
 }
-add_action( 'customize_preview_init', 'silklite_customizer_js' ); 
+add_action( 'customize_preview_init', 'silklite_customizer_preview_assets' );
+
+/**
+ * Assets that will be loaded for the customizer sidebar
+ */
+function silklite_customizer_assets() {
+	wp_enqueue_style( 'silklite_customizer_style', get_template_directory_uri() . '/assets/css/admin/customizer.css', null, '1.0.4', false );
+}
+
+add_action( 'customize_controls_enqueue_scripts', 'silklite_customizer_assets' );
 
 /**
  * Generate a link to the Silk Pro info page.
