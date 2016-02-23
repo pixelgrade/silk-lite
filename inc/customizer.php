@@ -199,7 +199,7 @@ function silklite_sanitize_site_title_outline( $outline ) {
  * This will be added in the preview part
  */
 function silklite_customizer_preview_assets() {
-	wp_enqueue_script( 'silklite_customizer', get_template_directory_uri() . '/assets/js/customizer.js', array( 'customize-preview' ), '1.0.3', true );
+	wp_enqueue_script( 'silklite_customizer_preview', get_template_directory_uri() . '/assets/js/customizer_preview.js', array( 'customize-preview' ), '1.0.4', true );
 }
 add_action( 'customize_preview_init', 'silklite_customizer_preview_assets' );
 
@@ -208,6 +208,16 @@ add_action( 'customize_preview_init', 'silklite_customizer_preview_assets' );
  */
 function silklite_customizer_assets() {
 	wp_enqueue_style( 'silklite_customizer_style', get_template_directory_uri() . '/assets/css/admin/customizer.css', null, '1.0.4', false );
+
+	wp_enqueue_script( 'silklite_customizer', get_template_directory_uri() . '/assets/js/customizer.js', array( 'jquery' ), '1.0.4', false );
+
+	$localized_strings = array(
+		'upsell_link' => '#',
+		'upsell_label' => esc_html__( 'Upgrade to Silk Pro', 'silk' ),
+		'pro_badge_label' => esc_html__( 'Pro', 'silk' ) . '<span class="star"></span>',
+	);
+
+	wp_localize_script( 'silklite_customizer', 'silkCustomizerObject', $localized_strings );
 }
 
 add_action( 'customize_controls_enqueue_scripts', 'silklite_customizer_assets' );
