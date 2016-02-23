@@ -24,3 +24,15 @@ a.badge-silk-pro {
 	float: none;
 	margin: 0;
 }
+
+#accordion-section-silklite_style_presets .accordion-section-content,
+#accordion-section-silklite_colors .accordion-section-content,
+#accordion-section-silklite_fonts .accordion-section-content {
+	background: #eaf9fe;
+}
+#accordion-section-silklite_style_presets .description,
+#accordion-section-silklite_colors .description,
+#accordion-section-silklite_fonts .description {
+	color: #88b6ce;
+	line-height: 1.65;
+}
