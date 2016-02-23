@@ -58,7 +58,7 @@ function silklite_customize_register ( $wp_customize ) {
 	$wp_customize->add_control( 'silklite_colors_desc', array(
 		'label'             => __( '-', 'silk-lite' ),
 		'description' 		=> sprintf(
-			__( '%s to instantly apply hand-picked style presets (colors and colors) to your website.', 'silk-lite' ),
+			__( 'We know that everybody has it’s own style, so we made it easy for you to change the design to reflect your preferences. %s to change colors and fonts to match your style!', 'silk-lite' ),
 			sprintf('<a href="%1$s" target="_blank">%2$s</a>', esc_url( silklite_get_pro_link() ), __( 'Upgrade to Silk Pro', 'silk-lite' )
 			)
 		),
@@ -82,7 +82,7 @@ function silklite_customize_register ( $wp_customize ) {
 	$wp_customize->add_control( 'silklite_fonts_desc', array(
 		'label'             => __( '-', 'silk-lite' ),
 		'description' 		=> sprintf(
-			__( '%s to instantly apply hand-picked style presets (colors and colors) to your website.', 'silk-lite' ),
+			__( 'We know that everybody has it’s own style, so we made it easy for you to change the design to reflect your preferences. %s to change colors and fonts to match your style!', 'silk-lite' ),
 			sprintf('<a href="%1$s" target="_blank">%2$s</a>', esc_url( silklite_get_pro_link() ), __( 'Upgrade to Silk Pro', 'silk-lite' )
 			)
 		),
