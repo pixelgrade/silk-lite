@@ -1,12 +1,14 @@
 #accordion-section-silklite_style_presets h3:before,
 #accordion-section-silklite_colors h3:before,
-#accordion-section-silklite_fonts h3:before {
+#accordion-section-silklite_fonts h3:before,
+a.badge-silk-pro {
 	background-color: #c63d6f;
 	border-radius: 2px;
 	color: #ffffff !important;
 	content: "Pro";
 	float: right;
 	font-size: 9px !important;
+	font-weight: bold;
 	-webkit-font-smoothing: subpixel-antialiased !important;
 	letter-spacing: 1px;
 	line-height: 1.5 !important;
@@ -16,4 +18,9 @@
 	position: relative;
 	text-transform: uppercase;
 	top: 2px;
+}
+
+a.badge-silk-pro {
+	float: none;
+	margin: 0;
 }
