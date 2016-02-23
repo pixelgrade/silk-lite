@@ -74,9 +74,6 @@ class Site_Logo {
 		// Include our custom control.
 		require( dirname( __FILE__ ) . '/class-site-logo-control.php' );
 
-		//Update the Customizer section title for discoverability.
-		$wp_customize->get_section('title_tagline')->title = esc_html__( 'Site Identity', 'jetpack' );
-
 		// Add a setting to hide header text if the theme isn't supporting the feature itself
 //		if ( ! current_theme_supports( 'custom-header' ) ) {
 //			$wp_customize->add_setting( 'site_logo_header_text', array(
@@ -87,7 +84,7 @@ class Site_Logo {
 //
 //			$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'site_logo_header_text', array(
 //			    'label'    => __( 'Display Header Text', 'jetpack' ),
-//			    'section'  => 'title_tagline',
+//			    'section'  => 'silklite_theme_options',
 //			    'settings' => 'site_logo_header_text',
 //			    'type'     => 'checkbox',
 //			) ) );
@@ -109,7 +106,7 @@ class Site_Logo {
 		// Add our image uploader.
 		$wp_customize->add_control( new Site_Logo_Image_Control( $wp_customize, 'site_logo', array(
 		    'label'    => esc_html__( 'Logo', 'jetpack' ),
-		    'section'  => 'title_tagline',
+		    'section'  => 'silklite_theme_options',
 		    'settings' => 'site_logo',
 		) ) );
 	}
