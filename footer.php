@@ -53,7 +53,7 @@
 
 			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'silk-lite' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'silk-lite' ), 'WordPress' ); ?></a>
 			<span class="sep"> | </span>
-			<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'silk-lite' ), 'Silk', '<a href="https://pixelgrade.com" title="'. __( 'The PixelGrade Website', 'silk-lite' ) .'" rel="designer">PixelGrade</a>' ); ?>
+			<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'silk-lite' ), '<a href="https://pixelgrade.com/themes/silk-lite/" title="'. __( 'SILK Lite - A Fashion Magazine WordPress Theme', 'silk-lite' ) .'" rel="theme">'. __( 'Silk Theme', 'silk-lite' ) .'</a>', '<a href="https://pixelgrade.com" title="'. __( 'The PixelGrade Website', 'silk-lite' ) .'" rel="designer">PixelGrade</a>' ); ?>
 
 		</div><!-- .site-info -->
 
