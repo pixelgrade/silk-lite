@@ -216,7 +216,7 @@ add_action( 'customize_controls_enqueue_scripts', 'silklite_customizer_assets' )
  * Generate a link to the Silk Pro info page.
  */
 function silklite_get_pro_link() {
-	return 'https://pixelgrade.com/themes/silk/';
+	return 'https://pixelgrade.com/themes/silk-lite/';
 }
 
 ?>
