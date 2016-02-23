@@ -8,7 +8,7 @@
 		wp.customize.bind( 'ready', function() {
 
 			if ( typeof silkCustomizerObject !== "undefined" && $('.preview-notice' ).length > 0 ) {
-				$( '<a class="button secondary-button" href="' + silkCustomizerObject.upsell_link + '">' + silkCustomizerObject.upsell_label + '</a>' ).insertAfter( '.preview-notice' );
+				$( '<a class="badge-silk-pro" href="' + silkCustomizerObject.upsell_link + '">' + silkCustomizerObject.upsell_label + '</a>' ).insertAfter( '.preview-notice' );
 			}
 		} );
 	} );

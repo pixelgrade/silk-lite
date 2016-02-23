@@ -3,7 +3,8 @@
 // Pro Sections Badges
 #accordion-section-silklite_style_presets h3:before,
 #accordion-section-silklite_colors h3:before,
-#accordion-section-silklite_fonts h3:before {
+#accordion-section-silklite_fonts h3:before,
+a.badge-silk-pro {
     position: relative;
     top: 2px;
     float: right;
@@ -14,6 +15,7 @@
     padding: 3px 6px !important;
 
     font-size: 9px !important;
+    font-weight: bold;
     line-height: 1.5 !important;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -22,4 +24,24 @@
     border-radius: 2px;
 
     -webkit-font-smoothing: subpixel-antialiased !important;
+}
+
+a.badge-silk-pro {
+	float: none;
+    margin: 0;
+}
+
+
+
+#accordion-section-silklite_style_presets,
+#accordion-section-silklite_colors,
+#accordion-section-silklite_fonts {
+	.accordion-section-content {
+	    background: #eaf9fe;
+	}
+
+	.description {
+	    color: #88B6CE;
+	    line-height: 1.65;
+	}
 }

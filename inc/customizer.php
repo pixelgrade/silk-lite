@@ -29,8 +29,8 @@ function silklite_customize_register( $wp_customize ) {
 		'title'       => '&#x1f3ad; ' . esc_html__( 'Style Presets', 'silk-lite' ),
 		'priority'    => 29,
 		'description' => sprintf(
-			esc_html__( '%s to instantly apply hand-picked style presets (fonts and colors) to your website.', 'silk-lite' ),
-			sprintf( '<a href="%1$s" target="_blank">%2$s</a>', esc_url( silklite_get_pro_link() ), esc_html__( 'Upgrade to Silk Pro', 'silk-lite' ) )
+			__( '<p>%s provides you hand-crafted style presets so that you never go out of trends and add some real value to the full package. You can instantly achieve a different visual approach and level up the users interest. </p><p> Our designer did his best to carefully match the colors and fonts so that you can easily refresh the overall style of your website.</p>', 'silk-lite' ),
+			sprintf( '<a href="%1$s" target="_blank">%2$s</a>', esc_url( silklite_get_pro_link() ), esc_html__( 'Silk Pro', 'silk-lite' ) )
 		)
 	) );
 
@@ -46,7 +46,7 @@ function silklite_customize_register( $wp_customize ) {
 		'title'       => '&#x1f3a8; ' . esc_html__( 'Colors', 'silk-lite' ),
 		'priority'    => 30,
 		'description' => sprintf(
-			__( '%s to instantly apply hand-picked style presets (colors and colors) to your website.', 'silk-lite' ),
+			__( '<p>Play around with colors that fits your vision, your mood or both of them. You can smoothly make a design twist to quickly catch your wide preferences.</p><p>%s to switch colors and fonts in order to nurture your visual approach.</p>', 'silk-lite' ),
 			sprintf( '<a href="%1$s" target="_blank">%2$s</a>', esc_url( silklite_get_pro_link() ), esc_html__( 'Upgrade to Silk Pro', 'silk-lite' )
 			)
 		)
@@ -63,8 +63,8 @@ function silklite_customize_register( $wp_customize ) {
 		'title'       => '&#x1f4dd; ' . esc_html__( 'Fonts', 'silk-lite' ),
 		'priority'    => 31,
 		'description' => sprintf(
-			__( '%s to instantly apply hand-picked style presets (colors and colors) to your website.', 'silk-lite' ),
-			sprintf( '<a href="%1$s" target="_blank">%2$s</a>', esc_url( silklite_get_pro_link() ), esc_html__( 'Upgrade to Silk Pro', 'silk-lite' )
+			__( '<p>Typography can make it or break it. %s gives you a generous playground to match your needs in terms of fonts and sizes.</p><p>You have full-access to 600+ Google Fonts to mingle with for fine-tuning your style.', 'silk-lite' ),
+			sprintf( '<a href="%1$s" target="_blank">%2$s</a>', esc_url( silklite_get_pro_link() ), esc_html__( 'Silk Pro', 'silk-lite' )
 			)
 		)
 	) );
