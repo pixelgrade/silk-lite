@@ -245,8 +245,11 @@ function silk_customizer_reorder_fields( $wp_customize ) {
 	$wp_customize->get_control( 'site_logo' )->section = 'silklite_theme_options';
 	$wp_customize->get_control( 'site_logo' )->priority = '1';
 
-	$wp_customize->get_control( 'site_logo_header_text' )->section = 'silklite_theme_options';
-
+	$site_logo_header_text = $wp_customize->get_control( 'site_logo_header_text' );
+	// this field may miss, so we need a check
+	if ( ! empty( $site_logo_header_text ) ) {
+		$site_logo_header_text->section = 'silklite_theme_options';
+	}
 }
 add_action( 'customize_register', 'silk_customizer_reorder_fields', 9999 );
 
