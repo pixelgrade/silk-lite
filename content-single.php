@@ -33,7 +33,13 @@
 
 		<?php if ( has_post_thumbnail() && get_theme_mod( 'silklite_single_featured_image', false ) ) : ?>
 			<div class="entry-featured  entry-thumbnail">
-				<?php the_post_thumbnail( 'silklite-single-image' ); ?>
+				<?php
+				if ( is_active_sidebar( 'sidebar-1' ) ) {
+					the_post_thumbnail( 'silklite-single-image' );
+				} else {
+					//if no sidebar is used we need to use a bigger image size since the max width of the content is 1250px
+					the_post_thumbnail( 'full' );
+				} ?>
 			</div>
 		<?php endif; ?>
 
