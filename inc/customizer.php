@@ -34,7 +34,10 @@ function silklite_customize_register( $wp_customize ) {
 		)
 	) );
 
-	$wp_customize->add_setting( 'silklite_style_presets_desc' );
+	$wp_customize->add_setting( 'silklite_style_presets_desc', array(
+		'default'           => '',
+		'sanitize_callback' => 'silklite_sanitize_checkbox',
+	) );
 	$wp_customize->add_control( 'silklite_style_presets_desc', array(
 		'section' => 'silklite_style_presets',
 		'type'    => 'hidden',
@@ -52,7 +55,10 @@ function silklite_customize_register( $wp_customize ) {
 		)
 	) );
 
-	$wp_customize->add_setting( 'silklite_colors_desc' );
+	$wp_customize->add_setting( 'silklite_colors_desc', array(
+		'default'           => '',
+		'sanitize_callback' => 'silklite_sanitize_checkbox',
+	) );
 	$wp_customize->add_control( 'silklite_colors_desc', array(
 		'section' => 'silklite_colors',
 		'type'    => 'hidden',
@@ -70,7 +76,10 @@ function silklite_customize_register( $wp_customize ) {
 	) );
 
 
-	$wp_customize->add_setting( 'silklite_fonts_desc' );
+	$wp_customize->add_setting( 'silklite_fonts_desc', array(
+		'default'           => '',
+		'sanitize_callback' => 'silklite_sanitize_checkbox',
+	) );
 	$wp_customize->add_control( 'silklite_fonts_desc', array(
 		'section' => 'silklite_fonts',
 		'type'    => 'hidden',
