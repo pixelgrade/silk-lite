@@ -106,7 +106,7 @@ class Site_Logo {
 		// Add our image uploader.
 		$wp_customize->add_control( new Site_Logo_Image_Control( $wp_customize, 'site_logo', array(
 		    'label'    => esc_html__( 'Logo', 'jetpack' ),
-		    'section'  => 'silklite_theme_options',
+		    'section'  => 'title_tagline',
 		    'settings' => 'site_logo',
 		) ) );
 	}
