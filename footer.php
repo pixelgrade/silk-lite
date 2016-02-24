@@ -51,9 +51,9 @@
 				echo '&copy; ' . get_bloginfo('name') . ' &ndash; ';
 			} ?>
 
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'silk-lite' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'silk-lite' ), 'WordPress' ); ?></a>
-			<span class="sep"> | </span>
-			<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'silk-lite' ), 'Silk', '<a href="https://pixelgrade.com/?utm_source=silk-lite&utm_medium=footer&utm_campaign=silk-lite" title="'. __( 'The PixelGrade Website', 'silk-lite' ) .'" rel="designer">PixelGrade</a>' ); ?>
+			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'silk-lite' ) ); ?>"><?php printf( esc_html__( ' Proudly powered by %s', 'silk-lite' ), 'WordPress' ); ?></a>
+			<span class="sep"> - </span>
+			<?php printf( esc_html__( '%1$s Theme by %2$s.', 'silk-lite' ), 'Silk', '<a href="https://pixelgrade.com/?utm_source=silk-lite&utm_medium=footer&utm_campaign=silk-lite" title="'. __( 'The PixelGrade Website', 'silk-lite' ) .'" rel="designer">PixelGrade</a>' ); ?>
 
 		</div><!-- .site-info -->
 
