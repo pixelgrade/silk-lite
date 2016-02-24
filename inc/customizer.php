@@ -219,7 +219,7 @@ function silklite_customizer_assets() {
 	}
 
 	$localized_strings = array(
-		'upsell_link'     => '/?silk-upgrade-dismiss=true',
+		'upsell_link'     => silklite_get_pro_link(),
 		'upsell_label'    => esc_html__( 'Upgrade to Silk Pro', 'silk' ),
 		'pro_badge_label' => esc_html__( 'Pro', 'silk' ) . '<span class="star"></span>',
 		'dismiss_link' => esc_url( wp_nonce_url( add_query_arg( 'silk-upgrade-dismiss', 'forever' ), 'silk-upgrade-dismiss-' . get_current_user_id() ) )
@@ -251,10 +251,10 @@ function silk_customizer_reorder_fields( $wp_customize ) {
 add_action( 'customize_register', 'silk_customizer_reorder_fields', 9999 );
 
 /**
- * Generate a link to the Silk Pro info page.
+ * Generate a link to the Silk Lite info page.
  */
 function silklite_get_pro_link() {
-	return 'https://pixelgrade.com/themes/silk-lite/';
+	return 'https://pixelgrade.com/themes/silk-lite?utm_source=silk-lite-clients&utm_medium=customizer&utm_campaign=silk-lite#go-pro';
 }
 
 ?>
