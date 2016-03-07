@@ -60,7 +60,6 @@
 		padding: 0;
 		@include fs(100px);
 		color: $black;
-		outline: 0;
 		height: auto;
 		-webkit-appearance: none;
 		text-align: center;
@@ -132,5 +131,15 @@
 		@include rhythm(height, 3);
 		@include rhythm(top, 6);
 		@include rhythm(right, 3);
+	}
+
+	&:hover, &:focus {
+		&:before, &:after {
+			background: $accent;
+		}
+	}
+
+	&:focus {
+		outline: 1px dotted $accent;
 	}
 }

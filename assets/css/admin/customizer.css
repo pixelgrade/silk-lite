@@ -1,0 +1,71 @@
+#accordion-section-silklite_style_presets h3:before,
+#accordion-section-silklite_colors h3:before,
+#accordion-section-silklite_fonts h3:before,
+a.badge-silk-pro {
+	background-color: #c63d6f;
+	border-radius: 2px;
+	color: #ffffff !important;
+	content: "Pro";
+	float: right;
+	font-size: 9px !important;
+	font-weight: bold;
+	-webkit-font-smoothing: subpixel-antialiased !important;
+	letter-spacing: 1px;
+	line-height: 1.5 !important;
+	margin-left: 8px;
+	margin-right: 32px;
+	padding: 3px 6px !important;
+	position: relative;
+	text-transform: uppercase;
+	top: 2px;
+}
+
+a.badge-silk-pro {
+	float: none;
+	margin: 0;
+}
+a.badge-silk-pro:hover {
+	background-color: #00a0d2 !important;
+}
+
+.upsell_link_details {
+	color: #5c5c5c;
+	display: inline-block;
+	font-size: 10px;
+	left: 6px;
+	position: relative;
+	top: 2px;
+}
+.upsell_link_details a {
+	color: #5c5c5c !important;
+	text-decoration: underline !important;
+}
+.upsell_link_details a:hover {
+	color: #00a0d2 !important;
+}
+
+.upsell_links_dismissed .badge-silk-pro,
+.upsell_links_dismissed .upsell_link_details,
+.upsell_links_dismissed #accordion-section-silklite_style_presets,
+.upsell_links_dismissed #accordion-section-silklite_colors,
+.upsell_links_dismissed #accordion-section-silklite_fonts {
+	display: none !important;
+}
+
+#accordion-section-silklite_style_presets .accordion-section-content,
+#accordion-section-silklite_colors .accordion-section-content,
+#accordion-section-silklite_fonts .accordion-section-content {
+	background: #eaf9fe;
+}
+#accordion-section-silklite_style_presets .description,
+#accordion-section-silklite_colors .description,
+#accordion-section-silklite_fonts .description {
+	color: #88b6ce;
+	line-height: 1.65;
+}
+#accordion-section-silklite_style_presets a,
+#accordion-section-silklite_colors a,
+#accordion-section-silklite_fonts a {
+	font-weight: bold;
+	text-decoration: underline;
+}

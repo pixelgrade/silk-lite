@@ -10,6 +10,21 @@
 
 	</div><!-- #content -->
 
+	<?php if ( ! get_theme_mod( 'silklite_disable_search_in_toolbar', false ) ) : ?>
+
+		<div class="overlay--search">
+			<div class="overlay__wrapper">
+
+				<?php get_search_form(); ?>
+
+				<p><?php _e( 'Begin typing your search above and press return to search. Press Esc to cancel.', 'silk-lite' ); ?></p>
+
+			</div>
+			<button class="overlay__close"><span class="screen-reader-text"><?php _e( 'Close search', 'silk-lite' ); ?></span></button>
+		</div>
+
+	<?php endif; ?>
+
 	<footer id="colophon" class="site-footer">
 
 		<?php get_sidebar( 'footer' ); ?>
@@ -36,9 +51,9 @@
 				echo '&copy; ' . get_bloginfo('name') . ' &ndash; ';
 			} ?>
 
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'silk-lite' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'silk-lite' ), 'WordPress' ); ?></a>
-			<span class="sep"> | </span>
-			<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'silk-lite' ), 'Silk', '<a href="https://pixelgrade.com" title="'. __( 'The PixelGrade Website', 'silk-lite' ) .'" rel="designer">PixelGrade</a>' ); ?>
+			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'silk-lite' ) ); ?>"><?php printf( esc_html__( ' Proudly powered by %s', 'silk-lite' ), 'WordPress' ); ?></a>
+			<span class="sep"> - </span>
+			<?php printf( esc_html__( '%1$s Theme by %2$s.', 'silk-lite' ), 'Silk', '<a href="https://pixelgrade.com/?utm_source=silk-lite-clients&utm_medium=footer&utm_campaign=silk-lite" title="'. __( 'The PixelGrade Website', 'silk-lite' ) .'" rel="designer">PixelGrade</a>' ); ?>
 
 		</div><!-- .site-info -->
 
@@ -48,21 +63,6 @@
 
 	</footer><!-- #colophon -->
 </div><!-- #page -->
-
-<?php if ( ! get_theme_mod( 'silklite_disable_search_in_toolbar', false ) ) : ?>
-
-	<div class="overlay--search">
-		<div class="overlay__wrapper">
-
-			<?php get_search_form(); ?>
-
-			<p><?php _e( 'Begin typing your search above and press return to search. Press Esc to cancel.', 'silk-lite' ); ?></p>
-
-		</div>
-		<button class="overlay__close"></button>
-	</div>
-
-<?php endif; ?>
 
 <?php wp_footer(); ?>
 

@@ -32,8 +32,8 @@ var options = {
 
 // styles related
 gulp.task('styles-dev', function () {
-	return gulp.src('assets/scss/**/*.scss')
-		.pipe(sass({'sourcemap=auto': true, style: 'compact'}))
+	return gulp.src( [ 'assets/scss/**/*.scss', '!assets/scss/admin/*.scss' ] )
+		.pipe(sass({sourcemap: true, style: 'compact'}))
 			.on('error', function (e) {
 				console.log(e.message);
 			})
@@ -78,6 +78,16 @@ gulp.task('scripts-watch', function () {
 gulp.task('watch', function () {
 	gulp.watch('assets/scss/**/*.scss', ['styles-dev']);
 	gulp.watch('assets/js/**/*.js', ['scripts']);
+});
+
+gulp.task('styles-admin', function () {
+	return gulp.src('assets/scss/admin/*.scss')
+		.pipe(sass({sourcemap: false, style: 'expanded'}))
+		.pipe(prefix("last 1 version", "> 1%", "ie 8", "ie 7"))
+		// .pipe(cmq())
+		.pipe(csscomb())
+		.pipe(chmod(644))
+		.pipe(gulp.dest('./assets/css/admin/'));
 });
 
 // usually there is a default task for lazy people who just wanna type gulp

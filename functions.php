@@ -5,29 +5,6 @@
  * @package Silk Lite
  */
 
-/**
- * Set the content width based on the theme's design and stylesheet.
- */
-if ( ! isset( $content_width ) ) {
-	$content_width = 662; /* pixels */
-}
-
-if ( ! function_exists( 'silklite_content_width' ) ) :
-	/**
-	 * Adjusts content_width value depending on situation.
-	 */
-	function silklite_content_width() {
-		global $content_width;
-
-		if ( ! is_active_sidebar( 'sidebar-1' ) ) {
-			$content_width = 1062; /* pixels */
-		}
-
-		//for attachments the $content_width is set in image.php
-	}
-endif; //silklite_content_width
-add_action( 'template_redirect', 'silklite_content_width' );
-
 if ( ! function_exists( 'silklite_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
@@ -72,6 +49,9 @@ if ( ! function_exists( 'silklite_setup' ) ) :
 		//also for the background image of About Me widget
 		add_image_size( 'silklite-masonry-image', 450, 9999, false );
 
+		//Provide an image thumbnail that is the full content width
+		add_image_size( 'silklite-single-content-image', 850, 9999, false );
+
 		//used for the post thumbnail of posts on archives when displayed in a single column (no masonry)
 		//and for the single post featured image
 		add_image_size( 'silklite-single-image', 1024, 9999, false );
@@ -115,15 +95,74 @@ if ( ! function_exists( 'silklite_setup' ) ) :
 		 * Also enqueue the custom Google Fonts also
 		 */
 		add_editor_style( array( 'editor-style.css', silklite_fonts_url() ) );
-
-		// Set up the WordPress core custom background feature.
-		add_theme_support( 'custom-background', apply_filters( 'silklite_custom_background_args', array(
-			'default-color' => 'ffffff',
-			'default-image' => '',
-		) ) );
 	}
 endif; // silklite_setup
 add_action( 'after_setup_theme', 'silklite_setup' );
+
+/**
+ * Set the content width in pixels, based on the theme's design and stylesheet.
+ *
+ * Priority 0 to make it available to lower priority callbacks.
+ *
+ * @global int $content_width
+ */
+function silklite_content_width() {
+	$GLOBALS['content_width'] = apply_filters( 'silklite_content_width', 850, 0 );
+}
+add_action( 'after_setup_theme', 'silklite_content_width', 0 );
+/**
+ * Adjusts content_width value depending on situation.
+ */
+function silklite_content_with_sidebar_width() {
+	if ( ! is_active_sidebar( 'sidebar-1' ) ) {
+		$GLOBALS['content_width'] = apply_filters( 'silklite_content_with_sidebar_width', 1250, 0 ); /* pixels */
+	}
+	//for attachments the $content_width is set in image.php
+}
+add_action( 'template_redirect', 'silklite_content_with_sidebar_width' );
+/**
+ * Add custom image sizes attribute to enhance responsive image functionality
+ * for content images
+ *
+ * @since Silk Lite 1.1.0
+ *
+ * @param string $sizes A source size value for use in a 'sizes' attribute.
+ * @param array  $size  Image size. Accepts an array of width and height
+ *                      values in pixels (in that order).
+ * @return string A source size value for use in a content image 'sizes' attribute.
+ */
+function silklite_content_image_sizes_attr( $sizes, $size ) {
+	$width = $size[0];
+	if ( is_active_sidebar( 'sidebar-1' ) ) {
+		850 <= $width && $sizes = '(max-width: 739px) 94vw, (max-width: 969px) 88vw, (max-width: 1199px) 860px, 850px';
+	} else {
+		850 <= $width && $sizes = '(max-width: 739px) 94vw, (max-width: 969px) 88vw, (max-width: 1199px) 860px, 1250px';
+	}
+	850 > $width && 740 <= $width && $sizes = '(max-width: 739px) 94vw, (max-width: ' . $width . 'px) 88vw, ' . $width . 'px';
+	740 > $width && $sizes = '(max-width: ' . $width . 'px) 94vw, ' . $width . 'px';
+	return $sizes;
+}
+add_filter( 'wp_calculate_image_sizes', 'silklite_content_image_sizes_attr', 10 , 2 );
+/**
+ * Add custom image sizes attribute to enhance responsive image functionality
+ * for post thumbnails
+ *
+ * @since Silk Lite 1.1.0
+ *
+ * @param array $attr Attributes for the image markup.
+ * @param int   $attachment Image attachment ID.
+ * @param array $size Registered image size or flat array of height and width dimensions.
+ * @return string A source size value for use in a post thumbnail 'sizes' attribute.
+ */
+function silklite_post_thumbnail_sizes_attr( $attr, $attachment, $size ) {
+	if ( is_active_sidebar( 'sidebar-1' ) ) {
+		$attr['sizes'] = '(max-width: 739px) 94vw, (max-width: 969px) 88vw, (max-width: 1199px) 860px, 850px';
+	} else {
+		$attr['sizes'] = '(max-width: 739px) 94vw, (max-width: 969px) 88vw, (max-width: 1199px) 860px, 1250px';
+	}
+	return $attr;
+}
+add_filter( 'wp_get_attachment_image_attributes', 'silklite_post_thumbnail_sizes_attr', 10 , 3 );
 
 /**
  * Register widget area.

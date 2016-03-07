@@ -375,12 +375,17 @@ li.comment, li.pingback, li.trackback {
 	}
 }
 
-p.comment-form-author,
-p.comment-form-email{
-	@include query-above($lap) {
+@include query-above($lap) {
+	p.comment-form-author,
+	p.comment-form-email{
 		width: 50%;
 	}
+
+	p.comment-form-url {
+		width: 100%;
+	}
 }
+
 
 .comment-form-comment,
 .logged-in-as {

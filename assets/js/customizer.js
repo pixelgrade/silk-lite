@@ -1,32 +1,17 @@
 /**
  * Silk Lite Customizer JavaScript - keeps things nicer for all
- * v 1.0.1
+ * v 1.0.4
  */
+(function( $, exports ) {
+	$( document ).ready( function() {
+		// when the customizer is ready add our actions
+		wp.customize.bind( 'ready', function() {
 
-/**
- * Some AJAX powered controls
- * jQuery is available
- */
-(function( $ ) {
-
-	// Change site title and description when they are typed
-	wp.customize( 'blogname', function( value ) {
-		value.bind( function( text ) {
-			$( '.site-title a span, .site-title text' ).text( text );
-			svgLogo.init();
+			if ( typeof silkCustomizerObject !== "undefined" && $('.preview-notice' ).length > 0 ) {
+				$( '<a class="badge-silk-pro" target="_blank" href="' + silkCustomizerObject.upsell_link + '">' + silkCustomizerObject.upsell_label + '</a><div class="upsell_link_details">Not interested? <a href="' + silkCustomizerObject.dismiss_link + '" class="upsell_link_dismiss">Dismiss</a></div>' ).insertAfter( '.preview-notice' );
+			} else {
+				$('.wp-full-overlay-sidebar-content').addClass('upsell_links_dismissed');
+			}
 		} );
 	} );
-
-	wp.customize( 'blogdescription', function( value ) {
-		value.bind( function( text ) {
-			$( '.site-description-text' ).text( text );
-		} );
-	} );
-
-	wp.customize('silklite_site_title_outline', function (value) {
-		value.bind( function (text) {
-			$('.site-title text').attr('stroke-width', text);
-		} );
-	})
-
-})( jQuery );
+})( jQuery, window );

@@ -77,7 +77,7 @@
          */
 
         // Add ARIA role to menubar and menu items
-        $nav.find('li').attr('role', 'menuitem');
+        //$nav.find( 'li' ).attr( 'role', 'menuitem' );
 
         $topLevelLinks.each(function() {
             //for regular sub-menus
@@ -1165,7 +1165,12 @@ if (!Date.now)
                                     translateZ: 0.01
                                 }, {
                                     duration: 300,
-                                    easing: "easeInQuart"
+                                    easing: "easeInQuart",
+                                    complete: function() {
+                                        // This helps with accessibility. Elements with display: none
+                                        // won't receive focus. (the menu is hidden on small screens)
+                                        $nav.css('display', 'none');
+                                    }
                                 });
                             });
 
@@ -1177,7 +1182,10 @@ if (!Date.now)
                                     translateZ: 0.01
                                 }, {
                                     easing: "easeOutCubic",
-                                    duration: 300
+                                    duration: 300,
+                                    begin: function() {
+                                        $nav.css('display', 'block');
+                                    }
                                 });
                             });
 
@@ -1390,8 +1398,13 @@ if (!Date.now)
         });
 
         // Trap focus inside of search overlay
-        $('.overlay--search .overlay__close').blur(function() {
-            if (isOpen) $('.overlay--search input.search-field').focus();
+        $('.overlay--search .overlay__close').blur(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            if (isOpen) {
+                $('.overlay--search .search-field').focus();
+            }
         });
 
     })();
@@ -1942,7 +1955,7 @@ if (!Date.now)
      * Handler for the back to top button
      */
     function scrollToTop() {
-        $('a[href=#top]').click(function(event) {
+        $('a[href="#top"]').click(function(event) {
             event.preventDefault();
             event.stopPropagation();
 

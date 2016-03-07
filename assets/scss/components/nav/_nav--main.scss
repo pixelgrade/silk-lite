@@ -15,7 +15,6 @@
 		color: $accent;
 	}
 
-
 	li.hover {
 		> a {
 			color: $accent;
@@ -64,7 +63,7 @@
 	z-index: 20;
 
 	.nav--is-open & {
-		background-color: white;
+		background-color: white !important;
 	}
 
 	.button-icon {
@@ -73,6 +72,21 @@
 
 	@include query-above($lap) {
 		display: none;
+	}
+
+
+	&:focus {
+		outline: 1px dotted $gray;
+
+		.nav-icon {
+			&, &:before, &:after {
+				background-color: $accent;
+			}
+		}
+	}
+
+	.nav--is-open &:focus .nav-icon {
+		background: transparent;
 	}
 }
 
@@ -173,17 +187,18 @@
 	}
 
 	.nav--main {
+		position: fixed;
+		right: 100%;
+		left: auto;
+		bottom: 0;
+
+		width: 70%;
+		display: none;
 		padding: 0 rem(40px) 0 rem(30px);
 
 		border-top: 0;
-		position: fixed;
 		border-right: 1px solid $borders;
-		// overwrite inline properties written by JS
-		right: 100%;
-		left: auto;
-		width: 70%;
-		// height: 100%;
-		bottom: 0;
+
 		overflow-y: auto;
 		-webkit-overflow-scrolling: touch;
 
