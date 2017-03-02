@@ -312,4 +312,12 @@ function silklite_get_pro_link() {
 	return 'https://pixelgrade.com/themes/blogging/silk?utm_source=silk-lite-clients&utm_medium=customizer&utm_campaign=silk-lite#go-pro';
 }
 
+function silk_add_customify_options( $config ) {
+
+	$config['sections'] = array();
+	$config['panels'] = array();
+
+	return $config;
+}
+add_filter( 'customify_filter_fields', 'silk_add_customify_options' );
 ?>
