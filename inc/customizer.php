@@ -266,7 +266,7 @@ add_action( 'customize_register', 'silk_customizer_reorder_fields', 9999 );
  * Generate a link to the Silk Lite info page.
  */
 function silklite_get_pro_link() {
-	return 'https://pixelgrade.com/themes/silk-lite?utm_source=silk-lite-clients&utm_medium=customizer&utm_campaign=silk-lite#go-pro';
+	return 'https://pixelgrade.com/themes/blogging/silk?utm_source=silk-lite-clients&utm_medium=customizer&utm_campaign=silk-lite#go-pro';
 }
 
 ?>
