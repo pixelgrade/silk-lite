@@ -283,29 +283,6 @@ function silklite_customizer_assets() {
 add_action( 'customize_controls_enqueue_scripts', 'silklite_customizer_assets' );
 
 /**
- * Here we organize the fields into one "Theme Options" section
- * @param WP_Customize_Manager $wp_customize
- */
-function silk_customizer_reorder_fields( $wp_customize ) {
-	$wp_customize->get_control( 'blogname' )->section = 'silklite_theme_options';
-	$wp_customize->get_control( 'blogdescription' )->section = 'silklite_theme_options';
-
-	$wp_customize->get_control( 'site_icon' )->section = 'silklite_theme_options';
-	$wp_customize->get_control( 'site_icon' )->section = 'silklite_theme_options';
-
-
-	$wp_customize->get_control( 'custom_logo' )->section = 'silklite_theme_options';
-	$wp_customize->get_control( 'custom_logo' )->priority = '1';
-
-	$site_logo_header_text = $wp_customize->get_control( 'header_text' );
-	// this field may miss, so we need a check
-	if ( ! empty( $site_logo_header_text ) ) {
-		$site_logo_header_text->section = 'silklite_theme_options';
-	}
-}
-add_action( 'customize_register', 'silk_customizer_reorder_fields', 9999 );
-
-/**
  * Generate a link to the Silk Lite info page.
  */
 function silklite_get_pro_link() {
