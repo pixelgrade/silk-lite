@@ -28,7 +28,10 @@
 	<header id="masthead" class="site-header" role="banner">
 
 		<div class="site-branding">
-			<?php if ( function_exists( 'jetpack_the_site_logo' ) ) { // display the Site Logo if present
+			<?php
+			if ( function_exists( 'the_custom_logo' ) ) {
+				the_custom_logo();
+			} elseif ( function_exists( 'jetpack_the_site_logo' ) ) { // display the Site Logo if present
 				jetpack_the_site_logo();
 			} ?>
 
