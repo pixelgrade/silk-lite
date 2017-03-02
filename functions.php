@@ -5,6 +5,38 @@
  * @package Silk Lite
  */
 
+// Create a helper function for easy SDK access.
+function sl_fs() {
+    global $sl_fs;
+
+    if ( ! isset( $sl_fs ) ) {
+        // Include Freemius SDK.
+        require_once dirname(__FILE__) . '/freemius/start.php';
+
+        $sl_fs = fs_dynamic_init( array(
+            'id'                  => '812',
+            'slug'                => 'silk-lite',
+            'type'                => 'theme',
+            'public_key'          => 'pk_48c066b38b0cd7d312c2484010b36',
+            'is_premium'          => false,
+            'has_premium_version' => false,
+            'has_addons'          => false,
+            'has_paid_plans'      => false,
+            'menu'                => array(
+                'first-path'     => 'themes.php',
+                'account'        => false,
+                'contact'        => false,
+                'support'        => false,
+            ),
+        ) );
+    }
+
+    return $sl_fs;
+}
+
+// Init Freemius.
+sl_fs();
+
 if ( ! function_exists( 'silklite_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
