@@ -23,6 +23,49 @@ function silklite_customize_register( $wp_customize ) {
 	// Rename the label to "Display Site Title & Tagline" in order to make this option clearer.
 	$wp_customize->get_control( 'display_header_text' )->label = __( 'Display Site Title &amp; Tagline', 'silk-lite' );
 
+	// View Pro
+	$wp_customize->add_section( 'silklite_style_view_pro', array(
+		'title'       => '' . esc_html__( 'View PRO Version', 'silk-lite' ),
+		'priority'    => 2,
+		'description' => sprintf(
+			__( '<div class="upsell-container">
+					<h2>Need More? Go PRO</h2>
+					<p>Take it to the next level. See the features below:</p>
+					<ul class="upsell-features">
+                            <li>
+                            	<h4>Personalize to Match Your Style</h4>
+                            	<div class="description">Having different tastes and preferences might be tricky for users, but not with Silk onboard. It has an intuitive and catchy interface which allows you to change <strong>fonts, colors or layout sizes</strong> in a blink of an eye.</div>
+                            </li>
+
+                            <li>
+                            	<h4>Featured Posts Slider</h4>
+                            	<div class="description">Bring your best stories in the front of the world by adding them into the posts slider. It’s an extra opportunity to grab attention and to refresh some content that is still meaningful. Don’t miss any occasion to increase the value of your stories.</div>
+                            </li>
+
+                            <li>
+                            	<h4>Custom Mega Menu</h4>
+                            	<div class="description">Showcase the latest posts from a category under menu without losing precious time and money. Highlight those articles you feel proud about with no effort and let people know about your appetite for a topic or another.</div>
+                            </li>
+
+                            <li>
+                            	<h4>Premium Customer Support</h4>
+                            	<div class="description">You will benefit by priority support from a caring and devoted team, eager to help and to spread happiness. We work hard to provide a flawless experience for those who vote us with trust and choose to be our special clients.</div>
+                            </li>
+                            
+                    </ul> %s </div>', 'silk-lite' ),
+			sprintf( '<a href="%1$s" target="_blank" class="button button-primary">%2$s</a>', esc_url( silklite_get_pro_link() ), esc_html__( 'View Silk PRO', 'silk-lite' ) )
+		),
+	) );
+
+	$wp_customize->add_setting( 'silklite_style_view_pro_desc', array(
+		'default'           => '',
+		'sanitize_callback' => 'silklite_sanitize_checkbox',
+	) );
+	$wp_customize->add_control( 'silklite_style_view_pro_desc', array(
+		'section' => 'silklite_style_view_pro',
+		'type'    => 'hidden',
+	) );
+
 
 	// Style Presets
 	$wp_customize->add_section( 'silklite_style_presets', array(
@@ -220,7 +263,7 @@ function silklite_customizer_assets() {
 	$dismiss_user = get_user_meta( get_current_user_id(), 'silk_upgrade_dismissed_notice', true );
 	if ( $dismiss_user === 'forever' ) {
 		return;
-	} elseif ( empty( $dismiss_user ) || ( is_numeric( $dismiss_user ) && $dismiss_user < 3  ) ) {
+	} elseif ( empty( $dismiss_user ) || ( is_numeric( $dismiss_user ) && $dismiss_user < 2  ) ) {
 
 		$value = $dismiss_user + 1;
 		update_user_meta( get_current_user_id(), 'silk_upgrade_dismissed_notice', $value );
