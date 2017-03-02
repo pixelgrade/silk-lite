@@ -23,6 +23,9 @@ function silklite_customize_register( $wp_customize ) {
 	// Rename the label to "Display Site Title & Tagline" in order to make this option clearer.
 	$wp_customize->get_control( 'display_header_text' )->label = __( 'Display Site Title &amp; Tagline', 'silk-lite' );
 
+	// Add a pretty icon to Site Identity
+	$wp_customize->get_section('title_tagline')->title = '&#x1f465; ' . esc_html__('Site Identity', 'silk');
+
 	// View Pro
 	$wp_customize->add_section( 'silklite_style_view_pro', array(
 		'title'       => '' . esc_html__( 'View PRO Version', 'silk-lite' ),
