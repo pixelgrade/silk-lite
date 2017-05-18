@@ -55,7 +55,7 @@ if (fs.existsSync('./gulpconfig.json')) {
 // Compiles Sass and runs the CSS through autoprefixer. A separate task will
 // combine the compiled CSS with vendor files and minify the aggregate.
 // -----------------------------------------------------------------------------
-gulp.task('styles', 'Compiles Sass and uses autoprefixer', ['styles-components'], function () {
+gulp.task('styles', 'Compiles Sass and uses autoprefixer', function () {
 
 	function handleError(err, res) {
 		log(c.red('Sass failed to compile'));
@@ -191,7 +191,7 @@ gulp.task('txtdomain-replace', ['copy-folder'], function () {
 /**
  * Remove unneeded files and folders from the build folder
  */
-gulp.task('build', 'Remove unneeded files and folders from the build folder', ['txtdomain-replace'], function () {
+gulp.task('build', 'Remove unneeded files and folders from the build folder', ['copy-folder'], function () {
 
 	// files that should not be present in build
 	files_to_remove = [
