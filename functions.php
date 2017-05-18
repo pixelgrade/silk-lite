@@ -19,15 +19,8 @@ function sl_fs() {
             'type'                => 'theme',
             'public_key'          => 'pk_48c066b38b0cd7d312c2484010b36',
             'is_premium'          => false,
-            'has_premium_version' => false,
             'has_addons'          => false,
             'has_paid_plans'      => false,
-            'menu'                => array(
-                'first-path'     => 'themes.php',
-                'account'        => false,
-                'contact'        => false,
-                'support'        => false,
-            ),
         ) );
     }
 
@@ -36,6 +29,8 @@ function sl_fs() {
 
 // Init Freemius.
 sl_fs();
+// Signal that SDK was initiated.
+do_action( 'sl_fs_loaded' );
 
 if ( ! function_exists( 'silklite_setup' ) ) :
 	/**

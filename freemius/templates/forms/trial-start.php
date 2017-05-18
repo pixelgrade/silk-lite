@@ -11,20 +11,25 @@
 	}
 
 	/**
+	 * @var array $VARS
 	 * @var Freemius $fs
 	 */
 	$fs   = freemius( $VARS['id'] );
 	$slug = $fs->get_slug();
 
 	$message_header  = sprintf(
-		__fs( 'start-trial-prompt-header', $slug ),
+		fs_text( 'start-trial-prompt-header', $slug ),
 		'<span class="var-trial_period"></span>',
 		'<span class="var-plan_title"></span>'
 	);
 	$message_content = sprintf(
-		__fs( 'start-trial-prompt-message', $slug ),
+		fs_text( 'start-trial-prompt-message', $slug ),
 		$fs->get_module_type(),
-		'<a href="https://freemius.com" target="_blank">freemius.com</a>'
+		sprintf(
+			'<a href="%s" target="_blank">%s</a>',
+			'https://freemius.com',
+			'freemius.com'
+		)
 	);
 
 	$modal_content_html = <<< HTML
@@ -43,12 +48,12 @@ HTML;
 				    '<div class="fs-modal fs-modal-license-key-resend">'
 				    + '	<div class="fs-modal-dialog">'
 				    + '		<div class="fs-modal-header">'
-				    + '		    <h4><?php _efs( 'start-free-trial' ) ?></h4>'
+				    + '		    <h4><?php fs_esc_js_echo( 'start-free-trial', $slug ) ?></h4>'
 				    + '		</div>'
 				    + '		<div class="fs-modal-body">' + modalContentHtml + '</div>'
 				    + '		<div class="fs-modal-footer">'
-				    + '			<button class="button button-secondary button-close">' + <?php echo json_encode( __fs( 'cancel', $slug ) ) ?> +'</button>'
-				    + '			<button class="button button-primary button-connect">' + <?php echo json_encode( __fs( 'approve-start-trial', $slug ) ) ?> +'</button>'
+				    + '			<button class="button button-secondary button-close">' + <?php fs_json_encode_echo( 'cancel', $slug ) ?> +'</button>'
+				    + '			<button class="button button-primary button-connect">' + <?php fs_json_encode_echo( 'approve-start-trial', $slug ) ?> +'</button>'
 				    + '		</div>'
 				    + '	</div>'
 				    + '</div>',
@@ -76,8 +81,8 @@ HTML;
 						url       : ajaxurl,
 						method    : 'POST',
 						data      : {
-							action   : '<?php echo $fs->get_action_tag( 'start_trial' ) ?>',
-							security : '<?php echo wp_create_nonce( $fs->get_action_tag( 'start_trial' ) ) ?>',
+							action   : '<?php echo $fs->get_ajax_action( 'start_trial' ) ?>',
+							security : '<?php echo $fs->get_ajax_security( 'start_trial' ) ?>',
 							module_id: '<?php echo $fs->get_id() ?>',
 							trial    : trialData
 						},
@@ -85,18 +90,18 @@ HTML;
 							// Disable all buttons during trial activation.
 							$modal.find('.button').prop('disabled', true);
 
-							$button.text('<?php _efs( 'starting-trial', $slug ) ?>...');
+							$button.text(<?php fs_json_encode_echo( 'starting-trial', $slug ) ?> + '...');
 
 							setLoadingMode();
 						},
 						success   : function (resultObj) {
 							if (resultObj.success) {
-								$button.text('<?php _efs( 'please-wait', $slug ) ?>...');
+								$button.text(<?php fs_json_encode_echo( 'please-wait', $slug ) ?> + '...');
 
 								// Redirect to the "Account" page and sync the license.
 								window.location.href = resultObj.data.next_page;
 							} else {
-								$button.text(<?php json_encode( __fs( 'approve-start-trial', $slug ) ) ?>);
+								$button.text(<?php fs_json_encode_echo( 'approve-start-trial', $slug ) ?>);
 
 								resetLoadingMode();
 								showError(resultObj.error);

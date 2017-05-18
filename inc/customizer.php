@@ -24,7 +24,7 @@ function silklite_customize_register( $wp_customize ) {
 	$wp_customize->get_control( 'display_header_text' )->label = esc_html__( 'Display Site Title &amp; Tagline', 'silk-lite' );
 
 	// Add a pretty icon to Site Identity
-	$wp_customize->get_section('title_tagline')->title = '&#x1f465; ' . esc_html__('Site Identity', 'silk');
+	$wp_customize->get_section('title_tagline')->title = '&#x1f465; ' . esc_html__('Site Identity', 'silk-lite');
 
 	// View Pro
 	$wp_customize->add_section( 'silklite_style_view_pro', array(
@@ -275,8 +275,8 @@ function silklite_customizer_assets() {
 
 	$localized_strings = array(
 		'upsell_link'     => silklite_get_pro_link(),
-		'upsell_label'    => esc_html__( 'Upgrade to Silk Pro', 'silk' ),
-		'pro_badge_label' => esc_html__( 'Pro', 'silk' ) . '<span class="star"></span>',
+		'upsell_label'    => esc_html__( 'Upgrade to Silk Pro', 'silk-lite' ),
+		'pro_badge_label' => esc_html__( 'Pro', 'silk-lite' ) . '<span class="star"></span>',
 		'dismiss_link' => esc_url( wp_nonce_url( add_query_arg( 'silk-upgrade-dismiss', 'forever' ), 'silk-upgrade-dismiss-' . get_current_user_id() ) )
 	);
 

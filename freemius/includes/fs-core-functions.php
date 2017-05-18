@@ -10,10 +10,6 @@
 		exit;
 	}
 
-	global $fs_core_logger;
-
-	$fs_core_logger = FS_Logger::get_logger( WP_FS__SLUG . '_core', WP_FS__DEBUG_SDK, WP_FS__ECHO_DEBUG_SDK );
-
 	if ( ! function_exists( 'fs_dummy' ) ) {
 		function fs_dummy() {
 		}
@@ -34,29 +30,29 @@
 
 		function fs_include_template( $path, &$params = null ) {
 			$VARS = &$params;
-			include( fs_get_template_path( $path ) );
+			include fs_get_template_path( $path );
 		}
 
 		function fs_include_once_template( $path, &$params = null ) {
 			$VARS = &$params;
-			include_once( fs_get_template_path( $path ) );
+			include_once fs_get_template_path( $path );
 		}
 
 		function fs_require_template( $path, &$params = null ) {
 			$VARS = &$params;
-			require( fs_get_template_path( $path ) );
+			require fs_get_template_path( $path );
 		}
 
 		function fs_require_once_template( $path, &$params = null ) {
 			$VARS = &$params;
-			require_once( fs_get_template_path( $path ) );
+			require_once fs_get_template_path( $path );
 		}
 
 		function fs_get_template( $path, &$params = null ) {
 			ob_start();
 
 			$VARS = &$params;
-			require( fs_get_template_path( $path ) );
+			require fs_get_template_path( $path );
 
 			return ob_get_clean();
 		}
@@ -86,42 +82,20 @@
 	 * @return string Asset's URL.
 	 */
 	function fs_asset_url( $asset_abs_path ) {
-		global $fs_core_logger;
-
 		$wp_content_dir = fs_normalize_path( WP_CONTENT_DIR );
 		$asset_abs_path = fs_normalize_path( $asset_abs_path );
 		$asset_rel_path = str_replace( $wp_content_dir, '', $asset_abs_path );
 
 		$asset_url = content_url( fs_normalize_path( $asset_rel_path ) );
 
-		if ( $fs_core_logger->is_on() ) {
-			$fs_core_logger->info( 'content_dir = ' . $wp_content_dir );
-			$fs_core_logger->info( 'asset_abs_path = ' . $asset_abs_path );
-			$fs_core_logger->info( 'asset_rel_path = ' . $asset_rel_path );
-			$fs_core_logger->info( 'asset_url = ' . $asset_url );
-		}
-
 		return $asset_url;
 	}
 
 	function fs_enqueue_local_style( $handle, $path, $deps = array(), $ver = false, $media = 'all' ) {
-		global $fs_core_logger;
-
-		if ( $fs_core_logger->is_on() ) {
-			$fs_core_logger->info( 'handle = ' . $handle . '; path = ' . $path . ';' );
-		}
-
-		wp_enqueue_style( $handle, fs_asset_url( WP_FS__DIR_CSS . '/' . trim( $path, '/' )  ), $deps, $ver, $media );
+		wp_enqueue_style( $handle, fs_asset_url( WP_FS__DIR_CSS . '/' . trim( $path, '/' ) ), $deps, $ver, $media );
 	}
 
 	function fs_enqueue_local_script( $handle, $path, $deps = array(), $ver = false, $in_footer = 'all' ) {
-		global $fs_core_logger;
-		if ( $fs_core_logger->is_on() ) {
-			$fs_core_logger->info( 'handle = ' . $handle . '; path = ' . $path . ';' );
-			$fs_core_logger->info( 'plugin_basename = ' . plugins_url( WP_FS__DIR_JS . trim( $path, '/' ) ) );
-			$fs_core_logger->info( 'plugins_url = ' . plugins_url( plugin_basename( WP_FS__DIR_JS . '/' . trim( $path, '/' ) ) ) );
-		}
-
 		wp_enqueue_script( $handle, fs_asset_url( WP_FS__DIR_JS . '/' . trim( $path, '/' ) ), $deps, $ver, $in_footer );
 	}
 
@@ -132,13 +106,32 @@
 	/* Request handlers.
 	--------------------------------------------------------------------------------------------*/
 	/**
-	 * @param string $key
-	 * @param mixed  $def
+	 * @param string      $key
+	 * @param mixed       $def
+	 * @param string|bool $type Since 1.2.1.7 - when set to 'get' will look for the value passed via querystring, when
+	 *                          set to 'post' will look for the value passed via the POST request's body, otherwise,
+	 *                          will check if the parameter was passed in any of the two.
 	 *
 	 * @return mixed
 	 */
-	function fs_request_get( $key, $def = false ) {
-		return isset( $_REQUEST[ $key ] ) ? $_REQUEST[ $key ] : $def;
+	function fs_request_get( $key, $def = false, $type = false ) {
+		if ( is_string( $type ) ) {
+			$type = strtolower( $type );
+		}
+
+		switch ( $type ) {
+			case 'post':
+				$value = isset( $_POST[ $key ] ) ? $_POST[ $key ] : $def;
+				break;
+			case 'get':
+				$value = isset( $_GET[ $key ] ) ? $_GET[ $key ] : $def;
+				break;
+			default:
+				$value = isset( $_REQUEST[ $key ] ) ? $_REQUEST[ $key ] : $def;
+				break;
+		}
+
+		return $value;
 	}
 
 	function fs_request_has( $key ) {
@@ -223,8 +216,8 @@
 		return true;
 	}
 
-	function fs_is_plugin_page( $menu_slug ) {
-		return ( is_admin() && isset( $_REQUEST['page'] ) && $_REQUEST['page'] === $menu_slug );
+	function fs_is_plugin_page( $page_slug ) {
+		return ( is_admin() && $page_slug === fs_request_get( 'page' ) );
 	}
 
 	/* Core UI.
@@ -505,7 +498,7 @@
 	/**
 	 * @author Vova Feldman (@svovaf)
 	 *
-	 * @since 1.2.2 Changed to usage of WP_Filesystem_Direct.
+	 * @since  1.2.2 Changed to usage of WP_Filesystem_Direct.
 	 *
 	 * @param string $from URL
 	 * @param string $to   File path.
@@ -515,6 +508,11 @@
 
 		if ( 'direct' !== get_filesystem_method( array(), $dir ) ) {
 			return;
+		}
+
+		if ( ! class_exists( 'WP_Filesystem_Direct' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/class-wp-filesystem-base.php';
+			require_once ABSPATH . 'wp-admin/includes/class-wp-filesystem-direct.php';
 		}
 
 		$fs      = new WP_Filesystem_Direct( '' );
@@ -554,97 +552,123 @@
 		return ( $a['priority'] < $b['priority'] ) ? - 1 : 1;
 	}
 
-	/**
-	 * VERY IMPORTANT ----------------------------------------------
-	 *
-	 * @todo IMPORTANT - After merging to main branch rename _efs() to fs_echo() and __fs() to fs_translate(). Otherwise, if a there's a plugin that runs version < 1.2.2 some of the translation in the plugin dialog will not be translated correctly.
-	 *
-	 * VERY IMPORTANT ----------------------------------------------
-	 */
-	if ( ! function_exists( '__fs' ) ) {
-		global $fs_text_overrides;
+	#--------------------------------------------------------------------------------
+	#region Localization
+	#--------------------------------------------------------------------------------
 
-		if ( ! isset( $fs_text_overrides ) ) {
-			$fs_text_overrides = array();
-		}
-
+	if ( ! function_exists( 'fs_text' ) ) {
 		/**
 		 * Retrieve a translated text by key.
 		 *
 		 * @author Vova Feldman (@svovaf)
-		 * @since  1.1.4
+		 * @since  1.2.1.7
 		 *
 		 * @param string $key
 		 * @param string $slug
 		 *
 		 * @return string
 		 *
-		 * @global       $fs_text , $fs_text_overrides
+		 * @global       $fs_text, $fs_text_overrides
 		 */
-		function __fs( $key, $slug = 'freemius' ) {
-			global $fs_text, $fs_module_info_text, $fs_text_overrides;
-
-			if ( isset( $fs_text_overrides[ $slug ] ) ) {
-				if ( isset( $fs_text_overrides[ $slug ][ $key ] ) ) {
-					return $fs_text_overrides[ $slug ][ $key ];
-				}
-
-				$lower_key = strtolower( $key );
-				if ( isset( $fs_text_overrides[ $slug ][ $lower_key ] ) ) {
-					return $fs_text_overrides[ $slug ][ $lower_key ];
-				}
-			}
-
-			if ( ! isset( $fs_text ) ) {
-				require_once( ( defined( 'WP_FS__DIR_INCLUDES' ) ? WP_FS__DIR_INCLUDES : dirname( __FILE__ ) ) . '/i18n.php' );
-			}
-
-			if ( isset( $fs_text[ $key ] ) ) {
-				return $fs_text[ $key ];
-			}
-
-			if ( isset( $fs_module_info_text[ $key ] ) ) {
-				return $fs_module_info_text[ $key ];
-			}
-
-			return $key;
+		function fs_text( $key, $slug = 'freemius' ) {
+			return __fs( $key, $slug );
 		}
 
 		/**
-		 * Display a translated text by key.
+		 * Output a translated text by key.
 		 *
 		 * @author Vova Feldman (@svovaf)
-		 * @since  1.1.4
+		 * @since  1.2.1.7
 		 *
 		 * @param string $key
 		 * @param string $slug
 		 */
-		function _efs( $key, $slug = 'freemius' ) {
-			echo __fs( $key, $slug );
+		function fs_echo( $key, $slug = 'freemius' ) {
+			echo fs_text( $key, $slug );
 		}
 	}
 
-	if ( ! function_exists( 'fs_override_i18n' ) ) {
-		/**
-		 * Override default i18n text phrases.
-		 *
-		 * @author Vova Feldman (@svovaf)
-		 * @since  1.1.6
-		 *
-		 * @param string[] $key_value
-		 * @param string   $slug
-		 *
-		 * @global         $fs_text_overrides
-		 */
-		function fs_override_i18n( array $key_value, $slug = 'freemius' ) {
-			global $fs_text_overrides;
-
-			if ( ! isset( $fs_text_overrides[ $slug ] ) ) {
-				$fs_text_overrides[ $slug ] = array();
-			}
-
-			foreach ( $key_value as $key => $value ) {
-				$fs_text_overrides[ $slug ][ $key ] = $value;
-			}
-		}
+	/**
+	 * @author Vova Feldman
+	 * @since  1.2.1.6
+	 *
+	 * @param string $key
+	 * @param string $slug
+	 *
+	 * @return string
+	 */
+	function fs_esc_attr( $key, $slug ) {
+		return esc_attr( fs_text( $key, $slug ) );
 	}
+
+	/**
+	 * @author Vova Feldman
+	 * @since  1.2.1.6
+	 *
+	 * @param string $key
+	 * @param string $slug
+	 */
+	function fs_esc_attr_echo( $key, $slug ) {
+		echo esc_attr( fs_text( $key, $slug ) );
+	}
+
+	/**
+	 * @author Vova Feldman
+	 * @since  1.2.1.6
+	 *
+	 * @param string $key
+	 * @param string $slug
+	 *
+	 * @return string
+	 */
+	function fs_esc_js( $key, $slug ) {
+		return esc_js( fs_text( $key, $slug ) );
+	}
+
+	/**
+	 * @author Vova Feldman
+	 * @since  1.2.1.6
+	 *
+	 * @param string $key
+	 * @param string $slug
+	 */
+	function fs_esc_js_echo( $key, $slug ) {
+		echo esc_js( fs_text( $key, $slug ) );
+	}
+
+	/**
+	 * @author Vova Feldman
+	 * @since  1.2.1.6
+	 *
+	 * @param string $key
+	 * @param string $slug
+	 */
+	function fs_json_encode_echo( $key, $slug ) {
+		echo json_encode( fs_text( $key, $slug ) );
+	}
+
+	/**
+	 * @author Vova Feldman
+	 * @since  1.2.1.6
+	 *
+	 * @param string $key
+	 * @param string $slug
+	 *
+	 * @return string
+	 */
+	function fs_esc_html( $key, $slug ) {
+		return esc_html( fs_text( $key, $slug ) );
+	}
+
+	/**
+	 * @author Vova Feldman
+	 * @since  1.2.1.6
+	 *
+	 * @param string $key
+	 * @param string $slug
+	 */
+	function fs_esc_html_echo( $key, $slug ) {
+		echo esc_html( fs_text( $key, $slug ) );
+	}
+
+#endregion
