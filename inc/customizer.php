@@ -289,7 +289,7 @@ add_action( 'customize_controls_enqueue_scripts', 'silklite_customizer_assets' )
  * Generate a link to the Silk Lite info page.
  */
 function silklite_get_pro_link() {
-	return 'https://pixelgrade.com/themes/blogging/silk?utm_source=silk-lite-clients&utm_medium=customizer&utm_campaign=silk-lite#go-pro';
+	return 'https://pixelgrade.com/themes/blogging/silk-lite?utm_source=silk-lite-clients&utm_medium=customizer&utm_campaign=silk-lite#pro';
 }
 
 function silk_add_customify_options( $config ) {

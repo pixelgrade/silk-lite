@@ -366,4 +366,9 @@ require get_template_directory() . '/inc/silklite-hybrid-media-grabber.php';
  * Load custom widgets
  */
 require get_template_directory() . '/inc/widgets/popular-posts.php';
-require get_template_directory() . '/inc/widgets/about-me.php'; ?>
+require get_template_directory() . '/inc/widgets/about-me.php';
+
+/**
+ * Theme About page.
+ */
+require get_template_directory() . '/inc/admin/about-page.php';
