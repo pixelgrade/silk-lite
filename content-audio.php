@@ -41,7 +41,7 @@ $media = apply_filters('embed_oembed_html', $media ); ?>
 		if ( $has_more ) {
 			/* translators: %s: Name of current post */
 			the_content( sprintf(
-				__( 'Continue reading %s', 'silk-lite' ),
+				esc_html__( 'Continue reading %s', 'silk-lite' ),
 				the_title( '<span class="screen-reader-text">', '</span>', false )
 			) );
 		} else {
@@ -49,11 +49,11 @@ $media = apply_filters('embed_oembed_html', $media ); ?>
 		}
 
 		wp_link_pages( array(
-			'before' => '<div class="page-links"><span class="pagination-title">' . __( 'Pages:', 'silk-lite' ),
+			'before' => '<div class="page-links"><span class="pagination-title">' . esc_html__( 'Pages:', 'silk-lite' ),
 			'after'  => '</span></div>',
 			'link_before' => '<span>',
 			'link_after'  => '</span>',
-			'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'silk-lite' ) . ' </span>%',
+			'pagelink'    => '<span class="screen-reader-text">' . esc_html__( 'Page', 'silk-lite' ) . ' </span>%',
 			'separator'   => '<span class="screen-reader-text">, </span>',
 		) ); ?>
 

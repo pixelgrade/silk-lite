@@ -10,7 +10,7 @@
 
 <section class="no-results not-found">
 	<header class="page-header">
-		<h1 class="page-title"><?php _e( 'Nothing Found', 'silk-lite' ); ?></h1>
+		<h1 class="page-title"><?php esc_html_e( 'Nothing Found', 'silk-lite' ); ?></h1>
 	</header><!-- .page-header -->
 
 	<div class="page-content">
@@ -26,7 +26,7 @@
 
 		<?php else : ?>
 
-			<p><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'silk-lite' ); ?></p>
+			<p><?php esc_html_e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'silk-lite' ); ?></p>
 			<?php get_search_form(); ?>
 
 		<?php endif; ?>

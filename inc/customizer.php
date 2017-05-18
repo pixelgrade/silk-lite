@@ -21,7 +21,7 @@ function silklite_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
 
 	// Rename the label to "Display Site Title & Tagline" in order to make this option clearer.
-	$wp_customize->get_control( 'display_header_text' )->label = __( 'Display Site Title &amp; Tagline', 'silk-lite' );
+	$wp_customize->get_control( 'display_header_text' )->label = esc_html__( 'Display Site Title &amp; Tagline', 'silk-lite' );
 
 	// Add a pretty icon to Site Identity
 	$wp_customize->get_section('title_tagline')->title = '&#x1f465; ' . esc_html__('Site Identity', 'silk');
@@ -147,7 +147,7 @@ function silklite_customize_register( $wp_customize ) {
 	) );
 
 	$wp_customize->add_control( 'silklite_single_column_archives', array(
-		'label'   => __( 'Display single column posts on front page and archives.', 'silk-lite' ),
+		'label'   => esc_html__( 'Display single column posts on front page and archives.', 'silk-lite' ),
 		'section' => 'silklite_theme_options',
 		'type'    => 'checkbox',
 	) );
@@ -158,7 +158,7 @@ function silklite_customize_register( $wp_customize ) {
 	) );
 
 	$wp_customize->add_control( 'silklite_single_featured_image', array(
-		'label'   => __( 'Display the featured image on single posts.', 'silk-lite' ),
+		'label'   => esc_html__( 'Display the featured image on single posts.', 'silk-lite' ),
 		'section' => 'silklite_theme_options',
 		'type'    => 'checkbox',
 	) );
@@ -169,7 +169,7 @@ function silklite_customize_register( $wp_customize ) {
 	) );
 
 	$wp_customize->add_control( 'silklite_disable_search_in_toolbar', array(
-		'label'   => __( 'Hide search button in top header bar', 'silk-lite' ),
+		'label'   => esc_html__( 'Hide search button in top header bar', 'silk-lite' ),
 		'section' => 'silklite_theme_options',
 		'type'    => 'checkbox',
 	) );
@@ -181,15 +181,15 @@ function silklite_customize_register( $wp_customize ) {
 	) );
 
 	$wp_customize->add_control( 'silklite_site_title_outline', array(
-		'label'   => __( 'Site Title Outline', 'silk-lite' ),
+		'label'   => esc_html__( 'Site Title Outline', 'silk-lite' ),
 		'section' => 'silklite_theme_options',
 		'type'    => 'select',
 		'choices' => array(
-			'0'   => __( '0', 'silk-lite' ),
-			'1.2' => __( '-1', 'silk-lite' ),
-			'3'   => __( '-2', 'silk-lite' ),
-			'5'   => __( '-3', 'silk-lite' ),
-			'10'  => __( '-4', 'silk-lite' ),
+			'0'   => esc_html__( '0', 'silk-lite' ),
+			'1.2' => esc_html__( '-1', 'silk-lite' ),
+			'3'   => esc_html__( '-2', 'silk-lite' ),
+			'5'   => esc_html__( '-3', 'silk-lite' ),
+			'10'  => esc_html__( '-4', 'silk-lite' ),
 		),
 	) );
 
@@ -199,7 +199,7 @@ function silklite_customize_register( $wp_customize ) {
 	) );
 
 	$wp_customize->add_control( 'silklite_footer_copyright', array(
-		'label'       => __( 'Additional Copyright Text', 'silk-lite' ),
+		'label'       => esc_html__( 'Additional Copyright Text', 'silk-lite' ),
 		'description' => '',
 		'section'     => 'silklite_theme_options',
 		'type'        => 'text',

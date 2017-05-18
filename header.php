@@ -21,7 +21,7 @@
 <?php $classes = ( ! get_theme_mod( 'silklite_single_column_archives', false ) ) ? 'archive-layout--masonry' : 'archive-layout--column'; ?>
 
 <div id="page" class="hfeed site <?php echo esc_attr( $classes ); ?>">
-	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'silk-lite' ); ?></a>
+	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'silk-lite' ); ?></a>
 
 	<?php get_template_part( 'templates/top-header-bar' ); ?>
 
@@ -67,7 +67,7 @@
 		<nav id="site-navigation" class="main-navigation" role="navigation">
 			<button class="button-toggle  js-nav-trigger" aria-controls="menu-primary-menu" aria-expanded="false">
 				<span class="nav-icon icon--lines"></span>
-				<span class="button-text  assistive-text"><?php _e( 'Primary Menu', 'silk-lite' ); ?></span>
+				<span class="button-text  assistive-text"><?php esc_html_e( 'Primary Menu', 'silk-lite' ); ?></span>
 			</button>
 			<?php wp_nav_menu( array(
 				'theme_location' => 'primary',
@@ -78,7 +78,7 @@
 			) ); ?>
 			<a href="#search" class="button-toggle  button-toggle--search">
 				<span class="button-icon"><i class="fa fa-search"></i></span>
-				<span class="button-text  assistive-text"><?php _e( 'Search', 'silk-lite' ); ?></span>
+				<span class="button-text  assistive-text"><?php esc_html_e( 'Search', 'silk-lite' ); ?></span>
 			</a>
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->

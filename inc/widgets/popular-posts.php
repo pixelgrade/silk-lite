@@ -39,13 +39,13 @@ if ( ! class_exists('Silk_Popular_Posts_Widget') ) :
 		function __construct() {
 			parent::__construct(
 				'silk-popular-posts',
-				apply_filters( 'silk_widget_name', __( 'Silk Popular Posts', 'silk-lite' ) ),
+				apply_filters( 'silk_widget_name', esc_html__( 'Silk Popular Posts', 'silk-lite' ) ),
 				array(
-					'description' => __( 'Shows your most viewed posts.', 'silk-lite' ),
+					'description' => esc_html__( 'Shows your most viewed posts.', 'silk-lite' ),
 				)
 			);
 
-			$this->default_title = __( 'Popular Posts', 'silk-lite' );
+			$this->default_title = esc_html__( 'Popular Posts', 'silk-lite' );
 		}
 
 		function form( $instance ) {

@@ -90,10 +90,10 @@ if ( ! function_exists( 'silklite_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in three locations.
 		register_nav_menus( array(
-			'primary'          => __( 'Primary Menu', 'silk-lite' ),
-			'top_header_left'  => __( 'Top Header Left Menu', 'silk-lite' ),
-			'top_header_right' => __( 'Top Header Right Menu', 'silk-lite' ),
-			'footer'           => __( 'Footer Menu', 'silk-lite' ),
+			'primary'          => esc_html__( 'Primary Menu', 'silk-lite' ),
+			'top_header_left'  => esc_html__( 'Top Header Left Menu', 'silk-lite' ),
+			'top_header_right' => esc_html__( 'Top Header Right Menu', 'silk-lite' ),
+			'footer'           => esc_html__( 'Footer Menu', 'silk-lite' ),
 		) );
 
 		/*
@@ -235,9 +235,9 @@ add_filter( 'wp_get_attachment_image_attributes', 'silklite_post_thumbnail_sizes
  */
 function silklite_widgets_init() {
 	register_sidebar( array(
-		'name'          => __( 'Sidebar', 'silk-lite' ),
+		'name'          => esc_html__( 'Sidebar', 'silk-lite' ),
 		'id'            => 'sidebar-1',
-		'description'   => __( 'Add widgets here to appear in your main sidebar.', 'silk-lite' ),
+		'description'   => esc_html__( 'Add widgets here to appear in your main sidebar.', 'silk-lite' ),
 		'before_widget' => '<div class="grid__item"><aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside></div>',
 		'before_title'  => '<h3 class="widget-title">',
@@ -245,9 +245,9 @@ function silklite_widgets_init() {
 	) );
 
 	register_sidebar( array(
-		'name'          => __( 'Footer', 'silk-lite' ),
+		'name'          => esc_html__( 'Footer', 'silk-lite' ),
 		'id'            => 'footer-1',
-		'description'   => __( 'Add widgets here to appear in your footer sidebar.', 'silk-lite' ),
+		'description'   => esc_html__( 'Add widgets here to appear in your footer sidebar.', 'silk-lite' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h3 class="widget-title">',
@@ -323,8 +323,8 @@ function silklite_wp_enqueue_media() {
 		'SilkAboutMeWidget',
 		array(
 			'l10n' => array(
-				'frameTitle'      => __( 'Choose a Background Image', 'silk-lite' ),
-				'frameUpdateText' => __( 'Update Background Image', 'silk-lite' ),
+				'frameTitle'      => esc_html__( 'Choose a Background Image', 'silk-lite' ),
+				'frameUpdateText' => esc_html__( 'Update Background Image', 'silk-lite' ),
 			),
 		)
 	);

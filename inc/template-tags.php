@@ -21,15 +21,15 @@ if ( ! function_exists( 'the_posts_navigation' ) ) :
 		}
 		?>
 		<nav class="navigation posts-navigation" role="navigation">
-			<h2 class="screen-reader-text"><?php _e( 'Posts navigation', 'silk-lite' ); ?></h2>
+			<h2 class="screen-reader-text"><?php esc_html_e( 'Posts navigation', 'silk-lite' ); ?></h2>
 			<div class="nav-links">
 
 				<?php if ( get_next_posts_link() ) : ?>
-				<div class="nav-previous"><?php next_posts_link( __( 'Older posts', 'silk-lite' ) ); ?></div>
+				<div class="nav-previous"><?php next_posts_link( esc_html__( 'Older posts', 'silk-lite' ) ); ?></div>
 				<?php endif; ?>
 
 				<?php if ( get_previous_posts_link() ) : ?>
-				<div class="nav-next"><?php previous_posts_link( __( 'Newer posts', 'silk-lite' ) ); ?></div>
+				<div class="nav-next"><?php previous_posts_link( esc_html__( 'Newer posts', 'silk-lite' ) ); ?></div>
 				<?php endif; ?>
 
 			</div><!-- .nav-links -->
@@ -55,7 +55,7 @@ if ( ! function_exists( 'silklite_the_post_navigation' ) ) :
 		} ?>
 
 		<nav class="navigation post-navigation" role="navigation">
-			<h2 class="screen-reader-text"><?php _e( 'Post navigation', 'silk-lite' ); ?></h2>
+			<h2 class="screen-reader-text"><?php esc_html_e( 'Post navigation', 'silk-lite' ); ?></h2>
 			<div class="article-navigation">
 				<?php
 				if ( $prev_post ) {
@@ -89,7 +89,7 @@ if ( ! function_exists( 'silklite_the_post_navigation' ) ) :
 		                                <h3 class="post-title">%%title</h3>
 	                                </span>
 	                            </span>
-	                        </span>', $prev_thumbnail, __( 'Previous', 'silk-lite' ), $time_string, $post_category->name  ) );
+	                        </span>', $prev_thumbnail, esc_html__( 'Previous', 'silk-lite' ), $time_string, $post_category->name  ) );
 				}
 
 				if ( $next_post ) {
@@ -123,7 +123,7 @@ if ( ! function_exists( 'silklite_the_post_navigation' ) ) :
 		                                <h3 class="post-title">%%title</h3>
 	                                </span>
 	                            </span>
-	                        </span>', $next_thumbnail, __( 'Next', 'silk-lite' ), $time_string, $post_category->name ) );
+	                        </span>', $next_thumbnail, esc_html__( 'Next', 'silk-lite' ), $time_string, $post_category->name ) );
 				} ?>
 
 		</nav><!-- .navigation -->
@@ -148,7 +148,7 @@ if ( ! function_exists( 'silklite_the_image_navigation' ) ) :
 		} ?>
 
 		<nav class="navigation post-navigation" role="navigation">
-			<h2 class="screen-reader-text"><?php _e( 'Image navigation', 'silk-lite' ); ?></h2>
+			<h2 class="screen-reader-text"><?php esc_html_e( 'Image navigation', 'silk-lite' ); ?></h2>
 			<div class="article-navigation">
 				<?php
 				if ( $prev_image ) {
@@ -163,7 +163,7 @@ if ( ! function_exists( 'silklite_the_image_navigation' ) ) :
 		                                <span class="post-thumb"><?php echo $prev_thumbnail; ?></span>
 		                            </span>
 		                            <span class="flexbox__item">
-		                                <span class="navigation-item__name"><?php _e( 'Previous image', 'silk-lite' ); ?></span>
+		                                <span class="navigation-item__name"><?php esc_html_e( 'Previous image', 'silk-lite' ); ?></span>
 		                                <h3 class="post-title"><?php echo get_the_title( $prev_image->ID ); ?></h3>
 		                            </span>
 		                        </span>
@@ -185,7 +185,7 @@ if ( ! function_exists( 'silklite_the_image_navigation' ) ) :
 		                                <span class="post-thumb"><?php echo $next_thumbnail; ?></span>
 		                            </span>
 		                            <span class="flexbox__item">
-		                                <span class="navigation-item__name"><?php _e( 'Next image', 'silk-lite' ); ?></span>
+		                                <span class="navigation-item__name"><?php esc_html_e( 'Next image', 'silk-lite' ); ?></span>
 		                                <h3 class="post-title"><?php echo get_the_title( $next_image->ID ); ?></h3>
 		                            </span>
 		                        </span>
@@ -277,7 +277,7 @@ if ( ! function_exists( 'silklite_get_cats_list' ) ) :
 
 		$cats = '';
 		/* translators: used between list items, there is a space after the comma */
-		$categories_list = get_the_category_list( __( ', ', 'silk-lite' ), '', $post_ID );
+		$categories_list = get_the_category_list( esc_html__( ', ', 'silk-lite' ), '', $post_ID );
 		if ( $categories_list && silklite_categorized_blog() ) {
 			$cats = '<span class="cat-links">' . $categories_list . '</span>';
 		}
@@ -342,15 +342,15 @@ if ( ! function_exists( 'silklite_entry_footer' ) ) :
 		// Hide category and tag text for pages.
 		if ( 'post' == get_post_type() ) {
 			/* translators: used between list items, there is a space after the comma */
-			$categories_list = get_the_category_list( __( ', ', 'silk-lite' ) );
+			$categories_list = get_the_category_list( esc_html__( ', ', 'silk-lite' ) );
 			if ( $categories_list && silklite_categorized_blog() ) {
 				printf( '<span class="cat-links">' . __( 'Posted in %1$s', 'silk-lite' ) . '</span>', $categories_list );
 			}
 
 			/* translators: used between list items, there is a space after the comma */
-			$tags_list = get_the_tag_list( '', __( ', ', 'silk-lite' ) );
+			$tags_list = get_the_tag_list( '', esc_html__( ', ', 'silk-lite' ) );
 			if ( $tags_list ) {
-				printf( '<span class="tags-links">' . __( ' and tagged with %1$s', 'silk-lite' ) . '</span>', $tags_list );
+				printf( '<span class="tags-links">' . esc_html__( ' and tagged with %1$s', 'silk-lite' ) . '</span>', $tags_list );
 			}
 
 			printf( '.' );
@@ -358,11 +358,11 @@ if ( ! function_exists( 'silklite_entry_footer' ) ) :
 
 		if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
 			echo '<span class="comments-link">';
-			comments_popup_link( __( 'Leave a comment', 'silk-lite' ), __( '1 Comment', 'silk-lite' ), __( '% Comments', 'silk-lite' ) );
+			comments_popup_link( esc_html__( 'Leave a comment', 'silk-lite' ), esc_html__( '1 Comment', 'silk-lite' ), esc_html__( '% Comments', 'silk-lite' ) );
 			echo '</span>';
 		}
 
-		edit_post_link( __( 'Edit post', 'silk-lite' ), '<span class="edit-link">', '</span>' );
+		edit_post_link( esc_html__( 'Edit post', 'silk-lite' ), '<span class="edit-link">', '</span>' );
 	} #function
 
 endif;
@@ -381,17 +381,17 @@ if ( ! function_exists( 'the_archive_title' ) ) :
 	 */
 	function the_archive_title( $before = '', $after = '' ) {
 		if ( is_category() ) {
-			$title = sprintf( __( 'Category: %s', 'silk-lite' ), single_cat_title( '', false ) );
+			$title = sprintf( esc_html__( 'Category: %s', 'silk-lite' ), single_cat_title( '', false ) );
 		} elseif ( is_tag() ) {
-			$title = sprintf( __( 'Tag: %s', 'silk-lite' ), single_tag_title( '', false ) );
+			$title = sprintf( esc_html__( 'Tag: %s', 'silk-lite' ), single_tag_title( '', false ) );
 		} elseif ( is_author() ) {
-			$title = sprintf( __( 'Author: %s', 'silk-lite' ), '<span class="vcard">' . get_the_author() . '</span>' );
+			$title = sprintf( esc_html__( 'Author: %s', 'silk-lite' ), '<span class="vcard">' . get_the_author() . '</span>' );
 		} elseif ( is_year() ) {
-			$title = sprintf( __( 'Year: %s', 'silk-lite' ), get_the_date( _x( 'Y', 'yearly archives date format', 'silk-lite' ) ) );
+			$title = sprintf( esc_html__( 'Year: %s', 'silk-lite' ), get_the_date( _x( 'Y', 'yearly archives date format', 'silk-lite' ) ) );
 		} elseif ( is_month() ) {
-			$title = sprintf( __( 'Month: %s', 'silk-lite' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'silk-lite' ) ) );
+			$title = sprintf( esc_html__( 'Month: %s', 'silk-lite' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'silk-lite' ) ) );
 		} elseif ( is_day() ) {
-			$title = sprintf( __( 'Day: %s', 'silk-lite' ), get_the_date( _x( 'F j, Y', 'daily archives date format', 'silk-lite' ) ) );
+			$title = sprintf( esc_html__( 'Day: %s', 'silk-lite' ), get_the_date( _x( 'F j, Y', 'daily archives date format', 'silk-lite' ) ) );
 		} elseif ( is_tax( 'post_format' ) ) {
 			if ( is_tax( 'post_format', 'post-format-aside' ) ) {
 				$title = _x( 'Asides', 'post format archive title', 'silk-lite' );
@@ -413,13 +413,13 @@ if ( ! function_exists( 'the_archive_title' ) ) :
 				$title = _x( 'Chats', 'post format archive title', 'silk-lite' );
 			}
 		} elseif ( is_post_type_archive() ) {
-			$title = sprintf( __( 'Archives: %s', 'silk-lite' ), post_type_archive_title( '', false ) );
+			$title = sprintf( esc_html__( 'Archives: %s', 'silk-lite' ), post_type_archive_title( '', false ) );
 		} elseif ( is_tax() ) {
 			$tax = get_taxonomy( get_queried_object()->taxonomy );
 			/* translators: 1: Taxonomy singular name, 2: Current taxonomy term */
 			$title = sprintf( __( '%1$s: %2$s', 'silk-lite' ), $tax->labels->singular_name, single_term_title( '', false ) );
 		} else {
-			$title = __( 'Archives', 'silk-lite' );
+			$title = esc_html__( 'Archives', 'silk-lite' );
 		}
 
 		/**
