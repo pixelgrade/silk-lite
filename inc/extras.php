@@ -77,7 +77,7 @@ if ( version_compare( $GLOBALS['wp_version'], '4.1', '<' ) ) :
 
 		// Add a page number if necessary:
 		if ( ( $paged >= 2 || $page >= 2 ) && ! is_404() ) {
-			$title .= " $sep " . sprintf( __( 'Page %s', 'silk-lite' ), max( $paged, $page ) );
+			$title .= " $sep " . sprintf( esc_html__( 'Page %s', 'silk-lite' ), max( $paged, $page ) );
 		}
 
 		return $title;
@@ -211,7 +211,7 @@ if ( ! function_exists( 'silklite_comment' ) ) :
 					<div class="comment__links">
 						<?php
 						//we need some space before Edit
-						edit_comment_link( __( 'Edit', 'silk-lite' ), '  ' );
+						edit_comment_link( esc_html__( 'Edit', 'silk-lite' ), '  ' );
 
 						comment_reply_link( array_merge( $args, array(
 							'depth'     => $depth,
@@ -223,7 +223,7 @@ if ( ! function_exists( 'silklite_comment' ) ) :
 				<!-- .comment-meta -->
 				<?php if ( '0' == $comment->comment_approved ) : ?>
 					<div class="alert info">
-						<p><?php _e( 'Your comment is awaiting moderation.', 'silk-lite' ) ?></p>
+						<p><?php esc_html_e( 'Your comment is awaiting moderation.', 'silk-lite' ) ?></p>
 					</div>
 				<?php endif; ?>
 				<section class="comment__content comment">
@@ -302,10 +302,10 @@ add_filter( 'tiny_mce_before_init', 'silklite_mce_before_init' );
 function silklite_mce_before_init( $settings ) {
 
 	$style_formats = array(
-		array( 'title' => __( 'Intro Text', 'silk-lite' ), 'selector' => 'p', 'classes' => 'intro' ),
-		array( 'title' => __( 'Dropcap', 'silk-lite' ), 'inline' => 'span', 'classes' => 'dropcap' ),
-		array( 'title' => __( 'Highlight', 'silk-lite' ), 'inline' => 'span', 'classes' => 'highlight' ),
-		array( 'title' => __( 'Two Columns', 'silk-lite' ), 'selector' => 'p', 'classes' => 'twocolumn', 'wrapper' => true ),
+		array( 'title' => esc_html__( 'Intro Text', 'silk-lite' ), 'selector' => 'p', 'classes' => 'intro' ),
+		array( 'title' => esc_html__( 'Dropcap', 'silk-lite' ), 'inline' => 'span', 'classes' => 'dropcap' ),
+		array( 'title' => esc_html__( 'Highlight', 'silk-lite' ), 'inline' => 'span', 'classes' => 'highlight' ),
+		array( 'title' => esc_html__( 'Two Columns', 'silk-lite' ), 'selector' => 'p', 'classes' => 'twocolumn', 'wrapper' => true ),
 	);
 
 	$settings['style_formats'] = json_encode( $style_formats );

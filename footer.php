@@ -17,7 +17,7 @@
 
 				<?php get_search_form(); ?>
 
-				<p><?php _e( 'Begin typing your search above and press return to search. Press Esc to cancel.', 'silk-lite' ); ?></p>
+				<p><?php esc_html_e( 'Begin typing your search above and press return to search. Press Esc to cancel.', 'silk-lite' ); ?></p>
 
 			</div>
 			<button class="overlay__close"><span class="screen-reader-text"><?php _e( 'Close search', 'silk-lite' ); ?></span></button>
@@ -37,7 +37,7 @@
 					'container'      => '',
 					'menu_class'     => 'nav  nav--footer',
 					'depth'          => - 1, //flatten if there is any hierarchy
-					'items_wrap'     => '<nav><h2 class="screen-reader-text">'.__( 'Footer navigation', 'silk-lite' ).'</h2><ul id="%1$s" class="%2$s">%3$s</ul></nav>',
+					'items_wrap'     => '<nav><h2 class="screen-reader-text">' . esc_html__( 'Footer navigation', 'silk-lite' ).'</h2><ul id="%1$s" class="%2$s">%3$s</ul></nav>',
 				)
 			); ?>
 		</div>

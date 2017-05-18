@@ -29,11 +29,11 @@ if ( ! class_exists( 'SilkLite_About_Me_Widget' ) ) :
 				apply_filters( 'silk_widget_name', esc_html__( 'Silk Lite About Me', 'silk-lite' ) ),
 				array(
 					'classname'   => 'widget_silk_about_me',
-					'description' => __( 'Display some info about you with an image background.', 'silk-lite' )
+					'description' => esc_html__( 'Display some info about you with an image background.', 'silk-lite' )
 				)
 			);
 
-			$this->default_title = __( 'About Me', 'silk-lite' );
+			$this->default_title = esc_html__( 'About Me', 'silk-lite' );
 
 			add_action( 'admin_init', array( $this, 'admin_init' ) );
 		}
@@ -165,21 +165,21 @@ if ( ! class_exists( 'SilkLite_About_Me_Widget' ) ) :
 					}
 					?>
 					<input class="silk-about-me-image-id" type="hidden" name="<?php echo esc_attr( $this->get_field_name( 'image_id' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'image_id' ) ); ?>" value="<?php echo esc_attr( $image_id ); ?>">
-					<a class="button silk-about-me-widget-image-control__choose" href="#"><?php _e( 'Choose an Background Image', 'silk-lite' ); ?></a>
+					<a class="button silk-about-me-widget-image-control__choose" href="#"><?php esc_html_e( 'Choose an Background Image', 'silk-lite' ); ?></a>
 				</p>
 
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'name' ) ); ?>"><?php _e( 'Your Name:', 'silk-lite' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'name' ) ); ?>"><?php esc_html_e( 'Your Name:', 'silk-lite' ); ?></label>
 					<input class="widefat" type="text" name="<?php echo esc_attr( $this->get_field_name( 'name' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'name' ) ); ?>" value="<?php echo esc_attr( $name ); ?>">
 				</p>
 
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>"><?php _e( 'About You:', 'silk-lite' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>"><?php esc_html_e( 'About You:', 'silk-lite' ); ?></label>
 					<textarea class="widefat" name="<?php echo esc_attr( $this->get_field_name( 'text' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>" rows="4"><?php echo esc_textarea( $text ); ?></textarea>
 				</p>
 
 				<p>
-					<input id="<?php echo $this->get_field_id( 'filter' ); ?>" name="<?php echo $this->get_field_name( 'filter' ); ?>" type="checkbox" <?php checked( isset( $instance['filter'] ) ? $instance['filter'] : 0 ); ?> />&nbsp;<label for="<?php echo $this->get_field_id( 'filter' ); ?>"><?php _e( 'Automatically add paragraphs', 'silk-lite' ); ?></label>
+					<input id="<?php echo $this->get_field_id( 'filter' ); ?>" name="<?php echo $this->get_field_name( 'filter' ); ?>" type="checkbox" <?php checked( isset( $instance['filter'] ) ? $instance['filter'] : 0 ); ?> />&nbsp;<label for="<?php echo $this->get_field_id( 'filter' ); ?>"><?php esc_html_e( 'Automatically add paragraphs', 'silk-lite' ); ?></label>
 				</p>
 
 			</div>

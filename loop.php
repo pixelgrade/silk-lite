@@ -7,7 +7,7 @@
 
 $classes = 'archive__grid  grid'; ?>
 
-<h1 class="screen-reader-text"><?php _e( 'Blog', 'silk-lite' ); ?></h1>
+<h1 class="screen-reader-text"><?php esc_html_e( 'Blog', 'silk-lite' ); ?></h1>
 <div id="posts" class="<?php echo esc_attr( $classes ); ?>">
 <?php
 /* Start the Loop */
@@ -32,7 +32,7 @@ if ( true === $is_infinite ) : ?>
 			<span class="handle__icon">
 				<?php get_template_part( 'assets/svg/clepsydra' ); ?>
 			</span>
-			<span class="handle__text"><?php _e( 'View More Articles', 'silk-lite' ); ?></span>
+			<span class="handle__text"><?php esc_html_e( 'View More Articles', 'silk-lite' ); ?></span>
 		</button>
 	</div>
 

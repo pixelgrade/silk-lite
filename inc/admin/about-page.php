@@ -16,11 +16,11 @@ function silklite_admin_setup() {
 	*/
 	$config = array(
 		// Menu name under Appearance.
-		'menu_name'               => __( 'About Silk Lite', 'silk-lite' ),
+		'menu_name'               => esc_html__( 'About Silk Lite', 'silk-lite' ),
 		// Page title.
-		'page_name'               => __( 'About Silk Lite', 'silk-lite' ),
+		'page_name'               => esc_html__( 'About Silk Lite', 'silk-lite' ),
 		// Main welcome title
-		'welcome_title'         => sprintf( __( 'Welcome to %s! - Version ', 'silk-lite' ), 'Silk Lite' ),
+		'welcome_title'         => sprintf( esc_html__( 'Welcome to %s! - Version ', 'silk-lite' ), 'Silk Lite' ),
 		// Main welcome content
 		'welcome_content'       => esc_html__( ' Silk Lite is a free magazine-style theme designed to empower fashion bloggers to write more beautiful stories into an eye-candy playground.', 'silk-lite' ),
 		/**
@@ -30,12 +30,12 @@ function silklite_admin_setup() {
 		 * the will be the name of the function which will be used to render the tab content.
 		 */
 		'tabs'                    => array(
-			'getting_started'  => __( 'Getting Started', 'silk-lite' ),
-			'recommended_actions' => __( 'Recommended Actions', 'silk-lite' ),
-			'recommended_plugins' => __( 'Useful Plugins','silk-lite' ),
-			'support'       => __( 'Support', 'silk-lite' ),
-			'changelog'        => __( 'Changelog', 'silk-lite' ),
-			'free_pro'         => __( 'Free VS PRO', 'silk-lite' ),
+			'getting_started'  => esc_html__( 'Getting Started', 'silk-lite' ),
+			'recommended_actions' => esc_html__( 'Recommended Actions', 'silk-lite' ),
+			'recommended_plugins' => esc_html__( 'Useful Plugins','silk-lite' ),
+			'support'       => esc_html__( 'Support', 'silk-lite' ),
+			'changelog'        => esc_html__( 'Changelog', 'silk-lite' ),
+			'free_pro'         => esc_html__( 'Free VS PRO', 'silk-lite' ),
 		),
 		// Support content tab.
 		'support_content'      => array(
@@ -97,32 +97,32 @@ function silklite_admin_setup() {
 			'get_pro_theme_label' => sprintf( __( 'View %s', 'silk-lite' ), 'Silk Pro' ),
 			'features'            => array(
 				array(
-					'title'       => __( 'Exquisite Design', 'silk-lite' ),
-					'description' => __( 'Design is a great way to share appealing stories. Silk helps you to become a better storyteller into the digital world. Thanks to a very human approach in terms of interaction, a gentle and eye-candy typography and stylish details, you can definitely reach the right audience.', 'silk-lite' ),
+					'title'       => esc_html__( 'Exquisite Design', 'silk-lite' ),
+					'description' => esc_html__( 'Design is a great way to share appealing stories. Silk helps you to become a better storyteller into the digital world. Thanks to a very human approach in terms of interaction, a gentle and eye-candy typography and stylish details, you can definitely reach the right audience.', 'silk-lite' ),
 					'is_in_lite'  => 'true',
 					'is_in_pro'   => 'true',
 				),
 				array(
-					'title'       => __( 'Mobile-Ready and Responsive for All Devices', 'silk-lite' ),
-					'description' => __( 'One of the perks of living these days is the tremendous chance to stay connected with everything you love without boundaries. That’s why SIlk is mobile-ready and facilitates your users to easily enjoy your content, no matter the device they like to use on a daily basis.', 'silk-lite' ),
+					'title'       => esc_html__( 'Mobile-Ready and Responsive for All Devices', 'silk-lite' ),
+					'description' => esc_html__( 'One of the perks of living these days is the tremendous chance to stay connected with everything you love without boundaries. That’s why SIlk is mobile-ready and facilitates your users to easily enjoy your content, no matter the device they like to use on a daily basis.', 'silk-lite' ),
 					'is_in_lite'  => 'true',
 					'is_in_pro'   => 'true',
 				),
 				array(
-					'title'       => __( 'Social Integration', 'silk-lite' ),
-					'description' => __( 'Let your voice be heard by the right people. Aim to build a strong community around your fashion blog and start a smart dialogue with those who admire your work. Facebook, Twitter, Instagram, you name it, but be aware that all can boost your content and increase awareness.', 'silk-lite' ),
+					'title'       => esc_html__( 'Social Integration', 'silk-lite' ),
+					'description' => esc_html__( 'Let your voice be heard by the right people. Aim to build a strong community around your fashion blog and start a smart dialogue with those who admire your work. Facebook, Twitter, Instagram, you name it, but be aware that all can boost your content and increase awareness.', 'silk-lite' ),
 					'is_in_lite'  => 'true',
 					'is_in_pro'   => 'true',
 				),
 				array(
-					'title'       => __( 'Personalize to Match Your Style', 'silk-lite' ),
-					'description' => __( 'Having different tastes and preferences might be tricky for users, but not with Silk onboard. It has an intuitive and catchy interface which allows you to change fonts, colors or layout sizes in a blink of an eye.', 'silk-lite' ),
+					'title'       => esc_html__( 'Personalize to Match Your Style', 'silk-lite' ),
+					'description' => esc_html__( 'Having different tastes and preferences might be tricky for users, but not with Silk onboard. It has an intuitive and catchy interface which allows you to change fonts, colors or layout sizes in a blink of an eye.', 'silk-lite' ),
 					'is_in_lite'  => 'false',
 					'is_in_pro'   => 'true',
 				),
 				array(
-					'title'       => __( 'Featured Posts Slider', 'silk-lite' ),
-					'description' => __( 'Showcase the latest posts from a category under menu without losing precious time and money. Highlight those articles you feel proud about with no effort and let people know about your appetite for a topic or another.', 'silk-lite' ),
+					'title'       => esc_html__( 'Featured Posts Slider', 'silk-lite' ),
+					'description' => esc_html__( 'Showcase the latest posts from a category under menu without losing precious time and money. Highlight those articles you feel proud about with no effort and let people know about your appetite for a topic or another.', 'silk-lite' ),
 					'is_in_lite'  => 'false',
 					'is_in_pro'   => 'true',
 				),
@@ -133,14 +133,14 @@ function silklite_admin_setup() {
 					'is_in_pro'   => 'true',
 				),
 				array(
-					'title'       => __( 'Comprehensive Help Guide', 'silk-lite' ),
-					'description' => __( 'Extensive documentation that will help you get your site up quickly and seamlessly.', 'silk-lite' ),
+					'title'       => esc_html__( 'Comprehensive Help Guide', 'silk-lite' ),
+					'description' => esc_html__( 'Extensive documentation that will help you get your site up quickly and seamlessly.', 'silk-lite' ),
 					'is_in_lite'  => 'false',
 					'is_in_pro'   => 'true',
 				),
 				array(
-					'title'       => __( 'No credit footer link', 'silk-lite' ),
-					'description' => __( 'Remove "Theme: Silk Lite by Pixelgrade" copyright from the footer area.', 'silk-lite' ),
+					'title'       => esc_html__( 'No credit footer link', 'silk-lite' ),
+					'description' => esc_html__( 'Remove "Theme: Silk Lite by Pixelgrade" copyright from the footer area.', 'silk-lite' ),
 					'is_in_lite'  => 'false',
 					'is_in_pro'   => 'true',
 				)
