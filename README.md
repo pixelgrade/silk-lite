@@ -1,27 +1,16 @@
-# Silk Lite
-Theme URI: https://pixelgrade.com/themes/silk-lite/
-Author: Pixelgrade
-Author URI: https://pixelgrade.com
-Description: An enchanting magazine style theme for fashion bloggers, prized for its smart layout and smooth animations. Whether you're looking to share your own thoughts, write about your latest findings or just have a scrapbook of photos, SILK is designed to fulfill these and a lot more.
-Version: 1.2.8
-License: GNU General Public License v2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: translation-ready, theme-options, footer-widgets, featured-images, custom-menu, custom-colors, custom-background, grid-layout, two-columns, three-columns, four-columns, blog
+# SILK LITE
+An enchanting magazine style theme for fashion bloggers, prized for its smart layout and smooth animations. Whether you're looking to share your own thoughts, write about your latest findings or just have a scrapbook of photos, SILK LITE is designed to fulfill these and a lot more.
 
-== Description ==
-
-An enchanting magazine style theme for fashion bloggers, prized for its smart layout and smooth animations. Whether you're looking to share your own thoughts, write about your latest findings or just have a scrapbook of photos, SILK is designed to fulfill these and a lot more.
-
-== Installation ==
+## Installation
 
 1. In your admin panel, go to Appearance -> Themes and click the Add New button.
 2. Click Upload and Choose File, then select the theme's .zip file. Click Install Now.
 3. Click Activate to use your new theme right away.
 
-== Recommended plugin ==
+## Recommended plugin
 By installing Jetpack plugin, you'll be able to get special widgets like Newsletter or Popular Posts widget.
 
-== Changelog ==
+## Changelog
 
 = 1.2.8 - May 18 2017 =
 * Added About Silk Lite page 
@@ -29,7 +18,7 @@ By installing Jetpack plugin, you'll be able to get special widgets like Newslet
 = 1.0.0 =
 * Initial release
 
-== Credits ==
+## Credits
 
 Unless otherwise specified, all the theme files, scripts and images are licensed under GNU General Public License.
 
