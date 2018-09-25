@@ -6,8 +6,7 @@
  */
 
 //get the media objects from the content and bring up only the first one
-$media = silklite_video_attachment();
-$media = apply_filters('embed_oembed_html', $media ); ?>
+$media = silklite_video_attachment(); ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
