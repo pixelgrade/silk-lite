@@ -4,18 +4,18 @@
   "devDependencies": {
     "browser-sync": "*",
     "del": "*",
-    "gulp": "*",
+    "gulp": "^3.9.1",
     "gulp-autoprefixer": "*",
     "gulp-concat": "*",
     "gulp-exec": "*",
-    "gulp-rename": "*",
-    "gulp-replace": "*",
     "gulp-help": "*",
     "gulp-json-to-sass-map": "*",
+    "gulp-prompt": "^0.2.0",
+    "gulp-rename": "*",
+    "gulp-replace": "*",
     "gulp-sass": "*",
     "gulp-sourcemaps": "*",
     "gulp-util": "*",
-    "gulp-prompt": "^0.2.0",
     "run-sequence": "*"
   }
 }
