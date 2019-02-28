@@ -2,7 +2,7 @@
 	/**
 	 * @package     Freemius
 	 * @copyright   Copyright (c) 2015, Freemius, Inc.
-	 * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+	 * @license     https://www.gnu.org/licenses/gpl-3.0.html GNU General Public License Version 3
 	 * @since       1.0.3
 	 */
 
@@ -220,7 +220,10 @@
 		 */
 		function api_error( $api_result, $wrapper = false ) {
 			$message = '';
-			if ( is_object( $api_result ) && isset( $api_result->error ) ) {
+			if ( is_object( $api_result ) &&
+			     ! empty( $api_result->error ) &&
+			     ! empty( $api_result->error->message )
+			) {
 				$message = $api_result->error->message;
 			} else if ( is_object( $api_result ) ) {
 				$message = var_export( $api_result, true );

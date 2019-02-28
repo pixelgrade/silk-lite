@@ -2,7 +2,7 @@
 	/**
 	 * @package     Freemius
 	 * @copyright   Copyright (c) 2015, Freemius, Inc.
-	 * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+	 * @license     https://www.gnu.org/licenses/gpl-3.0.html GNU General Public License Version 3
 	 * @since       1.0.6
 	 */
 
@@ -68,14 +68,14 @@
 		}
 
 		protected function get_option_manager() {
-			return FS_Option_Manager::get_manager( WP_FS__ACCOUNTS_OPTION_NAME, true );
+			return FS_Option_Manager::get_manager( WP_FS__ACCOUNTS_OPTION_NAME, true, true );
 		}
 
 		/**
 		 * @author Leo Fajardo (@leorw)
 		 * @since  1.2.2
 		 *
-		 * @param  string|false $module_type "plugin", "theme", or "false" for all modules.
+		 * @param  string|bool $module_type "plugin", "theme", or "false" for all modules.
 		 *
 		 * @return array
 		 */

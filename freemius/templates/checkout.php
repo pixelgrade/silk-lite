@@ -2,7 +2,7 @@
 	/**
 	 * @package     Freemius
 	 * @copyright   Copyright (c) 2015, Freemius, Inc.
-	 * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+	 * @license     https://www.gnu.org/licenses/gpl-3.0.html GNU General Public License Version 3
 	 * @since       1.0.3
 	 */
 
@@ -12,17 +12,25 @@
 	 *  of the SDK is relevant both for plugins and themes, for obvious reasons,
 	 *  we only develop and maintain one code base.
 	 *
-	 *  This code (and page) will not run for wp.org themes (only plugins)
-	 *  since theme admin settings/options are now only allowed in the customizer.
+	 *  This code (and page) will not run for wp.org themes (only plugins).
 	 *
 	 *  In addition, this page loads an i-frame. We intentionally named it 'frame'
 	 *  so it will pass the "Theme Check" that is looking for the string "i" . "frame".
+	 *
+	 * UPDATE:
+	 *  After ongoing conversations with the WordPress.org TRT we received
+	 *  an official approval for including i-frames in the theme's WP Admin setting's
+	 *  page tab (the SDK will never add any i-frames on the sitefront). i-frames
+	 *  were never against the guidelines, but we wanted to get the team's blessings
+	 *  before we move forward. For the record, I got the final approval from
+	 *  Ulrich Pogson (@grapplerulrich), a team lead at the TRT during WordCamp
+	 *  Europe 2017 (June 16th, 2017).
 	 *
 	 * If you have any questions or need clarifications, please don't hesitate
 	 * pinging me on slack, my username is @svovaf.
 	 *
 	 * @author Vova Feldman (@svovaf)
-	 * @since  1.2.2
+	 * @since 1.2.2
 	 */
 
 	if ( ! defined( 'ABSPATH' ) ) {
@@ -113,7 +121,7 @@
 
 		$fs_user = Freemius::_get_user_by_email( $current_user->user_email );
 
-		if ( is_object( $fs_user ) ) {
+		if ( is_object( $fs_user ) && $fs_user->is_verified() ) {
 			$context_params = array_merge( $context_params, FS_Security::instance()->get_context_params(
 				$fs_user,
 				$timestamp,
@@ -140,23 +148,33 @@
 
 	$return_url = $fs->_get_sync_license_url( $plugin_id );
 
+	$can_user_install = (
+		( $fs->is_plugin() && current_user_can( 'install_plugins' ) ) ||
+		( $fs->is_theme() && current_user_can( 'install_themes' ) )
+	);
+
 	$query_params = array_merge( $context_params, $_GET, array(
 		// Current plugin version.
 		'plugin_version' => $fs->get_plugin_version(),
 		'sdk_version'    => WP_FS__SDK_VERSION,
 		'is_premium'     => $is_premium ? 'true' : 'false',
+		'can_install'    => $can_user_install ? 'true' : 'false',
 		'return_url'     => $return_url,
-		// Admin CSS URL for style/design competability.
-//		'wp_admin_css'   => get_bloginfo('wpurl') . "/wp-admin/load-styles.php?c=1&load=buttons,wp-admin,dashicons",
 	) );
 
 	$xdebug_session = fs_request_get( 'XDEBUG_SESSION' );
 	if ( false !== $xdebug_session ) {
 		$query_params['XDEBUG_SESSION'] = $xdebug_session;
 	}
+
+	$view_params = array(
+		'id'   => $VARS['id'],
+		'page' => strtolower( $fs->get_text_inline( 'Checkout', 'checkout' ) ) . ' ' . $fs->get_text_inline( 'PCI compliant', 'pci-compliant' ),
+	);
+	fs_require_once_template('secure-https-header.php', $view_params);
 ?>
-	<div id="fs_checkout" class="wrap fs-full-size-wrapper">
-		<div id="frame"></div>
+	<div id="fs_checkout" class="wrap fs-section fs-full-size-wrapper">
+		<div id="fs_frame"></div>
 		<script type="text/javascript">
 			// http://stackoverflow.com/questions/4583703/jquery-post-request-not-ajax
 			jQuery(function ($) {
@@ -215,8 +233,8 @@
 						// passed via query string or hard coded into the child page, it depends on your needs).
 						src          = base_url + '/?<?php echo http_build_query( $query_params ) ?>#' + encodeURIComponent(document.location.href),
 						// Append the i-frame into the DOM.
-						frame        = $('<i' + 'frame " src="' + src + '" width="100%" height="' + frame_height + 'px" scrolling="no" frameborder="0" style="background: transparent;"><\/i' + 'frame>')
-							.appendTo('#frame');
+						frame        = $('<i' + 'frame " src="' + src + '" width="100%" height="' + frame_height + 'px" scrolling="no" frameborder="0" style="background: transparent; width: 1px; min-width: 100%;"><\/i' + 'frame>')
+							.appendTo('#fs_frame');
 
 					FS.PostMessage.init(base_url, [frame[0]]);
 					FS.PostMessage.receiveOnce('height', function (data) {
@@ -285,6 +303,10 @@
 						FS.PostMessage.post('context', <?php echo json_encode( $install_data ) ?>, frame[0]);
 					});
 
+					FS.PostMessage.receiveOnce('purchaseCompleted', <?php echo $fs->apply_filters('checkout/purchaseCompleted', 'function (data) {
+						console.log("checkout", "purchaseCompleted");
+					}') ?>);
+
 					FS.PostMessage.receiveOnce('get_dimensions', function (data) {
 						console.debug('receiveOnce', 'get_dimensions');
 
@@ -295,7 +317,7 @@
 					});
 
 					var updateHeight = function () {
-						frame.css('min-height', $('#wpwrap').height() + 'px');
+						frame.css('min-height', $(document.body).height() + 'px');
 					};
 
 					$(document).ready(updateHeight);

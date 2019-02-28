@@ -2,7 +2,7 @@
 	/**
 	 * @package     Freemius
 	 * @copyright   Copyright (c) 2015, Freemius, Inc.
-	 * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+	 * @license     https://www.gnu.org/licenses/gpl-3.0.html GNU General Public License Version 3
 	 * @since       1.0.4
 	 */
 
@@ -87,7 +87,7 @@
 				require_once WP_FS__DIR_SDK . '/FreemiusWordPress.php';
 			}
 
-			self::$_options = FS_Option_Manager::get_manager( WP_FS__OPTIONS_OPTION_NAME, true );
+			self::$_options = FS_Option_Manager::get_manager( WP_FS__OPTIONS_OPTION_NAME, true, true );
 			self::$_cache   = FS_Cache_Manager::get_manager( WP_FS__API_CACHE_OPTION_NAME );
 
 			self::$_clock_diff = self::$_options->get_option( 'api_clock_diff', 0 );
@@ -232,13 +232,13 @@
 
 			$cached_result = self::$_cache->get( $cache_key );
 
-			if ( $flush || ! self::$_cache->has_valid( $cache_key ) ) {
+			if ( $flush || ! self::$_cache->has_valid( $cache_key, $expiration ) ) {
 				$result = $this->call( $path );
 
 				if ( ! is_object( $result ) || isset( $result->error ) ) {
 					// Api returned an error.
 					if ( is_object( $cached_result ) &&
-					     ! isset( $cached_result )
+					     ! isset( $cached_result->error )
 					) {
 						// If there was an error during a newer data fetch,
 						// fallback to older data version.
@@ -248,9 +248,19 @@
 							$this->_logger->warn( 'Fallback to cached API result: ' . var_export( $cached_result, true ) );
 						}
 					} else {
-						// If no older data version, return result without
-						// caching the error.
-						return $result;
+					    if ( is_object( $result ) && 404 == $result->error->http ) {
+                            /**
+                             * If the response code is 404, cache the result for half of the `$expiration`.
+                             *
+                             * @author Leo Fajardo (@leorw)
+                             * @since 2.2.3.1
+                             */
+					        $expiration /= 2;
+                        } else {
+                            // If no older data version and the response code is not 404, return result without
+                            // caching the error.
+                            return $result;
+                        }
 					}
 				}
 
@@ -300,7 +310,26 @@
 			self::$_cache->purge( $cache_key );
 		}
 
-		/**
+        /**
+         * Invalidate a cached version of the API request.
+         *
+         * @author Vova Feldman (@svovaf)
+         * @since  2.0.0
+         *
+         * @param string $path
+         * @param int    $expiration
+         * @param string $method
+         * @param array  $params
+         */
+        function update_cache_expiration( $path, $expiration = WP_FS__TIME_24_HOURS_IN_SEC, $method = 'GET', $params = array() ) {
+            $this->_logger->entrance( "{$method}:{$path}:{$expiration}" );
+
+            $cache_key = $this->get_cache_key( $path, $method, $params );
+
+            self::$_cache->update_expiration( $cache_key, $expiration );
+        }
+
+        /**
 		 * @param string $path
 		 * @param string $method
 		 * @param array  $params
@@ -520,6 +549,22 @@
 			       is_string( $result );
 		}
 
+        /**
+         * @author Vova Feldman (@svovaf)
+         * @since  2.0.0
+         *
+         * @param mixed $result
+         *
+         * @return bool Is API result contains an error.
+         */
+        static function is_api_error_object( $result ) {
+            return (
+                is_object( $result ) &&
+                isset( $result->error ) &&
+                isset( $result->error->message )
+            );
+        }
+
 		/**
 		 * Checks if given API result is a non-empty and not an error object.
 		 *
@@ -553,6 +598,28 @@
 			return self::is_api_result_object( $result, 'id' ) &&
 			       FS_Entity::is_valid_id( $result->id );
 		}
+
+        /**
+         * Get API result error code. If failed to get code, returns an empty string.
+         *
+         * @author Vova Feldman (@svovaf)
+         * @since  2.0.0
+         *
+         * @param mixed $result
+         *
+         * @return string
+         */
+        static function get_error_code( $result ) {
+            if ( is_object( $result ) &&
+                 isset( $result->error ) &&
+                 is_object( $result->error ) &&
+                 ! empty( $result->error->code )
+            ) {
+                return $result->error->code;
+            }
+
+            return '';
+        }
 
 		#endregion
 	}

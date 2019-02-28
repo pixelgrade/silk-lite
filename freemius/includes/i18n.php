@@ -2,8 +2,10 @@
 	/**
 	 * @package     Freemius
 	 * @copyright   Copyright (c) 2015, Freemius, Inc.
-	 * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+	 * @license     https://www.gnu.org/licenses/gpl-3.0.html GNU General Public License Version 3
 	 * @since       1.1.4
+     *
+     * @deprecated  This file is no longer in use. It's still in the project for backward compatibility.
 	 */
 
 	if ( ! defined( 'ABSPATH' ) ) {
@@ -29,19 +31,19 @@
 	 *      my_freemius->override_i18n( array(
 	 *          'opt-in-connect' => __( "Yes - I'm in!", '{your-text_domain}' ),
 	 *          'skip'           => __( 'Not today', '{your-text_domain}' ),
-	 *      );
+	 *      ) );
 	 */
 	global $fs_text;
 
 	$fs_text = array(
 		'account'                       => _fs_text( 'Account' ),
-		'addon'                         => _fs_text( 'Add On' ),
+		'addon'                         => _fs_text( 'Add-On' ),
 		'contact-us'                    => _fs_text( 'Contact Us' ),
 		'contact-support'               => _fs_text( 'Contact Support' ),
 		'change-ownership'              => _fs_text( 'Change Ownership' ),
 		'support'                       => _fs_text( 'Support' ),
 		'support-forum'                 => _fs_text( 'Support Forum' ),
-		'add-ons'                       => _fs_text( 'Add Ons' ),
+		'add-ons'                       => _fs_text( 'Add-Ons' ),
 		'upgrade'                       => _fs_x( 'Upgrade', 'verb' ),
 		'awesome'                       => _fs_text( 'Awesome' ),
 		'pricing'                       => _fs_x( 'Pricing', 'noun' ),
@@ -85,18 +87,64 @@
 		'license-single-site'           => _fs_text( 'Single Site License' ),
 		'license-unlimited'             => _fs_text( 'Unlimited Licenses' ),
 		'license-x-sites'               => _fs_text( 'Up to %s Sites' ),
-		'renew-license-now'             => _fs_text( '%sRenew your license now%s to access version %s features and support.' ),
+		'renew-license-now'             => _fs_text( '%sRenew your license now%s to access version %s security & feature updates, and support.' ),
 		'ask-for-upgrade-email-address' => _fs_text( "Enter the email address you've used for the upgrade below and we will resend you the license key." ),
 		'x-plan'                        => _fs_x( '%s Plan', 'e.g. Professional Plan' ),
 		'you-are-step-away'             => _fs_text( 'You are just one step away - %s' ),
 		'activate-x-now'                => _fs_x( 'Complete "%s" Activation Now',
 			'%s - plugin name. As complete "Jetpack" activation now' ),
 		'few-plugin-tweaks'             => _fs_text( 'We made a few tweaks to the %s, %s' ),
-		'optin-x-now'                   => _fs_text( 'Opt-in to make "%s" Better!' ),
+		'optin-x-now'                   => _fs_text( 'Opt in to make "%s" better!' ),
 		'error'                         => _fs_text( 'Error' ),
 		'failed-finding-main-path'      => _fs_text( 'Freemius SDK couldn\'t find the plugin\'s main file. Please contact sdk@freemius.com with the current error.' ),
-		#region Account
+        'learn-more'                    => _fs_text( 'Learn more' ),
 
+		#region Affiliation
+        'affiliation'                        => _fs_text( 'Affiliation' ),
+        'affiliate'                          => _fs_text( 'Affiliate' ),
+        'affiliate-tracking'                 => _fs_text( '%s tracking cookie after the first visit to maximize earnings potential.' ),
+        'renewals-commission'                => _fs_text( 'Get commission for automated subscription renewals.' ),
+        'affiliate-application-accepted'     => _fs_text( "Your affiliate application for %s has been accepted! Log in to your affiliate area at: %s." ),
+        'affiliate-application-thank-you'    => _fs_text( "Thank you for applying for our affiliate program, we'll review your details during the next 14 days and will get back to you with further information." ),
+        'affiliate-application-rejected'     => _fs_text( "Thank you for applying for our affiliate program, unfortunately, we've decided at this point to reject your application. Please try again in 30 days." ),
+        'affiliate-account-suspended'        => _fs_text( 'Your affiliation account was temporarily suspended.' ),
+        'affiliate-account-blocked'          => _fs_text( 'Due to violation of our affiliation terms, we decided to temporarily block your affiliation account. If you have any questions, please contact support.' ),
+        'become-an-ambassador'               => _fs_text( 'Like the %s? Become our ambassador and earn cash ;-)' ),
+        'become-an-ambassador-admin-notice'  => _fs_text( 'Hey there, did you know that %s has an affiliate program? If you like the %s you can become our ambassador and earn some cash!' ),
+        'refer-new-customers'                => _fs_text( 'Refer new customers to our %s and earn %s commission on each successful sale you refer!' ),
+        'program-summary'                    => _fs_text( 'Program Summary' ),
+        'commission-on-new-license-purchase' => _fs_text( '%s commission when a customer purchases a new license.' ),
+        'unlimited-commissions'              => _fs_text( 'Unlimited commissions.' ),
+        'minimum-payout-amount'              => _fs_text( '%s minimum payout amount.' ),
+        'payouts-unit-and-processing'        => _fs_text( 'Payouts are in USD and processed monthly via PayPal.' ),
+        'commission-payment'                 => _fs_text( 'As we reserve 30 days for potential refunds, we only pay commissions that are older than 30 days.' ),
+        'become-an-affiliate'                => _fs_text( 'Become an affiliate' ),
+        'apply-to-become-an-affiliate'       => _fs_text( 'Apply to become an affiliate' ),
+        'full-name'                          => _fs_text( 'Full name' ),
+        'paypal-account-email-address'       => _fs_text( 'PayPal account email address' ),
+        'promotion-methods'                  => _fs_text( 'Promotion methods' ),
+        'social-media'                       => _fs_text( 'Social media (Facebook, Twitter, etc.)' ),
+        'mobile-apps'                        => _fs_text( 'Mobile apps' ),
+        'statistics-information-field-label' => _fs_text( 'Website, email, and social media statistics (optional)' ),
+        'statistics-information-field-desc'  => _fs_text( 'Please feel free to provide any relevant website or social media statistics, e.g. monthly unique site visits, number of email subscribers, followers, etc. (we will keep this information confidential).' ),
+        'promotion-method-desc-field-label'  => _fs_text( 'How will you promote us?' ),
+        'promotion-method-desc-field-desc'   => _fs_text( 'Please provide details on how you intend to promote %s (please be as specific as possible).' ),
+        'domain-field-label'                 => _fs_text( 'Where are you going to promote the %s?' ),
+        'domain-field-desc'                  => _fs_text( 'Enter the domain of your website or other websites from where you plan to promote the %s.' ),
+        'extra-domain-fields-label'          => _fs_text( 'Extra Domains' ),
+        'extra-domain-fields-desc'           => _fs_text( 'Extra domains where you will be marketing the product from.' ),
+        'add-another-domain'                 => _fs_text( 'Add another domain' ),
+        'remove'                             => _fs_x( 'Remove', 'Remove domain' ),
+        'email-address-is-required'          => _fs_text( 'Email address is required.' ),
+        'domain-is-required'                 => _fs_text( 'Domain is required.' ),
+        'invalid-domain'                     => _fs_text( 'Invalid domain' ),
+        'paypal-email-address-is-required'   => _fs_text( 'PayPal email address is required.' ),
+        'processing'                         => _fs_text( 'Processing...' ),
+        'non-expiring'                       => _fs_text( 'Non-expiring' ),
+        'account-is-pending-activation'      => _fs_text( 'Account is pending activation.' ),
+        #endregion Affiliation
+
+		#region Account
 		'expiration'                   => _fs_x( 'Expiration', 'as expiration date' ),
 		'license'                      => _fs_x( 'License', 'as software license' ),
 		'not-verified'                 => _fs_text( 'not verified' ),
@@ -167,7 +215,7 @@
 		'delete-account-confirm'       => _fs_text( 'Deletion is not temporary. Only delete if you no longer want to use this %s anymore. Are you sure you would like to continue with the deletion?' ),
 		'downgrade-x-confirm'          => _fs_text( 'Downgrading your plan will immediately stop all future recurring payments and your %s plan license will expire in %s.' ),
 		'cancel-trial-confirm'         => _fs_text( 'Cancelling the trial will immediately block access to all premium features. Are you sure?' ),
-		'after-downgrade-non-blocking' => _fs_text( 'You can still enjoy all %s features but you will not have access to %s updates and support.' ),
+		'after-downgrade-non-blocking' => _fs_text( 'You can still enjoy all %s features but you will not have access to %s security & feature updates, nor support.' ),
 		'after-downgrade-blocking'     => _fs_text( 'Once your license expires you can still use the Free version but you will NOT have access to the %s features.' ),
 		'proceed-confirmation'         => _fs_text( 'Are you sure you want to proceed?' ),
 		#endregion Account
@@ -217,13 +265,13 @@
 		#region Connect
 		'hey-x'                                    => _fs_x( 'Hey %s,', 'greeting' ),
 		'thanks-x'                                 => _fs_x( 'Thanks %s!', 'a greeting. E.g. Thanks John!' ),
-		'connect-message'                          => _fs_text( 'Never miss an important update - opt-in to our security and feature updates notifications, and non-sensitive diagnostic tracking with %4$s.' ),
-		'connect-message_on-update'                => _fs_text( 'Please help us improve %1$s! If you opt-in, some data about your usage of %1$s will be sent to %4$s. If you skip this, that\'s okay! %1$s will still work just fine.' ),
+		'connect-message'                          => _fs_text( 'Never miss an important update - opt in to our security and feature updates notifications, and non-sensitive diagnostic tracking with %4$s.' ),
+		'connect-message_on-update'                => _fs_text( 'Please help us improve %1$s! If you opt in, some data about your usage of %1$s will be sent to %4$s. If you skip this, that\'s okay! %1$s will still work just fine.' ),
 		'pending-activation-message'               => _fs_text( 'You should receive an activation email for %s to your mailbox at %s. Please make sure you click the activation button in that email to %s.' ),
 		'complete-the-install'                     => _fs_text( 'complete the install' ),
 		'start-the-trial'                          => _fs_text( 'start the trial' ),
 		'thanks-for-purchasing'                    => _fs_text( 'Thanks for purchasing %s! To get started, please enter your license key:' ),
-		'license-sync-disclaimer'                  => _fs_text( 'The %s will be periodically sending data to %s to check for %s updates and verify the validity of your license.' ),
+		'license-sync-disclaimer'                  => _fs_text( 'The %1$s will be periodically sending data to %2$s to check for security and feature updates, and verify the validity of your license.' ),
 		'what-permissions'                         => _fs_text( 'What permissions are being granted?' ),
 		'permissions-profile'                      => _fs_text( 'Your Profile Overview' ),
 		'permissions-profile_desc'                 => _fs_text( 'Name and email address' ),
@@ -261,6 +309,12 @@
 		'opt-out-message-appreciation'             => _fs_text( 'We appreciate your help in making the %s better by letting us track some usage data.' ),
 		'opt-out-message-usage-tracking'           => _fs_text( "Usage tracking is done in the name of making %s better. Making a better user experience, prioritizing new features, and more good things. We'd really appreciate if you'll reconsider letting us continue with the tracking." ),
 		'opt-out-message-clicking-opt-out'         => _fs_text( 'By clicking "Opt Out", we will no longer be sending any data from %s to %s.' ),
+		'apply-on-all-sites-in-the-network'        => _fs_text( 'Apply on all sites in the network.' ),
+		'delegate-to-site-admins'                  => _fs_text( 'Delegate to Site Admins' ),
+		'delegate-to-site-admins-and-continue'     => _fs_text( 'Delegate to Site Admins & Continue' ),
+		'continue'                                 => _fs_text( 'Continue' ),
+		'allow'                                    => _fs_text( 'allow' ),
+		'delegate'                                 => _fs_text( 'delegate' ),
 		#endregion Connect
 
 		#region Screenshots
@@ -390,7 +444,8 @@
 		'connectivity-test-fails-message'          => _fs_text( 'From unknown reason, the API connectivity test failed.' ),
 		'connectivity-test-maybe-temporary'        => _fs_text( 'It\'s probably a temporary issue on our end. Just to be sure, with your permission, would it be o.k to run another connectivity test?' ),
 		'curl-missing-message'                     => _fs_text( 'We use PHP cURL library for the API calls, which is a very common library and usually installed and activated out of the box. Unfortunately, cURL is not activated (or disabled) on your server.' ),
-		'curl-disabled-methods'                    => _fs_text( 'Disabled method(s):' ),		'cloudflare-blocks-connection-message'     => _fs_text( 'From unknown reason, CloudFlare, the firewall we use, blocks the connection.' ),
+		'curl-disabled-methods'                    => _fs_text( 'Disabled method(s):' ),
+        'cloudflare-blocks-connection-message'     => _fs_text( 'From unknown reason, CloudFlare, the firewall we use, blocks the connection.' ),
 		'x-requires-access-to-api'                 => _fs_x( '%s requires an access to our API.',
 			'as pluginX requires an access to our API' ),
 		'squid-blocks-connection-message'          => _fs_text( 'It looks like your server is using Squid ACL (access control lists), which blocks the connection.' ),
@@ -455,7 +510,7 @@
 		/* translators: %1$s: Number of trial days; %2$s: Plan name; */
 		'start-trial-prompt-header'                => _fs_text( 'You are 1-click away from starting your %1$s-day free trial of the %2$s plan.' ),
 		/* translators: %s: Link to freemius.com */
-		'start-trial-prompt-message'               => _fs_text( 'For compliance with the WordPress.org guidelines, before we start the trial we ask that you opt-in with your user and non-sensitive site information, allowing the %s to periodically send data to %s to check for version updates and to validate your trial.' ),
+		'start-trial-prompt-message'               => _fs_text( 'For compliance with the WordPress.org guidelines, before we start the trial we ask that you opt in with your user and non-sensitive site information, allowing the %s to periodically send data to %s to check for version updates and to validate your trial.' ),
 
 		#endregion
 		#--------------------------------------------------------------------------------
@@ -490,6 +545,11 @@
 		'auto-install-error-invalid-license'         => _fs_text( 'You do not have a valid license to access the premium version.' ),
 		'auto-install-error-serviceware'             => _fs_text( 'Plugin is a "Serviceware" which means it does not have a premium code version.' ),
         #endregion
+
+		/* translators: %s: Page name */
+		'secure-x-page-header' => _fs_text( 'Secure HTTPS %s page, running from an external domain' ),
+		'pci-compliant'        => _fs_text( 'PCI compliant' ),
+		'view-paid-features'   => _fs_text( 'View paid features' ),
 	);
 
 	/**

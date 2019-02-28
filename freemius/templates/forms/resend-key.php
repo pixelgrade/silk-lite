@@ -2,7 +2,7 @@
 	/**
 	 * @package     Freemius
 	 * @copyright   Copyright (c) 2015, Freemius, Inc.
-	 * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+	 * @license     https://www.gnu.org/licenses/gpl-3.0.html GNU General Public License Version 3
 	 * @since       1.2.0
 	 */
 
@@ -18,10 +18,10 @@
 
 	$slug = $fs->get_slug();
 
-	$send_button_text          = fs_text( 'send-license-key', $slug );
-	$cancel_button_text        = fs_text( 'cancel', $slug );
-	$email_address_placeholder = fs_esc_attr( 'email-address', $slug );
-	$other_text                = fs_text( 'reason-other', $slug );
+	$send_button_text          = fs_text_inline( 'Send License Key', 'send-license-key', $slug );
+	$cancel_button_text        = fs_text_inline( 'Cancel', 'cancel', $slug );
+	$email_address_placeholder = fs_esc_attr_inline( 'Email address', 'email-address', $slug );
+	$other_text                = fs_text_inline( 'Other', 'other', $slug );
 
 	$is_freemium = $fs->is_freemium();
 
@@ -54,7 +54,7 @@ HTML;
 HTML;
 	}
 
-	$message_above_input_field = esc_html( fs_text( 'ask-for-upgrade-email-address', $slug ) );
+	$message_above_input_field = fs_esc_html_inline( "Enter the email address you've used for the upgrade below and we will resend you the license key.", 'ask-for-upgrade-email-address', $slug );
 	$modal_content_html = <<< HTML
     <div class="notice notice-error inline license-resend-message"><p></p></div>
     <p>{$message_above_input_field}</p>
@@ -63,7 +63,7 @@ HTML;
     </div>
 HTML;
 
-	fs_enqueue_local_style( 'dialog-boxes', '/admin/dialog-boxes.css' );
+	fs_enqueue_local_style( 'fs_dialog_boxes', '/admin/dialog-boxes.css' );
 ?>
 <script type="text/javascript">
 	(function ($) {
@@ -74,7 +74,7 @@ HTML;
 				    + ' <div class="fs-modal-dialog">'
 				    + '     <div class="fs-modal-header">'
 				    + '         <h4><?php echo esc_js( $send_button_text ) ?></h4>'
-				    + '         <a href="#!" class="fs-close" tabindex="3" title="Close"><i class="dashicons dashicons-no" title="<?php fs_esc_js_echo( 'dismiss', $slug ) ?>"></i></a>'
+				    + '         <a href="#!" class="fs-close" tabindex="3" title="Close"><i class="dashicons dashicons-no" title="<?php echo esc_js( fs_text_x_inline( 'Dismiss', 'as close a window', 'dismiss', $slug ) ) ?>"></i></a>'
 				    + '     </div>'
 				    + '     <div class="fs-modal-body">'
 				    + '         <div class="fs-modal-panel active">' + contentHtml + '</div>'
@@ -151,7 +151,7 @@ HTML;
 							email      : email
 						},
 						beforeSend: function () {
-							$sendButton.text(<?php fs_json_encode_echo( 'sending-license-key', $slug ) ?> + '...');
+							$sendButton.text('<?php fs_esc_js_echo_inline( 'Sending license key', 'sending-license-key', $slug ) ?>...');
 						},
 						success   : function (result) {
 							var resultObj = $.parseJSON(result);
