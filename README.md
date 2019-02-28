@@ -12,6 +12,9 @@ By installing Jetpack plugin, you'll be able to get special widgets like Newslet
 
 ## Changelog
 
+= 1.2.10 =
+* Fixed a security issue
+
 = 1.2.8 - May 18 2017 =
 * Added About Silk Lite page 
 
