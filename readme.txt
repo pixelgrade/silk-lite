@@ -6,6 +6,7 @@ Description: An enchanting magazine style theme for fashion bloggers, prized for
 Version: 1.2.10
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tested up to: 5.1
 Tags: translation-ready, theme-options, footer-widgets, featured-images, custom-menu, custom-colors, custom-background, grid-layout, two-columns, three-columns, four-columns, blog
 
 == Description ==
