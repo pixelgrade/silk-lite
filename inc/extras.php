@@ -320,4 +320,25 @@ function silklite_mce_before_init( $settings ) {
  */
 function silklite_get_thumbnail_size() {
 	return get_theme_mod( 'silklite_single_column_archives', false ) ? 'silklite-single-image' : 'silklite-masonry-image';
-} ?>
+}
+
+/**
+ * Handle the WUpdates theme identification.
+ *
+ * @param array $ids
+ *
+ * @return array
+ */
+function silk_wupdates_add_id_wporg( $ids = array() ) {
+
+	// First get the theme directory name (unique)
+	$slug = basename( get_template_directory() );
+
+	// Now add the predefined details about this product
+	// Do not tamper with these please!!!
+	$ids[ $slug ] = array( 'name' => 'Silk Lite', 'slug' => 'silk-lite', 'id' => 'J6l3r', 'type' => 'theme_wporg', 'digest' => '243dd4ee41be45daa187a2d260a3a0d6', );
+
+	return $ids;
+}
+// The 5 priority is intentional to allow for pro to overwrite.
+add_filter( 'wupdates_gather_ids', 'silk_wupdates_add_id_wporg', 5, 1 );
