@@ -5,33 +5,6 @@
  * @package Silk Lite
  */
 
-// Create a helper function for easy SDK access.
-function sl_fs() {
-    global $sl_fs;
-
-    if ( ! isset( $sl_fs ) ) {
-        // Include Freemius SDK.
-        require_once dirname(__FILE__) . '/freemius/start.php';
-
-        $sl_fs = fs_dynamic_init( array(
-            'id'                  => '812',
-            'slug'                => 'silk-lite',
-            'type'                => 'theme',
-            'public_key'          => 'pk_48c066b38b0cd7d312c2484010b36',
-            'is_premium'          => false,
-            'has_addons'          => false,
-            'has_paid_plans'      => false,
-        ) );
-    }
-
-    return $sl_fs;
-}
-
-// Init Freemius.
-sl_fs();
-// Signal that SDK was initiated.
-do_action( 'sl_fs_loaded' );
-
 if ( ! function_exists( 'silklite_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
@@ -211,7 +184,7 @@ add_filter( 'wp_calculate_image_sizes', 'silklite_content_image_sizes_attr', 10 
  * @param array $attr Attributes for the image markup.
  * @param int   $attachment Image attachment ID.
  * @param array $size Registered image size or flat array of height and width dimensions.
- * @return string A source size value for use in a post thumbnail 'sizes' attribute.
+ * @return array A source size value for use in a post thumbnail 'sizes' attribute.
  */
 function silklite_post_thumbnail_sizes_attr( $attr, $attachment, $size ) {
 	if ( is_active_sidebar( 'sidebar-1' ) ) {
@@ -256,12 +229,14 @@ add_action( 'widgets_init', 'silklite_widgets_init' );
  * Enqueue scripts and styles.
  */
 function silklite_scripts_styles() {
+	$theme = wp_get_theme( get_template() );
 
 	//FontAwesome Stylesheet
 	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.css', array(), '4.2.0' );
 
 	//Main Stylesheet
-	wp_enqueue_style( 'silklite-style', get_stylesheet_uri(), array( 'font-awesome' ) );
+	wp_enqueue_style( 'silklite-style', get_stylesheet_uri(), array( 'font-awesome' ), $theme->get( 'Version' ) );
+	wp_style_add_data( 'silklite-style', 'rtl', 'replace' );
 
 	//Default Fonts
 	wp_enqueue_style( 'silklite-fonts', silklite_fonts_url(), array(), null );
@@ -287,13 +262,12 @@ function silklite_scripts_styles() {
 		'hoverIntent',
 		'imagesLoaded',
 		'velocity',
-	), '1.0.0', true );
+	), $theme->get( 'Version' ), true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
-
 add_action( 'wp_enqueue_scripts', 'silklite_scripts_styles' );
 
 /**
@@ -324,7 +298,6 @@ function silklite_wp_enqueue_media() {
 		)
 	);
 }
-
 add_action( 'wp_enqueue_media', 'silklite_wp_enqueue_media' );
 
 /**
@@ -341,6 +314,11 @@ require get_template_directory() . '/inc/template-tags.php';
  * Custom functions that act independently of the theme templates.
  */
 require get_template_directory() . '/inc/extras.php';
+
+/**
+ * Load the required plugins (TGMPA) logic.
+ */
+require get_template_directory() . '/inc/required-plugins.php';
 
 /**
  * Customizer additions.
@@ -364,6 +342,6 @@ require get_template_directory() . '/inc/widgets/popular-posts.php';
 require get_template_directory() . '/inc/widgets/about-me.php';
 
 /**
- * Theme About page.
+ * Admin dashboard logic.
  */
-require get_template_directory() . '/inc/admin/about-page.php';
+require get_template_directory() . '/inc/admin/admin.php';

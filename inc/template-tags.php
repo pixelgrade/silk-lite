@@ -571,4 +571,4 @@ function silklite_audio_attachment() {
  */
 function silklite_video_attachment() {
 	return silklite_hybrid_media_grabber( array( 'type' => 'video', 'split_media' => true ) );
-} ?>
+}

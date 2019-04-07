@@ -3,11 +3,12 @@ Theme URI: https://pixelgrade.com/themes/silk-lite/
 Author: Pixelgrade
 Author URI: https://pixelgrade.com
 Description: An enchanting magazine style theme for fashion bloggers, prized for its smart layout and smooth animations. Whether you're looking to share your own thoughts, write about your latest findings or just have a scrapbook of photos, SILK is designed to fulfill these and a lot more.
-Version: 1.2.10
+Version: 1.3.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tested up to: 5.1
-Tags: translation-ready, theme-options, footer-widgets, featured-images, custom-menu, custom-colors, custom-background, grid-layout, two-columns, three-columns, four-columns, blog
+Requires at least: 4.9.9
+Tested up to: 5.1.1
+Tags: translation-ready, theme-options, footer-widgets, featured-images, custom-menu, custom-colors, custom-background, grid-layout, two-columns, three-columns, four-columns, blog, entertainment, photography, rtl-language-support
 
 == Description ==
 
@@ -20,9 +21,12 @@ An enchanting magazine style theme for fashion bloggers, prized for its smart la
 3. Click Activate to use your new theme right away.
 
 == Recommended plugin ==
-By installing Jetpack plugin, you'll be able to get special widgets like Newsletter or Popular Posts widget.
+By installing the Jetpack plugin, you'll be able to get special widgets like Newsletter or Popular Posts widget.
 
 == Changelog ==
+
+= 1.3.0 =
+* Improved the overall onboarding experience with the theme and introduced a dedicated help tool.
 
 = 1.2.10 =
 * Fixed a security issue
@@ -31,7 +35,7 @@ By installing Jetpack plugin, you'll be able to get special widgets like Newslet
 * Fixed the video post type error that was making the archive go blank
 
 = 1.2.8 - May 18 2017 =
-* Added About Silk Lite page 
+* Added About Silk Lite page
 
 = 1.0.0 =
 * Initial release

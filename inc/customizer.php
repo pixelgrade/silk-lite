@@ -300,4 +300,3 @@ function silk_add_customify_options( $config ) {
 	return $config;
 }
 add_filter( 'customify_filter_fields', 'silk_add_customify_options' );
-?>
