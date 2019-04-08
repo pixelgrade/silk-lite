@@ -26,7 +26,6 @@ function silklite_body_classes( $classes ) {
 
 	return $classes;
 }
-
 add_filter( 'body_class', 'silklite_body_classes' );
 
 /**
@@ -176,7 +175,6 @@ function silklite_setup_author() {
 		$GLOBALS['authordata'] = get_userdata( $wp_query->post->post_author );
 	}
 }
-
 add_action( 'wp', 'silklite_setup_author' );
 
 if ( ! function_exists( 'silklite_comment' ) ) :
@@ -248,7 +246,6 @@ function silklite_comment_form_remove_notes_after( $defaults ) {
 
 	return $defaults;
 }
-
 add_filter( 'comment_form_defaults', 'silklite_comment_form_remove_notes_after' );
 
 /**
@@ -265,7 +262,6 @@ function silklite_link_pages( $link ) {
 
 	return $link;
 }
-
 add_filter( 'wp_link_pages_link', 'silklite_link_pages' );
 
 /**
@@ -274,7 +270,6 @@ add_filter( 'wp_link_pages_link', 'silklite_link_pages' );
 function silklite_read_more_link( $link ) {
 	return '<div class="more-link-wrapper">' . $link . '</div>';
 }
-
 add_filter( 'the_content_more_link', 'silklite_read_more_link' );
 
 /**
@@ -283,22 +278,20 @@ add_filter( 'the_content_more_link', 'silklite_read_more_link' );
 function silklite_excerpt_length( $length ) {
 	return 18;
 }
-
 add_filter( 'excerpt_length', 'silklite_excerpt_length', 999 );
 
 /**
  * Add "Styles" drop-down
  */
-add_filter( 'mce_buttons_2', 'silklite_mce_editor_buttons' );
 function silklite_mce_editor_buttons( $buttons ) {
 	array_unshift( $buttons, 'styleselect' );
 	return $buttons;
 }
+add_filter( 'mce_buttons_2', 'silklite_mce_editor_buttons' );
 
 /**
  * Add styles/classes to the "Styles" drop-down
  */
-add_filter( 'tiny_mce_before_init', 'silklite_mce_before_init' );
 function silklite_mce_before_init( $settings ) {
 
 	$style_formats = array(
@@ -312,6 +305,7 @@ function silklite_mce_before_init( $settings ) {
 
 	return $settings;
 }
+add_filter( 'tiny_mce_before_init', 'silklite_mce_before_init' );
 
 /**
  * Get the featured image thumb size depending on whether we are using a single column layout or masonry

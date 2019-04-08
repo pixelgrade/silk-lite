@@ -3,7 +3,7 @@ Theme URI: https://pixelgrade.com/themes/silk-lite/
 Author: Pixelgrade
 Author URI: https://pixelgrade.com
 Description: An enchanting magazine style theme for fashion bloggers, prized for its smart layout and smooth animations. Whether you're looking to share your own thoughts, write about your latest findings or just have a scrapbook of photos, SILK is designed to fulfill these and a lot more.
-Version: 1.3.0
+Version: 1.3.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 4.9.9
@@ -24,6 +24,9 @@ An enchanting magazine style theme for fashion bloggers, prized for its smart la
 By installing the Jetpack plugin, you'll be able to get special widgets like Newsletter or Popular Posts widget.
 
 == Changelog ==
+
+= 1.3.1 =
+* Minor styling fixes in the Customizer.
 
 = 1.3.0 =
 * Improved the overall onboarding experience with the theme and introduced a dedicated help tool.

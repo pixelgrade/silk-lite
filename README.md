@@ -12,6 +12,9 @@ By installing Jetpack plugin, you'll be able to get special widgets like Newslet
 
 ## Changelog
 
+= 1.3.1 =
+* Minor styling fixes in the Customizer.
+
 = 1.3.0 =
 * Improved the overall onboarding experience with the theme and introduced a dedicated help tool.
 

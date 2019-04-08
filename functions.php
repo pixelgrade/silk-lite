@@ -231,31 +231,26 @@ add_action( 'widgets_init', 'silklite_widgets_init' );
 function silklite_scripts_styles() {
 	$theme = wp_get_theme( get_template() );
 
-	//FontAwesome Stylesheet
+	// FontAwesome Stylesheet
 	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.css', array(), '4.2.0' );
 
-	//Main Stylesheet
-	wp_enqueue_style( 'silklite-style', get_stylesheet_uri(), array( 'font-awesome' ), $theme->get( 'Version' ) );
-	wp_style_add_data( 'silklite-style', 'rtl', 'replace' );
-
-	//Default Fonts
+	// Default Fonts
 	wp_enqueue_style( 'silklite-fonts', silklite_fonts_url(), array(), null );
 
-	//Enqueue Masonry
-	wp_enqueue_script( 'masonry-local', get_template_directory_uri() . '/assets/js/masonry.pkgd.min.js', array( 'jquery' ), '3.3.2', true );
+	// Main Stylesheet
+	wp_enqueue_style( 'silklite-style', get_stylesheet_uri(), array( 'font-awesome', 'silklite-fonts' ), $theme->get( 'Version' ) );
+	wp_style_add_data( 'silklite-style', 'rtl', 'replace' );
 
-	//Enqueue ImagesLoaded plugin
-	wp_enqueue_script( 'imagesLoaded', get_template_directory_uri() . '/assets/js/imagesloaded.js', array(), '3.1.8', true );
+	// Register Masonry
+	wp_register_script( 'masonry-local', get_template_directory_uri() . '/assets/js/masonry.pkgd.min.js', array( 'jquery' ), '3.3.2', true );
 
-	//Enqueue HoverIntent
-	wp_enqueue_script( 'hoverIntent' );
+	// Register ImagesLoaded plugin
+	wp_register_script( 'imagesLoaded', get_template_directory_uri() . '/assets/js/imagesloaded.js', array(), '3.1.8', true );
 
-	//Enqueue Velocity.js plugin
-	wp_enqueue_script( 'velocity', get_template_directory_uri() . '/assets/js/velocity.js', array(), '1.1.0', true );
+	// Register Velocity.js plugin
+	wp_register_script( 'velocity', get_template_directory_uri() . '/assets/js/velocity.js', array(), '1.1.0', true );
 
-	wp_enqueue_script( 'silklite-skip-link-focus-fix', get_template_directory_uri() . '/assets/js/skip-link-focus-fix.js', array(), '20130115', true );
-
-	//Enqueue Silk Lite Custom Scripts
+	// Enqueue Silk Lite Custom Scripts
 	wp_enqueue_script( 'silklite-scripts', get_template_directory_uri() . '/assets/js/main.js', array(
 		'jquery',
 		'masonry-local',
@@ -263,6 +258,8 @@ function silklite_scripts_styles() {
 		'imagesLoaded',
 		'velocity',
 	), $theme->get( 'Version' ), true );
+
+	wp_enqueue_script( 'silklite-skip-link-focus-fix', get_template_directory_uri() . '/assets/js/skip-link-focus-fix.js', array(), '20130115', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
