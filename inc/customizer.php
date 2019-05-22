@@ -31,6 +31,7 @@ function silklite_customize_register( $wp_customize ) {
 		'title'       => '' . esc_html__( 'View PRO Version', 'silk-lite' ),
 		'priority'    => 2,
 		'description' => sprintf(
+			/* translators: %s: The view pro link. */
 			__( '<div class="upsell-container">
 					<h2>Need More? Go PRO</h2>
 					<p>Take it to the next level. See the features below:</p>
@@ -42,7 +43,7 @@ function silklite_customize_register( $wp_customize ) {
 
                             <li>
                             	<h4>Featured Posts Slider</h4>
-                            	<div class="description">Bring your best stories in the front of the world by adding them into the posts slider. It’s an extra opportunity to grab attention and to refresh some content that is still meaningful. Don’t miss any occasion to increase the value of your stories.</div>
+                            	<div class="description">Bring your best stories in the front of the world by adding them into the posts slider. It\'s an extra opportunity to grab attention and to refresh some content that is still meaningful. Don\'t miss any occasion to increase the value of your stories.</div>
                             </li>
 
                             <li>
@@ -56,81 +57,19 @@ function silklite_customize_register( $wp_customize ) {
                             </li>
                             
                     </ul> %s </div>', 'silk-lite' ),
+			/* translators: %1$s: The view pro URL, %2$s: The view pro link text. */
 			sprintf( '<a href="%1$s" target="_blank" class="button button-primary">%2$s</a>', esc_url( silklite_get_pro_link() ), esc_html__( 'View Silk PRO', 'silk-lite' ) )
 		),
 	) );
 
 	$wp_customize->add_setting( 'silklite_style_view_pro_desc', array(
 		'default'           => '',
-		'sanitize_callback' => 'silklite_sanitize_checkbox',
+		'sanitize_callback' => '__return_true',
 	) );
 	$wp_customize->add_control( 'silklite_style_view_pro_desc', array(
 		'section' => 'silklite_style_view_pro',
 		'type'    => 'hidden',
 	) );
-
-
-	// Style Presets
-	$wp_customize->add_section( 'silklite_style_presets', array(
-		'title'       => '&#x1f3ad; ' . esc_html__( 'Style Presets', 'silk-lite' ),
-		'priority'    => 29,
-		'description' => sprintf(
-			__( '<p>%s provides you hand-crafted style presets so that you never go out of trends and add some real value to the full package. You can instantly achieve a different visual approach and level up the users interest. </p><p> Our designer did his best to carefully match the colors and fonts so that you can easily refresh the overall style of your website.</p>', 'silk-lite' ),
-			sprintf( '<a href="%1$s" target="_blank">%2$s</a>', esc_url( silklite_get_pro_link() ), esc_html__( 'Silk Pro', 'silk-lite' ) )
-		)
-	) );
-
-	$wp_customize->add_setting( 'silklite_style_presets_desc', array(
-		'default'           => '',
-		'sanitize_callback' => 'silklite_sanitize_checkbox',
-	) );
-	$wp_customize->add_control( 'silklite_style_presets_desc', array(
-		'section' => 'silklite_style_presets',
-		'type'    => 'hidden',
-	) );
-
-
-	// Colors
-	$wp_customize->add_section( 'silklite_colors', array(
-		'title'       => '&#x1f3a8; ' . esc_html__( 'Colors', 'silk-lite' ),
-		'priority'    => 30,
-		'description' => sprintf(
-			__( '<p>Play around with colors that fits your vision, your mood or both of them. You can smoothly make a design twist to quickly catch your wide preferences.</p><p>%s to switch colors and fonts in order to nurture your visual approach.</p>', 'silk-lite' ),
-			sprintf( '<a href="%1$s" target="_blank">%2$s</a>', esc_url( silklite_get_pro_link() ), esc_html__( 'Upgrade to Silk Pro', 'silk-lite' )
-			)
-		)
-	) );
-
-	$wp_customize->add_setting( 'silklite_colors_desc', array(
-		'default'           => '',
-		'sanitize_callback' => 'silklite_sanitize_checkbox',
-	) );
-	$wp_customize->add_control( 'silklite_colors_desc', array(
-		'section' => 'silklite_colors',
-		'type'    => 'hidden',
-	) );
-
-	// Fonts
-	$wp_customize->add_section( 'silklite_fonts', array(
-		'title'       => '&#x1f4dd; ' . esc_html__( 'Fonts', 'silk-lite' ),
-		'priority'    => 31,
-		'description' => sprintf(
-			__( '<p>Typography can make it or break it. %s gives you a generous playground to match your needs in terms of fonts and sizes.</p><p>You have full-access to 600+ Google Fonts to mingle with for fine-tuning your style.', 'silk-lite' ),
-			sprintf( '<a href="%1$s" target="_blank">%2$s</a>', esc_url( silklite_get_pro_link() ), esc_html__( 'Silk Pro', 'silk-lite' )
-			)
-		)
-	) );
-
-
-	$wp_customize->add_setting( 'silklite_fonts_desc', array(
-		'default'           => '',
-		'sanitize_callback' => 'silklite_sanitize_checkbox',
-	) );
-	$wp_customize->add_control( 'silklite_fonts_desc', array(
-		'section' => 'silklite_fonts',
-		'type'    => 'hidden',
-	) );
-
 
 	/*
 	 * Add custom settings
@@ -205,7 +144,6 @@ function silklite_customize_register( $wp_customize ) {
 		'type'        => 'text',
 	) );
 }
-
 add_action( 'customize_register', 'silklite_customize_register', 15 );
 
 /**
@@ -262,11 +200,11 @@ function silklite_get_pro_link() {
 	return 'https://pixelgrade.com/themes/blogging/silk-lite?utm_source=silk-lite-clients&utm_medium=customizer&utm_campaign=silk-lite#pro';
 }
 
-function silk_add_customify_options( $config ) {
+function silklite_add_customify_options( $config ) {
 
 	$config['sections'] = array();
 	$config['panels'] = array();
 
 	return $config;
 }
-add_filter( 'customify_filter_fields', 'silk_add_customify_options' );
+add_filter( 'customify_filter_fields', 'silklite_add_customify_options' );

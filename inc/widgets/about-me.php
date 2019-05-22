@@ -9,11 +9,11 @@ if ( ! function_exists( 'silk_about_me_widget_init' ) ) :
 	/**
 	 * Register the widget for use in Appearance -> Widgets
 	 */
-	add_action( 'widgets_init', 'silk_about_me_widget_init' );
 	function silk_about_me_widget_init() {
 		register_widget( 'SilkLite_About_Me_Widget' );
 	}
 endif;
+add_action( 'widgets_init', 'silk_about_me_widget_init' );
 
 if ( ! class_exists( 'SilkLite_About_Me_Widget' ) ) :
 
@@ -152,7 +152,7 @@ if ( ! class_exists( 'SilkLite_About_Me_Widget' ) ) :
 
 			<div class="silk-about-me-widget-form">
 				<p>
-					<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Title:', 'silk-lite' ); ?></label>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'silk-lite' ); ?></label>
 					<input class="widefat" type="text" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" value="<?php echo esc_attr( $title ); ?>">
 				</p>
 
@@ -201,6 +201,6 @@ if ( ! class_exists( 'SilkLite_About_Me_Widget' ) ) :
 			}
 		}
 
-	} // Class Silk About Me Widget
+	}
 
-endif; ?>
+endif;

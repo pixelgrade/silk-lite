@@ -6,6 +6,11 @@
  *
  * @package Silk Lite
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -18,7 +23,7 @@
 
 		<div class="entry-attachment">
 			<?php
-			echo wp_get_attachment_image( get_the_ID(), 'large' );
+				echo wp_get_attachment_image( get_the_ID(), 'large' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			?>
 
 			<?php if ( has_excerpt() ) : ?>

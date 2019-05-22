@@ -5,6 +5,10 @@
  * @package Silk Lite
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
 $classes = 'archive__grid  grid';
 
 if ( ! get_theme_mod( 'silklite_single_column_archives', false ) ) {
@@ -29,4 +33,4 @@ while ( have_posts() ) : the_post(); ?>
 
 </div><!-- .archive__grid -->
 
-<?php the_posts_navigation(); ?>
+<?php the_posts_navigation();

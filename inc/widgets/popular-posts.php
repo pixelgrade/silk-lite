@@ -17,8 +17,6 @@ if ( ! function_exists('silk_popular_posts_widget_init') ) :
 	/**
 	 * Register our Popular Posts widget for use in Appearance -> Widgets
 	 */
-	add_action( 'widgets_init', 'silk_popular_posts_widget_init' );
-
 	function silk_popular_posts_widget_init() {
 		// Currently, this widget depends on the Stats Module
 		if ( !function_exists( 'stats_get_csv' ) ) {
@@ -28,6 +26,7 @@ if ( ! function_exists('silk_popular_posts_widget_init') ) :
 		register_widget( 'Silk_Popular_Posts_Widget' );
 	}
 endif;
+add_action( 'widgets_init', 'silk_popular_posts_widget_init' );
 
 if ( ! class_exists('Silk_Popular_Posts_Widget') ) :
 
@@ -150,7 +149,7 @@ if ( ! class_exists('Silk_Popular_Posts_Widget') ) :
 					<img src="<?php echo esc_url( $post['image'] ); ?>" alt="<?php echo esc_attr( wp_kses( $post['title'], array() ) ); ?>" />
 				</a>
 				<?php
-					$cats_list = silk_get_cats_list( $post['post_id'] );
+					$cats_list = silklite_get_cats_list( $post['post_id'] );
 
 					if ( ! empty( $cats_list ) ) {
 						echo '<div class="categories-list">' . $cats_list . '</div>';
@@ -172,7 +171,7 @@ if ( ! class_exists('Silk_Popular_Posts_Widget') ) :
 						<?php echo esc_html( wp_kses( $post['title'], array() ) ); ?>
 					</a>
 					<?php
-					$cats_list = silk_get_cats_list( $post['post_id'] );
+					$cats_list = silklite_get_cats_list( $post['post_id'] );
 
 					if ( ! empty( $cats_list ) ) {
 						echo '<div class="categories-list">' . $cats_list . '</div>';
@@ -277,6 +276,6 @@ if ( ! class_exists('Silk_Popular_Posts_Widget') ) :
 			return apply_filters( 'silk_widget_get_popular_posts', $posts, $post_ids, $count );
 		}
 
-	} //Class Silk Lite Popular Posts Widget
+	}
 
-endif; ?>
+endif;

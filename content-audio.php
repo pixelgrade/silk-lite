@@ -5,6 +5,10 @@
  * @package Silk Lite
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
 //get the media objects from the content and bring up only the first one
 $media = silklite_audio_attachment();
 $media = apply_filters('embed_oembed_html', $media ); ?>
@@ -21,7 +25,9 @@ $media = apply_filters('embed_oembed_html', $media ); ?>
 
 		<?php endif; ?>
 
-		<?php the_title( sprintf( '<h2 class="entry-title  entry-title--card"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
+		<?php
+		/* translators: %s: The post URL. */
+		the_title( sprintf( '<h2 class="entry-title  entry-title--card"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
 
 	</header><!-- .entry-header -->
 
@@ -39,8 +45,8 @@ $media = apply_filters('embed_oembed_html', $media ); ?>
 		$has_more = strpos( $post->post_content, '<!--more' );
 
 		if ( $has_more ) {
-			/* translators: %s: Name of current post */
 			the_content( sprintf(
+				/* translators: %s: Name of current post */
 				esc_html__( 'Continue reading %s', 'silk-lite' ),
 				the_title( '<span class="screen-reader-text">', '</span>', false )
 			) );

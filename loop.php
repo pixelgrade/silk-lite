@@ -5,6 +5,10 @@
  * @package Silk Lite
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
 $classes = 'archive__grid  grid'; ?>
 
 <h1 class="screen-reader-text"><?php esc_html_e( 'Blog', 'silk-lite' ); ?></h1>
@@ -40,4 +44,4 @@ if ( true === $is_infinite ) : ?>
 
 </div><!-- .archive__grid -->
 
-<?php the_posts_navigation(); ?>
+<?php the_posts_navigation();

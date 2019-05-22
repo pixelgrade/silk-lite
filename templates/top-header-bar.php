@@ -3,7 +3,13 @@
  * The template for the top header bar.
  *
  * @package Silk Lite
- */ ?>
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
+?>
 <div class="top-bar  top-bar--fixed">
 	<div class="content">
 		<nav id="top-header-left-navigation" class="toolbar-navigation  left" role="navigation">

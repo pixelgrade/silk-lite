@@ -4,6 +4,11 @@
  *
  * @package Silk Lite
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -18,7 +23,9 @@
 
 		<?php endif; ?>
 
-		<?php the_title( sprintf( '<h2 class="entry-title  entry-title--card"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
+		<?php
+		/* translators: %s: The post URL. */
+		the_title( sprintf( '<h2 class="entry-title  entry-title--card"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
 
 	</header><!-- .entry-header -->
 
@@ -38,8 +45,8 @@
 		$has_more = strpos( $post->post_content, '<!--more' );
 
 		if ( $has_more ) {
-			/* translators: %s: Name of current post */
 			the_content( sprintf(
+				/* translators: %s: Name of current post */
 				esc_html__( 'Continue reading %s', 'silk-lite' ),
 				the_title( '<span class="screen-reader-text">', '</span>', false )
 			) );

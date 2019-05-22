@@ -5,6 +5,10 @@
  * @package Silk Lite
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
 //get the media objects from the content and bring up only the first one
 $media = silklite_video_attachment(); ?>
 

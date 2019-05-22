@@ -1,6 +1,6 @@
 <?php
 /**
- * This file has been "borrowed" from the awesome Jetpack plugin to provide a smooth transition in case one decides to use the plugin
+ * This file has been "borrowed" from the Jetpack plugin to provide a smooth transition in case one decides to use the plugin latter on.
  * See: http://jetpack.me/
  */
 

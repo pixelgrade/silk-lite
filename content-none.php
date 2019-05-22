@@ -6,6 +6,11 @@
  *
  * @package Silk Lite
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
 ?>
 
 <section class="no-results not-found">

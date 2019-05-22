@@ -1,13 +1,12 @@
 Theme Name: Silk Lite
-Theme URI: https://pixelgrade.com/themes/silk-lite/
 Author: Pixelgrade
 Author URI: https://pixelgrade.com
 Description: An enchanting magazine style theme for fashion bloggers, prized for its smart layout and smooth animations. Whether you're looking to share your own thoughts, write about your latest findings or just have a scrapbook of photos, SILK is designed to fulfill these and a lot more.
-Version: 1.3.1
+Version: 1.3.2
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 4.9.9
-Tested up to: 5.1.1
+Tested up to: 5.2.1
 Tags: translation-ready, theme-options, footer-widgets, featured-images, custom-menu, custom-colors, custom-background, grid-layout, two-columns, three-columns, four-columns, blog, entertainment, photography, rtl-language-support
 
 == Description ==
@@ -20,10 +19,10 @@ An enchanting magazine style theme for fashion bloggers, prized for its smart la
 2. Click Upload and Choose File, then select the theme's .zip file. Click Install Now.
 3. Click Activate to use your new theme right away.
 
-== Recommended plugin ==
-By installing the Jetpack plugin, you'll be able to get special widgets like Newsletter or Popular Posts widget.
-
 == Changelog ==
+
+= 1.3.2 =
+* Cleanup and security fixes.
 
 = 1.3.1 =
 * Minor styling fixes in the Customizer.
@@ -50,17 +49,10 @@ Unless otherwise specified, all the theme files, scripts and images are licensed
 * Hybrid Media Grabber: script by Justin Tadlock (http://themehybrid.com/hybrid-core), licensed under [GPLv2](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
 
 * VelocityJS: script by Julian Shapiro (http://julian.com/research/velocity/), licensed under the [MIT License](http://opensource.org/licenses/mit-license.html).
-
-* Masonry PACKAGED: script by David DeSandro (http://masonry.desandro.com), licensed under the [MIT License](http://opensource.org/licenses/mit-license.html).
-
-* imagesLoaded.js: script by David DeSandro (http://masonry.desandro.com), licensed under the [MIT License](http://opensource.org/licenses/mit-license.html).
-
 * debouncedresize.js: script by Louis-Rémi Babé (https://github.com/louisremi/jquery-smartresize), licensed under the [MIT License](http://opensource.org/licenses/mit-license.html).
-
 * requestanimationframe.js: script by Erik Möller, licensed under the [MIT License](http://opensource.org/licenses/mit-license.html).
-
 * arianavigation.js: script by Simply Accessible (http://simplyaccessible.com/), Copyright © Simply Accessible Inc.
 
-* Font Awesome: font by Dave Gandy (http://fontawesome.io/), licensed under [SIL OFL 1.1](http://fontawesome.io/), CSS released under the [MIT License](http://opensource.org/licenses/mit-license.html).
+* Font Awesome: font by Fonticons, Inc. (https://fontawesome.com/), licensed under [SIL OFL 1.1](https://fontawesome.com/license/free), CSS released under the [MIT License](http://opensource.org/licenses/mit-license.html).
 
-* Images: image by Lechon Kirb (https://unsplash.com/lechonkirb) - [Source](https://unsplash.com/photos/yvx7LSZSzeo), London Scout (https://unsplash.com/scoutthecity) - [Source](https://unsplash.com/photos/YLMs82LF6FY), Abigail Keenan(https://unsplash.com/akeenster) - [Source](https://unsplash.com/photos/8jqna7aA-vs) and Benjamin Combs(https://unsplash.com/b3njamin) - [Source](https://unsplash.com/photos/hiAdjnXZxl8). All licensed under [CC0](http://creativecommons.org/choose/zero/).
+* Images: screenshot image by Lechon Kirb (https://unsplash.com/lechonkirb) - [Source](https://unsplash.com/photos/yvx7LSZSzeo), London Scout (https://unsplash.com/scoutthecity) - [Source](https://unsplash.com/photos/YLMs82LF6FY), Abigail Keenan(https://unsplash.com/akeenster) - [Source](https://unsplash.com/photos/8jqna7aA-vs) and Benjamin Combs(https://unsplash.com/b3njamin) - [Source](https://unsplash.com/photos/hiAdjnXZxl8). All licensed under [CC0](http://creativecommons.org/choose/zero/).

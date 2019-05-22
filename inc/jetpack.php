@@ -10,9 +10,6 @@
  * Load the theme's duplicate files if Jetpack is not present
  * This way we provide a smooth transition to those that decide to use Jetpack
  * See: http://jetpack.me/
- *
- * @package Silk Lite
- * @since Silk 1.0.5
  */
 function silklite_load_jetpack_compatibility() {
 

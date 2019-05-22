@@ -323,7 +323,7 @@ function silklite_get_thumbnail_size() {
  *
  * @return array
  */
-function silk_wupdates_add_id_wporg( $ids = array() ) {
+function silklite_wupdates_add_id_wporg( $ids = array() ) {
 	// First get the theme directory name (unique)
 	$slug = basename( get_template_directory() );
 
@@ -334,4 +334,23 @@ function silk_wupdates_add_id_wporg( $ids = array() ) {
 	return $ids;
 }
 // The 5 priority is intentional to allow for pro to overwrite.
-add_filter( 'wupdates_gather_ids', 'silk_wupdates_add_id_wporg', 5, 1 );
+add_filter( 'wupdates_gather_ids', 'silklite_wupdates_add_id_wporg', 5, 1 );
+
+/**
+ * Fix skip link focus in IE11.
+ *
+ * This does not enqueue the script because it is tiny and because it is only for IE11,
+ * thus it does not warrant having an entire dedicated blocking script being loaded.
+ *
+ * @link https://git.io/vWdr2
+ */
+function silklite_skip_link_focus_fix() {
+	// The following is minified via `terser --compress --mangle -- js/skip-link-focus-fix.js`.
+	?>
+	<script>
+		/(trident|msie)/i.test(navigator.userAgent)&&document.getElementById&&window.addEventListener&&window.addEventListener("hashchange",function(){var t,e=location.hash.substring(1);/^[A-z0-9_-]+$/.test(e)&&(t=document.getElementById(e))&&(/^(?:a|select|input|button|textarea)$/i.test(t.tagName)||(t.tabIndex=-1),t.focus())},!1);
+	</script>
+	<?php
+}
+// We will put this script inline since it is so small.
+add_action( 'wp_print_footer_scripts', 'silklite_skip_link_focus_fix' );

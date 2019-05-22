@@ -8,6 +8,10 @@
  * @package Silk Lite
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
 /*
  * If the current post is protected by a password and
  * the visitor has not yet entered the password we will
@@ -25,18 +29,22 @@ if ( post_password_required() ) {
 		<div class="comments-area-title">
 			<h3 class="comments-title"><?php
 			if ( have_comments() ) {
-					echo number_format_i18n( get_comments_number() ) . ' ' . _n( 'Comment', 'Comments', get_comments_number(), 'silk-lite' );
-				} else {
-					echo esc_html__( 'There are no comments', 'silk-lite' );
-				} ?></h3>
+				printf(
+					/* translators: %1$s: The number of comments.  */
+					esc_html( _nx( '%1$s Comment', '%1$s Comments', get_comments_number(), 'comments title', 'silk-lite' ) ),
+					esc_html( number_format_i18n( get_comments_number() ) )
+				);
+			} else {
+				echo esc_html__( 'There are no comments', 'silk-lite' );
+			} ?></h3>
 			<?php echo '<a class="comments_add-comment" href="#reply-title">' . esc_html__( 'Add Yours', 'silk-lite' ) . '</a>'; ?>
 		</div>
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
 		<nav id="comment-nav-above" class="comment-navigation" role="navigation">
 			<h1 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'silk-lite' ); ?></h1>
-			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'silk-lite' ) ); ?></div>
-			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'silk-lite' ) ); ?></div>
+			<div class="nav-previous"><?php previous_comments_link( esc_html__( '&larr; Older Comments', 'silk-lite' ) ); ?></div>
+			<div class="nav-next"><?php next_comments_link( esc_html__( 'Newer Comments &rarr;', 'silk-lite' ) ); ?></div>
 		</nav><!-- #comment-nav-above -->
 		<?php endif; // check for comment navigation ?>
 
@@ -51,9 +59,9 @@ if ( post_password_required() ) {
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
 		<nav id="comment-nav-below" class="comment-navigation" role="navigation">
-			<h1 class="screen-reader-text"><?php _e( 'Comment navigation', 'silk-lite' ); ?></h1>
-			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'silk-lite' ) ); ?></div>
-			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'silk-lite' ) ); ?></div>
+			<h1 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'silk-lite' ); ?></h1>
+			<div class="nav-previous"><?php previous_comments_link( esc_html__( '&larr; Older Comments', 'silk-lite' ) ); ?></div>
+			<div class="nav-next"><?php next_comments_link( esc_html__( 'Newer Comments &rarr;', 'silk-lite' ) ); ?></div>
 		</nav><!-- #comment-nav-below -->
 		<?php endif; // check for comment navigation ?>
 
