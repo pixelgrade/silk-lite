@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		$gallery = get_post_gallery();
 		if ( $gallery ) { ?>
 			<aside class="entry-gallery">
-				<?php echo $gallery; ?>
+				<?php echo $gallery; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</aside><!-- .entry-gallery -->
 		<?php }
 

@@ -38,7 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			$first_image = silklite_get_post_format_first_image();
 			if ( ! empty( $first_image ) ) : ?>
 				<div class="entry-featured  entry-thumbnail">
-					<?php echo $first_image; ?>
+					<?php echo $first_image; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					<div class="entry-image-border"></div>
 				</div>
 			<?php endif;

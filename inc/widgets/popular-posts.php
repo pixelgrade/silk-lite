@@ -18,8 +18,8 @@ if ( ! function_exists('silk_popular_posts_widget_init') ) :
 	 * Register our Popular Posts widget for use in Appearance -> Widgets
 	 */
 	function silk_popular_posts_widget_init() {
-		// Currently, this widget depends on the Stats Module
-		if ( !function_exists( 'stats_get_csv' ) ) {
+		// Currently, this widget depends on the Jetpack Stats Module
+		if ( ! function_exists( 'stats_get_csv' ) || ! class_exists( 'Jetpack_PostImages' ) ) {
 			return;
 		}
 
@@ -61,13 +61,13 @@ if ( ! class_exists('Silk_Popular_Posts_Widget') ) :
 			?>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title:', 'silk-lite' ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'silk-lite' ); ?></label>
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'count' ); ?>"><?php esc_html_e( 'Maximum number of posts to show (no more than 10):', 'silk-lite' ); ?></label>
-			<input id="<?php echo $this->get_field_id( 'count' ); ?>" name="<?php echo $this->get_field_name( 'count' ); ?>" type="number" value="<?php echo (int) $count; ?>" min="1" max="10" />
+			<label for="<?php echo esc_attr( $this->get_field_id( 'count' ) ); ?>"><?php esc_html_e( 'Maximum number of posts to show (no more than 10):', 'silk-lite' ); ?></label>
+			<input id="<?php echo esc_attr( $this->get_field_id( 'count' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'count' ) ); ?>" type="number" value="<?php echo esc_attr( intval( $count ) ); ?>" min="1" max="10" />
 		</p>
 
 		<p><?php esc_html_e( 'Popular Posts by views are calculated from 24-48 hours of stats. They take a while to change.', 'silk-lite' ); ?></p>
@@ -116,20 +116,21 @@ if ( ! class_exists('Silk_Popular_Posts_Widget') ) :
 				$posts = $this->get_fallback_posts();
 			}
 
-			echo $args['before_widget'];
+			echo $args['before_widget']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			if ( ! empty( $title ) ) {
-				echo $args['before_title'] . $title . $args['after_title'];
+				echo $args['before_title'] . $title . $args['after_title']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 
 			if ( ! $posts ) {
 				if ( current_user_can( 'edit_theme_options' ) ) {
 					echo '<p>' . sprintf(
-						__( 'There are no posts to display. <a href="%s">Want more traffic?</a>', 'silk-lite' ),
+						/* translators: %s: Get more traffic URL. */
+						wp_kses( __( 'There are no posts to display. <a href="%s">Want more traffic?</a>', 'silk-lite' ), array( 'a' => array( 'href' => true, 'title' => true, 'target' => true ) ) ),
 						'http://en.support.wordpress.com/getting-more-site-traffic/'
 					) . '</p>';
 				}
 
-				echo $args['after_widget'];
+				echo $args['after_widget']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				return;
 			}
 
@@ -152,11 +153,11 @@ if ( ! class_exists('Silk_Popular_Posts_Widget') ) :
 					$cats_list = silklite_get_cats_list( $post['post_id'] );
 
 					if ( ! empty( $cats_list ) ) {
-						echo '<div class="categories-list">' . $cats_list . '</div>';
+						echo '<div class="categories-list">' . $cats_list . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					}
 				?>
 				<a href="<?php echo esc_url( $post['permalink'] ); ?>" class="bump-view  title" data-bump-view="tp">
-					<?php echo esc_html( wp_kses( $post['title'], array() ) ); ?>
+					<?php echo esc_html( wp_kses( $post['title'], wp_kses_allowed_html() ) ); ?>
 				</a>
 				<?php do_action( 'silk_widget_popular_posts_after_post', $post['post_id'] ); ?>
 			</li>
@@ -168,13 +169,13 @@ if ( ! class_exists('Silk_Popular_Posts_Widget') ) :
 				<li class='popular-posts_item'>
 					<?php do_action( 'silk_widget_popular_posts_before_post', $post['post_id'] ); ?>
 					<a href="<?php echo esc_url( $post['permalink'] ); ?>" class="bump-view" data-bump-view="tp">
-						<?php echo esc_html( wp_kses( $post['title'], array() ) ); ?>
+						<?php echo esc_html( wp_kses( $post['title'], wp_kses_allowed_html() ) ); ?>
 					</a>
 					<?php
 					$cats_list = silklite_get_cats_list( $post['post_id'] );
 
 					if ( ! empty( $cats_list ) ) {
-						echo '<div class="categories-list">' . $cats_list . '</div>';
+						echo '<div class="categories-list">' . $cats_list . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					}
 					?>
 					<?php do_action( 'silk_widget_popular_posts_after_post', $post['post_id'] ); ?>
@@ -183,7 +184,7 @@ if ( ! class_exists('Silk_Popular_Posts_Widget') ) :
 			endforeach;
 			echo '</ol>';
 
-			echo $args['after_widget'];
+			echo $args['after_widget']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		function get_by_views( $count ) {

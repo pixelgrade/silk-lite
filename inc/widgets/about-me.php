@@ -55,7 +55,7 @@ if ( ! class_exists( 'SilkLite_About_Me_Widget' ) ) :
 			) );
 
 			$args['before_widget'] = substr( $args['before_widget'], 0, -1 ) . ' tabindex="0">';
-			echo $args['before_widget'] . "\n";
+			echo $args['before_widget'] . "\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 			// The Background Image - empty string in case of error
 			$thumb = wp_get_attachment_image_src( $instance['image_id'], 'silk-masonry-image' );
@@ -64,7 +64,7 @@ if ( ! class_exists( 'SilkLite_About_Me_Widget' ) ) :
 			} else {
 				$thumb = '';
 			}
-			echo '<div class="silk-about-me-widget__image" style="background-image: url('. $thumb .');"></div>' . "\n";
+			echo '<div class="silk-about-me-widget__image" style="background-image: url('. esc_url( $thumb ) .');"></div>' . "\n";
 
 			echo '<div class="silk-about-me-widget__container">' . "\n";
 
@@ -72,12 +72,12 @@ if ( ! class_exists( 'SilkLite_About_Me_Widget' ) ) :
 			// The widget title
 			$title = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 			if ( ! empty( $title ) ) {
-				echo $args['before_title'] . $title . $args['after_title'] . "\n";
+				echo $args['before_title'] . $title . $args['after_title'] . "\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 
 			// The author's name
 			if ( ! empty( $instance['name'] ) ) {
-				echo '<div class="silk-about-me-widget__name">' . $instance['name'] . '</div>' . "\n";
+				echo '<div class="silk-about-me-widget__name">' . wp_kses( $instance['name'], wp_kses_allowed_html() ) . '</div>' . "\n";
 			}
 
 			echo '<span class="separator separator-wrapper--white">';
@@ -90,11 +90,11 @@ if ( ! class_exists( 'SilkLite_About_Me_Widget' ) ) :
 			} else {
 				$text = $instance['text'];
 			}
-			echo '<div class="silk-about-me__text">' . $text . '</div>' . "\n";
+			echo '<div class="silk-about-me__text">' . wp_kses_post( $text ) . '</div>' . "\n";
 
 			echo '</div><!-- .silk-about-me-widget-container -->' . "\n";
 
-			echo $args['after_widget'] . "\n";
+			echo $args['after_widget'] . "\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		}
 
@@ -161,7 +161,7 @@ if ( ! class_exists( 'SilkLite_About_Me_Widget' ) ) :
 				   data-update-text="<?php esc_attr_e( 'Update Image', 'silk-lite' ); ?>">
 					<?php
 					if ( ! empty( $image_id ) ) {
-						echo wp_get_attachment_image( $image_id, 'medium', false );
+						echo wp_get_attachment_image( $image_id, 'medium', false ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					}
 					?>
 					<input class="silk-about-me-image-id" type="hidden" name="<?php echo esc_attr( $this->get_field_name( 'image_id' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'image_id' ) ); ?>" value="<?php echo esc_attr( $image_id ); ?>">
@@ -179,7 +179,7 @@ if ( ! class_exists( 'SilkLite_About_Me_Widget' ) ) :
 				</p>
 
 				<p>
-					<input id="<?php echo $this->get_field_id( 'filter' ); ?>" name="<?php echo $this->get_field_name( 'filter' ); ?>" type="checkbox" <?php checked( isset( $instance['filter'] ) ? $instance['filter'] : 0 ); ?> />&nbsp;<label for="<?php echo $this->get_field_id( 'filter' ); ?>"><?php esc_html_e( 'Automatically add paragraphs', 'silk-lite' ); ?></label>
+					<input id="<?php echo esc_attr( $this->get_field_id( 'filter' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'filter' ) ); ?>" type="checkbox" <?php checked( isset( $instance['filter'] ) ? $instance['filter'] : 0 ); ?> />&nbsp;<label for="<?php echo esc_attr( $this->get_field_id( 'filter' ) ); ?>"><?php esc_html_e( 'Automatically add paragraphs', 'silk-lite' ); ?></label>
 				</p>
 
 			</div>

@@ -35,7 +35,7 @@ $media = apply_filters('embed_oembed_html', $media ); ?>
 
 		<?php if ( ! empty( $media ) ) { ?>
 			<div class="entry-media">
-				<?php echo $media; ?>
+				<?php echo $media; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</div><!-- .entry-media -->
 		<?php
 		}

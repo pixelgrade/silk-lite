@@ -22,11 +22,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<?php if ( is_home() && current_user_can( 'publish_posts' ) ) : ?>
 
-			<p><?php printf( __( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'silk-lite' ), esc_url( admin_url( 'post-new.php' ) ) ); ?></p>
+			<p><?php
+				/* translators: %s: THe new post URL. */
+				printf( wp_kses_post( __( 'Ready to publish your first post? <a href="%s">Get started here</a>.', 'silk-lite' ) ), esc_url( admin_url( 'post-new.php' ) ) ); ?></p>
 
 		<?php elseif ( is_search() ) : ?>
 
-			<p><?php _e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'silk-lite' ); ?></p>
+			<p><?php esc_html_e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'silk-lite' ); ?></p>
 			<?php get_search_form(); ?>
 
 		<?php else : ?>

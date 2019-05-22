@@ -32,7 +32,7 @@ $media = silklite_video_attachment(); ?>
 
 		<?php if ( ! empty( $media ) ) { ?>
 			<div class="entry-media">
-				<?php echo $media; ?>
+				<?php echo $media; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</div><!-- .entry-media -->
 		<?php
 		}
@@ -42,8 +42,8 @@ $media = silklite_video_attachment(); ?>
 		$has_more = strpos( $post->post_content, '<!--more' );
 
 		if ( $has_more ) {
-			/* translators: %s: Name of current post */
 			the_content( sprintf(
+				/* translators: %s: Name of current post */
 				esc_html__( 'Continue reading %s', 'silk-lite' ),
 				the_title( '<span class="screen-reader-text">', '</span>', false )
 			) );

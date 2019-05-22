@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<p><?php esc_html_e( 'Begin typing your search above and press return to search. Press Esc to cancel.', 'silk-lite' ); ?></p>
 
 			</div>
-			<button class="overlay__close"><span class="screen-reader-text"><?php _e( 'Close search', 'silk-lite' ); ?></span></button>
+			<button class="overlay__close"><span class="screen-reader-text"><?php esc_html_e( 'Close search', 'silk-lite' ); ?></span></button>
 		</div>
 
 	<?php endif; ?>
@@ -51,14 +51,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			<?php
 			if ( get_theme_mod( 'silklite_footer_copyright', false ) ) {
-				echo get_theme_mod( 'silklite_footer_copyright', '' );
+				echo wp_kses_post( get_theme_mod( 'silklite_footer_copyright', '' ) );
 			} else {
-				echo '&copy; ' . get_bloginfo('name') . ' &ndash; ';
+				echo '&copy; ' . wp_kses_post( get_bloginfo('name') ) . ' &ndash; ';
 			} ?>
 
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'silk-lite' ) ); ?>"><?php printf( esc_html__( ' Proudly powered by %s', 'silk-lite' ), 'WordPress' ); ?></a>
+			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'silk-lite' ) ); ?>"><?php
+				/* translators: %s: WordPress */
+				printf( esc_html__( ' Proudly powered by %s', 'silk-lite' ), 'WordPress' ); ?></a>
 			<span class="sep"> - </span>
-			<?php printf( esc_html__( '%1$s Theme by %2$s.', 'silk-lite' ), 'Silk Lite', '<a href="https://pixelgrade.com/?utm_source=silk-lite-clients&utm_medium=footer&utm_campaign=silk-lite" title="'. __( 'The PixelGrade Website', 'silk-lite' ) .'" rel="designer">PixelGrade</a>' ); ?>
+			<?php
+			/* translators: %1$s: The theme name, %2$s: The theme author name. */
+			printf( esc_html__( 'Theme: %1$s by %2$s.', 'silk-lite' ), 'Silk Lite', '<a href="https://pixelgrade.com/" rel="designer">Pixelgrade</a>' ); ?>
 
 		</div><!-- .site-info -->
 

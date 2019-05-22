@@ -30,18 +30,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<div class="flexbox">
 				<div class="flexbox__item">
 					<?php
-					/* translators: %s: Name of current post */
 					$content = get_the_content( sprintf(
+						/* translators: %s: Name of current post */
 						esc_html__( 'Continue reading %s', 'silk-lite' ),
 						the_title( '<span class="screen-reader-text">', '</span>', false )
 					) );
 
 					//test if there is a </blockquote> tag in here
 					if ( false !== strpos( $content,'</blockquote>' ) ) {
-						echo $content;
+						echo wp_kses_post( $content );
 					} else {
 						//we will wrap the whole content in blockquote since this is definitely intended as a quote
-						echo '<blockquote>' . $content . '</blockquote>';
+						echo '<blockquote>' . wp_kses_post( $content ) . '</blockquote>';
 					} ?>
 				</div>
 			</div>

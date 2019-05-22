@@ -30,8 +30,8 @@ if ( post_password_required() ) {
 			<h3 class="comments-title"><?php
 			if ( have_comments() ) {
 				printf(
-					/* translators: %1$s: The number of comments.  */
-					esc_html( _nx( '%1$s Comment', '%1$s Comments', get_comments_number(), 'comments title', 'silk-lite' ) ),
+					/* translators: %s: The number of comments.  */
+					esc_html( _nx( '%s Comment', '%s Comments', get_comments_number(), 'comments title', 'silk-lite' ) ),
 					esc_html( number_format_i18n( get_comments_number() ) )
 				);
 			} else {

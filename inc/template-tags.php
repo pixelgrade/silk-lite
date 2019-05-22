@@ -47,12 +47,12 @@ if ( ! function_exists( 'silklite_the_post_navigation' ) ) :
 						sprintf('<span class="arrow"></span>
 	                        <span class="navigation-item__content">
 	                            <span class="navigation-item__wrapper">
-                                    <span class="post-thumb">%s</span>
+                                    <span class="post-thumb">%1$s</span>
 	                                <span class="post-info">
-	                                    <span class="navigation-item__name">%s</span>
+	                                    <span class="navigation-item__name">%2$s</span>
 		                                <span class="post-meta">
-		                                %s
-		                                <span class="post-category">%s</span>
+		                                %3$s
+		                                <span class="post-category">%4$s</span>
 		                                </span>
 		                                <h3 class="post-title">%title</h3>
 	                                </span>
@@ -81,12 +81,12 @@ if ( ! function_exists( 'silklite_the_post_navigation' ) ) :
 						sprintf('<span class="arrow"></span>
 	                         <span class="navigation-item__content">
 	                            <span class="navigation-item__wrapper  flexbox">
-                                    <span class="post-thumb">%s</span>
+                                    <span class="post-thumb">%1$s</span>
 	                                <span class="post-info">
-	                                    <span class="navigation-item__name">%s</span>
+	                                    <span class="navigation-item__name">%2$s</span>
 		                                <span class="post-meta">
-		                                %s
-		                                <span class="post-category">%s</span>
+		                                %3$s
+		                                <span class="post-category">%4$s</span>
 		                                </span>
 		                                <h3 class="post-title">%title</h3>
 	                                </span>
@@ -128,7 +128,7 @@ if ( ! function_exists( 'silklite_the_image_navigation' ) ) :
 		                    <span class="navigation-item__content">
 		                        <span class="navigation-item__wrapper  flexbox">
 		                            <span class="flexbox__item">
-		                                <span class="post-thumb"><?php echo $prev_thumbnail; ?></span>
+		                                <span class="post-thumb"><?php echo $prev_thumbnail; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 		                            </span>
 		                            <span class="flexbox__item">
 		                                <span class="navigation-item__name"><?php esc_html_e( 'Previous image', 'silk-lite' ); ?></span>
@@ -150,7 +150,7 @@ if ( ! function_exists( 'silklite_the_image_navigation' ) ) :
 		                    <span class="navigation-item__content">
 		                        <span class="navigation-item__wrapper  flexbox">
 		                            <span class="flexbox__item">
-		                                <span class="post-thumb"><?php echo $next_thumbnail; ?></span>
+		                                <span class="post-thumb"><?php echo $next_thumbnail; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 		                            </span>
 		                            <span class="flexbox__item">
 		                                <span class="navigation-item__name"><?php esc_html_e( 'Next image', 'silk-lite' ); ?></span>

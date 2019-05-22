@@ -28,7 +28,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php if ( has_excerpt() ) : ?>
 
 			<p class="intro  intro--paragraph">
-				<?php echo get_the_excerpt(); //we need to this since Jetpack filters the_excerpt - we don't want this ?>
+				<?php
+				// we need to do this since Jetpack filters the_excerpt - we don't want this
+				echo get_the_excerpt(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</p>
 
 		<?php endif; ?>

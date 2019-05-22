@@ -38,7 +38,6 @@ add_filter( 'body_class', 'silklite_body_classes' );
  * @return array The filtered post class list.
  */
 function silklite_post_classes( $classes ) {
-	$post_format = get_post_format();
 
 	if ( is_archive() || is_home() || is_search() ) {
 		$classes[] = 'grid__item';
@@ -46,58 +45,7 @@ function silklite_post_classes( $classes ) {
 
 	return $classes;
 }
-
 add_filter( 'post_class', 'silklite_post_classes' );
-
-if ( version_compare( $GLOBALS['wp_version'], '4.1', '<' ) ) :
-	/**
-	 * Filters wp_title to print a neat <title> tag based on what is being viewed.
-	 *
-	 * @param string $title Default title text for current view.
-	 * @param string $sep Optional separator.
-	 *
-	 * @return string The filtered title.
-	 */
-	function silklite_wp_title( $title, $sep ) {
-		if ( is_feed() ) {
-			return $title;
-		}
-
-		global $page, $paged;
-
-		// Add the blog name
-		$title .= get_bloginfo( 'name', 'display' );
-
-		// Add the blog description for the home/front page.
-		$site_description = get_bloginfo( 'description', 'display' );
-		if ( $site_description && ( is_home() || is_front_page() ) ) {
-			$title .= " $sep $site_description";
-		}
-
-		// Add a page number if necessary:
-		if ( ( $paged >= 2 || $page >= 2 ) && ! is_404() ) {
-			$title .= " $sep " . sprintf( esc_html__( 'Page %s', 'silk-lite' ), max( $paged, $page ) );
-		}
-
-		return $title;
-	}
-
-	add_filter( 'wp_title', 'silklite_wp_title', 10, 2 );
-
-	/**
-	 * Title shim for sites older than WordPress 4.1.
-	 *
-	 * @link https://make.wordpress.org/core/2014/10/29/title-tags-in-4-1/
-	 * @todo Remove this function when WordPress 4.3 is released.
-	 */
-	function silklite_render_title() {
-		?>
-		<title><?php wp_title( '|', true, 'right' ); ?></title>
-	<?php
-	}
-
-	add_action( 'wp_head', 'silklite_render_title' );
-endif;
 
 if ( ! function_exists( 'silklite_fonts_url' ) ) :
 	/**
@@ -193,7 +141,7 @@ if ( ! function_exists( 'silklite_comment' ) ) :
 		$GLOBALS['comment'] = $comment; ?>
 	<li <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?>>
 		<article id="comment-<?php comment_ID() ?>" class="comment-article  media">
-			<span class="comment-number"><?php echo $comment_number ?></span>
+			<span class="comment-number"><?php echo esc_html( $comment_number ); ?></span>
 			<?php
 			//grab the avatar - by default the Mystery Man
 			$avatar = get_avatar( $comment ); ?>
@@ -202,9 +150,13 @@ if ( ! function_exists( 'silklite_comment' ) ) :
 
 			<div class="media__body">
 				<header class="comment__meta comment-author">
-					<?php printf( '<span class="comment__author-name">%s</span>', get_comment_author_link() ) ?>
+					<?php
+					/* translators: %s: The comment author link. */
+					printf( '<span class="comment__author-name">%s</span>', get_comment_author_link() ) ?>
 					<time class="comment__time" datetime="<?php comment_time( 'c' ); ?>">
-						<a href="<?php echo esc_url( get_comment_link( get_comment_ID() ) ) ?>" class="comment__timestamp"><?php printf( __( 'on %s at %s', 'silk-lite' ), get_comment_date(), get_comment_time() ); ?> </a>
+						<a href="<?php echo esc_url( get_comment_link( get_comment_ID() ) ) ?>" class="comment__timestamp"><?php
+							/* translators: %1$s: The comment date, %2$s: The comment time.  */
+							printf( esc_html__( 'on %1$s at %2$s', 'silk-lite' ), esc_html( get_comment_date() ), esc_html( get_comment_time() ) ); ?> </a>
 					</time>
 					<div class="comment__links">
 						<?php
@@ -231,8 +183,8 @@ if ( ! function_exists( 'silklite_comment' ) ) :
 		</article>
 		<!-- </li> is added by WordPress automatically -->
 	<?php
-	} // don't remove this bracket!
-endif; //silklite_comment
+	}
+endif;
 
 /**
  * Filter comment_form_defaults to remove the notes after the comment form textarea.
