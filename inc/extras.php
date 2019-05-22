@@ -107,24 +107,6 @@ if ( ! function_exists( 'silklite_fonts_url' ) ) :
 	}
 endif;
 
-/**
- * Sets the authordata global when viewing an author archive.
- * This provides backwards compatibility with
- * http://core.trac.wordpress.org/changeset/25574
- * It removes the need to call the_post() and rewind_posts() in an author
- * template to print information about the author.
- * @global WP_Query $wp_query WordPress Query object.
- * @return void
- */
-function silklite_setup_author() {
-	global $wp_query;
-
-	if ( $wp_query->is_author() && isset( $wp_query->post ) ) {
-		$GLOBALS['authordata'] = get_userdata( $wp_query->post->post_author );
-	}
-}
-add_action( 'wp', 'silklite_setup_author' );
-
 if ( ! function_exists( 'silklite_comment' ) ) :
 	/*
 	 * Individual comment layout
@@ -138,7 +120,7 @@ if ( ! function_exists( 'silklite_comment' ) ) :
 			$comment_number ++;
 		}
 
-		$GLOBALS['comment'] = $comment; ?>
+		?>
 	<li <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?>>
 		<article id="comment-<?php comment_ID() ?>" class="comment-article  media">
 			<span class="comment-number"><?php echo esc_html( $comment_number ); ?></span>
@@ -146,7 +128,7 @@ if ( ! function_exists( 'silklite_comment' ) ) :
 			//grab the avatar - by default the Mystery Man
 			$avatar = get_avatar( $comment ); ?>
 
-			<aside class="comment__avatar  media__img"><?php echo $avatar; ?></aside>
+			<aside class="comment__avatar  media__img"><?php echo $avatar; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></aside>
 
 			<div class="media__body">
 				<header class="comment__meta comment-author">
@@ -177,7 +159,7 @@ if ( ! function_exists( 'silklite_comment' ) ) :
 					</div>
 				<?php endif; ?>
 				<section class="comment__content comment">
-					<?php comment_text() ?>
+					<?php comment_text(); ?>
 				</section>
 			</div>
 		</article>
