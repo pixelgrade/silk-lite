@@ -220,12 +220,7 @@ if ( ! function_exists( 'silklite_posted_on' ) ) :
 			esc_html( get_the_date() )
 		);
 
-		echo '<span class="posted-on">' . sprintf(
-			/* translators: %s: The post date. */
-			esc_html_x( '%s', 'post date', 'silk-lite' ),
-			'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		)  . '</span>';
-
+		echo '<span class="posted-on"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a></span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 endif;
