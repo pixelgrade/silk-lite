@@ -25,7 +25,8 @@ if ( post_password_required() ) {
 
 	<?php // You can start editing here -- including this comment! ?>
 
-	<?php if ( have_comments() ) : ?>
+	<?php if ( have_comments() ) { ?>
+
 		<div class="comments-area-title">
 			<h3 class="comments-title"><?php
 			if ( have_comments() ) {
@@ -65,14 +66,13 @@ if ( post_password_required() ) {
 		</nav><!-- #comment-nav-below -->
 		<?php endif; // check for comment navigation ?>
 
-	<?php endif; // have_comments() ?>
+	<?php }
 
-	<?php
 	// If comments are closed and there are comments, let's leave a little note, shall we?
-	if ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
+	if ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) { ?>
 		<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'silk-lite' ); ?></p>
-	<?php endif; ?>
+	<?php }
 
-	<?php comment_form(); ?>
+	comment_form(); ?>
 
 </div><!-- #comments -->

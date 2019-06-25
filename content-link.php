@@ -16,6 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<header class="entry-header  entry-header--card">
 
 		<?php if ( ! has_post_thumbnail() ) {
+			/* translators: %s: The post URL. */
 			the_title( sprintf( '<h2 class="entry-title  entry-title--card"><a href="%s" rel="bookmark"><span class="link__text">', esc_url( silklite_get_post_format_link_url() ) ), '</span>&nbsp;<i class="link__icon  fa fa-external-link"></i></a></h2>' );
 		} ?>
 

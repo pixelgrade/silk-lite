@@ -21,10 +21,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 		if ( isset( $post_thumbnail[0] ) ) {
 			$post_thumbnail_style = 'style="background-image: url(' . esc_url( $post_thumbnail[0] ) . ');"';
 		}
-	}
-	?>
+	} ?>
 
-	<div class="entry-content" <?php echo $post_thumbnail_style; ?> >
+	<div class="entry-content" <?php echo $post_thumbnail_style; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> >
 
 		<div class="content-quote">
 			<div class="flexbox">

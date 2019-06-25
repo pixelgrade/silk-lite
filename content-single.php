@@ -17,15 +17,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<header class="entry-header">
 		<div class="entry-meta">
 
-			<?php silklite_posted_on(); ?>
+			<?php
+			silklite_posted_on();
 
-			<?php silklite_cats_list(); ?>
+			silklite_cats_list(); ?>
 
 		</div><!-- .entry-meta -->
 
 		<?php the_title( '<h1 class="entry-title  page-title">', '</h1>' ); ?>
 
-		<?php if ( has_excerpt() ) : ?>
+		<?php if ( has_excerpt() ) { ?>
 
 			<p class="intro  intro--paragraph">
 				<?php
@@ -33,12 +34,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 				echo get_the_excerpt(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</p>
 
-		<?php endif; ?>
+		<?php } ?>
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
 
-		<?php if ( has_post_thumbnail() && get_theme_mod( 'silklite_single_featured_image', false ) ) : ?>
+		<?php if ( has_post_thumbnail() && get_theme_mod( 'silklite_single_featured_image', false ) ) { ?>
 			<div class="entry-featured  entry-thumbnail">
 				<?php
 				if ( is_active_sidebar( 'sidebar-1' ) ) {
@@ -48,11 +49,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 					the_post_thumbnail( 'full' );
 				} ?>
 			</div>
-		<?php endif; ?>
+		<?php }
 
-		<?php the_content(); ?>
+		the_content();
 
-		<?php
 		wp_link_pages( array(
 			'before' => '<div class="page-links"><span class="pagination-title">' . esc_html__( 'Pages:', 'silk-lite' ),
 			'after'  => '</span></div>',

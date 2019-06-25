@@ -22,15 +22,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="entry-content">
 
 		<div class="entry-attachment">
-			<?php
-				echo wp_get_attachment_image( get_the_ID(), 'large' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			?>
 
-			<?php if ( has_excerpt() ) : ?>
+			<?php
+			echo wp_get_attachment_image( get_the_ID(), 'large' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
+			if ( has_excerpt() ) { ?>
 				<div class="entry-caption">
 					<?php the_excerpt(); ?>
 				</div><!-- .entry-caption -->
-			<?php endif; ?>
+			<?php } ?>
 
 		</div><!-- .entry-attachment -->
 
@@ -44,12 +44,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 			'link_after'  => '</span>',
 			'pagelink'    => '<span class="screen-reader-text">' . esc_html__( 'Page', 'silk-lite' ) . ' </span>%',
 			'separator'   => '<span class="screen-reader-text">, </span>',
-		) );
-		?>
+		) ); ?>
+
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
-		<?php if ( current_user_can( 'edit_post', get_the_ID() ) ) : ?>
+		<?php if ( current_user_can( 'edit_post', get_the_ID() ) ) { ?>
 
 			<span class="separator-wrapper--accent" role="presentation">
 				<?php get_template_part( 'assets/svg/separator-simple' ); ?>
@@ -57,7 +57,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			<?php edit_post_link( esc_html__( 'Edit', 'silk-lite' ), '<span class="edit-link">', '</span>' ); ?>
 
-		<?php endif; ?>
+		<?php } ?>
 	</footer><!-- .entry-footer -->
 
 </article><!-- #post-## -->

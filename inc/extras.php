@@ -251,26 +251,6 @@ function silklite_get_thumbnail_size() {
 }
 
 /**
- * Handle the WUpdates theme identification.
- *
- * @param array $ids
- *
- * @return array
- */
-function silklite_wupdates_add_id_wporg( $ids = array() ) {
-	// First get the theme directory name (unique)
-	$slug = basename( get_template_directory() );
-
-	// Now add the predefined details about this product
-	// Do not tamper with these please!!!
-	$ids[ $slug ] = array( 'name' => 'Silk', 'slug' => 'silk', 'id' => 'J6l3r', 'type' => 'theme_wporg', 'digest' => 'a931499795ee34d207d972f0b1d0ca63', );
-
-	return $ids;
-}
-// The 5 priority is intentional to allow for pro to overwrite.
-add_filter( 'wupdates_gather_ids', 'silklite_wupdates_add_id_wporg', 5, 1 );
-
-/**
  * Fix skip link focus in IE11.
  *
  * This does not enqueue the script because it is tiny and because it is only for IE11,

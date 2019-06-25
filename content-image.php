@@ -15,15 +15,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<header class="entry-header  entry-header--card">
 
-		<?php if ( 'post' == get_post_type() ) : ?>
+		<?php if ( 'post' == get_post_type() ) { ?>
 
 			<div class="entry-meta  entry-meta--card">
 				<?php silklite_posted_on_and_cats(); ?>
 			</div><!-- .entry-meta -->
 
-		<?php endif; ?>
+		<?php}
 
-		<?php the_title( sprintf( '<h2 class="entry-title  entry-title--card"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
+		/* translators: %s: The post URL. */
+		the_title( sprintf( '<h2 class="entry-title  entry-title--card"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
 
 	</header><!-- .entry-header -->
 
@@ -36,12 +37,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</a>
 		<?php } else { // we need to search in the content for an image - maybe we find one
 			$first_image = silklite_get_post_format_first_image();
-			if ( ! empty( $first_image ) ) : ?>
+			if ( ! empty( $first_image ) ) { ?>
 				<div class="entry-featured  entry-thumbnail">
 					<?php echo $first_image; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					<div class="entry-image-border"></div>
 				</div>
-			<?php endif;
+			<?php }
 		} ?>
 
 		<span class="separator separator-wrapper--accent">

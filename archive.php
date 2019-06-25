@@ -16,7 +16,7 @@ get_header(); ?>
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
 
-		<?php if ( have_posts() ) : ?>
+		<?php if ( have_posts() ) { ?>
 
 			<header class="page-header">
 
@@ -27,13 +27,12 @@ get_header(); ?>
 
 			</header><!-- .page-header -->
 
-			<?php get_template_part( 'loop', 'archive' ); ?>
+			<?php
+			get_template_part( 'loop', 'archive' );
 
-		<?php else : ?>
-
-			<?php get_template_part( 'content', 'none' ); ?>
-
-		<?php endif; ?>
+		} else {
+			get_template_part( 'content', 'none' );
+		} ?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->

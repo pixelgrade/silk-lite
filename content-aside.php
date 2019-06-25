@@ -15,13 +15,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<header class="entry-header  entry-header--card">
 
-		<?php if ( 'post' == get_post_type() ) : ?>
+		<?php if ( 'post' == get_post_type() ) { ?>
 
 			<div class="entry-meta  entry-meta--card">
 				<?php silklite_posted_on_and_cats(); ?>
 			</div><!-- .entry-meta -->
 
-		<?php endif; ?>
+		<?php } ?>
 
 	</header><!-- .entry-header -->
 

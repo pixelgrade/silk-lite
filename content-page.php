@@ -34,14 +34,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
-		<?php if ( current_user_can( 'edit_post', get_the_ID() ) ) : ?>
+		<?php if ( current_user_can( 'edit_post', get_the_ID() ) ) { ?>
 
 			<span class="separator-wrapper--accent" role="presentation">
 				<?php get_template_part( 'assets/svg/separator-simple' ); ?>
 			</span>
 
-			<?php edit_post_link( esc_html__( 'Edit', 'silk-lite' ), '<span class="edit-link">', '</span>' ); ?>
-
-		<?php endif; ?>
+			<?php edit_post_link( esc_html__( 'Edit', 'silk-lite' ), '<span class="edit-link">', '</span>' );
+		} ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

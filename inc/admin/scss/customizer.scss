@@ -6,11 +6,7 @@ $button-bg-color: #8E65C0;
 
 /* Label for Viw Pro Customizer Section */
 
-[id*="silklite_style_presets"],
-[id*="silklite_colors"],
-[id*="silklite_fonts"],
-[id*="silklite_fonts"],
-[id*="silklite_style_view_pro"] {
+[id*="pro__section"] {
   .accordion-section-title:before {
     position: absolute;
     right: 30px;
@@ -32,9 +28,9 @@ $button-bg-color: #8E65C0;
 }
 
 /* Styling for buttons */
-#sub-accordion-section-silklite_style_view_pro {
+#customize-theme-controls {
   .upsell-container {
-    .button-primary {
+    .button.button-primary {
       width: 100%;
       cursor: pointer;
       transition-duration: .2s;

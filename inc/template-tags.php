@@ -262,7 +262,7 @@ if ( ! function_exists( 'silklite_cats_list' ) ) :
 	 */
 	function silklite_cats_list( $post_ID = null) {
 
-		echo silklite_get_cats_list( $post_ID );
+		echo silklite_get_cats_list( $post_ID ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 	} #function
 

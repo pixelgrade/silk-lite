@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	</div><!-- #content -->
 
-	<?php if ( ! get_theme_mod( 'silklite_disable_search_in_toolbar', false ) ) : ?>
+	<?php if ( ! get_theme_mod( 'silklite_disable_search_in_toolbar', false ) ) { ?>
 
 		<div class="overlay--search">
 			<div class="overlay__wrapper">
@@ -28,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<button class="overlay__close"><span class="screen-reader-text"><?php esc_html_e( 'Close search', 'silk-lite' ); ?></span></button>
 		</div>
 
-	<?php endif; ?>
+	<?php } ?>
 
 	<footer id="colophon" class="site-footer">
 
@@ -62,7 +62,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<span class="sep"> - </span>
 			<?php
 			/* translators: %1$s: The theme name, %2$s: The theme author name. */
-			printf( esc_html__( 'Theme: %1$s by %2$s.', 'silk-lite' ), 'Silk Lite', '<a href="https://pixelgrade.com/" rel="designer">Pixelgrade</a>' ); ?>
+			printf( esc_html__( 'Theme: %1$s by %2$s.', 'silk-lite' ), 'Silk Lite', '<a href="https://pixelgrade.com/?utm_source=silk-lite-clients&utm_medium=footer&utm_campaign=silk-lite" title="' . esc_html__( 'The Pixelgrade Website', '__theme_txtd' ) . '" rel="nofollow">Pixelgrade</a>' ); ?>
 
 		</div><!-- .site-info -->
 

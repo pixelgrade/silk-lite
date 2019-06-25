@@ -27,7 +27,7 @@ function silklite_customize_register( $wp_customize ) {
 	$wp_customize->get_section('title_tagline')->title = '&#x1f465; ' . esc_html__('Site Identity', 'silk-lite');
 
 	// View Pro
-	$wp_customize->add_section( 'silklite_style_view_pro', array(
+	$wp_customize->add_section( 'pro__section', array(
 		'title'       => '' . esc_html__( 'View PRO Version', 'silk-lite' ),
 		'priority'    => 2,
 		'description' => sprintf(
@@ -67,7 +67,7 @@ function silklite_customize_register( $wp_customize ) {
 		'sanitize_callback' => '__return_true',
 	) );
 	$wp_customize->add_control( 'silklite_style_view_pro_desc', array(
-		'section' => 'silklite_style_view_pro',
+		'section' => 'pro__section',
 		'type'    => 'hidden',
 	) );
 
@@ -181,7 +181,7 @@ function silklite_sanitize_site_title_outline( $outline ) {
  * This will be added in the preview part
  */
 function silklite_customizer_preview_assets() {
-	wp_enqueue_script( 'silklite_customizer_preview', get_template_directory_uri() . '/assets/js/customizer_preview.js', array( 'customize-preview' ), '1.3.0', true );
+	wp_enqueue_script( 'silklite_customizer_preview', get_template_directory_uri() . '/assets/js/customizer_preview.js', array( 'customize-preview' ), '1.3.3', true );
 }
 add_action( 'customize_preview_init', 'silklite_customizer_preview_assets' );
 
@@ -189,7 +189,7 @@ add_action( 'customize_preview_init', 'silklite_customizer_preview_assets' );
  * Assets that will be loaded for the customizer sidebar
  */
 function silklite_customizer_assets() {
-	wp_enqueue_style( 'silklite_customizer_style', get_template_directory_uri() . '/inc/admin/css/customizer.css', array(), '1.3.1', false );
+	wp_enqueue_style( 'silklite_customizer_style', get_template_directory_uri() . '/inc/admin/css/customizer.css', array(), '1.3.3', false );
 }
 add_action( 'customize_controls_enqueue_scripts', 'silklite_customizer_assets' );
 
