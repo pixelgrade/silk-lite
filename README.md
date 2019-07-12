@@ -1,49 +1,29 @@
-# SILK LITE
-An enchanting magazine style theme for fashion bloggers, prized for its smart layout and smooth animations. Whether you're looking to share your own thoughts, write about your latest findings or just have a scrapbook of photos, SILK LITE is designed to fulfill these and a lot more.
+# Silk Lite: A Free Fashion Blogging WordPress theme
+### An enchanting free magazine style theme for fashion bloggers, prized for its smart layout and smooth animations. Whether you're looking to share your own thoughts, write about your latest findings or just have a scrapbook of photos, SILK LITE is designed to fulfill these and a lot more.
 
-## Installation
+[Download for Free](https://downloads.wordpress.org/theme/silk-lite.latest-stable.zip) &nbsp;·&nbsp; [Demo Preview](https://demos.pixelgrade.com/silk-lite/) &nbsp;·&nbsp; [ Silk Pro](https://pixelgrade.com/themes/silk-pro/)
 
-1. In your admin panel, go to Appearance -> Themes and click the Add New button.
-2. Click Upload and Choose File, then select the theme's .zip file. Click Install Now.
-3. Click Activate to use your new theme right away.
+[![](https://img.shields.io/github/issues-closed/pixelgrade/silk-lite.svg?color=6cc644&label=Issues)](https://github.com/pixelgrade/silk-lite/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aclosed+) [![](https://img.shields.io/github/issues/pixelgrade/silk-lite.svg?color=4078c0&label=%20)](https://github.com/pixelgrade/silk-lite/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen)
 
-## Recommended plugin
-By installing Jetpack plugin, you'll be able to get special widgets like Newsletter or Popular Posts widget.
+[![](https://user-images.githubusercontent.com/1632775/61127115-03b9f600-a4b7-11e9-883c-b759d1b1577f.jpg)](https://demos.pixelgrade.com/silk-lite/)
 
-## Changelog
+## Contributing
+The essence of **open source** is that by freely sharing the code, you have the freedom to use it for any purpose, study how it works and adapt it to your needs, improve the program and **share your improvements** with the community so that we all benefit. 🙏
 
-= 1.3.3 =
-* More cleanup and security fixes.
+It's great if you're willing to use your skills, knowledge, and experience to help further refine this project with your own improvements. We really appreciate it and you're 💯 welcome to submit an issue or pull request on any topic.
 
-= 1.3.2 =
-* Cleanup and security fixes.
+### How can you help?
+- 🐛 **Discovered an issue?** Please report it [here](https://github.com/pixelgrade/silk-lite/issues/new "here") and help us fix it.
+- 🛠 **Fixed a bug?** That’s fantastic! Send a [pull request](https://github.com/pixelgrade/silk-lite/pulls "pull request") and we will look over it.
+- 🙋 **Need a feature?** Please take a moment to find out whether your idea fit the wider scope of this theme and provide as much detail and context as possible. Then propose it [here](https://github.com/pixelgrade/silk-lite/issues/new).
+- 💎 **Have you made something great?** [Share](https://github.com/pixelgrade/silk-lite/issues/new "Share") it with us.
 
-= 1.3.1 =
-* Minor styling fixes in the Customizer.
+### Contributors
+A manually curated list that include all the valuable people that have contributed to this project with code, user testing, feedback, or mockups. Thank you!
 
-= 1.3.0 =
-* Improved the overall onboarding experience with the theme and introduced a dedicated help tool.
+[![](https://github.com/georgeolaru.png?size=64)](https://github.com/georgeolaru) [![](https://github.com/vladolaru.png?size=64)](https://github.com/vladolaru) [![](https://github.com/razwan.png?size=64)](https://github.com/razwan)  [![](https://github.com/alinclamba.png?size=64)](https://github.com/alinclamba) [![](https://github.com/oanafilip.png?size=64)](https://github.com/oanafilip)  [![](https://github.com/andreilupu.png?size=64)](https://github.com/andreilupu) [![](https://github.com/madalingorbanescu.png?size=64)](https://github.com/madalingorbanescu) [![](https://github.com/BurloiuCosmin.png?size=64)](https://github.com/BurloiuCosmin) [![](https://github.com/raduconst.png?size=64)](https://github.com/raduconst) [![](https://github.com/Robertght.png?size=64)](https://github.com/Robertght) [![](https://github.com/allexsava.png?size=64)](https://github.com/allexsava)
 
-= 1.2.10 =
-* Fixed a security issue
+## License
+Silk Lite source code is released under the [GNU GPL v3 license](https://www.gnu.org/licenses/gpl-3.0.html).
 
-= 1.2.8 - May 18 2017 =
-* Added About Silk Lite page 
-
-= 1.0.0 =
-* Initial release
-
-## Credits
-
-Unless otherwise specified, all the theme files, scripts and images are licensed under GNU General Public License.
-
-* Hybrid Media Grabber: script by Justin Tadlock (http://themehybrid.com/hybrid-core), licensed under [GPLv2](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
-
-* VelocityJS: script by Julian Shapiro (http://julian.com/research/velocity/), licensed under the [MIT License](http://opensource.org/licenses/mit-license.html).
-* debouncedresize.js: script by Louis-Rémi Babé (https://github.com/louisremi/jquery-smartresize), licensed under the [MIT License](http://opensource.org/licenses/mit-license.html).
-* requestanimationframe.js: script by Erik Möller, licensed under the [MIT License](http://opensource.org/licenses/mit-license.html).
-* arianavigation.js: script by Simply Accessible (http://simplyaccessible.com/), Copyright © Simply Accessible Inc.
-
-* Font Awesome: font by Fonticons, Inc. (https://fontawesome.com/), licensed under [SIL OFL 1.1](https://fontawesome.com/license/free), CSS released under the [MIT License](http://opensource.org/licenses/mit-license.html).
-
-* Images: screenshot image by Lechon Kirb (https://unsplash.com/lechonkirb) - [Source](https://unsplash.com/photos/yvx7LSZSzeo), London Scout (https://unsplash.com/scoutthecity) - [Source](https://unsplash.com/photos/YLMs82LF6FY), Abigail Keenan(https://unsplash.com/akeenster) - [Source](https://unsplash.com/photos/8jqna7aA-vs) and Benjamin Combs(https://unsplash.com/b3njamin) - [Source](https://unsplash.com/photos/hiAdjnXZxl8). All licensed under [CC0](http://creativecommons.org/choose/zero/).
+2019 © Pixelgrade.
