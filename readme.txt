@@ -59,4 +59,4 @@ Unless otherwise specified, all the theme files, scripts and images are licensed
 
 * Font Awesome: font by Fonticons, Inc. (https://fontawesome.com/), licensed under [SIL OFL 1.1](https://fontawesome.com/license/free), CSS released under the [MIT License](http://opensource.org/licenses/mit-license.html).
 
-* Images: screenshot image by Lechon Kirb (https://unsplash.com/lechonkirb) - [Source](https://unsplash.com/photos/yvx7LSZSzeo), London Scout (https://unsplash.com/scoutthecity) - [Source](https://unsplash.com/photos/YLMs82LF6FY), Abigail Keenan(https://unsplash.com/akeenster) - [Source](https://unsplash.com/photos/8jqna7aA-vs) and Benjamin Combs(https://unsplash.com/b3njamin) - [Source](https://unsplash.com/photos/hiAdjnXZxl8). All licensed under [CC0](http://creativecommons.org/choose/zero/).
+* Images: screenshot image by Lechon Kirb - [Source](https://pxhere.com/en/photo/872847), London Scout - [Source](https://pxhere.com/en/photo/21589), Abigail Keenan - [Source](https://pxhere.com/en/photo/951504) and Benjamin Combs - [Source](https://pxhere.com/en/photo/868964). All licensed under [CC0](http://creativecommons.org/choose/zero/).
