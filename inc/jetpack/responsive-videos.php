@@ -66,7 +66,7 @@ function silklite_jetpack_responsive_videos_embed_html( $html ) {
  *
  * @return string
  */
-function silklite_jetpack_responsive_videos_maybe_wrap_oembed( $html, $url ) {
+function silklite_jetpack_responsive_videos_maybe_wrap_oembed( $html, $url = '' ) {
 	if ( empty( $html ) || ! is_string( $html ) || ! $url ) {
 		return $html;
 	}
