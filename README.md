@@ -1,7 +1,7 @@
 # Silk Lite: A Free Fashion Blogging WordPress theme
 ### An enchanting free magazine style theme for fashion bloggers, prized for its smart layout and smooth animations. Whether you're looking to share your own thoughts, write about your latest findings or just have a scrapbook of photos, SILK LITE is designed to fulfill these and a lot more.
 
-[Download for Free](https://downloads.wordpress.org/theme/silk-lite.latest-stable.zip) &nbsp;·&nbsp; [Demo Preview](https://demos.pixelgrade.com/silk-lite/) &nbsp;·&nbsp; [ Silk Pro](https://pixelgrade.com/themes/silk-pro/)
+[View Demo](https://demos.pixelgrade.com/silk-lite/) &nbsp;·&nbsp; [Documentation](https://pixelgrade.com/silk-lite-documentation/) &nbsp;·&nbsp; [Download for Free](https://downloads.wordpress.org/theme/silk-lite.latest-stable.zip) &nbsp;·&nbsp; [View Pro Version](https://pixelgrade.com/themes/silk-pro/)
 
 [![](https://img.shields.io/github/issues-closed/pixelgrade/silk-lite.svg?color=6cc644&label=Issues)](https://github.com/pixelgrade/silk-lite/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aclosed+) [![](https://img.shields.io/github/issues/pixelgrade/silk-lite.svg?color=4078c0&label=%20)](https://github.com/pixelgrade/silk-lite/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen)
 
