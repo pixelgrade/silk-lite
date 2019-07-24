@@ -1,7 +1,7 @@
 # Silk Lite: A Free Fashion Blogging WordPress theme
 ### An enchanting free magazine style theme for fashion bloggers, prized for its smart layout and smooth animations. Whether you're looking to share your own thoughts, write about your latest findings or just have a scrapbook of photos, SILK LITE is designed to fulfill these and a lot more.
 
-[Download for Free](https://downloads.wordpress.org/theme/silk-lite.latest-stable.zip) &nbsp;·&nbsp; [Demo Preview](https://demos.pixelgrade.com/silk-lite/) &nbsp;·&nbsp; [ Silk Pro](https://pixelgrade.com/themes/silk-pro/)
+[View Demo](https://demos.pixelgrade.com/silk-lite/) &nbsp;·&nbsp; [Documentation](https://pixelgrade.com/silk-lite-documentation/) &nbsp;·&nbsp; [Download for Free](https://downloads.wordpress.org/theme/silk-lite.latest-stable.zip) &nbsp;·&nbsp; [View Pro Version](https://pixelgrade.com/themes/silk-pro/)
 
 [![](https://img.shields.io/github/issues-closed/pixelgrade/silk-lite.svg?color=6cc644&label=Issues)](https://github.com/pixelgrade/silk-lite/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aclosed+) [![](https://img.shields.io/github/issues/pixelgrade/silk-lite.svg?color=4078c0&label=%20)](https://github.com/pixelgrade/silk-lite/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen)
 
@@ -24,6 +24,6 @@ A manually curated list that include all the valuable people that have contribut
 [![](https://github.com/georgeolaru.png?size=64)](https://github.com/georgeolaru) [![](https://github.com/vladolaru.png?size=64)](https://github.com/vladolaru) [![](https://github.com/razwan.png?size=64)](https://github.com/razwan)  [![](https://github.com/alinclamba.png?size=64)](https://github.com/alinclamba) [![](https://github.com/oanafilip.png?size=64)](https://github.com/oanafilip)  [![](https://github.com/andreilupu.png?size=64)](https://github.com/andreilupu) [![](https://github.com/madalingorbanescu.png?size=64)](https://github.com/madalingorbanescu) [![](https://github.com/BurloiuCosmin.png?size=64)](https://github.com/BurloiuCosmin) [![](https://github.com/raduconst.png?size=64)](https://github.com/raduconst) [![](https://github.com/Robertght.png?size=64)](https://github.com/Robertght) [![](https://github.com/allexsava.png?size=64)](https://github.com/allexsava)
 
 ## License
-Silk Lite source code is released under the [GNU GPL v3 license](https://www.gnu.org/licenses/gpl-3.0.html).
+Silk Lite source code is released under the [GNU GPL v2 license](https://www.gnu.org/licenses/gpl-2.0.html).
 
 2019 © Pixelgrade.
