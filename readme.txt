@@ -22,6 +22,9 @@ An enchanting magazine style theme for fashion bloggers, prized for its smart la
 
 == Changelog ==
 
+= 1.3.4 =
+* Added new wp_body_open hook.
+
 = 1.3.3 =
 * More cleanup and security fixes.
 

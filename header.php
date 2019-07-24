@@ -23,6 +23,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <body <?php body_class(); ?>>
 
+<?php wp_body_open(); ?>
+
 <?php $classes = ( ! get_theme_mod( 'silklite_single_column_archives', false ) ) ? 'archive-layout--masonry' : 'archive-layout--column'; ?>
 
 <div id="page" class="hfeed site <?php echo esc_attr( $classes ); ?>">
