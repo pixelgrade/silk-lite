@@ -306,3 +306,8 @@ require get_template_directory() . '/inc/silklite-hybrid-media-grabber.php';
  */
 require get_template_directory() . '/inc/widgets/popular-posts.php';
 require get_template_directory() . '/inc/widgets/about-me.php';
+
+/**
+ * Admin dashboard related logic.
+ */
+require_once trailingslashit( get_template_directory() ) . 'inc/admin.php';
