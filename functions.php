@@ -110,6 +110,8 @@ if ( ! function_exists( 'silklite_setup' ) ) :
 		 * Also enqueue the custom Google Fonts also
 		 */
 		add_editor_style( array( 'editor-style.css', silklite_fonts_url() ) );
+
+		add_theme_support( 'customizer_style_manager' );
 	}
 endif; // silklite_setup
 add_action( 'after_setup_theme', 'silklite_setup' );
@@ -311,3 +313,8 @@ require get_template_directory() . '/inc/widgets/about-me.php';
  * Admin dashboard related logic.
  */
 require_once trailingslashit( get_template_directory() ) . 'inc/admin.php';
+
+/**
+ * Various plugins integrations.
+ */
+require get_template_directory() . '/inc/integrations.php';

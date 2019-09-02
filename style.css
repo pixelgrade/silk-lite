@@ -334,8 +334,7 @@ p {
   background-image: linear-gradient(rgba(0, 0, 0, 0.25) 0%, #000000 100%);
   background-repeat: repeat-x;
   background-size: 1px 1px;
-  background-position: 0 95%;
-  text-shadow: 3px 0 white, 2px 0 white, 1px 0 white, -1px 0 white, -2px 0 white, -3px 0 white; }
+  background-position: 0 95%; }
   @media (-webkit-min-device-pixel-ratio: 1.75), (min-resolution: 168dpi) {
     .single .entry-content a, .page .entry-content a, .comment__author-name a, .bypostauthor .comment__author-name, .site-main--single .entry-footer a {
       background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.25)), to(#000000));
@@ -2210,7 +2209,7 @@ html.svg .site-title text {
   padding-right: 1.42857rem;
   z-index: 20; }
   .nav--is-open .button-toggle {
-    background-color: white !important; }
+    background-color: white; }
   .button-toggle .button-icon {
     font-size: 1.42857rem; }
   @media only screen and (min-width: 900px) {
@@ -2241,7 +2240,7 @@ html.svg .site-title text {
   display: block;
   width: 20px;
   height: 3px;
-  background: #403b3c;
+  background-color: #403b3c;
   border-radius: 2.5rem;
   -webkit-transition: all .3s;
   transition: all .3s; }
@@ -2770,8 +2769,7 @@ div.nav.nav--main > ul, .nav--main div.nav--main.sub-menu > ul, .nav--main div.n
       margin: 1.14286rem auto;
       background: url("assets/svg/separator-simple.svg") transparent center center; }
   .widget a {
-    padding: 0.42857rem 0;
-    color: #403b3c; }
+    padding: 0.42857rem 0; }
     .fs-17px, .widget a {
       font-size: 1.21429em;
       line-height: 1.41176; }
@@ -2903,8 +2901,9 @@ div.nav.nav--main > ul, .nav--main div.nav--main.sub-menu > ul, .nav--main div.n
   .sidebar--main .widget.shrink:hover:after, .sidebar--main .widget.shrink:focus:after {
     opacity: 0; }
   .sidebar--main .widget.shrink:after {
-    background: -webkit-gradient(linear, left bottom, left top, color-stop(3rem, white), color-stop(6rem, rgba(255, 255, 255, 0)));
-    background: linear-gradient(to top, white 3rem, rgba(255, 255, 255, 0) 6rem); }
+    color: #FFFFFF;
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(3rem, currentColor), color-stop(6rem, rgba(255, 255, 255, 0)));
+    background: linear-gradient(to top, currentColor 3rem, rgba(255, 255, 255, 0) 6rem); }
   .sidebar--main .widget.shrink .separator {
     position: absolute;
     bottom: 2.5rem;

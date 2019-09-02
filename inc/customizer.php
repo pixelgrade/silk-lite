@@ -199,12 +199,3 @@ add_action( 'customize_controls_enqueue_scripts', 'silklite_customizer_assets' )
 function silklite_get_pro_link() {
 	return 'https://pixelgrade.com/themes/blogging/silk-lite?utm_source=silk-lite-clients&utm_medium=customizer&utm_campaign=silk-lite#pro';
 }
-
-function silklite_add_customify_options( $config ) {
-
-	$config['sections'] = array();
-	$config['panels'] = array();
-
-	return $config;
-}
-add_filter( 'customify_filter_fields', 'silklite_add_customify_options' );

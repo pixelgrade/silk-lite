@@ -193,8 +193,7 @@ p {
   background-image: linear-gradient(rgba(0, 0, 0, 0.25) 0%, #000000 100%);
   background-repeat: repeat-x;
   background-size: 1px 1px;
-  background-position: 0 95%;
-  text-shadow: 3px 0 white, 2px 0 white, 1px 0 white, -1px 0 white, -2px 0 white, -3px 0 white; }
+  background-position: 0 95%; }
   @media (-webkit-min-device-pixel-ratio: 1.75), (min-resolution: 168dpi) {
     .mce-content-body a {
       background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.25)), to(#000000));

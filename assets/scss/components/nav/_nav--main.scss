@@ -63,7 +63,7 @@
 	z-index: 20;
 
 	.nav--is-open & {
-		background-color: white !important;
+		background-color: white;
 	}
 
 	.button-icon {
@@ -114,7 +114,7 @@
 	width: 20px;
 	height: 3px;
 
-	background: $dark;
+	background-color: $dark;
 
 	border-radius: 2.5rem;
 	transition: all .3s;

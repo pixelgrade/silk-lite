@@ -111,10 +111,10 @@ p {
 	// http://www.acusti.ca/blog/2014/11/28/towards-a-more-perfect-link-underline/
 	
 	text-decoration: none;
-	
+
     // Underline via gradient background
     background-image: linear-gradient(rgba($black, 0.25) 0%, $black 100%);
-    background-repeat: repeat-x; 
+    background-repeat: repeat-x;
     background-size: 1px 1px;
     background-position: 0 95%;
 
@@ -124,9 +124,6 @@ p {
       background-position: 0 93%;
     }
 
-    // Clear descendors from underline
-    text-shadow: 3px 0 white, 2px 0 white, 1px 0 white, -1px 0 white, -2px 0 white, -3px 0 white;
-    
     &:hover {
       background-image: linear-gradient(to bottom, $accent 0%, $accent 100%);
     }

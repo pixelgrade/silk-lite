@@ -50,7 +50,6 @@
 
 		padding: rem(6px) 0;
 
-		color: $dark;
 		@include fs(17px);
 
 		.site-footer & {
@@ -272,7 +271,8 @@
 
 		&:after {
 			@extend %widget-haze;
-			background: linear-gradient(to top, rgba(255, 255, 255, 1) 3rem, rgba(255, 255, 255, 0) 6rem);
+			color: #FFFFFF;
+			background: linear-gradient(to top, currentColor 3rem, rgba(255, 255, 255, 0) 6rem);
 		}
 
 
