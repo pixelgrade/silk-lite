@@ -23,9 +23,6 @@ function silklite_customize_register( $wp_customize ) {
 	// Rename the label to "Display Site Title & Tagline" in order to make this option clearer.
 	$wp_customize->get_control( 'display_header_text' )->label = esc_html__( 'Display Site Title &amp; Tagline', 'silk-lite' );
 
-	// Add a pretty icon to Site Identity
-	$wp_customize->get_section('title_tagline')->title = '&#x1f465; ' . esc_html__('Site Identity', 'silk-lite');
-
 	// View Pro
 	$wp_customize->add_section( 'pro__section', array(
 		'title'       => '' . esc_html__( 'View PRO Version', 'silk-lite' ),
@@ -38,7 +35,7 @@ function silklite_customize_register( $wp_customize ) {
 					<ul class="upsell-features">
                             <li>
                             	<h4>Personalize to Match Your Style</h4>
-                            	<div class="description">Having different tastes and preferences might be tricky for users, but not with Silk onboard. It has an intuitive and catchy interface which allows you to change <strong>fonts, colors or layout sizes</strong> in a blink of an eye.</div>
+                            	<div class="description">Having different tastes and preferences might be tricky for users, but not with Silk on board. It has an intuitive and catchy interface which allows you to change <strong>fonts, colors or layout sizes</strong> in a blink of an eye.</div>
                             </li>
 
                             <li>

@@ -1,9 +1,9 @@
 <?php
 /**
- * Gema Customizer Options Config
+ * Silk Lite Customizer Options Config
  *
  * @package Silk Lite
- * @since 1.3.4
+ * @since 1.4.0
  */
 /**
  * Hook into the Customify's fields and settings.
@@ -15,10 +15,10 @@
  *
  * @return array The returned options are required, if you don't need options return an empty array
  */
-add_filter( 'customify_filter_fields', 'silk_lite_add_customify_options', 11, 1 );
-add_filter( 'customify_filter_fields', 'silk_lite_add_customify_style_manager_section', 12, 1 );
+add_filter( 'customify_filter_fields', 'silklite_add_customify_options', 11, 1 );
+add_filter( 'customify_filter_fields', 'silklite_add_customify_style_manager_section', 12, 1 );
 
-add_filter( 'customify_filter_fields', 'silk_lite_fill_customify_options', 20 );
+add_filter( 'customify_filter_fields', 'silklite_fill_customify_options', 20 );
 
 define( 'SILKLITE_SM_COLOR_PRIMARY', '#A33B61' );
 define( 'SILKLITE_SM_COLOR_SECONDARY', '#FCC9B0' );
@@ -32,7 +32,7 @@ define( 'SILKLITE_SM_LIGHT_PRIMARY', '#FFFFFF' );
 define( 'SILKLITE_SM_LIGHT_SECONDARY', '#B8B6B7' );
 define( 'SILKLITE_SM_LIGHT_TERTIARY', '#B8B6B7' );
 
-function silk_lite_add_customify_options( $options ) {
+function silklite_add_customify_options( $options ) {
 	$options['opt-name'] = 'silk_options';
 
 	$options['sections'] = array();
@@ -47,7 +47,7 @@ function silk_lite_add_customify_options( $options ) {
  *
  * @return array
  */
-function silk_lite_add_customify_style_manager_section( $options ) {
+function silklite_add_customify_style_manager_section( $options ) {
 	// If the theme hasn't declared support for style manager, bail.
 	if ( ! current_theme_supports( 'customizer_style_manager' ) ) {
 		return $options;
@@ -100,17 +100,17 @@ function silk_lite_add_customify_style_manager_section( $options ) {
 				),
 			),
 			'sm_dark_tertiary' => array(
-				'default' => SM_DARK_TERTIARY,
+				'default' => SILKLITE_SM_DARK_TERTIARY,
 			),
 			'sm_light_primary' => array(
-				'default' => SM_LIGHT_PRIMARY,
+				'default' => SILKLITE_SM_LIGHT_PRIMARY,
 				'connected_fields' => array(
 					'footer_text_color',
 					'content_background_color'
 				),
 			),
 			'sm_light_secondary' => array(
-				'default' => SM_LIGHT_SECONDARY,
+				'default' => SILKLITE_SM_LIGHT_SECONDARY,
 				'connected_fields' => array(
 					'top_bar_text_color',
 				),
@@ -131,7 +131,7 @@ function silk_lite_add_customify_style_manager_section( $options ) {
 	return $options;
 }
 
-function silk_lite_fill_customify_options( $options ) {
+function silklite_fill_customify_options( $options ) {
 	$new_config = array(
 		'colors_section' => array(
 			'title'       => '',
@@ -139,7 +139,6 @@ function silk_lite_fill_customify_options( $options ) {
 			'options' => array(
 				'accent_color'  => array(
 					'type'    => 'hidden_control',
-					'label'     => esc_html__( 'Accent Color', 'silk' ),
 					'live' 		=> true,
 					'default'   => SILKLITE_SM_COLOR_PRIMARY,
 					'css'  		=> array(
@@ -231,7 +230,7 @@ function silk_lite_fill_customify_options( $options ) {
 						array(
 							'property' => 'background-color',
 							'selector' => '.widget_silk-popular-posts .popular-posts_item.large-thumbnail .bump-view:first-child:after',
-							'callback_filter' => 'silk_important_css_rule'
+							'callback_filter' => 'silklite_important_css_rule'
 						),
 						array(
 							'property' => 'border-color',
@@ -242,7 +241,6 @@ function silk_lite_fill_customify_options( $options ) {
 				),
 				'secondary_color' => array(
 					'type'    => 'hidden_control',
-					'label'		=> esc_html__( 'Secondary Color', 'silk' ),
 					'live'		=> true,
 					'default'	=> SILKLITE_SM_COLOR_SECONDARY,
 					'css'		=> array(
@@ -276,7 +274,7 @@ function silk_lite_fill_customify_options( $options ) {
 						array(
 							'property'	=> 'border-color',
 							'selector'	=> '.is--ancient-android .archive__grid .format-quote blockquote:after',
-							'callback'	=> 'silk_quote_border_image'
+							'callback'	=> 'silklite_quote_border_image'
 						),
 						array(
 							'property'	=> 'background-color',
@@ -293,13 +291,12 @@ function silk_lite_fill_customify_options( $options ) {
 						array(
 							'property'	=> 'border-color',
 							'selector'  => '.dropcap',
-							'callback_filter' => 'silk_secondary_dropcap_cb'
+							'callback_filter' => 'silklite_secondary_dropcap_cb'
 						),
 					)
 				),
 				'site_title_color'  => array(
 					'type'    => 'hidden_control',
-					'label'     => esc_html__( 'Site Title Color', 'silk' ),
 					'live' 		=> true,
 					'default'   => SILKLITE_SM_COLOR_PRIMARY,
 					'css'  		=> array(
@@ -315,7 +312,6 @@ function silk_lite_fill_customify_options( $options ) {
 				),
 				'links_color'  => array(
 					'type'    => 'hidden_control',
-					'label'     => esc_html__( 'Links Color', 'silk' ),
 					'live' 		=> true,
 					'default'   => '#000000',
 					'css'  		=> array(
@@ -332,7 +328,6 @@ function silk_lite_fill_customify_options( $options ) {
 				// Top Bar
 				'top_bar_text_color'  => array(
 					'type'    => 'hidden_control',
-					'label'     => esc_html__( 'Top Bar Text Color', 'silk' ),
 					'live' 		=> true,
 					'default'   => '#b8b6b7',
 					'css'  		=> array(
@@ -352,7 +347,6 @@ function silk_lite_fill_customify_options( $options ) {
 				),
 				'top_bar_bg_color'  => array(
 					'type'    => 'hidden_control',
-					'label'     => esc_html__( 'Top Bar Background Color', 'silk' ),
 					'live' 		=> true,
 					'default'   => SILKLITE_SM_DARK_PRIMARY,
 					'css'  		=> array(
@@ -364,7 +358,6 @@ function silk_lite_fill_customify_options( $options ) {
 				),
 				'content_background_color'  => array(
 					'type'    => 'hidden_control',
-					'label'     => esc_html__( 'Background Color', 'silk' ),
 					'live' 		=> true,
 					'default'   => '#ffffff',
 					'css'  		=> array(
@@ -411,8 +404,7 @@ function silk_lite_fill_customify_options( $options ) {
 								.archive__grid .sticky .entry-title a, 
 								.archive__grid .sticky .entry-meta,
 								.sticky a:hover,
-								.sidebar--main .widget.shrink:after,
-								.overlay--search .search-field'
+								.sidebar--main .widget.shrink:after',
 						),
 						array(
 							'property' => 'border-color',
@@ -426,13 +418,12 @@ function silk_lite_fill_customify_options( $options ) {
 						array(
 							'property'	=> 'border-color',
 							'selector'  => '.dropcap',
-							'callback_filter' => 'silk_background_dropcap_cb'
+							'callback_filter' => 'silklite_background_dropcap_cb'
 						),
 					),
 				),
 				'content_text_color' => array(
 					'type'    => 'hidden_control',
-					'label' => esc_html__( 'Text Color', 'silk' ),
 					'live' => true,
 					'default' => SILKLITE_SM_DARK_SECONDARY,
 					'css' => array(
@@ -441,7 +432,8 @@ function silk_lite_fill_customify_options( $options ) {
 							'selector' => 'body,
 								.nav--floating a, 
 								.nav--floating button,
-								.sub-menu-wrapper'
+								.sub-menu-wrapper,
+								.overlay--search .search-field'
 						),
 						array(
 							'property' => 'background-color',
@@ -454,7 +446,7 @@ function silk_lite_fill_customify_options( $options ) {
 							'property' => 'border-color',
 							'selector' => '.nav--main > .menu-item-has-children.hover > a:before, 
 								.nav--main > .menu-item--mega.hover > a:before',
-							'callback_filter' => 'silk_color_opacity_adjust_cb'
+							'callback_filter' => 'silklite_color_opacity_adjust_cb'
 						),
 						array(
 							'property' => 'border-color',
@@ -465,7 +457,6 @@ function silk_lite_fill_customify_options( $options ) {
 				// Footer
 				'footer_text_color'  => array(
 					'type'    => 'hidden_control',
-					'label'     => esc_html__( 'Footer Text Color', 'silk' ),
 					'live' 		=> true,
 					'default'   => '#FFFFFF',
 					'css'  		=> array(
@@ -481,7 +472,6 @@ function silk_lite_fill_customify_options( $options ) {
 				),
 				'footer_bg_color'  => array(
 					'type'    => 'hidden_control',
-					'label'     => esc_html__( 'Footer Background Color', 'silk' ),
 					'live' 		=> true,
 					'default'   => SILKLITE_SM_DARK_PRIMARY,
 					'css'  		=> array(
@@ -508,8 +498,8 @@ function silk_lite_fill_customify_options( $options ) {
 	return $options;
 }
 
-if ( ! function_exists( 'silk_important_css_rule' ) ) {
-	function silk_important_css_rule( $value, $selector, $property, $unit ) {
+if ( ! function_exists( 'silklite_important_css_rule' ) ) {
+	function silklite_important_css_rule( $value, $selector, $property, $unit ) {
 		$output = $selector . '{ ' .
 		          $property . ': ' . $value . ' !important;' .
 		          ' }';
@@ -518,8 +508,8 @@ if ( ! function_exists( 'silk_important_css_rule' ) ) {
 	}
 }
 
-if ( ! function_exists( 'silk_quote_border_image' ) ) {
-	function silk_quote_border_image( $value, $selector, $property, $unit ) {
+if ( ! function_exists( 'silklite_quote_border_image' ) ) {
+	function silklite_quote_border_image( $value, $selector, $property, $unit ) {
 		$output = $selector . '{
 			-webkit-border-image: -webkit-linear-gradient(left, ' . $value . ' 0%, ' . $value . ' 40%, transparent 40.1%, transparent 50%, transparent 59.9%, ' . $value . ' 60%, ' . $value . ' 100%) 20%;
 			-o-border-image: linear-gradient(to right, ' . $value . ' 0%, ' . $value . ' 40%, transparent 40.1%, transparent 50%, transparent 59.9%, ' . $value . ' 60%, ' . $value . ' 100%) 20%;
@@ -530,8 +520,8 @@ if ( ! function_exists( 'silk_quote_border_image' ) ) {
 	}
 }
 
-if ( ! function_exists( 'silk_secondary_dropcap_cb' ) ) {
-	function silk_secondary_dropcap_cb( $value, $selector, $property, $unit ) {
+if ( ! function_exists( 'silklite_secondary_dropcap_cb' ) ) {
+	function silklite_secondary_dropcap_cb( $value, $selector, $property, $unit ) {
 	    $gap = pixelgrade_option( 'content_background_color', 'white' );
 		$output = $selector . '{
 			text-shadow: 2px 2px 0 ' . $gap . ', 4px 4px 0 ' . $value .
@@ -541,14 +531,14 @@ if ( ! function_exists( 'silk_secondary_dropcap_cb' ) ) {
 	}
 }
 
-if ( ! function_exists( 'silk_secondary_dropcap_cb_customizer_preview' ) ) {
+if ( ! function_exists( 'silklite_secondary_dropcap_cb_customizer_preview' ) ) {
 
-	function silk_secondary_dropcap_cb_customizer_preview() {
+	function silklite_secondary_dropcap_cb_customizer_preview() {
 		$js = "
-			function silk_secondary_dropcap_cb( value, selector, property, unit ) {
+			function silklite_secondary_dropcap_cb( value, selector, property, unit ) {
 				var css = '',
                     background = wp.customize( 'silk_options[content_background_color]' )(),
-					style = document.getElementById('silk_dropcap_text_shadow_cb_style_tag'),
+					style = document.getElementById('silklite_secondary_dropcap_cb_style_tag'),
 					head = document.head || document.getElementsByTagName('head')[0];
 
 				css += selector + ' { ' + 'text-shadow: 2px 2px 0 ' + background + ', 4px 4px 0 ' + value + ';' + ' } ';
@@ -557,7 +547,7 @@ if ( ! function_exists( 'silk_secondary_dropcap_cb_customizer_preview' ) ) {
 					style.innerHTML = css;
 				} else {
 					style = document.createElement('style');
-					style.setAttribute('id', 'silk_secondary_dropcap_cb_style_tag');
+					style.setAttribute('id', 'silklite_secondary_dropcap_cb_style_tag');
 
 					style.type = 'text/css';
 					if ( style.styleSheet ) {
@@ -572,18 +562,18 @@ if ( ! function_exists( 'silk_secondary_dropcap_cb_customizer_preview' ) ) {
 
 		wp_add_inline_script( 'customify-previewer-scripts', $js );
 	}
-	add_action( 'customize_preview_init', 'silk_secondary_dropcap_cb_customizer_preview' );
+	add_action( 'customize_preview_init', 'silklite_secondary_dropcap_cb_customizer_preview' );
 }
 
-if ( ! function_exists( 'silk_background_dropcap_cb_customizer_preview' ) ) {
+if ( ! function_exists( 'silklite_background_dropcap_cb_customizer_preview' ) ) {
 
-	function silk_background_dropcap_cb_customizer_preview() {
+	function silklite_background_dropcap_cb_customizer_preview() {
 		$js = "
-			function silk_background_dropcap_cb( value, selector, property, unit ) {
+			function silklite_background_dropcap_cb( value, selector, property, unit ) {
 				setTimeout(function() {
 					var css = '',
 	                    shadow = wp.customize( 'silk_options[secondary_color]' )(),
-						style = document.getElementById('silk_dropcap_text_shadow_cb_style_tag'),
+						style = document.getElementById('silklite_background_dropcap_cb_style_tag'),
 						head = document.head || document.getElementsByTagName('head')[0];
 					
 					css += selector + ' { ' + 'text-shadow: 2px 2px 0 ' + value + ', 4px 4px 0 ' + shadow + ';' + ' } ';
@@ -592,7 +582,7 @@ if ( ! function_exists( 'silk_background_dropcap_cb_customizer_preview' ) ) {
 						style.innerHTML = css;
 					} else {
 						style = document.createElement('style');
-						style.setAttribute('id', 'silk_background_dropcap_cb_style_tag');
+						style.setAttribute('id', 'silklite_background_dropcap_cb_style_tag');
 	
 						style.type = 'text/css';
 						if ( style.styleSheet ) {
@@ -608,11 +598,11 @@ if ( ! function_exists( 'silk_background_dropcap_cb_customizer_preview' ) ) {
 
 		wp_add_inline_script( 'customify-previewer-scripts', $js );
 	}
-	add_action( 'customize_preview_init', 'silk_background_dropcap_cb_customizer_preview' );
+	add_action( 'customize_preview_init', 'silklite_background_dropcap_cb_customizer_preview' );
 }
 
-if ( ! function_exists('silk_color_opacity_adjust_cb') ) {
-	function silk_color_opacity_adjust_cb( $value, $selector, $property, $unit ) {
+if ( ! function_exists('silklite_color_opacity_adjust_cb') ) {
+	function silklite_color_opacity_adjust_cb( $value, $selector, $property, $unit ) {
 
 		// Get our color
 		if ( empty( $value ) || ! preg_match( '/^#[a-f0-9]{6}$/i', $value ) ) {
@@ -632,19 +622,19 @@ if ( ! function_exists('silk_color_opacity_adjust_cb') ) {
 	}
 }
 
-if ( ! function_exists('silk_color_opacity_adjust_cb_customizer_preview') ) {
+if ( ! function_exists('silklite_color_opacity_adjust_cb_customizer_preview') ) {
 
-	function silk_color_opacity_adjust_cb_customizer_preview() {
+	function silklite_color_opacity_adjust_cb_customizer_preview() {
 
 	    $js = "
 	        function hexdec(hexString) {
 				hexString = (hexString + '').replace(/[^a-f0-9]/gi, '');
 				return parseInt(hexString, 16)
 			}
-			function silk_color_opacity_adjust_cb( value, selector, property, unit ) {
+			function silklite_color_opacity_adjust_cb( value, selector, property, unit ) {
 
 				var css = '',
-					style = document.getElementById('silk_color_opacity_adjust_cb_style_tag'),
+					style = document.getElementById('silklite_color_opacity_adjust_cb_style_tag'),
 					head = document.head || document.getElementsByTagName('head')[0],
 					r = hexdec(value[1] + '' + value[2]),
 					g = hexdec(value[3] + '' + value[4]),
@@ -656,7 +646,7 @@ if ( ! function_exists('silk_color_opacity_adjust_cb_customizer_preview') ) {
 					style.innerHTML = css;
 				} else {
 					style = document.createElement('style');
-					style.setAttribute('id', 'silk_color_opacity_adjust_cb_style_tag');
+					style.setAttribute('id', 'silklite_color_opacity_adjust_cb_style_tag');
 
 					style.type = 'text/css';
 					if ( style.styleSheet ) {
@@ -671,14 +661,14 @@ if ( ! function_exists('silk_color_opacity_adjust_cb_customizer_preview') ) {
 
 		wp_add_inline_script( 'customify-previewer-scripts', $js );
 	}
-	add_action( 'customize_preview_init', 'silk_color_opacity_adjust_cb_customizer_preview' );
+	add_action( 'customize_preview_init', 'silklite_color_opacity_adjust_cb_customizer_preview' );
 }
 
-function silk_lite_add_default_color_palette( $color_palettes ) {
+function silklite_add_default_color_palette( $color_palettes ) {
 
 	$color_palettes = array_merge( array(
 		'default' => array(
-			'label'   => esc_html__( 'Theme Default', 'gema-lite' ),
+			'label'   => esc_html__( 'Theme Default', 'silk-lite' ),
 			'preview' => array(
 				'background_image_url' => 'https://cloud.pixelgrade.com/wp-content/uploads/2018/09/vivid-autumn-palette-400x156.png',
 			),
@@ -699,4 +689,4 @@ function silk_lite_add_default_color_palette( $color_palettes ) {
 	return $color_palettes;
 }
 
-add_filter( 'customify_get_color_palettes', 'silk_lite_add_default_color_palette' );
+add_filter( 'customify_get_color_palettes', 'silklite_add_default_color_palette' );

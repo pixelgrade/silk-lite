@@ -274,40 +274,35 @@ function silklite_wp_enqueue_media() {
 add_action( 'wp_enqueue_media', 'silklite_wp_enqueue_media' );
 
 /**
- * Implement the Custom Header feature.
- */
-//require get_template_directory() . '/inc/custom-header.php';
-
-/**
  * Custom template tags for this theme.
  */
-require get_template_directory() . '/inc/template-tags.php';
+require_once trailingslashit( get_template_directory() ) . 'inc/template-tags.php';
 
 /**
  * Custom functions that act independently of the theme templates.
  */
-require get_template_directory() . '/inc/extras.php';
+require_once trailingslashit( get_template_directory() ) . 'inc/extras.php';
 
 /**
  * Customizer additions.
  */
-require get_template_directory() . '/inc/customizer.php';
+require_once trailingslashit( get_template_directory() ) . 'inc/customizer.php';
 
 /**
  * Load Jetpack compatibility file.
  */
-require get_template_directory() . '/inc/jetpack.php';
+require_once trailingslashit( get_template_directory() ) . 'inc/jetpack.php';
 
 /**
  * Load the Hybrid Media Grabber class
  */
-require get_template_directory() . '/inc/silklite-hybrid-media-grabber.php';
+require_once trailingslashit( get_template_directory() ) . 'inc/silklite-hybrid-media-grabber.php';
 
 /**
  * Load custom widgets
  */
-require get_template_directory() . '/inc/widgets/popular-posts.php';
-require get_template_directory() . '/inc/widgets/about-me.php';
+require_once trailingslashit( get_template_directory() ) . 'inc/widgets/popular-posts.php';
+require_once trailingslashit( get_template_directory() ) . 'inc/widgets/about-me.php';
 
 /**
  * Admin dashboard related logic.
@@ -317,4 +312,4 @@ require_once trailingslashit( get_template_directory() ) . 'inc/admin.php';
 /**
  * Various plugins integrations.
  */
-require get_template_directory() . '/inc/integrations.php';
+require_once trailingslashit( get_template_directory() ) . 'inc/integrations.php';
