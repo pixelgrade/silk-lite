@@ -1,4 +1,4 @@
-# Copyright (C) 2015 PixelGrade
+# Copyright (C) 2015 Pixelgrade
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
@@ -106,7 +106,7 @@ msgid "Theme: %1$s by %2$s."
 msgstr ""
 
 #: footer.php:41
-msgid "The PixelGrade Website"
+msgid "The Pixelgrade Website"
 msgstr ""
 
 #: footer.php:63
@@ -537,7 +537,7 @@ msgid "An enchanting magazine style theme for fashion bloggers, prized for its s
 msgstr ""
 
 #. Author of the plugin/theme
-msgid "PixelGrade"
+msgid "Pixelgrade"
 msgstr ""
 
 #. Author URI of the plugin/theme
