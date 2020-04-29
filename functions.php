@@ -243,6 +243,12 @@ function silklite_scripts_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'silklite_scripts_styles' );
 
+function silklite_gutenberg_styles() {
+	wp_enqueue_style( 'silk-lite-gutenberg', get_theme_file_uri( '/editor.css' ), false );
+	wp_enqueue_style( 'silk-lite-fonts', silklite_fonts_url() );
+}
+add_action( 'enqueue_block_editor_assets', 'silklite_gutenberg_styles' );
+
 /**
  * Registers/enqueues the scripts related to media JS APIs
  *
