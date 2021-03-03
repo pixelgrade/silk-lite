@@ -1856,7 +1856,7 @@ if (!Date.now)
 
     /* ====== ON WINDOW LOAD ====== */
 
-    $window.load(function() {
+    $window.on('load', function() {
         browserSize();
         navigation.init();
         fixedSidebars.update();
@@ -1902,6 +1902,7 @@ if (!Date.now)
         svgLogo.update();
         ticking = false;
     }
+
     /* ====== HELPER FUNCTIONS ====== */
 
 

@@ -11,7 +11,7 @@ function init() {
 
 /* ====== ON WINDOW LOAD ====== */
 
-$window.load(function() {
+$window.on('load', function() {
   browserSize();
   navigation.init();
   fixedSidebars.update();
