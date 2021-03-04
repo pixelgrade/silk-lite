@@ -3,11 +3,12 @@ Theme URI: https://github.com/pixelgrade/silk-lite
 Author: Pixelgrade
 Author URI: https://pixelgrade.com
 Description: An enchanting magazine style theme for fashion bloggers, prized for its smart layout and smooth animations. Whether you're looking to share your own thoughts, write about your latest findings or just have a scrapbook of photos, SILK is designed to fulfill these and a lot more.
-Version: 1.5.0
+Version: 1.5.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 4.9.9
-Tested up to: 5.4.0
+Requires PHP: 5.3.0
+Tested up to: 5.7.0
 Tags: translation-ready, theme-options, footer-widgets, featured-images, custom-menu, custom-colors, custom-logo, custom-background, grid-layout, two-columns, three-columns, four-columns, blog, entertainment, photography, rtl-language-support, post-formats, threaded-comments, block-styles
 
 == Description ==
@@ -21,6 +22,9 @@ An enchanting magazine style theme for fashion bloggers, prized for its smart la
 3. Click Activate to use your new theme right away.
 
 == Changelog ==
+
+= 1.5.1 =
+* Improved compatibility with
 
 = 1.5.0 =
 * Added Gutenberg integration.
